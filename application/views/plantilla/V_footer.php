@@ -25,9 +25,13 @@
 
 <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
 
+<script>
+  var base_url = "<?php echo base_url(); ?>";
+</script>
 
 <script src="<?php echo base_url() ?>application/js/j_trabajadores.js"></script>
 <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script>
 
 </body>
+
 </html>

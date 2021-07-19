@@ -16,8 +16,28 @@ class M_multitablas extends CI_Model
 
     public function insertar($nombre_tabla)
     {
-        return $this->db->query("INSERT INTO MULTITABLAS VALUES ('','$nombre_tabla'");
+        return $this->db->query("INSERT INTO MULTITABLAS VALUES ('','$nombre_tabla');");
     }
+
+    public function lastID()
+    {
+        return $this->db->insert_id();
+    }
+
+    public function insertar_detalle($data)
+    {
+        $this->db->insert("detalle_multitablas", $data);
+    }
+
+
+
+
+
+
+
+
+
+
 
     public function cabecera($id_multitabla)
     {

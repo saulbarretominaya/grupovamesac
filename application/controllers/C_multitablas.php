@@ -35,20 +35,33 @@ class C_multitablas extends CI_Controller
 		//CABECERA
 		$nombre_tabla = $this->input->post("nombre_tabla");
 
-
 		//DETALLE
-		// $id_producto = $this->input->post("id_producto");
-		// $precio = $this->input->post("precio");
-		// $cantidad = $this->input->post("cantidad");
-		// $importe = $this->input->post("importe");
+		$abreviatura = $this->input->post("abreviatura");
+		$descripcion = $this->input->post("descripcion");
+
+		echo '<script> console.log("' . $abreviatura . '")</script>';
+		echo '<script> console.log("' . $descripcion . '")</script>';
 
 
 		if ($this->M_multitablas->insertar($nombre_tabla)) {
-			//$id_venta = $this->M_multitablas->lastID();
-			//$id_tcomprobante = $this->Model_ventas->incrementar_comprobante($id_tcomprobante);
-			//$this->detalle_ventas($id_venta, $id_producto, $precio, $cantidad, $importe);
-			//$this->actualizar_stock($id_producto, $cantidad); //disminuir stock
-			redirect(base_url() . "C_multitablas");
+			$id_multitabla = $this->M_multitablas->lastID();
+			$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
+			echo json_encode($nombre_tabla);
+		}
+	}
+
+	protected function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
+	{
+
+		for ($i = 0; $i < count($id_multitabla); $i++) {
+
+			$data = array(
+				'id_multitabla' => $id_multitabla,
+				'abreviatura' => $abreviatura[$i],
+				'descripcion' => $descripcion[$i],
+				
+			);
+			$this->M_multitablas->insertar_detalle($data);
 		}
 	}
 

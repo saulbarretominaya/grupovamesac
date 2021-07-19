@@ -26,17 +26,17 @@ $("#id_agregar_multitabla").on("click", function (e) {
 
 	html = "<tr>";
 	html +=
-		"<input type='hidden' name='id_multitabla[]' value='" +
+		"<input type='hidden' name='id_multitabla' value='" +
 		id_multitabla +
 		"'>";
 	html +=
-		"<td>   <input type='hidden' name='cantidad[]' value='" +
+		"<td>   <input type='hidden' name='abreviatura[]' value='" +
 		abreviatura +
 		"'>" +
 		abreviatura +
 		"</td>";
 	html +=
-		"<td>   <input type='hidden' name='importe[]' value='" +
+		"<td>   <input type='hidden' name='descripcion[]' value='" +
 		descripcion +
 		"'>" +
 		descripcion +
@@ -60,9 +60,26 @@ $("#registrar").on("click", function () {
 	var abreviatura = $("#abreviatura").val();
 	var descripcion = $("#descripcion").val();
 
-	debugger;
-	validar_campos();
+	$.ajax({
+		async: false,
+		url: base_url + "C_multitablas/insertar",
+		type: "POST",
+		dataType: "json",
+		data: {
+			nombre_tabla: nombre_tabla,
+			abreviatura: abreviatura,
+			descripcion: descripcion,
+		},
+		success: function (data) {
+			window.location.href = base_url + "C_multitablas";
+			debugger;
+		},
+	});
+});
 
+/*  script para validar datos duplicados */
+/*
+	validar_campos();
 	var resultado = "";
 
 	if (resultado_campo == true && validacion_enlaces == "1") {
@@ -117,6 +134,7 @@ $("#registrar").on("click", function () {
 	}
 });
 
+
 function validar_campos() {
 	var nombre_tabla = $("#nombre_tabla").val();
 	var abreviatura = $("#abreviatura").val();
@@ -150,3 +168,4 @@ function validar_campos() {
 		resultado_campo = true;
 	}
 }
+*/
