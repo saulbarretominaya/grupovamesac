@@ -6,19 +6,29 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Multitablas
-              <button type="button" class="btn btn-warning" id="">ACTUALIZAR</button>
+              <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
+              <a href="<?php echo base_url(); ?>C_multitablas" class="btn btn-danger btn-sm">CANCELAR</a>
+
             </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
+
+    <!-- Condigos ocultos -->
+    <div id="container_solicitud_id_remove" name="container_solicitud_id_remove" style="display: none;">
+    </div>
+    <input type="hidden" class="form-control" id="id_multitabla" value="<?php echo $cabecera->id_multitabla; ?>">
+
+    <!-- Fin de codigos ocultos-->
+
+
+
     <!-- Main content -->
     <section class="content">
-
       <div class="container-fluid">
         <div class="row">
-
           <div class="col-md-12">
             <!-- Horizontal Form -->
             <div class="card card-info">
@@ -30,20 +40,20 @@
               <form class="form-horizontal">
                 <div class="card-body">
                   <div class="form-group row">
-                    <input type="hidden" class="form-control" id="id_multitabla" value="<?php echo $cabecera->id_multitabla; ?>">
+
                     <label class="col-sm-2 col-form-label">Nombre General</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="" value="<?php echo $cabecera->nombre_tabla; ?>">
+                      <input type="text" class="form-control" id="nombre_tabla" value="<?php echo $cabecera->nombre_tabla; ?>" style="background-color: #7C7C7C; color: white ;">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Abreviatura</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="abreviatura">
+                      <input type="text" class="form-control" id="abreviatura_tabla">
                     </div>
                     <label class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="descripcion">
+                      <input type="text" class="form-control" id="descripcion_tabla">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -83,7 +93,14 @@
                           <tr>
                             <td><?php echo $detalle->abreviatura; ?></td>
                             <td><?php echo $detalle->descripcion; ?></td>
-                            <td><button type="button" class="btn btn-danger btn-xs eliminar_fila"><span class="fas fa-trash-alt"></span></button></td>
+                            <?php if ($detalle->id_dmultitabla != null) { ?>
+                              <td>
+                                <button type="button" class="btn btn-danger btn-xs eliminar_fila"><span class="fas fa-trash-alt"></span></button>
+                                <input type="hidden" name="value_id_solicitud" id="value_id_solicitud" value="<?php echo $detalle->id_dmultitabla; ?>">
+                              </td>
+                            <?php } else { ?>
+                              <td></td>
+                            <?php } ?>
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>

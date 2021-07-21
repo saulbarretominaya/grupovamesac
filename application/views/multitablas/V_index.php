@@ -6,7 +6,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Multitablas
-              <a href="<?php echo base_url(); ?>C_multitablas/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+              <a href="<?php echo base_url(); ?>C_multitablas/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>

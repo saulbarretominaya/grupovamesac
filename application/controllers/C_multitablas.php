@@ -39,12 +39,9 @@ class C_multitablas extends CI_Controller
 		$abreviatura = $this->input->post("abreviatura");
 		$descripcion = $this->input->post("descripcion");
 
-		echo '<script> console.log("' . $abreviatura . '")</script>';
-		echo '<script> console.log("' . $descripcion . '")</script>';
-
-
 		if ($this->M_multitablas->insertar($nombre_tabla)) {
 			$id_multitabla = $this->M_multitablas->lastID();
+
 			$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
 			echo json_encode($nombre_tabla);
 		}
@@ -52,16 +49,9 @@ class C_multitablas extends CI_Controller
 
 	protected function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
 	{
+		for ($i = 0; $i < count($abreviatura); $i++) {
 
-		for ($i = 0; $i < count($id_multitabla); $i++) {
-
-			$data = array(
-				'id_multitabla' => $id_multitabla,
-				'abreviatura' => $abreviatura[$i],
-				'descripcion' => $descripcion[$i],
-				
-			);
-			$this->M_multitablas->insertar_detalle($data);
+			$this->M_multitablas->insertar_detalle($id_multitabla, $abreviatura[$i], $descripcion[$i]);
 		}
 	}
 
@@ -77,5 +67,38 @@ class C_multitablas extends CI_Controller
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('multitablas/V_actualizar', $data);
 		$this->load->view('plantilla/V_footer');
+	}
+
+	public function actualizar()
+	{
+		//CABECERA
+		$id_multitabla = $this->input->post("id_multitabla");
+		$nombre_tabla = $this->input->post("nombre_tabla");
+
+		//ELIMINAR POR ID LAS FILAS DE TABLA DE DETALLE
+		$id_dmultitabla = $this->input->post("id_dmultitabla");
+
+		//DETALLE
+		$abreviatura = $this->input->post("abreviatura");
+		$descripcion = $this->input->post("descripcion");
+
+
+		if ($this->M_multitablas->actualizar($id_multitabla, $nombre_tabla)) {
+			if ($id_dmultitabla != null) {
+				$this->eliminar_detalle($id_dmultitabla);
+			}
+
+			if ($abreviatura != null ) {
+				$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
+			}
+			echo json_encode($nombre_tabla);
+		}
+	}
+
+	protected function eliminar_detalle($id_dmultitabla)
+	{
+		for ($i = 0; $i < count($id_dmultitabla); $i++) {
+			$this->M_multitablas->eliminar_detalle($id_dmultitabla[$i]);
+		}
 	}
 }
