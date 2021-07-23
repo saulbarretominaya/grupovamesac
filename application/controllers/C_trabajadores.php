@@ -16,7 +16,7 @@ class C_trabajadores extends CI_Controller
 
 
 		$data = array(
-			'trabajores' => $this->M_trabajadores->index(),
+			'index' => $this->M_trabajadores->index(),
 		);
 
 		$this->load->view('plantilla/V_header');
