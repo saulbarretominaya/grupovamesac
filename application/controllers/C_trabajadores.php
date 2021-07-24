@@ -14,14 +14,13 @@ class C_trabajadores extends CI_Controller
 	public function index()
 	{
 
-
 		$data = array(
 			'v_listar' => $this->M_trabajadores->index(),
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('V_trabajadores', $data);
+		$this->load->view('trabajadores/V_index', $data);
 		$this->load->view('plantilla/V_footer');
 	}
 }

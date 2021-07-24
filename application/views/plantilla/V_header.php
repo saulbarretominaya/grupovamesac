@@ -16,6 +16,9 @@
 
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.css">
 
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

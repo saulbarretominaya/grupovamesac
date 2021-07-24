@@ -70,7 +70,7 @@
 
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+            <i class="fas fa-border-none"></i>
               <p>
                 Multitablas
                 <i class="fas fa-angle-left right"></i>
@@ -85,6 +85,25 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="fas fa-warehouse"></i>
+              <p>
+                Almacen
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_productos" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Productos</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
