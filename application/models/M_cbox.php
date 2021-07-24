@@ -7,7 +7,6 @@ class M_cbox extends CI_Model
 {
 
     /* COMBOX PRODUCTOS  */
-
     //1
     public function cbox_unidad_medida()
     {
@@ -102,10 +101,7 @@ class M_cbox extends CI_Model
 
 
 
-
-
-    /* TRABAJADORES */
-
+    /* COMBOX TRABAJADORES */
     //11
     public function cbox_tipo_trabajador()
     {
@@ -121,7 +117,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='11';");
+               WHERE b.id_multitabla='12';");
         return $resultados->result();
     }
     //13
@@ -130,7 +126,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
           SELECT a.*,b.* FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='11';");
+          WHERE b.id_multitabla='13';");
         return $resultados->result();
     }
     //14
@@ -139,7 +135,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='11';");
+               WHERE b.id_multitabla='14';");
         return $resultados->result();
     }
     //15
@@ -148,7 +144,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
           SELECT a.*,b.* FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='11';");
+          WHERE b.id_multitabla='15';");
         return $resultados->result();
     }
     //16
@@ -157,7 +153,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='11';");
+               WHERE b.id_multitabla='16';");
         return $resultados->result();
     }
     //17
@@ -166,7 +162,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
           SELECT a.*,b.* FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='11';");
+          WHERE b.id_multitabla='17';");
         return $resultados->result();
     }
     //18
@@ -175,17 +171,16 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='11';");
+               WHERE b.id_multitabla='18';");
         return $resultados->result();
     }
-
     //19
     public function cbox_departamento()
     {
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='11';");
+               WHERE b.id_multitabla='19';");
         return $resultados->result();
     }
     //20
@@ -194,7 +189,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                    SELECT a.*,b.* FROM multitablas a 
                    INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                   WHERE b.id_multitabla='11';");
+                   WHERE b.id_multitabla='20';");
         return $resultados->result();
     }
     //21
@@ -203,9 +198,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='11';");
+                           WHERE b.id_multitabla='21';");
         return $resultados->result();
     }
-
     /* FIN DE TRABAJADOR*/
 }
