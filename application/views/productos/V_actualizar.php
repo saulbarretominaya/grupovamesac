@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Multitablas
+            <h1>Productos
               <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
               <a href="<?php echo base_url(); ?>C_multitablas" class="btn btn-danger btn-sm">CANCELAR</a>
 
@@ -43,7 +43,7 @@
 
                     <label class="col-sm-2 col-form-label">Nombre General</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="nombre_tabla" value="<?php echo $cabecera->nombre_tabla; ?>" style="background-color: #7C7C7C; color: white ;">
+                      <input type="text" class="form-control" id="nombre_tabla" value="<?php echo $cabecera->nombre_tabla; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -67,52 +67,6 @@
               </form>
             </div>
             <!-- /.card -->
-          </div>
-
-          <div class="col-md-12">
-            <!-- Horizontal Form -->
-            <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Detalle Multitablas</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form class="form-horizontal">
-                <div class="card-body">
-                  <table id="id_table_detalle_multitablas" class="table table-sm table-hover">
-                    <thead>
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php if (!empty($detalle)) : ?>
-                        <?php foreach ($detalle as $detalle) : ?>
-                          <tr>
-                            <td><?php echo $detalle->abreviatura; ?></td>
-                            <td><?php echo $detalle->descripcion; ?></td>
-                            <?php if ($detalle->id_dmultitabla != null) { ?>
-                              <td>
-                                <button type="button" class="btn btn-danger btn-xs eliminar_fila"><span class="fas fa-trash-alt"></span></button>
-                                <input type="hidden" name="value_id_solicitud" id="value_id_solicitud" value="<?php echo $detalle->id_dmultitabla; ?>">
-                              </td>
-                            <?php } else { ?>
-                              <td></td>
-                            <?php } ?>
-                          </tr>
-                        <?php endforeach; ?>
-                      <?php endif; ?>
-                    </tbody>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </form>
-            </div>
-            <!-- /.card -->
-
           </div>
 
 

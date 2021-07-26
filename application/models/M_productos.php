@@ -3,18 +3,32 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_multitablas extends CI_Model
+class M_productos extends CI_Model
 {
 
     public function index()
     {
-        $resultados = $this->db->query(
-            "SELECT*FROM multitablas"
-        );
+        $resultados = $this->db->query("select * from productos;");
         return $resultados->result();
     }
 
-    public function insertar($nombre_tabla)
+    /*
+    public function tipo_moneda($id)
+    {
+        $resultados = $this->db->query("
+        CALL unidad_medida");
+        return $resultados->result();
+    }
+    public function tipo_trabajador($id)
+    {
+        $resultados = $this->db->query("
+        CALL mgm22000_pc21");
+        return $resultados->result();
+    }
+
+    */
+
+    /*public function insertar($nombre_tabla)
     {
         return $this->db->query("INSERT INTO multitablas VALUES ('','$nombre_tabla');");
     }
@@ -59,5 +73,5 @@ class M_multitablas extends CI_Model
         WHERE a.id_multitabla='$id_multitabla'
         ");
         return $resultados->result();
-    }
+    }*/
 }

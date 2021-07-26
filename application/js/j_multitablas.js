@@ -19,24 +19,21 @@ $("#id_datatable_multitablas").dataTable({
 
 $("#id_agregar_multitabla").on("click", function (e) {
 	debugger;
-
 	var id_multitabla = document.getElementById("id_multitabla").value;
-	var abreviatura = document.getElementById("abreviatura").value;
-	var descripcion = document.getElementById("descripcion").value;
+	var abreviatura = document.getElementById("abreviatura_tabla").value;
+	var descripcion = document.getElementById("descripcion_tabla").value;
 
 	html = "<tr>";
 	html +=
-		"<input type='hidden' name='id_multitabla' value='" +
-		id_multitabla +
-		"'>";
+		"<input type='hidden' name='id_multitabla' value='" + id_multitabla + "'>";
 	html +=
-		"<td>   <input type='hidden' name='abreviatura[]' value='" +
+		"<td>   <input type='hidden' name='abreviatura[]' id='abreviatura' value='" +
 		abreviatura +
 		"'>" +
 		abreviatura +
 		"</td>";
 	html +=
-		"<td>   <input type='hidden' name='descripcion[]' value='" +
+		"<td>   <input type='hidden' name='descripcion[]' id='descripcion' value='" +
 		descripcion +
 		"'>" +
 		descripcion +
@@ -50,6 +47,12 @@ $("#id_agregar_multitabla").on("click", function (e) {
 
 $(document).on("click", ".eliminar_fila", function () {
 	debugger;
+	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
+	html =
+		"<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" +
+		id_detalle +
+		"'>";
+	$("#container_solicitud_id_remove").append(html);
 	$(this).closest("tr").remove();
 });
 
@@ -57,8 +60,14 @@ $("#registrar").on("click", function () {
 	debugger;
 
 	var nombre_tabla = $("#nombre_tabla").val();
-	var abreviatura = $("#abreviatura").val();
-	var descripcion = $("#descripcion").val();
+	var abreviatura = Array.prototype.slice.call(
+		document.getElementsByName("abreviatura[]")
+	);
+	var abreviatura = abreviatura.map((o) => o.value);
+	var descripcion = Array.prototype.slice.call(
+		document.getElementsByName("descripcion[]")
+	);
+	var descripcion = descripcion.map((o) => o.value);
 
 	$.ajax({
 		async: false,
@@ -71,6 +80,50 @@ $("#registrar").on("click", function () {
 			descripcion: descripcion,
 		},
 		success: function (data) {
+			debugger;
+			window.location.href = base_url + "C_multitablas";
+			debugger;
+		},
+	});
+});
+
+$("#actualizar").on("click", function () {
+	debugger;
+
+	//Cabecera
+	var id_multitabla = $("#id_multitabla").val();
+	var nombre_tabla = $("#nombre_tabla").val();
+
+	//Detalle
+	var id_dmultitabla = Array.prototype.slice.call(
+		document.getElementsByName("id_solicitud_to_remove[]")
+	);
+	var id_dmultitabla = id_dmultitabla.map((o) => o.value);
+
+	var abreviatura = Array.prototype.slice.call(
+		document.getElementsByName("abreviatura[]")
+	);
+	var abreviatura = abreviatura.map((o) => o.value);
+
+	var descripcion = Array.prototype.slice.call(
+		document.getElementsByName("descripcion[]")
+	);
+	var descripcion = descripcion.map((o) => o.value);
+
+	$.ajax({
+		async: false,
+		url: base_url + "C_multitablas/actualizar",
+		type: "POST",
+		dataType: "json",
+		data: {
+			id_multitabla: id_multitabla,
+			nombre_tabla: nombre_tabla,
+			id_dmultitabla: id_dmultitabla,
+			abreviatura: abreviatura,
+			descripcion: descripcion,
+		},
+		success: function (data) {
+			debugger;
 			window.location.href = base_url + "C_multitablas";
 			debugger;
 		},

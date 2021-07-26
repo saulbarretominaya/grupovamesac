@@ -1,0 +1,2 @@
+print_r($abreviatura);
+echo "<script>console.log('Imprimiendo: " . json_encode($detalle) . "');</script>";

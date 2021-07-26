@@ -1,35 +1,41 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class C_multitablas extends CI_Controller
+class C_productos extends CI_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("M_multitablas");
+		$this->load->model("M_productos");
+		$this->load->model("M_cbox");
 	}
 	public function index()
 	{
 		$data = array(
-			'index' => $this->M_multitablas->index(),
+			'index' => $this->M_productos->index(),
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('multitablas/V_index', $data);
+		$this->load->view('productos/V_index', $data);
 		$this->load->view('plantilla/V_footer');
 	}
 
 	public function enlace_registrar()
 	{
+		$data = array(
+			'cbox_unidad_medida' => $this->M_cbox->cbox_unidad_medida(),
+			'cbox_grupo' => $this->M_cbox->cbox_grupo(),
+		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('multitablas/V_registrar');
+		$this->load->view('productos/V_registrar', $data);
 		$this->load->view('plantilla/V_footer');
 	}
 
+	/*
 	public function insertar()
 	{
 		//CABECERA
@@ -100,5 +106,5 @@ class C_multitablas extends CI_Controller
 		for ($i = 0; $i < count($id_dmultitabla); $i++) {
 			$this->M_multitablas->eliminar_detalle($id_dmultitabla[$i]);
 		}
-	}
+	}*/
 }

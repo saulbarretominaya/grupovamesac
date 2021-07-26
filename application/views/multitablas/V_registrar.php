@@ -6,8 +6,10 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Multitablas
-              <button type="button" class="btn btn-primary" id="registrar">REGISTRAR</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
+                  <a href="<?php echo base_url(); ?>C_multitablas" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
+            
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -33,23 +35,23 @@
                     <input type="hidden" class="form-control" id="id_multitabla" value="">
                     <label class="col-sm-2 col-form-label">Nombre General</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="nombre_tabla" value="" name="nombre_tabla">
+                      <input type="text" class="form-control" id="nombre_tabla" value="" name="nombre_tabla" style="background-color: #7C7C7C; color: white ;">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Abreviatura</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="abreviatura">
+                      <input type="text" class="form-control" id="abreviatura_tabla">
                     </div>
                     <label class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="descripcion">
+                      <input type="text" class="form-control" id="descripcion_tabla">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-0 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="button" class="btn btn-primary" id="id_agregar_multitabla">AGREGAR</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="id_agregar_multitabla">AGREGAR</button>
                     </div>
                   </div>
                 </div>

@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Multitablas
-              <a href="<?php echo base_url(); ?>C_multitablas/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
+            <h1>Productos
+              <a href="<?php echo base_url(); ?>C_productos/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -23,6 +23,8 @@
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
+                  <th>Codigo Sunat</th>
+                  <th>Descripcion Sunat</th>
                   <th></th>
                 </tr>
               </thead>
@@ -30,9 +32,11 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_multitabla; ?></td>
-                      <td><?php echo $index->nombre_tabla; ?></td>
-                      <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
+                      <td><?php echo $index->id_producto; ?></td>
+                      <td><?php echo $index->descripcion_producto; ?></td>
+                      <td><?php echo $index->codigo_sunat; ?></td>
+                      <td><?php echo $index->descripcion_sunat; ?></td>
+                      <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_producto; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
