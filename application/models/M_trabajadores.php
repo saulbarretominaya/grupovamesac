@@ -13,4 +13,20 @@ class M_trabajadores extends CI_Model
         );
         return $resultados->result();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }
