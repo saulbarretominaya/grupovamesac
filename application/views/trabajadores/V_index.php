@@ -6,8 +6,8 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>TRABAJADORES
-             <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
-             </h1>
+              <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -28,7 +28,8 @@
                   <th>Nombre</th>
                   <th>Paterno</th>
                   <th>Materno</th>
-                  <th>Telefono</th>
+                  <th>Celular</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -36,10 +37,11 @@
                   <?php foreach ($index as $index) : ?>
                     <tr>
                       <td><?php echo $index->id_trabajador; ?></td>
-                      <td><?php echo $index->nombre; ?></td>
+                      <td><?php echo $index->nombres; ?></td>
                       <td><?php echo $index->ape_paterno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
-                      <td><?php echo $index->telefono; ?></td>
+                      <td><?php echo $index->celular; ?></td>
+                      <!-- <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td> -->
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -50,7 +52,7 @@
                   <th>Nombre</th>
                   <th>Paterno</th>
                   <th>Materno</th>
-                  <th>Telefono</th>
+                  <th>Celular</th>
                 </tr>
               </tfoot>
             </table>
