@@ -16,7 +16,7 @@ class M_multitablas extends CI_Model
 
     public function insertar($nombre_tabla)
     {
-        return $this->db->query("INSERT INTO multitablas VALUES ('','$nombre_tabla');");
+        return $this->db->query("INSERT INTO multitablas VALUES ('','$nombre_tabla')");
     }
 
     public function lastID()
@@ -26,7 +26,11 @@ class M_multitablas extends CI_Model
 
     public function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
     {
+<<<<<<< HEAD
         return $this->db->query("INSERT INTO detalle_multitablas VALUES ('','$id_multitabla','$abreviatura','$descripcion',null)");
+=======
+        return $this->db->query("INSERT INTO detalle_multitablas VALUES ('','$id_multitabla','$abreviatura','$descripcion',NULL)");
+>>>>>>> df954aa57f9bd6af7daed239e3e2eb5ff8b1e37a
     }
 
     public function actualizar($id_multitabla, $nombre_tabla)

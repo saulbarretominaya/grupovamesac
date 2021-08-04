@@ -5,7 +5,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>TRABAJADORES</h1>
+            <h1>TRABAJADORES
+              <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,18 +28,29 @@
                   <th>Nombre</th>
                   <th>Paterno</th>
                   <th>Materno</th>
-                  <th>Telefono</th>
+                  <th>Celular</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <?php if (!empty($listar_trabajadores)) : ?>
-                  <?php foreach ($listar_trabajadores as $grilla_trabajadores) : ?>
+                <?php if (!empty($index)) : ?>
+                  <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $grilla_trabajadores->id_trabajador; ?></td>
-                      <td><?php echo $grilla_trabajadores->nombre; ?></td>
-                      <td><?php echo $grilla_trabajadores->ape_paterno; ?></td>
-                      <td><?php echo $grilla_trabajadores->ape_materno; ?></td>
-                      <td><?php echo $grilla_trabajadores->telefono; ?></td>
+                      <td><?php echo $index->id_trabajador; ?></td>
+                      <td><?php echo $index->nombres; ?></td>
+                      <td><?php echo $index->ape_paterno; ?></td>
+                      <td><?php echo $index->ape_materno; ?></td>
+                      <td><?php echo $index->celular; ?></td>
+                      <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
+                      <!-- <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td> -->
+
+                      <!-- <td>
+                        <button type="button" class="btn btn-danger btn-xs eliminar_fila"><span class="fas fa-trash-alt"></span></button>
+                        <input type="hidden" name="value_id_solicitud" id="value_id_solicitud" value="<?php echo $detalle->id_dmultitabla; ?>">
+                      </td> -->
+                      <td class="text-center" style="width: 15px;"><a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
+
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -48,7 +61,7 @@
                   <th>Nombre</th>
                   <th>Paterno</th>
                   <th>Materno</th>
-                  <th>Telefono</th>
+                  <th>Celular</th>
                 </tr>
               </tfoot>
             </table>

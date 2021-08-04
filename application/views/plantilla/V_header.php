@@ -14,11 +14,24 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/dist/css/adminlte.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.css">
+<<<<<<< HEAD
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+=======
+
+  <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/plugins/alertify/css/alertify.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/plugins/alertify/css/themes/default.css">
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+
+
+>>>>>>> df954aa57f9bd6af7daed239e3e2eb5ff8b1e37a
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
