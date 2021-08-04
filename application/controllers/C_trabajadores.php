@@ -28,7 +28,6 @@ class C_trabajadores extends CI_Controller
 
         $data = array(
 
-
             // COMBO BOX
             'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
             'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
@@ -43,13 +42,10 @@ class C_trabajadores extends CI_Controller
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
         );
 
-
-
-
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
         $this->load->view('trabajadores/V_registrar', $data);
-        $this->load->view('plantilla/V_footer');
+        // $this->load->view('plantilla/V_footer');
     }
 
     public function insertar()
@@ -66,8 +62,6 @@ class C_trabajadores extends CI_Controller
         $telefono = $this->input->post("telefono");
         $celular = $this->input->post("celular");
         $tipo_trabajador = $this->input->post("tipo_trabajador");
-        print_r($tipo_trabajador);
-
         $tipo_documento = $this->input->post("tipo_documento");
         $local = $this->input->post("local");
         $cargo = $this->input->post("cargo");
@@ -79,49 +73,115 @@ class C_trabajadores extends CI_Controller
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
 
+
+        $this->M_trabajadores->insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+
+        echo json_encode($num_documento);
+    }
+
+
+
+    public function enlace_actualizar($id_trabajador)
+    {
+
         $data = array(
-
-            'num_documento' => $num_documento,
-            'nombres' => $nombres,
-            'ape_paterno' => $ape_paterno,
-            'ape_materno' => $ape_materno,
-            'email' => $email,
-            'fecha_nacimiento' => $fecha_nacimiento,
-            'lugar_nacimiento' => $lugar_nacimiento,
-            'domicilio' => $domicilio,
-            'referencia' => $referencia,
-            'telefono' => $telefono,
-            'celular' => $celular,
-            'id_tipo_trabajador' => $tipo_trabajador,
-            'id_local' => $local,
-            'id_cargo' => $cargo,
-            'id_sexo' => $sexo,
-            'id_tipo_documento' => $tipo_documento,
-            'id_nacionalidad' => $nacionalidad,
-            'id_est_civil' => $estado_civil,
-            'id_grado_instruccion' => $grado_instruccion,
-            'id_departamento' => $departamento,
-            'id_provincia' => $provincia,
-            'id_distrito' => $distrito,
-
-
-            // COMBO BOX
-            // 'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
-            // 'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            // 'cbox_local' => $this->M_cbox->cbox_local(),
-            // 'cbox_cargo' => $this->M_cbox->cbox_cargo(),
-            // 'cbox_sexo' => $this->M_cbox->cbox_sexo(),
-            // 'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
-            // 'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
-            // 'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
-            // 'cbox_departamento' => $this->M_cbox->cbox_departamento(),
-            // 'cbox_provincia' => $this->M_cbox->cbox_provincia(),
-            // 'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'enlace_actualizar' => $this->M_trabajadores->enlace_actualizar($id_trabajador),
+            'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
+            'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
+            'cbox_local' => $this->M_cbox->cbox_local(),
+            'cbox_cargo' => $this->M_cbox->cbox_cargo(),
+            'cbox_sexo' => $this->M_cbox->cbox_sexo(),
+            'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
+            'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
+            'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
+            'cbox_departamento' => $this->M_cbox->cbox_departamento(),
+            'cbox_provincia' => $this->M_cbox->cbox_provincia(),
+            'cbox_distrito' => $this->M_cbox->cbox_distrito(),
         );
 
 
-        $this->M_trabajadores->insertar($data);
 
+        $this->load->view('plantilla/V_header');
+        $this->load->view('plantilla/V_aside');
+        $this->load->view('trabajadores/V_actualizar', $data);
+        // $this->load->view('plantilla/V_footer');
+    }
+
+    public function actualizar()
+    {
+        $id_trabajador = $this->input->post("id_trabajador");
+        $num_documento = $this->input->post("num_documento");
+        $nombres = $this->input->post("nombres");
+        $ape_paterno = $this->input->post("ape_paterno");
+        $ape_materno = $this->input->post("ape_materno");
+        $email = $this->input->post("email");
+        $fecha_nacimiento = $this->input->post("fecha_nacimiento");
+        $lugar_nacimiento = $this->input->post("lugar_nacimiento");
+        $domicilio = $this->input->post("domicilio");
+        $referencia = $this->input->post("referencia");
+        $telefono = $this->input->post("telefono");
+        $celular = $this->input->post("celular");
+        $tipo_trabajador = $this->input->post("tipo_trabajador");
+        $tipo_documento = $this->input->post("tipo_documento");
+        $local = $this->input->post("local");
+        $cargo = $this->input->post("cargo");
+        $sexo = $this->input->post("sexo");
+        $nacionalidad = $this->input->post("nacionalidad");
+        $estado_civil = $this->input->post("est_civil");
+        $grado_instruccion = $this->input->post("grado_instruccion");
+        $departamento = $this->input->post("departamento");
+        $provincia = $this->input->post("provincia");
+        $distrito = $this->input->post("distrito");
+
+        // print_r($fecha_nacimiento1);
+
+        // // echo gettype($posible);
+
+        // $fecha_nacimiento = 
+
+        // // STR_TO_DATE(REPLACE('$fecha_nacimiento', '/', '.'), GET_FORMAT(date, 'EUR'))
+
+        $this->M_trabajadores->actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+
+
+        echo json_encode($num_documento);
+    }
+
+    public function verificar_trabajador()
+    {
+
+        $num_documento = $this->input->post("num_documento");
+        $nombres = $this->input->post("nombres");
+        $ape_paterno = $this->input->post("ape_paterno"); //captura el parametro que le enviamos
+        $ape_materno = $this->input->post("ape_materno");
+        $email = $this->input->post("email");
+        $fecha_nacimiento = $this->input->post("fecha_nacimiento");
+        $lugar_nacimiento = $this->input->post("lugar_nacimiento");
+        $domicilio = $this->input->post("domicilio");
+        $referencia = $this->input->post("referencia");
+        $telefono = $this->input->post("telefono");
+        $celular = $this->input->post("celular");
+        $tipo_trabajador = $this->input->post("tipo_trabajador");
+        $tipo_documento = $this->input->post("tipo_documento");
+        $local = $this->input->post("local");
+        $cargo = $this->input->post("cargo");
+        $sexo = $this->input->post("sexo"); //captura el parametro que le enviamos
+        $nacionalidad = $this->input->post("nacionalidad"); //captura el parametro que le enviamos
+        $estado_civil = $this->input->post("est_civil"); //captura el parametro que le enviamos
+        $grado_instruccion = $this->input->post("grado_instruccion"); //captura el parametro que le enviamos
+        $departamento = $this->input->post("departamento"); //captura el parametro que le enviamos
+        $provincia = $this->input->post("provincia"); //captura el parametro que le enviamos
+        $distrito = $this->input->post("distrito"); //captura el parametro que le enviamos
+
+
+        $data = $this->M_trabajadores->verificar_trabajador($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito); // le paso el parametro al metodo verificar_trabajador que se encuentra en el MODELO
         echo json_encode($data);
+    }
+
+    public function eliminar($id_trabajador)
+    {
+
+        $this->M_trabajadores->actualizar_estado($id_trabajador);
+        redirect(base_url() . "C_trabajadores");
     }
 }
