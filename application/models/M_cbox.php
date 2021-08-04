@@ -49,7 +49,7 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='4';");
+         WHERE b.id_multitabla='5';");
         return $resultados->result();
     }
     //6
@@ -89,7 +89,7 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
     //10
-    public function cbox_ent()
+    public function cbox_cta_ent()
     {
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
@@ -97,6 +97,48 @@ class M_cbox extends CI_Model
          WHERE b.id_multitabla='10';");
         return $resultados->result();
     }
+
+    //22
+    public function cbox_codigos_sunat()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='22';");
+        return $resultados->result();
+    }
+    //23
+    public function cbox_almacen()
+    {
+        $resultados = $this->db->query("
+             SELECT a.*,b.* FROM multitablas a 
+             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+             WHERE b.id_multitabla='23';");
+        return $resultados->result();
+    }
+
+    //24
+    public function correlativo_producto()
+    {
+        $resultados = $this->db->query("
+          SELECT 
+          b.id_multitabla,
+          b.descripcion,
+          b.correlativo+1 AS correlativo_producto
+          FROM multitablas a 
+          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+          WHERE b.id_multitabla='24';");
+        return $resultados->result();
+    }
+
+
+    public function actualizar_correlativo_producto($codigo_producto)
+    {
+        $resultados = $this->db->query("
+          UPDATE detalle_multitablas SET correlativo='$codigo_producto'
+          WHERE id_multitabla='24';");
+    }
+
     /*FIN DE COMBOX PRODUCTOS */
 
 

@@ -27,6 +27,16 @@ class C_productos extends CI_Controller
 		$data = array(
 			'cbox_unidad_medida' => $this->M_cbox->cbox_unidad_medida(),
 			'cbox_grupo' => $this->M_cbox->cbox_grupo(),
+			'cbox_familia' => $this->M_cbox->cbox_familia(),
+			'cbox_clase' => $this->M_cbox->cbox_clase(),
+			'cbox_sub_clase' => $this->M_cbox->cbox_sub_clase(),
+			'cbox_sub_clase_dos' => $this->M_cbox->cbox_sub_clase_dos(),
+			'cbox_marca' => $this->M_cbox->cbox_marca(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_cta_vta' => $this->M_cbox->cbox_cta_vta(),
+			'cbox_cta_ent' => $this->M_cbox->cbox_cta_ent(),
+			'cbox_codigos_sunat' => $this->M_cbox->cbox_codigos_sunat(),
+			'cbox_almacen' => $this->M_cbox->cbox_almacen(),
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -35,76 +45,153 @@ class C_productos extends CI_Controller
 		$this->load->view('plantilla/V_footer');
 	}
 
-	/*
+
 	public function insertar()
 	{
-		//CABECERA
-		$nombre_tabla = $this->input->post("nombre_tabla");
 
-		//DETALLE
-		$abreviatura = $this->input->post("abreviatura");
-		$descripcion = $this->input->post("descripcion");
+		$codigo_producto = $this->input->post("codigo_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
+		$id_almacen = $this->input->post("id_almacen");
+		$id_unidad_medida = $this->input->post("id_unidad_medida");
 
-		if ($this->M_multitablas->insertar($nombre_tabla)) {
-			$id_multitabla = $this->M_multitablas->lastID();
+		$precio_costo = $this->input->post("precio_costo");
+		$porcentaje = $this->input->post("porcentaje");
+		$precio_venta = $this->input->post("precio_venta");
+		$ganancia_unidad = $this->input->post("ganancia_unidad");
+		$rentabilidad = $this->input->post("rentabilidad");
+		$id_moneda = $this->input->post("id_moneda");
 
-			$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
-			echo json_encode($nombre_tabla);
+		$id_grupo = $this->input->post("id_grupo");
+		$id_familia = $this->input->post("id_familia");
+		$id_clase = $this->input->post("id_clase");
+		$id_sub_clase = $this->input->post("id_sub_clase");
+		$id_sub_clase_dos = $this->input->post("id_sub_clase_dos");
+		$id_marca = $this->input->post("id_marca");
+
+		$id_cta_vta = $this->input->post("id_cta_vta");
+		$id_cta_ent = $this->input->post("id_cta_ent");
+
+		$id_sunat = $this->input->post("id_sunat");
+
+		$resultado_campo = $this->input->post("resultado_campo");
+
+		if ($this->M_productos->insertar(
+			$codigo_producto,
+			$descripcion_producto,
+			$precio_costo,
+			$precio_venta,
+			$porcentaje,
+			$ganancia_unidad,
+			$rentabilidad,
+			$id_unidad_medida,
+			$id_grupo,
+			$id_familia,
+			$id_clase,
+			$id_sub_clase,
+			$id_sub_clase_dos,
+			$id_marca,
+			$id_moneda,
+			$id_cta_vta,
+			$id_cta_ent,
+			$id_sunat,
+			$id_almacen
+		)) {
+			if ($resultado_campo == "automatico") {
+				$this->M_cbox->actualizar_correlativo_producto($codigo_producto);
+			}
 		}
+
+		echo json_encode($codigo_producto);
 	}
 
-	protected function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
-	{
-		for ($i = 0; $i < count($abreviatura); $i++) {
 
-			$this->M_multitablas->insertar_detalle($id_multitabla, $abreviatura[$i], $descripcion[$i]);
-		}
-	}
-
-	public function enlace_actualizar($id_multitabla)
+	public function enlace_actualizar($id_producto)
 	{
 
 		$data = array(
-			'cabecera' => $this->M_multitablas->cabecera($id_multitabla),
-			'detalle' => $this->M_multitablas->detalle($id_multitabla),
+
+			'enlace_actualizar' => $this->M_productos->enlace_actualizar($id_producto),
+			'cbox_unidad_medida' => $this->M_cbox->cbox_unidad_medida(),
+			'cbox_grupo' => $this->M_cbox->cbox_grupo(),
+			'cbox_familia' => $this->M_cbox->cbox_familia(),
+			'cbox_clase' => $this->M_cbox->cbox_clase(),
+			'cbox_sub_clase' => $this->M_cbox->cbox_sub_clase(),
+			'cbox_sub_clase_dos' => $this->M_cbox->cbox_sub_clase_dos(),
+			'cbox_marca' => $this->M_cbox->cbox_marca(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_cta_vta' => $this->M_cbox->cbox_cta_vta(),
+			'cbox_cta_ent' => $this->M_cbox->cbox_cta_ent(),
+			'cbox_codigos_sunat' => $this->M_cbox->cbox_codigos_sunat(),
+			'cbox_almacen' => $this->M_cbox->cbox_almacen(),
+
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('multitablas/V_actualizar', $data);
+		$this->load->view('productos/V_actualizar', $data);
 		$this->load->view('plantilla/V_footer');
+	}
+
+
+	public function correlativo_producto()
+	{
+		$data = $this->M_cbox->correlativo_producto();
+		echo json_encode($data);
 	}
 
 	public function actualizar()
 	{
-		//CABECERA
-		$id_multitabla = $this->input->post("id_multitabla");
-		$nombre_tabla = $this->input->post("nombre_tabla");
 
-		//ELIMINAR POR ID LAS FILAS DE TABLA DE DETALLE
-		$id_dmultitabla = $this->input->post("id_dmultitabla");
+		$id_producto = $this->input->post("id_producto");
 
-		//DETALLE
-		$abreviatura = $this->input->post("abreviatura");
-		$descripcion = $this->input->post("descripcion");
+		$codigo_producto = $this->input->post("codigo_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
+		$id_almacen = $this->input->post("id_almacen");
+		$id_unidad_medida = $this->input->post("id_unidad_medida");
+
+		$precio_costo = $this->input->post("precio_costo");
+		$porcentaje = $this->input->post("porcentaje");
+		$precio_venta = $this->input->post("precio_venta");
+		$ganancia_unidad = $this->input->post("ganancia_unidad");
+		$rentabilidad = $this->input->post("rentabilidad");
+		$id_moneda = $this->input->post("id_moneda");
+
+		$id_grupo = $this->input->post("id_grupo");
+		$id_familia = $this->input->post("id_familia");
+		$id_clase = $this->input->post("id_clase");
+		$id_sub_clase = $this->input->post("id_sub_clase");
+		$id_sub_clase_dos = $this->input->post("id_sub_clase_dos");
+		$id_marca = $this->input->post("id_marca");
+
+		$id_cta_vta = $this->input->post("id_cta_vta");
+		$id_cta_ent = $this->input->post("id_cta_ent");
+
+		$id_sunat = $this->input->post("id_sunat");
 
 
-		if ($this->M_multitablas->actualizar($id_multitabla, $nombre_tabla)) {
-			if ($id_dmultitabla != null) {
-				$this->eliminar_detalle($id_dmultitabla);
-			}
+		if ($this->M_productos->actualizar(
+			$id_producto,
+			$codigo_producto,
+			$descripcion_producto,
+			$precio_costo,
+			$precio_venta,
+			$porcentaje,
+			$ganancia_unidad,
+			$rentabilidad,
+			$id_unidad_medida,
+			$id_grupo,
+			$id_familia,
+			$id_clase,
+			$id_sub_clase,
+			$id_sub_clase_dos,
+			$id_marca,
+			$id_moneda,
+			$id_cta_vta,
+			$id_cta_ent,
+			$id_sunat,
+			$id_almacen
+		));
 
-			if ($abreviatura != null ) {
-				$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
-			}
-			echo json_encode($nombre_tabla);
-		}
+		echo json_encode($codigo_producto);
 	}
-
-	protected function eliminar_detalle($id_dmultitabla)
-	{
-		for ($i = 0; $i < count($id_dmultitabla); $i++) {
-			$this->M_multitablas->eliminar_detalle($id_dmultitabla[$i]);
-		}
-	}*/
 }

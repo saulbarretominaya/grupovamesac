@@ -104,6 +104,23 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="fas fa-warehouse"></i>
+              <p>
+                Comercial
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_cotizacion" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cotizacion</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
