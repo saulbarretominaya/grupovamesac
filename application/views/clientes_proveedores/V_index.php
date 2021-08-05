@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>TRABAJADORES
-              <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            <h1>CLIENTES - PROVEEDORES
+              <a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
             </h1>
           </div>
         </div>
