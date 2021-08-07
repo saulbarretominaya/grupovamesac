@@ -1,17 +1,6 @@
-<!-- <footer class="main-footer">
-  <div class="float-right d-none d-sm-block">
-    <b>Version</b> 3.1.0
-  </div>
-  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-</footer> -->
-
-<!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
 </aside>
-<!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="<?php echo base_url() ?>plantilla/plugins/jquery/jquery.min.js"></script>
@@ -28,14 +17,17 @@
 <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
 <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 
 <script>
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
 <script src="<?php echo base_url() ?>application/js/j_trabajadores.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_productos.js"></script>
 <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script>
-<!-- <script src="<?php echo base_url() ?>application/js/j_clientes_proveedores.js"></script> -->
+<script src="<?php echo base_url() ?>application/js/j_clientes_proveedores.js"></script>
 
 </body>
 

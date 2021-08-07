@@ -5,9 +5,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Trabajadores
+            <h1>Cliente/Proveedor
               <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-              <a href="<?php echo base_url(); ?>C_trabajadores" class="btn btn-danger btn-sm">CANCELAR</a>
+              <a href="<?php echo base_url(); ?>C_clientes_proveedores" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
         </div>
@@ -32,14 +32,22 @@
                     <form class="needs-validation" novalidate>
                       <!-- Esta Parte es la de los Combobox -->
                       <div class="form-row">
-                        <!-- TIPO DE TRABAJADOR -->
-                        <div class="col-md-3 mb-3">
-                          <label for="tipo_trabajador">Tipo Trabajador</label>
+                        <!-- ID CLIENTE/PROVEEDOR -->
+                        <div class="col-md-4 mb-3">
+                          <label for="id_cliente_proveedor">Codigo</label>
+                          <div class="form-group">
+                            <input type="text" class="form-control" id="id_cliente_proveedor" value="" readonly="">
+                            <!-- <input type="text" class="form-control" id="id_cliente_proveedor" value="<?php echo $enlace_actualizar->id_cliente_proveedor; ?>" readonly=""> -->
+                          </div>
+                        </div>
+                        <!-- ORIGEN -->
+                        <div class="col-md-4 mb-3">
+                          <label for="origen">Origen</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTipoTrabajador"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupOrigen"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " data-placeholder="Prueba" id="tipo_trabajador" aria-describedby="inputGroupTipoTrabajador" required>
+                            <select class="custom-select " data-placeholder="Prueba" id="origen" aria-describedby="inputGroupOrigen" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_tipo_trabajador as $cbox_tipo_trabajador) : ?>
                                 <option value="<?php echo $cbox_tipo_trabajador->id_dmultitabla; ?>">
@@ -49,32 +57,14 @@
                             </select>
                           </div>
                         </div>
-                        <!-- LOCAL -->
-                        <div class="col-md-3 mb-3">
-                          <label for="local">Local</label>
+                        <!-- CONDICION -->
+                        <div class="col-md-4 mb-3">
+                          <label for="condicion">Condicion</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLocal"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupCondicion"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " id="local" aria-describedby="inputGroupLocal" required>
-                              <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_local as $cbox_local) : ?>
-                                <option value="<?php echo $cbox_local->id_dmultitabla; ?>">
-                                  <?php echo $cbox_local->abreviatura; ?>
-                                </option>
-                              <?php endforeach; ?>
-                            </select>
-                          </div>
-                        </div>
-
-                        <!-- CARGO -->
-                        <div class="col-md-3 mb-3">
-                          <label for="cargo">Cargo</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCargo"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="cargo" aria-describedby="inputGroupCargo" required>
+                            <select class="custom-select " id="condicion" aria-describedby="inputGroupCondicion" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_cargo as $cbox_cargo) : ?>
                                 <option value="<?php echo $cbox_cargo->id_dmultitabla; ?>">
@@ -84,14 +74,17 @@
                             </select>
                           </div>
                         </div>
-                        <!-- SEXO -->
-                        <div class="col-md-3 mb-3">
-                          <label for="sexo">Sexo</label>
+                      </div>
+                      <!-- Segunda Fila -->
+                      <div class="form-row align-items-center">
+                        <!-- TIPO DE PERSONA -->
+                        <div class="col-md-3 ">
+                          <label for="tipo_persona">Tipo Persona</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupSexo"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupTipoPersona"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " id="sexo" aria-describedby="inputGroupSexo" required>
+                            <select class="custom-select " id="tipo_persona" aria-describedby="inputGroupTipoPersona" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_sexo as $cbox_sexo) : ?>
                                 <option value="<?php echo $cbox_sexo->id_dmultitabla; ?>">
@@ -101,13 +94,25 @@
                             </select>
                           </div>
                         </div>
-                      </div>
-
-                      <!-- Segunda Fila -->
-
-                      <div class="form-row align-items-center">
-                        <!-- TIPO DE DOCUMENTO -->
+                        <!-- TIPO PERSONA SUNAT -->
                         <div class="col-md-4 ">
+                          <label for="tipo_persona_sunat">Tipo Persona Sunat</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupTpersonaSunat"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <select class="custom-select " id="tipo_persona_sunat" aria-describedby="inputGroupTpersonaSunat" required>
+                              <option value="0" selected>Selecciona...</option>
+                              <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
+                                <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
+                                  <?php echo $cbox_tipo_documento->abreviatura; ?>
+                                </option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- TIPO DOCUMENTO -->
+                        <div class="col-md-2 ">
                           <label for="tipo_documento">Tipo Documento</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
@@ -124,7 +129,7 @@
                           </div>
                         </div>
                         <!-- NUMERO DE DOCUMENTO -->
-                        <div class="col-md-4 ">
+                        <div class="col-md-3 ">
                           <label for="num_documento">Numero Documento</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
@@ -132,7 +137,7 @@
                             </div>
                             <input type="text" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
                             <div class="input-group-prepend">
-                              <button class="btn btn-info" type="Submit">Buscar ( Consular Reniec)</button>
+                              <button class="btn btn-info" type="Submit">Buscar</button>
                               <!-- <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span> -->
                             </div>
                           </div>
@@ -141,7 +146,6 @@
                     </form>
                   </div>
                 </div>
-
                 <!-- Segundo Card -->
                 <div class="card card-info">
                   <div class="card-header">
@@ -181,88 +185,55 @@
                           </div>
                         </div>
                       </div>
-
                       <!-- Segunda Fila -->
-
                       <div class="form-row">
-                        <!-- CORREO -->
-                        <div class="col-md-6 mb-3">
-                          <label for="email">Correo</label>
+                        <!-- RAZON SOCIAL -->
+                        <div class="col-md-12 mb-3">
+                          <label for="razon_social">Razon Social</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCorreo"><i class="fas fa-at"></i></span>
+                              <span class="input-group-text" id="inputGroupRazonSocial"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="email" placeholder="Email" aria-describedby="inputGroupCorreo" required>
-                            <div class="invalid-feedback">
-                              Ingrese el correo electronico.
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- FECHA DE NACIMIENTO -->
-                        <div class="col-md-4 mb-3">
-                          <label for="fecha_nacimiento">Fecha Nacimiento</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupfechaNac"> <i class="far fa-calendar-alt"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="fecha_nacimiento" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
+                            <input type="text" class="form-control" id="razon_social" placeholder="Razon Social" aria-describedby="inputGroupLugarNacimiento" required>
                           </div>
                         </div>
                       </div>
-
                       <!-- Tercera Fila de DATOS PERSONALES -->
-
                       <div class="form-row">
-                        <!-- NACIONALIDAD -->
-                        <div class="col-md-4 mb-3">
-                          <label for="nacionalidad">Nacionalidad</label>
+                        <!-- DIRECCION FISCAL -->
+                        <div class="col-md-12 mb-3">
+                          <label for="direccion_fiscal">Direccion Fiscal</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupNacionalidad"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupDireccionFiscal"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " id="nacionalidad" aria-describedby="inputGroupNacionalidad" required>
-                              <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_nacionalidad as $cbox_nacionalidad) : ?>
-                                <option value="<?php echo $cbox_nacionalidad->id_dmultitabla; ?>">
-                                  <?php echo $cbox_nacionalidad->abreviatura; ?>
-                                </option>
-                              <?php endforeach; ?>
-                            </select>
+                            <input type="text" class="form-control" id="direccion_fiscal" placeholder="Direccion Fiscal" aria-describedby="inputGroupDireccionFiscal" required>
                           </div>
                         </div>
-                        <!-- ESTADO CIVIL -->
-                        <div class="col-md-4 mb-3">
-                          <label for="est_civil">Estado Civil</label>
+                      </div>
+                      <!-- Cuarta Fila de DATOS PERSONALES -->
+                      <div class="form-row">
+                        <!-- DIRECCION ALTERNA 1 -->
+                        <div class="col-md-12 mb-3">
+                          <label for="direccion_alt1">Direccion Alterna 1</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupEstadoCivil"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupDireccionAlterna1"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " id="est_civil" aria-describedby="inputGroupEstadoCivil" required>
-                              <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_estado_civil as $cbox_estado_civil) : ?>
-                                <option value="<?php echo $cbox_estado_civil->id_dmultitabla; ?>">
-                                  <?php echo $cbox_estado_civil->abreviatura; ?>
-                                </option>
-                              <?php endforeach; ?>
-                            </select>
+                            <input type="text" class="form-control" id="direccion_alt1" placeholder="Direccion Alterna 1" aria-describedby="inputGroupDireccionAlterna1" required>
                           </div>
                         </div>
-                        <!-- GRADO DE INSTRUCCION -->
-                        <div class="col-md-4 mb-3">
-                          <label for="grado_instruccion">Grado Instruccion</label>
+                      </div>
+                      <!-- Quinta Fila de DATOS PERSONALES -->
+                      <div class="form-row">
+                        <!-- DIRECCION ALTERNA 2 -->
+                        <div class="col-md-12 mb-3">
+                          <label for="direccion_alt2">Direccion Alterna 2</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupGradoInstruccion"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupDireccionAlterna2"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " id="grado_instruccion" aria-describedby="inputGroupGradoInstruccion" required>
-                              <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_grado_instruccion as $cbox_grado_instruccion) : ?>
-                                <option value="<?php echo $cbox_grado_instruccion->id_dmultitabla; ?>">
-                                  <?php echo $cbox_grado_instruccion->abreviatura; ?>
-                                </option>
-                              <?php endforeach; ?>
-                            </select>
+                            <input type="text" class="form-control" id="direccion_alt2" placeholder="Direccion Alterna 2" aria-describedby="inputGroupDireccionAlterna2" required>
                           </div>
                         </div>
                       </div>
@@ -277,17 +248,8 @@
                   </div>
                   <div class="card-body">
                     <form class="needs-validation" novalidate>
+                      <!-- Primera Fila -->
                       <div class="form-row">
-                        <!-- LUGAR DE NACIMIENTO -->
-                        <div class="col-md-8 mb-3">
-                          <label for="lugar_nacimiento">Lugar de Nacimiento</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLugarNacimiento"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="lugar_nacimiento" placeholder="Lugar de Nacimiento" aria-describedby="inputGroupLugarNacimiento" required>
-                          </div>
-                        </div>
                         <!-- DEPARTAMENTO -->
                         <div class="col-md-4 mb-3">
                           <label for="departamento">Departamento</label>
@@ -305,21 +267,7 @@
                             </select>
                           </div>
                         </div>
-                      </div>
-
-                      <!-- Segunda Fila -->
-                      <div class="form-row">
-                        <!-- DOMICILIO ACTUAL-->
-                        <div class="col-md-8 mb-3">
-                          <label for="domicilio">Domicilio Actual</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDomicilio"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="domicilio" placeholder="Domicilio Actual" aria-describedby="inputGroupDomicilio" required>
-                          </div>
-                        </div>
-                        <!-- PROVINCIA -->
+                        <!-- PROVINCIA-->
                         <div class="col-md-4 mb-3">
                           <label for="provincia">Provincia</label>
                           <div class="input-group">
@@ -328,31 +276,34 @@
                             </div>
                             <select class="custom-select " id="provincia" aria-describedby="inputGroupProvincia" required>
                               <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
+                              <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                                 <option value="<?php echo $cbox_provincia->id_dmultitabla; ?>">
-                                  <?php echo $cbox_provincia->abreviatura; ?>
+                                  <?php echo $cbox_departamento->abreviatura; ?>
+                                </option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- DISTRITO -->
+                        <div class="col-md-4 mb-3">
+                          <label for="distrito">Distrito</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupDistrito"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <select class="custom-select " id="distrito" aria-describedby="inputGroupDistrito" required>
+                              <option value="0" selected>Selecciona...</option>
+                              <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
+                                <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>">
+                                  <?php echo $cbox_departamento->abreviatura; ?>
                                 </option>
                               <?php endforeach; ?>
                             </select>
                           </div>
                         </div>
                       </div>
-                      <div class="form-row">
-                        <!-- REFERENCIA -->
-                        <div class="col-md-12 mb-3">
-                          <label for="referencia">Referencia</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupReferencia"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="referencia" placeholder="Ingresa la Referencia" aria-describedby="inputGroupReferencia" required>
-                            <div class="valid-feedback">
-                              Se ve bien!
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
+                      <!-- Segunda Fila -->
                       <div class="form-row">
                         <!-- TELEFONO -->
                         <div class="col-md-4 mb-3">
@@ -375,24 +326,200 @@
                             <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
                           </div>
                         </div>
-                        <!-- DISTRITO -->
+                        <!-- TIPO DE GIRO -->
                         <div class="col-md-4 mb-3">
-                          <label for="distrito">Distrito</label>
+                          <label for="lugar_nacimiento">Tipo de Giro</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDistrito"> <i class="fas fa-user-shield"></i> </span>
+                              <span class="input-group-text" id="inputGroupLugarNacimiento"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <select class="custom-select " id="distrito" aria-describedby="inputGroupDistrito" required>
+                            <input type="text" class="form-control" id="lugar_nacimiento" placeholder="Lugar de Nacimiento" aria-describedby="inputGroupLugarNacimiento" required>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Tercera Fila -->
+                      <div class="form-row">
+                        <!--CONDICION DE PAGO -->
+                        <div class="col-md-4 mb-3">
+                          <label for="condicion_pago">Condicion de Pago</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupCondicionPago"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <select class="custom-select " id="condicion_pago" aria-describedby="inputGroupCondicionPago" required>
                               <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
-                                <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>">
-                                  <?php echo $cbox_distrito->abreviatura; ?>
+                              <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
+                                <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>">
+                                  <?php echo $cbox_departamento->abreviatura; ?>
+                                </option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- VENDEDOR -->
+                        <div class="col-md-8 mb-3">
+                          <label for="vendedor">Vendedor</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupVendedor"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="vendedor" placeholder="Ingresa el Vendedor" aria-describedby="inputGroupVendedor" required>
+                            <div class="valid-feedback">
+                              Se ve bien!
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Cuarta Fila -->
+                      <div class="form-row">
+                        <!-- LINEA DE CREDITO - SOLES -->
+                        <div class="col-md-4 mb-3">
+                          <label for="linea_credito_soles">Linea de Credito S/.</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupLineaCreditoSoles"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
+                          </div>
+                        </div>
+                        <!-- CREDITO UNITARIO - SOLES-->
+                        <div class="col-md-4 mb-3">
+                          <label for="credito_unitario_soles">Credito Unitario S/.</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupCreditoUnitarioSoles"> <i class="far fa-id-card"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" required>
+                          </div>
+                        </div>
+                        <!-- DISPONIBLE - SOLES-->
+                        <div class="col-md-4 mb-3">
+                          <label for="disponible_soles">Disponible S/.</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupDisponibleSoles"> <i class="far fa-id-card"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Quinta Fila -->
+                      <div class="form-row">
+                        <!-- LINEA DE CREDITO - DOLARES -->
+                        <div class="col-md-4 mb-3">
+                          <label for="linea_credito_dolares">Linea de Credito $ </label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupLineaCreditoDolares"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
+                          </div>
+                        </div>
+                        <!-- CREDITO UNITARIO - DOLARES-->
+                        <div class="col-md-4 mb-3">
+                          <label for="credito_unitario_dolares">Credito Unitario $ </label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupCreditoUnitarioDolares"> <i class="far fa-id-card"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
+                          </div>
+                        </div>
+                        <!-- DISPONIBLE - DOLARES-->
+                        <div class="col-md-4 mb-3">
+                          <label for="disponible_dolares">Disponible $ </label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupDisponibleDolares"> <i class="far fa-id-card"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" required>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Sexta Fila -->
+                      <div class="form-row">
+                        <!-- EMAIL -->
+                        <div class="col-md-4 mb-3">
+                          <label for="email">Correo</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupEmail"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" required>
+                          </div>
+                        </div>
+                        <!-- CONTACTO REGISTRO-->
+                        <div class="col-md-4 mb-3">
+                          <label for="contacto_registro">Contacto Registro</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupContactoRegistro"> <i class="far fa-id-card"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="contacto_registro" placeholder="Ingrese el Contacto de Registro" aria-describedby="inputGroupContactoRegistro" required>
+                          </div>
+                        </div>
+                        <!-- ESTADO-->
+                        <div class="col-md-4 mb-3">
+                          <label for="estado">Estado</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupEstado"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <select class="custom-select " id="estado" aria-describedby="inputGroupEstado" required>
+                              <option value="0" selected>Selecciona...</option>
+                              <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
+                                <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>">
+                                  <?php echo $cbox_departamento->abreviatura; ?>
                                 </option>
                               <?php endforeach; ?>
                             </select>
                           </div>
                         </div>
                       </div>
+                      <!-- Septima Fila -->
+                      <div class="form-row">
+                        <!-- EMAIL COBRANZA -->
+                        <div class="col-md-4 mb-3">
+                          <label for="email_cobranza">Email - Cobranza</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupEmailCobranza"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" required>
+                          </div>
+                        </div>
+                        <!-- CONTACTO COBRANZA-->
+                        <div class="col-md-4 mb-3">
+                          <label for="contacto_cobranza">Contacto Cobranza</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupContactoCobranza"> <i class="far fa-id-card"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" id="contacto_cobranza" placeholder="Ingrese el contacto de cobranza" aria-describedby="inputGroupContactoCobranza" required>
+                          </div>
+                        </div>
+                        <!-- TIPO CLIENTE DE PAGO-->
+                        <div class="col-md-4 mb-3">
+                          <label for="tipo_cliente_pago">Tipo de Cliente de Pago</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupTipoClientePago"> <i class="fas fa-user-shield"></i> </span>
+                            </div>
+                            <select class="custom-select " id="tipo_cliente_pago" aria-describedby="inputGroupTipoClientePago" required>
+                              <option value="0" selected>Selecciona...</option>
+                              <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
+                                <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>">
+                                  <?php echo $cbox_departamento->abreviatura; ?>
+                                </option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+
                     </form>
                   </div>
                 </div>

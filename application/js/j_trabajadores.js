@@ -11,12 +11,12 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-	$("#example tfoot th").each(function () {
+	$("#id_datatable_trabajadores tfoot th").each(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
 	});
 
-	var table = $("#example").dataTable({
+	var table = $("#id_datatable_trabajadores").dataTable({
 		//scrollY: true,
 		scrollX: true,
 		scrollCollapse: true,

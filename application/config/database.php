@@ -73,7 +73,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = true;
 
-// /* Calidad BD */
+
+
 $db['default'] = array(
     'dsn'    => '',
     'hostname' => 'localhost',
@@ -82,19 +83,23 @@ $db['default'] = array(
     'database' => 'sa_grupovamesac',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
-    'pconnect' => false,
+    'pconnect' => FALSE,
     'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => false,
+    'cache_on' => FALSE,
     'cachedir' => '',
     'char_set' => 'utf8',
     'dbcollat' => 'utf8_general_ci',
     'swap_pre' => '',
-    'encrypt' => false,
-    'compress' => false,
-    'stricton' => false,
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
     'failover' => array(),
-    'save_queries' => true
+    'save_queries' => TRUE
 );
+
+
+
+
 
 /*Produccion BD*/
 // $db['default'] = array(

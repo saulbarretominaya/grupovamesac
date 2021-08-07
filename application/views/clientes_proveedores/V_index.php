@@ -20,7 +20,7 @@
             <h3 class="card-title">Listar</h3>
           </div>
           <div class="card-body">
-            <table id="example" class="table table-sm table-hover" style="width: 100%;">
+            <table id="id_datatable_clientes_proveedores" class="table table-sm table-hover" style="width: 100%;">
               <thead style="background-color: #9fa53b; color: white;">
                 <tr>
                   <th>Codigo</th>
@@ -41,13 +41,15 @@
                       <td><?php echo $index->ape_paterno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
+                      <td></td>
+                      <td></td>
                       <!-- <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
                       <td class="text-center" style="width: 15px;"><a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td> -->
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
-              <tfoot>
+              <!-- <tfoot>
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
@@ -55,7 +57,7 @@
                   <th>Materno</th>
                   <th>Celular</th>
                 </tr>
-              </tfoot>
+              </tfoot> -->
             </table>
           </div>
           <!-- /.card-body -->

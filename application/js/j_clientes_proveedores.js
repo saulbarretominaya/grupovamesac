@@ -11,33 +11,33 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-	$("#example tfoot th").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
-	});
+	// $("#id_datatable_clientes_proveedores tfoot th").each(function () {
+	// 	var title = $(this).text();
+	// 	$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
+	// });
 
-	var table = $("#example").dataTable({
+	var table = $("#id_datatable_clientes_proveedores").dataTable({
 		//scrollY: true,
 		scrollX: true,
 		scrollCollapse: true,
-		paging: false,
-		searching: false,
+		paging: true,
+		searching: true,
 
-		/*------------------*/
-		initComplete: function () {
-			// Apply the search
-			this.api()
-				.columns()
-				.every(function () {
-					var that = this;
+		// /*------------------*/
+		// initComplete: function () {
+		// 	// Apply the search
+		// 	this.api()
+		// 		.columns()
+		// 		.every(function () {
+		// 			var that = this;
 
-					$("input", this.footer()).on("keyup change clear", function () {
-						if (that.search() !== this.value) {
-							that.search(this.value).draw();
-						}
-					});
-				});
-		},
+		// 			$("input", this.footer()).on("keyup change clear", function () {
+		// 				if (that.search() !== this.value) {
+		// 					that.search(this.value).draw();
+		// 				}
+		// 			});
+		// 		});
+		// },
 
 		/*------------------*/
 

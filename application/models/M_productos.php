@@ -1,4 +1,3 @@
-
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
@@ -8,70 +7,140 @@ class M_productos extends CI_Model
 
     public function index()
     {
-        $resultados = $this->db->query("select * from productos;");
+        $resultados = $this->db->query("
+        SELECT 
+        id_producto,
+        codigo_producto,
+        id_almacen,
+        (select abreviatura from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
+        id_unidad_medida,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
+        id_sunat,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
+        descripcion_producto,
+        id_moneda,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+        precio_costo,
+        porcentaje,
+        ganancia_unidad,
+        precio_venta,
+        rentabilidad
+        id_grupo,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
+        id_familia,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
+        id_clase,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
+        id_sub_clase,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
+        id_sub_clase_dos,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
+        id_marca,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_marca) AS ds_marca,
+        id_cta_vta,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
+        id_cta_ent,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
+        stock
+        FROM productos
+        ORDER BY id_producto ASC
+        ");
         return $resultados->result();
     }
 
-    /*
-    public function tipo_moneda($id)
+
+    public function insertar(
+        $codigo_producto,
+        $descripcion_producto,
+        $precio_costo,
+        $precio_venta,
+        $porcentaje,
+        $ganancia_unidad,
+        $rentabilidad,
+        $id_unidad_medida,
+        $id_grupo,
+        $id_familia,
+        $id_clase,
+        $id_sub_clase,
+        $id_sub_clase_dos,
+        $id_marca,
+        $id_moneda,
+        $id_cta_vta,
+        $id_cta_ent,
+        $id_sunat,
+        $id_almacen
+    ) {
+        return $this->db->query(
+            "
+        INSERT INTO productos
+        (
+            id_producto,codigo_producto,descripcion_producto,
+            precio_costo,precio_venta,porcentaje,ganancia_unidad,rentabilidad,
+            id_unidad_medida,id_grupo,id_familia,id_clase,id_sub_clase,id_sub_clase_dos, 
+            id_marca,id_moneda,id_cta_vta,id_cta_ent,id_sunat,id_almacen
+        )
+        VALUES
+        (
+            '','$codigo_producto','$descripcion_producto',
+            '$precio_costo','$precio_venta','$porcentaje','$ganancia_unidad','$rentabilidad',
+            '$id_unidad_medida','$id_grupo','$id_familia','$id_clase','$id_sub_clase','$id_sub_clase_dos',
+            '$id_marca','$id_moneda','$id_cta_vta','$id_cta_ent','$id_sunat','$id_almacen'
+        )"
+        );
+    }
+
+
+    public function enlace_actualizar($id_producto)
     {
         $resultados = $this->db->query("
-        CALL unidad_medida");
-        return $resultados->result();
-    }
-    public function tipo_trabajador($id)
-    {
-        $resultados = $this->db->query("
-        CALL mgm22000_pc21");
-        return $resultados->result();
-    }
-
-    */
-
-    /*public function insertar($nombre_tabla)
-    {
-        return $this->db->query("INSERT INTO multitablas VALUES ('','$nombre_tabla');");
-    }
-
-    public function lastID()
-    {
-        return $this->db->insert_id();
-    }
-
-    public function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
-    {
-        return $this->db->query("INSERT INTO detalle_multitablas VALUES ('','$id_multitabla','$abreviatura','$descripcion')");
-    }
-
-    public function actualizar($id_multitabla, $nombre_tabla)
-    {
-        return $this->db->query("UPDATE multitablas SET nombre_tabla ='$nombre_tabla'
-        WHERE id_multitabla='$id_multitabla'");
-    }
-
-    public function eliminar_detalle($id_dmultitabla)
-    {
-        return $this->db->query("DELETE from detalle_multitablas WHERE id_dmultitabla ='$id_dmultitabla'");
-    }
-
-
-
-    public function cabecera($id_multitabla)
-    {
-        $resultados = $this->db->query("
-        SELECT*FROM multitablas WHERE id_multitabla='$id_multitabla'");
+        select * from productos where id_producto='$id_producto'");
         return $resultados->row();
     }
 
-    public function detalle($id_multitabla)
-    {
-        $resultados = $this->db->query("SELECT 
-        a.id_multitabla, -- MULTITABLAS
-        b.id_dmultitabla,b.abreviatura,b.descripcion -- DETALLE DE MULTITABLAS
-        FROM multitablas a
-        LEFT JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla
-        WHERE a.id_multitabla='$id_multitabla'
-        ");
-        return $resultados->result();
-    }*/
+
+    public function actualizar(
+        $id_producto,
+        $codigo_producto,
+        $descripcion_producto,
+        $precio_costo,
+        $precio_venta,
+        $porcentaje,
+        $ganancia_unidad,
+        $rentabilidad,
+        $id_unidad_medida,
+        $id_grupo,
+        $id_familia,
+        $id_clase,
+        $id_sub_clase,
+        $id_sub_clase_dos,
+        $id_marca,
+        $id_moneda,
+        $id_cta_vta,
+        $id_cta_ent,
+        $id_sunat,
+        $id_almacen
+    ) {
+        return $this->db->query("
+        update productos set
+        codigo_producto='$codigo_producto',
+        descripcion_producto ='$descripcion_producto',
+        precio_costo='$precio_costo',
+        precio_venta='$precio_venta',
+        porcentaje='$porcentaje',
+        ganancia_unidad='$ganancia_unidad',
+        rentabilidad='$rentabilidad',
+        id_unidad_medida='$id_unidad_medida',
+        id_grupo='$id_grupo',
+        id_familia='$id_familia',
+        id_clase='$id_clase',
+        id_sub_clase='$id_sub_clase',
+        id_sub_clase_dos='$id_sub_clase_dos',
+        id_marca='$id_marca',
+        id_moneda='$id_moneda',
+        id_cta_vta='$id_cta_vta',
+        id_cta_ent='$id_cta_ent',
+        id_sunat='$id_sunat',
+        id_almacen='$id_almacen'
+        WHERE id_producto='$id_producto'");
+    }
 }
