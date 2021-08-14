@@ -18,7 +18,6 @@ class C_multitablas extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('multitablas/V_index', $data);
-		$this->load->view('plantilla/V_footer');
 	}
 
 	public function enlace_registrar()
@@ -27,7 +26,6 @@ class C_multitablas extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('multitablas/V_registrar');
-		$this->load->view('plantilla/V_footer');
 	}
 
 	public function insertar()
@@ -66,7 +64,6 @@ class C_multitablas extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('multitablas/V_actualizar', $data);
-		$this->load->view('plantilla/V_footer');
 	}
 
 	public function actualizar()
@@ -88,7 +85,7 @@ class C_multitablas extends CI_Controller
 				$this->eliminar_detalle($id_dmultitabla);
 			}
 
-			if ($abreviatura != null ) {
+			if ($abreviatura != null) {
 				$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
 			}
 			echo json_encode($nombre_tabla);
