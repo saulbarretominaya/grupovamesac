@@ -160,7 +160,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text" id=""> <i class="fas fa-user-shield"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id="direccion" placeholder="Direccion">
+                                  <input type="text" class="form-control" id="direccion" placeholder="Direccion" readonly>
                                 </div>
                               </div>
                               <!-- Lugar de Entrega -->
@@ -193,7 +193,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text" id=""> <i class="fas fa-user-shield"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id="correo_electronico" placeholder="Correo Electronico">
+                                  <input type="text" class="form-control" id="correo_electronico" placeholder="Correo Electronico" readonly>
                                 </div>
                               </div>
                             </div>
@@ -274,17 +274,58 @@
                             <div class="form-group row">
 
                               <!-- Almacen -->
-                              <div class="col-md-2">
+                              <!-- <div class="col-md-2">
                                 <div class="form-check">
                                   <input class="form-check-input" type="checkbox">
                                   <label class="form-check-label">Almacen</label>
                                 </div>
-                              </div>
+                              </div> -->
                               <!-- Proveedor -->
                               <div class="col-md-2">
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" checked="">
-                                  <label class="form-check-label">Proveedor</label>
+                                  <!-- <input class="form-check-input" type="checkbox" checked=""> -->
+                                  <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#id_target_proveedor">
+                                  </button>
+
+                                  <div class="modal fade" id="id_target_proveedor" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered modal-lf">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h4 class="modal-title">Comodin</h4>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                          <div class="form-group">
+                                            <!-- Validez Oferta -->
+                                            <div class="col-md-12">
+                                              <div class="input-group">
+                                                <label class="col-sm-5 col-form-label">Producto</label>
+                                                <input type="text" class="form-control" id="validez_oferta" placeholder="#">
+                                              </div>
+                                            </div>
+
+                                          </div>
+
+
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Registrar</button>
+                                          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                        </div>
+                                      </div>
+                                      <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                  </div>
+
+                                  <label class="form-check-label">Comodin</label>
+
+
+
+
                                 </div>
                               </div>
                               <!-- Tablero -->
@@ -308,10 +349,10 @@
                             <div class="form-group row">
 
                               <!-- Producto -->
-                              <div class="col-md-6">
+                              <div class="col-md-5">
                                 <div class="input-group">
-                                  <label class="col-sm-2 col-form-label">Producto</label>
-                                  <input type="text" class="form-control" placeholder="Producto" readonly>
+                                  <label class="col-sm-3 col-form-label">Producto</label>
+                                  <input type="text" class="form-control" placeholder="Producto" id="descripcion_producto" readonly>
                                   <span class="input-group-append">
 
                                     <!-- Button trigger modal -->
@@ -320,7 +361,7 @@
                                     </button>
 
                                     <div class="modal fade" id="id_target_producto" tabindex="-1">
-                                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                                      <div class="modal-dialog modal-dialog-centered modal-xl">
                                         <div class="modal-content">
                                           <div class="modal-header">
                                             <h4 class="modal-title">Productos</h4>
@@ -332,17 +373,15 @@
                                             <table id="id_datatable_cotizacion" class="display nowrap table-responsive">
                                               <thead>
                                                 <tr>
-                                                  <th>
-                                                    <span class="fa fa-check"></span>
-                                                  </th>
-                                                  <th>Codigo</th>
-                                                  <th>Descripcion</th>
-                                                  <th>U.M</th>
-                                                  <th>Marca</th>
-                                                  <th>Grupo</th>
-                                                  <th>Moneda</th>
-                                                  <th>Precio Costo</th>
-                                                  <th>Precio Venta</th>
+                                                  <th></th>
+                                                  <th id="ds_almacen">Almacen</th>
+                                                  <th id="codigo">Codigo</th>
+                                                  <th id="descripcion_producto">Descripcion</th>
+                                                  <th id="ds_unidad_medida">U.M</th>
+                                                  <th id="ds_marca">Marca</th>
+                                                  <th id="ds_grupo">Grupo</th>
+                                                  <th id="ds_moneda">Moneda</th>
+                                                  <th id="pe_venta">Precio venta</th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -350,20 +389,34 @@
                                                   <?php foreach ($index_productos as $index_productos) : ?>
                                                     <tr>
                                                       <td>
-                                                        <button type="button" class="btn btn-info btn-check btn-xs" value=""><span class="fa fa-check"></span></button>
+                                                        <?php $buscar_productos = $index_productos->descripcion_producto . "*" . $index_productos->precio_venta; ?>
+                                                        <button type="button" class="btn btn-info btn-check btn-xs" value="<?php echo $buscar_productos; ?>"><span class="fa fa-check"></span></button>
                                                       </td>
+                                                      <td><?php echo $index_productos->ds_almacen; ?></td>
                                                       <td><?php echo $index_productos->codigo_producto; ?></td>
                                                       <td><?php echo $index_productos->descripcion_producto; ?></td>
                                                       <td><?php echo $index_productos->ds_unidad_medida; ?></td>
                                                       <td><?php echo $index_productos->ds_marca; ?></td>
                                                       <td><?php echo $index_productos->ds_grupo; ?></td>
                                                       <td><?php echo $index_productos->ds_moneda; ?></td>
-                                                      <td><?php echo $index_productos->precio_costo; ?></td>
                                                       <td><?php echo $index_productos->precio_venta; ?></td>
                                                     </tr>
                                                   <?php endforeach; ?>
                                                 <?php endif; ?>
                                               </tbody>
+                                              <!-- <tfoot>
+                                                <tr>
+                                                  <th></th>
+                                                  <th id="codigo">Codigo</th>
+                                                  <th id="descripcion">Descripcion</th>
+                                                  <th></th>
+                                                  <th id="marca">Marca</th>
+                                                  <th>Grupo</th>
+                                                  <th>Moneda</th>
+                                                  <th>Precio Costo</th>
+                                                  <th>Precio Venta</th>
+                                                </tr>
+                                              </tfoot> -->
                                             </table>
                                           </div>
                                           <div class="modal-footer justify-content-between">
@@ -394,17 +447,17 @@
                                 </div>
                               </div>
                               <!-- Precio -->
-                              <div class="col-md-2">
+                              <div class="col-md-3">
                                 <div class="input-group">
-                                  <label class="col-sm-5 col-form-label">Precio</label>
-                                  <input type="text" class="form-control" id="" placeholder="Precio">
+                                  <label class="col-sm-4 col-form-label">Precio</label>
+                                  <input type="text" class="form-control" id="precio_venta" placeholder="Precio" readonly>
                                 </div>
                               </div>
                               <!-- Stock -->
                               <div class="col-md-2">
                                 <div class="input-group">
                                   <label class="col-sm-5 col-form-label">Stock</label>
-                                  <input type="text" class="form-control" id="" placeholder="Stock">
+                                  <input type="text" class="form-control" id="" placeholder="Stock" readonly>
                                 </div>
                               </div>
                               <div class="col-md-2">
@@ -461,7 +514,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupLocal"> <i class="fas fa-user-shield"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id="" placeholder="G. Unidad">
+                                  <input type="text" class="form-control" id="" placeholder="G. Unidad" readonly>
                                 </div>
                               </div>
                               <!-- Distrito -->
@@ -471,7 +524,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupCargo"> <i class="fas fa-user-shield"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id="" placeholder="G. Cant/Total">
+                                  <input type="text" class="form-control" id="" placeholder="G. Cant/Total" readonly>
                                 </div>
                               </div>
                             </div>
@@ -522,7 +575,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupLocal"> <i class="fas fa-user-shield"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id="" placeholder="G. Unidad">
+                                  <input type="text" class="form-control" id="" placeholder="G. Unidad" readonly>
                                 </div>
                               </div>
                               <!-- Distrito -->
@@ -532,7 +585,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupCargo"> <i class="fas fa-user-shield"></i> </span>
                                   </div>
-                                  <input type="text" class="form-control" id="" placeholder="G. Cant/Total">
+                                  <input type="text" class="form-control" id="" placeholder="G. Cant/Total" readonly>
                                 </div>
                               </div>
                             </div>
@@ -564,7 +617,7 @@
                               <div class="col-md-3">
                                 <div class="input-group">
                                   <label class="col-sm-6 col-form-label">Importe Total</label>
-                                  <input type="text" class="form-control" id="" placeholder="">
+                                  <input type="text" class="form-control" id="" placeholder="" readonly>
                                 </div>
                               </div>
 
