@@ -5,6 +5,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
   <title>AdminLTE 3 | jsGrid</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -13,8 +14,12 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/dist/css/adminlte.min.css">
-
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/plugins/alertify/css/alertify.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/plugins/alertify/css/themes/default.css">
