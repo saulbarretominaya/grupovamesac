@@ -1,63 +1,46 @@
 //Declaracion de variables Globales
 var resultado_campo = "";
 
-$(document).ready(function () {
-	var table = $("#id_datatable_productos").dataTable({
-		//scrollY: true,
-		scrollX: true,
-		scrollCollapse: true,
-		paging: true,
-		searching: true,
+$("#id_datatable_productos").dataTable({
 
-		/*------------------*/
-		/*initComplete: function () {
-			// Apply the search
-			this.api()
-				.columns()
-				.every(function () {
-					var that = this;
-
-					$("input", this.footer()).on("keyup change clear", function () {
-						if (that.search() !== this.value) {
-							that.search(this.value).draw();
-						}
-					});
-				});
-		}, */
-
-		/*------------------*/
-
-		language: {
-			lengthMenu: "Mostrar _MENU_ registros por pagina",
-			zeroRecords: "No se encontraron resultados en su busqueda",
-			searchPlaceholder: "Buscar registros",
-			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
-			infoEmpty: "No existen registros",
-			infoFiltered: "(filtrado de un total de _MAX_ registros)",
-			search: "Buscar:",
-			paginate: {
-				first: "Primero",
-				last: "Último",
-				next: "Siguiente",
-				previous: "Anterior",
-			},
+	language: {
+		lengthMenu: "Mostrar _MENU_ registros por pagina",
+		zeroRecords: "No se encontraron resultados en su busqueda",
+		searchPlaceholder: "Buscar registros",
+		info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+		infoEmpty: "No existen registros",
+		infoFiltered: "(filtrado de un total de _MAX_ registros)",
+		search: "Buscar:",
+		paginate: {
+			first: "Primero",
+			last: "Último",
+			next: "Siguiente",
+			previous: "Anterior",
 		},
+	},
 
-		order: []
-	});
+	order: []
 });
+
 
 $("#registrar_productos").on("click", function () {
 	var codigo_producto = $("#codigo_producto").val();
 	var descripcion_producto = $("#descripcion_producto").val();
 	var id_almacen = $("#id_almacen").val();
 	var id_unidad_medida = $("#id_unidad_medida").val();
+	debugger;
 	var precio_costo = $("#precio_costo").val();
+	var precio_costo_replace = precio_costo.replaceAll(",", "");
+
 	var porcentaje = $("#porcentaje").val();
 	var precio_venta = $("#precio_venta").val();
+	var precio_venta_replace = precio_venta.replaceAll(",", "");
+
 	var rentabilidad = $("#rentabilidad").val();
 	var id_moneda = $("#id_moneda").val();
 	var ganancia_unidad = $("#ganancia_unidad").val();
+	var ganancia_unidad_replace = ganancia_unidad.replaceAll(",", "");
+
 	var id_grupo = $("#id_grupo").val();
 	var id_familia = $("#id_familia").val();
 	var id_clase = $("#id_clase").val();
@@ -81,12 +64,12 @@ $("#registrar_productos").on("click", function () {
 			descripcion_producto: descripcion_producto,
 			id_almacen: id_almacen,
 			id_unidad_medida: id_unidad_medida,
-			precio_costo: precio_costo,
+			precio_costo: precio_costo_replace,
 			porcentaje: porcentaje,
-			precio_venta: precio_venta,
+			precio_venta: precio_venta_replace,
 			rentabilidad: rentabilidad,
 			id_moneda: id_moneda,
-			ganancia_unidad, ganancia_unidad,
+			ganancia_unidad: ganancia_unidad_replace,
 			id_grupo: id_grupo,
 			id_familia: id_familia,
 			id_clase: id_clase,
@@ -135,7 +118,7 @@ $("#actualizar_productos").on("click", function () {
 		type: "POST",
 		dataType: "json",
 		data: {
-			id_producto:id_producto,
+			id_producto: id_producto,
 			codigo_producto: codigo_producto,
 			descripcion_producto: descripcion_producto,
 			id_almacen: id_almacen,
@@ -166,17 +149,6 @@ $("#actualizar_productos").on("click", function () {
 
 $(".select2").select2();
 
-$("#porcentaje").on("keyup", function () {
-
-	var precio_costo = Number($("#precio_costo").val());
-	var porcentaje = $("#porcentaje").val();
-	var ganancia_unidad = (precio_costo * porcentaje) / 100;
-	var precio_venta = ganancia_unidad + precio_costo;
-	var rentabilidad = (1 - precio_costo / precio_venta) * 100;
-	$("input[name=ganancia_unidad]").val(ganancia_unidad.toFixed(2));
-	$("input[name=precio_venta]").val(precio_venta);
-	$("input[name=rentabilidad]").val(Math.round(rentabilidad));
-});
 
 $("#automatico").on("click", function () {
 
@@ -204,7 +176,6 @@ $("#manual").on("click", function () {
 	document.getElementById("codigo_producto").value = "";
 });
 
-
 function validar_radio() {
 	debugger;
 	var automatico = document.getElementById("automatico").checked;
@@ -215,3 +186,204 @@ function validar_radio() {
 		resultado_campo = "manual";
 	}
 }
+
+$("#precio_costo").on({
+
+	"focus": function (event) {
+		$(event.target).select();
+	},
+	"keyup": function (event) {
+		$(event.target).val(function (index, value) {
+			return value.replace(/\D/g, "")
+				.replace(/([0-9])([0-9]{2})$/, '$1.$2')
+				.replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+		});
+	}
+});
+
+$("#porcentaje").on({
+	"focus": function (event) {
+		$(event.target).select();
+	},
+	"keyup": function (event) {
+		$(event.target).val(function (index, value) {
+			return value.replace(/\D/g, "")
+			// .replace(/([0-9])([0-9]{2})$/, '$1.$2');
+			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+		});
+	}
+});
+
+$("#precio_costo").on("keyup", function () {
+
+	var precio_costo = $("#precio_costo").val();
+
+	if (precio_costo == "") {
+		debugger;
+		$("input[name=precio_venta]").val("");
+		$("input[name=ganancia_unidad]").val("");
+		$("input[name=rentabilidad]").val("");
+		$("input[name=porcentaje]").val("");
+
+	}
+
+	valor = Number(precio_costo.replace(/,/g, ''));
+
+	var porcentaje = Number($("#porcentaje").val());
+	var ganancia_unidad = Number((valor * porcentaje) / 100);
+	var precio_venta = Number(ganancia_unidad + valor);
+	var rentabilidad = (1 - valor / precio_venta) * 100;
+
+	if (isNaN(ganancia_unidad)) {
+		console.log("Is Nan Rentabilidad")
+	} else if (isNaN(precio_venta)) {
+		console.log("Is Nan Precio Venta")
+	} else if (isNaN(rentabilidad)) {
+		console.log("Is Nan Rentabilidad")
+	} else {
+
+		/* Precio Venta */
+		let inputNum = precio_venta;
+		inputNum = inputNum.toString()
+		inputNum = inputNum.split('.')
+		if (!inputNum[1]) {
+			inputNum[1] = '00'
+		}
+		let separados
+		if (inputNum[0].length > 3) {
+			let uno = inputNum[0].length % 3
+			if (uno === 0) {
+				separados = []
+			} else {
+				separados = [inputNum[0].substring(0, uno)]
+			}
+			let posiciones = parseInt(inputNum[0].length / 3)
+			for (let i = 0; i < posiciones; i++) {
+				let pos = ((i * 3) + uno)
+				console.log(uno, pos)
+				separados.push(inputNum[0].substring(pos, (pos + 3)))
+			}
+		} else {
+			separados = [inputNum[0]]
+		}
+		precio_venta_final = separados.join(',') + '.' + inputNum[1];
+		/* Fin de precio venta */
+
+		/* Ganancia Unidad */
+		let inputNum1 = ganancia_unidad;
+		inputNum1 = inputNum1.toString()
+		inputNum1 = inputNum1.split('.')
+		if (!inputNum1[1]) {
+			inputNum1[1] = '00'
+		}
+		let separados1
+		if (inputNum1[0].length > 3) {
+			let uno = inputNum1[0].length % 3
+			if (uno === 0) {
+				separados1 = []
+			} else {
+				separados1 = [inputNum1[0].substring(0, uno)]
+			}
+			let posiciones1 = parseInt(inputNum1[0].length / 3)
+			for (let i = 0; i < posiciones1; i++) {
+				let pos = ((i * 3) + uno)
+				console.log(uno, pos)
+				separados1.push(inputNum1[0].substring(pos, (pos + 3)))
+			}
+		} else {
+			separados1 = [inputNum1[0]]
+		}
+
+		ganancia_unidad_final = separados1.join(',') + '.' + inputNum1[1];
+
+		/* Fin de precio venta */
+
+		$("input[name=ganancia_unidad]").val(ganancia_unidad_final);
+		$("input[name=precio_venta]").val(precio_venta_final);
+		$("input[name=rentabilidad]").val(Math.round(rentabilidad));
+	}
+
+});
+
+$("#porcentaje").on("keyup", function () {
+
+	var precio_costo = $("#precio_costo").val();
+
+	valor = Number(precio_costo.replace(/,/g, ''));
+
+	var porcentaje = Number($("#porcentaje").val());
+	var ganancia_unidad = Number((valor * porcentaje) / 100);
+	var precio_venta = Number(ganancia_unidad + valor);
+	var rentabilidad = (1 - valor / precio_venta) * 100;
+
+	if (isNaN(ganancia_unidad)) {
+		console.log("Is Nan Rentabilidad")
+	} else if (isNaN(precio_venta)) {
+		console.log("Is Nan Precio Venta")
+	} else if (isNaN(rentabilidad)) {
+		console.log("Is Nan Rentabilidad")
+	} else {
+
+		/* Precio Venta */
+		let inputNum = precio_venta;
+		inputNum = inputNum.toString()
+		inputNum = inputNum.split('.')
+		if (!inputNum[1]) {
+			inputNum[1] = '00'
+		}
+		let separados
+		if (inputNum[0].length > 3) {
+			let uno = inputNum[0].length % 3
+			if (uno === 0) {
+				separados = []
+			} else {
+				separados = [inputNum[0].substring(0, uno)]
+			}
+			let posiciones = parseInt(inputNum[0].length / 3)
+			for (let i = 0; i < posiciones; i++) {
+				let pos = ((i * 3) + uno)
+				console.log(uno, pos)
+				separados.push(inputNum[0].substring(pos, (pos + 3)))
+			}
+		} else {
+			separados = [inputNum[0]]
+		}
+		precio_venta_final = separados.join(',') + '.' + inputNum[1];
+		/* Fin de precio venta */
+
+		/* Ganancia Unidad */
+		let inputNum1 = ganancia_unidad;
+		inputNum1 = inputNum1.toString()
+		inputNum1 = inputNum1.split('.')
+		if (!inputNum1[1]) {
+			inputNum1[1] = '00'
+		}
+		let separados1
+		if (inputNum1[0].length > 3) {
+			let uno = inputNum1[0].length % 3
+			if (uno === 0) {
+				separados1 = []
+			} else {
+				separados1 = [inputNum1[0].substring(0, uno)]
+			}
+			let posiciones1 = parseInt(inputNum1[0].length / 3)
+			for (let i = 0; i < posiciones1; i++) {
+				let pos = ((i * 3) + uno)
+				console.log(uno, pos)
+				separados1.push(inputNum1[0].substring(pos, (pos + 3)))
+			}
+		} else {
+			separados1 = [inputNum1[0]]
+		}
+
+		ganancia_unidad_final = separados1.join(',') + '.' + inputNum1[1];
+
+		/* Fin de precio venta */
+
+		$("input[name=ganancia_unidad]").val(ganancia_unidad_final);
+		$("input[name=precio_venta]").val(precio_venta_final);
+		$("input[name=rentabilidad]").val(Math.round(rentabilidad));
+	}
+
+});
+

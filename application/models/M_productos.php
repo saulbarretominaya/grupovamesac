@@ -17,14 +17,14 @@ class M_productos extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
         id_sunat,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        descripcion_producto,
+        LEFT(descripcion_producto,30) as descripcion_producto,
         id_moneda,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        precio_costo,
+        FORMAT(precio_costo,2) as precio_costo,
         porcentaje,
-        ganancia_unidad,
-        precio_venta,
-        rentabilidad
+        FORMAT(ganancia_unidad,2) as ganancia_unidad,
+        FORMAT(precio_venta,2) as precio_venta,
+        rentabilidad,
         id_grupo,
         (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
         id_familia,
@@ -93,7 +93,42 @@ class M_productos extends CI_Model
     public function enlace_actualizar($id_producto)
     {
         $resultados = $this->db->query("
-        select * from productos where id_producto='$id_producto'");
+
+                SELECT 
+        id_producto,
+        codigo_producto,
+        id_almacen,
+        (select abreviatura from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
+        id_unidad_medida,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
+        id_sunat,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
+        LEFT(descripcion_producto,30) as descripcion_producto,
+        id_moneda,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+        FORMAT(precio_costo,2) as precio_costo,
+        porcentaje,
+        FORMAT(ganancia_unidad,2) as ganancia_unidad,
+        FORMAT(precio_venta,2) as precio_venta,
+        rentabilidad,
+        id_grupo,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
+        id_familia,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
+        id_clase,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
+        id_sub_clase,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
+        id_sub_clase_dos,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
+        id_marca,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_marca) AS ds_marca,
+        id_cta_vta,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
+        id_cta_ent,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
+        stock
+        FROM productos where id_producto='$id_producto'");
         return $resultados->row();
     }
 

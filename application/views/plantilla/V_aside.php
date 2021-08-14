@@ -32,7 +32,7 @@
             </ul>
           </li> -->
 
-         <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -43,14 +43,14 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="<?php echo base_url() . "C_trabajadores" ?>" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Registrar Trabajadores</p>
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
 
-           <!-- <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -70,7 +70,7 @@
 
           <li class="nav-item">
             <a href="" class="nav-link">
-            <i class="fas fa-border-none"></i>
+              <i class="fas fa-border-none"></i>
               <p>
                 Multitablas
                 <i class="fas fa-angle-left right"></i>
@@ -88,7 +88,7 @@
 
           <li class="nav-item">
             <a href="" class="nav-link">
-            <i class="fas fa-warehouse"></i>
+              <i class="fas fa-warehouse"></i>
               <p>
                 Almacen
                 <i class="fas fa-angle-left right"></i>
@@ -101,12 +101,18 @@
                   <p>Productos</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_tableros" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tableros</p>
+                </a>
+              </li>
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="" class="nav-link">
-            <i class="fas fa-warehouse"></i>
+              <i class="fas fa-warehouse"></i>
               <p>
                 Comercial
                 <i class="fas fa-angle-left right"></i>
