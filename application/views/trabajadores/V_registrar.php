@@ -441,6 +441,9 @@
 
   <script src="<?php echo base_url() ?>application/js/j_trabajadores.js"></script>
   <!-- <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script> -->
+
+
+
   </body>
 
   </html>

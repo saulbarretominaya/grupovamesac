@@ -20,7 +20,6 @@ class C_trabajadores extends CI_Controller
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
         $this->load->view('trabajadores/V_index', $data);
-        $this->load->view('plantilla/V_footer');
     }
 
     public function index_modal()
@@ -71,7 +70,6 @@ class C_trabajadores extends CI_Controller
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
         $this->load->view('trabajadores/V_registrar', $data);
-        // $this->load->view('plantilla/V_footer');
     }
 
     public function insertar()
@@ -129,7 +127,6 @@ class C_trabajadores extends CI_Controller
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
         $this->load->view('trabajadores/V_actualizar', $data);
-        // $this->load->view('plantilla/V_footer');
     }
 
     public function actualizar()

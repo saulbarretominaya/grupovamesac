@@ -502,6 +502,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 <script src="<?php echo base_url() ?>application/js/j_trabajadores.js"></script>
+
 </body>
 
 </html>

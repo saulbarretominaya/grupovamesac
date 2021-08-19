@@ -19,7 +19,6 @@ class C_productos extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('productos/V_index', $data);
-		$this->load->view('plantilla/V_footer');
 	}
 
 	public function enlace_registrar()
@@ -42,7 +41,6 @@ class C_productos extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('productos/V_registrar', $data);
-		$this->load->view('plantilla/V_footer');
 	}
 
 
@@ -129,7 +127,6 @@ class C_productos extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('productos/V_actualizar', $data);
-		$this->load->view('plantilla/V_footer');
 	}
 
 
