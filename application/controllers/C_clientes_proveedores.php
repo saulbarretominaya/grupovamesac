@@ -20,7 +20,6 @@ class C_clientes_proveedores extends CI_Controller
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
         $this->load->view('clientes_proveedores/V_index', $data);
-        $this->load->view('plantilla/V_footer');
     }
 
     public function enlace_registrar()
