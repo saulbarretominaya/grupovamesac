@@ -52,7 +52,7 @@ class C_clientes_proveedores extends CI_Controller
 
     public function insertar()
     {
-        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+
         $origen = $this->input->post("origen");
         $condicion = $this->input->post("condicion");
         $tipo_persona = $this->input->post("tipo_persona");
@@ -89,7 +89,7 @@ class C_clientes_proveedores extends CI_Controller
 
 
 
-        $this->M_clientes_proveedores->insertar($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
+        $this->M_clientes_proveedores->insertar($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
 
         echo json_encode($num_documento);
     }
