@@ -90,6 +90,9 @@ $("#registrar").on("click", function () {
 	var linea_credito_dolares = $("#linea_credito_dolares").val();
 	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
 	var disponible_dolares = $("#disponible_dolares ").val();
+	var linea_opcional = $("#linea_opcional").val();
+	var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
+	var linea_disponible = $("#linea_disponible ").val();
 	var email = $("#email").val();
 	var contacto_registro = $("#contacto_registro").val();
 	var estado_cliente = $("#estado_cliente").val();
@@ -175,6 +178,9 @@ $("#registrar").on("click", function () {
 			linea_credito_dolares: linea_credito_dolares,
 			credito_unitario_dolares: credito_unitario_dolares,
 			disponible_dolares: disponible_dolares,
+			linea_opcional: linea_opcional,
+			linea_opcional_unitaria: linea_opcional_unitaria,
+			linea_disponible: linea_disponible,
 			email: email,
 			contacto_registro: contacto_registro,
 			estado_cliente: estado_cliente,
@@ -221,6 +227,9 @@ $("#actualizar_clientes_proveedores").on("click", function () {
 	var linea_credito_dolares = $("#linea_credito_dolares").val();
 	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
 	var disponible_dolares = $("#disponible_dolares ").val();
+	var linea_opcional = $("#linea_opcional").val();
+	var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
+	var linea_disponible = $("#linea_disponible ").val();
 	var email = $("#email").val();
 	var contacto_registro = $("#contacto_registro").val();
 	var estado_cliente = $("#estado_cliente").val();
@@ -275,12 +284,12 @@ $("#actualizar_clientes_proveedores").on("click", function () {
 	// 	} else {
 	$.ajax({
 		async: false,
-		url: base_url + "C_clientes_proveedores/verificar_clientes_proveedores",
+		url: base_url + "C_clientes_proveedores/verificar_cliente_proveedor",
 		type: "POST",
 		dataType: "json",
 
 		data: {
-			id_cliente_proveedore: id_cliente_proveedor,
+			id_cliente_proveedor: id_cliente_proveedor,
 			origen: origen,
 			condicion: condicion,
 			tipo_persona: tipo_persona,
@@ -307,6 +316,9 @@ $("#actualizar_clientes_proveedores").on("click", function () {
 			linea_credito_dolares: linea_credito_dolares,
 			credito_unitario_dolares: credito_unitario_dolares,
 			disponible_dolares: disponible_dolares,
+			linea_opcional: linea_opcional,
+			linea_opcional_unitaria: linea_opcional_unitaria,
+			linea_disponible: linea_disponible,
 			email: email,
 			contacto_registro: contacto_registro,
 			estado_cliente: estado_cliente,
@@ -328,7 +340,7 @@ $("#actualizar_clientes_proveedores").on("click", function () {
 				type: "POST",
 				dataType: "json",
 				data: {
-					id_cliente_proveedore: id_cliente_proveedor,
+					id_cliente_proveedor: id_cliente_proveedor,
 					origen: origen,
 					condicion: condicion,
 					tipo_persona: tipo_persona,
@@ -355,6 +367,9 @@ $("#actualizar_clientes_proveedores").on("click", function () {
 					linea_credito_dolares: linea_credito_dolares,
 					credito_unitario_dolares: credito_unitario_dolares,
 					disponible_dolares: disponible_dolares,
+					linea_opcional: linea_opcional,
+					linea_opcional_unitaria: linea_opcional_unitaria,
+					linea_disponible: linea_disponible,
 					email: email,
 					contacto_registro: contacto_registro,
 					estado_cliente: estado_cliente,

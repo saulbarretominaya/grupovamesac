@@ -49,7 +49,7 @@
                   <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
-              <tfoot>
+              <!-- <tfoot>
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
@@ -57,7 +57,7 @@
                   <th>Materno</th>
                   <th>Celular</th>
                 </tr>
-              </tfoot>
+              </tfoot> -->
             </table>
           </div>
           <!-- /.card-body -->

@@ -41,6 +41,7 @@ class C_clientes_proveedores extends CI_Controller
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
             'cbox_tipo_giro' => $this->M_cbox->cbox_tipo_giro(),
+            'cbox_linea_disponible' => $this->M_cbox->cbox_linea_disponible(),
 
         );
 
@@ -77,8 +78,11 @@ class C_clientes_proveedores extends CI_Controller
         $credito_unitario_soles = $this->input->post("credito_unitario_soles");
         $disponible_soles = $this->input->post("disponible_soles");
         $linea_credito_dolares = $this->input->post("linea_credito_dolares");
-        $credito_unitario_dolares = $this->input->post("credit_unitario_dolares");
+        $credito_unitario_dolares = $this->input->post("credito_unitario_dolares");
         $disponible_dolares = $this->input->post("disponible_dolares");
+        $linea_opcional = $this->input->post("linea_opcional");
+        $linea_opcional_unitaria = $this->input->post("linea_opcional_unitaria");
+        $linea_disponible = $this->input->post("linea_disponible");
         $email = $this->input->post("email");
         $contacto_registro = $this->input->post("contacto_registro");
         $estado_cliente = $this->input->post("estado_cliente");
@@ -89,7 +93,7 @@ class C_clientes_proveedores extends CI_Controller
 
 
 
-        $this->M_clientes_proveedores->insertar($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
+        $this->M_clientes_proveedores->insertar($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $linea_opcional, $linea_opcional_unitaria, $linea_disponible, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
 
         echo json_encode($num_documento);
     }
@@ -113,6 +117,8 @@ class C_clientes_proveedores extends CI_Controller
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
             'cbox_tipo_giro' => $this->M_cbox->cbox_tipo_giro(),
+            'cbox_linea_disponible' => $this->M_cbox->cbox_linea_disponible(),
+
 
         );
 
@@ -152,8 +158,11 @@ class C_clientes_proveedores extends CI_Controller
         $credito_unitario_soles = $this->input->post("credito_unitario_soles");
         $disponible_soles = $this->input->post("disponible_soles");
         $linea_credito_dolares = $this->input->post("linea_credito_dolares");
-        $credito_unitario_dolares = $this->input->post("credit_unitario_dolares");
+        $credito_unitario_dolares = $this->input->post("credito_unitario_dolares");
         $disponible_dolares = $this->input->post("disponible_dolares");
+        $linea_opcional = $this->input->post("linea_opcional");
+        $linea_opcional_unitaria = $this->input->post("linea_opcional_unitaria");
+        $linea_disponible = $this->input->post("linea_disponible");
         $email = $this->input->post("email");
         $contacto_registro = $this->input->post("contacto_registro");
         $estado_cliente = $this->input->post("estado_cliente");
@@ -162,7 +171,7 @@ class C_clientes_proveedores extends CI_Controller
         $tipo_cliente_pago = $this->input->post("tipo_cliente_pago");
 
 
-        $this->clientes_proveedores->actualizar($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
+        $this->M_clientes_proveedores->actualizar($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $linea_opcional, $linea_opcional_unitaria, $linea_disponible, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
 
         echo json_encode($num_documento);
     }
@@ -170,7 +179,6 @@ class C_clientes_proveedores extends CI_Controller
     public function verificar_cliente_proveedor()
     {
 
-        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
         $origen = $this->input->post("origen");
         $condicion = $this->input->post("condicion");
         $tipo_persona = $this->input->post("tipo_persona");
@@ -197,6 +205,9 @@ class C_clientes_proveedores extends CI_Controller
         $linea_credito_dolares = $this->input->post("linea_credito_dolares");
         $credito_unitario_dolares = $this->input->post("credit_unitario_dolares");
         $disponible_dolares = $this->input->post("disponible_dolares");
+        $linea_opcional = $this->input->post("linea_opcional");
+        $linea_opcional_unitaria = $this->input->post("linea_opcional_unitaria");
+        $linea_disponible = $this->input->post("linea_disponible");
         $email = $this->input->post("email");
         $contacto_registro = $this->input->post("contacto_registro");
         $estado_cliente = $this->input->post("estado_cliente");
@@ -205,7 +216,7 @@ class C_clientes_proveedores extends CI_Controller
         $tipo_cliente_pago = $this->input->post("tipo_cliente_pago");
 
 
-        $data = $this->M_clientes_proveedores->verificar_cliente_proveedor($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
+        $data = $this->M_clientes_proveedores->verificar_cliente_proveedor($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $linea_opcional, $linea_opcional_unitaria, $linea_disponible, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
 
         echo json_encode($data);
     }

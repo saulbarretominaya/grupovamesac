@@ -164,7 +164,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
+                          <input type="text" class="form-control" id="num_documento" value="<?php echo $enlace_actualizar->num_documento; ?>" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
                           <div class="input-group-prepend">
                             <button class="btn btn-info" type="Submit">Buscar</button>
                             <!-- <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span> -->
@@ -190,7 +190,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupNombres"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="nombres" placeholder="Nombres" aria-describedby="inputGroupNombres" required>
+                          <input type="text" class="form-control" id="nombres" placeholder="Nombres" aria-describedby="inputGroupNombres" value="<?php echo $enlace_actualizar->nombres; ?>" required>
                         </div>
                       </div>
                       <!-- APELLIDO PATERNO -->
@@ -200,7 +200,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupApePaterno"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="ape_paterno" placeholder="Apellido Paterno" aria-describedby="inputGroupApePaterno" required>
+                          <input type="text" class="form-control" id="ape_paterno" placeholder="Apellido Paterno" aria-describedby="inputGroupApePaterno" value="<?php echo $enlace_actualizar->ape_paterno; ?>" required>
                         </div>
                       </div>
                       <!-- APELLIDO MATERNO -->
@@ -210,7 +210,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupApeMaterno"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="ape_materno" placeholder="Apellido Materno" aria-describedby="inputGroupApeMaterno" required>
+                          <input type="text" class="form-control" id="ape_materno" placeholder="Apellido Materno" aria-describedby="inputGroupApeMaterno" value="<?php echo $enlace_actualizar->ape_materno; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -223,7 +223,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupRazonSocial"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="razon_social" placeholder="Razon Social" aria-describedby="inputGroupLugarNacimiento" required>
+                          <input type="text" class="form-control" id="razon_social" placeholder="Razon Social" aria-describedby="inputGroupLugarNacimiento" value="<?php echo $enlace_actualizar->razon_social; ?>" required>
                         </div>
                       </div>
                       <!-- DIRECCION FISCAL -->
@@ -233,7 +233,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupDireccionFiscal"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="direccion_fiscal" placeholder="Direccion Fiscal" aria-describedby="inputGroupDireccionFiscal" required>
+                          <input type="text" class="form-control" id="direccion_fiscal" placeholder="Direccion Fiscal" aria-describedby="inputGroupDireccionFiscal" value="<?php echo $enlace_actualizar->direccion_fiscal; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -246,7 +246,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupDireccionAlmacen1"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="direccion_alm1" placeholder="Direccion Almacen 1" aria-describedby="inputGroupDireccionAlmacen1" required>
+                          <input type="text" class="form-control" id="direccion_alm1" placeholder="Direccion Almacen 1" aria-describedby="inputGroupDireccionAlmacen1" value="<?php echo $enlace_actualizar->direccion_alm1; ?>" required>
                         </div>
                       </div>
                       <!-- DIRECCION ALTERNA 2 -->
@@ -256,7 +256,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupDireccionAlmacen2"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="direccion_alm2" placeholder="Direccion Almacen 2" aria-describedby="inputGroupDireccionAlmacen2" required>
+                          <input type="text" class="form-control" id="direccion_alm2" placeholder="Direccion Almacen 2" aria-describedby="inputGroupDireccionAlmacen2" value="<?php echo $enlace_actualizar->direccion_alm2; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -283,7 +283,7 @@
                           <select class="custom-select " id="departamento" aria-describedby="inputGroupDepartamento" required>
                             <option value="0" selected>Selecciona...</option>
                             <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
-                              <?php if ($cbox_departamento->id_dmultitabla == $enlace_actualizar->id_tipo_departamento) : ?>
+                              <?php if ($cbox_departamento->id_dmultitabla == $enlace_actualizar->id_departamento) : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>" selected>
                                   <?php echo $cbox_departamento->descripcion; ?>
                                 </option>
@@ -353,7 +353,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupTelefono"> <i class="fas fa-phone-alt"></i></span>
                           </div>
-                          <input type="text" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' data-mask>
+                          <input type="text" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' value="<?php echo $enlace_actualizar->telefono; ?>" data-mask>
                         </div>
                       </div>
                       <!-- CELULAR -->
@@ -364,7 +364,7 @@
                             <span class="input-group-text" id="inputGroupCelular"> <i class="fas fa-mobile-alt"></i> </span>
                           </div>
                           <!-- <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask> -->
-                          <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
+                          <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" value="<?php echo $enlace_actualizar->celular; ?>" data-mask>
                         </div>
                       </div>
                       <!-- TIPO DE GIRO -->
@@ -443,7 +443,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupLineaCreditoSoles"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
+                          <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" value="<?php echo $enlace_actualizar->linea_credito_soles; ?>" required>
                         </div>
                       </div>
                       <!-- CREDITO UNITARIO - SOLES-->
@@ -453,7 +453,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupCreditoUnitarioSoles"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" required>
+                          <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" value="<?php echo $enlace_actualizar->credito_unitario_soles; ?>" required>
                         </div>
                       </div>
                       <!-- DISPONIBLE - SOLES-->
@@ -463,7 +463,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupDisponibleSoles"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
+                          <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" value="<?php echo $enlace_actualizar->disponible_soles; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -477,7 +477,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupLineaCreditoDolares"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
+                          <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" value="<?php echo $enlace_actualizar->linea_credito_dolares; ?>" required>
                         </div>
                       </div>
                       <!-- CREDITO UNITARIO - DOLARES-->
@@ -487,7 +487,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupCreditoUnitarioDolares"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
+                          <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" value="<?php echo $enlace_actualizar->credito_unitario_dolares; ?>" required>
                         </div>
                       </div>
                       <!-- DISPONIBLE - DOLARES-->
@@ -497,7 +497,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupDisponibleDolares"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" required>
+                          <input type="text" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" value="<?php echo $enlace_actualizar->disponible_dolares; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -505,32 +505,45 @@
                     <div class="form-row">
                       <!-- LINEA OPCIONAL -->
                       <div class="col-md-4 mb-3">
-                        <label for="linea_credito_dolares">Linea de Credito $ </label>
+                        <label for="linea_opcional">Linea Opcional </label>
                         <div class="input-group">
                           <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupLineaCreditoDolares"> <i class="fas fa-user-shield"></i> </span>
+                            <span class="input-group-text" id="inputGroupLineaOpcional"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
+                          <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" aria-describedby="inputGroupLineaOpcinal" value="<?php echo $enlace_actualizar->linea_opcional; ?>" required>
                         </div>
                       </div>
                       <!-- LINEA OPCIONAL UNITARIO-->
                       <div class="col-md-4 mb-3">
-                        <label for="credito_unitario_dolares">Credito Unitario $ </label>
+                        <label for="linea_opcional_unitaria">Linea Opcional Unitario</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupCreditoUnitarioDolares"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
+                          <input type="text" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" aria-describedby="inputGroupLineaOpcionalUnitaria" value="<?php echo $enlace_actualizar->linea_opcional_unitaria; ?>" required>
                         </div>
                       </div>
                       <!-- LINEA DISPONIBLE-->
                       <div class="col-md-4 mb-3">
-                        <label for="disponible_dolares">Disponible $ </label>
+                        <label for="linea_disponible">Linea Disponible</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupDisponibleDolares"> <i class="far fa-id-card"></i> </span>
+                            <span class="input-group-text" id="inputGroupLineaDisponible"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" required>
+                          <select class="custom-select " id="linea_disponible" aria-describedby="inputGroupLineaDisponible" required>
+                            <option value="0" selected>Selecciona...</option>
+                            <?php foreach ($cbox_linea_disponible as $cbox_linea_disponible) : ?>
+                              <?php if ($cbox_linea_disponible->id_dmultitabla == $enlace_actualizar->id_linea_disponible) : ?>
+                                <option value="<?php echo $cbox_linea_disponible->id_dmultitabla; ?>" selected>
+                                  <?php echo $cbox_linea_disponible->descripcion; ?>
+                                </option>
+                              <?php else : ?>
+                                <option value="<?php echo $cbox_linea_disponible->id_dmultitabla; ?>">
+                                  <?php echo $cbox_linea_disponible->descripcion; ?>
+                                </option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -544,7 +557,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupEmail"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" required>
+                          <input type="text" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" value="<?php echo $enlace_actualizar->email; ?>" required>
                         </div>
                       </div>
                       <!-- CONTACTO REGISTRO-->
@@ -554,11 +567,11 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupContactoRegistro"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="contacto_registro" placeholder="Ingrese el Contacto de Registro" aria-describedby="inputGroupContactoRegistro" required>
+                          <input type="text" class="form-control" id="contacto_registro" placeholder="Ingrese el Contacto de Registro" aria-describedby="inputGroupContactoRegistro" value="<?php echo $enlace_actualizar->contacto_registro; ?>" required>
                         </div>
                       </div>
                       <!-- ESTADO-->
-                      <div class="col-md-4 mb-3">
+                      <div class=" col-md-4 mb-3">
                         <label for="estado_cliente">Estado</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -590,21 +603,21 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupEmailCobranza"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" required>
+                          <input type="text" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" value="<?php echo $enlace_actualizar->email_cobranza; ?>" required>
                         </div>
                       </div>
                       <!-- CONTACTO COBRANZA-->
-                      <div class="col-md-4 mb-3">
+                      <div class=" col-md-4 mb-3">
                         <label for="contacto_cobranza">Contacto Cobranza</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupContactoCobranza"> <i class="far fa-id-card"></i> </span>
                           </div>
-                          <input type="text" class="form-control" id="contacto_cobranza" placeholder="Ingrese el contacto de cobranza" aria-describedby="inputGroupContactoCobranza" required>
+                          <input type="text" class="form-control" id="contacto_cobranza" placeholder="Ingrese el contacto de cobranza" aria-describedby="inputGroupContactoCobranza" value="<?php echo $enlace_actualizar->contacto_cobranza; ?>" required>
                         </div>
                       </div>
                       <!-- TIPO CLIENTE DE PAGO-->
-                      <div class="col-md-4 mb-3">
+                      <div class=" col-md-4 mb-3">
                         <label for="tipo_cliente_pago">Tipo de Cliente de Pago</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
