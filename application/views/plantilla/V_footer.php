@@ -10,6 +10,8 @@
 <script src="<?php echo base_url() ?>plantilla/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>plantilla/dist/js/demo.js"></script>
+<!-- overlayScrollbars -->
+<script src="<?php echo base_url() ?>plantilla/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- Page specific script -->
 
 <script src="<?php echo base_url() ?>plantilla/plugins/moment/moment.min.js"></script>

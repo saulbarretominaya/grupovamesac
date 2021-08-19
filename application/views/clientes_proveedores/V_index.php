@@ -41,7 +41,7 @@
                       <td><?php echo $index->ape_paterno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
-                      <td></td>
+                      <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
                       <td></td>
                       <!-- <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
                       <td class="text-center" style="width: 15px;"><a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td> -->

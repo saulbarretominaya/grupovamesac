@@ -51,11 +51,11 @@
                             <?php foreach ($cbox_tipo_trabajador as $cbox_tipo_trabajador) : ?>
                               <?php if ($cbox_tipo_trabajador->id_dmultitabla == $enlace_actualizar->id_tipo_trabajador) : ?>
                                 <option value="<?php echo $cbox_tipo_trabajador->id_dmultitabla; ?>" selected=>
-                                  <?php echo $cbox_tipo_trabajador->abreviatura; ?>
+                                  <?php echo $cbox_tipo_trabajador->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_tipo_trabajador->id_dmultitabla; ?>">
-                                  <?php echo $cbox_tipo_trabajador->abreviatura; ?>
+                                  <?php echo $cbox_tipo_trabajador->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -64,21 +64,21 @@
                       </div>
                       <!-- TIPO DE LOCAL -->
                       <div class="col-md-3 mb-3">
-                        <label for="local">Local</label>
+                        <label for="almacen">Almacen</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupLocal"> <i class="fas fa-user-shield"></i> </span>
+                            <span class="input-group-text" id="inputGroupAlmacen"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <select class="custom-select " id="local" aria-describedby="inputGroupLocal" required>
+                          <select class="custom-select " id="almacen" aria-describedby="inputGroupAlmacen" required>
                             <option selected>Seleciona...</option>
-                            <?php foreach ($cbox_local as $cbox_local) : ?>
-                              <?php if ($cbox_local->id_dmultitabla == $enlace_actualizar->id_local) : ?>
-                                <option value="<?php echo $cbox_local->id_dmultitabla; ?>" selected=>
-                                  <?php echo $cbox_local->abreviatura; ?>
+                            <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
+                              <?php if ($cbox_almacen->id_dmultitabla == $enlace_actualizar->id_almacen) : ?>
+                                <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>" selected=>
+                                  <?php echo $cbox_almacen->descripcion; ?>
                                 </option>
                               <?php else : ?>
-                                <option value="<?php echo $cbox_local->id_dmultitabla; ?>">
-                                  <?php echo $cbox_local->abreviatura; ?>
+                                <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
+                                  <?php echo $cbox_almacen->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -87,21 +87,21 @@
                       </div>
                       <!-- TIPO DE CARGO -->
                       <div class="col-md-3 mb-3">
-                        <label for="cargo">Cargo</label>
+                        <label for="cargo_trabajador">Cargo del Trabajador</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupCargo"> <i class="fas fa-user-shield"></i> </span>
+                            <span class="input-group-text" id="inputGroupCargoTrabajador"> <i class="fas fa-user-shield"></i> </span>
                           </div>
-                          <select class="custom-select " id="cargo" aria-describedby="inputGroupCargo" required>
+                          <select class="custom-select " id="cargo_trabajador" aria-describedby="inputGroupCargoTrabajador" required>
                             <option selected>Selecciona...</option>
-                            <?php foreach ($cbox_cargo as $cbox_cargo) : ?>
-                              <?php if ($cbox_cargo->id_dmultitabla == $enlace_actualizar->id_cargo) : ?>
-                                <option value="<?php echo $cbox_cargo->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_cargo->abreviatura; ?>
+                            <?php foreach ($cbox_cargo_trabajador as $cbox_cargo_trabajador) : ?>
+                              <?php if ($cbox_cargo_trabajador->id_dmultitabla == $enlace_actualizar->id_cargo_trabajador) : ?>
+                                <option value="<?php echo $cbox_cargo_trabajador->id_dmultitabla; ?>" selected>
+                                  <?php echo $cbox_cargo_trabajador->descripcion; ?>
                                 </option>
                               <?php else : ?>
-                                <option value="<?php echo $cbox_cargo->id_dmultitabla; ?>">
-                                  <?php echo $cbox_cargo->abreviatura; ?>
+                                <option value="<?php echo $cbox_cargo_trabajador->id_dmultitabla; ?>">
+                                  <?php echo $cbox_cargo_trabajador->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -125,11 +125,11 @@
                             <?php foreach ($cbox_sexo as $cbox_sexo) : ?>
                               <?php if ($cbox_sexo->id_dmultitabla == $enlace_actualizar->id_sexo) : ?>
                                 <option value="<?php echo $cbox_sexo->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_sexo->abreviatura; ?>
+                                  <?php echo $cbox_sexo->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_sexo->id_dmultitabla; ?>">
-                                  <?php echo $cbox_sexo->abreviatura; ?>
+                                  <?php echo $cbox_sexo->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -148,11 +148,11 @@
                             <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
                               <?php if ($cbox_tipo_documento->id_dmultitabla == $enlace_actualizar->id_tipo_documento) : ?>
                                 <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_tipo_documento->abreviatura; ?>
+                                  <?php echo $cbox_tipo_documento->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
-                                  <?php echo $cbox_tipo_documento->abreviatura; ?>
+                                  <?php echo $cbox_tipo_documento->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -261,11 +261,11 @@
                             <?php foreach ($cbox_nacionalidad as $cbox_nacionalidad) : ?>
                               <?php if ($cbox_nacionalidad->id_dmultitabla == $enlace_actualizar->id_nacionalidad) : ?>
                                 <option value="<?php echo $cbox_nacionalidad->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_nacionalidad->abreviatura; ?>
+                                  <?php echo $cbox_nacionalidad->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_nacionalidad->id_dmultitabla; ?>">
-                                  <?php echo $cbox_nacionalidad->abreviatura; ?>
+                                  <?php echo $cbox_nacionalidad->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -284,11 +284,11 @@
                             <?php foreach ($cbox_estado_civil as $cbox_estado_civil) : ?>
                               <?php if ($cbox_estado_civil->id_dmultitabla == $enlace_actualizar->id_est_civil) : ?>
                                 <option value="<?php echo $cbox_estado_civil->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_estado_civil->abreviatura; ?>
+                                  <?php echo $cbox_estado_civil->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_estado_civil->id_dmultitabla; ?>">
-                                  <?php echo $cbox_estado_civil->abreviatura; ?>
+                                  <?php echo $cbox_estado_civil->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -307,11 +307,11 @@
                             <?php foreach ($cbox_grado_instruccion as $cbox_grado_instruccion) : ?>
                               <?php if ($cbox_grado_instruccion->id_dmultitabla == $enlace_actualizar->id_grado_instruccion) : ?>
                                 <option value="<?php echo $cbox_grado_instruccion->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_grado_instruccion->abreviatura; ?>
+                                  <?php echo $cbox_grado_instruccion->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_grado_instruccion->id_dmultitabla; ?>">
-                                  <?php echo $cbox_grado_instruccion->abreviatura; ?>
+                                  <?php echo $cbox_grado_instruccion->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -353,11 +353,11 @@
                             <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                               <?php if ($cbox_departamento->id_dmultitabla == $enlace_actualizar->id_departamento) : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_departamento->abreviatura; ?>
+                                  <?php echo $cbox_departamento->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>">
-                                  <?php echo $cbox_departamento->abreviatura; ?>
+                                  <?php echo $cbox_departamento->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -389,11 +389,11 @@
                             <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
                               <?php if ($cbox_provincia->id_dmultitabla == $enlace_actualizar->id_provincia) : ?>
                                 <option value="<?php echo $cbox_provincia->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_provincia->abreviatura; ?>
+                                  <?php echo $cbox_provincia->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_provincia->id_dmultitabla; ?>">
-                                  <?php echo $cbox_provincia->abreviatura; ?>
+                                  <?php echo $cbox_provincia->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>
@@ -446,11 +446,11 @@
                             <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
                               <?php if ($cbox_distrito->id_dmultitabla == $enlace_actualizar->id_distrito) : ?>
                                 <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_distrito->abreviatura; ?>
+                                  <?php echo $cbox_distrito->descripcion; ?>
                                 </option>
                               <?php else : ?>
                                 <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>">
-                                  <?php echo $cbox_distrito->abreviatura; ?>
+                                  <?php echo $cbox_distrito->descripcion; ?>
                                 </option>
                               <?php endif; ?>
                             <?php endforeach; ?>

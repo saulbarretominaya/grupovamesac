@@ -28,18 +28,20 @@ class C_clientes_proveedores extends CI_Controller
 
         $data = array(
 
+
             // COMBO BOX
-            'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
+            'cbox_origen' => $this->M_cbox->cbox_origen(),
             'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_local' => $this->M_cbox->cbox_local(),
-            'cbox_cargo' => $this->M_cbox->cbox_cargo(),
-            'cbox_sexo' => $this->M_cbox->cbox_sexo(),
-            'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
-            'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
-            'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
+            'cbox_condicion' => $this->M_cbox->cbox_condicion(),
+            'cbox_tipo_persona' => $this->M_cbox->cbox_tipo_persona(),
+            'cbox_tipo_persona_sunat' => $this->M_cbox->cbox_tipo_persona_sunat(),
+            'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+            'cbox_tipo_cliente_pago' => $this->M_cbox->cbox_tipo_cliente_pago(),
             'cbox_departamento' => $this->M_cbox->cbox_departamento(),
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'cbox_tipo_giro' => $this->M_cbox->cbox_tipo_giro(),
+
         );
 
         $this->load->view('plantilla/V_header');
@@ -50,53 +52,68 @@ class C_clientes_proveedores extends CI_Controller
 
     public function insertar()
     {
+        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+        $origen = $this->input->post("origen");
+        $condicion = $this->input->post("condicion");
+        $tipo_persona = $this->input->post("tipo_persona");
+        $tipo_persona_sunat = $this->input->post("tipo_persona_sunat");
+        $tipo_documento = $this->input->post("tipo_documento");
         $num_documento = $this->input->post("num_documento");
         $nombres = $this->input->post("nombres");
         $ape_paterno = $this->input->post("ape_paterno");
-        $ape_materno = $this->input->post("ape_materno");
-        $email = $this->input->post("email");
-        $fecha_nacimiento = $this->input->post("fecha_nacimiento");
-        $lugar_nacimiento = $this->input->post("lugar_nacimiento");
-        $domicilio = $this->input->post("domicilio");
-        $referencia = $this->input->post("referencia");
-        $telefono = $this->input->post("telefono");
-        $celular = $this->input->post("celular");
-        $tipo_trabajador = $this->input->post("tipo_trabajador");
-        $tipo_documento = $this->input->post("tipo_documento");
-        $local = $this->input->post("local");
-        $cargo = $this->input->post("cargo");
-        $sexo = $this->input->post("sexo");
-        $nacionalidad = $this->input->post("nacionalidad");
-        $estado_civil = $this->input->post("est_civil");
-        $grado_instruccion = $this->input->post("grado_instruccion");
+        $ape_materno = $this->input->post("ape_paterno");
+        $razon_social = $this->input->post("razon_social");
+        $direccion_fiscal = $this->input->post("direccion_fiscal");
+        $direccion_alm1 = $this->input->post("direccion_alm1");
+        $direccion_alm2 = $this->input->post("direccion_alm2");
         $departamento = $this->input->post("departamento");
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
+        $telefono = $this->input->post("telefono");
+        $celular = $this->input->post("celular");
+        $tipo_giro = $this->input->post("tipo_giro");
+        $condicion_pago = $this->input->post("condicion_pago");
+        $linea_credito_soles = $this->input->post("linea_credito_soles");
+        $credito_unitario_soles = $this->input->post("credito_unitario_soles");
+        $disponible_soles = $this->input->post("disponible_soles");
+        $linea_credito_dolares = $this->input->post("linea_credito_dolares");
+        $credito_unitario_dolares = $this->input->post("credit_unitario_dolares");
+        $disponible_dolares = $this->input->post("disponible_dolares");
+        $email = $this->input->post("email");
+        $contacto_registro = $this->input->post("contacto_registro");
+        $estado_cliente = $this->input->post("estado_cliente");
+        $email_cobranza = $this->input->post("email_cobranza");
+        $contacto_cobranza = $this->input->post("contacto_cobranza");
+        $tipo_cliente_pago = $this->input->post("tipo_cliente_pago");
 
 
-        $this->clientes_proveedores->insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+
+
+        $this->M_clientes_proveedores->insertar($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
 
         echo json_encode($num_documento);
     }
 
 
 
-    public function enlace_actualizar($id_trabajador)
+    public function enlace_actualizar($id_cliente_proveedor)
     {
 
         $data = array(
-            'enlace_actualizar' => $this->M_trabajadores->enlace_actualizar($id_trabajador),
-            'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
+
+            'enlace_actualizar' => $this->M_clientes_proveedores->enlace_actualizar($id_cliente_proveedor),
+            'cbox_origen' => $this->M_cbox->cbox_origen(),
             'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_local' => $this->M_cbox->cbox_local(),
-            'cbox_cargo' => $this->M_cbox->cbox_cargo(),
-            'cbox_sexo' => $this->M_cbox->cbox_sexo(),
-            'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
-            'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
-            'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
+            'cbox_condicion' => $this->M_cbox->cbox_condicion(),
+            'cbox_tipo_persona' => $this->M_cbox->cbox_tipo_persona(),
+            'cbox_tipo_persona_sunat' => $this->M_cbox->cbox_tipo_persona_sunat(),
+            'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+            'cbox_tipo_cliente_pago' => $this->M_cbox->cbox_tipo_cliente_pago(),
             'cbox_departamento' => $this->M_cbox->cbox_departamento(),
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'cbox_tipo_giro' => $this->M_cbox->cbox_tipo_giro(),
+
         );
 
 
@@ -109,79 +126,94 @@ class C_clientes_proveedores extends CI_Controller
 
     public function actualizar()
     {
-        $id_trabajador = $this->input->post("id_trabajador");
+
+        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+        $origen = $this->input->post("origen");
+        $condicion = $this->input->post("condicion");
+        $tipo_persona = $this->input->post("tipo_persona");
+        $tipo_persona_sunat = $this->input->post("tipo_persona_sunat");
+        $tipo_documento = $this->input->post("tipo_documento");
         $num_documento = $this->input->post("num_documento");
         $nombres = $this->input->post("nombres");
         $ape_paterno = $this->input->post("ape_paterno");
-        $ape_materno = $this->input->post("ape_materno");
-        $email = $this->input->post("email");
-        $fecha_nacimiento = $this->input->post("fecha_nacimiento");
-        $lugar_nacimiento = $this->input->post("lugar_nacimiento");
-        $domicilio = $this->input->post("domicilio");
-        $referencia = $this->input->post("referencia");
-        $telefono = $this->input->post("telefono");
-        $celular = $this->input->post("celular");
-        $tipo_trabajador = $this->input->post("tipo_trabajador");
-        $tipo_documento = $this->input->post("tipo_documento");
-        $local = $this->input->post("local");
-        $cargo = $this->input->post("cargo");
-        $sexo = $this->input->post("sexo");
-        $nacionalidad = $this->input->post("nacionalidad");
-        $estado_civil = $this->input->post("est_civil");
-        $grado_instruccion = $this->input->post("grado_instruccion");
+        $ape_materno = $this->input->post("ape_paterno");
+        $razon_social = $this->input->post("razon_social");
+        $direccion_fiscal = $this->input->post("direccion_fiscal");
+        $direccion_alm1 = $this->input->post("direccion_alm1");
+        $direccion_alm2 = $this->input->post("direccion_alm2");
         $departamento = $this->input->post("departamento");
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
+        $telefono = $this->input->post("telefono");
+        $celular = $this->input->post("celular");
+        $tipo_giro = $this->input->post("tipo_giro");
+        $condicion_pago = $this->input->post("condicion_pago");
+        $linea_credito_soles = $this->input->post("linea_credito_soles");
+        $credito_unitario_soles = $this->input->post("credito_unitario_soles");
+        $disponible_soles = $this->input->post("disponible_soles");
+        $linea_credito_dolares = $this->input->post("linea_credito_dolares");
+        $credito_unitario_dolares = $this->input->post("credit_unitario_dolares");
+        $disponible_dolares = $this->input->post("disponible_dolares");
+        $email = $this->input->post("email");
+        $contacto_registro = $this->input->post("contacto_registro");
+        $estado_cliente = $this->input->post("estado_cliente");
+        $email_cobranza = $this->input->post("email_cobranza");
+        $contacto_cobranza = $this->input->post("contacto_cobranza");
+        $tipo_cliente_pago = $this->input->post("tipo_cliente_pago");
 
-        // print_r($fecha_nacimiento1);
 
-        // // echo gettype($posible);
-
-        // $fecha_nacimiento = 
-
-        // // STR_TO_DATE(REPLACE('$fecha_nacimiento', '/', '.'), GET_FORMAT(date, 'EUR'))
-
-        $this->M_clientes_proveedores->actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
-
+        $this->clientes_proveedores->actualizar($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
 
         echo json_encode($num_documento);
     }
 
-    public function verificar_trabajador()
+    public function verificar_cliente_proveedor()
     {
 
+        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+        $origen = $this->input->post("origen");
+        $condicion = $this->input->post("condicion");
+        $tipo_persona = $this->input->post("tipo_persona");
+        $tipo_persona_sunat = $this->input->post("tipo_persona_sunat");
+        $tipo_documento = $this->input->post("tipo_documento");
         $num_documento = $this->input->post("num_documento");
         $nombres = $this->input->post("nombres");
-        $ape_paterno = $this->input->post("ape_paterno"); //captura el parametro que le enviamos
-        $ape_materno = $this->input->post("ape_materno");
-        $email = $this->input->post("email");
-        $fecha_nacimiento = $this->input->post("fecha_nacimiento");
-        $lugar_nacimiento = $this->input->post("lugar_nacimiento");
-        $domicilio = $this->input->post("domicilio");
-        $referencia = $this->input->post("referencia");
+        $ape_paterno = $this->input->post("ape_paterno");
+        $ape_materno = $this->input->post("ape_paterno");
+        $razon_social = $this->input->post("razon_social");
+        $direccion_fiscal = $this->input->post("direccion_fiscal");
+        $direccion_alm1 = $this->input->post("direccion_alm1");
+        $direccion_alm2 = $this->input->post("direccion_alm2");
+        $departamento = $this->input->post("departamento");
+        $provincia = $this->input->post("provincia");
+        $distrito = $this->input->post("distrito");
         $telefono = $this->input->post("telefono");
         $celular = $this->input->post("celular");
-        $tipo_trabajador = $this->input->post("tipo_trabajador");
-        $tipo_documento = $this->input->post("tipo_documento");
-        $local = $this->input->post("local");
-        $cargo = $this->input->post("cargo");
-        $sexo = $this->input->post("sexo"); //captura el parametro que le enviamos
-        $nacionalidad = $this->input->post("nacionalidad"); //captura el parametro que le enviamos
-        $estado_civil = $this->input->post("est_civil"); //captura el parametro que le enviamos
-        $grado_instruccion = $this->input->post("grado_instruccion"); //captura el parametro que le enviamos
-        $departamento = $this->input->post("departamento"); //captura el parametro que le enviamos
-        $provincia = $this->input->post("provincia"); //captura el parametro que le enviamos
-        $distrito = $this->input->post("distrito"); //captura el parametro que le enviamos
+        $tipo_giro = $this->input->post("tipo_giro");
+        $condicion_pago = $this->input->post("condicion_pago");
+        $linea_credito_soles = $this->input->post("linea_credito_soles");
+        $credito_unitario_soles = $this->input->post("credito_unitario_soles");
+        $disponible_soles = $this->input->post("disponible_soles");
+        $linea_credito_dolares = $this->input->post("linea_credito_dolares");
+        $credito_unitario_dolares = $this->input->post("credit_unitario_dolares");
+        $disponible_dolares = $this->input->post("disponible_dolares");
+        $email = $this->input->post("email");
+        $contacto_registro = $this->input->post("contacto_registro");
+        $estado_cliente = $this->input->post("estado_cliente");
+        $email_cobranza = $this->input->post("email_cobranza");
+        $contacto_cobranza = $this->input->post("contacto_cobranza");
+        $tipo_cliente_pago = $this->input->post("tipo_cliente_pago");
 
 
-        $data = $this->M_clientes_proveedores->verificar_trabajador($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito); // le paso el parametro al metodo verificar_trabajador que se encuentra en el MODELO
+        $data = $this->M_clientes_proveedores->verificar_cliente_proveedor($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago);
+
         echo json_encode($data);
     }
 
-    public function eliminar($id_trabajador)
+    public function eliminar($id_cliente_proveedor)
     {
 
-        $this->M_trabajadores->actualizar_estado($id_trabajador);
-        redirect(base_url() . "C_trabajadores");
+        $this->M_trabajadores->actualizar_estado($id_cliente_proveedor);
+        redirect(base_url() . "C_clientes_proveedores");
     }
 }

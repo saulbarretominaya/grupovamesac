@@ -13,43 +13,39 @@ class M_clientes_proveedores extends CI_Model
         return $resultados->result();
     }
 
-    public function insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito)
+    public function insertar($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago)
     {
         return $this->db->query("INSERT INTO clientes_proveedores
-        (id_trabajador,num_documento, nombres, ape_paterno, ape_materno, email, fecha_nacimiento, lugar_nacimiento, domicilio, referencia, telefono, celular, id_tipo_trabajador, id_tipo_documento, id_local, id_cargo, id_sexo, id_nacionalidad, id_est_civil, id_grado_instruccion, id_departamento, id_provincia, id_distrito)
-        VALUES ('','$num_documento', '$nombres', '$ape_paterno', '$ape_materno', '$email', STR_TO_DATE(REPLACE('$fecha_nacimiento','/','.') ,GET_FORMAT(date,'EUR')), '$lugar_nacimiento', '$domicilio', '$referencia', '$telefono', '$celular', '$tipo_trabajador', '$tipo_documento', '$local', '$cargo', '$sexo', '$nacionalidad', '$estado_civil', '$grado_instruccion', '$departamento', '$provincia', '$distrito')");
+        (id_cliente_proveedor, id_origen,id_condicion, id_tipo_persona, id_tipo_persona_sunat, id_tipo_documento,num_documento,nombres,ape_paterno, ape_materno, razon_social, direccion_fiscal, direccion_alm1, direccion_alm2, id_departamento, id_provincia, id_distrito, telefono, celular, id_tipo_giro, id_condicion_pago,linea_credito_soles,credito_unitario_soles,disponible_soles,linea_credito_dolares, credito_unitario_dolares,disponible_dolares,email,contacto_registro,id_estado_cliente,email_cobranza,contacto_cobranza,id_tipo_cliente_pago,id_estado)
+        VALUES ('','$origen', '$condicion', '$tipo_persona', '$tipo_persona_sunat', '$tipo_documento',  '$num_documento', '$nombres', '$ape_paterno', '$ape_materno', '$razon_social', '$direccion_fiscal', '$direccion_alm1', '$direccion_alm2', '$departamento', '$provincia', '$distrito', '$telefono', '$celular', '$tipo_giro', '$condicion_pago','$linea_credito_soles', '$credito_unitario_soles', '$disponible_soles', '$linea_credito_dolares', '$credito_unitario_dolares', '$disponible_dolares', '$email', '$contacto_registro', '$estado_cliente', '$email_cobranza', '$contacto_cobranza', '$tipo_cliente_pago', '1')");
     }
 
-    //  STR_TO_DATE(REPLACE('$fecha_nacimiento','/','-'))
-    //  STR_TO_DATE(REPLACE('$fecha_nacimiento','/','.') ,GET_FORMAT(date,'EUR'))
-    // http://codigolinea.com/insertando-fechas-con-diferente-formato-en-mysql/
 
-
-    public function enlace_actualizar($id_trabajador)
+    public function enlace_actualizar($id_cliente_proveedor)
     {
-        $this->db->where("id_trabajador", $id_trabajador);
-        $resultados = $this->db->get("trabajadores");
+        $this->db->where("id_cliente_proveedor", $id_cliente_proveedor);
+        $resultados = $this->db->get("clientes_proveedores");
         return $resultados->row();
     }
 
 
-    public function actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito)
+    public function actualizar($id_cliente_proveedor, $origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago)
     {
-        return $this->db->query("UPDATE trabajadores SET num_documento='$num_documento' , nombres = '$nombres', ape_paterno ='$ape_paterno',    ape_materno = '$ape_materno', email ='$email', fecha_nacimiento = STR_TO_DATE(REPLACE('$fecha_nacimiento','/','.') ,GET_FORMAT(date,'EUR')), lugar_nacimiento='$lugar_nacimiento', domicilio ='$domicilio',referencia ='$referencia', telefono ='$telefono', celular ='$celular', id_tipo_trabajador ='$tipo_trabajador', id_local ='$local', id_cargo ='$cargo', id_sexo ='$sexo', id_tipo_documento='$tipo_documento', id_nacionalidad ='$nacionalidad', id_est_civil ='$estado_civil', id_grado_instruccion ='$grado_instruccion', id_departamento ='$departamento', id_provincia ='$provincia', id_distrito ='$distrito'   WHERE  id_trabajador='$id_trabajador'");
+        return $this->db->query("UPDATE clientes_proveedores SET id_origen='$origen', id_condicion='$condicion', id_tipo_persona='$tipo_persona', id_tipo_persona_sunat='$tipo_persona_sunat', id_tipo_documento='$tipo_documento',num_documento=' $num_documento',nombres='$nombres',ape_paterno='$ape_paterno', ape_materno='$ape_materno', razon_social='$razon_social', direccion_fiscal='$direccion_fiscal', direccion_alm1=' $direccion_alm1', direccion_alm2='$direccion_alm2', id_departamento='$departamento', id_provincia='$provincia', id_distrito='$distrito', telefono='$telefono', celular='$celular', id_tipo_giro='$tipo_giro', id_condicion_pago='$condicion_pago',linea_credito_soles='$linea_credito_soles',credito_unitario_soles='$credito_unitario_soles',disponible_soles='$disponible_soles',linea_credito_dolares='$linea_credito_dolares', credito_unitario_dolares='$credito_unitario_dolares',disponible_dolares='$disponible_dolares',email='$email',contacto_registro='$contacto_registro',id_estado_cliente='$estado_cliente',email_cobranza='$email_cobranza',contacto_cobranza='$contacto_cobranza',id_tipo_cliente_pago='$tipo_cliente_pago'   WHERE  id_cliente_proveedor='$id_cliente_proveedor'");
     }
 
 
-    public function verificar_trabajador($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito)
+    public function verificar_cliente_proveedor($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago)
     {
-        $resultados = $this->db->query("SELECT * from trabajadores WHERE num_documento='$num_documento' && nombres = '$nombres' && ape_paterno ='$ape_paterno' && ape_materno && '$ape_materno' && email ='$email' && fecha_nacimiento ='$fecha_nacimiento' && lugar_nacimiento='$lugar_nacimiento' && domicilio ='$domicilio' && referencia ='$referencia' && telefono ='$telefono' && celular ='$celular' && id_tipo_trabajador ='$tipo_trabajador' && id_local ='$local' && id_cargo ='$cargo' && id_sexo ='$sexo' && id_tipo_documento='$tipo_documento' && id_nacionalidad ='$nacionalidad' && id_est_civil ='$estado_civil' && id_grado_instruccion ='$grado_instruccion' && id_departamento ='$departamento' && id_provincia ='$provincia' && id_distrito ='$distrito'");
+        $resultados = $this->db->query("SELECT * from clientes_proveedores WHERE id_origen='$origen', id_condicion='$condicion', id_tipo_persona='$tipo_persona', id_tipo_persona_sunat='$tipo_persona_sunat', id_tipo_documento='$tipo_documento',num_documento=' $num_documento',nombres='$nombres',ape_paterno='$ape_paterno', ape_materno='$ape_materno', razon_social='$razon_social', direccion_fiscal='$direccion_fiscal', direccion_alm1=' $direccion_alm1', direccion_alm2='$direccion_alm2', id_departamento='$departamento', id_provincia='$provincia', id_distrito='$distrito', telefono='$telefono', celular='$celular', id_tipo_giro='$tipo_giro', id_condicion_pago='$condicion_pago',linea_credito_soles='$linea_credito_soles',credito_unitario_soles='$credito_unitario_soles',disponible_soles='$disponible_soles',linea_credito_dolares='$linea_credito_dolares', credito_unitario_dolares='$credito_unitario_dolares',disponible_dolares='$disponible_dolares',email='$email',contacto_registro='$contacto_registro',id_estado_cliente='$estado_cliente',email_cobranza='$email_cobranza',contacto_cobranza='$contacto_cobranza',id_tipo_cliente_pago='$tipo_cliente_pago' ");
 
         return $resultados->row();
     }
 
 
-    public function actualizar_estado($id_trabajador)
+    public function actualizar_estado($id_cliente_proveedor)
     {
-        return $this->db->query(" UPDATE trabajadores SET  id_estado='0'
-                                    WHERE id_trabajador='$id_trabajador'");
+        return $this->db->query(" UPDATE clientes_proveedores SET  id_estado='0'
+                                    WHERE id_cliente_proveedor='$id_cliente_proveedor'");
     }
 }

@@ -64,253 +64,323 @@ $(document).ready(function () {
 $("#registrar").on("click", function () {
 	debugger;
 
+	var origen = $("#origen").val();
+	var condicion = $("#condicion").val();
+	var tipo_persona = $("#tipo_persona").val();
+	var tipo_persona_sunat = $("#tipo_persona_sunat").val();
+	var tipo_documento = $("#tipo_documento").val();
 	var num_documento = $("#num_documento").val();
 	var nombres = $("#nombres").val();
 	var ape_paterno = $("#ape_paterno").val();
 	var ape_materno = $("#ape_materno").val();
-	var email = $("#email").val();
-	var fecha_nacimiento = $("#fecha_nacimiento").val();
-	var lugar_nacimiento = $("#lugar_nacimiento").val();
-	var domicilio = $("#domicilio").val();
-	var referencia = $("#referencia").val();
-	var telefono = $("#telefono").val();
-	var celular = $("#celular").val();
-	var tipo_trabajador = $("#tipo_trabajador").val();
-	var local = $("#local").val();
-	var cargo = $("#cargo").val();
-	var sexo = $("#sexo").val();
-	var tipo_documento = $("#tipo_documento").val();
-	var nacionalidad = $("#nacionalidad").val();
-	var est_civil = $("#est_civil").val();
-	var grado_instruccion = $("#grado_instruccion").val();
+	var razon_social = $("#razon_social").val();
+	var direccion_fiscal = $("#direccion_fiscal").val();
+	var direccion_alm1 = $("#direccion_alm1").val();
+	var direccion_alm2 = $("#direccion_alm2").val();
 	var departamento = $("#departamento").val();
 	var provincia = $("#provincia").val();
 	var distrito = $("#distrito").val();
+	var telefono = $("#telefono").val();
+	var celular = $("#celular").val();
+	var tipo_giro = $("#tipo_giro").val();
+	var condicion_pago = $("#condicion_pago").val();
+	var linea_credito_soles = $("#linea_credito_soles").val();
+	var credito_unitario_soles = $("#credito_unitario_soles").val();
+	var disponible_soles = $("#disponible_soles").val();
+	var linea_credito_dolares = $("#linea_credito_dolares").val();
+	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
+	var disponible_dolares = $("#disponible_dolares ").val();
+	var email = $("#email").val();
+	var contacto_registro = $("#contacto_registro").val();
+	var estado_cliente = $("#estado_cliente").val();
+	var email_cobranza = $("#email_cobranza").val();
+	var contacto_cobranza = $("#contacto_cobranza").val();
+	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
 
-	if (
-		// // id_trabajador === "" ||
-		num_documento === "" ||
-		nombres === "" ||
-		ape_paterno === "" ||
-		ape_materno === "" ||
-		email === "" ||
-		fecha_nacimiento === "" ||
-		lugar_nacimiento === "" ||
-		domicilio === "" ||
-		referencia === "" ||
-		telefono === "" ||
-		celular === "" ||
-		tipo_trabajador === "0" ||
-		local === "0" ||
-		cargo === "0" ||
-		sexo === "0" ||
-		tipo_documento === "0" ||
-		nacionalidad === "0" ||
-		est_civil === "0" ||
-		grado_instruccion === "0" ||
-		departamento === "0" ||
-		provincia === "0" ||
-		distrito === "0"
-	) {
-		//alert('NO PUEDE DEJARLO VACIO');
-		alertify
-			.dialog("alert")
-			.set({
-				transition: "zoom",
-				message: "SEÑOR UD NO ENTIENDE QUE NO PUEDE QUEDAR VACIO",
-				title: "TRABAJADORES",
-			})
-			.show();
-	} else {
-		$.ajax({
-			async: false,
-			url: base_url + "C_trabajadores/insertar",
-			type: "POST",
-			dataType: "json",
-			data: {
-				num_documento: num_documento,
-				nombres: nombres,
-				ape_paterno: ape_paterno,
-				ape_materno: ape_materno,
-				email: email,
-				fecha_nacimiento: fecha_nacimiento,
-				lugar_nacimiento: lugar_nacimiento,
-				domicilio: domicilio,
-				referencia: referencia,
-				telefono: telefono,
-				celular: celular,
-				tipo_trabajador: tipo_trabajador,
-				local: local,
-				cargo: cargo,
-				sexo: sexo,
-				tipo_documento: tipo_documento,
-				nacionalidad: nacionalidad,
-				est_civil: est_civil,
-				grado_instruccion: grado_instruccion,
-				departamento: departamento,
-				provincia: provincia,
-				distrito: distrito,
-			},
-			success: function (data) {
-				debugger;
-				window.location.href = base_url + "C_trabajadores";
-				debugger;
-			},
-		});
-	}
+	// if (
+	// 	// // id_trabajador === "" ||
+	// 	origen === "0" ||
+	// 	condicion === "0" ||
+	// 	tipo_persona === "0" ||
+	// 	tipo_persona_sunat === "0" ||
+	// 	tipo_documento === "0" ||
+	// 	num_documento === "" ||
+	// 	nombres === "" ||
+	// 	ape_paterno === "" ||
+	// 	ape_materno === "" ||
+	// 	razon_social === "" ||
+	// 	direccion_fiscal === "" ||
+	// 	direccion_alm1 === "" ||
+	// 	direccion_alm2 === "" ||
+	// 	departamento === "0" ||
+	// 	provincia === "0" ||
+	// 	distrito === "0" ||
+	// 	telefono === "" ||
+	// 	celular === "" ||
+	// 	tipo_giro === "0" ||
+	// 	condicion_pago === "0" ||
+	// 	// vendedor === "0" ||
+	// 	linea_credito_soles === "" ||
+	// 	credito_unitario_soles === "" ||
+	// 	disponible_soles === "" ||
+	// 	linea_credito_dolares === "" ||
+	// 	credito_unitario_dolares === "" ||
+	// 	disponible_dolares === "" ||
+	// 	email === "" ||
+	// 	contacto_registro === "" ||
+	// 	// estado === "0" ||
+	// 	email_cobranza === "" ||
+	// 	contacto_cobranza === "" ||
+	// 	tipo_cliente_pago === "0"
+	// ) {
+	// 	//alert('NO PUEDE DEJARLO VACIO');
+	// 	alertify
+	// 		.dialog("alert")
+	// 		.set({
+	// 			transition: "zoom",
+	// 			message: "SEÑOR UD NO ENTIENDE QUE NO PUEDE QUEDAR VACIO",
+	// 			title: "TRABAJADORES",
+	// 		})
+	// 		.show();
+	// } else {
+	$.ajax({
+		async: false,
+		url: base_url + "C_clientes_proveedores/insertar",
+		type: "POST",
+		dataType: "json",
+		data: {
+			origen: origen,
+			condicion: condicion,
+			tipo_persona: tipo_persona,
+			tipo_persona_sunat: tipo_persona_sunat,
+			tipo_documento: tipo_documento,
+			num_documento: num_documento,
+			nombres: nombres,
+			ape_paterno: ape_paterno,
+			ape_materno: ape_materno,
+			razon_social: razon_social,
+			direccion_fiscal: direccion_fiscal,
+			direccion_alm1: direccion_alm1,
+			direccion_alm2: direccion_alm2,
+			departamento: departamento,
+			provincia: provincia,
+			distrito: distrito,
+			telefono: telefono,
+			celular: celular,
+			tipo_giro: tipo_giro,
+			condicion_pago: condicion_pago,
+			linea_credito_soles: linea_credito_soles,
+			credito_unitario_soles: credito_unitario_soles,
+			disponible_soles: disponible_soles,
+			linea_credito_dolares: linea_credito_dolares,
+			credito_unitario_dolares: credito_unitario_dolares,
+			disponible_dolares: disponible_dolares,
+			email: email,
+			contacto_registro: contacto_registro,
+			estado_cliente: estado_cliente,
+			email_cobranza: email_cobranza,
+			contacto_cobranza: contacto_cobranza,
+			tipo_cliente_pago: tipo_cliente_pago,
+		},
+		success: function (data) {
+			debugger;
+			window.location.href = base_url + "C_clientes_proveedores";
+			debugger;
+		},
+	});
+	// }
 });
 
-$("#actualizar_trabajadores").on("click", function () {
+$("#actualizar_clientes_proveedores").on("click", function () {
 	debugger;
 
-	var id_trabajador = $("#id_trabajador").val();
+	var id_cliente_proveedor = $("#id_cliente_proveedor").val();
+	var origen = $("#origen").val();
+	var condicion = $("#condicion").val();
+	var tipo_persona = $("#tipo_persona").val();
+	var tipo_persona_sunat = $("#tipo_persona_sunat").val();
+	var tipo_documento = $("#tipo_documento").val();
 	var num_documento = $("#num_documento").val();
 	var nombres = $("#nombres").val();
 	var ape_paterno = $("#ape_paterno").val();
 	var ape_materno = $("#ape_materno").val();
-	var email = $("#email").val();
-	var fecha_nacimiento = $("#fecha_nacimiento").val();
-	var lugar_nacimiento = $("#lugar_nacimiento").val();
-	var domicilio = $("#domicilio").val();
-	var referencia = $("#referencia").val();
-	var telefono = $("#telefono").val();
-	var celular = $("#celular").val();
-	var tipo_trabajador = $("#tipo_trabajador").val();
-	var local = $("#local").val();
-	var cargo = $("#cargo").val();
-	var sexo = $("#sexo").val();
-	var tipo_documento = $("#tipo_documento").val();
-	var nacionalidad = $("#nacionalidad").val();
-	var est_civil = $("#est_civil").val();
-	var grado_instruccion = $("#grado_instruccion").val();
+	var razon_social = $("#razon_social").val();
+	var direccion_fiscal = $("#direccion_fiscal").val();
+	var direccion_alm1 = $("#direccion_alm1").val();
+	var direccion_alm2 = $("#direccion_alm2").val();
 	var departamento = $("#departamento").val();
 	var provincia = $("#provincia").val();
 	var distrito = $("#distrito").val();
-	var resultado = "";
+	var telefono = $("#telefono").val();
+	var celular = $("#celular").val();
+	var tipo_giro = $("#tipo_giro").val();
+	var condicion_pago = $("#condicion_pago").val();
+	var linea_credito_soles = $("#linea_credito_soles").val();
+	var credito_unitario_soles = $("#credito_unitario_soles").val();
+	var disponible_soles = $("#disponible_soles").val();
+	var linea_credito_dolares = $("#linea_credito_dolares").val();
+	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
+	var disponible_dolares = $("#disponible_dolares ").val();
+	var email = $("#email").val();
+	var contacto_registro = $("#contacto_registro").val();
+	var estado_cliente = $("#estado_cliente").val();
+	var email_cobranza = $("#email_cobranza").val();
+	var contacto_cobranza = $("#contacto_cobranza").val();
+	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
 
-	if (
-		id_trabajador === "" ||
-		num_documento === "" ||
-		nombres === "" ||
-		ape_paterno === "" ||
-		ape_materno === "" ||
-		email === "" ||
-		fecha_nacimiento === "" ||
-		lugar_nacimiento === "" ||
-		domicilio === "" ||
-		referencia === "" ||
-		telefono === "" ||
-		celular === "" ||
-		tipo_trabajador === "" ||
-		local === "" ||
-		cargo === "" ||
-		sexo === "" ||
-		tipo_documento === "" ||
-		nacionalidad === "" ||
-		est_civil === "" ||
-		grado_instruccion === "" ||
-		departamento === "" ||
-		provincia === "" ||
-		distrito === ""
-	) {
-		//alert('NO PUEDE DEJARLO VACIO');
-		alertify
-			.dialog("alert")
-			.set({
-				transition: "zoom",
-				message: "SEÑOR UD NO ENTIENDE QUE NO PUEDE QUEDAR VACIO",
-				title: "TRABAJADORES",
-			})
-			.show();
-	} else {
-		$.ajax({
-			async: false,
-			url: base_url + "C_trabajadores/verificar_trabajador",
-			type: "POST",
-			dataType: "json",
+	// 	if (
+	// 		origen === "0" ||
+	// 		condicion === "0" ||
+	// 		tipo_persona === "0" ||
+	// 		tipo_persona_sunat === "0" ||
+	// 		tipo_documento === "0" ||
+	// 		num_documento === "" ||
+	// 		nombres === "" ||
+	// 		ape_paterno === "" ||
+	// 		ape_materno === "" ||
+	// 		razon_social === "" ||
+	// 		direccion_fiscal === "" ||
+	// 		direccion_alm1 === "" ||
+	// 		direccion_alm2 === "" ||
+	// 		departamento === "0" ||
+	// 		provincia === "0" ||
+	// 		distrito === "0" ||
+	// 		telefono === "" ||
+	// 		celular === "" ||
+	// 		tipo_giro === "0" ||
+	// 		condicion_pago === "0" ||
+	// 		// vendedor === "0" ||
+	// 		linea_credito_soles === "" ||
+	// 		credito_unitario_soles === "" ||
+	// 		disponible_soles === "" ||
+	// 		linea_credito_dolares === "" ||
+	// 		credito_unitario_dolares === "" ||
+	// 		disponible_dolares === "" ||
+	// 		email === "" ||
+	// 		contacto_registro === "" ||
+	// 		// estado === "0" ||
+	// 		email_cobranza === "" ||
+	// 		contacto_cobranza === "" ||
+	// 		tipo_cliente_pago === "0"
+	// 	) {
+	// 		//alert('NO PUEDE DEJARLO VACIO');
+	// 		alertify
+	// 			.dialog("alert")
+	// 			.set({
+	// 				transition: "zoom",
+	// 				message: "SEÑOR UD NO ENTIENDE QUE NO PUEDE QUEDAR VACIO",
+	// 				title: "TRABAJADORES",
+	// 			})
+	// 			.show();
+	// 	} else {
+	$.ajax({
+		async: false,
+		url: base_url + "C_clientes_proveedores/verificar_clientes_proveedores",
+		type: "POST",
+		dataType: "json",
 
-			data: {
-				id_trabajador: id_trabajador,
-				num_documento: num_documento,
-				nombres: nombres,
-				ape_paterno: ape_paterno,
-				ape_materno: ape_materno,
-				email: email,
-				fecha_nacimiento: fecha_nacimiento,
-				lugar_nacimiento: lugar_nacimiento,
-				domicilio: domicilio,
-				referencia: referencia,
-				telefono: telefono,
-				celular: celular,
-				tipo_trabajador: tipo_trabajador,
-				local: local,
-				cargo: cargo,
-				sexo: sexo,
-				tipo_documento: tipo_documento,
-				nacionalidad: nacionalidad,
-				est_civil: est_civil,
-				grado_instruccion: grado_instruccion,
-				departamento: departamento,
-				provincia: provincia,
-				distrito: distrito,
-			},
+		data: {
+			id_cliente_proveedore: id_cliente_proveedor,
+			origen: origen,
+			condicion: condicion,
+			tipo_persona: tipo_persona,
+			tipo_persona_sunat: tipo_persona_sunat,
+			tipo_documento: tipo_documento,
+			num_documento: num_documento,
+			nombres: nombres,
+			ape_paterno: ape_paterno,
+			ape_materno: ape_materno,
+			razon_social: razon_social,
+			direccion_fiscal: direccion_fiscal,
+			direccion_alm1: direccion_alm1,
+			direccion_alm2: direccion_alm2,
+			departamento: departamento,
+			provincia: provincia,
+			distrito: distrito,
+			telefono: telefono,
+			celular: celular,
+			tipo_giro: tipo_giro,
+			condicion_pago: condicion_pago,
+			linea_credito_soles: linea_credito_soles,
+			credito_unitario_soles: credito_unitario_soles,
+			disponible_soles: disponible_soles,
+			linea_credito_dolares: linea_credito_dolares,
+			credito_unitario_dolares: credito_unitario_dolares,
+			disponible_dolares: disponible_dolares,
+			email: email,
+			contacto_registro: contacto_registro,
+			estado_cliente: estado_cliente,
+			email_cobranza: email_cobranza,
+			contacto_cobranza: contacto_cobranza,
+			tipo_cliente_pago: tipo_cliente_pago,
+		},
 
-			success: function (data) {
-				console.log(data);
-				debugger;
-				if (data == null) {
-					//ESA VALIDACION NULL REPRESENTA QUE ESE REGISTRO NO SE ENCUENTRA EN LA BD, X LO TANTO EJECUTA UN METODO INSERTAR
-					resultado = data;
-					alert("PUEDE INGRESAR EL REGISTRO");
-					$.ajax({
-						async: false,
-						url: base_url + "C_trabajadores/actualizar",
-						type: "POST",
-						dataType: "json",
-						data: {
-							id_trabajador: id_trabajador,
-							num_documento: num_documento,
-							nombres: nombres,
-							ape_paterno: ape_paterno,
-							ape_materno: ape_materno,
-							email: email,
-							fecha_nacimiento: fecha_nacimiento,
-							lugar_nacimiento: lugar_nacimiento,
-							domicilio: domicilio,
-							referencia: referencia,
-							telefono: telefono,
-							celular: celular,
-							tipo_trabajador: tipo_trabajador,
-							local: local,
-							cargo: cargo,
-							sexo: sexo,
-							tipo_documento: tipo_documento,
-							nacionalidad: nacionalidad,
-							est_civil: est_civil,
-							grado_instruccion: grado_instruccion,
-							departamento: departamento,
-							provincia: provincia,
-							distrito: distrito,
-						},
-						success: function (data) {
-							window.location.href = base_url + "C_trabajadores";
-							debugger;
-						},
-					});
-				} else {
-					resultado = data;
-					//alert('YA SE ENCUENTRA REGISTRADO');
-					alertify.error("ESTO ES EL COLMO SEÑORES");
-				}
+		success: function (data) {
+			console.log(data);
+			debugger;
+			// if (data == null) {
+			// 	//ESA VALIDACION NULL REPRESENTA QUE ESE REGISTRO NO SE ENCUENTRA EN LA BD, X LO TANTO EJECUTA UN METODO INSERTAR
+			// 	resultado = data;
+			// 	alert("PUEDE INGRESAR EL REGISTRO");
+			$.ajax({
+				async: false,
+				url: base_url + "C_clientes_proveedores/actualizar",
+				type: "POST",
+				dataType: "json",
+				data: {
+					id_cliente_proveedore: id_cliente_proveedor,
+					origen: origen,
+					condicion: condicion,
+					tipo_persona: tipo_persona,
+					tipo_persona_sunat: tipo_persona_sunat,
+					tipo_documento: tipo_documento,
+					num_documento: num_documento,
+					nombres: nombres,
+					ape_paterno: ape_paterno,
+					ape_materno: ape_materno,
+					razon_social: razon_social,
+					direccion_fiscal: direccion_fiscal,
+					direccion_alm1: direccion_alm1,
+					direccion_alm2: direccion_alm2,
+					departamento: departamento,
+					provincia: provincia,
+					distrito: distrito,
+					telefono: telefono,
+					celular: celular,
+					tipo_giro: tipo_giro,
+					condicion_pago: condicion_pago,
+					linea_credito_soles: linea_credito_soles,
+					credito_unitario_soles: credito_unitario_soles,
+					disponible_soles: disponible_soles,
+					linea_credito_dolares: linea_credito_dolares,
+					credito_unitario_dolares: credito_unitario_dolares,
+					disponible_dolares: disponible_dolares,
+					email: email,
+					contacto_registro: contacto_registro,
+					estado_cliente: estado_cliente,
+					email_cobranza: email_cobranza,
+					contacto_cobranza: contacto_cobranza,
+					tipo_cliente_pago: tipo_cliente_pago,
+				},
+				success: function (data) {
+					window.location.href = base_url + "C_clientes_proveedores";
+					debugger;
+				},
+			});
+			// } else {
+			// 	resultado = data;
+			// 	//alert('YA SE ENCUENTRA REGISTRADO');
+			// 	alertify.error("ESTO ES EL COLMO SEÑORES");
+			// }
 
-				//window.location.href = base_url+"Recursos_humanos/Controller_cargos/enlace_insertar";
-				//echo json_encode($data);
-			},
-		});
+			//window.location.href = base_url+"Recursos_humanos/Controller_cargos/enlace_insertar";
+			//echo json_encode($data);
+		},
+	});
 
-		debugger;
+	debugger;
 
-		var myJSON = JSON.stringify(resultado);
-		//alert(myJSON);
-	}
+	var myJSON = JSON.stringify(resultado);
+	//alert(myJSON);
+	// }
 });
