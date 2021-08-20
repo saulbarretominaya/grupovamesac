@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body">
             <table id="id_datatable_multitablas" class="table table-sm table-hover" style="width: 100%;">
-              <thead style="background-color: #9fa53b; color: white;">
+              <thead>
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>

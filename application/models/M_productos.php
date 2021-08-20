@@ -12,7 +12,7 @@ class M_productos extends CI_Model
         id_producto,
         codigo_producto,
         id_almacen,
-        (select abreviatura from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
+        (select descripcion from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
         id_unidad_medida,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
         id_sunat,
@@ -26,21 +26,21 @@ class M_productos extends CI_Model
         FORMAT(precio_venta,2) as precio_venta,
         rentabilidad,
         id_grupo,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
         id_familia,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
         id_clase,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
         id_sub_clase,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
         id_sub_clase_dos,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
-        id_marca,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_marca) AS ds_marca,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
+        id_marca_producto,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
         id_cta_vta,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
         id_cta_ent,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
         stock
         FROM productos
         ORDER BY id_producto ASC
@@ -63,7 +63,7 @@ class M_productos extends CI_Model
         $id_clase,
         $id_sub_clase,
         $id_sub_clase_dos,
-        $id_marca,
+        $id_marca_producto,
         $id_moneda,
         $id_cta_vta,
         $id_cta_ent,
@@ -77,14 +77,14 @@ class M_productos extends CI_Model
             id_producto,codigo_producto,descripcion_producto,
             precio_costo,precio_venta,porcentaje,ganancia_unidad,rentabilidad,
             id_unidad_medida,id_grupo,id_familia,id_clase,id_sub_clase,id_sub_clase_dos, 
-            id_marca,id_moneda,id_cta_vta,id_cta_ent,id_sunat,id_almacen
+            id_marca_producto,id_moneda,id_cta_vta,id_cta_ent,id_sunat,id_almacen
         )
         VALUES
         (
             '','$codigo_producto','$descripcion_producto',
             '$precio_costo','$precio_venta','$porcentaje','$ganancia_unidad','$rentabilidad',
             '$id_unidad_medida','$id_grupo','$id_familia','$id_clase','$id_sub_clase','$id_sub_clase_dos',
-            '$id_marca','$id_moneda','$id_cta_vta','$id_cta_ent','$id_sunat','$id_almacen'
+            '$id_marca_producto','$id_moneda','$id_cta_vta','$id_cta_ent','$id_sunat','$id_almacen'
         )"
         );
     }
@@ -98,7 +98,7 @@ class M_productos extends CI_Model
         id_producto,
         codigo_producto,
         id_almacen,
-        (select abreviatura from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
+        (select descripcion from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
         id_unidad_medida,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
         id_sunat,
@@ -112,21 +112,21 @@ class M_productos extends CI_Model
         FORMAT(precio_venta,2) as precio_venta,
         rentabilidad,
         id_grupo,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
         id_familia,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
         id_clase,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
         id_sub_clase,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
         id_sub_clase_dos,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
-        id_marca,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_marca) AS ds_marca,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
+        id_marca_producto,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
         id_cta_vta,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
         id_cta_ent,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
         stock
         FROM productos where id_producto='$id_producto'");
         return $resultados->row();
@@ -148,7 +148,7 @@ class M_productos extends CI_Model
         $id_clase,
         $id_sub_clase,
         $id_sub_clase_dos,
-        $id_marca,
+        $id_marca_producto,
         $id_moneda,
         $id_cta_vta,
         $id_cta_ent,
@@ -170,7 +170,7 @@ class M_productos extends CI_Model
         id_clase='$id_clase',
         id_sub_clase='$id_sub_clase',
         id_sub_clase_dos='$id_sub_clase_dos',
-        id_marca='$id_marca',
+        id_marca_producto='$id_marca_producto',
         id_moneda='$id_moneda',
         id_cta_vta='$id_cta_vta',
         id_cta_ent='$id_cta_ent',

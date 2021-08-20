@@ -30,8 +30,8 @@ class C_trabajadores extends CI_Controller
             // COMBO BOX
             'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
             'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_local' => $this->M_cbox->cbox_local(),
-            'cbox_cargo' => $this->M_cbox->cbox_cargo(),
+            'cbox_almacen' => $this->M_cbox->cbox_almacen(),
+            'cbox_cargo_trabajador' => $this->M_cbox->cbox_cargo_trabajador(),
             'cbox_sexo' => $this->M_cbox->cbox_sexo(),
             'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
             'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
@@ -76,7 +76,6 @@ class C_trabajadores extends CI_Controller
 
         echo json_encode($num_documento);
     }
-
 
 
     public function enlace_actualizar($id_trabajador)

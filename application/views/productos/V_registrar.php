@@ -63,7 +63,7 @@
                             <option value="0">Seleccione</option>
                             <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                               <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
-                                <?php echo $cbox_almacen->abreviatura; ?>
+                                <?php echo $cbox_almacen->descripcion; ?>
                               </option>
                             <?php endforeach; ?>
                           </select>
@@ -208,7 +208,7 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_grupo as $cbox_grupo) : ?>
                           <option value="<?php echo $cbox_grupo->id_dmultitabla; ?>">
-                            <?php echo $cbox_grupo->abreviatura; ?>
+                            <?php echo $cbox_grupo->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
@@ -221,7 +221,7 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_familia as $cbox_familia) : ?>
                           <option value="<?php echo $cbox_familia->id_dmultitabla; ?>">
-                            <?php echo $cbox_familia->abreviatura; ?>
+                            <?php echo $cbox_familia->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
@@ -235,7 +235,7 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_clase as $cbox_clase) : ?>
                           <option value="<?php echo $cbox_clase->id_dmultitabla; ?>">
-                            <?php echo $cbox_clase->abreviatura; ?>
+                            <?php echo $cbox_clase->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
@@ -251,7 +251,7 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_sub_clase as $cbox_sub_clase) : ?>
                           <option value="<?php echo $cbox_sub_clase->id_dmultitabla; ?>">
-                            <?php echo $cbox_sub_clase->abreviatura; ?>
+                            <?php echo $cbox_sub_clase->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
@@ -264,20 +264,19 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_sub_clase_dos as $cbox_sub_clase_dos) : ?>
                           <option value="<?php echo $cbox_sub_clase_dos->id_dmultitabla; ?>">
-                            <?php echo $cbox_sub_clase_dos->abreviatura; ?>
+                            <?php echo $cbox_sub_clase_dos->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
                     </div>
-                    <label class="col-sm-2 col-form-label">Marca</label>
+                    <label class="col-sm-2 col-form-label">Marca Producto</label>
                     <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_marca"> -->
-                      <select class="form-control select2" id="id_marca" style="width: 100%;">
+                      <select class="form-control select2" id="id_marca_producto" style="width: 100%;">
 
                         <option value="0">Seleccione</option>
-                        <?php foreach ($cbox_marca as $cbox_marca) : ?>
-                          <option value="<?php echo $cbox_marca->id_dmultitabla; ?>">
-                            <?php echo $cbox_marca->abreviatura; ?>
+                        <?php foreach ($cbox_marca_productos as $cbox_marca_productos) : ?>
+                          <option value="<?php echo $cbox_marca_productos->id_dmultitabla; ?>">
+                            <?php echo $cbox_marca_productos->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
@@ -310,7 +309,7 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_cta_vta as $cbox_cta_vta) : ?>
                           <option value="<?php echo $cbox_cta_vta->id_dmultitabla; ?>">
-                            <?php echo $cbox_cta_vta->abreviatura; ?>
+                            <?php echo $cbox_cta_vta->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
@@ -321,7 +320,7 @@
                         <option value="0">Seleccione</option>
                         <?php foreach ($cbox_cta_ent as $cbox_cta_ent) : ?>
                           <option value="<?php echo $cbox_cta_ent->id_dmultitabla; ?>">
-                            <?php echo $cbox_cta_ent->abreviatura; ?>
+                            <?php echo $cbox_cta_ent->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>

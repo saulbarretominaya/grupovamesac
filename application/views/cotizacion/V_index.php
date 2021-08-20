@@ -16,18 +16,18 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_cotizacion" class="table table-sm table-hover" style="width: 100%;">
-              <thead style="background-color: #9fa53b; color: white;">
+            <table id="id_datatable_cotizacion" class="table-sm table-hover table-responsive">
+              <thead>
                 <tr>
-                  <th>Codigo</th>
-                  <th>Descripcion</th>
-                  <th>U.M</th>
-                  <th>Marca</th>
-                  <th>Grupo</th>
-                  <th>Moneda</th>
-                  <th>Precio Costo</th>
-                  <th>Precio Venta</th>
-                  <th>Stock</th>
+                  <th style="width: 150px;">Codigo</th>
+                  <th style="width: 150px;">Descripcion</th>
+                  <th style="width: 150px;">U.M</th>
+                  <th style="width: 150px;">Marca</th>
+                  <th style="width: 150px;">Grupo</th>
+                  <th style="width: 150px;">Moneda</th>
+                  <th style="width: 150px;">Precio Costo</th>
+                  <th style="width: 150px;">Precio Venta</th>
+                  <th style="width: 150px;">Stock</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -39,7 +39,7 @@
                       <td><?php echo $index->codigo_producto; ?></td>
                       <td><?php echo $index->descripcion_producto; ?></td>
                       <td><?php echo $index->ds_unidad_medida; ?></td>
-                      <td><?php echo $index->ds_marca; ?></td>
+                      <td><?php echo $index->ds_marca_producto; ?></td>
                       <td><?php echo $index->ds_grupo; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_costo; ?></td>

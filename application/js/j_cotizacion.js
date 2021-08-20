@@ -2,40 +2,41 @@
 var resultado_campo = "";
 
 $(document).ready(function () {
-	$("#id_datatable_cotizacion thead #ds_almacen").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:60px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #codigo").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #descripcion_producto").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:230px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #ds_unidad_medida").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:70px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #ds_marca").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:80px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #ds_grupo").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #ds_moneda").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:70px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_cotizacion thead #pe_venta").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
-	});
 
-	$("#id_datatable_cotizacion").dataTable({
+	/*INICIO DE POPUP PARA PRODUCTOS */
+	$("#id_datatable_productos thead #dtable_ds_almacen").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_codigo").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_descripcion_producto").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_ds_unidad_medida").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_ds_marca_producto").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_ds_grupo").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_ds_moneda").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_precio_venta").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos").dataTable({
 
 		initComplete: function () {
 			this.api()
@@ -66,9 +67,93 @@ $(document).ready(function () {
 				previous: "Anterior",
 			},
 		},
+		"ordering": false
+	});
+	/*INICIO DE POPUP PARA PRODUCTOS */
 
+
+	/*INICIO DE POPUP PARA TABLEROS */
+	$("#id_datatable_tableros thead #dtable_ds_almacen_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_tableros thead #dtable_codigo_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_tableros thead #dtable_descripcion_producto_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_tableros thead #dtable_ds_marca_producto_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_tableros thead #dtable_ds_grupo_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_tableros thead #dtable_ds_moneda_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+
+	$("#id_datatable_tableros").dataTable({
+
+		initComplete: function () {
+			this.api()
+				.columns()
+				.every(function () {
+					var that = this;
+
+					$("input", this.header()).on("keyup change clear", function () {
+						if (that.search() !== this.value) {
+							that.search(this.value).draw();
+						}
+					});
+				});
+		},
+
+		language: {
+			lengthMenu: "Mostrar _MENU_ registros por pagina",
+			zeroRecords: "No se encontraron resultados en su busqueda",
+			searchPlaceholder: "Buscar registros",
+			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+			infoEmpty: "No existen registros",
+			infoFiltered: "(filtrado de un total de _MAX_ registros)",
+			search: "Buscar:",
+			paginate: {
+				first: "Primero",
+				last: "Último",
+				next: "Siguiente",
+				previous: "Anterior",
+			},
+		},
+		"ordering": false
+	});
+	/*INICIO DE POPUP PARA TABLEROS */
+
+	$("#id_datatable_cotizacion").dataTable({
+
+		language: {
+			lengthMenu: "Mostrar _MENU_ registros por pagina",
+			zeroRecords: "No se encontraron resultados en su busqueda",
+			searchPlaceholder: "Buscar registros",
+			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+			infoEmpty: "No existen registros",
+			infoFiltered: "(filtrado de un total de _MAX_ registros)",
+			search: "Buscar:",
+			paginate: {
+				first: "Primero",
+				last: "Último",
+				next: "Siguiente",
+				previous: "Anterior",
+			},
+		},
+		"ordering": false
 	});
 });
+
 
 $("#registrar_cotizacion").on("click", function () {
 	var validez_oferta = $("#validez_oferta").val();
@@ -99,9 +184,9 @@ $("#registrar_cotizacion").on("click", function () {
 	});
 });
 
-
-$(".select2").select2();
-
+$(".select2").select2({
+	theme: "bootstrap4"
+});
 
 
 $(document).on("click", ".btn-check", function () {
@@ -112,4 +197,21 @@ $(document).on("click", ".btn-check", function () {
 	$("#precio_venta").val(infousuarios[1]);
 	//$("#ruc").val(infousuarios[2]);
 	$("#id_target_producto").modal("hide");
+});
+
+$(document).on("click", ".modal_target_tablero", function () {
+	debugger;
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_tableros/index_modal",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_tablero: valor_id
+		},
+		success: function (data) {
+			debugger;
+			$("#id_target_tablero .modal-content").html(data);
+		}
+	});
 });

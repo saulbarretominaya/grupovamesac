@@ -30,7 +30,7 @@ class C_productos extends CI_Controller
 			'cbox_clase' => $this->M_cbox->cbox_clase(),
 			'cbox_sub_clase' => $this->M_cbox->cbox_sub_clase(),
 			'cbox_sub_clase_dos' => $this->M_cbox->cbox_sub_clase_dos(),
-			'cbox_marca' => $this->M_cbox->cbox_marca(),
+			'cbox_marca_productos' => $this->M_cbox->cbox_marca_productos(),
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 			'cbox_cta_vta' => $this->M_cbox->cbox_cta_vta(),
 			'cbox_cta_ent' => $this->M_cbox->cbox_cta_ent(),
@@ -64,7 +64,7 @@ class C_productos extends CI_Controller
 		$id_clase = $this->input->post("id_clase");
 		$id_sub_clase = $this->input->post("id_sub_clase");
 		$id_sub_clase_dos = $this->input->post("id_sub_clase_dos");
-		$id_marca = $this->input->post("id_marca");
+		$id_marca_producto = $this->input->post("id_marca_producto");
 
 		$id_cta_vta = $this->input->post("id_cta_vta");
 		$id_cta_ent = $this->input->post("id_cta_ent");
@@ -87,7 +87,7 @@ class C_productos extends CI_Controller
 			$id_clase,
 			$id_sub_clase,
 			$id_sub_clase_dos,
-			$id_marca,
+			$id_marca_producto,
 			$id_moneda,
 			$id_cta_vta,
 			$id_cta_ent,
@@ -115,7 +115,7 @@ class C_productos extends CI_Controller
 			'cbox_clase' => $this->M_cbox->cbox_clase(),
 			'cbox_sub_clase' => $this->M_cbox->cbox_sub_clase(),
 			'cbox_sub_clase_dos' => $this->M_cbox->cbox_sub_clase_dos(),
-			'cbox_marca' => $this->M_cbox->cbox_marca(),
+			'cbox_marca_productos' => $this->M_cbox->cbox_marca_productos(),
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 			'cbox_cta_vta' => $this->M_cbox->cbox_cta_vta(),
 			'cbox_cta_ent' => $this->M_cbox->cbox_cta_ent(),
@@ -158,7 +158,7 @@ class C_productos extends CI_Controller
 		$id_clase = $this->input->post("id_clase");
 		$id_sub_clase = $this->input->post("id_sub_clase");
 		$id_sub_clase_dos = $this->input->post("id_sub_clase_dos");
-		$id_marca = $this->input->post("id_marca");
+		$id_marca_producto = $this->input->post("id_marca_producto");
 
 		$id_cta_vta = $this->input->post("id_cta_vta");
 		$id_cta_ent = $this->input->post("id_cta_ent");
@@ -181,7 +181,7 @@ class C_productos extends CI_Controller
 			$id_clase,
 			$id_sub_clase,
 			$id_sub_clase_dos,
-			$id_marca,
+			$id_marca_producto,
 			$id_moneda,
 			$id_cta_vta,
 			$id_cta_ent,
