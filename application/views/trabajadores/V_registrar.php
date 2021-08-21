@@ -49,9 +49,9 @@
                             </select>
                           </div>
                         </div>
-                        <!-- LOCAL -->
+                        <!-- ALMACEN -->
                         <div class="col-md-3 mb-3">
-                          <label for="almacen">Almacen</label>
+                          <label for="almacen">Sucursal</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupAlmacen"> <i class="fas fa-user-shield"></i> </span>
@@ -67,7 +67,7 @@
                           </div>
                         </div>
 
-                        <!-- CARGO -->
+                        <!-- CARGO DEL TRABAJADOR -->
                         <div class="col-md-3 mb-3">
                           <label for="cargo_trabajador">Cargo del Trabajador</label>
                           <div class="input-group">
@@ -107,7 +107,7 @@
 
                       <div class="form-row align-items-center">
                         <!-- TIPO DE DOCUMENTO -->
-                        <div class="col-md-4 ">
+                        <div class="col-md-5 mb-3">
                           <label for="tipo_documento">Tipo Documento</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
@@ -124,13 +124,14 @@
                           </div>
                         </div>
                         <!-- NUMERO DE DOCUMENTO -->
-                        <div class="col-md-4 ">
+                        <div class="col-md-7 mb-3">
                           <label for="num_documento">Numero Documento</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
+                            <input type="text" class="form-control" id="num_documento" placeholder="Ingresa el N° Documento1" aria-describedby="inputGroupNdocumento" required>
+                            <!-- <input type="text" class="form-control" id="num_documento2" data-masked="" data-inputmask=" 'mask' : '999999999999'" placeholder="Ingresa el N° Documento2" aria-describedby="inputGroupNdocumento" required> -->
                             <div class="input-group-prepend">
                               <button class="btn btn-info" type="Submit">Buscar ( Consular Reniec)</button>
                               <!-- <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span> -->
@@ -186,7 +187,7 @@
 
                       <div class="form-row">
                         <!-- CORREO -->
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-7 mb-3">
                           <label for="email">Correo</label>
                           <div class="input-group">
                             <div class="input-group-prepend">

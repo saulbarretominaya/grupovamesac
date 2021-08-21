@@ -8,7 +8,12 @@ class M_trabajadores extends CI_Model
     public function index()
     {
         $resultados = $this->db->query(
-            "select * from trabajadores where id_estado=1"
+            // "select * from trabajadores where id_estado=1"
+
+            "select
+             a.nombres,a.ape_materno,a.ape_paterno,a.num_documento,a.celular,id_trabajador,
+            (select descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_documento) AS ds_tipo_documento
+             from trabajadores a WHERE a.id_estado=1"
         );
         return $resultados->result();
     }

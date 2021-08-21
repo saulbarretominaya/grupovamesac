@@ -64,7 +64,7 @@
                       </div>
                       <!-- TIPO DE LOCAL -->
                       <div class="col-md-3 mb-3">
-                        <label for="almacen">Almacen</label>
+                        <label for="almacen">Sucursal</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupAlmacen"> <i class="fas fa-user-shield"></i> </span>
@@ -137,7 +137,7 @@
                         </div>
                       </div>
                       <!-- TIPO DE DOCUMENTO -->
-                      <div class="col-md-4 ">
+                      <div class="col-md-5 mb-3">
                         <label for="tipo_documento">Tipo Documento</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -160,7 +160,7 @@
                         </div>
                       </div>
                       <!-- NUMERO DE DOCUMENTO -->
-                      <div class="col-md-4 ">
+                      <div class="col-md-4 mb-3">
                         <label for="num_documento">Numero Documento</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -168,7 +168,7 @@
                           </div>
                           <input type="text" class="form-control" id="num_documento" value="<?php echo $enlace_actualizar->num_documento; ?>" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
                           <div class="input-group-prepend">
-                            <button class="btn btn-info" type="Submit">Buscar ( Consular Reniec)</button>
+                            <button class="btn btn-info" type="Submit">Buscar</button>
                           </div>
 
                         </div>
