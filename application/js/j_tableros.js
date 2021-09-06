@@ -197,7 +197,7 @@ $("#registrar").on("click", function () {
 	});
 });
 
-$(document).on("click", ".modal_target_tablero", function () {
+$(document).on("click", ".js_modal_detalle_tablero", function () {
 	debugger;
 	valor_id = $(this).val();
 	$.ajax({

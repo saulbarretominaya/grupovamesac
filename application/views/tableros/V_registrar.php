@@ -280,16 +280,16 @@
                             </div>
 
                             <div class="form-group row">
-                              <!-- Precio Costo -->
+                              <!-- Precio Tablero -->
                               <div class="col-md-3 mb-3">
-                                <label for="tipo_trabajador">Precio Costo</label>
+                                <label for="tipo_trabajador">Precio Tablero</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="xxxxx" placeholder="" value="">
                                 </div>
                               </div>
                               <!--  -->
-                              <div class="col-md-3 mb-3">
-                                <label for="local">Porcentaje</label>
+                              <div class="col-md-2 mb-2">
+                                <label for="local">% Margen</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="yyyyyy" placeholder="" value="">
 
@@ -297,7 +297,7 @@
                               </div>
                               <!--  -->
                               <div class="col-md-3 mb-3">
-                                <label for="cargo">Precio Venta</label>
+                                <label for="cargo">Precio Margen</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="xxxx" placeholder="" value="">
 
@@ -305,7 +305,7 @@
                               </div>
                               <!--  -->
                               <div class="col-md-3 mb-3">
-                                <label for="sexo">Rentabilidad</label>
+                                <label for="sexo">Total Tablero</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="xx" placeholder="" value="">
 
@@ -389,6 +389,9 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url() ?>plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
+
+
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() ?>plantilla/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->

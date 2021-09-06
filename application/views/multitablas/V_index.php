@@ -32,7 +32,7 @@
                     <tr>
                       <td><?php echo $index->id_multitabla; ?></td>
                       <td><?php echo $index->nombre_tabla; ?></td>
-                      <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
+                      <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-warning btn-sm"><span class="fas fa-edit "></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

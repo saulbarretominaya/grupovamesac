@@ -83,7 +83,7 @@ $(document).ready(function () {
 	});
 	$("#id_datatable_tableros thead #dtable_descripcion_producto_tablero").each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
+		$(this).html('<input type="text" class="border-0" style="width:350px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_tableros thead #dtable_ds_marca_producto_tablero").each(function () {
 		var title = $(this).text();
@@ -189,17 +189,26 @@ $(".select2").select2({
 });
 
 
-$(document).on("click", ".btn-check", function () {
+
+
+$(document).on("click", ".js_seleccionar_modal_producto", function () {
 	debugger;
 	usuarios = $(this).val();
 	infousuarios = usuarios.split("*");
 	$("#descripcion_producto").val(infousuarios[0]);
 	$("#precio_venta").val(infousuarios[1]);
-	//$("#ruc").val(infousuarios[2]);
-	$("#id_target_producto").modal("hide");
+	$("#opcion_target_producto").modal("hide");
 });
 
-$(document).on("click", ".modal_target_tablero", function () {
+$(document).on("click", ".js_seleccionar_modal_tablero", function () {
+	debugger;
+	usuarios = $(this).val();
+	infousuarios = usuarios.split("*");
+	$("#descripcion_producto").val(infousuarios[0]);
+	$("#opcion_target_tablero").modal("hide");
+});
+
+$(document).on("click", ".js_seleccionar_modal_detalle_tablero", function () {
 	debugger;
 	valor_id = $(this).val();
 	$.ajax({
@@ -211,7 +220,22 @@ $(document).on("click", ".modal_target_tablero", function () {
 		},
 		success: function (data) {
 			debugger;
-			$("#id_target_tablero .modal-content").html(data);
+			$("#opcion_target_detalle_tablero .modal-content").html(data);
 		}
 	});
 });
+
+$(document).on("click", ".js_seleccionar_modal_comodin", function () {
+	debugger;
+	comodin_nombre_producto = $("#comodin_nombre_producto").val();
+	comodin_precio = $("#comodin_precio").val();
+	// comodin_cantidad = $("#comodin_cantidad").val();
+
+	$("#descripcion_producto").val(comodin_nombre_producto);
+	$("#precio_venta").val(comodin_precio);
+	// $("#cantidad").val(comodin_cantidad);
+
+	$("#opcion_target_comodin").modal("hide");
+});
+
+
