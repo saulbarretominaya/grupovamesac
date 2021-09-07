@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>TRABAJADORES
-              <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            <h1>CLIENTES - PROVEEDORES
+              <a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -20,16 +20,14 @@
             <h3 class="card-title">Listar</h3>
           </div>
           <div class="card-body">
-            <table id="id_datatable_trabajadores" class="table table-sm table-hover" style="width: 100%;">
+            <table id="id_datatable_clientes_proveedores" class="table table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Tipo Documento</th>
-                  <th>N° Documento</th>
+                  <th>Codigo</th>
                   <th>Nombre</th>
                   <th>Paterno</th>
                   <th>Materno</th>
-                  <th>Celular</th>
-                  <th></th>
+                  <th>Tipo Persona</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -38,28 +36,20 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->ds_tipo_documento; ?></td>
-                      <td><?php echo $index->num_documento; ?></td>
+                      <td><?php echo $index->id_cliente_proveedor; ?></td>
                       <td><?php echo $index->nombres; ?></td>
                       <td><?php echo $index->ape_paterno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
-                      <td><?php echo $index->celular; ?></td>
-                      <td><button type="button" class="btn btn-info btn-xs btn-view-trabajador" value="<?php echo $index->id_trabajador; ?>" data-toggle="modal" data-target="#modal-trabajador"><span class="fa fa-search"></span></button></td>
-                      <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
-                      <td><a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
+                      <td><?php echo $index->ape_materno; ?></td>
+                      <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
+                      <td></td>
+                      <!-- <td><button type="button" class="btn btn-info btn-xs btn-view-trabajador" value="<?php echo $index->id_trabajador; ?>" data-toggle="modal" data-target="#modal-trabajador"><span class="fa fa-search"></span></button></td> -->
+                      <!-- <td <a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>  -->
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
-              <!-- <tfoot>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Paterno</th>
-                  <th>Materno</th>
-                  <th>Celular</th>
-                </tr>
-              </tfoot> -->
+
             </table>
           </div>
           <!-- /.card-body -->
@@ -72,8 +62,8 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- MODAL TRABAJADORES -->
-  <div class="modal fade" id="modal-trabajador">
+  <!-- MODAL CLIENTES -->
+  <div class="modal fade" id="modal-clientes">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color:#48C9B0">
@@ -94,7 +84,7 @@
   </div>
 
   <!-- MODAL ADMIN -->
-  <div class="modal fade" id="modal-trabajador2">
+  <div class="modal fade" id="modal-clientes2">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -153,7 +143,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_trabajadores.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_clientes_proveedores.js"></script>
 
   </body>
 
