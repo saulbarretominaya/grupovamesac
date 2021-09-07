@@ -4,8 +4,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Productos
-              <a href="<?php echo base_url(); ?>C_productos/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
+            <h1>Tableros
+              <a href="<?php echo base_url(); ?>C_tableros/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -16,61 +16,56 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_productos" class="table table-sm table-hover" style="width: 100%;">
+            <table id="id_datatable_tableros" class="table-sm table-hover table-responsive">
               <thead>
                 <tr>
-                  <th>Codigo</th>
-                  <th>Descripcion</th>
-                  <th>U.M</th>
-                  <th>Marca</th>
-                  <th>Grupo</th>
-                  <th>Moneda</th>
-                  <th>Precio Costo</th>
-                  <th>Precio Venta</th>
-                  <th>Stock</th>
+                  <th style="width: 150px;">Almacen</th>
+                  <th style="width: 150px;">Codigo</th>
+                  <th style="width: 150px;">Descripcion</th>
+                  <th style="width: 150px;">Marca</th>
+                  <th style="width: 150px;">Modelo</th>
+                  <th style="width: 150px;">Moneda</th>
                   <th></th>
-                  <th></th>
+                  <!-- <th></th> -->
                 </tr>
               </thead>
               <tbody>
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->codigo_producto; ?></td>
-                      <td><?php echo $index->descripcion_producto; ?></td>
-                      <td><?php echo $index->ds_unidad_medida; ?></td>
-                      <td><?php echo $index->ds_marca_producto; ?></td>
-                      <td><?php echo $index->ds_grupo; ?></td>
+                      <td><?php echo $index->ds_almacen; ?></td>
+                      <td><?php echo $index->codigo_tablero; ?></td>
+                      <td><?php echo $index->descripcion_tablero; ?></td>
+                      <td><?php echo $index->ds_marca_tablero; ?></td>
+                      <td><?php echo $index->ds_modelo_tablero; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
-                      <td><?php echo $index->precio_costo; ?></td>
-                      <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->stock; ?></td>
-                      <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus"></span></a></td>
-                      <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_producto; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <td><button type="button" class="btn btn-info btn-sm js_modal_detalle_tablero" value="<?php echo $index->id_tablero; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
+                      <!-- <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_tablero; ?>" class="btn bg-navy btn-xs"><span class="far fa-edit"></span></a></td> -->
 
-                    </tr>
-                  <?php endforeach; ?>
-                <?php endif; ?>
-              </tbody>
-            </table>
+                      <!-- Inicio Modal -->
+                      <div class="modal fade" id="id_target_tablero" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                          <div class="modal-content">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Fin de Modal -->
           </div>
-          <!-- /.card-body -->
+
+
+          </tr>
+        <?php endforeach; ?>
+      <?php endif; ?>
+      </tbody>
+      </table>
         </div>
-        <!-- /.card -->
+        <!-- /.card-body -->
       </div>
-      <!-- /.div -->
-    </section>
+      <!-- /.card -->
   </div>
-
-
-
-
-
-
-
-
-
-
+  <!-- /.div -->
+  </section>
+  </div>
 
 
 
@@ -114,7 +109,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_productos.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_tableros.js"></script>
 
   </body>
 

@@ -46,7 +46,7 @@ $("#registrar_productos").on("click", function () {
 	var id_clase = $("#id_clase").val();
 	var id_sub_clase = $("#id_sub_clase").val();
 	var id_sub_clase_dos = $("#id_sub_clase_dos").val();
-	var id_marca = $("#id_marca").val();
+	var id_marca_producto = $("#id_marca_producto").val();
 	var id_cta_vta = $("#id_cta_vta").val();
 	var id_cta_ent = $("#id_cta_ent").val();
 	var id_sunat = $("#id_sunat").val();
@@ -75,7 +75,7 @@ $("#registrar_productos").on("click", function () {
 			id_clase: id_clase,
 			id_sub_clase: id_sub_clase,
 			id_sub_clase_dos: id_sub_clase_dos,
-			id_marca: id_marca,
+			id_marca_producto: id_marca_producto,
 			id_cta_vta: id_cta_vta,
 			id_cta_ent: id_cta_ent,
 			id_sunat: id_sunat,
@@ -105,7 +105,7 @@ $("#actualizar_productos").on("click", function () {
 	var id_clase = $("#id_clase").val();
 	var id_sub_clase = $("#id_sub_clase").val();
 	var id_sub_clase_dos = $("#id_sub_clase_dos").val();
-	var id_marca = $("#id_marca").val();
+	var id_marca_producto = $("#id_marca_producto").val();
 	var id_cta_vta = $("#id_cta_vta").val();
 	var id_cta_ent = $("#id_cta_ent").val();
 	var id_sunat = $("#id_sunat").val();
@@ -134,7 +134,7 @@ $("#actualizar_productos").on("click", function () {
 			id_clase: id_clase,
 			id_sub_clase: id_sub_clase,
 			id_sub_clase_dos: id_sub_clase_dos,
-			id_marca: id_marca,
+			id_marca_producto: id_marca_producto,
 			id_cta_vta: id_cta_vta,
 			id_cta_ent: id_cta_ent,
 			id_sunat: id_sunat,
@@ -147,7 +147,10 @@ $("#actualizar_productos").on("click", function () {
 	});
 });
 
-$(".select2").select2();
+$(".select2").select2({
+	theme: "bootstrap4"
+});
+
 
 
 $("#automatico").on("click", function () {

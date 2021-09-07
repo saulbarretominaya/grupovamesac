@@ -104,7 +104,6 @@ class C_trabajadores extends CI_Controller
     }
 
 
-
     public function enlace_actualizar($id_trabajador)
     {
 

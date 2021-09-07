@@ -9,6 +9,7 @@ class C_cotizacion extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("M_cotizacion");
+		$this->load->model("M_cbox");
 	}
 
 	public function index()
@@ -25,6 +26,9 @@ class C_cotizacion extends CI_Controller
 
 		$data = array(
 			'index_productos' => $this->M_cotizacion->index_productos(),
+			'index_tableros' => $this->M_cotizacion->index_tableros(),
+			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+
 		);
 
 		$this->load->view('plantilla/V_header');
