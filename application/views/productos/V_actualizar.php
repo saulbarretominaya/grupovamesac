@@ -200,9 +200,9 @@
                     <div class="col-sm-2">
                       <input type="text" class="form-control" id="ganancia_unidad" name="ganancia_unidad" readonly="" value="<?php echo $enlace_actualizar->ganancia_unidad ?>">
                     </div>
-                    <label class="col-sm-2 col-form-label">Precio Venta</label>
+                    <label class="col-sm-2 col-form-label">Precio Unitario</label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" id="precio_venta" name="precio_venta" readonly="" value="<?php echo $enlace_actualizar->precio_venta ?>">
+                      <input type="text" class="form-control" id="precio_unitario" name="precio_unitario" readonly="" value="<?php echo $enlace_actualizar->precio_unitario ?>">
                     </div>
                     <label class="col-sm-2 col-form-label">Rentabilidad %</label>
                     <div class="col-sm-2">

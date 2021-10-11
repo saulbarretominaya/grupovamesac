@@ -16,17 +16,17 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_tableros" class="table-sm table-hover table-responsive">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th style="width: 150px;">Almacen</th>
-                  <th style="width: 150px;">Codigo</th>
-                  <th style="width: 150px;">Descripcion</th>
-                  <th style="width: 150px;">Marca</th>
-                  <th style="width: 150px;">Modelo</th>
-                  <th style="width: 150px;">Moneda</th>
+                  <th>Almacen</th>
+                  <th>Codigo</th>
+                  <th>Descripcion</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Moneda</th>
                   <th></th>
-                  <!-- <th></th> -->
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -39,8 +39,9 @@
                       <td><?php echo $index->ds_marca_tablero; ?></td>
                       <td><?php echo $index->ds_modelo_tablero; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
-                      <td><button type="button" class="btn btn-info btn-sm js_modal_detalle_tablero" value="<?php echo $index->id_tablero; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
-                      <!-- <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_tablero; ?>" class="btn bg-navy btn-xs"><span class="far fa-edit"></span></a></td> -->
+
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_modal_detalle_tablero" value="<?php echo $index->id_tablero; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
+                      <td><a href="<?php echo base_url(); ?>C_tableros/enlace_actualizar/<?php echo $index->id_tablero; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
 
                       <!-- Inicio Modal -->
                       <div class="modal fade" id="id_target_tablero" tabindex="-1">

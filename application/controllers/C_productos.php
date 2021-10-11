@@ -54,7 +54,7 @@ class C_productos extends CI_Controller
 
 		$precio_costo = $this->input->post("precio_costo");
 		$porcentaje = $this->input->post("porcentaje");
-		$precio_venta = $this->input->post("precio_venta");
+		$precio_unitario = $this->input->post("precio_unitario");
 		$ganancia_unidad = $this->input->post("ganancia_unidad");
 		$rentabilidad = $this->input->post("rentabilidad");
 		$id_moneda = $this->input->post("id_moneda");
@@ -77,7 +77,7 @@ class C_productos extends CI_Controller
 			$codigo_producto,
 			$descripcion_producto,
 			$precio_costo,
-			$precio_venta,
+			$precio_unitario,
 			$porcentaje,
 			$ganancia_unidad,
 			$rentabilidad,
@@ -148,7 +148,7 @@ class C_productos extends CI_Controller
 
 		$precio_costo = $this->input->post("precio_costo");
 		$porcentaje = $this->input->post("porcentaje");
-		$precio_venta = $this->input->post("precio_venta");
+		$precio_unitario = $this->input->post("precio_unitario");
 		$ganancia_unidad = $this->input->post("ganancia_unidad");
 		$rentabilidad = $this->input->post("rentabilidad");
 		$id_moneda = $this->input->post("id_moneda");
@@ -171,7 +171,7 @@ class C_productos extends CI_Controller
 			$codigo_producto,
 			$descripcion_producto,
 			$precio_costo,
-			$precio_venta,
+			$precio_unitario,
 			$porcentaje,
 			$ganancia_unidad,
 			$rentabilidad,

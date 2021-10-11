@@ -4,8 +4,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Cotizacion
-              <a href="<?php echo base_url(); ?>C_cotizacion/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
+            <h1>Pre guia
+              <a href="<?php echo base_url(); ?>C_guia_remision/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>

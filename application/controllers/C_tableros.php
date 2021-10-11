@@ -43,37 +43,104 @@ class C_tableros extends CI_Controller
 	{
 		//CABECERA
 		$codigo_tablero = $this->input->post("codigo_tablero");
-		$id_sunat = $this->input->post("id_sunat");
 		$descripcion_tablero = $this->input->post("descripcion_tablero");
+		$cantidad_tablero = $this->input->post("cantidad_tablero");
+		$id_sunat = $this->input->post("id_sunat");
 		$id_marca_tablero = $this->input->post("id_marca_tablero");
 		$id_modelo_tablero = $this->input->post("id_modelo_tablero");
 		$id_moneda = $this->input->post("id_moneda");
 		$id_almacen = $this->input->post("id_almacen");
+		$precio_tablero = $this->input->post("precio_tablero");
+		$porcentaje_margen = $this->input->post("porcentaje_margen");
+		$precio_margen = $this->input->post("precio_margen");
+		$precio_unitario_por_tablero = $this->input->post("precio_unitario_por_tablero");
+		$total_tablero = $this->input->post("total_tablero");
+
 
 		//DETALLE
+		$id_almacen_det = $this->input->post("id_almacen_det");
+		$ds_almacen = $this->input->post("ds_almacen");
 		$id_producto = $this->input->post("id_producto");
+		$codigo_producto = $this->input->post("codigo_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
+		$id_unidad_medida = $this->input->post("id_unidad_medida");
+		$ds_unidad_medida = $this->input->post("ds_unidad_medida");
+		$id_marca_producto = $this->input->post("id_marca_producto");
+		$ds_marca_producto = $this->input->post("ds_marca_producto");
+		$precio_unitario = $this->input->post("precio_unitario");
+		$cantidad_unitaria = $this->input->post("cantidad_unitaria");
+		$cantidad_total_producto = $this->input->post("cantidad_total_producto");
+		$monto_total_producto = $this->input->post("monto_total_producto");
 
 		if ($this->M_tableros->insertar(
 			$codigo_tablero,
-			$id_sunat,
 			$descripcion_tablero,
+			$cantidad_tablero,
+			$id_sunat,
 			$id_marca_tablero,
 			$id_modelo_tablero,
 			$id_moneda,
-			$id_almacen
+			$id_almacen,
+			$precio_tablero,
+			$porcentaje_margen,
+			$precio_margen,
+			$precio_unitario_por_tablero,
+			$total_tablero,
 		)) {
 			$id_tablero = $this->M_tableros->lastID();
-			$this->insertar_detalle($id_tablero, $id_producto);
+			$this->insertar_detalle(
+				$id_tablero,
+				$id_almacen_det,
+				$ds_almacen,
+				$id_producto,
+				$codigo_producto,
+				$descripcion_producto,
+				$id_unidad_medida,
+				$ds_unidad_medida,
+				$id_marca_producto,
+				$ds_marca_producto,
+				$precio_unitario,
+				$cantidad_unitaria,
+				$cantidad_total_producto,
+				$monto_total_producto
+			);
 			echo json_encode($codigo_tablero);
 		}
 	}
 
-	protected function insertar_detalle($id_tablero, $id_producto)
-	{
-
+	protected function insertar_detalle(
+		$id_tablero,
+		$id_almacen_det,
+		$ds_almacen,
+		$id_producto,
+		$codigo_producto,
+		$descripcion_producto,
+		$id_unidad_medida,
+		$ds_unidad_medida,
+		$id_marca_producto,
+		$ds_marca_producto,
+		$precio_unitario,
+		$cantidad_unitaria,
+		$cantidad_total_producto,
+		$monto_total_producto
+	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
-
-			$this->M_tableros->insertar_detalle($id_tablero, $id_producto[$i]);
+			$this->M_tableros->insertar_detalle(
+				$id_tablero,
+				$id_almacen_det[$i],
+				$ds_almacen[$i],
+				$id_producto[$i],
+				$codigo_producto[$i],
+				$descripcion_producto[$i],
+				$id_unidad_medida[$i],
+				$ds_unidad_medida[$i],
+				$id_marca_producto[$i],
+				$ds_marca_producto[$i],
+				$precio_unitario[$i],
+				$cantidad_unitaria[$i],
+				$cantidad_total_producto[$i],
+				$monto_total_producto[$i]
+			);
 		}
 	}
 

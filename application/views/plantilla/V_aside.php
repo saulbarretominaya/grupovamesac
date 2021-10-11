@@ -14,27 +14,10 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <!-- <li class="nav-item menu-open">
-            <a href="" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Recursos Humanos
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registrar Trabajadores</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
-
+          <!-- Recursos humanos -->
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fab fa-hive"></i>
               <p>
                 Recursos Humanos
                 <i class="fas fa-angle-left right"></i>
@@ -56,26 +39,18 @@
                 </a>
               </li>
             </ul>
-          </li>
-
-          <!-- <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Administrador
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="<?php echo base_url() . "C_clientes_proveedores" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registrar Usuarios</p>
+                  <p>Registrar Clientes</p>
                 </a>
               </li>
             </ul>
-          </li> -->
+          </li>
+          <!-- fin de recursos humanos -->
 
+          <!-- multitablas -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-border-none"></i>
@@ -93,10 +68,32 @@
               </li>
             </ul>
           </li>
+          <!-- fin de multitablas -->
 
+          <!-- Logistica-->
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-warehouse"></i>
+              <i class="fas fa-luggage-cart"></i>
+              <p>
+                Logistica
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "#" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orden de compra</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- fin logistica-->
+
+          <!-- almacen -->
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-truck"></i>
               <p>
                 Almacen
                 <i class="fas fa-angle-left right"></i>
@@ -117,10 +114,33 @@
               </li>
             </ul>
           </li>
+          <!-- fin de almacen -->
 
+          <!-- tipo de cambio -->
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-warehouse"></i>
+              <i class="fas fa-chart-line"></i>
+              <p>
+                Tipo de cambio
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "#" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tipo de cambio</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- fin de tipo de cambio-->
+
+          <!--comercial -->
+          <li class="nav-item">
+            <a href="" class="nav-link">
+
+              <i class="fas fa-cart-arrow-down"></i>
               <p>
                 Comercial
                 <i class="fas fa-angle-left right"></i>
@@ -141,6 +161,95 @@
               </li>
             </ul>
           </li>
+          <!-- fin de comercial -->
+
+          <!-- orden despacho-->
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-paste"></i>
+              <p>
+                Orden de despacho
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_orden_despacho" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orden de despacho</p>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <!-- fin de orden de despacho-->
+
+          <!-- guia  de remision-->
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-clipboard-list"></i>
+              <p>
+                Guia de remision
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_guia_remision" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pre guia</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_orden_despacho" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Guia de remision</p>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <!-- fin guia de remisión-->
+
+          <!-- facturacion-->
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-tasks"></i>
+              <p>
+                Facturacion
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_facturacion" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Facturacion</p>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <!-- fin guia de remisión-->
+
+          <!-- Reporte-->
+          <!-- <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-file-medical-alt"></i>
+              <p>
+                Reporte
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "#" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reporte</p>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <!-- fin reporte-->
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
