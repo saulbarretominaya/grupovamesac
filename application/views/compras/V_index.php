@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>CLIENTES - PROVEEDORES
-              <a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            <h1>LISTA DE COMPRAS
+              <a href="<?php echo base_url(); ?>C_compras/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -24,10 +24,16 @@
               <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Paterno</th>
-                  <th>Materno</th>
-                  <th>Tipo Persona</th>
+                  <th>Proveedor</th>
+                  <th>Fecha Emision</th>
+                  <th>Fecha Vencimiento</th>
+                  <th>Monto</th>
+                  <th>C.Pago</th>
+                  <th>N.Operacion</th>
+                  <th>Banco</th>
+                  <th>Fecha</th>
+                  <th>Saldo</th>
+                  <th>Estado</th>
                   <th></th>
                   <th></th>
                   <th></th>

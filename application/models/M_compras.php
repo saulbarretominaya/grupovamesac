@@ -3,7 +3,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_clientes_proveedores extends CI_Model
+class M_compras extends CI_Model
 {
     public function index()
     {
@@ -20,13 +20,53 @@ class M_clientes_proveedores extends CI_Model
         return $resultados->row();
     }
 
-    public function insertar($origen, $condicion, $tipo_persona, $tipo_persona_sunat, $tipo_documento,  $num_documento, $nombres, $ape_paterno, $ape_materno, $razon_social, $direccion_fiscal, $direccion_alm1, $direccion_alm2, $departamento, $provincia, $distrito, $telefono, $celular, $tipo_giro, $condicion_pago, $linea_credito_soles, $credito_unitario_soles, $disponible_soles, $linea_credito_dolares, $credito_unitario_dolares, $disponible_dolares, $linea_opcional, $linea_opcional_unitaria, $linea_disponible, $email, $contacto_registro, $estado_cliente, $email_cobranza, $contacto_cobranza, $tipo_cliente_pago)
+    public function encargado()
     {
-        return $this->db->query("INSERT INTO clientes_proveedores
-        (id_cliente_proveedor, id_origen,id_condicion, id_tipo_persona, id_tipo_persona_sunat, id_tipo_documento,num_documento,nombres,ape_paterno, ape_materno, razon_social, direccion_fiscal, direccion_alm1, direccion_alm2, id_departamento, id_provincia, id_distrito, telefono, celular, id_tipo_giro, id_condicion_pago,linea_credito_soles,credito_unitario_soles,disponible_soles,linea_credito_dolares, credito_unitario_dolares,disponible_dolares,linea_opcional, linea_opcional_unitaria, id_linea_disponible,email,contacto_registro,id_estado_cliente,email_cobranza,contacto_cobranza,id_tipo_cliente_pago,id_estado)
-        VALUES ('','$origen', '$condicion', '$tipo_persona', '$tipo_persona_sunat', '$tipo_documento',  '$num_documento', '$nombres', '$ape_paterno', '$ape_materno', '$razon_social', '$direccion_fiscal', '$direccion_alm1', '$direccion_alm2', '$departamento', '$provincia', '$distrito', '$telefono', '$celular', '$tipo_giro', '$condicion_pago','$linea_credito_soles', '$credito_unitario_soles', '$disponible_soles', '$linea_credito_dolares', '$credito_unitario_dolares', '$disponible_dolares','$linea_opcional', '$linea_opcional_unitaria', '$linea_disponible', '$email', '$contacto_registro', '$estado_cliente', '$email_cobranza', '$contacto_cobranza', '$tipo_cliente_pago', '1')");
+        $resultados = $this->db->query("
+           SELECT CONCAT (nombres,' ',ape_paterno,' ',ape_materno) AS ds_omar FROM trabajadores WHERE id_estado = '1';");
+        return $resultados->result();
     }
 
+    public function proveedor()
+    {
+        $resultados = $this->db->query("
+           SELECT * FROM clientes_proveedores WHERE id_tipo_persona = '616';");
+        return $resultados->result();
+    }
+
+    public function insertar($id_compras, $id_trabajador, $fecha_emision_voucher, $fecha_vencimiento_voucher, $numero_serie,  $id_cliente_proveedor, $subtotal_factura, $igv_factura, $total_factura, $estado_compra, $observacion_pago, $tipo_comprobante, $mercaderia, $condicion_pago, $medio_pago, $moneda, $cta_ent)
+    {
+        return $this->db->query("INSERT INTO compras
+        (id_compras, id_trabajador, fecha_emision_voucher, fecha_vencimiento_voucher, numero_serie, id_cliente_proveedor, subtotal_factura, igv_factura, total_factura, estado_compra, observacion_pago,tipo_comprobante, mercaderia, condicion_pago, medio_pago, moneda, cta_ent,id_estado)
+        VALUES ('','$id_compras', '$id_trabajador', '$fecha_emision_voucher', '$fecha_vencimiento_voucher', '$numero_serie',  '$id_cliente_proveedor', '$subtotal_factura', '$igv_factura', '$total_factura', '$estado_compra', '$observacion_pago', '$tipo_comprobante', '$mercaderia', '$condicion_pago', '$medio_pago', '$moneda', '$cta_ent', '1')");
+    }
+
+    public function lastID()
+    {
+        return $this->db->insert_id();
+    }
+
+    public function insertar_detalle(
+        $id_voucher_pago,
+        $fecha_pago_voucher,
+        $tipo_cambio,
+        $numero_deposito,
+        $numero_letra_cheque,
+        $importe_pago,
+        $observacion_voucher,
+        $estado_voucher,
+        $total_deuda_voucher,
+        $monto_pagado_voucher,
+        $monto_pendiente_voucher,
+        $transaccion,
+        $banco,
+        $medio_pago_voucher,
+        $leyenda
+    ) {
+        return $this->db->query("INSERT INTO detalle_compras
+        (id_voucher_pago, fecha_pago_voucher, tipo_cambio, numero_deposito, numero_letra_cheque, importe_pago, observacion_voucher, estado_voucher, total_deuda_voucher, monto_pagado_voucher, monto_pendiente_voucher)
+        VALUES ('','$id_voucher_pago', '$fecha_pago_voucher', '$tipo_cambio', '$numero_deposito', '$numero_letra_cheque',  '$importe_pago', '$observacion_voucher', '$estado_voucher', '$total_deuda_voucher', '$monto_pagado_voucher', '$monto_pendiente_voucher', '$transaccion', '$banco', '$medio_pago_voucher', '$leyenda', '1')");
+    }
 
     public function enlace_actualizar($id_cliente_proveedor)
     {

@@ -135,7 +135,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
+                            <input type="number" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
                             <div class="input-group-prepend">
                               <button class="btn btn-info" type="Submit">Buscar</button>
                               <!-- <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span> -->
@@ -306,7 +306,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupTelefono"> <i class="fas fa-phone-alt"></i></span>
                             </div>
-                            <input type="text" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' data-mask>
+                            <input type="number" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' data-mask>
                           </div>
                         </div>
                         <!-- CELULAR -->
@@ -317,7 +317,7 @@
                               <span class="input-group-text" id="inputGroupCelular"> <i class="fas fa-mobile-alt"></i> </span>
                             </div>
                             <!-- <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask> -->
-                            <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
+                            <input type="number" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
                           </div>
                         </div>
                         <!-- TIPO DE GIRO -->
@@ -384,7 +384,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupLineaCreditoSoles"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
+                            <input type="number" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
                           </div>
                         </div>
                         <!-- CREDITO UNITARIO - SOLES-->
@@ -394,7 +394,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupCreditoUnitarioSoles"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" required>
+                            <input type="number" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" required>
                           </div>
                         </div>
                         <!-- DISPONIBLE - SOLES-->
@@ -404,7 +404,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupDisponibleSoles"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
+                            <input type="number" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
                           </div>
                         </div>
                       </div>
@@ -418,7 +418,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupLineaCreditoDolares"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
+                            <input type="number" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
                           </div>
                         </div>
                         <!-- CREDITO UNITARIO - DOLARES-->
@@ -428,7 +428,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupCreditoUnitarioDolares"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
+                            <input type="number" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
                           </div>
                         </div>
                         <!-- DISPONIBLE - DOLARES-->
@@ -438,7 +438,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupDisponibleDolares"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" required>
+                            <input type="number" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" required>
                           </div>
                         </div>
                       </div>
@@ -451,7 +451,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupLineaOpcional"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" aria-describedby="inputGroupLineaOpcional" required>
+                            <input type="number" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" aria-describedby="inputGroupLineaOpcional" required>
                           </div>
                         </div>
                         <!-- LINEA OPCIONAL UNITARIO-->
@@ -461,7 +461,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupLineaOpcionalUnitaria"> <i class="far fa-id-card"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" aria-describedby="inputGroupLineaOpcionalUnitaria" required>
+                            <input type="number" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" aria-describedby="inputGroupLineaOpcionalUnitaria" required>
                           </div>
                         </div>
                         <!-- LINEA DISPONIBLE-->
@@ -493,7 +493,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupEmail"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" required>
+                            <input type="email" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" required>
                           </div>
                         </div>
                         <!-- CONTACTO REGISTRO-->
@@ -533,7 +533,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupEmailCobranza"> <i class="fas fa-user-shield"></i> </span>
                             </div>
-                            <input type="text" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" required>
+                            <input type="email" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" required>
                           </div>
                         </div>
                         <!-- CONTACTO COBRANZA-->
