@@ -23,7 +23,7 @@ class M_productos extends CI_Model
         FORMAT(precio_costo,2) as precio_costo,
         porcentaje,
         FORMAT(ganancia_unidad,2) as ganancia_unidad,
-        FORMAT(precio_venta,2) as precio_venta,
+        FORMAT(precio_unitario,2) as precio_unitario,
         rentabilidad,
         id_grupo,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
@@ -53,7 +53,7 @@ class M_productos extends CI_Model
         $codigo_producto,
         $descripcion_producto,
         $precio_costo,
-        $precio_venta,
+        $precio_unitario,
         $porcentaje,
         $ganancia_unidad,
         $rentabilidad,
@@ -75,14 +75,14 @@ class M_productos extends CI_Model
         INSERT INTO productos
         (
             id_producto,codigo_producto,descripcion_producto,
-            precio_costo,precio_venta,porcentaje,ganancia_unidad,rentabilidad,
+            precio_costo,precio_unitario,porcentaje,ganancia_unidad,rentabilidad,
             id_unidad_medida,id_grupo,id_familia,id_clase,id_sub_clase,id_sub_clase_dos, 
             id_marca_producto,id_moneda,id_cta_vta,id_cta_ent,id_sunat,id_almacen
         )
         VALUES
         (
             '','$codigo_producto','$descripcion_producto',
-            '$precio_costo','$precio_venta','$porcentaje','$ganancia_unidad','$rentabilidad',
+            '$precio_costo','$precio_unitario','$porcentaje','$ganancia_unidad','$rentabilidad',
             '$id_unidad_medida','$id_grupo','$id_familia','$id_clase','$id_sub_clase','$id_sub_clase_dos',
             '$id_marca_producto','$id_moneda','$id_cta_vta','$id_cta_ent','$id_sunat','$id_almacen'
         )"
@@ -93,7 +93,6 @@ class M_productos extends CI_Model
     public function enlace_actualizar($id_producto)
     {
         $resultados = $this->db->query("
-
                 SELECT 
         id_producto,
         codigo_producto,
@@ -109,7 +108,7 @@ class M_productos extends CI_Model
         FORMAT(precio_costo,2) as precio_costo,
         porcentaje,
         FORMAT(ganancia_unidad,2) as ganancia_unidad,
-        FORMAT(precio_venta,2) as precio_venta,
+        FORMAT(precio_unitario,2) as precio_unitario,
         rentabilidad,
         id_grupo,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
@@ -138,7 +137,7 @@ class M_productos extends CI_Model
         $codigo_producto,
         $descripcion_producto,
         $precio_costo,
-        $precio_venta,
+        $precio_unitario,
         $porcentaje,
         $ganancia_unidad,
         $rentabilidad,
@@ -160,7 +159,7 @@ class M_productos extends CI_Model
         codigo_producto='$codigo_producto',
         descripcion_producto ='$descripcion_producto',
         precio_costo='$precio_costo',
-        precio_venta='$precio_venta',
+        precio_unitario='$precio_unitario',
         porcentaje='$porcentaje',
         ganancia_unidad='$ganancia_unidad',
         rentabilidad='$rentabilidad',

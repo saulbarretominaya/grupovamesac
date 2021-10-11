@@ -1,5 +1,4 @@
   <div class="content-wrapper">
-
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -16,7 +15,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_productos" class="table table-sm table-hover" style="width: 100%;">
+            <table id="id_datatable_productos" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
                   <th>Codigo</th>
@@ -26,7 +25,7 @@
                   <th>Grupo</th>
                   <th>Moneda</th>
                   <th>Precio Costo</th>
-                  <th>Precio Venta</th>
+                  <th>Precio Unitario</th>
                   <th>Stock</th>
                   <th></th>
                   <th></th>
@@ -43,7 +42,7 @@
                       <td><?php echo $index->ds_grupo; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_costo; ?></td>
-                      <td><?php echo $index->precio_venta; ?></td>
+                      <td><?php echo $index->precio_unitario; ?></td>
                       <td><?php echo $index->stock; ?></td>
                       <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus"></span></a></td>
                       <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_producto; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>

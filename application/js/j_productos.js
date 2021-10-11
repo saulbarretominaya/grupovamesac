@@ -3,6 +3,12 @@ var resultado_campo = "";
 
 $("#id_datatable_productos").dataTable({
 
+	scrollX: true,
+	scrollCollapse: true,
+	paging: true,
+	searching: true,
+
+
 	language: {
 		lengthMenu: "Mostrar _MENU_ registros por pagina",
 		zeroRecords: "No se encontraron resultados en su busqueda",
@@ -22,7 +28,6 @@ $("#id_datatable_productos").dataTable({
 	order: []
 });
 
-
 $("#registrar_productos").on("click", function () {
 	var codigo_producto = $("#codigo_producto").val();
 	var descripcion_producto = $("#descripcion_producto").val();
@@ -33,8 +38,8 @@ $("#registrar_productos").on("click", function () {
 	var precio_costo_replace = precio_costo.replaceAll(",", "");
 
 	var porcentaje = $("#porcentaje").val();
-	var precio_venta = $("#precio_venta").val();
-	var precio_venta_replace = precio_venta.replaceAll(",", "");
+	var precio_unitario = $("#precio_unitario").val();
+	var precio_unitario_replace = precio_unitario.replaceAll(",", "");
 
 	var rentabilidad = $("#rentabilidad").val();
 	var id_moneda = $("#id_moneda").val();
@@ -66,7 +71,7 @@ $("#registrar_productos").on("click", function () {
 			id_unidad_medida: id_unidad_medida,
 			precio_costo: precio_costo_replace,
 			porcentaje: porcentaje,
-			precio_venta: precio_venta_replace,
+			precio_unitario: precio_unitario_replace,
 			rentabilidad: rentabilidad,
 			id_moneda: id_moneda,
 			ganancia_unidad: ganancia_unidad_replace,
@@ -96,7 +101,7 @@ $("#actualizar_productos").on("click", function () {
 	var id_unidad_medida = $("#id_unidad_medida").val();
 	var precio_costo = $("#precio_costo").val();
 	var porcentaje = $("#porcentaje").val();
-	var precio_venta = $("#precio_venta").val();
+	var precio_unitario = $("#precio_unitario").val();
 	var rentabilidad = $("#rentabilidad").val();
 	var id_moneda = $("#id_moneda").val();
 	var ganancia_unidad = $("#ganancia_unidad").val();
@@ -125,7 +130,7 @@ $("#actualizar_productos").on("click", function () {
 			id_unidad_medida: id_unidad_medida,
 			precio_costo: precio_costo,
 			porcentaje: porcentaje,
-			precio_venta: precio_venta,
+			precio_unitario: precio_unitario,
 			rentabilidad: rentabilidad,
 			id_moneda: id_moneda,
 			ganancia_unidad, ganancia_unidad,
@@ -150,8 +155,6 @@ $("#actualizar_productos").on("click", function () {
 $(".select2").select2({
 	theme: "bootstrap4"
 });
-
-
 
 $("#automatico").on("click", function () {
 
@@ -217,13 +220,27 @@ $("#porcentaje").on({
 	}
 });
 
+$("#descripcion_producto").on({
+	"focus": function (event) {
+		$(event.target).select();
+	},
+	"keyup": function (event) {
+		$(event.target).val(function (index, value) {
+			return value.replace(/'/g, '')
+				.replace(/"/g, '');
+			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+		});
+	}
+});
+
 $("#precio_costo").on("keyup", function () {
 
+	debugger;
 	var precio_costo = $("#precio_costo").val();
 
 	if (precio_costo == "") {
 		debugger;
-		$("input[name=precio_venta]").val("");
+		$("input[name=precio_unitario]").val("");
 		$("input[name=ganancia_unidad]").val("");
 		$("input[name=rentabilidad]").val("");
 		$("input[name=porcentaje]").val("");
@@ -234,19 +251,19 @@ $("#precio_costo").on("keyup", function () {
 
 	var porcentaje = Number($("#porcentaje").val());
 	var ganancia_unidad = Number((valor * porcentaje) / 100);
-	var precio_venta = Number(ganancia_unidad + valor);
-	var rentabilidad = (1 - valor / precio_venta) * 100;
+	var precio_unitario = Number(ganancia_unidad + valor);
+	var rentabilidad = (1 - valor / precio_unitario) * 100;
 
 	if (isNaN(ganancia_unidad)) {
 		console.log("Is Nan Rentabilidad")
-	} else if (isNaN(precio_venta)) {
+	} else if (isNaN(precio_unitario)) {
 		console.log("Is Nan Precio Venta")
 	} else if (isNaN(rentabilidad)) {
 		console.log("Is Nan Rentabilidad")
 	} else {
 
 		/* Precio Venta */
-		let inputNum = precio_venta;
+		let inputNum = precio_unitario;
 		inputNum = inputNum.toString()
 		inputNum = inputNum.split('.')
 		if (!inputNum[1]) {
@@ -269,7 +286,7 @@ $("#precio_costo").on("keyup", function () {
 		} else {
 			separados = [inputNum[0]]
 		}
-		precio_venta_final = separados.join(',') + '.' + inputNum[1];
+		precio_unitario_final = separados.join(',') + '.' + inputNum[1];
 		/* Fin de precio venta */
 
 		/* Ganancia Unidad */
@@ -302,7 +319,7 @@ $("#precio_costo").on("keyup", function () {
 		/* Fin de precio venta */
 
 		$("input[name=ganancia_unidad]").val(ganancia_unidad_final);
-		$("input[name=precio_venta]").val(precio_venta_final);
+		$("input[name=precio_unitario]").val(precio_unitario_final);
 		$("input[name=rentabilidad]").val(Math.round(rentabilidad));
 	}
 
@@ -316,19 +333,19 @@ $("#porcentaje").on("keyup", function () {
 
 	var porcentaje = Number($("#porcentaje").val());
 	var ganancia_unidad = Number((valor * porcentaje) / 100);
-	var precio_venta = Number(ganancia_unidad + valor);
-	var rentabilidad = (1 - valor / precio_venta) * 100;
+	var precio_unitario = Number(ganancia_unidad + valor);
+	var rentabilidad = (1 - valor / precio_unitario) * 100;
 
 	if (isNaN(ganancia_unidad)) {
 		console.log("Is Nan Rentabilidad")
-	} else if (isNaN(precio_venta)) {
+	} else if (isNaN(precio_unitario)) {
 		console.log("Is Nan Precio Venta")
 	} else if (isNaN(rentabilidad)) {
 		console.log("Is Nan Rentabilidad")
 	} else {
 
 		/* Precio Venta */
-		let inputNum = precio_venta;
+		let inputNum = precio_unitario;
 		inputNum = inputNum.toString()
 		inputNum = inputNum.split('.')
 		if (!inputNum[1]) {
@@ -351,7 +368,7 @@ $("#porcentaje").on("keyup", function () {
 		} else {
 			separados = [inputNum[0]]
 		}
-		precio_venta_final = separados.join(',') + '.' + inputNum[1];
+		precio_unitario_final = separados.join(',') + '.' + inputNum[1];
 		/* Fin de precio venta */
 
 		/* Ganancia Unidad */
@@ -384,7 +401,7 @@ $("#porcentaje").on("keyup", function () {
 		/* Fin de precio venta */
 
 		$("input[name=ganancia_unidad]").val(ganancia_unidad_final);
-		$("input[name=precio_venta]").val(precio_venta_final);
+		$("input[name=precio_unitario]").val(precio_unitario_final);
 		$("input[name=rentabilidad]").val(Math.round(rentabilidad));
 	}
 

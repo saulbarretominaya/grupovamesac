@@ -154,7 +154,6 @@ $(document).ready(function () {
 	});
 });
 
-
 $("#registrar_cotizacion").on("click", function () {
 	var validez_oferta = $("#validez_oferta").val();
 	var direccion = $("#direccion").val();
@@ -187,9 +186,6 @@ $("#registrar_cotizacion").on("click", function () {
 $(".select2").select2({
 	theme: "bootstrap4"
 });
-
-
-
 
 $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	debugger;

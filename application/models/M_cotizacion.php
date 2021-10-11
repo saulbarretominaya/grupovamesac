@@ -54,7 +54,7 @@ class M_cotizacion extends CI_Model
         precio_costo,
         porcentaje,
         ganancia_unidad,
-        precio_venta,
+        precio_unitario,
         rentabilidad
         id_grupo,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,

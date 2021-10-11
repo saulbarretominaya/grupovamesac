@@ -106,7 +106,7 @@
                       </div>
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Descripcion</label>
                         <div class="col-sm-9">
@@ -115,18 +115,10 @@
                       </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                       <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Stock</label>
+                        <label class="col-sm-4 col-form-label">Stock</label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="abreviatura_tabla">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                      <div class="form-group row">
-                        <label class="col-sm-8 col-form-label">Subir Comprobante</label>
-                        <div class="col-sm-3">
                           <input type="text" class="form-control" id="abreviatura_tabla">
                         </div>
                       </div>
@@ -180,9 +172,9 @@
                     <div class="col-sm-2">
                       <input type="text" class="form-control" id="ganancia_unidad" name="ganancia_unidad" readonly="">
                     </div>
-                    <label class="col-sm-2 col-form-label">Precio Venta</label>
+                    <label class="col-sm-2 col-form-label">Precio Unitario</label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" id="precio_venta" name="precio_venta" readonly="">
+                      <input type="text" class="form-control" id="precio_unitario" name="precio_unitario" readonly="">
                     </div>
                     <label class="col-sm-2 col-form-label">Rentabilidad %</label>
                     <div class="col-sm-2">
