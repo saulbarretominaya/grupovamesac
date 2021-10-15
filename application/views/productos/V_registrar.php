@@ -60,7 +60,7 @@
                         <label class="col-sm-3 col-form-label">Almacen</label>
                         <div class="col-sm-9">
                           <select class="form-control select2" id="id_almacen" style="width: 100%;">
-                            <option value="0">Seleccione</option>
+                            <option value="0">Seleccionar</option>
                             <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                               <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
                                 <?php echo $cbox_almacen->descripcion; ?>
@@ -78,7 +78,7 @@
                           <!-- <select class="form-control"> -->
                           <select class="form-control select2" id="id_unidad_medida" style="width: 100%;">
 
-                            <option value="0">Seleccione</option>
+                            <option value="0">Seleccionar</option>
                             <?php foreach ($cbox_unidad_medida as $cbox_unidad_medida) : ?>
                               <option value="<?php echo $cbox_unidad_medida->id_dmultitabla; ?>">
                                 <?php echo $cbox_unidad_medida->descripcion; ?>
@@ -95,7 +95,7 @@
                         <label class="col-sm-3 col-form-label">Codigo Sunat</label>
                         <div class="col-sm-9">
                           <select class="form-control select2" id="id_sunat" style="width: 100%;">
-                            <option value="0">Seleccione</option>
+                            <option value="0">Seleccionar</option>
                             <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
                               <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
                                 <?php echo $cbox_codigos_sunat->descripcion; ?>
@@ -147,7 +147,7 @@
                     <label class="col-sm-2 col-form-label">Moneda</label>
                     <div class="col-sm-2">
                       <select class="form-control" id="id_moneda">
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                           <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
                             <?php echo $cbox_moneda->abreviatura; ?>
@@ -205,7 +205,7 @@
                       <!-- <select class="form-control" id="id_grupo"> -->
                       <select class="form-control select2" id="id_grupo" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_grupo as $cbox_grupo) : ?>
                           <option value="<?php echo $cbox_grupo->id_dmultitabla; ?>">
                             <?php echo $cbox_grupo->descripcion; ?>
@@ -218,7 +218,7 @@
                     <div class="col-sm-2">
                       <!-- <select class="form-control" id="id_familia"> -->
                       <select class="form-control select2" id="id_familia" style="width: 100%;">
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_familia as $cbox_familia) : ?>
                           <option value="<?php echo $cbox_familia->id_dmultitabla; ?>">
                             <?php echo $cbox_familia->descripcion; ?>
@@ -232,7 +232,7 @@
                       <!-- <select class="form-control" id="id_clase"> -->
                       <select class="form-control select2" id="id_clase" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_clase as $cbox_clase) : ?>
                           <option value="<?php echo $cbox_clase->id_dmultitabla; ?>">
                             <?php echo $cbox_clase->descripcion; ?>
@@ -248,7 +248,7 @@
                       <!-- <select class="form-control" id="id_sub_clase"> -->
                       <select class="form-control select2" id="id_sub_clase" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_sub_clase as $cbox_sub_clase) : ?>
                           <option value="<?php echo $cbox_sub_clase->id_dmultitabla; ?>">
                             <?php echo $cbox_sub_clase->descripcion; ?>
@@ -261,7 +261,7 @@
                       <!-- <select class="form-control" id="id_sub_clase_dos"> -->
                       <select class="form-control select2" id="id_sub_clase_dos" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_sub_clase_dos as $cbox_sub_clase_dos) : ?>
                           <option value="<?php echo $cbox_sub_clase_dos->id_dmultitabla; ?>">
                             <?php echo $cbox_sub_clase_dos->descripcion; ?>
@@ -273,7 +273,7 @@
                     <div class="col-sm-2">
                       <select class="form-control select2" id="id_marca_producto" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_marca_productos as $cbox_marca_productos) : ?>
                           <option value="<?php echo $cbox_marca_productos->id_dmultitabla; ?>">
                             <?php echo $cbox_marca_productos->descripcion; ?>
@@ -306,7 +306,7 @@
                     <label class="col-sm-2 col-form-label">Cta vta</label>
                     <div class="col-sm-4">
                       <select class="form-control" id="id_cta_vta">
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_cta_vta as $cbox_cta_vta) : ?>
                           <option value="<?php echo $cbox_cta_vta->id_dmultitabla; ?>">
                             <?php echo $cbox_cta_vta->descripcion; ?>
@@ -317,7 +317,7 @@
                     <label class="col-sm-2 col-form-label">Cta ent</label>
                     <div class="col-sm-4">
                       <select class="form-control" id="id_cta_ent">
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_cta_ent as $cbox_cta_ent) : ?>
                           <option value="<?php echo $cbox_cta_ent->id_dmultitabla; ?>">
                             <?php echo $cbox_cta_ent->descripcion; ?>

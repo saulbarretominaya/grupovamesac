@@ -40,7 +40,7 @@
                       <td><?php echo $index->ds_modelo_tablero; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
 
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_modal_detalle_tablero" value="<?php echo $index->id_tablero; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_tablero" value="<?php echo $index->id_tablero; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
                       <td><a href="<?php echo base_url(); ?>C_tableros/enlace_actualizar/<?php echo $index->id_tablero; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
 
                       <!-- Inicio Modal -->

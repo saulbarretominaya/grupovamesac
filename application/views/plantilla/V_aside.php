@@ -63,7 +63,7 @@
           <!-- fin de multitablas -->
 
           <!-- Logistica-->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-luggage-cart"></i>
               <p>
@@ -79,7 +79,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- fin logistica-->
 
           <!-- almacen -->
@@ -109,7 +109,7 @@
           <!-- fin de almacen -->
 
           <!-- tipo de cambio -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-chart-line"></i>
               <p>
@@ -125,7 +125,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- fin de tipo de cambio-->
 
           <!--comercial -->
@@ -143,6 +143,14 @@
                 <a href="<?php echo base_url() . "C_cotizacion" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cotizacion</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_comodin" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comodin</p>
                 </a>
               </li>
             </ul>

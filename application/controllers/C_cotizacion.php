@@ -25,10 +25,11 @@ class C_cotizacion extends CI_Controller
 	{
 
 		$data = array(
+			'index_clientes_proveedores' => $this->M_cotizacion->index_clientes_proveedores(),
 			'index_productos' => $this->M_cotizacion->index_productos(),
 			'index_tableros' => $this->M_cotizacion->index_tableros(),
+			'index_comodin' => $this->M_cotizacion->index_comodin(),
 			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
-
 		);
 
 		$this->load->view('plantilla/V_header');

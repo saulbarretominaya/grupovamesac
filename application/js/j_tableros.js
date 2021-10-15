@@ -174,12 +174,7 @@ $("#insertar").on("click", function () {
 		});
 	};
 });
-/*Fin CRUD*/
-
-
-
-/*  Ventanas Modal */
-$(document).on("click", ".js_modal_detalle_tablero", function () {
+$(document).on("click", ".js_lupa_tablero", function () {
 
 	valor_id = $(this).val();
 	$.ajax({
@@ -194,6 +189,11 @@ $(document).on("click", ".js_modal_detalle_tablero", function () {
 		}
 	});
 });
+/*Fin CRUD*/
+
+
+
+/*  Ventanas Modal en el Insertar*/
 $(document).on("click", ".js_seleccionar_modal_producto", function () {
 
 	productos = $(this).val();
@@ -282,11 +282,11 @@ $(document).ready(function () {
 
 
 });
-/* Fin de Modal*/
+/* Fin de Modal Insertar*/
 
 
 
-/* Input's de Calculo */
+/* Eventos */
 $("#cantidad_unitaria").on("keyup", function () {
 	calcular_importes();
 });
@@ -296,7 +296,7 @@ $("#cantidad_tablero").on("keyup", function () {
 $("#porcentaje_margen").on("keyup", function () {
 	calcular_margen();
 });
-/* Fin de Input's */
+/* Fin de Eventos */
 
 
 

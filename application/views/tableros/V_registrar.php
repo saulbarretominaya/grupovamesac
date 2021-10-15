@@ -58,7 +58,7 @@
                                   <label class="col-sm-3 col-form-label">Codigo Sunat</label>
                                   <div class="col-md-8">
                                     <select class="form-control select2" id="id_sunat" style="width: 100%;">
-                                      <option value="1">Seleccione</option>
+                                      <option value="0">Seleccionar</option>
                                       <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
                                         <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
                                           <?php echo $cbox_codigos_sunat->descripcion; ?>
@@ -87,7 +87,7 @@
                                 <label for="">Marca Tablero</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_marca_tablero" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_marca_tableros as $cbox_marca_tableros) : ?>
                                       <option value="<?php echo $cbox_marca_tableros->id_dmultitabla; ?>">
                                         <?php echo $cbox_marca_tableros->descripcion; ?>
@@ -101,7 +101,7 @@
                                 <label for="">Modelo Tablero</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_modelo_tablero" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_modelo_tableros as $cbox_modelo_tableros) : ?>
                                       <option value="<?php echo $cbox_modelo_tableros->id_dmultitabla; ?>">
                                         <?php echo $cbox_modelo_tableros->descripcion; ?>
@@ -115,7 +115,7 @@
                                 <label for="">Tipo Moneda</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_moneda" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                       <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
                                         <?php echo $cbox_moneda->descripcion; ?>
@@ -129,7 +129,7 @@
                                 <label for="">Almacen</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_almacen" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                                       <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
                                         <?php echo $cbox_almacen->descripcion; ?>

@@ -58,7 +58,7 @@
                         <label class="col-sm-3 col-form-label">Almacen</label>
                         <div class="col-sm-9">
                           <select class="form-control select2" id="id_almacen" style="width: 100%;">
-                            <option value="0">Seleccione</option>
+                            <option value="0">Seleccionar</option>
 
                             <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                               <?php if ($cbox_almacen->id_dmultitabla == $enlace_actualizar->id_almacen) : ?>
@@ -83,7 +83,7 @@
                         <div class="col-sm-5">
                           <!-- <select class="form-control"> -->
                           <select class="form-control select2" id="id_unidad_medida" style="width: 100%;">
-                            <option value="0">Seleccione</option>
+                            <option value="0">Seleccionar</option>
 
                             <?php foreach ($cbox_unidad_medida as $cbox_unidad_medida) : ?>
                               <?php if ($cbox_unidad_medida->id_dmultitabla == $enlace_actualizar->id_unidad_medida) : ?>
@@ -108,7 +108,7 @@
                         <label class="col-sm-3 col-form-label">Codigo Sunat</label>
                         <div class="col-sm-9">
                           <select class="form-control select2" id="id_sunat" style="width: 100%;">
-                            <option value="0">Seleccione</option>
+                            <option value="0">Seleccionar</option>
 
                             <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
                               <?php if ($cbox_codigos_sunat->id_dmultitabla == $enlace_actualizar->id_sunat) : ?>
@@ -168,7 +168,7 @@
                     <label class="col-sm-2 col-form-label">Moneda</label>
                     <div class="col-sm-2">
                       <select class="form-control" id="id_moneda">
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                           <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar->id_moneda) : ?>
@@ -233,7 +233,7 @@
                       <!-- <select class="form-control" id="id_grupo"> -->
                       <select class="form-control select2" id="id_grupo" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_grupo as $cbox_grupo) : ?>
                           <?php if ($cbox_grupo->id_dmultitabla == $enlace_actualizar->id_grupo) : ?>
@@ -254,7 +254,7 @@
                     <div class="col-sm-2">
                       <!-- <select class="form-control" id="id_familia"> -->
                       <select class="form-control select2" id="id_familia" style="width: 100%;">
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_familia as $cbox_familia) : ?>
                           <?php if ($cbox_familia->id_dmultitabla == $enlace_actualizar->id_familia) : ?>
@@ -276,7 +276,7 @@
                       <!-- <select class="form-control" id="id_clase"> -->
                       <select class="form-control select2" id="id_clase" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_clase as $cbox_clase) : ?>
                           <?php if ($cbox_clase->id_dmultitabla == $enlace_actualizar->id_clase) : ?>
@@ -300,7 +300,7 @@
                       <!-- <select class="form-control" id="id_sub_clase"> -->
                       <select class="form-control select2" id="id_sub_clase" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_sub_clase as $cbox_sub_clase) : ?>
                           <?php if ($cbox_sub_clase->id_dmultitabla == $enlace_actualizar->id_sub_clase) : ?>
@@ -321,7 +321,7 @@
                       <!-- <select class="form-control" id="id_sub_clase_dos"> -->
                       <select class="form-control select2" id="id_sub_clase_dos" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_sub_clase_dos as $cbox_sub_clase_dos) : ?>
                           <?php if ($cbox_sub_clase_dos->id_dmultitabla == $enlace_actualizar->id_sub_clase_dos) : ?>
@@ -341,7 +341,7 @@
                     <div class="col-sm-2">
                       <select class="form-control select2" id="id_marca_producto" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_marca_productos as $cbox_marca_productos) : ?>
                           <?php if ($cbox_marca_productos->id_dmultitabla == $enlace_actualizar->id_marca_producto) : ?>
@@ -382,7 +382,7 @@
                     <div class="col-sm-4">
                       <select class="form-control select2" id="id_cta_vta" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_cta_vta as $cbox_cta_vta) : ?>
                           <?php if ($cbox_cta_vta->id_dmultitabla == $enlace_actualizar->id_cta_vta) : ?>
@@ -402,7 +402,7 @@
                     <div class="col-sm-4">
                       <select class="form-control select2" id="id_cta_ent" style="width: 100%;">
 
-                        <option value="0">Seleccione</option>
+                        <option value="0">Seleccionar</option>
 
                         <?php foreach ($cbox_cta_ent as $cbox_cta_ent) : ?>
                           <?php if ($cbox_cta_ent->id_dmultitabla == $enlace_actualizar->id_cta_ent) : ?>
