@@ -38,7 +38,6 @@ $(document).ready(function () {
 		searching: true,
 
 		// /*------------------*/
-<<<<<<< HEAD
 		initComplete: function () {
 			// Apply the search
 			this.api()
@@ -53,22 +52,6 @@ $(document).ready(function () {
 					});
 				});
 		},
-=======
-		// initComplete: function () {
-		// 	// Apply the search
-		// 	this.api()
-		// 		.columns()
-		// 		.every(function () {
-		// 			var that = this;
-
-		// 			$("input", this.footer()).on("keyup change clear", function () {
-		// 				if (that.search() !== this.value) {
-		// 					that.search(this.value).draw();
-		// 				}
-		// 			});
-		// 		});
-		// },
->>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
 
 		/*------------------*/
 

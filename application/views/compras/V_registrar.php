@@ -7,7 +7,7 @@
           <div class="col-sm-6">
             <h1>Registrar Compras
               <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-              <a href="<?php echo base_url(); ?>C_clientes_proveedores" class="btn btn-danger btn-sm">CANCELAR</a>
+              <a href="<?php echo base_url(); ?>C_compras" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
         </div>
@@ -35,38 +35,27 @@
                       </li>
                     </ul>
                   </div>
-
                   <!-- CABECERAS -->
-
                   <div class="card-body">
                     <div class="tab-content" id="custom-tabs-one-tabContent">
                       <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-
                         <div class="card card-info">
-
                           <div class="card-body">
                             <form class="needs-validation" novalidate>
-
                               <!-- Primera Fila-->
                               <div class="form-row align-items-center">
                                 <!-- CODIGO DE COMPRA -->
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-2 mb-3">
                                   <label for="id_compras">Codigo</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupIdCompras"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="id_compras" value="" readonly="" placeholder="" aria-describedby="inputGroupIdCompras" required>
+                                    <input type="text" class="form-control" id="id_compras" value="001" readonly="" placeholder="" required>
                                   </div>
                                 </div>
                                 <!-- ENCARGADO-->
-                                <div class="col-md-3 mb-3">
-                                  <label for="encargado">Encargado</label>
+                                <div class="col-md-4 mb-3">
+                                  <label for="">Encargado</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupEncargado"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="encargado" aria-describedby="inputGroupEncargado" required>
+                                    <select class="custom-select " id="encargado" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($encargado as $encargado) : ?>
                                         <option value="<?php echo $encargado->ds_omar; ?>">
@@ -80,9 +69,6 @@
                                 <div class="col-md-3 mb-3">
                                   <label for="fecha_emision_voucher">Fecha de Emisión </label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupFechaEmisionVoucher"> <i class="far fa-calendar-alt"></i> </span>
-                                    </div>
                                     <input type="date" class="form-control" id="fecha_emision_voucher" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
                                   </div>
                                 </div>
@@ -90,9 +76,6 @@
                                 <div class="col-md-3 mb-3">
                                   <label for="fecha_vencimiento_voucher">Fecha de Vencimiento</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupFechaVencimientoVoucher"> <i class="far fa-calendar-alt"></i> </span>
-                                    </div>
                                     <input type="date" class="form-control" id="fecha_vencimiento_voucher" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
                                   </div>
                                 </div>
@@ -103,10 +86,7 @@
                                 <div class="col-md-3 mb-3 ">
                                   <label for="tipo_comprobante">Tipo de Comprobante</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupTipoComprobante"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="tipo_comprobante" aria-describedby="inputGroupTipoComprabante" required>
+                                    <select class="custom-select " id="tipo_comprobante" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?>
                                         <option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>">
@@ -120,30 +100,21 @@
                                 <div class="col-md-3 mb-3">
                                   <label for="numero_serie">N° Serie</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupNumeroSerie"> <i class="far fa-id-card"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="numero_serie" placeholder="Ingresa el N° de Serie" aria-describedby="inputGroupNumeroSerie" required>
+                                    <input type="text" class="form-control" id="numero_serie" placeholder="Ingresa el N° de Serie" required>
                                   </div>
                                 </div>
                                 <!-- EXAMINAR ARCHIVO -->
                                 <div class="col-md-3 mb-3">
                                   <label for="subir_factura">Subir Archivo</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupSubirFactura"> <i class="far fa-id-card"></i> </span>
-                                    </div>
-                                    <input type="file" class="form-control" id="subir_factura" accept=".pdf, .doc, .jpg, .png" value="Examinar" aria-describedby="inputGroupSubirFactura" required>
+                                    <input type="file" class="form-control" id="subir_factura" accept=".pdf, .doc, .jpg, .png" value="Examinar" required>
                                   </div>
                                 </div>
                                 <!-- MERCADERIA-->
                                 <div class="col-md-3 mb-3 ">
                                   <label for="mercaderia">Mercaderia</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupMercaderia"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="mercaderia" aria-describedby="inputGroupMercaderia" required>
+                                    <select class="custom-select " id="mercaderia" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_mercaderia as $cbox_mercaderia) : ?>
                                         <option value="<?php echo $cbox_mercaderia->id_dmultitabla; ?>">
@@ -157,26 +128,77 @@
                               <!-- Tercera Fila -->
                               <div class="form-row align-items-center ">
                                 <!-- PROVEEDOR -->
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                   <label for="proveedor">Proveedor</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupProveedor"> <i class="far fa-id-card"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="proveedor" placeholder="Ingresa el Nombre" aria-describedby="inputGroupProveedor" required>
-                                    <div class="input-group-prepend">
-                                      <button class="btn btn-info" type="Submit">Buscar</button>
+                                    <input type="text" class="form-control" id="proveedor" placeholder="Ingresa el Nombre" readonly required>
+                                    <input type="hidden" id="id_proveedor">
+                                    <div class="input-group-prepend ">
+                                      <button class="btn btn-info" type="button" data-toggle="modal" data-target="#opcion_target_proveedores">Buscar</button>
+                                      <div class="modal fade" id="opcion_target_proveedores" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h4 class="modal-title">Proveedores</h4>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <table id="id_datatable_proveedores" class="table table-bordered table-sm table-hover table-responsive">
+                                                <thead>
+                                                  <tr>
+                                                    <th></th>
+                                                    <th id="dtable_codigo">Codigo</th>
+                                                    <th id="dtable_razon_social">Razon Social</th>
+                                                    <th id="dtable_ruc">RUC</th>
+                                                    <th id="dtable_correo">Correo</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <?php if (!empty($proveedor)) : ?>
+                                                    <?php foreach ($proveedor as $index_proveedores) : ?>
+                                                      <tr>
+                                                        <td>
+                                                          <?php $split_proveedores =
+                                                            $index_proveedores->id_cliente_proveedor . "*" .
+                                                            $index_proveedores->razon_social . "*" .
+                                                            $index_proveedores->num_documento . "*" .
+                                                            $index_proveedores->email;
+                                                          ?>
+
+                                                          <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_proveedores" value="<?php echo $split_proveedores; ?>" data-toggle="modal" data-target="#opcion_target_proveedores"><span class="fas fa-check"></span></button>
+                                                        </td>
+
+                                                        <td><?php echo $index_proveedores->id_cliente_proveedor; ?></td>
+                                                        <td><?php echo $index_proveedores->razon_social; ?></td>
+                                                        <td><?php echo $index_proveedores->num_documento; ?></td>
+                                                        <td><?php echo $index_proveedores->email; ?></td>
+                                                      </tr>
+                                                    <?php endforeach; ?>
+                                                  <?php endif; ?>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            </div>
+                                          </div>
+                                          <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                      </div>
+
+
                                     </div>
                                   </div>
                                 </div>
                                 <!-- CONDICION DE PAGO-->
-                                <div class="col-md-3 mb-3 ">
+                                <div class="col-md-2 mb-3 ">
                                   <label for="condicion_pago">Condición de Pago</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupCondicionPago"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="condicion_pago" aria-describedby="inputGroupCondicionPago" required>
+                                    <select class="custom-select " id="condicion_pago" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_condicion_pago as $cbox_condicion_pago) : ?>
                                         <option value="<?php echo $cbox_condicion_pago->id_dmultitabla; ?>">
@@ -187,13 +209,10 @@
                                   </div>
                                 </div>
                                 <!-- MEDIO DE PAGO-->
-                                <div class="col-md-3 mb-3 ">
+                                <div class="col-md-2 mb-3 ">
                                   <label for="medio_pago">Medio de Pago</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupMedioPago"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="medio_pago" aria-describedby="inputGroupMedioPago" required>
+                                    <select class="custom-select " id="medio_pago" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_medio_pago as $cbox_medio_pago) : ?>
                                         <option value="<?php echo $cbox_medio_pago->id_dmultitabla; ?>">
@@ -207,10 +226,7 @@
                                 <div class="col-md-2 mb-3 ">
                                   <label for="moneda">Moneda</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupMoneda"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="moneda" aria-describedby="inputGroupMoneda" required>
+                                    <select class="custom-select " id="moneda" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                         <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
@@ -227,10 +243,7 @@
                                 <div class="col-md-2 mb-3 ">
                                   <label for="cta_ent">Cta. Entr</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupCuentaEntrada"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="cta_ent" aria-describedby="inputGroupCuentaEntrada" required>
+                                    <select class="custom-select " id="cta_ent" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_cta_ent as $cbox_cta_ent) : ?>
                                         <option value="<?php echo $cbox_cta_ent->id_dmultitabla; ?>">
@@ -244,40 +257,28 @@
                                 <div class="col-md-3 mb-3">
                                   <label for="subtotal_factura">Subtotal</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupSubtotalFactura"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="subtotal_factura" placeholder="" aria-describedby="inputGroupSubtotalFactura" required>
+                                    <input type="text" class="form-control" id="subtotal_factura" placeholder="" required>
                                   </div>
                                 </div>
                                 <!-- IGV-->
                                 <div class="col-md-2 mb-3">
                                   <label for="igv_factura">Igv</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupIgvFactura"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="igv_factura" placeholder="" aria-describedby="inputGroupIgvFactura" required>
+                                    <input type="text" class="form-control" id="igv_factura" placeholder="" required>
                                   </div>
                                 </div>
                                 <!-- TOTAL -->
                                 <div class="col-md-3 mb-3">
                                   <label for="total_factura">Total</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupTotalFactura"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="total_factura" placeholder="" aria-describedby="inputGroupTotalFactura" required>
+                                    <input type="text" class="form-control" id="total_factura" placeholder="" required>
                                   </div>
                                 </div>
                                 <!-- ESTADO-->
                                 <div class="col-md-2 mb-3 ">
                                   <label for="estado_compra">Estado</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupEstadoCompra"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="estado_compra" aria-describedby="inputGroupEstadoCompra" required>
+                                    <select class="custom-select " id="estado_compra" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_tipo_persona_sunat as $cbox_tipo_persona_sunat) : ?>
                                         <option value="<?php echo $cbox_tipo_persona_sunat->id_dmultitabla; ?>">
@@ -294,10 +295,7 @@
                                 <div class="col-md-12 mb-3">
                                   <label for="observacion_pago">Observaciones y Datos Extras</label>
                                   <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputObservacionPago"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <textarea class="form-control" id="observacion_pago" rows="5" aria-describedby="inputGroupObservacionPago" required></textarea>
+                                    <textarea class="form-control" id="observacion_pago" rows="5" required></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -313,33 +311,20 @@
                         <div class="card card-info">
                           <div class="card-body">
                             <form class="needs-validation" novalidate>
-
                               <!--Primera Fila-->
                               <div class="form-row align-items-center">
-                                <!-- CODIGO DE PAGO-->
-                                <!-- <div class="col-md-2 mb-3">
-                                  <label for="codigo_pago_voucher">Codigo</label>
-                                  <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupCodigoPagoVoucher"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="codigo_pago_voucher" value="" readonly="" placeholder="" aria-describedby="inputGroupCodigoPagoVoucher" required>
-                                  </div>
-                                </div> -->
                                 <!-- VOUCHER -->
                                 <div class="col-md-3 mb-3">
                                   <label for="voucher_pago">N° Voucher</label>
                                   <div class="input-group">
-
-                                    <input type="text" class="form-control" id="voucher_pago" placeholder="N° Voucher" aria-describedby="inputGroupVoucherPago" required>
+                                    <input type="text" class="form-control" id="voucher_pago" placeholder="N° Voucher" required>
                                   </div>
                                 </div>
                                 <!-- TRANSACCIÓN-->
                                 <div class="col-md-3 mb-3">
                                   <label for="transaccion">Transaccion</label>
                                   <div class="input-group">
-
-                                    <select class="custom-select " id="transaccion" aria-describedby="inputGroupTransaccion" required>
+                                    <select class="custom-select " id="transaccion" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_transaccion as $cbox_transaccion) : ?>
                                         <option value="<?php echo $cbox_transaccion->id_dmultitabla; ?>">
@@ -349,22 +334,18 @@
                                     </select>
                                   </div>
                                 </div>
-
                                 <!-- FECHA DE VOUCHER -->
                                 <div class="col-md-3 mb-3">
                                   <label for="fecha_pago_voucher">Fecha de Voucher</label>
                                   <div class="input-group">
-
                                     <input type="date" class="form-control" id="fecha_pago_voucher" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
                                   </div>
                                 </div>
-
                                 <!-- TIPO DE CAMBIO-->
                                 <div class="col-md-3 mb-3">
                                   <label for="tipo_cambio">Tipo de Cambio</label>
                                   <div class="input-group">
-
-                                    <input type="text" class="form-control" id="tipo_cambio" placeholder="Tipo de Cambio" aria-describedby="inputGroupTipoCambio" required>
+                                    <input type="text" class="form-control" id="tipo_cambio" placeholder="Tipo de Cambio" required>
                                   </div>
                                 </div>
                               </div>
@@ -374,76 +355,41 @@
                                 <div class="col-md-3 mb-3">
                                   <label for="numero_deposito">N° Deposito :</label>
                                   <div class="input-group">
-
-                                    <input type="text" class="form-control" id="numero_deposito" placeholder="" aria-describedby="inputGroupNumeroDeposito" required>
+                                    <input type="text" class="form-control" id="numero_deposito" placeholder="" required>
                                   </div>
                                 </div>
                                 <!-- N° LETRA - CHEKE -->
                                 <div class="col-md-3 mb-3">
                                   <label for="numero_letra_cheque">N° Letra / Cheque :</label>
                                   <div class="input-group">
-
-                                    <input type="text" class="form-control" id="numero_letra_cheque" placeholder="" aria-describedby="inputGroupNumeroLetraCheque" required>
+                                    <input type="text" class="form-control" id="numero_letra_cheque" placeholder="" required>
                                   </div>
                                 </div>
                                 <!-- BANCO-->
                                 <div class="col-md-3 mb-3 ">
                                   <label for="banco">Banco</label>
                                   <div class="input-group">
-
-                                    <select class="custom-select " id="banco" aria-describedby="inputGroupBanco" required>
+                                    <select class="custom-select" id="banco" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_banco as $cbox_banco) : ?>
-                                        <option value="<?php echo $cbox_banco->id_dmultitabla; ?>">
-                                          <?php echo $cbox_banco->descripcion; ?>
-                                        </option>
+                                        <option value="<?php echo $cbox_banco->id_dmultitabla; ?>"><?php echo $cbox_banco->descripcion; ?></option>
                                       <?php endforeach; ?>
+                                      <input type="hidden" class="form-control" id="prueba" placeholder="" required>
                                     </select>
                                   </div>
                                 </div>
-
                                 <!-- MEDIO DE PAGO VOUCHER -->
                                 <div class="col-md-3 mb-3 ">
                                   <label for="medio_pago_voucher">Medio de Pago</label>
                                   <div class="input-group">
-
-                                    <select class="custom-select " id="medio_pago_voucher" aria-describedby="inputGroupMedioPagoVoucher" required>
+                                    <select class="custom-select " id="medio_pago_voucher" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_medio_pago_voucher as $cbox_medio_pago_voucher) : ?>
-                                        <option value="<?php echo $cbox_medio_pago_voucher->id_dmultitabla; ?>">
-                                          <?php echo $cbox_medio_pago_voucher->descripcion; ?>
-                                        </option>
+                                        <option value="<?php echo $cbox_medio_pago_voucher->id_dmultitabla; ?>"><?php echo $cbox_medio_pago_voucher->descripcion; ?></option>
                                       <?php endforeach; ?>
                                     </select>
                                   </div>
                                 </div>
-                                <!-- MONEDA PAGO VOUCHER -->
-                                <!-- <div class="col-md-2 mb-3 ">
-                                  <label for="moneda_voucher">Moneda</label>
-                                  <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupMonedaVoucher"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <select class="custom-select " id="moneda_voucher" aria-describedby="inputGroupMonedaVoucher" required>
-                                      <option value="0" selected>Selecciona...</option>
-                                      <?php foreach ($cbox_moneda_voucher as $cbox_moneda_voucher) : ?>
-                                        <option value="<?php echo $cbox_moneda_voucher->id_dmultitabla; ?>">
-                                          <?php echo $cbox_moneda_voucher->descripcion; ?>
-                                        </option>
-                                      <?php endforeach; ?>
-                                    </select>
-                                  </div>
-                                </div> -->
-                                <!-- GIRADO A -->
-                                <!-- <div class="col-md-4 mb-3">
-                                  <label for="beneficiario_pago">Girado A :</label>
-                                  <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupBeneficiarioPago"> <i class="fas fa-user-shield"></i> </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="beneficiario_pago" placeholder="" aria-describedby="inputGroupBeneficiarioPago" required>
-                                  </div>
-                                </div>-->
                               </div>
                               <!-- Tercera Fila -->
                               <div class="form-row align-items-center">
@@ -451,7 +397,6 @@
                                 <div class="col-md-3 mb-3">
                                   <label for="importe_pago">Importe</label>
                                   <div class="input-group">
-
                                     <input type="text" class="form-control" id="importe_pago" placeholder="" aria-describedby="inputGroupImportePago" required>
                                   </div>
                                 </div>
@@ -459,7 +404,6 @@
                                 <div class="col-md-3 mb-3 ">
                                   <label for="leyenda">Leyenda</label>
                                   <div class="input-group">
-
                                     <select class="custom-select " id="leyenda" aria-describedby="inputGroupLeyenda" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_leyenda as $cbox_leyenda) : ?>
@@ -474,7 +418,6 @@
                                 <div class="col-md-6 mb-3">
                                   <label for="subir_voucher">Subir Archivo</label>
                                   <div class="input-group">
-
                                     <input type="file" class="form-control" id="subir_voucher" accept=".pdf, .doc, .jpg, .png" value="Examinar" aria-describedby="inputGroupSubirVoucher" required>
                                   </div>
                                 </div>
@@ -485,7 +428,6 @@
                                 <div class="col-md-7 mb-3">
                                   <label for="observacion_voucher">Observación</label>
                                   <div class="input-group">
-
                                     <input type="text" class="form-control" id="observacion_voucher" placeholder="" aria-describedby="inputGroupObservacionVoucher" required>
                                   </div>
                                 </div>
@@ -493,8 +435,7 @@
                                 <div class="col-md-4 mb-3 ">
                                   <label for="estado_voucher">Estado</label>
                                   <div class="input-group">
-
-                                    <select class="custom-select " id="moneda" aria-describedby="inputGroupEstadoVoucher" required>
+                                    <select class="custom-select " id="estado_voucher" aria-describedby="inputGroupEstadoVoucher" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
                                         <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
@@ -508,7 +449,6 @@
                                     </div>
                                   </div>
                                 </div>
-
                               </div>
                             </form>
                           </div>
@@ -531,9 +471,6 @@
                                     <th>Banco</th>
                                     <th>Monto</th>
                                     <th>Estado</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -614,6 +551,7 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url() ?>plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() ?>plantilla/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
@@ -625,6 +563,9 @@
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
   <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+
+  <!-- Select2 -->
+  <script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 
   <script>
     var base_url = "<?php echo base_url(); ?>";

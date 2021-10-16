@@ -8,7 +8,20 @@ class M_compras extends CI_Model
     public function index()
     {
         $resultados = $this->db->query(
-            "select * from clientes_proveedores where id_estado=1"
+            " 
+        SELECT 
+        id_compras,
+        id_cliente_proveedor,
+        (SELECT razon_social FROM clientes_proveedores WHERE clientes_proveedores.`id_cliente_proveedor`=compras.`id_cliente_proveedor`) AS ds_proveedores,
+        id_tipo_comprobante,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_comprobante) AS ds_tipo_comprobante,
+        numero_serie,
+        id_condicion_pago,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_condicion_pago) AS ds_condicion_pago,
+        id_moneda,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+        total_factura,fecha_emision_voucher,fecha_vencimiento_voucher,observacion_voucher,id_estado_compra       
+        FROM compras"
         );
         return $resultados->result();
     }
@@ -34,11 +47,96 @@ class M_compras extends CI_Model
         return $resultados->result();
     }
 
-    public function insertar($id_compras, $id_trabajador, $fecha_emision_voucher, $fecha_vencimiento_voucher, $numero_serie,  $id_cliente_proveedor, $subtotal_factura, $igv_factura, $total_factura, $estado_compra, $observacion_pago, $tipo_comprobante, $mercaderia, $condicion_pago, $medio_pago, $moneda, $cta_ent)
-    {
+    public function insertar(
+        $id_compras,
+        $id_trabajador,
+        $fecha_emision_voucher,
+        $fecha_vencimiento_voucher,
+        $id_tipo_comprobante,
+        $numero_serie,
+        $id_mercaderia,
+        $id_cliente_proveedor,
+        $id_condicion_pago,
+        $id_medio_pago,
+        $id_moneda,
+        $id_cta_ent,
+        $subtotal_factura,
+        $igv_factura,
+        $total_factura,
+        $id_estado_compra,
+        $observacion_pago,
+        $num_voucher_pago,
+        $id_transaccion,
+        $fecha_pago_voucher,
+        $tipo_cambio,
+        $numero_deposito,
+        $numero_letra_cheque,
+        $id_banco,
+        $id_medio_pago_voucher,
+        $importe_pago,
+        $id_leyenda,
+        $observacion_voucher,
+        $id_estado_voucher
+    ) {
         return $this->db->query("INSERT INTO compras
-        (id_compras, id_trabajador, fecha_emision_voucher, fecha_vencimiento_voucher, numero_serie, id_cliente_proveedor, subtotal_factura, igv_factura, total_factura, estado_compra, observacion_pago,tipo_comprobante, mercaderia, condicion_pago, medio_pago, moneda, cta_ent,id_estado)
-        VALUES ('','$id_compras', '$id_trabajador', '$fecha_emision_voucher', '$fecha_vencimiento_voucher', '$numero_serie',  '$id_cliente_proveedor', '$subtotal_factura', '$igv_factura', '$total_factura', '$estado_compra', '$observacion_pago', '$tipo_comprobante', '$mercaderia', '$condicion_pago', '$medio_pago', '$moneda', '$cta_ent', '1')");
+        (id_compras,
+        id_trabajador,
+        fecha_emision_voucher,
+        fecha_vencimiento_voucher,
+        id_tipo_comprobante,
+        numero_serie,
+        id_mercaderia,
+        id_cliente_proveedor,
+        id_condicion_pago,
+        id_medio_pago,
+        id_moneda,
+        id_cta_ent,
+        subtotal_factura,
+        igv_factura,
+        total_factura,
+        id_estado_compra,
+        observacion_pago,
+        num_voucher_pago,
+        id_transaccion,
+        fecha_pago_voucher,
+        tipo_cambio,
+        numero_deposito,
+        numero_letra_cheque,
+        id_banco,
+        id_medio_pago_voucher,
+        importe_pago,
+        id_leyenda,
+        observacion_voucher,
+        id_estado_voucher)
+        VALUES ('',
+        '$id_trabajador',
+        '$fecha_emision_voucher',
+        '$fecha_vencimiento_voucher',
+        '$id_tipo_comprobante',
+        '$numero_serie',
+        '$id_mercaderia',
+        '$id_cliente_proveedor',
+        '$id_condicion_pago',
+        '$id_medio_pago',
+        '$id_moneda',
+        '$id_cta_ent',
+        '$subtotal_factura',
+        '$igv_factura',
+        '$total_factura',
+        '$id_estado_compra',
+        '$observacion_pago',
+        '$num_voucher_pago',
+        '$id_transaccion',
+        '$fecha_pago_voucher',
+        '$tipo_cambio',
+        '$numero_deposito',
+        '$numero_letra_cheque',
+        '$id_banco',
+        '$id_medio_pago_voucher',
+        '$importe_pago',
+        '$id_leyenda',
+        '$observacion_voucher',
+        '$id_estado_voucher')");
     }
 
     public function lastID()
@@ -47,25 +145,45 @@ class M_compras extends CI_Model
     }
 
     public function insertar_detalle(
-        $id_voucher_pago,
-        $fecha_pago_voucher,
-        $tipo_cambio,
-        $numero_deposito,
-        $numero_letra_cheque,
-        $importe_pago,
-        $observacion_voucher,
-        $estado_voucher,
+        $id_compras,
+        $dt_voucher_pago,
+        $dt_fecha_pago_voucher,
+        $dt_ds_medio_pago_voucher,
+        $id_dt_medio_pago_voucher,
+        $id_dt_banco,
+        $dt_ds_banco,
+        $dt_importe_pago,
+        $id_dt_estado_voucher,
         $total_deuda_voucher,
         $monto_pagado_voucher,
-        $monto_pendiente_voucher,
-        $transaccion,
-        $banco,
-        $medio_pago_voucher,
-        $leyenda
+        $monto_pendiente_voucher
     ) {
         return $this->db->query("INSERT INTO detalle_compras
-        (id_voucher_pago, fecha_pago_voucher, tipo_cambio, numero_deposito, numero_letra_cheque, importe_pago, observacion_voucher, estado_voucher, total_deuda_voucher, monto_pagado_voucher, monto_pendiente_voucher)
-        VALUES ('','$id_voucher_pago', '$fecha_pago_voucher', '$tipo_cambio', '$numero_deposito', '$numero_letra_cheque',  '$importe_pago', '$observacion_voucher', '$estado_voucher', '$total_deuda_voucher', '$monto_pagado_voucher', '$monto_pendiente_voucher', '$transaccion', '$banco', '$medio_pago_voucher', '$leyenda', '1')");
+        (id_dcompras,
+        id_compras,
+        dt_voucher_pago,
+        dt_fecha_pago_voucher,
+        dt_ds_medio_pago_voucher,
+        id_dt_medio_pago_voucher,
+        id_dt_banco,
+        dt_ds_banco,
+        dt_importe_pago,
+        id_dt_estado_voucher,
+        total_deuda_voucher,
+        monto_pagado_voucher,
+        monto_pendiente_voucher)
+        VALUES ('','$id_compras',
+        '$dt_voucher_pago',
+        '$dt_fecha_pago_voucher',
+        '$dt_ds_medio_pago_voucher',
+        '$id_dt_medio_pago_voucher',
+        '$id_dt_banco',
+        '$dt_ds_banco',
+        '$dt_importe_pago',
+        '$id_dt_estado_voucher',
+        '$total_deuda_voucher',
+        '$monto_pagado_voucher',
+        '$monto_pendiente_voucher')");
     }
 
     public function enlace_actualizar($id_cliente_proveedor)

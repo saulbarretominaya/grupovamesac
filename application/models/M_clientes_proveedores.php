@@ -5,13 +5,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_clientes_proveedores extends CI_Model
 {
+
     public function index()
     {
         $resultados = $this->db->query(
-            "select * from clientes_proveedores where id_estado=1"
+            // "select * from trabajadores where id_estado=1"
+
+            "select
+             a.nombres,a.ape_materno,a.ape_paterno,id_cliente_proveedor,
+            (select descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_persona) AS ds_tipo_persona
+             from clientes_proveedores a WHERE a.id_estado=1"
         );
         return $resultados->result();
     }
+
 
     public function index_modal($id_cliente_proveedor)
     {

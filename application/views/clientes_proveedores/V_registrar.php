@@ -24,29 +24,24 @@
                 <h2 class="card-title">Registro de Clientes/Provedores</h3>
               </div>
               <div class="card-body">
-                <div class="card card-info">
+                <div class="card card-info collapsed-card">
                   <div class="card-header">
-                    <h3 class="card-title">Informacion Definir</h3>
+                    <h3 class="card-title">Datos Sunat</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
                   </div>
                   <div class="card-body">
                     <form class="needs-validation" novalidate>
                       <!-- Esta Parte es la de los Combobox -->
                       <div class="form-row">
-                        <!-- ID CLIENTE/PROVEEDOR
-                        <div class="col-md-4 mb-3">
-                          <label for="id_cliente_proveedor">Codigo</label>
-                          <div class="form-group">
-                            <input type="text" class="form-control" id="id_cliente_proveedor" value="" readonly="">
-                          </div>
-                        </div> -->
                         <!-- ORIGEN -->
                         <div class="col-md-4 mb-3">
                           <label for="origen">Origen</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupOrigen"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="origen" aria-describedby="inputGroupOrigen" required>
+                            <select class="custom-select " id="origen" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_origen as $cbox_origen) : ?>
                                 <option value="<?php echo $cbox_origen->id_dmultitabla; ?>">
@@ -60,10 +55,7 @@
                         <div class="col-md-4 mb-3">
                           <label for="condicion">Condicion</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCondicion"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="condicion" aria-describedby="inputGroupCondicion" required>
+                            <select class="custom-select " id="condicion" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_condicion as $cbox_condicion) : ?>
                                 <option value="<?php echo $cbox_condicion->id_dmultitabla; ?>">
@@ -77,10 +69,7 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="tipo_persona">Tipo Persona</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTipoPersona"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="tipo_persona" aria-describedby="inputGroupTipoPersona" required>
+                            <select class="custom-select " id="tipo_persona" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_tipo_persona as $cbox_tipo_persona) : ?>
                                 <option value="<?php echo $cbox_tipo_persona->id_dmultitabla; ?>">
@@ -93,15 +82,11 @@
                       </div>
                       <!-- Segunda Fila -->
                       <div class="form-row align-items-center">
-
                         <!-- TIPO PERSONA SUNAT -->
                         <div class="col-md-4 mb-3 ">
                           <label for="tipo_persona_sunat">Tipo Persona Sunat</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTpersonaSunat"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="tipo_persona_sunat" aria-describedby="inputGroupTpersonaSunat" required>
+                            <select class="custom-select " id="tipo_persona_sunat" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_tipo_persona_sunat as $cbox_tipo_persona_sunat) : ?>
                                 <option value="<?php echo $cbox_tipo_persona_sunat->id_dmultitabla; ?>">
@@ -115,10 +100,7 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="tipo_documento">Tipo Documento</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTdocumento"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="tipo_documento" aria-describedby="inputGroupTdocumento" required>
+                            <select class="custom-select " id="tipo_documento" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
                                 <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
@@ -132,17 +114,7 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="num_documento">Numero Documento</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
-                              =======
-                              <input type="text" class="form-control" id="num_documento" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
-                              <div class="input-group-prepend">
-                                <button class="btn btn-info" type="Submit">Buscar</button>
-                                <!-- <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span> -->
-                              </div>
+                            <input type="text" class="form-control" id="num_documento" maxlength="15" placeholder="Ingresa el N° Documento" required>
                           </div>
                         </div>
                       </div>
@@ -150,9 +122,14 @@
                   </div>
                 </div>
                 <!-- Segundo Card -->
-                <div class="card card-info">
+                <div class="card card-info collapsed-card">
                   <div class="card-header">
                     <h3 class="card-title">Datos Personales</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
                   </div>
                   <div class="card-body">
                     <form class="needs-validation" novalidate>
@@ -161,30 +138,21 @@
                         <div class="col-md-4 mb-3">
                           <label for="nombres">Nombres</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupNombres"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="nombres" placeholder="Nombres" aria-describedby="inputGroupNombres" required>
+                            <input type="text" class="form-control" id="nombres" placeholder="Nombres" required>
                           </div>
                         </div>
                         <!-- APELLIDO PATERNO -->
                         <div class="col-md-4 mb-3">
                           <label for="ape_paterno">Apellido Paterno</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupApePaterno"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="ape_paterno" placeholder="Apellido Paterno" aria-describedby="inputGroupApePaterno" required>
+                            <input type="text" class="form-control" id="ape_paterno" placeholder="Apellido Paterno" required>
                           </div>
                         </div>
                         <!-- APELLIDO MATERNO -->
                         <div class="col-md-4 mb-3">
                           <label for="ape_materno">Apellido Materno</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupApeMaterno"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="ape_materno" placeholder="Apellido Materno" aria-describedby="inputGroupApeMaterno" required>
+                            <input type="text" class="form-control" id="ape_materno" placeholder="Apellido Materno" required>
                           </div>
                         </div>
                       </div>
@@ -194,20 +162,14 @@
                         <div class="col-md-6 mb-3">
                           <label for="razon_social">Razon Social</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupRazonSocial"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="razon_social" placeholder="Razon Social" aria-describedby="inputGroupLugarNacimiento" required>
+                            <input type="text" class="form-control" id="razon_social" placeholder="Razon Social" required>
                           </div>
                         </div>
                         <!-- DIRECCION FISCAL -->
                         <div class="col-md-6 mb-3">
                           <label for="direccion_fiscal">Direccion Fiscal</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDireccionFiscal"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="direccion_fiscal" placeholder="Direccion Fiscal" aria-describedby="inputGroupDireccionFiscal" required>
+                            <input type="text" class="form-control" id="direccion_fiscal" placeholder="Direccion Fiscal" required>
                           </div>
                         </div>
                       </div>
@@ -217,31 +179,29 @@
                         <div class="col-md-6 mb-3">
                           <label for="direccion_alm1">Direccion Almacen 1</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDireccionAlmacen1"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="direccion_alm1" placeholder="Direccion Almacen 1" aria-describedby="inputGroupDireccionAlmacen1" required>
+                            <input type="text" class="form-control" id="direccion_alm1" placeholder="Direccion Almacen 1" required>
                           </div>
                         </div>
                         <!-- DIRECCION ALTERNA 2 -->
                         <div class="col-md-6 mb-3">
                           <label for="direccion_alm2">Direccion Almacen 2</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDireccionAlmacen2"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="direccion_alm2" placeholder="Direccion Almacen 2" aria-describedby="inputGroupDireccionAlmacen2" required>
+                            <input type="text" class="form-control" id="direccion_alm2" placeholder="Direccion Almacen 2" a required>
                           </div>
                         </div>
                       </div>
                     </form>
                   </div>
                 </div>
-
                 <!-- Tercer Card -- UBIGEO -->
-                <div class="card card-info">
-                  <div class="card-header">
+                <div class="card card-info collapsed-card">
+                  <div class=" card-header">
                     <h3 class="card-title">Ubigeo</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
                   </div>
                   <div class="card-body">
                     <form class="needs-validation" novalidate>
@@ -251,10 +211,7 @@
                         <div class="col-md-4 mb-3">
                           <label for="departamento">Departamento</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDepartamento"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="departamento" aria-describedby="inputGroupDepartamento" required>
+                            <select class="custom-select " id="departamento" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>">
@@ -268,10 +225,7 @@
                         <div class="col-md-4 mb-3">
                           <label for="provincia">Provincia</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupProvincia"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="provincia" aria-describedby="inputGroupProvincia" required>
+                            <select class="custom-select " id="provincia" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
                                 <option value="<?php echo $cbox_provincia->id_dmultitabla; ?>">
@@ -285,10 +239,7 @@
                         <div class="col-md-4 mb-3">
                           <label for="distrito">Distrito</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDistrito"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="distrito" aria-describedby="inputGroupDistrito" required>
+                            <select class="custom-select " id="distrito" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
                                 <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>">
@@ -299,44 +250,27 @@
                           </div>
                         </div>
                       </div>
-
                       <!-- Segunda Fila -->
                       <div class="form-row">
                         <!-- TELEFONO -->
                         <div class="col-md-4 mb-3">
                           <label for="telefono">Telefono</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTelefono"> <i class="fas fa-phone-alt"></i></span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' data-mask>
-                              =======
-                              <input type="text" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' data-mask>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="telefono" data-inputmask='"mask": "(99) 999-9999"' data-mask>
                           </div>
                         </div>
                         <!-- CELULAR -->
                         <div class="col-md-4 mb-3">
                           <label for="celular">Celular</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCelular"> <i class="fas fa-mobile-alt"></i> </span>
-                            </div>
-                            <!-- <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask> -->
-                            <<<<<<< HEAD <input type="number" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
-                              =======
-                              <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="celular" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
                           </div>
                         </div>
                         <!-- TIPO DE GIRO -->
                         <div class="col-md-4 mb-3">
                           <label for="tipo_giro">Tipo de Giro</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTipoGiro"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="tipo_giro" aria-describedby="inputGroupTipoGiro" required>
+                            <select class="custom-select " id="tipo_giro" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_tipo_giro as $cbox_tipo_giro) : ?>
                                 <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>">
@@ -353,10 +287,7 @@
                         <div class="col-md-4 mb-3">
                           <label for="condicion_pago">Condicion de Pago</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCondicionPago"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="condicion_pago" aria-describedby="inputGroupCondicionPago" required>
+                            <select class="custom-select " id="condicion_pago" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_condicion_pago as $cbox_condicion_pago) : ?>
                                 <option value="<?php echo $cbox_condicion_pago->id_dmultitabla; ?>">
@@ -366,23 +297,6 @@
                             </select>
                           </div>
                         </div>
-                        <!-- VENDEDOR -->
-                        <!-- <div class="col-md-8 mb-3">
-                          <label for="vendedor">Vendedor</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupVendedor"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="vendedor" aria-describedby="inputGroupVendedor" required>
-                              <option value="0" selected>Selecciona...</option>
-                              <?php foreach ($cbox_vendedor as $cbox_vendedor) : ?>
-                                <option value="<?php echo $cbox_tipo_persona->id_dmultitabla; ?>">
-                                  <?php echo $cbox_vendedor->descripcion; ?>
-                                </option>
-                              <?php endforeach; ?>
-                            </select>
-                          </div>
-                        </div> -->
                       </div>
                       <!-- Cuarta Fila -->
                       <div class="form-row">
@@ -390,79 +304,45 @@
                         <div class="col-md-4 mb-3">
                           <label for="linea_credito_soles">Linea de Credito S/.</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLineaCreditoSoles"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
-                              =======
-                              <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
                           </div>
                         </div>
                         <!-- CREDITO UNITARIO - SOLES-->
                         <div class="col-md-4 mb-3">
                           <label for="credito_unitario_soles">Credito Unitario S/.</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCreditoUnitarioSoles"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" required>
-                              =======
-                              <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioSoles" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" required>
                           </div>
                         </div>
                         <!-- DISPONIBLE - SOLES-->
                         <div class="col-md-4 mb-3">
                           <label for="disponible_soles">Disponible S/.</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDisponibleSoles"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
-                              =======
-                              <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
                           </div>
                         </div>
                       </div>
-
                       <!-- Quinta Fila -->
                       <div class="form-row">
                         <!-- LINEA DE CREDITO - DOLARES -->
                         <div class="col-md-4 mb-3">
                           <label for="linea_credito_dolares">Linea de Credito $ </label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLineaCreditoDolares"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
-                              =======
-                              <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoDolares" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="linea_credito_dolares" placeholder="Ingresa la Linea de Credito" required>
                           </div>
                         </div>
                         <!-- CREDITO UNITARIO - DOLARES-->
                         <div class="col-md-4 mb-3">
                           <label for="credito_unitario_dolares">Credito Unitario $ </label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupCreditoUnitarioDolares"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
-                              =======
-                              <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="credito_unitario_dolares" placeholder="Ingresa el Credito Unitario" aria-describedby="inputGroupCreditoUnitarioDolares" required>
                           </div>
                         </div>
                         <!-- DISPONIBLE - DOLARES-->
                         <div class="col-md-4 mb-3">
                           <label for="disponible_dolares">Disponible $ </label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupDisponibleDolares"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <input type="number" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleDolares" required>
+                            <input type="text" class="form-control" id="disponible_dolares" placeholder="Ingrese la Disponibilidad" required>
                           </div>
                         </div>
                       </div>
@@ -472,36 +352,21 @@
                         <div class="col-md-4 mb-3">
                           <label for="linea_opcional">Linea Opcional</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLineaOpcional"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" aria-describedby="inputGroupLineaOpcional" required>
-                              =======
-                              <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" aria-describedby="inputGroupLineaOpcional" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" required>
                           </div>
                         </div>
                         <!-- LINEA OPCIONAL UNITARIO-->
                         <div class="col-md-4 mb-3">
                           <label for="linea_opcional_unitaria">Linea Opcional Unitario </label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLineaOpcionalUnitaria"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="number" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" aria-describedby="inputGroupLineaOpcionalUnitaria" required>
-                              =======
-                              <input type="text" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" aria-describedby="inputGroupLineaOpcionalUnitaria" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="text" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" required>
                           </div>
                         </div>
                         <!-- LINEA DISPONIBLE-->
                         <div class="col-md-4 mb-3">
                           <label for="linea_disponible">Linea Disponible</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupLineaDisponible"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="linea_disponible" aria-describedby="inputGroupLineaDisponible" required>
+                            <select class="custom-select " id="linea_disponible" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_linea_disponible as $cbox_linea_disponible) : ?>
                                 <option value="<?php echo $cbox_linea_disponible->id_dmultitabla; ?>">
@@ -512,41 +377,27 @@
                           </div>
                         </div>
                       </div>
-
-
                       <!-- Septima Fila -->
                       <div class="form-row">
                         <!-- EMAIL -->
                         <div class="col-md-4 mb-3">
                           <label for="email">Correo</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupEmail"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="email" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" required>
-                              =======
-                              <input type="text" class="form-control" id="email" placeholder="Ingrese el correo electronico" aria-describedby="inputGroupEmail" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="email" class="form-control" id="email" placeholder="Ingrese el correo electronico" required>
                           </div>
                         </div>
                         <!-- CONTACTO REGISTRO-->
                         <div class="col-md-4 mb-3">
                           <label for="contacto_registro">Contacto Registro</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupContactoRegistro"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="contacto_registro" placeholder="Ingrese el Contacto de Registro" aria-describedby="inputGroupContactoRegistro" required>
+                            <input type="text" class="form-control" id="contacto_registro" placeholder="Ingrese el Contacto de Registro" required>
                           </div>
                         </div>
                         <!-- ESTADO-->
                         <div class="col-md-4 mb-3">
                           <label for="estado_cliente">Estado Cliente</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupEstadoCliente"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <select class="custom-select " id="estado_cliente" aria-describedby="inputGroupEstadoCliente" required>
+                            <select class="custom-select " id="estado_cliente" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_estado_cliente as $cbox_estado_cliente) : ?>
                                 <option value="<?php echo $cbox_estado_cliente->id_dmultitabla; ?>">
@@ -563,32 +414,20 @@
                         <div class="col-md-4 mb-3">
                           <label for="email_cobranza">Email - Cobranza</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupEmailCobranza"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
-                            <<<<<<< HEAD <input type="email" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" required>
-                              =======
-                              <input type="text" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" aria-describedby="inputGroupEmailCobranza" required>
-                              >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                            <input type="email" class="form-control" id="email_cobranza" placeholder="Ingrese el correo de cobranza" required>
                           </div>
                         </div>
                         <!-- CONTACTO COBRANZA-->
                         <div class="col-md-4 mb-3">
                           <label for="contacto_cobranza">Contacto Cobranza</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupContactoCobranza"> <i class="far fa-id-card"></i> </span>
-                            </div>
-                            <input type="text" class="form-control" id="contacto_cobranza" placeholder="Ingrese el contacto de cobranza" aria-describedby="inputGroupContactoCobranza" required>
+                            <input type="text" class="form-control" id="contacto_cobranza" placeholder="Ingrese el contacto de cobranza" required>
                           </div>
                         </div>
                         <!-- TIPO CLIENTE DE PAGO-->
                         <div class="col-md-4 mb-3">
                           <label for="tipo_cliente_pago">Tipo de Cliente de Pago</label>
                           <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTipoClientePago"> <i class="fas fa-user-shield"></i> </span>
-                            </div>
                             <select class="custom-select " id="tipo_cliente_pago" aria-describedby="inputGroupTipoClientePago" required>
                               <option value="0" selected>Selecciona...</option>
                               <?php foreach ($cbox_tipo_cliente_pago as $cbox_tipo_cliente_pago) : ?>
@@ -600,8 +439,6 @@
                           </div>
                         </div>
                       </div>
-
-
                     </form>
                   </div>
                 </div>

@@ -250,11 +250,7 @@ class C_clientes_proveedores extends CI_Controller
     public function eliminar($id_cliente_proveedor)
     {
 
-<<<<<<< HEAD
         $this->M_clientes_proveedores->actualizar_estado($id_cliente_proveedor);
-=======
-        $this->M_trabajadores->actualizar_estado($id_cliente_proveedor);
->>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
         redirect(base_url() . "C_clientes_proveedores");
     }
 }

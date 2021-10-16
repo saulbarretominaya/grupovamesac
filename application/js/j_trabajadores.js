@@ -74,52 +74,6 @@ $(document).ready(function () {
 });
 
 
-// SELECCIONAR TIPO DE DOCUMENTO
-
-var selTipoDocumento = document.getElementById("tipo_documento");
-
-selTipoDocumento.addEventListener("change", function (event) {
-
-	// var ndocumento1 = document.getElementById("num_documento1");
-	// var ndocumento2 = document.getElementById("num_documento2");
-	var ndocumento = document.getElementById("num_documento");
-
-	if (this.value === "594") {
-
-		// ndocumento1.type = "text";
-		// ndocumento2.type = "hidden";
-		ndocumento.minLength = "8";
-		ndocumento.maxLength = "8";
-
-	} else {
-
-		ndocumento.minLength = "12";
-		ndocumento.maxLength = "12";
-
-		// ndocumento1.type = "hidden";
-		// ndocumento2.type = "text";
-		console.log("está vacío...");
-	}
-
-});
-
-
-// // Accedemos al botón
-// var emailInput = document.getElementById('emailInput');
-
-// // evento para el input radio del "si"
-// document.getElementById('interesadoPositivo').addEventListener('click', function (e) {
-// 	console.log('Vamos a habilitar el input text');
-// 	emailInput.disabled = false;
-// });
-
-// // evento para el input radio del "no"
-// document.getElementById('interesadoNegativo').addEventListener('click', function (e) {
-// 	console.log('Vamos a deshabilitar el input text');
-// 	emailInput.disabled = true;
-// });
-
-
 // INSERTAR
 
 $("#registrar").on("click", function () {

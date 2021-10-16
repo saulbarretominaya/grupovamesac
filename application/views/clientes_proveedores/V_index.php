@@ -41,16 +41,10 @@
                       <td><?php echo $index->nombres; ?></td>
                       <td><?php echo $index->ape_paterno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
-                      <td><?php echo $index->ape_materno; ?></td>
-                      <<<<<<< HEAD <td><button type="button" class="btn btn-info btn-xs btn-view-clientes" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-clientes"><span class="fa fa-search"></span></button></td>
-                        <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
-                        <td> <a href="<?php echo base_url(); ?>C_clientes_proveedores/eliminar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
-                        =======
-                        <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
-                        <td></td>
-                        <!-- <td><button type="button" class="btn btn-info btn-xs btn-view-trabajador" value="<?php echo $index->id_trabajador; ?>" data-toggle="modal" data-target="#modal-trabajador"><span class="fa fa-search"></span></button></td> -->
-                        <!-- <td <a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>  -->
-                        >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
+                      <td><?php echo $index->ds_tipo_persona; ?></td>
+                      <td><button type="button" class="btn btn-info btn-xs btn-view-clientes" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-clientes"><span class="fa fa-search"></span></button></td>
+                      <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
+                      <td> <a href="<?php echo base_url(); ?>C_clientes_proveedores/eliminar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -73,12 +67,12 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color:#48C9B0">
-          <<<<<<< HEAD <h4 class="modal-title w-100 text-center ">DETALLE DE CLIENTES</h4>
-            =======
-            <h4 class="modal-title w-100 text-center ">DETALLE DE TRABAJADORES</h4>
-            >>>>>>> ca49e722a7a457780cc9404ca86e8f14065adab8
-            <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title w-100 text-center ">DETALLE DE CLIENTES</h4>
+
+          <h4 class="modal-title w-100 text-center ">DETALLE DE TRABAJADORES</h4>
+
+          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
 

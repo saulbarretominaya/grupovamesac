@@ -28,7 +28,7 @@ $("#id_agregar_tablero").on("click", function (e) {
 	if (resultado_campo == true) {
 		html = "<tr>";
 		html += "    <input type='hidden' name='id_almacen_det[]' 			value='" + id_almacen_det + "'>";
-		html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + ds_almacen + "'>" + ds_almacen + "</td>";
+
 		html += "    <input type='hidden' name='id_producto[]' 				value='" + id_producto + "'>";
 		html += "<td><input type='hidden' name='codigo_producto[]' 			value='" + codigo_producto + "'>" + codigo_producto + "</td>";
 		html += "<td><input type='hidden' name='descripcion_producto[]' 	value='" + descripcion_producto + "'>" + descripcion_producto + "</td>";

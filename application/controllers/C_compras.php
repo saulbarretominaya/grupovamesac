@@ -119,114 +119,129 @@ class C_compras extends CI_Controller
         $id_trabajador = $this->input->post("id_trabajador");
         $fecha_emision_voucher = $this->input->post("fecha_emision_voucher");
         $fecha_vencimiento_voucher = $this->input->post("fecha_vencimiento_voucher");
+        $id_tipo_comprobante = $this->input->post("tipo_comprobante");
         $numero_serie = $this->input->post("numero_serie");
+        $id_mercaderia = $this->input->post("mercaderia");
         $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+        $id_condicion_pago = $this->input->post("condicion_pago");
+        $id_medio_pago = $this->input->post("medio_pago");
+        $id_moneda = $this->input->post("moneda");
+        $id_cta_ent = $this->input->post("cta_ent");
         $subtotal_factura = $this->input->post("subtotal_factura");
         $igv_factura = $this->input->post("igv_factura");
         $total_factura = $this->input->post("total_factura");
-        $estado_compra = $this->input->post("estado_compra");
+        $id_estado_compra = $this->input->post("estado_compra");
         $observacion_pago = $this->input->post("observacion_pago");
-        $tipo_comprobante = $this->input->post("tipo_comprobante");
-        $condicion_pago = $this->input->post("condicion_pago");
-        $moneda = $this->input->post("moneda");
-        $cta_ent = $this->input->post("cta_ent");
-        $medio_pago = $this->input->post("medio_pago");
-        $mercaderia = $this->input->post("mercaderia");
 
-        //DETALLE
-        $id_voucher_pago = $this->input->post("voucher_pago");
+        // PAGOS DE COMPRAS
+        $num_voucher_pago = $this->input->post("voucher_pago");
+        $id_transaccion = $this->input->post("transaccion");
         $fecha_pago_voucher = $this->input->post("fecha_pago_voucher");
         $tipo_cambio = $this->input->post("tipo_cambio");
         $numero_deposito = $this->input->post("numero_deposito");
         $numero_letra_cheque = $this->input->post("numero_letra_cheque");
+        $id_banco = $this->input->post("banco");
+        $id_medio_pago_voucher = $this->input->post("medio_pago_voucher");
         $importe_pago = $this->input->post("importe_pago");
+        $id_leyenda = $this->input->post("leyenda");
         $observacion_voucher = $this->input->post("observacion_voucher");
-        $estado_voucher = $this->input->pot("estado_voucher");
+        $id_estado_voucher = $this->input->post("estado_voucher");
+
+        //DETALLE
+
+        $dt_voucher_pago = $this->input->post("dt_voucher_pago");
+        $dt_fecha_pago_voucher = $this->input->post("dt_fecha_pago_voucher");
+        $dt_ds_medio_pago_voucher = $this->input->post("dt_ds_medio_pago_voucher");
+        $id_dt_medio_pago_voucher = $this->input->post("medio_pago_voucher");
+        $id_dt_banco = $this->input->post("dt_banco");
+        $dt_ds_banco = $this->input->post("dt_ds_banco");
+        $dt_importe_pago = $this->input->post("dt_importe_pago");
+        $id_dt_estado_voucher = $this->input->post("dt_estado_voucher");
         $total_deuda_voucher = $this->input->post("total_deuda_voucher");
         $monto_pagado_voucher = $this->input->post("monto_pagado_voucher");
         $monto_pendiente_voucher = $this->input->post("monto_pendiente_voucher");
-        $transaccion = $this->input->post("transaccion");
-        $banco = $this->input->post("banco");
-        $medio_pago_voucher = $this->input->post("medio_pago_voucher");
-        $leyenda = $this->input->post("medio_leyenda");
 
         if ($this->M_compras->insertar(
             $id_compras,
             $id_trabajador,
             $fecha_emision_voucher,
             $fecha_vencimiento_voucher,
+            $id_tipo_comprobante,
             $numero_serie,
+            $id_mercaderia,
             $id_cliente_proveedor,
+            $id_condicion_pago,
+            $id_medio_pago,
+            $id_moneda,
+            $id_cta_ent,
             $subtotal_factura,
             $igv_factura,
             $total_factura,
-            $estado_compra,
+            $id_estado_compra,
             $observacion_pago,
-            $tipo_comprobante,
-            $condicion_pago,
-            $moneda,
-            $cta_ent,
-            $medio_pago,
-            $mercaderia
-
-        )) {
-            $id_voucher_pago = $this->M_compras->lastID();
-            $this->insertar_detalle(
-                $id_voucher_pago,
-                $fecha_pago_voucher,
-                $tipo_cambio,
-                $numero_deposito,
-                $numero_letra_cheque,
-                $importe_pago,
-                $observacion_voucher,
-                $estado_voucher,
-                $total_deuda_voucher,
-                $monto_pagado_voucher,
-                $monto_pendiente_voucher,
-                $transaccion,
-                $banco,
-                $medio_pago_voucher,
-                $leyenda
-            );
-            echo json_encode($id_voucher_pago);
-        }
-    }
-
-    public function insertar_detalle(
-        $id_voucher_pago,
-        $fecha_pago_voucher,
-        $tipo_cambio,
-        $numero_deposito,
-        $numero_letra_cheque,
-        $importe_pago,
-        $observacion_voucher,
-        $estado_voucher,
-        $total_deuda_voucher,
-        $monto_pagado_voucher,
-        $monto_pendiente_voucher,
-        $transaccion,
-        $banco,
-        $medio_pago_voucher,
-        $leyenda
-    ) {
-
-        $this->M_tableros->insertar_detalle(
-            $id_voucher_pago,
+            $num_voucher_pago,
+            $id_transaccion,
             $fecha_pago_voucher,
             $tipo_cambio,
             $numero_deposito,
             $numero_letra_cheque,
+            $id_banco,
+            $id_medio_pago_voucher,
             $importe_pago,
+            $id_leyenda,
             $observacion_voucher,
-            $estado_voucher,
-            $total_deuda_voucher,
-            $monto_pagado_voucher,
-            $monto_pendiente_voucher,
-            $transaccion,
-            $banco,
-            $medio_pago_voucher,
-            $leyenda
-        );
+            $id_estado_voucher
+
+        )) {
+            $id_compras = $this->M_compras->lastID();
+            $this->insertar_detalle(
+                $id_compras,
+                $dt_voucher_pago,
+                $dt_fecha_pago_voucher,
+                $dt_ds_medio_pago_voucher,
+                $id_dt_medio_pago_voucher,
+                $id_dt_banco,
+                $dt_ds_banco,
+                $dt_importe_pago,
+                $id_dt_estado_voucher,
+                $total_deuda_voucher,
+                $monto_pagado_voucher,
+                $monto_pendiente_voucher
+            );
+            echo json_encode($id_compras);
+        }
+    }
+
+    public function insertar_detalle(
+        $id_compras,
+        $dt_voucher_pago,
+        $dt_fecha_pago_voucher,
+        $dt_ds_medio_pago_voucher,
+        $id_dt_medio_pago_voucher,
+        $id_dt_banco,
+        $dt_ds_banco,
+        $dt_importe_pago,
+        $id_dt_estado_voucher,
+        $total_deuda_voucher,
+        $monto_pagado_voucher,
+        $monto_pendiente_voucher
+    ) {
+        for ($i = 0; $i < count($dt_voucher_pago); $i++) {
+            $this->M_compras->insertar_detalle(
+                $id_compras,
+                $dt_voucher_pago[$i],
+                $dt_fecha_pago_voucher[$i],
+                $dt_ds_medio_pago_voucher[$i],
+                $id_dt_medio_pago_voucher[$i],
+                $id_dt_banco[$i],
+                $dt_ds_banco[$i],
+                $dt_importe_pago[$i],
+                $id_dt_estado_voucher[$i],
+                $total_deuda_voucher,
+                $monto_pagado_voucher,
+                $monto_pendiente_voucher
+            );
+        }
     }
 
     public function enlace_actualizar($id_compras)
@@ -253,101 +268,101 @@ class C_compras extends CI_Controller
         $this->load->view('compras/V_actualizar', $data);
     }
 
-    public function actualizar()
-    {
+    // public function actualizar()
+    // {
 
-        $id_compras = $this->input->post("id_compras");
-        $id_trabajador = $this->input->post("id_trabajador");
-        $fecha_emision_voucher = $this->input->post("fecha_emision_voucher");
-        $fecha_vencimiento_voucher = $this->input->post("fecha_vencimiento_voucher");
-        $numero_serie = $this->input->post("numero_serie");
-        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
-        $subtotal_factura = $this->input->post("subtotal_factura");
-        $igv_factura = $this->input->post("igv_factura");
-        $total_factura = $this->input->post("total_factura");
-        $estado_compra = $this->input->post("estado_compra");
-        $observacion_pago = $this->input->post("observacion_pago");
-        $codigo_pago_voucher = $this->input->post("codigo_pago_voucher");
-        $voucher_pago = $this->input->post("voucher_pago");
-        $fecha_pago_voucher = $this->input->post("fecha_pago_voucher");
-        $tipo_cambio = $this->input->post("tipo_cambio");
-        $numero_letra_cheque = $this->input->post("numero_letra_cheque");
-        $importe_pago = $this->input->post("importe_pago");
-        $observacion_voucher = $this->input->post("observacion_voucher");
-        $estado_voucher = $this->input->pot("estado_voucher");
-        $total_deuda_voucher = $this->input->post("total_deuda_voucher");
-        $beneficiario_pago = $this->input->post("beneficiario_pago");
-        $numero_deposito = $this->input->post("numero_deposito");
-        $monto_pagado_voucher = $this->input->post("monto_pagado_voucher");
-        $monto_pendiente_voucher = $this->input->post("monto_pendiente_voucher");
-        $tipo_comprobante = $this->input->post("tipo_comprobante");
-        $mercaderia = $this->input->post("mercaderia");
-        $condicion_pago = $this->input->post("condicion_pago");
-        $medio_pago = $this->input->post("medio_pago");
-        $moneda = $this->input->post("moneda");
-        $cta_ent = $this->input->post("cta_ent");
-        $transaccion = $this->input->post("transaccion");
-        $banco = $this->input->post("banco");
-        $medio_pago_voucher = $this->input->post("medio_pago_voucher");
-        $medio_leyenda = $this->input->post("medio_leyenda");
-        $moneda_voucher = $this->input->post("moneda_voucher");
-
-
-        $this->M_compras->actualizar($id_compras, $id_trabajador, $fecha_emision_voucher, $fecha_vencimiento_voucher, $numero_serie,  $id_cliente_proveedor, $subtotal_factura, $igv_factura, $total_factura, $estado_compra, $observacion_pago, $codigo_pago_voucher, $voucher_pago, $fecha_pago_voucher, $tipo_cambio, $numero_letra_cheque, $importe_pago, $observacion_voucher, $estado_voucher, $total_deuda_voucher, $condicion_pago, $beneficiario_pago, $numero_deposito, $monto_pagado_voucher, $monto_pendiente_voucher, $tipo_comprobante, $mercaderia, $condicion_pago, $medio_pago, $moneda, $cta_ent, $transaccion, $banco, $medio_pago_voucher, $medio_leyenda, $moneda_voucher);
-
-        echo json_encode($id_compras);
-    }
-
-    public function verificar_compras()
-    {
-
-        $id_compras = $this->input->post("id_compras");
-        $id_trabajador = $this->input->post("id_trabajador");
-        $fecha_emision_voucher = $this->input->post("fecha_emision_voucher");
-        $fecha_vencimiento_voucher = $this->input->post("fecha_vencimiento_voucher");
-        $numero_serie = $this->input->post("numero_serie");
-        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
-        $subtotal_factura = $this->input->post("subtotal_factura");
-        $igv_factura = $this->input->post("igv_factura");
-        $total_factura = $this->input->post("total_factura");
-        $estado_compra = $this->input->post("estado_compra");
-        $observacion_pago = $this->input->post("observacion_pago");
-        $codigo_pago_voucher = $this->input->post("codigo_pago_voucher");
-        $voucher_pago = $this->input->post("voucher_pago");
-        $fecha_pago_voucher = $this->input->post("fecha_pago_voucher");
-        $tipo_cambio = $this->input->post("tipo_cambio");
-        $numero_letra_cheque = $this->input->post("numero_letra_cheque");
-        $importe_pago = $this->input->post("importe_pago");
-        $observacion_voucher = $this->input->post("observacion_voucher");
-        $estado_voucher = $this->input->pot("estado_voucher");
-        $total_deuda_voucher = $this->input->post("total_deuda_voucher");
-        $beneficiario_pago = $this->input->post("beneficiario_pago");
-        $numero_deposito = $this->input->post("numero_deposito");
-        $monto_pagado_voucher = $this->input->post("monto_pagado_voucher");
-        $monto_pendiente_voucher = $this->input->post("monto_pendiente_voucher");
-        $tipo_comprobante = $this->input->post("tipo_comprobante");
-        $mercaderia = $this->input->post("mercaderia");
-        $condicion_pago = $this->input->post("condicion_pago");
-        $medio_pago = $this->input->post("medio_pago");
-        $moneda = $this->input->post("moneda");
-        $cta_ent = $this->input->post("cta_ent");
-        $transaccion = $this->input->post("transaccion");
-        $banco = $this->input->post("banco");
-        $medio_pago_voucher = $this->input->post("medio_pago_voucher");
-        $medio_leyenda = $this->input->post("medio_leyenda");
-        $moneda_voucher = $this->input->post("moneda_voucher");
+    //     $id_compras = $this->input->post("id_compras");
+    //     $id_trabajador = $this->input->post("id_trabajador");
+    //     $fecha_emision_voucher = $this->input->post("fecha_emision_voucher");
+    //     $fecha_vencimiento_voucher = $this->input->post("fecha_vencimiento_voucher");
+    //     $numero_serie = $this->input->post("numero_serie");
+    //     $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+    //     $subtotal_factura = $this->input->post("subtotal_factura");
+    //     $igv_factura = $this->input->post("igv_factura");
+    //     $total_factura = $this->input->post("total_factura");
+    //     $estado_compra = $this->input->post("estado_compra");
+    //     $observacion_pago = $this->input->post("observacion_pago");
+    //     $codigo_pago_voucher = $this->input->post("codigo_pago_voucher");
+    //     $voucher_pago = $this->input->post("voucher_pago");
+    //     $fecha_pago_voucher = $this->input->post("fecha_pago_voucher");
+    //     $tipo_cambio = $this->input->post("tipo_cambio");
+    //     $numero_letra_cheque = $this->input->post("numero_letra_cheque");
+    //     $importe_pago = $this->input->post("importe_pago");
+    //     $observacion_voucher = $this->input->post("observacion_voucher");
+    //     $estado_voucher = $this->input->pot("estado_voucher");
+    //     $total_deuda_voucher = $this->input->post("total_deuda_voucher");
+    //     $beneficiario_pago = $this->input->post("beneficiario_pago");
+    //     $numero_deposito = $this->input->post("numero_deposito");
+    //     $monto_pagado_voucher = $this->input->post("monto_pagado_voucher");
+    //     $monto_pendiente_voucher = $this->input->post("monto_pendiente_voucher");
+    //     $tipo_comprobante = $this->input->post("tipo_comprobante");
+    //     $mercaderia = $this->input->post("mercaderia");
+    //     $condicion_pago = $this->input->post("condicion_pago");
+    //     $medio_pago = $this->input->post("medio_pago");
+    //     $moneda = $this->input->post("moneda");
+    //     $cta_ent = $this->input->post("cta_ent");
+    //     $transaccion = $this->input->post("transaccion");
+    //     $banco = $this->input->post("banco");
+    //     $medio_pago_voucher = $this->input->post("medio_pago_voucher");
+    //     $medio_leyenda = $this->input->post("medio_leyenda");
+    //     $moneda_voucher = $this->input->post("moneda_voucher");
 
 
+    //     $this->M_compras->actualizar($id_compras, $id_trabajador, $fecha_emision_voucher, $fecha_vencimiento_voucher, $numero_serie,  $id_cliente_proveedor, $subtotal_factura, $igv_factura, $total_factura, $estado_compra, $observacion_pago, $codigo_pago_voucher, $voucher_pago, $fecha_pago_voucher, $tipo_cambio, $numero_letra_cheque, $importe_pago, $observacion_voucher, $estado_voucher, $total_deuda_voucher, $condicion_pago, $beneficiario_pago, $numero_deposito, $monto_pagado_voucher, $monto_pendiente_voucher, $tipo_comprobante, $mercaderia, $condicion_pago, $medio_pago, $moneda, $cta_ent, $transaccion, $banco, $medio_pago_voucher, $medio_leyenda, $moneda_voucher);
 
-        $data = $this->M_compras->verificar_compras($id_compras, $id_trabajador, $fecha_emision_voucher, $fecha_vencimiento_voucher, $numero_serie,  $id_cliente_proveedor, $subtotal_factura, $igv_factura, $total_factura, $estado_compra, $observacion_pago, $codigo_pago_voucher, $voucher_pago, $fecha_pago_voucher, $tipo_cambio, $numero_letra_cheque, $importe_pago, $observacion_voucher, $estado_voucher, $total_deuda_voucher, $condicion_pago, $beneficiario_pago, $numero_deposito, $monto_pagado_voucher, $monto_pendiente_voucher, $tipo_comprobante, $mercaderia, $condicion_pago, $medio_pago, $moneda, $cta_ent, $transaccion, $banco, $medio_pago_voucher, $medio_leyenda, $moneda_voucher);
+    //     echo json_encode($id_compras);
+    // }
 
-        echo json_encode($data);
-    }
+    // public function verificar_compras()
+    // {
 
-    public function eliminar($id_compras)
-    {
+    //     $id_compras = $this->input->post("id_compras");
+    //     $id_trabajador = $this->input->post("id_trabajador");
+    //     $fecha_emision_voucher = $this->input->post("fecha_emision_voucher");
+    //     $fecha_vencimiento_voucher = $this->input->post("fecha_vencimiento_voucher");
+    //     $numero_serie = $this->input->post("numero_serie");
+    //     $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+    //     $subtotal_factura = $this->input->post("subtotal_factura");
+    //     $igv_factura = $this->input->post("igv_factura");
+    //     $total_factura = $this->input->post("total_factura");
+    //     $estado_compra = $this->input->post("estado_compra");
+    //     $observacion_pago = $this->input->post("observacion_pago");
+    //     $codigo_pago_voucher = $this->input->post("codigo_pago_voucher");
+    //     $voucher_pago = $this->input->post("voucher_pago");
+    //     $fecha_pago_voucher = $this->input->post("fecha_pago_voucher");
+    //     $tipo_cambio = $this->input->post("tipo_cambio");
+    //     $numero_letra_cheque = $this->input->post("numero_letra_cheque");
+    //     $importe_pago = $this->input->post("importe_pago");
+    //     $observacion_voucher = $this->input->post("observacion_voucher");
+    //     $estado_voucher = $this->input->pot("estado_voucher");
+    //     $total_deuda_voucher = $this->input->post("total_deuda_voucher");
+    //     $beneficiario_pago = $this->input->post("beneficiario_pago");
+    //     $numero_deposito = $this->input->post("numero_deposito");
+    //     $monto_pagado_voucher = $this->input->post("monto_pagado_voucher");
+    //     $monto_pendiente_voucher = $this->input->post("monto_pendiente_voucher");
+    //     $tipo_comprobante = $this->input->post("tipo_comprobante");
+    //     $mercaderia = $this->input->post("mercaderia");
+    //     $condicion_pago = $this->input->post("condicion_pago");
+    //     $medio_pago = $this->input->post("medio_pago");
+    //     $moneda = $this->input->post("moneda");
+    //     $cta_ent = $this->input->post("cta_ent");
+    //     $transaccion = $this->input->post("transaccion");
+    //     $banco = $this->input->post("banco");
+    //     $medio_pago_voucher = $this->input->post("medio_pago_voucher");
+    //     $medio_leyenda = $this->input->post("medio_leyenda");
+    //     $moneda_voucher = $this->input->post("moneda_voucher");
 
-        $this->M_compras->actualizar_estado($id_compras);
-        redirect(base_url() . "C_compras");
-    }
+
+
+    //     $data = $this->M_compras->verificar_compras($id_compras, $id_trabajador, $fecha_emision_voucher, $fecha_vencimiento_voucher, $numero_serie,  $id_cliente_proveedor, $subtotal_factura, $igv_factura, $total_factura, $estado_compra, $observacion_pago, $codigo_pago_voucher, $voucher_pago, $fecha_pago_voucher, $tipo_cambio, $numero_letra_cheque, $importe_pago, $observacion_voucher, $estado_voucher, $total_deuda_voucher, $condicion_pago, $beneficiario_pago, $numero_deposito, $monto_pagado_voucher, $monto_pendiente_voucher, $tipo_comprobante, $mercaderia, $condicion_pago, $medio_pago, $moneda, $cta_ent, $transaccion, $banco, $medio_pago_voucher, $medio_leyenda, $moneda_voucher);
+
+    //     echo json_encode($data);
+    // }
+
+    // public function eliminar($id_compras)
+    // {
+
+    //     $this->M_compras->actualizar_estado($id_compras);
+    //     redirect(base_url() . "C_compras");
+    // }
 }

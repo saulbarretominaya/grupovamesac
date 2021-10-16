@@ -55,8 +55,6 @@ class C_tableros extends CI_Controller
 		$precio_margen = $this->input->post("precio_margen");
 		$precio_unitario_por_tablero = $this->input->post("precio_unitario_por_tablero");
 		$total_tablero = $this->input->post("total_tablero");
-
-
 		//DETALLE
 		$id_almacen_det = $this->input->post("id_almacen_det");
 		$ds_almacen = $this->input->post("ds_almacen");
@@ -85,7 +83,7 @@ class C_tableros extends CI_Controller
 			$porcentaje_margen,
 			$precio_margen,
 			$precio_unitario_por_tablero,
-			$total_tablero,
+			$total_tablero
 		)) {
 			$id_tablero = $this->M_tableros->lastID();
 			$this->insertar_detalle(
