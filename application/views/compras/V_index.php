@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>CLIENTES - PROVEEDORES
-              <a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            <h1>LISTA DE COMPRAS
+              <a href="<?php echo base_url(); ?>C_compras/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -20,14 +20,20 @@
             <h3 class="card-title">Listar</h3>
           </div>
           <div class="card-body">
-            <table id="id_datatable_clientes_proveedores" class="table table-sm table-hover" style="width: 100%;">
+            <table id="id_datatable_compras" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Paterno</th>
-                  <th>Materno</th>
-                  <th>Tipo Persona</th>
+                  <th>Item</th>
+                  <th>Proveedor</th>
+                  <th>Tipo Comprobante</th>
+                  <th>Serie</th>
+                  <th>Condicion de Pago</th>
+                  <th>Moneda</th>
+                  <th>Total</th>
+                  <th>Fecha Emision</th>
+                  <th>Fecha Vencimiento</th>
+                  <th>Observacion</th>
+                  <th>Estado</th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -37,12 +43,18 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_cliente_proveedor; ?></td>
-                      <td><?php echo $index->nombres; ?></td>
-                      <td><?php echo $index->ape_paterno; ?></td>
-                      <td><?php echo $index->ape_materno; ?></td>
-                      <td><?php echo $index->ds_tipo_persona; ?></td>
-                      <td><button type="button" class="btn btn-info btn-xs btn-view-clientes" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-clientes"><span class="fa fa-search"></span></button></td>
+                      <td><?php echo $index->id_compras; ?></td>
+                      <td><?php echo $index->ds_proveedores; ?></td>
+                      <td><?php echo $index->ds_tipo_comprobante; ?></td>
+                      <td><?php echo $index->numero_serie; ?></td>
+                      <td><?php echo $index->ds_condicion_pago; ?></td>
+                      <td><?php echo $index->ds_moneda; ?></td>
+                      <td><?php echo $index->total_factura; ?></td>
+                      <td><?php echo $index->fecha_emision_voucher; ?></td>
+                      <td><?php echo $index->fecha_vencimiento_voucher; ?></td>
+                      <td><?php echo $index->observacion_voucher; ?></td>
+                      <td><?php echo $index->id_estado_compra; ?></td>
+                      <td><button type="button" class="btn btn-info btn-xs btn-view-compras" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-compras"><span class="fa fa-search"></span></button></td>
                       <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
                       <td> <a href="<?php echo base_url(); ?>C_clientes_proveedores/eliminar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
                     </tr>
@@ -68,9 +80,6 @@
       <div class="modal-content">
         <div class="modal-header" style="background-color:#48C9B0">
           <h4 class="modal-title w-100 text-center ">DETALLE DE CLIENTES</h4>
-
-          <h4 class="modal-title w-100 text-center ">DETALLE DE TRABAJADORES</h4>
-
           <button type="button" class="close " data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
         </div>
@@ -146,7 +155,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_clientes_proveedores.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_compras.js"></script>
 
   </body>
 

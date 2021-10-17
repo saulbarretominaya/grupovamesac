@@ -10,11 +10,25 @@ $(document).ready(function () {
  or    Inputmask().mask(document.querySelectorAll("input"));*/
 });
 
+//MODAL DE DETALLE DE CLIENTES
+$(document).on("click", ".btn-view-clientes", function () {
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_clientes_proveedores/index_modal",
+		type: "POST",
+		dataType: "html",
+		data: { id_cliente_proveedor: valor_id }, // Verificar
+		success: function (data) {
+			$("#modal-clientes .modal-body").html(data);
+		},
+	});
+});
+
 $(document).ready(function () {
-	// $("#id_datatable_clientes_proveedores tfoot th").each(function () {
-	// 	var title = $(this).text();
-	// 	$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
-	// });
+	$("#id_datatable_clientes_proveedores tfoot th").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
+	});
 
 	var table = $("#id_datatable_clientes_proveedores").dataTable({
 		//scrollY: true,
@@ -24,20 +38,20 @@ $(document).ready(function () {
 		searching: true,
 
 		// /*------------------*/
-		// initComplete: function () {
-		// 	// Apply the search
-		// 	this.api()
-		// 		.columns()
-		// 		.every(function () {
-		// 			var that = this;
+		initComplete: function () {
+			// Apply the search
+			this.api()
+				.columns()
+				.every(function () {
+					var that = this;
 
-		// 			$("input", this.footer()).on("keyup change clear", function () {
-		// 				if (that.search() !== this.value) {
-		// 					that.search(this.value).draw();
-		// 				}
-		// 			});
-		// 		});
-		// },
+					$("input", this.footer()).on("keyup change clear", function () {
+						if (that.search() !== this.value) {
+							that.search(this.value).draw();
+						}
+					});
+				});
+		},
 
 		/*------------------*/
 

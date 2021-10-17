@@ -527,6 +527,16 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
+    //53
+    public function cbox_leyenda()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='53';");
+        return $resultados->result();
+    }
+
 
 
     /* No tocar */

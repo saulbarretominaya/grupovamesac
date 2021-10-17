@@ -24,9 +24,14 @@
               <h2 class="card-title">Registro de Trabajadores</h3>
             </div>
             <div class="card-body">
-              <div class="card card-info">
+              <div class="card card-info collapsed-card">
                 <div class="card-header">
-                  <h3 class="card-title">Informacion Definir</h3>
+                  <h3 class="card-title">Datos de la Empresa</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
                 </div>
                 <div class="card-body">
                   <form class="needs-validation" novalidate>
@@ -43,10 +48,7 @@
                       <div class="col-md-3 mb-3">
                         <label for="tipo_trabajador">Tipo Trabajador</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupTipoTrabajador"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="tipo_trabajador" aria-describedby="inputGroupTipoTrabajador" required>
+                          <select class="custom-select " id="tipo_trabajador" required>
                             <option selected>Seleciona...</option>
                             <?php foreach ($cbox_tipo_trabajador as $cbox_tipo_trabajador) : ?>
                               <?php if ($cbox_tipo_trabajador->id_dmultitabla == $enlace_actualizar->id_tipo_trabajador) : ?>
@@ -66,10 +68,7 @@
                       <div class="col-md-3 mb-3">
                         <label for="almacen">Sucursal</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupAlmacen"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="almacen" aria-describedby="inputGroupAlmacen" required>
+                          <select class="custom-select " id="almacen" required>
                             <option selected>Seleciona...</option>
                             <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                               <?php if ($cbox_almacen->id_dmultitabla == $enlace_actualizar->id_almacen) : ?>
@@ -89,10 +88,7 @@
                       <div class="col-md-3 mb-3">
                         <label for="cargo_trabajador">Cargo del Trabajador</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupCargoTrabajador"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="cargo_trabajador" aria-describedby="inputGroupCargoTrabajador" required>
+                          <select class="custom-select " id="cargo_trabajador" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_cargo_trabajador as $cbox_cargo_trabajador) : ?>
                               <?php if ($cbox_cargo_trabajador->id_dmultitabla == $enlace_actualizar->id_cargo_trabajador) : ?>
@@ -109,18 +105,13 @@
                         </div>
                       </div>
                     </div>
-
                     <!-- Segunda Fila -->
-
                     <div class="form-row align-items-center">
                       <!-- TIPO DE SEXO -->
                       <div class="col-md-3 mb-3">
                         <label for="sexo">Sexo</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupSexo"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="sexo" aria-describedby="inputGroupSexo" required>
+                          <select class="custom-select " id="sexo" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_sexo as $cbox_sexo) : ?>
                               <?php if ($cbox_sexo->id_dmultitabla == $enlace_actualizar->id_sexo) : ?>
@@ -140,10 +131,7 @@
                       <div class="col-md-5 mb-3">
                         <label for="tipo_documento">Tipo Documento</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupTdocumento"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="tipo_documento" aria-describedby="inputGroupTdocumento" required>
+                          <select class="custom-select " id="tipo_documento" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
                               <?php if ($cbox_tipo_documento->id_dmultitabla == $enlace_actualizar->id_tipo_documento) : ?>
@@ -163,26 +151,22 @@
                       <div class="col-md-4 mb-3">
                         <label for="num_documento">Numero Documento</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupNdocumento"> <i class="far fa-id-card"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="num_documento" value="<?php echo $enlace_actualizar->num_documento; ?>" data-masked="" data-inputmask=" 'mask' : '99999999'" placeholder="Ingresa el N° Documento" aria-describedby="inputGroupNdocumento" required>
-                          <div class="input-group-prepend">
-                            <button class="btn btn-info" type="Submit">Buscar</button>
-                          </div>
-
+                          <input type="text" class="form-control" id="num_documento" value="<?php echo $enlace_actualizar->num_documento; ?>" maxlength="15" placeholder="Ingresa el N° Documento" required>
                         </div>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
-
               <!-- Segundo Card -->
-
-              <div class="card card-info">
+              <div class="card card-info collapsed-card">
                 <div class="card-header">
                   <h3 class="card-title">Datos Personales</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
                 </div>
                 <div class="card-body">
                   <form class="needs-validation" novalidate>
@@ -191,45 +175,31 @@
                       <div class="col-md-4 mb-3">
                         <label for="nombres">Nombres</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupNombres"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="nombres" placeholder="Nombres" aria-describedby="inputGroupNombres" value="<?php echo $enlace_actualizar->nombres; ?>" required>
+                          <input type="text" class="form-control" id="nombres" placeholder="Nombres" value="<?php echo $enlace_actualizar->nombres; ?>" required>
                         </div>
                       </div>
                       <!-- APELLIDO PATERNO -->
                       <div class="col-md-4 mb-3">
                         <label for="ape_paterno">Apellido Paterno</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupApePaterno"> <i class="far fa-id-card"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="ape_paterno" placeholder="Apellido Paterno" aria-describedby="inputGroupApePaterno" value="<?php echo $enlace_actualizar->ape_paterno; ?>" required>
+                          <input type="text" class="form-control" id="ape_paterno" placeholder="Apellido Paterno" value="<?php echo $enlace_actualizar->ape_paterno; ?>" required>
                         </div>
                       </div>
                       <!-- APELLIDO MATERNO -->
                       <div class="col-md-4 mb-3">
                         <label for="ape_materno">Apellido Materno</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupApeMaterno"> <i class="far fa-id-card"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="ape_materno" placeholder="Apellido Materno" aria-describedby="inputGroupApeMaterno" value="<?php echo $enlace_actualizar->ape_materno; ?>" required>
+                          <input type="text" class="form-control" id="ape_materno" placeholder="Apellido Materno" value="<?php echo $enlace_actualizar->ape_materno; ?>" required>
                         </div>
                       </div>
                     </div>
-
                     <!-- Segunda Fila -->
-
                     <div class="form-row">
                       <!-- CORREO ELECTRONICO -->
                       <div class="col-md-6 mb-3">
                         <label for="email">Correo</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupCorreo"><i class="fas fa-at"></i></span>
-                          </div>
-                          <input type="text" class="form-control" id="email" placeholder="Email" aria-describedby="inputGroupCorreo" value="<?php echo $enlace_actualizar->email; ?>" required>
+                          <input type="text" class="form-control" id="email" placeholder="Email" value="<?php echo $enlace_actualizar->email; ?>" required>
                           <div class="invalid-feedback">
                             Ingrese el correo electronico.
                           </div>
@@ -239,24 +209,17 @@
                       <div class="col-md-4 mb-3">
                         <label for="fecha_nacimiento">Fecha Nacimiento</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupfechaNac"> <i class="far fa-calendar-alt"></i> </span>
-                          </div>
                           <input type="text" class="form-control" id="fecha_nacimiento" value="<?php echo date("d/m/Y", strtotime((str_replace('-', '/', $enlace_actualizar->fecha_nacimiento)))) ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
                         </div>
                       </div>
                     </div>
-
                     <!-- Tercera Fila de DATOS PERSONALES -->
                     <div class="form-row">
                       <!-- NACIONALIDAD -->
                       <div class="col-md-4 mb-3">
                         <label for="nacionalidad">Nacionalidad</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupNacionalidad"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="nacionalidad" aria-describedby="inputGroupNacionalidad" required>
+                          <select class="custom-select " id="nacionalidad" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_nacionalidad as $cbox_nacionalidad) : ?>
                               <?php if ($cbox_nacionalidad->id_dmultitabla == $enlace_actualizar->id_nacionalidad) : ?>
@@ -276,10 +239,7 @@
                       <div class="col-md-4 mb-3">
                         <label for="est_civil">Estado Civil</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupEstadoCivil"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="est_civil" aria-describedby="inputGroupEstadoCivil" required>
+                          <select class="custom-select " id="est_civil" required>
                             <option selected>Seleciona...</option>
                             <?php foreach ($cbox_estado_civil as $cbox_estado_civil) : ?>
                               <?php if ($cbox_estado_civil->id_dmultitabla == $enlace_actualizar->id_est_civil) : ?>
@@ -299,10 +259,7 @@
                       <div class="col-md-4 mb-3">
                         <label for="grado_instruccion">Grado Instruccion</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupGradoInstruccion"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="grado_instruccion" aria-describedby="inputGroupGradoInstruccion" required>
+                          <select class="custom-select " id="grado_instruccion" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_grado_instruccion as $cbox_grado_instruccion) : ?>
                               <?php if ($cbox_grado_instruccion->id_dmultitabla == $enlace_actualizar->id_grado_instruccion) : ?>
@@ -322,11 +279,15 @@
                   </form>
                 </div>
               </div>
-
               <!-- Tercer Card -- UBIGEO -->
-              <div class="card card-info">
+              <div class="card card-info collapsed-card">
                 <div class="card-header">
                   <h3 class="card-title">Ubigeo</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
                 </div>
                 <div class="card-body">
                   <form class="needs-validation" novalidate>
@@ -335,20 +296,14 @@
                       <div class="col-md-8 mb-3">
                         <label for="lugar_nacimiento">Lugar de Nacimiento</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupLugarNacimiento"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="lugar_nacimiento" placeholder="Lugar de Nacimiento" aria-describedby="inputGroupLugarNacimiento" value="<?php echo $enlace_actualizar->lugar_nacimiento; ?>" required>
+                          <input type="text" class="form-control" id="lugar_nacimiento" placeholder="Lugar de Nacimiento" value="<?php echo $enlace_actualizar->lugar_nacimiento; ?>" required>
                         </div>
                       </div>
                       <!-- DEPARTAMENTO -->
                       <div class="col-md-4 mb-3">
                         <label for="departamento">Departamento</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupDepartamento"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="departamento" aria-describedby="inputGroupDepartamento" required>
+                          <select class="custom-select " id="departamento" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                               <?php if ($cbox_departamento->id_dmultitabla == $enlace_actualizar->id_departamento) : ?>
@@ -371,20 +326,14 @@
                       <div class="col-md-8 mb-3">
                         <label for="domicilio">Domicilio Actual</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupDomicilio"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="domicilio" placeholder="Domicilio Actual" aria-describedby="inputGroupDomicilio" value="<?php echo $enlace_actualizar->domicilio; ?>" required>
+                          <input type="text" class="form-control" id="domicilio" placeholder="Domicilio Actual" value="<?php echo $enlace_actualizar->domicilio; ?>" required>
                         </div>
                       </div>
                       <!-- PROVINCIA -->
                       <div class="col-md-4 mb-3">
                         <label for="provincia">Provincia</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupProvincia"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="provincia" aria-describedby="inputGroupProvincia" required>
+                          <select class="custom-select " id="provincia" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
                               <?php if ($cbox_provincia->id_dmultitabla == $enlace_actualizar->id_provincia) : ?>
@@ -406,10 +355,7 @@
                       <div class="col-md-12 mb-3">
                         <label for="referencia">Referencia</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupReferencia"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <input type="text" class="form-control" id="referencia" placeholder="Ingresa la Referencia" aria-describedby="inputGroupReferencia" value="<?php echo $enlace_actualizar->referencia; ?>" required>
+                          <input type="text" class="form-control" id="referencia" placeholder="Ingresa la Referencia" value="<?php echo $enlace_actualizar->referencia; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -418,9 +364,6 @@
                       <div class="col-md-4 mb-3">
                         <label for="telefono">Telefono</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupTelefono"> <i class="fas fa-phone-alt"></i></span>
-                          </div>
                           <input type="text" class="form-control" id="telefono" value="<?php echo $enlace_actualizar->telefono; ?>" data-inputmask='"mask": "(99) 999-9999"' data-mask>
                         </div>
                       </div>
@@ -428,9 +371,6 @@
                       <div class="col-md-4 mb-3">
                         <label for="celular">Celular</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupCelular"> <i class="fas fa-mobile-alt"></i> </span>
-                          </div>
                           <input type="text" class="form-control" id="celular" value="<?php echo $enlace_actualizar->celular; ?>" data-inputmask="'mask': ['999999999', '+099 999 999 999']" data-mask>
                         </div>
                       </div>
@@ -438,10 +378,7 @@
                       <div class="col-md-4 mb-3">
                         <label for="distrito">Distrito</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupDistrito"> <i class="fas fa-user-shield"></i> </span>
-                          </div>
-                          <select class="custom-select " id="distrito" aria-describedby="inputGroupDistrito" required>
+                          <select class="custom-select " id="distrito" required>
                             <option selected>Selecciona...</option>
                             <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
                               <?php if ($cbox_distrito->id_dmultitabla == $enlace_actualizar->id_distrito) : ?>
