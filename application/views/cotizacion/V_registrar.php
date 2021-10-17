@@ -46,7 +46,7 @@
                             <input type="text" class="form-control" id="" placeholder="" value="COT">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <label for="local"># Cotizacion</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="" placeholder="">
@@ -58,13 +58,13 @@
                             <input type="text" class="form-control" id="" placeholder="">
                           </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                           <label for="cargo">Fecha</label>
                           <div class="input-group">
                             <?php
                             date_default_timezone_set("America/Lima");
                             ?>
-                            <input type="text" class="form-control" id="" value="<?php echo date("d/m/Y"); ?>" readonly>
+                            <input type="date" class="form-control" id="fecha_cotizacion" value="<?php echo date("Y-m-d"); ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -254,19 +254,13 @@
                             <div class="col-md-3">
                               <label for=""># Dias</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="fechsa">
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="">Fecha Salida</label>
-                              <div class="input-group">
-                                <input type="date" class="form-control" id="fecha_sali">
+                                <input type="text" class="form-control" id="numero_dias_condicion_pago">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Fecha Pago</label>
                               <div class="input-group">
-                                <input type="date" class="form-control" id="total">
+                                <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
                               </div>
                             </div>
                           </div>
@@ -489,33 +483,29 @@
                       </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Descripcion de Productos</h3>
+                          <h3 class="card-title">Datos del Producto</h3>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
+                              <label for="">Moneda</label>
+                              <div class="input-group">
+                                <select class="form-select" id="tipo_moneda_origen">
+                                  <option value="1">DOLARES</option>
+                                  <option value="2">SOLES</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
                               <label for="">Precio Unitario</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="precio_unitario" placeholder="">
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <label for="">Cantidad</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="cantidad_unitaria" placeholder="">
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <label for="">Monto</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" name="" id="" placeholder="">
+                                <input type="text" class="form-control" id="precio_unitario" placeholder="" value="10" readonly>
                               </div>
                             </div>
                           </div>
-
                         </div>
                       </div>
                     </div>
@@ -523,24 +513,25 @@
                     <div class="col-md-4">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Tipo Cambio</h3>
+                          <h3 class="card-title">El Tipo Cambio es: <?php echo "4"; ?></h3>
+                          <input type="hidden" class="form-control" id="valor_cambio" placeholder="" value="4">
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-6">
                               <label for="">Moneda</label>
                               <div class="input-group">
-                                <!-- <input type="text" class="form-control" name="" id="" placeholder="" readonly> -->
-                                <select class="form-select">
-                                  <option>SOLES</option>
-                                  <option>DOLARES</option>
+                                <select class="form-select" id="tipo_moneda_cambio">
+                                  <option>Seleccionar</option>
+                                  <option value="1">SOLES</option>
+                                  <option value="2">DOLARES</option>
                                 </select>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label for="">Convertidor U</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" name="" id="" placeholder="">
+                                <input type="text" class="form-control" id="convertidor_unitario" placeholder="" readonly>
                               </div>
                             </div>
                           </div>
@@ -548,17 +539,23 @@
                       </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Cambio</h3>
+                          <h3 class="card-title">Salida de Producto</h3>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-12">
-                              <label for="">Venta</label>
+                            <div class="col-md-6">
+                              <label for="">Cantidad</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" value="4.109">
+                                <input type="text" class="form-control" id="cantidad">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="">Monto</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="monto" readonly>
                               </div>
                             </div>
                           </div>
@@ -581,26 +578,26 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-6">
-                              <label>Precio Ganacia</label>
-                              <input type="text" class="form-control" id="">
+                              <label>Precio Inicial Venta</label>
+                              <input type="text" class="form-control" id="precio_inicial_venta" readonly>
                             </div>
                             <div class="col-md-6">
-                              <label>Precio Ganacia</label>
-                              <input type="text" class="form-control" id="">
+                              <label>Precio Final</label>
+                              <input type="text" class="form-control" id="precio_final" readonly>
                             </div>
                           </div>
                           <div class="form-group row">
                             <div class="col-md-3">
                               <label for="tipo_trabajador">G%</label>
-                              <input type="text" class="form-control" id="" placeholder="G%">
+                              <input type="text" class="form-control" id="g" placeholder="G%">
                             </div>
                             <div class="col-md-4">
                               <label for="local">G. Unidad</label>
-                              <input type="text" class="form-control" id="" placeholder="G. Unidad">
+                              <input type="text" class="form-control" id="ganancia_unidad" placeholder="G. Unidad" readonly>
                             </div>
                             <div class="col-md-5">
                               <label for="cargo">G. Cant/Total</label>
-                              <input type="text" class="form-control" id="" placeholder="G. Cant/Total">
+                              <input type="text" class="form-control" id="g_total" placeholder="G. Cant/Total" readonly>
                             </div>
                           </div>
                         </div>
@@ -620,37 +617,38 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-6">
-                              <label>Precio Ganacia</label>
-                              <input type="text" class="form-control" id="">
+                              <label>Precio Venta</label>
+                              <input type="text" class="form-control" id="precio_venta" readonly>
                             </div>
                             <div class="col-md-6">
-                              <label>Precio Ganacia</label>
-                              <input type="text" class="form-control" id="">
+                              <label>Precio con Descuento</label>
+                              <input type="text" class="form-control" id="precio_descuento">
+                              <input type="hidden" class="form-control" id="hidden_precio_descuento">
                             </div>
                           </div>
                           <div class="form-group row">
                             <div class="col-md-3">
-                              <label for="tipo_trabajador">G%</label>
+                              <label for="tipo_trabajador">D%</label>
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input type="text" class="form-control" id="" placeholder="G%">
+                                <input type="text" class="form-control" id="d" placeholder="D%">
                               </div>
                             </div>
                             <div class="col-md-4">
-                              <label for="local">G. Unidad</label>
+                              <label for="local">D. Unidad</label>
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input type="text" class="form-control" id="" placeholder="G. Unidad" readonly>
+                                <input type="text" class="form-control" id="descuento_unidad" placeholder="D. Unidad">
                               </div>
                             </div>
                             <div class="col-md-5 ">
-                              <label for="cargo">G. Cant/Total</label>
+                              <label for="cargo">D. Cant/Total</label>
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input type="text" class="form-control" id="" placeholder="G. Cant/Total" readonly>
+                                <input type="text" class="form-control" id="" placeholder="D. Cant/Total" readonly>
                               </div>
                             </div>
                           </div>

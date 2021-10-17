@@ -306,7 +306,7 @@ $(document).ready(function () {
 
 
 /* Eventos */
-$("#fechsa").on("keyup", function () {
+$("#numero_dias_condicion_pago").on("keyup", function () {
 	calcular_fecha_condicion_pago();
 });
 /* Fin Eventos*/
@@ -317,31 +317,25 @@ $("#fechsa").on("keyup", function () {
 function calcular_fecha_condicion_pago() {
 	debugger;
 	//let num = parseInt(frm.fechsa.value);
-	let num = parseInt(document.getElementById("fechsa").value);
+	var num = parseInt(document.getElementById("numero_dias_condicion_pago").value);
 
 	// la fecha viene en formato yyyy-mm-dd
-	//let f = frm.fecha_sali.value;
-	let f = document.getElementById("fecha_sali").value;
+	var f = document.getElementById("fecha_cotizacion").value;
 
-	let fecha = new Date(f);
+	var fecha = new Date(f);
 	fecha.setDate(fecha.getDate() + num);
 
-	//
-	let mes = fecha.getUTCMonth() + 1;
+	var mes = fecha.getUTCMonth() + 1;
 	if (mes <= 9) mes = '0' + mes;
 
-	//
-	let dia = fecha.getUTCDate();
+	var dia = fecha.getUTCDate();
 	if (dia <= 9) dia = '0' + dia;
 
 	//rm.total.value = fecha.getUTCFullYear() + '-' + mes + '-' + dia;
 	//$("#total").val(fecha.getUTCFullYear() + '-' + mes + '-' + dia);
-	document.getElementById("total").value = (fecha.getUTCFullYear() + '-' + mes + '-' + dia);;
+	document.getElementById("fecha_condicion_pago").value = (dia + '/' + mes + '/' + fecha.getUTCFullYear());
 
 }
-
-
-
 /*Fin de Funciones*/
 
 
@@ -349,6 +343,102 @@ function calcular_fecha_condicion_pago() {
 $(".select2").select2({
 	theme: "bootstrap4"
 });
+
 /* Fin de Otros */
 
 
+
+
+
+
+
+
+
+
+
+$("#tipo_moneda_cambio").on("change", function () {
+
+	var precio_unitario = $("#precio_unitario").val();
+	var valor_cambio = $("#valor_cambio").val();
+	var tipo_moneda_origen = $('#tipo_moneda_origen option:selected').text();
+	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+
+	if (tipo_moneda_origen == tipo_moneda_cambio) {
+
+		convertidor_unitario = precio_unitario;
+	}
+	else if (tipo_moneda_origen == "SOLES") {
+
+		convertidor_unitario = precio_unitario / valor_cambio;
+	}
+	else if (tipo_moneda_origen == "DOLARES") {
+
+		convertidor_unitario = precio_unitario * valor_cambio;
+	}
+	else if (tipo_moneda_origen == tipo_moneda_cambio) {
+
+		convertidor_unitario = precio_unitario;
+	}
+	$("#convertidor_unitario").val(convertidor_unitario);
+	$("#precio_inicial_venta").val(convertidor_unitario);
+
+});
+
+$("#g").on("keyup", function () {
+
+	var precio_inicial_venta = $("#precio_inicial_venta").val();
+	var g = $("#g").val();
+	var ganancia_unidad = (precio_inicial_venta * g / 100);
+	var precio_final = Number(ganancia_unidad) + Number(precio_inicial_venta);
+	$("#ganancia_unidad").val(ganancia_unidad);
+	$("#precio_final").val(precio_final);
+	$("#precio_venta").val(precio_final);
+	var d = $("#d").val();
+
+	if (d != "") {
+		$("#precio_veneta").val("");
+		$("#precio_descuento").val("");
+		$("#descuento_unidad").val("");
+		$("#d").val("");
+	}
+
+});
+
+$("#cantidad").on("keyup", function () {
+	var cantidad = $("#cantidad").val();
+	var precio_final = $("#precio_final").val();
+	var ganancia_unidad = $("#ganancia_unidad").val();
+	var monto = precio_final * cantidad;
+	var g_total = ganancia_unidad * cantidad;
+
+	$("#monto").val(monto);
+	$("#g_total").val(g_total);
+});
+
+$("#d").on("keyup", function () {
+	calcular_precio_descuento();
+});
+
+
+function calcular_precio_descuento() {
+	var precio_venta = $("#precio_venta").val();
+	var d = $("#d").val();
+	var descuento_unidad = (precio_venta * d / 100);
+	var hidden_precio_descuento = precio_venta - descuento_unidad;
+	var precio_inicial_venta = $("#precio_inicial_venta").val();
+	var precio_descuento = $("#precio_descuento").val();
+
+	$("#descuento_unidad").val(descuento_unidad);
+	$("#hidden_precio_descuento").val(hidden_precio_descuento);
+
+	if (hidden_precio_descuento >= precio_inicial_venta) {
+		$("#precio_descuento").val(hidden_precio_descuento);
+	}
+	else if (hidden_precio_descuento < precio_inicial_venta) {
+		$("#hidden_precio_descuento").val(hidden_precio_descuento);
+		$("#precio_descuento").val("");
+		$("#descuento_unidad").val("");
+		$("#d").val("");
+		alert("El precio con Descuento es: " + hidden_precio_descuento + ", y tiene que ser mayor o igual que el precio inicial de venta: " + precio_inicial_venta);
+	}
+}
