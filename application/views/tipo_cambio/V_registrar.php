@@ -3,8 +3,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Multitablas
-              <a href="<?php echo base_url(); ?>C_multitablas/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
+            <h1>Tipo de cambio
+              <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
+              <a href="<?php echo base_url(); ?>C_tipo_cambio" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
         </div>
@@ -12,29 +13,32 @@
     </section>
 
     <section class="content">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <table id="id_datatable_multitablas" class="table table-sm table-hover" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php if (!empty($index)) : ?>
-                  <?php foreach ($index as $index) : ?>
-                    <tr>
-                      <td><?php echo $index->id_multitabla; ?></td>
-                      <td><?php echo $index->nombre_tabla; ?></td>
-                      <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
-                    </tr>
-                  <?php endforeach; ?>
-                <?php endif; ?>
-              </tbody>
-            </table>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Tipo de cambio</h3>
+              </div>
+              <div class="card-body">
+                <form class="needs-validation" novalidate>
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <label for="nombres">Compra</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="compra">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="ape_paterno">Venta</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="venta">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -42,20 +46,8 @@
   </div>
 
 
-
-
-
-
-
-
-
-
-
-  <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
   </aside>
-  <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
   <footer class="main-footer">
@@ -83,14 +75,15 @@
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
   <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
-  <!-- Select2 -->
-  <script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 
   <script>
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_tipo_cambio.js"></script>
+  <!-- <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script> -->
+
+
 
   </body>
 

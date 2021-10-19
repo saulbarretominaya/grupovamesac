@@ -75,9 +75,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Unidad Medida</label>
                         <div class="col-sm-5">
-                          <!-- <select class="form-control"> -->
-                          <select class="form-control select2" id="id_unidad_medida" style="width: 100%;">
-
+                          <select class="form-select select2" id="id_unidad_medida" style="width: 100%;">
                             <option value="0">Seleccionar</option>
                             <?php foreach ($cbox_unidad_medida as $cbox_unidad_medida) : ?>
                               <option value="<?php echo $cbox_unidad_medida->id_dmultitabla; ?>">
@@ -123,16 +121,12 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
-
                 </div>
-                <!-- /.card-body -->
               </form>
             </div>
           </div>
 
-          <!-- Factores -->
           <div class="col-md-12">
 
             <div class="card card-info">
@@ -142,11 +136,10 @@
 
               <form class="form-horizontal">
                 <div class="card-body">
-
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Moneda</label>
                     <div class="col-sm-2">
-                      <select class="form-control" id="id_moneda">
+                      <select class="form-select" id="id_moneda">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                           <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
@@ -163,7 +156,6 @@
                     <label class="col-sm-2 col-form-label">Porcentaje %</label>
                     <div class="col-sm-2">
                       <input type="text" class="form-control" id="porcentaje" name="porcentaje">
-
                     </div>
                   </div>
 
@@ -181,15 +173,11 @@
                       <input type="text" class="form-control" id="rentabilidad" name="rentabilidad" readonly="">
                     </div>
                   </div>
-
                 </div>
-                <!-- /.card-body -->
               </form>
             </div>
-            <!-- /.card -->
           </div>
 
-          <!-- Caracteristica del Producto -->
           <div class="col-md-12">
             <div class="card card-info">
               <div class="card-header">
@@ -202,9 +190,7 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Grupo</label>
                     <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_grupo"> -->
-                      <select class="form-control select2" id="id_grupo" style="width: 100%;">
-
+                      <select class="form-select select2" id="id_grupo" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_grupo as $cbox_grupo) : ?>
                           <option value="<?php echo $cbox_grupo->id_dmultitabla; ?>">
@@ -216,8 +202,7 @@
 
                     <label class="col-sm-2 col-form-label">Familia</label>
                     <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_familia"> -->
-                      <select class="form-control select2" id="id_familia" style="width: 100%;">
+                      <select class="form-select select2" id="id_familia" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_familia as $cbox_familia) : ?>
                           <option value="<?php echo $cbox_familia->id_dmultitabla; ?>">
@@ -229,8 +214,7 @@
 
                     <label class="col-sm-2 col-form-label">Clase</label>
                     <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_clase"> -->
-                      <select class="form-control select2" id="id_clase" style="width: 100%;">
+                      <select class="form-select select2" id="id_clase" style="width: 100%;">
 
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_clase as $cbox_clase) : ?>
@@ -245,9 +229,7 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Sub Clase</label>
                     <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_sub_clase"> -->
-                      <select class="form-control select2" id="id_sub_clase" style="width: 100%;">
-
+                      <select class="form-select select2" id="id_sub_clase" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_sub_clase as $cbox_sub_clase) : ?>
                           <option value="<?php echo $cbox_sub_clase->id_dmultitabla; ?>">
@@ -258,9 +240,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Sub Clase 2</label>
                     <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_sub_clase_dos"> -->
-                      <select class="form-control select2" id="id_sub_clase_dos" style="width: 100%;">
-
+                      <select class="form-select select2" id="id_sub_clase_dos" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_sub_clase_dos as $cbox_sub_clase_dos) : ?>
                           <option value="<?php echo $cbox_sub_clase_dos->id_dmultitabla; ?>">
@@ -272,7 +252,6 @@
                     <label class="col-sm-2 col-form-label">Marca Producto</label>
                     <div class="col-sm-2">
                       <select class="form-control select2" id="id_marca_producto" style="width: 100%;">
-
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_marca_productos as $cbox_marca_productos) : ?>
                           <option value="<?php echo $cbox_marca_productos->id_dmultitabla; ?>">
@@ -282,30 +261,22 @@
                       </select>
                     </div>
                   </div>
-
                 </div>
-                <!-- /.card-body -->
               </form>
             </div>
           </div>
 
-          <!-- Datos Cuentas Sunat -->
           <div class="col-md-12">
-
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Datos Cuentas Sunat</h3>
               </div>
-
               <form class="form-horizontal">
                 <div class="card-body">
-
-
                   <div class="form-group row">
-
                     <label class="col-sm-2 col-form-label">Cta vta</label>
                     <div class="col-sm-4">
-                      <select class="form-control" id="id_cta_vta">
+                      <select class="form-select select2" id="id_cta_vta">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_cta_vta as $cbox_cta_vta) : ?>
                           <option value="<?php echo $cbox_cta_vta->id_dmultitabla; ?>">
@@ -316,7 +287,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Cta ent</label>
                     <div class="col-sm-4">
-                      <select class="form-control" id="id_cta_ent">
+                      <select class="form-select select2" id="id_cta_ent">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_cta_ent as $cbox_cta_ent) : ?>
                           <option value="<?php echo $cbox_cta_ent->id_dmultitabla; ?>">
@@ -332,17 +303,11 @@
                 <!-- /.card-body -->
               </form>
             </div>
-            <!-- /.card -->
           </div>
-
         </div>
-        <!-- /.row -->
       </div>
-      <!-- /.div -->
     </section>
-    <!-- /.section -->
   </div>
-  <!-- /.content-wrapper -->
 
 
 

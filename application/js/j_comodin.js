@@ -89,7 +89,11 @@ $("#actualizar").on("click", function () {
 	});
 });
 
-
+/* Otros */
+$(".select2").select2({
+	theme: "bootstrap4"
+});
+/* Fin de Otros */
 
 
 

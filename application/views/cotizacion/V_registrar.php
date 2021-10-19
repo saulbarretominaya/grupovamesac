@@ -43,19 +43,19 @@
                         <div class="col-md-1">
                           <label for="tipo_trabajador">Serie</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="" placeholder="" value="COT">
+                            <input type="text" class="form-control" id="" value="COT">
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="local"># Cotizacion</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="">
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -502,7 +502,7 @@
                             <div class="col-md-6">
                               <label for="">Precio Unitario</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="precio_unitario" placeholder="" value="10" readonly>
+                                <input type="text" class="form-control" id="precio_unitario" value="10" readonly>
                               </div>
                             </div>
                           </div>
@@ -514,7 +514,7 @@
                       <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">El Tipo Cambio es: <?php echo "4"; ?></h3>
-                          <input type="hidden" class="form-control" id="valor_cambio" placeholder="" value="4">
+                          <input type="hidden" class="form-control" id="valor_cambio" value="4">
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
@@ -529,9 +529,9 @@
                               </div>
                             </div>
                             <div class="col-md-6">
-                              <label for="">Convertidor U</label>
+                              <label for="">Conver. Unitario</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="convertidor_unitario" placeholder="" readonly>
+                                <input type="text" class="form-control" id="convertidor_unitario" readonly>
                               </div>
                             </div>
                           </div>
@@ -546,7 +546,7 @@
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <label for="">Cantidad</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="cantidad">
@@ -558,6 +558,14 @@
                                 <input type="text" class="form-control" id="monto" readonly>
                               </div>
                             </div>
+
+                            <div class="col-md-2">
+                              <label for="">&nbsp;</label>
+                              <div class="input-group">
+                                <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
+                              </div>
+                            </div>
+
                           </div>
 
                         </div>
@@ -578,26 +586,26 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-6">
-                              <label>Precio Inicial Venta</label>
+                              <label>Precio Inicial</label>
                               <input type="text" class="form-control" id="precio_inicial_venta" readonly>
                             </div>
                             <div class="col-md-6">
-                              <label>Precio Final</label>
+                              <label>Precio con Ganancia</label>
                               <input type="text" class="form-control" id="precio_final" readonly>
                             </div>
                           </div>
                           <div class="form-group row">
                             <div class="col-md-3">
                               <label for="tipo_trabajador">G%</label>
-                              <input type="text" class="form-control" id="g" placeholder="G%">
+                              <input type="text" class="form-control" id="g">
                             </div>
                             <div class="col-md-4">
                               <label for="local">G. Unidad</label>
-                              <input type="text" class="form-control" id="ganancia_unidad" placeholder="G. Unidad" readonly>
+                              <input type="text" class="form-control" id="ganancia_unidad" readonly>
                             </div>
                             <div class="col-md-5">
                               <label for="cargo">G. Cant/Total</label>
-                              <input type="text" class="form-control" id="g_total" placeholder="G. Cant/Total" readonly>
+                              <input type="text" class="form-control" id="g_cant_total" readonly>
                             </div>
                           </div>
                         </div>
@@ -617,12 +625,12 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-6">
-                              <label>Precio Venta</label>
+                              <label>Precio con Ganancia</label>
                               <input type="text" class="form-control" id="precio_venta" readonly>
                             </div>
                             <div class="col-md-6">
                               <label>Precio con Descuento</label>
-                              <input type="text" class="form-control" id="precio_descuento">
+                              <input type="text" class="form-control" id="precio_descuento" readonly>
                               <input type="hidden" class="form-control" id="hidden_precio_descuento">
                             </div>
                           </div>
@@ -632,7 +640,7 @@
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input type="text" class="form-control" id="d" placeholder="D%">
+                                <input type="text" class="form-control" id="d">
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -640,7 +648,7 @@
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input type="text" class="form-control" id="descuento_unidad" placeholder="D. Unidad">
+                                <input type="text" class="form-control" id="descuento_unidad" readonly>
                               </div>
                             </div>
                             <div class="col-md-5 ">
@@ -648,7 +656,7 @@
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input type="text" class="form-control" id="" placeholder="D. Cant/Total" readonly>
+                                <input type="text" class="form-control" id="d_cant_total" readonly>
                               </div>
                             </div>
                           </div>
@@ -667,21 +675,19 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_tableros">
+                            <table id="id_table_detalle_cotizacion">
                               <thead>
                                 <tr>
-                                  <th>Codigo</th>
+                                  <th>Codigo </th>
                                   <th>Descripcion</th>
                                   <th>U.M</th>
                                   <th>Marca</th>
                                   <th>Precio U</th>
-                                  <th>Stock</th>
-                                  <th>Cantidad</th>
-                                  <th>Valor Unitario</th>
-                                  <th>Total Unitario</th>
+                                  <th>Cant</th>
                                   <th>Desc %</th>
-                                  <th>Desc Total</th>
-                                  <th>Valor Total</th>
+                                  <th>Precio U/D</th>
+                                  <th>Total D</th>
+                                  <th>Valor Venta</th>
                                   <th>Dias Entrega</th>
                                 </tr>
                               </thead>

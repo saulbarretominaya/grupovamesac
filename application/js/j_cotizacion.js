@@ -312,10 +312,8 @@ $("#numero_dias_condicion_pago").on("keyup", function () {
 /* Fin Eventos*/
 
 
-
 /* Funciones */
 function calcular_fecha_condicion_pago() {
-	debugger;
 	//let num = parseInt(frm.fechsa.value);
 	var num = parseInt(document.getElementById("numero_dias_condicion_pago").value);
 
@@ -343,9 +341,7 @@ function calcular_fecha_condicion_pago() {
 $(".select2").select2({
 	theme: "bootstrap4"
 });
-
 /* Fin de Otros */
-
 
 
 
@@ -368,7 +364,6 @@ $("#tipo_moneda_cambio").on("change", function () {
 		convertidor_unitario = precio_unitario;
 	}
 	else if (tipo_moneda_origen == "SOLES") {
-
 		convertidor_unitario = precio_unitario / valor_cambio;
 	}
 	else if (tipo_moneda_origen == "DOLARES") {
@@ -381,6 +376,10 @@ $("#tipo_moneda_cambio").on("change", function () {
 	}
 	$("#convertidor_unitario").val(convertidor_unitario);
 	$("#precio_inicial_venta").val(convertidor_unitario);
+	$("#precio_final").val(convertidor_unitario);
+
+
+
 
 });
 
@@ -393,34 +392,20 @@ $("#g").on("keyup", function () {
 	$("#ganancia_unidad").val(ganancia_unidad);
 	$("#precio_final").val(precio_final);
 	$("#precio_venta").val(precio_final);
-	var d = $("#d").val();
-
-	if (d != "") {
-		$("#precio_veneta").val("");
-		$("#precio_descuento").val("");
-		$("#descuento_unidad").val("");
-		$("#d").val("");
-	}
-
+	calcular_monto();
 });
 
 $("#cantidad").on("keyup", function () {
-	var cantidad = $("#cantidad").val();
-	var precio_final = $("#precio_final").val();
-	var ganancia_unidad = $("#ganancia_unidad").val();
-	var monto = precio_final * cantidad;
-	var g_total = ganancia_unidad * cantidad;
-
-	$("#monto").val(monto);
-	$("#g_total").val(g_total);
+	calcular_monto();
 });
 
 $("#d").on("keyup", function () {
 	calcular_precio_descuento();
+	calcular_monto();
 });
 
-
 function calcular_precio_descuento() {
+
 	var precio_venta = $("#precio_venta").val();
 	var d = $("#d").val();
 	var descuento_unidad = (precio_venta * d / 100);
@@ -430,8 +415,16 @@ function calcular_precio_descuento() {
 
 	$("#descuento_unidad").val(descuento_unidad);
 	$("#hidden_precio_descuento").val(hidden_precio_descuento);
+	debugger;
 
-	if (hidden_precio_descuento >= precio_inicial_venta) {
+	if (d == "") {
+		$("#hidden_precio_descuento").val(hidden_precio_descuento);
+		$("#precio_descuento").val("");
+		$("#descuento_unidad").val("");
+		$("#d_cant_total").val("");
+		$("#d").val("");
+	}
+	else if (hidden_precio_descuento >= precio_inicial_venta) {
 		$("#precio_descuento").val(hidden_precio_descuento);
 	}
 	else if (hidden_precio_descuento < precio_inicial_venta) {
@@ -442,3 +435,97 @@ function calcular_precio_descuento() {
 		alert("El precio con Descuento es: " + hidden_precio_descuento + ", y tiene que ser mayor o igual que el precio inicial de venta: " + precio_inicial_venta);
 	}
 }
+
+function calcular_monto() {
+	var cantidad = $("#cantidad").val();
+	var g = $("#g").val();
+	var d = $("#d").val();
+	var precio_final = $("#precio_final").val();
+	var precio_descuento = $("#precio_descuento").val();
+	var ganancia_unidad = $("#ganancia_unidad").val();
+	var descuento_unidad = $("#descuento_unidad").val();
+	var monto = "";
+	d_cant_total = descuento_unidad * cantidad;
+	g_cant_total = Number(cantidad) * Number(ganancia_unidad)
+
+	if (g == "" & d == "") {
+		monto = precio_final * cantidad;
+	}
+	else if (g != "" & d != "") {
+		monto = precio_descuento * cantidad;
+	} else if (d == "") {
+		monto = precio_final * cantidad;
+	}
+
+	if (g_cant_total == 0 & d_cant_total == 0) {
+		g_cant_total = ""
+		d_cant_total = ""
+	}
+	else if (d_cant_total == 0) {
+		d_cant_total = ""
+	} else if (g_cant_total == 0) {
+		g_cant_total = ""
+	}
+
+	if (g == "") {
+		$("#precio_venta").val("");
+		$("#precio_descuento").val("");
+		$("#descuento_unidad").val("");
+		$("#d").val("");
+		$("#d_cant_total").val("");
+		$("#ganancia_unidad").val("");
+	}
+
+	if (monto == 0) {
+		monto = "";
+	}
+
+	$("#monto").val(monto);
+	$("#g_cant_total").val(g_cant_total);
+	$("#d_cant_total").val(d_cant_total);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#id_agregar_cotizacion").on("click", function (e) {
+
+
+	var precio_final = $("#precio_final").val();
+
+	html = "<tr>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + precio_final + "'>" + precio_final + "</td>";
+	html += "<td><select class='form-select'><option>1</option></select>";
+	html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila'><span class='fas fa-trash-alt'></span></button></td>";
+	html += "</tr>";
+
+	$("#id_table_detalle_cotizacion tbody").append(html);
+
+
+});

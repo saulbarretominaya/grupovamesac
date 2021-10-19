@@ -7,7 +7,7 @@ resultado_campo = true;
 
 /* Eventos en la tabla detalle  */
 $("#id_agregar_tablero").on("click", function (e) {
-
+	debugger;
 	validar_detalle_tablero();
 
 	var id_almacen_det = $("#hidden_id_almacen").val();
@@ -28,7 +28,7 @@ $("#id_agregar_tablero").on("click", function (e) {
 	if (resultado_campo == true) {
 		html = "<tr>";
 		html += "    <input type='hidden' name='id_almacen_det[]' 			value='" + id_almacen_det + "'>";
-
+		html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + ds_almacen + "'>" + ds_almacen + "</td>";
 		html += "    <input type='hidden' name='id_producto[]' 				value='" + id_producto + "'>";
 		html += "<td><input type='hidden' name='codigo_producto[]' 			value='" + codigo_producto + "'>" + codigo_producto + "</td>";
 		html += "<td><input type='hidden' name='descripcion_producto[]' 	value='" + descripcion_producto + "'>" + descripcion_producto + "</td>";
@@ -344,13 +344,16 @@ $("#cantidad_unitaria").on({
 /* Funciones */
 function calcular_importes() {
 
+	debugger;
 	var cantidad_unitaria = Number($("#cantidad_unitaria").val());
 	var precio_unitario = Number($("#precio_unitario").val());
 	var cantidad_tablero = Number($("#cantidad_tablero").val());
-
 	var monto_item = Number(cantidad_unitaria * precio_unitario);
+	var monto_item = monto_item.toFixed(2);
 	var cantidad_total_producto = Number(cantidad_unitaria * cantidad_tablero);
 	var monto_total_producto = Number(monto_item * cantidad_tablero);
+	var monto_total_producto = monto_total_producto.toFixed(2);
+
 
 
 	if (isNaN(monto_item)) {
@@ -433,7 +436,7 @@ function sumar_monto_item() {
 	$("#id_table_detalle_tableros tbody tr").each(function () {
 		var valorcito = $(this).find("td:eq(8)").text();
 		valor = Number(valorcito.replace(/,/g, ''));
-		monto_total = monto_total + valor;
+		monto_total = (monto_total + valor).toFixed(2);
 
 		if (isNaN(monto_total)) {
 			console.log("Is Nan Rentabilidad")
@@ -478,9 +481,9 @@ function calcular_margen() {
 	var precio_tablero = $("#precio_tablero").val();
 	valor = Number(precio_tablero.replace(/,/g, ''));
 	var porcentaje_margen = Number($("#porcentaje_margen").val());
-	var precio_margen = (valor * porcentaje_margen) / 100;
-	var total_tablero = precio_margen + valor;
-	var precio_unitario_por_tablero = total_tablero / cantidad_tablero;
+	var precio_margen = ((valor * porcentaje_margen) / 100).toFixed(2);
+	var total_tablero = (Number(precio_margen) + Number(valor)).toFixed(2);
+	var precio_unitario_por_tablero = (total_tablero / cantidad_tablero).toFixed(2);
 
 
 	if (isNaN(total_tablero)) {

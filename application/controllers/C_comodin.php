@@ -59,21 +59,20 @@ class C_comodin extends CI_Controller
 	}
 
 
-	public function enlace_actualizar($codigo_producto)
+	public function enlace_actualizar($id_comodin)
 	{
+		$data = array(
+			'enlace_actualizar' => $this->M_comodin->enlace_actualizar($id_comodin),
+			'cbox_marca_productos' => $this->M_cbox->cbox_marca_productos(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_unidad_medida' => $this->M_cbox->cbox_unidad_medida(),
+		);
 
-		//	$data = array(
-
-		//		'enlace_actualizar' => $this->M_comodin->enlace_actualizar($codigo_producto),
-		//		'cbox_unidad_medida' => $this->M_cbox->cbox_unidad_medida(),
-		//		'cbox_marca_productos' => $this->M_cbox->cbox_marca_productos(),
-		//		'cbox_moneda' => $this->M_cbox->cbox_moneda(), , $data
-
-		//	);
+		// echo var_dump($data);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('comodin/V_actualizar');
+		$this->load->view('comodin/V_actualizar', $data);
 	}
 
 	public function actualizar()

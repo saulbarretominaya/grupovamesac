@@ -56,22 +56,14 @@ class M_comodin extends CI_Model
     }
 
 
-    public function enlace_actualizar($codigo_producto)
+    public function enlace_actualizar($id_comodin)
     {
         $resultados = $this->db->query("
-               SELECT
-         id_unidad_medida,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
-        id_moneda,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        id_marca_producto,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
-        id_comodin,
-        codigo_producto,
-        nombre_producto,
-        nombre_proveedor,
-        precio_unitario
-        FROM comodin '");
+            SELECT
+            *
+            FROM comodin
+            WHERE id_comodin = '$id_comodin'
+               ");
         return $resultados->row();
     }
 

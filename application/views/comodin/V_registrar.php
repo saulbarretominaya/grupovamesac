@@ -1,6 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Botones -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -9,47 +7,37 @@
               <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
               <a href="<?php echo base_url(); ?>C_comodin" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
-
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
-    <!-- section -->
     <section class="content">
-
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Registro de comodin</h3>
               </div>
-
               <form class="form-horizontal">
                 <div class="card-body">
-
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Codigo Producto</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                      <label>Codigo Producto</label>
                       <input type="text" class="form-control" id="codigo_producto">
                     </div>
-                    <label class="col-sm-2 col-form-label">Nombre Producto</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                      <label>Nombre Producto</label>
                       <textarea class="form-control" rows="1" id="nombre_producto"> </textarea>
                     </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Proveedor</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                      <label>Proveedor</label>
                       <input type="text" class="form-control" id="nombre_proveedor">
                     </div>
-                    <label class="col-sm-1 col-form-label">Marca</label>
-                    <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_grupo"> -->
-                      <select class="form-control select2" id="id_marca_producto" style="width: 100%;">
+                    <div class="col-sm-3">
+                      <label>Marca</label>
+                      <select class="form-select select2" id="id_marca_producto" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_marca_productos as $cbox_marca_productos) : ?>
                           <option value="<?php echo $cbox_marca_productos->id_dmultitabla; ?>">
@@ -58,11 +46,11 @@
                         <?php endforeach; ?>
                       </select>
                     </div>
-
-                    <label class="col-sm-1 col-form-label">U.M</label>
-                    <div class="col-sm-2">
-                      <!-- <select class="form-control" id="id_familia"> -->
-                      <select class="form-control select2" id="id_unidad_medida" style="width: 100%;">
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-3">
+                      <label>U.M</label>
+                      <select class="form-select select2" id="id_unidad_medida" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_unidad_medida as $cbox_unidad_medida) : ?>
                           <option value="<?php echo $cbox_unidad_medida->id_dmultitabla; ?>">
@@ -71,46 +59,29 @@
                         <?php endforeach; ?>
                       </select>
                     </div>
-                  </div>
-
-
-                  <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Moneda</label>
-                    <div class="col-sm-2">
-                      <select class="form-control" id="id_moneda">
+                    <div class="col-sm-3">
+                      <label>Moneda</label>
+                      <select class="form-select" id="id_moneda">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                           <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
-                            <?php echo $cbox_moneda->abreviatura; ?>
+                            <?php echo $cbox_moneda->descripcion; ?>
                           </option>
                         <?php endforeach; ?>
                       </select>
                     </div>
-                    <label class="col-sm-1 col-form-label">Precio</label>
                     <div class="col-sm-2">
+                      <label>Precio</label>
                       <input type="text" class="form-control" id="precio_unitario">
                     </div>
                   </div>
-
-
-
-                  <!-- /.card-body -->
               </form>
             </div>
-            <!-- /.card -->
-
-
           </div>
-          <!-- /.card-body -->
-          </form>
         </div>
       </div>
+    </section>
   </div>
-  </section>
-  </div>
-
-
-
 
 
 

@@ -18,12 +18,11 @@
             <table id="id_datatable_comodin" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Codigo Comodin</th>
                   <th>Codigo Producto</th>
-                  <th>Nombre producto</th>
-                  <th>Nombre proveedor</th>
-                  <th>Marca producto</th>
-                  <th>Unidad Medida</th>
+                  <th>Producto</th>
+                  <th>Proveedor</th>
+                  <th>Marca</th>
+                  <th>U.M.</th>
                   <th>Moneda</th>
                   <th>Precio Unitario</th>
                   <th></th>
@@ -34,7 +33,6 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_comodin; ?></td>
                       <td><?php echo $index->codigo_producto; ?></td>
                       <td><?php echo $index->nombre_producto; ?></td>
                       <td><?php echo $index->nombre_proveedor; ?></td>
@@ -42,8 +40,8 @@
                       <td><?php echo $index->ds_unidad_medida; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_unitario; ?></td>
-                      <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus"></span></a></td>
-                      <td><a href="<?php echo base_url(); ?>C_comodin/enlace_actualizar/<?php echo $index->id_comodin; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus""></span></a></td>
+                      <td><a href=" <?php echo base_url(); ?>C_comodin/enlace_actualizar/<?php echo $index->id_comodin; ?>" class="btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
