@@ -173,10 +173,8 @@ $(document).ready(function () {
 
 $("#agregar_pago").on("click", function (e) {
 
-	debugger;
+	// debugger;
 	var dt_voucher_pago = "P00-" + $("#voucher_pago").val();
-
-	// var codigo_pago_voucher = "P00" + dt_voucher_pago;
 	var transaccion = $("#transaccion").val();
 	var dt_fecha_pago_voucher = $("#fecha_pago_voucher").val();
 	var tipo_cambio = $("#tipo_cambio").val();
@@ -186,12 +184,8 @@ $("#agregar_pago").on("click", function (e) {
 	var dt_ds_banco = $('#banco option:selected').text();
 	var dt_medio_pago_voucher = $("#medio_pago_voucher").val();
 	var dt_ds_medio_pago_voucher = $('#medio_pago_voucher option:selected').text();
-	var dt_importe_pago = $("#importe_pago").val();
-	var leyenda = $("#leyenda").val();
-	var observacion_voucher = $("#observacion_voucher").val();
 	var dt_estado_voucher = $("#estado_voucher").val();
-
-
+	var dt_importe_pago = Number($("#importe_pago").val());
 
 	html = "<tr>";
 	// html += "<input type='hidden' name='voucher_pago[]'  value='" + voucher_pago + "'>";
@@ -210,8 +204,48 @@ $("#agregar_pago").on("click", function (e) {
 
 	$("#id_table_detalles_pagos tbody").append(html);
 
+	// Posibemente
+	var monto_pre = 0;
+	$("#id_table_detalles_pagos tbody tr").each(function () {
+		debugger;
+
+		var monto_pago = $(this).find("td:eq(4)").text();
+		// valor = Number(valorcito.replace(/,/g, ''));
+		valor = Number(monto_pago);
+
+		monto_pre += valor;
+
+		var pago = $("#monto_pagado_voucher").val(monto_pre);
+
+	});
+
+	var monto_pagado_voucher = Number($("#monto_pagado_voucher").val());
+	var total_deuda_voucher = Number($("#total_deuda_voucher").val());
+
+	var pendiente = (total_deuda_voucher) - (monto_pagado_voucher);
+
+	var monto_pendiente_voucher = ($("#monto_pendiente_voucher").val(pendiente));
+
+
 
 });
+
+// $("#subtotal_factura").on("Key")
+
+$("#subtotal_factura").keyup(function () {
+
+	var subtotal_factura = Number($("#subtotal_factura").val());
+	// debugger;
+	var igv = subtotal_factura * 0.18
+	var total_factura = Number((subtotal_factura) + (igv));
+	$("#igv_factura").val(igv);
+	$("#total_factura").val(total_factura);
+	$("#total_deuda_voucher").val(total_factura);
+
+});
+
+
+
 // INSERTAR
 
 $("#registrar").on("click", function () {
