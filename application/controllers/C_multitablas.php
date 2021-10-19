@@ -39,7 +39,6 @@ class C_multitablas extends CI_Controller
 
 		if ($this->M_multitablas->insertar($nombre_tabla)) {
 			$id_multitabla = $this->M_multitablas->lastID();
-
 			$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
 			echo json_encode($nombre_tabla);
 		}
@@ -47,6 +46,7 @@ class C_multitablas extends CI_Controller
 
 	protected function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
 	{
+
 		for ($i = 0; $i < count($abreviatura); $i++) {
 
 			$this->M_multitablas->insertar_detalle($id_multitabla, $abreviatura[$i], $descripcion[$i]);

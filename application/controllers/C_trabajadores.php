@@ -22,6 +22,32 @@ class C_trabajadores extends CI_Controller
         $this->load->view('trabajadores/V_index', $data);
     }
 
+    public function index_modal()
+
+    {
+        $id_trabajador = $this->input->post("id_trabajador");
+        $data = array(
+            'detalle' => $this->M_trabajadores->index_modal($id_trabajador),
+            'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
+            'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
+            'cbox_almacen' => $this->M_cbox->cbox_almacen(),
+            'cbox_cargo_trabajador' => $this->M_cbox->cbox_cargo_trabajador(),
+            'cbox_sexo' => $this->M_cbox->cbox_sexo(),
+            'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
+            'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
+            'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
+            'cbox_departamento' => $this->M_cbox->cbox_departamento(),
+            'cbox_provincia' => $this->M_cbox->cbox_provincia(),
+            'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+        );
+
+
+
+        // $this->load->view('plantilla/V_header');
+        // $this->load->view('plantilla/V_aside');
+        $this->load->view('trabajadores/V_index_modal', $data);
+    }
+
     public function enlace_registrar()
     {
 
@@ -30,8 +56,8 @@ class C_trabajadores extends CI_Controller
             // COMBO BOX
             'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
             'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_local' => $this->M_cbox->cbox_local(),
-            'cbox_cargo' => $this->M_cbox->cbox_cargo(),
+            'cbox_almacen' => $this->M_cbox->cbox_almacen(),
+            'cbox_cargo_trabajador' => $this->M_cbox->cbox_cargo_trabajador(),
             'cbox_sexo' => $this->M_cbox->cbox_sexo(),
             'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
             'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
@@ -61,8 +87,8 @@ class C_trabajadores extends CI_Controller
         $celular = $this->input->post("celular");
         $tipo_trabajador = $this->input->post("tipo_trabajador");
         $tipo_documento = $this->input->post("tipo_documento");
-        $local = $this->input->post("local");
-        $cargo = $this->input->post("cargo");
+        $almacen = $this->input->post("almacen");
+        $cargo_trabajador = $this->input->post("cargo_trabajador");
         $sexo = $this->input->post("sexo");
         $nacionalidad = $this->input->post("nacionalidad");
         $estado_civil = $this->input->post("est_civil");
@@ -72,11 +98,10 @@ class C_trabajadores extends CI_Controller
         $distrito = $this->input->post("distrito");
 
 
-        $this->M_trabajadores->insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+        $this->M_trabajadores->insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
 
         echo json_encode($num_documento);
     }
-
 
 
     public function enlace_actualizar($id_trabajador)
@@ -86,8 +111,8 @@ class C_trabajadores extends CI_Controller
             'enlace_actualizar' => $this->M_trabajadores->enlace_actualizar($id_trabajador),
             'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
             'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_local' => $this->M_cbox->cbox_local(),
-            'cbox_cargo' => $this->M_cbox->cbox_cargo(),
+            'cbox_almacen' => $this->M_cbox->cbox_almacen(),
+            'cbox_cargo_trabajador' => $this->M_cbox->cbox_cargo_trabajador(),
             'cbox_sexo' => $this->M_cbox->cbox_sexo(),
             'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
             'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
@@ -96,7 +121,6 @@ class C_trabajadores extends CI_Controller
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
         );
-
 
 
         $this->load->view('plantilla/V_header');
@@ -120,8 +144,8 @@ class C_trabajadores extends CI_Controller
         $celular = $this->input->post("celular");
         $tipo_trabajador = $this->input->post("tipo_trabajador");
         $tipo_documento = $this->input->post("tipo_documento");
-        $local = $this->input->post("local");
-        $cargo = $this->input->post("cargo");
+        $almacen = $this->input->post("almacen");
+        $cargo_trabajador = $this->input->post("cargo_trabajador");
         $sexo = $this->input->post("sexo");
         $nacionalidad = $this->input->post("nacionalidad");
         $estado_civil = $this->input->post("est_civil");
@@ -138,7 +162,7 @@ class C_trabajadores extends CI_Controller
 
         // // STR_TO_DATE(REPLACE('$fecha_nacimiento', '/', '.'), GET_FORMAT(date, 'EUR'))
 
-        $this->M_trabajadores->actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+        $this->M_trabajadores->actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
 
 
         echo json_encode($num_documento);
@@ -160,8 +184,8 @@ class C_trabajadores extends CI_Controller
         $celular = $this->input->post("celular");
         $tipo_trabajador = $this->input->post("tipo_trabajador");
         $tipo_documento = $this->input->post("tipo_documento");
-        $local = $this->input->post("local");
-        $cargo = $this->input->post("cargo");
+        $almacen = $this->input->post("almacen");
+        $cargo_trabajador = $this->input->post("cargo_trabajador");
         $sexo = $this->input->post("sexo"); //captura el parametro que le enviamos
         $nacionalidad = $this->input->post("nacionalidad"); //captura el parametro que le enviamos
         $estado_civil = $this->input->post("est_civil"); //captura el parametro que le enviamos
@@ -171,7 +195,7 @@ class C_trabajadores extends CI_Controller
         $distrito = $this->input->post("distrito"); //captura el parametro que le enviamos
 
 
-        $data = $this->M_trabajadores->verificar_trabajador($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $local, $cargo, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito); // le paso el parametro al metodo verificar_trabajador que se encuentra en el MODELO
+        $data = $this->M_trabajadores->verificar_trabajador($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito); // le paso el parametro al metodo verificar_trabajador que se encuentra en el MODELO
         echo json_encode($data);
     }
 

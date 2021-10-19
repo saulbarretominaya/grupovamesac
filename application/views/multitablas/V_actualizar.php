@@ -43,7 +43,7 @@
 
                     <label class="col-sm-2 col-form-label">Nombre General</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="nombre_tabla" value="<?php echo $cabecera->nombre_tabla; ?>" style="background-color: #7C7C7C; color: white ;">
+                      <input type="text" class="form-control" id="nombre_tabla" value="<?php echo $cabecera->nombre_tabla; ?>" readonly>
                     </div>
                   </div>
                   <div class="form-group row">

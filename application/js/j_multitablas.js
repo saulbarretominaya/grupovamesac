@@ -60,13 +60,9 @@ $("#registrar").on("click", function () {
 	debugger;
 
 	var nombre_tabla = $("#nombre_tabla").val();
-	var abreviatura = Array.prototype.slice.call(
-		document.getElementsByName("abreviatura[]")
-	);
+	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]"));
 	var abreviatura = abreviatura.map((o) => o.value);
-	var descripcion = Array.prototype.slice.call(
-		document.getElementsByName("descripcion[]")
-	);
+	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]"));
 	var descripcion = descripcion.map((o) => o.value);
 
 	$.ajax({
