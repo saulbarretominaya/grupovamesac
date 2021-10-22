@@ -5,7 +5,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Tableros
-              <button type="button" class="btn btn-primary btn-sm" id="insertar">REGISTRAR</button>
+              <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
               <a href="<?php echo base_url(); ?>C_tableros" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>

@@ -16,18 +16,12 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_cotizacion" class="table-sm table-hover table-responsive">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Codigo</th>
-                  <th style="width: 150px;">Descripcion</th>
-                  <th style="width: 150px;">U.M</th>
-                  <th style="width: 150px;">Marca</th>
-                  <th style="width: 150px;">Grupo</th>
-                  <th style="width: 150px;">Moneda</th>
-                  <th style="width: 150px;">Precio Costo</th>
-                  <th style="width: 150px;">Precio Venta</th>
-                  <th style="width: 150px;">Stock</th>
+                  <th>Num Cotizacion</th>
+                  <th>Serie</th>
+                  <th>Nombre Vendedor</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -36,18 +30,11 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->codigo_producto; ?></td>
-                      <td><?php echo $index->descripcion_producto; ?></td>
-                      <td><?php echo $index->ds_unidad_medida; ?></td>
-                      <td><?php echo $index->ds_marca_producto; ?></td>
-                      <td><?php echo $index->ds_grupo; ?></td>
-                      <td><?php echo $index->ds_moneda; ?></td>
-                      <td><?php echo $index->precio_costo; ?></td>
-                      <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->stock; ?></td>
-                      <td><a class="btn btn-primary btn-xs"><span class="fas fa-search-plus"></span></a></td>
-                      <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_producto; ?>" class="btn bg-navy btn-xs"><span class="far fa-edit"></span></a></td>
-
+                      <td><?php echo $index->id_cotizacion; ?></td>
+                      <td><?php echo $index->serie_cotizacion; ?></td>
+                      <td><?php echo $index->ds_nombre_vendedor; ?></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_tablero" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
+                      <td><a class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

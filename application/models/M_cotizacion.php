@@ -8,31 +8,90 @@ class M_cotizacion extends CI_Model
     public function index()
     {
         $resultados = $this->db->query("
-       
+        select * from cotizacion
         ");
         return $resultados->result();
     }
 
-
     public function insertar(
-        $validez_oferta,
-        $direccion,
-        $lugar_entrega,
+        $serie_cotizacion,
+        $id_vendedor,
+        $ds_nombre_vendedor,
+        $fecha_cotizacion,
+        $validez_oferta_cotizacion,
+        $id_cliente_proveedor,
+        $ds_nombre_cliente_proveedor,
+        $ds_departamento_cliente_proveedor,
+        $ds_provincia_cliente_proveedor,
+        $ds_distrito_cliente_proveedor,
+        $direccion_fiscal_cliente_proveedor,
+        $email_cliente_proveedor,
         $clausula,
-        $correo_electronico
+        $lugar_entrega,
+        $nombre_encargado,
+        $observacion,
+        $id_condicion_pago,
+        $ds_condicion_pago,
+        $numero_dias_condicion_pago,
+        $fecha_condicion_pago,
+        $total,
+        $descuento_total,
+        $igv,
+        $precio_venta
     ) {
         return $this->db->query(
             "
         INSERT INTO cotizacion
         (
             id_cotizacion,
-            validez_oferta,direccion,lugar_entrega,clausula,correo_electronico
+            serie_cotizacion,id_vendedor,ds_nombre_vendedor,fecha_cotizacion,
+            validez_oferta_cotizacion,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
+            ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
+			clausula,lugar_entrega,nombre_encargado,observacion,
+            id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
+			total,descuento_total,igv,precio_venta
         )
         VALUES
         (
             '',
-            '$validez_oferta','$direccion','$lugar_entrega','$clausula','$correo_electronico'
+            '$serie_cotizacion','$id_vendedor','$ds_nombre_vendedor','$fecha_cotizacion',
+            '$validez_oferta_cotizacion','$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
+            '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
+            '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
+            '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
+            '$total','$descuento_total','$igv','$precio_venta'
         )"
+        );
+    }
+
+    public function lastID()
+    {
+        return $this->db->insert_id();
+    }
+
+    public function insertar_detalle(
+        $id_cotizacion,
+        $id_producto,
+        $id_tablero,
+        $id_comodin,
+        $cantidad,
+        $precio_unitario
+    ) {
+        return $this->db->query(
+            "
+        INSERT INTO detalle_cotizacion
+        (
+        id_dcotizacion,
+        id_cotizacion,id_producto,id_tablero,id_comodin,
+        cantidad,precio_unitario
+        )
+        VALUES
+        (
+        '', 
+        '$id_cotizacion','$id_producto','$id_tablero','$id_comodin',
+        '$cantidad','$precio_unitario'
+        )
+        "
         );
     }
 
@@ -47,24 +106,23 @@ class M_cotizacion extends CI_Model
             num_documento,
             razon_social,
             id_departamento,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento_cliente_proveedor,
             id_provincia,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_provincia,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_provincia_cliente_proveedor,
             id_distrito,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito,
-            direccion_fiscal,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito_cliente_proveedor,
             id_tipo_persona,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
             (CASE
             WHEN razon_social='' THEN CONCAT(ape_paterno,' ',ape_materno,' ',nombres)
             WHEN nombres='' AND ape_paterno='' AND ape_materno='' THEN razon_social
             ELSE 'Existe un conflicto'
-            END) descripcion_razon_social,
+            END) ds_nombre_cliente_proveedor,
             id_tipo_documento,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_documento) AS ds_tipo_documento,
             num_documento,
-            direccion_fiscal,
-            email,
+            direccion_fiscal as direccion_fiscal_cliente_proveedor,
+            email as email_cliente_proveedor,
             contacto_registro,
             telefono,
             celular,
@@ -127,6 +185,7 @@ class M_cotizacion extends CI_Model
         id_tablero,
         codigo_tablero,
         id_almacen,
+        precio_unitario_por_tablero,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_almacen,
         id_sunat,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
@@ -156,7 +215,7 @@ class M_cotizacion extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
         id_comodin,
         codigo_producto,
-        nombre_producto,
+        descripcion_producto,
         id_unidad_medida,
         nombre_proveedor,
         precio_unitario

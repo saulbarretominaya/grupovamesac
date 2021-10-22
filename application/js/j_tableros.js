@@ -95,7 +95,7 @@ $("#listar").dataTable({
 	},
 	"ordering": false
 });
-$("#insertar").on("click", function () {
+$("#registrar").on("click", function () {
 
 	validar_insertar();
 	if (resultado_campo == true) {
@@ -434,10 +434,11 @@ function sumar_monto_item() {
 	var monto_total = 0;
 
 	$("#id_table_detalle_tableros tbody tr").each(function () {
+		debugger;
 		var valorcito = $(this).find("td:eq(8)").text();
 		valor = Number(valorcito.replace(/,/g, ''));
-		monto_total = (monto_total + valor).toFixed(2);
-
+		//monto_total = (monto_total + valor).toFixed(2);
+		monto_total = (monto_total + valor);
 		if (isNaN(monto_total)) {
 			console.log("Is Nan Rentabilidad")
 		} else {
