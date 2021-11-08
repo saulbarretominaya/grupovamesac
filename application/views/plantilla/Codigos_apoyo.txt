@@ -2,6 +2,7 @@ print_r($abreviatura);
 var_dump($precio_costo_replace);
 $numero = str_replace(',', '', $número); 
 echo "<script>console.log('Imprimiendo: " . json_encode($detalle) . "');</script>";
+echo "<script>console.log('Imprimiendo: " . $count . ";</script>";
 
 
 Codigo de Mysql

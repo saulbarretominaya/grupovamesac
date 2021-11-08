@@ -34,7 +34,7 @@
                   <?php foreach ($index as $index) : ?>
                     <tr>
                       <td><?php echo $index->codigo_producto; ?></td>
-                      <td><?php echo $index->nombre_producto; ?></td>
+                      <td><?php echo $index->descripcion_producto; ?></td>
                       <td><?php echo $index->nombre_proveedor; ?></td>
                       <td><?php echo $index->ds_marca_producto; ?></td>
                       <td><?php echo $index->ds_unidad_medida; ?></td>

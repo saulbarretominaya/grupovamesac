@@ -25,6 +25,19 @@ class C_cotizacion extends CI_Controller
 		$this->load->view('cotizacion/V_index', $data);
 	}
 
+	public function index_modal()
+	{
+		$id_cotizacion = $this->input->post("id_cotizacion");
+
+		$data = array(
+			"detalle_modal" => $this->M_cotizacion->detalle_modal($id_cotizacion),
+
+		);
+
+
+		$this->load->view("cotizacion/V_index_modal", $data);
+	}
+
 	public function enlace_registrar()
 	{
 
@@ -74,11 +87,26 @@ class C_cotizacion extends CI_Controller
 		$id_producto = $this->input->post("id_producto");
 		$id_tablero = $this->input->post("id_tablero");
 		$id_comodin = $this->input->post("id_comodin");
-
-
+		$codigo_producto = $this->input->post("codigo_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
+		$id_unidad_medida = $this->input->post("id_unidad_medida");
+		$ds_unidad_medida = $this->input->post("ds_unidad_medida");
+		$id_marca_producto = $this->input->post("id_marca_producto");
+		$ds_marca_producto = $this->input->post("ds_marca_producto");
 		$cantidad = $this->input->post("cantidad");
-		$precio_unitario = $this->input->post("precio_unitario");
+		$precio_inicial = $this->input->post("precio_inicial");
+		$precio_ganancia = $this->input->post("precio_ganancia");
+		$g = $this->input->post("g");
+		$g_unidad = $this->input->post("g_unidad");
+		$g_cant_total = $this->input->post("g_cant_total");
 
+		$precio_descuento = $this->input->post("precio_descuento");
+		$d = $this->input->post("d");
+		$d_unidad = $this->input->post("d_unidad");
+		$d_cant_total = $this->input->post("d_cant_total");
+
+		$valor_venta = $this->input->post("valor_venta");
+		$dias_entrega = $this->input->post("dias_entrega");
 
 		if ($this->M_cotizacion->insertar(
 			//Cabecera
@@ -106,18 +134,38 @@ class C_cotizacion extends CI_Controller
 			$descuento_total,
 			$igv,
 			$precio_venta
-		)) {
-			$id_cotizacion = $this->M_cotizacion->lastID();
-			$this->insertar_detalle(
-				$id_cotizacion,
-				$id_producto,
-				$id_tablero,
-				$id_comodin,
-				$cantidad,
-				$precio_unitario
-			);
-			echo json_encode($serie_cotizacion);
-		}
+		));
+
+		$id_cotizacion = $this->M_cotizacion->lastID();
+		$this->insertar_detalle(
+			$id_cotizacion,
+			$id_producto,
+			$id_tablero,
+			$id_comodin,
+			$codigo_producto,
+			$descripcion_producto,
+			$id_unidad_medida,
+			$ds_unidad_medida,
+			$id_marca_producto,
+			$ds_marca_producto,
+			$cantidad,
+
+			$precio_inicial,
+			$precio_ganancia,
+			$g,
+			$g_unidad,
+			$g_cant_total,
+
+			$precio_descuento,
+			$d,
+			$d_unidad,
+			$d_cant_total,
+
+			$valor_venta,
+			$dias_entrega
+
+		);
+		echo json_encode($serie_cotizacion);
 	}
 
 	protected function insertar_detalle(
@@ -125,8 +173,28 @@ class C_cotizacion extends CI_Controller
 		$id_producto,
 		$id_tablero,
 		$id_comodin,
+		$codigo_producto,
+		$descripcion_producto,
+		$id_unidad_medida,
+		$ds_unidad_medida,
+		$id_marca_producto,
+		$ds_marca_producto,
 		$cantidad,
-		$precio_unitario
+
+		$precio_inicial,
+		$precio_ganancia,
+		$g,
+		$g_unidad,
+		$g_cant_total,
+
+		$precio_descuento,
+		$d,
+		$d_unidad,
+		$d_cant_total,
+
+		$valor_venta,
+		$dias_entrega
+
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
 			$this->M_cotizacion->insertar_detalle(
@@ -134,8 +202,28 @@ class C_cotizacion extends CI_Controller
 				$id_producto[$i],
 				$id_tablero[$i],
 				$id_comodin[$i],
+				$codigo_producto[$i],
+				$descripcion_producto[$i],
+				$id_unidad_medida[$i],
+				$ds_unidad_medida[$i],
+				$id_marca_producto[$i],
+				$ds_marca_producto[$i],
 				$cantidad[$i],
-				$precio_unitario[$i]
+
+				$precio_inicial[$i],
+				$precio_ganancia[$i],
+				$g[$i],
+				$g_unidad[$i],
+				$g_cant_total[$i],
+
+				$precio_descuento[$i],
+				$d[$i],
+				$d_unidad[$i],
+				$d_cant_total[$i],
+
+				$valor_venta[$i],
+				$dias_entrega[$i]
+
 			);
 		}
 	}

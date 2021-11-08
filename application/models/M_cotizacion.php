@@ -74,8 +74,28 @@ class M_cotizacion extends CI_Model
         $id_producto,
         $id_tablero,
         $id_comodin,
+        $codigo_producto,
+        $descripcion_producto,
+        $id_unidad_medida,
+        $ds_unidad_medida,
+        $id_marca_producto,
+        $ds_marca_producto,
         $cantidad,
-        $precio_unitario
+
+        $precio_inicial,
+        $precio_ganancia,
+        $g,
+        $g_unidad,
+        $g_cant_total,
+
+        $precio_descuento,
+        $d,
+        $d_unidad,
+        $d_cant_total,
+
+        $valor_venta,
+        $dias_entrega
+
     ) {
         return $this->db->query(
             "
@@ -83,13 +103,23 @@ class M_cotizacion extends CI_Model
         (
         id_dcotizacion,
         id_cotizacion,id_producto,id_tablero,id_comodin,
-        cantidad,precio_unitario
+        codigo_producto,descripcion_producto,
+        id_unidad_medida,ds_unidad_medida,id_marca_producto,ds_marca_producto,
+        cantidad,
+        precio_inicial,precio_ganancia,g,g_unidad,g_cant_total,
+        precio_descuento,d,d_unidad,d_cant_total,
+        valor_venta,dias_entrega
         )
         VALUES
         (
         '', 
         '$id_cotizacion','$id_producto','$id_tablero','$id_comodin',
-        '$cantidad','$precio_unitario'
+        '$codigo_producto','$descripcion_producto',
+        '$id_unidad_medida','$ds_unidad_medida','$id_marca_producto','$ds_marca_producto',
+        '$cantidad',
+        '$precio_inicial','$precio_ganancia','$g','$g_unidad','$g_cant_total',
+        '$precio_descuento','$d','$d_unidad','$d_cant_total',
+        '$valor_venta','$dias_entrega'
         )
         "
         );
@@ -207,20 +237,97 @@ class M_cotizacion extends CI_Model
     {
         $resultados = $this->db->query(
             "
-        SELECT
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
-        id_moneda,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        id_marca_producto,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
-        id_comodin,
-        codigo_producto,
-        descripcion_producto,
-        id_unidad_medida,
-        nombre_proveedor,
-        precio_unitario
-        FROM comodin
+            SELECT
+            id_comodin,
+            codigo_producto,
+            descripcion_producto,
+            id_marca_producto,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
+            id_unidad_medida,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
+            id_moneda,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+            precio_unitario,
+            nombre_proveedor
+            FROM comodin
         "
+        );
+        return $resultados->result();
+    }
+
+    public function detalle_modal($id_cotizacion)
+    {
+        $resultados = $this->db->query(
+            "
+        SELECT (@rownum:=@rownum+1) AS item, a.* FROM (  
+        SELECT
+	@rownum:=0,
+        a.id_cotizacion,
+        b.id_dcotizacion,
+        b.id_producto,
+        b.id_tablero,
+        b.id_comodin,
+        c.descripcion_tablero,
+        b.cantidad AS cantidad_tablero,
+        c.codigo_tablero,
+        'VAME' AS ds_marca_tablero,
+        b.precio_ganancia,
+        b.d AS d_tablero,
+        b.precio_descuento AS precio_descuento_tablero,
+        b.valor_venta AS valor_venta_tablero, 
+        b.dias_entrega AS dias_entrega_tablero,
+	(CASE 
+        WHEN b.id_tablero  != '0' THEN d.cantidad_total_producto
+        WHEN b.id_producto !='0' THEN b.cantidad
+        WHEN b.id_comodin !='0' THEN b.cantidad
+        END) AS cantidad_producto,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN d.codigo_producto 
+        WHEN b.id_producto !='0' THEN b.codigo_producto 
+        END) AS codigo_producto,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN d.descripcion_producto
+        WHEN b.id_producto !='0' THEN b.descripcion_producto
+        END) AS descripcion_producto,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN d.ds_marca_producto
+        WHEN b.id_producto !='0' THEN b.ds_marca_producto
+        END) AS ds_marca_producto,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN d.ds_unidad_medida
+        WHEN b.id_producto !='0' THEN b.ds_unidad_medida
+        END) AS ds_unidad_medida,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN ''
+        WHEN b.id_producto !='0' THEN b.precio_ganancia
+        WHEN b.id_comodin !='0' THEN b.precio_ganancia
+        END) AS precio_unitario,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN ''
+        WHEN b.id_producto !='0' THEN b.d
+        WHEN b.id_comodin !='0' THEN b.d
+        END) AS d_producto,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN ''
+        WHEN b.id_producto !='0' THEN b.precio_descuento
+        WHEN b.id_comodin !='0' THEN b.precio_descuento
+        END) AS precio_descuento,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN ''
+        WHEN b.id_producto !='0' THEN b.valor_venta
+        WHEN b.id_comodin !='0' THEN b.valor_venta
+        END) AS valor_venta,
+        (CASE 
+        WHEN b.id_tablero  != '0' THEN ''
+        WHEN b.id_producto !='0' THEN b.dias_entrega
+        WHEN b.id_comodin !='0' THEN b.dias_entrega
+        END) AS dias_entrega
+        FROM cotizacion a
+        LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion
+        LEFT JOIN tableros c ON c.id_tablero=b.id_tablero
+        LEFT JOIN detalle_tableros d ON d.id_tablero=b.id_tablero
+        WHERE a.id_cotizacion='$id_cotizacion'
+        ORDER BY b.id_dcotizacion ASC) a"
         );
         return $resultados->result();
     }

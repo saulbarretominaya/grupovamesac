@@ -6,7 +6,7 @@
         <div class="col-sm-6">
           <h1>Cotizacion
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-            <a href="<?php echo base_url(); ?>C_trabajadores" class="btn btn-danger btn-sm">CANCELAR</a>
+            <a href="<?php echo base_url(); ?>C_cotizacion" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
       </div>
@@ -43,13 +43,13 @@
                         <div class="col-md-1">
                           <label for="tipo_trabajador">Serie</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="serie_cotizacion" value="COT">
+                            <input type="text" class="form-control" placeholder="COT" id="serie_cotizacion" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="local"># Cotizacion</label>
                           <div class="input-group">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="Automatico" readonly>
                           </div>
                         </div>
                         <div class="col-md-4">
@@ -314,7 +314,14 @@
                                               <td>
                                                 <?php $split_productos =
                                                   $index_productos->id_producto . "*" .
+                                                  $index_productos->codigo_producto . "*" .
                                                   $index_productos->descripcion_producto . "*" .
+                                                  $index_productos->id_unidad_medida . "*" .
+                                                  $index_productos->ds_unidad_medida . "*" .
+                                                  $index_productos->id_marca_producto . "*" .
+                                                  $index_productos->ds_marca_producto . "*" .
+                                                  $index_productos->id_moneda . "*" .
+                                                  $index_productos->ds_moneda . "*" .
                                                   $index_productos->precio_unitario;
                                                 ?>
                                                 <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_producto" value="<?php echo $split_productos; ?>" data-toggle="modal" data-target="#opcion_target_producto"><span class="fas fa-check"></span></button>
@@ -341,16 +348,7 @@
                             </div>
                           </div>
                         </div>
-                        <input type="hidden" id="hidden_id_almacen">
-                        <input type="hidden" id="hidden_ds_almacen">
-                        <input type="hidden" id="hidden_id_producto">
-                        <input type="hidden" id="hidden_codigo_producto">
-                        <input type="hidden" id="hidden_id_unidad_medida">
-                        <input type="hidden" id="hidden_ds_unidad_medida">
-                        <input type="hidden" id="hidden_id_marca_producto">
-                        <input type="hidden" id="hidden_ds_marca_producto">
                         <!-- Fin Producto -->
-
                         <!-- Tableros -->
                         <div class="col-md-2">
                           <div class="form-check">
@@ -388,7 +386,12 @@
                                               <td>
                                                 <?php $split_tableros =
                                                   $index_tableros->id_tablero . "*" .
+                                                  $index_tableros->codigo_tablero . "*" .
                                                   $index_tableros->descripcion_tablero . "*" .
+                                                  $index_tableros->id_marca_tablero . "*" .
+                                                  $index_tableros->ds_marca_tablero . "*" .
+                                                  $index_tableros->id_moneda . "*" .
+                                                  $index_tableros->ds_moneda . "*" .
                                                   $index_tableros->precio_unitario_por_tablero;
                                                 ?>
                                                 <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_tablero" value="<?php echo $split_tableros; ?>" data-toggle="modal" data-target="#opcion_target_tablero"><span class="fa fa-check"></span></button>
@@ -424,9 +427,7 @@
                             </div>
                           </div>
                         </div>
-                        <input type="hidden" id="hidden_id_tablero">
                         <!-- Fin de Tableros -->
-
                         <!-- Comodin -->
                         <div class="col-md-2">
                           <div class="form-check">
@@ -463,7 +464,14 @@
                                               <td>
                                                 <?php $split_comodin =
                                                   $index_comodin->id_comodin . "*" .
+                                                  $index_comodin->codigo_producto . "*" .
                                                   $index_comodin->descripcion_producto . "*" .
+                                                  $index_comodin->id_unidad_medida . "*" .
+                                                  $index_comodin->ds_unidad_medida . "*" .
+                                                  $index_comodin->id_marca_producto . "*" .
+                                                  $index_comodin->ds_marca_producto . "*" .
+                                                  $index_comodin->id_moneda . "*" .
+                                                  $index_comodin->ds_moneda . "*" .
                                                   $index_comodin->precio_unitario;
                                                 ?>
                                                 <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_comodin" value="<?php echo $split_comodin; ?>" data-toggle="modal" data-target="#opcion_target_comodin"><span class="fas fa-check"></span></button>
@@ -489,7 +497,6 @@
                             </div>
                           </div>
                         </div>
-                        <input type="hidden" id="hidden_id_comodin">
                         <!-- Fin Comodin -->
                         <div class="col-md-6">
                           <div class="input-group">
@@ -498,6 +505,15 @@
                           </div>
                         </div>
                       </div>
+                      <input type="hidden" id="hidden_id_producto">
+                      <input type="hidden" id="hidden_id_tablero">
+                      <input type="hidden" id="hidden_id_comodin">
+                      <input type="hidden" id="hidden_codigo_producto">
+                      <input type="hidden" id="hidden_id_unidad_medida">
+                      <input type="hidden" id="hidden_ds_unidad_medida">
+                      <input type="hidden" id="hidden_id_marca_producto">
+                      <input type="hidden" id="hidden_ds_marca_producto">
+                      <input type="hidden" id="tipo_moneda_origen">
                     </div>
 
                     <div class="col-md-4">
@@ -510,8 +526,7 @@
                             <div class="col-md-3">
                               <label for="">&nbsp;</label>
                               <div class="input-group">
-                                <input type="hidden" class="form-control" id="tipo_moneda_origen" value="DOLARES" readonly>
-                                <input type="text" class="form-control" id="simbolo_moneda" value="$" readonly>
+                                <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
                               </div>
                             </div>
                             <div class="col-md-9">
@@ -589,7 +604,7 @@
 
 
                     <div class="col-md-6">
-                      <div class="card">
+                      <div class="card collapsed-card">
                         <div class="card-header">
                           <h3 class="card-title">Aplicar Ganancia</h3>
                           <div class="card-tools">
@@ -628,7 +643,7 @@
                     </div>
 
                     <div class="col-md-6">
-                      <div class="card">
+                      <div class="card collapsed-card">
                         <div class="card-header">
                           <h3 class="card-title">Aplicar Descuento</h3>
                           <div class="card-tools">
@@ -700,6 +715,7 @@
                                   <th>Total D</th>
                                   <th>Valor Venta</th>
                                   <th>Dias Entrega</th>
+                                  <th></th>
                                 </tr>
                               </thead>
                               <tbody>

@@ -29,7 +29,7 @@ $("#id_datatable_comodin").dataTable({
 $("#registrar").on("click", function () {
 	debugger;
 	var codigo_producto = $("#codigo_producto").val();
-	var nombre_producto = $("#nombre_producto").val();
+	var descripcion_producto = $("#descripcion_producto").val();
 	var id_unidad_medida = $("#id_unidad_medida").val();
 	var id_marca_producto = $("#id_marca_producto").val();
 	var precio_unitario = $("#precio_unitario").val();
@@ -43,7 +43,7 @@ $("#registrar").on("click", function () {
 		dataType: "json",
 		data: {
 			codigo_producto: codigo_producto,
-			nombre_producto: nombre_producto,
+			descripcion_producto: descripcion_producto,
 			id_unidad_medida: id_unidad_medida,
 			id_marca_producto: id_marca_producto,
 			precio_unitario: precio_unitario,
@@ -60,7 +60,7 @@ $("#registrar").on("click", function () {
 $("#actualizar").on("click", function () {
 	debugger;
 	var codigo_producto = $("#codigo_producto").val();
-	var nombre_producto = $("#nombre_producto").val();
+	var descripcion_producto = $("#descripcion_producto").val();
 	var id_unidad_medida = $("#id_unidad_medida").val();
 	var id_marca_producto = $("#id_marca_producto").val();
 	var precio_unitario = $("#precio_unitario").val();
@@ -74,7 +74,7 @@ $("#actualizar").on("click", function () {
 		dataType: "json",
 		data: {
 			codigo_producto: codigo_producto,
-			nombre_producto: nombre_producto,
+			descripcion_producto: descripcion_producto,
 			id_unidad_medida: id_unidad_medida,
 			id_marca_producto: id_marca_producto,
 			precio_unitario: precio_unitario,

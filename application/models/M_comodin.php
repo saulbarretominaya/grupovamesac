@@ -17,7 +17,7 @@ class M_comodin extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
         id_comodin,
         codigo_producto,
-        nombre_producto,
+        descripcion_producto,
         nombre_proveedor,
         precio_unitario
         FROM comodin
@@ -28,7 +28,7 @@ class M_comodin extends CI_Model
 
     public function insertar(
         $codigo_producto,
-        $nombre_producto,
+        $descripcion_producto,
         $id_unidad_medida,
         $id_marca_producto,
         $precio_unitario,
@@ -40,12 +40,12 @@ class M_comodin extends CI_Model
             "
         INSERT INTO comodin
         (
-            id_comodin,codigo_producto ,nombre_producto ,id_unidad_medida,id_marca_producto,
+            id_comodin,codigo_producto ,descripcion_producto ,id_unidad_medida,id_marca_producto,
              precio_unitario,id_moneda,nombre_proveedor   
         )
         VALUES
         (
-            '','$codigo_producto','$nombre_producto', '$id_unidad_medida',
+            '','$codigo_producto','$descripcion_producto', '$id_unidad_medida',
        ' $id_marca_producto',
         '$precio_unitario',
         '$id_moneda',
@@ -70,7 +70,7 @@ class M_comodin extends CI_Model
 
     public function actualizar(
         $codigo_producto,
-        $nombre_producto,
+        $descripcion_producto,
         $id_unidad_medida,
         $id_marca_producto,
         $precio_unitario,
@@ -81,7 +81,7 @@ class M_comodin extends CI_Model
         return $this->db->query("
         update comodin set
         codigo_producto='$codigo_producto',
-        nombre_producto='$nombre_producto',
+        descripcion_producto='$descripcion_producto',
         id_unidad_medida='$id_unidad_medida',
         id_marca_producto='$id_marca_producto',
         precio_unitario='$precio_unitario',

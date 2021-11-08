@@ -33,8 +33,16 @@
                       <td><?php echo $index->id_cotizacion; ?></td>
                       <td><?php echo $index->serie_cotizacion; ?></td>
                       <td><?php echo $index->ds_nombre_vendedor; ?></td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_tablero" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_tablero"><span class="fas fa-search-plus"></span></button></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
                       <td><a class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <!-- Inicio Modal -->
+                      <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+                          <div class="modal-content">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Fin de Modal -->
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

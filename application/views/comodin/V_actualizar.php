@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-sm-3">
                       <label>Nombre Producto</label>
-                      <textarea class="form-control" rows="1" id="nombre_producto"><?php echo $enlace_actualizar->nombre_producto ?></textarea>
+                      <textarea class="form-control" rows="1" id="descripcion_producto"><?php echo $enlace_actualizar->descripcion_producto ?></textarea>
                     </div>
                     <div class="col-sm-3">
                       <label>Proveedor</label>
