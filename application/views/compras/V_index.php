@@ -52,10 +52,10 @@
                       <td><?php echo $index->total_factura; ?></td>
                       <td><?php echo $index->fecha_emision_voucher; ?></td>
                       <td><?php echo $index->fecha_vencimiento_voucher; ?></td>
-                      <td><?php echo $index->observacion_voucher; ?></td>
+                      <td><?php echo $index->observacion_pago; ?></td>
                       <td><?php echo $index->id_estado_compra; ?></td>
                       <td><button type="button" class="btn btn-info btn-xs btn-view-compras" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-compras"><span class="fa fa-search"></span></button></td>
-                      <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
+                      <td><a href="<?php echo base_url(); ?>C_compras/enlace_actualizar/<?php echo $index->id_compras; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
                       <td> <a href="<?php echo base_url(); ?>C_clientes_proveedores/eliminar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
                     </tr>
                   <?php endforeach; ?>
