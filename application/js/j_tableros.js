@@ -47,8 +47,8 @@ $("#id_agregar_tablero").on("click", function (e) {
 		$("#id_table_detalle_tableros tbody").append(html);
 
 		sumar_monto_item();
-
 		calcular_margen();
+		limpiar_campos();
 	}
 });
 $(document).on("click", ".eliminar_fila", function () {
@@ -196,6 +196,7 @@ $(document).on("click", ".js_lupa_tablero", function () {
 /*  Ventanas Modal en el Insertar*/
 $(document).on("click", ".js_seleccionar_modal_producto", function () {
 
+	debugger;
 	productos = $(this).val();
 	split_productos = productos.split("*");
 	$("#hidden_id_almacen").val(split_productos[0]);
@@ -207,7 +208,17 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	$("#hidden_ds_unidad_medida").val(split_productos[6]);
 	$("#hidden_id_marca_producto").val(split_productos[7]);
 	$("#hidden_ds_marca_producto").val(split_productos[8]);
-	$("#precio_unitario").val(split_productos[9]);
+	var simbolo_moneda = split_productos[9];
+	$("#precio_unitario").val(split_productos[10]);
+
+	if (simbolo_moneda == "SOLES") {
+		$("#simbolo_moneda").val("S/");
+		$("#moneda").val("SOLES");
+	} else if (simbolo_moneda == "DOLARES") {
+		$("#simbolo_moneda").val("$");
+		$("#moneda").val("DOLARES");
+	}
+
 	$("#opcion_target_producto").modal("hide");
 });
 $(document).ready(function () {
@@ -596,13 +607,23 @@ function limpiar_campos() {
 	debugger;
 	var count = $('#id_table_detalle_tableros tr').length;
 
+	$("#simbolo_moneda").val("");
+	$("#precio_unitario").val("");
+	$("#cantidad").val("");
+	$("#cantidad_unitaria").val("");
+	$("#monto_item").val("");
+	$("#descripcion_producto").val("");
+
 	if (count == 1) {
+		$("#id_moneda").val("0");
+		$("#cantidad_tablero").val("");
 		$("input[name=porcentaje_margen]").val("");
 		$("input[name=precio_tablero]").val("");
 		$("input[name=total_tablero]").val("");
 		$("input[name=precio_unitario_por_tablero]").val("");
 		$("input[name=precio_margen]").val("");
 		$("#cantidad_tablero").attr("readonly", false);
+		$("#id_moneda").attr("disabled", false);
 	}
 
 }
@@ -637,10 +658,6 @@ function validar_insertar() {
 		alert("Registre la Descripcion Tablero")
 		resultado_campo = false;
 	}
-
-
-
-	/*************/
 	else if (id_marca_tablero == "0") {
 		alert("Seleccione Marca Tablero")
 		resultado_campo = false;
@@ -654,9 +671,6 @@ function validar_insertar() {
 		alert("Seleccione Almacen")
 		resultado_campo = false;
 	}
-
-
-
 	else if (descripcion_producto == "") {
 		alert("Seleccione un Producto")
 		resultado_campo = false;
@@ -665,7 +679,6 @@ function validar_insertar() {
 		alert("Precio Vacio")
 		resultado_campo = false;
 	}
-
 	else if (cantidad_unitaria == "") {
 		alert("Cantidad Vacio")
 		resultado_campo = false;
@@ -674,11 +687,10 @@ function validar_insertar() {
 		alert("Monto Item Vacio")
 		resultado_campo = false;
 	}
-
 	else {
 		resultado_campo = true;
 	}
-};
+}
 function validar_detalle_tablero() {
 
 	$("#id_table_detalle_tableros tbody tr").each(function () {
@@ -698,8 +710,13 @@ function validar_detalle_tablero() {
 	var descripcion_producto = $("#descripcion_producto").val();
 	var precio_unitario = $("#precio_unitario").val();
 	var cantidad_unitaria = $("#cantidad_unitaria").val();
+	var id_moneda = $("#id_moneda").val();
 	var cantidad_tablero = $("#cantidad_tablero").val();
 	var monto_item = $("#monto_item").val();
+	var moneda_origen = $("#moneda").val();
+	var moneda_comparativa = $('#id_moneda option:selected').text();
+	debugger;
+
 
 	if (descripcion_producto == "") {
 		alert("Seleccione un Producto")
@@ -713,8 +730,19 @@ function validar_detalle_tablero() {
 		alert("Cantidad Vacio")
 		resultado_campo = false;
 	}
+	else if (cantidad_unitaria == "") {
+		alert("Cantidad Vacio")
+		resultado_campo = false;
+	} else if (id_moneda == "0") {
+		alert("Seleccione Tipo Moneda")
+		resultado_campo = false;
+	}
 	else if (cantidad_tablero == "") {
 		alert("Ingrese el Numero Tableros")
+		resultado_campo = false;
+	}
+	else if (moneda_origen != moneda_comparativa) {
+		alert("Ambas monedas son diferentes")
 		resultado_campo = false;
 	}
 	else if (monto_item == "") {
@@ -733,8 +761,13 @@ function validar_detalle_tablero() {
 		} else {
 			$("#cantidad_tablero").attr("readonly", false);
 		}
+		if (id_moneda != 0) {
+			$("#id_moneda").attr("disabled", true);
+		} else {
+			$("#id_moneda").attr("disabled", false);
+		}
 	}
-};
+}
 /* Fin Funciones */
 
 

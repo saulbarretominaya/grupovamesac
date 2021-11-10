@@ -1,97 +1,54 @@
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Tipo de cambio
-              <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
+              <button type="button" class="btn btn-primary btn-sm" id="actualizar">ACTUALIZAR</button>
               <a href="<?php echo base_url(); ?>C_tipo_cambio" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-    <!-- Main content -->
+
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
-
+          <div class="col-md-6">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Mantenimiento de tipo de cambio</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                    <i class="fas fa-expand"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
+                <h3 class="card-title">Tipo de cambio</h3>
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
                 <form class="needs-validation" novalidate>
                   <div class="form-row">
-                    <!-- NOMBRES -->
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6">
                       <label for="nombres">Compra</label>
                       <div class="input-group">
+                        <input type="hidden" id="id_tipo_cambio" value="<?php echo $enlace_actualizar->id_tipo_cambio ?>">
                         <input type="text" class="form-control" id="compra" value="<?php echo $enlace_actualizar->compra ?>">
                       </div>
                     </div>
-                    <!-- APELLIDO PATERNO  -->
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6">
                       <label for="ape_paterno">Venta</label>
                       <div class="input-group">
                         <input type="text" class="form-control" id="venta" value="<?php echo $enlace_actualizar->venta ?>">
                       </div>
                     </div>
-                    <!-- FECHA-->
-                    <div class="col-md-4 mb-3">
-                      <label for="fecha_nacimiento">Fecha</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroupfechaNac"> <i class="far fa-calendar-alt"></i> </span>
-                        </div>
-                        <input type="text" class="form-control" id="fecha" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" value="<?php echo $enlace_actualizar->fecha ?>" readonly>
-                      </div>
-                    </div>
-
-
-
-
                   </div>
-                  <!-- /.card-body -->
-
-
-
+                </form>
               </div>
-              </form>
             </div>
           </div>
         </div>
-        <!-- /.card -->
       </div>
+    </section>
   </div>
-  <!-- /.div -->
-  </section>
-  <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
 
-  <!-- COMIENZA EL FOOTER  --- COMIENZA EL FOOTER --- COMIENZA EL FOOTER --- COMIENZA EL FOOTER -->
 
-  <!-- Control Sidebar -->
-
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
+  <aside class=" control-sidebar control-sidebar-dark">
   </aside>
-  <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
   <footer class="main-footer">
@@ -125,10 +82,6 @@
   </script>
 
   <script src="<?php echo base_url() ?>application/js/j_tipo_cambio.js"></script>
-  <!-- <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script> -->
-
-
-
   </body>
 
   </html>

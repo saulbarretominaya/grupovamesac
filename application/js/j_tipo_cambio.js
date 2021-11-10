@@ -48,9 +48,9 @@ $("#registrar").on("click", function () {
 });
 
 $("#actualizar").on("click", function () {
+	var id_tipo_cambio = $("#id_tipo_cambio").val();
 	var compra = $("#compra").val();
 	var venta = $("#venta").val();
-
 	debugger;
 	$.ajax({
 		async: false,
@@ -58,6 +58,7 @@ $("#actualizar").on("click", function () {
 		type: "POST",
 		dataType: "json",
 		data: {
+			id_tipo_cambio: id_tipo_cambio,
 			compra: compra,
 			venta: venta,
 		},

@@ -81,10 +81,6 @@
   </script>
 
   <script src="<?php echo base_url() ?>application/js/j_tipo_cambio.js"></script>
-  <!-- <script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script> -->
-
-
-
   </body>
 
   </html>

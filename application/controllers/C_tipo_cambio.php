@@ -51,15 +51,16 @@ class C_tipo_cambio extends CI_Controller
 
     public function actualizar()
     {
-
+        $id_tipo_cambio = $this->input->post("id_tipo_cambio");
         $compra = $this->input->post("compra");
         $venta = $this->input->post("venta");
 
         if ($this->M_tipo_cambio->actualizar(
+            $id_tipo_cambio,
             $compra,
             $venta
         ));
 
-        echo json_encode($compra);
+        echo json_encode($id_tipo_cambio);
     }
 }

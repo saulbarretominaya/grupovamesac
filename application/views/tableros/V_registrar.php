@@ -94,7 +94,6 @@
                                   </select>
                                 </div>
                               </div>
-                              <!-- Modelo Tablero -->
                               <div class="col-md-3">
                                 <label for="">Modelo Tablero</label>
                                 <div class="input-group">
@@ -108,21 +107,6 @@
                                   </select>
                                 </div>
                               </div>
-                              <!-- Tipo Moneda -->
-                              <div class="col-md-3">
-                                <label for="">Tipo Moneda</label>
-                                <div class="input-group">
-                                  <select class="form-control select2" id="id_moneda" style="width: 100%;">
-                                    <option value="0">Seleccionar</option>
-                                    <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
-                                      <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
-                                        <?php echo $cbox_moneda->descripcion; ?>
-                                      </option>
-                                    <?php endforeach; ?>
-                                  </select>
-                                </div>
-                              </div>
-                              <!-- Almacen -->
                               <div class="col-md-3">
                                 <label for="">Almacen</label>
                                 <div class="input-group">
@@ -198,7 +182,9 @@
                                                     $index_productos->ds_unidad_medida . "*" .
                                                     $index_productos->id_marca_producto . "*" .
                                                     $index_productos->ds_marca_producto . "*" .
+                                                    $index_productos->ds_moneda . "*" .
                                                     $index_productos->precio_unitario;
+
                                                   ?>
                                                   <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_producto" value="<?php echo $split_productos; ?>" data-toggle="modal" data-target="#opcion_target_producto"><span class="fas fa-check"></span></button>
                                                 </td>
@@ -251,20 +237,27 @@
                         </div>
                       </div>
 
-                      <div class="col-md-9">
+                      <div class="col-md-10">
                         <div class="card">
                           <div class="card-header">
-                            <h3 class="card-title">Descripcion de Productos por Tablero</h3>
+                            <h3 class="card-title">Descripcion de Producto por Tablero</h3>
                           </div>
                           <div class="card-body">
                             <div class="form-group row">
-                              <div class="col-md-3">
+                              <div class="col-md-1">
+                                <label for="">&nbsp;</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
+                                  <input type="hidden" id="moneda">
+                                </div>
+                              </div>
+                              <div class="col-md-2">
                                 <label for="">Precio Unitario</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="precio_unitario" placeholder="" readonly>
                                 </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-2">
                                 <label for="">Cantidad</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="cantidad_unitaria" placeholder="">
@@ -277,6 +270,16 @@
                                 </div>
                               </div>
                               <div class="col-md-3">
+                                <label for="">Moneda</label>
+                                <div class="input-group">
+                                  <select class="form-select" id="id_moneda">
+                                    <option value="0">Seleccionar</option>
+                                    <option value="1">SOLES</option>
+                                    <option value="2">DOLARES</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-1">
                                 <label for="">&nbsp;</label>
                                 <div class="input-group">
                                   <button type="button" class="btn btn-outline-success" id="id_agregar_tablero"><span class="fas fa-plus"></span></button>
@@ -288,15 +291,15 @@
                         </div>
                       </div>
 
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <div class="card">
                           <div class="card-header">
-                            <h3 class="card-title">Cantidad de Tablero</h3>
+                            <h3 class="card-title">Cant Tablero</h3>
                           </div>
                           <div class="card-body">
                             <div class="form-group row">
                               <div class="col-md-12">
-                                <label for="">Ingrese # Tableros</label>
+                                <label for="">&nbsp;</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" name="" id="cantidad_tablero" placeholder="">
                                 </div>

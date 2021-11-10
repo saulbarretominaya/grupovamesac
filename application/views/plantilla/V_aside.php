@@ -61,6 +61,25 @@
             </ul>
           </li>
           <!-- fin de multitablas -->
+          <!-- multitablas -->
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-border-none"></i>
+              <p>
+                Multitablas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_multitablas" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registrar tabla</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- fin de multitablas -->
 
           <!-- Logistica-->
           <!-- <li class="nav-item">

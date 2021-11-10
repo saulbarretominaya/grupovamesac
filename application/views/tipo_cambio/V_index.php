@@ -6,7 +6,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>TIPO DE CAMBIO
-              <a href="<?php echo base_url(); ?>C_tipo_cambio/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+              <!-- <a href="<?php echo base_url(); ?>C_tipo_cambio/enlace_registrar" class="btn btn-primary">REGISTRAR</a> -->
             </h1>
           </div>
         </div>
@@ -23,11 +23,9 @@
             <table id="id_datatable_tipo_cambio" class="table table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Item</th>
                   <th>Fecha</th>
                   <th>Compra S/.</th>
                   <th>Venta S/.</th>
-                  <th></th>
                   <th></th>
                 </tr>
               </thead>
@@ -35,11 +33,9 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_tipo_cambio; ?></td>
                       <td><?php echo $index->fecha; ?></td>
                       <td><?php echo $index->compra; ?></td>
                       <td><?php echo $index->venta; ?></td>
-                      <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus""></span></a></td>
                       <td><a href=" <?php echo base_url(); ?>C_tipo_cambio/enlace_actualizar/<?php echo $index->id_tipo_cambio; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
                     </tr>
                   <?php endforeach; ?>
