@@ -20,10 +20,10 @@ class M_productos extends CI_Model
         LEFT(descripcion_producto,30) as descripcion_producto,
         id_moneda,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        FORMAT(precio_costo,2) as precio_costo,
+        precio_costo,
         porcentaje,
-        FORMAT(ganancia_unidad,2) as ganancia_unidad,
-        FORMAT(precio_unitario,2) as precio_unitario,
+        ganancia_unidad,
+        precio_unitario,
         rentabilidad,
         id_grupo,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
@@ -93,7 +93,7 @@ class M_productos extends CI_Model
     public function enlace_actualizar($id_producto)
     {
         $resultados = $this->db->query("
-                SELECT 
+        SELECT 
         id_producto,
         codigo_producto,
         id_almacen,
@@ -105,10 +105,10 @@ class M_productos extends CI_Model
         LEFT(descripcion_producto,30) as descripcion_producto,
         id_moneda,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        FORMAT(precio_costo,2) as precio_costo,
+        precio_costo,
         porcentaje,
-        FORMAT(ganancia_unidad,2) as ganancia_unidad,
-        FORMAT(precio_unitario,2) as precio_unitario,
+        ganancia_unidad,
+        precio_unitario,
         rentabilidad,
         id_grupo,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,

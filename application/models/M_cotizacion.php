@@ -255,6 +255,13 @@ class M_cotizacion extends CI_Model
         return $resultados->result();
     }
 
+    public function tipo_cambio()
+    {
+        $resultados = $this->db->query("
+        select * from tipo_cambio where id_tipo_cambio='1'");
+        return $resultados->row();
+    }
+
     public function detalle_modal($id_cotizacion)
     {
         $resultados = $this->db->query(

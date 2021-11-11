@@ -47,6 +47,7 @@ class C_cotizacion extends CI_Controller
 			'index_tableros' => $this->M_cotizacion->index_tableros(),
 			'index_comodin' => $this->M_cotizacion->index_comodin(),
 			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+			'tipo_cambio' => $this->M_cotizacion->tipo_cambio(),
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -167,6 +168,8 @@ class C_cotizacion extends CI_Controller
 		);
 		echo json_encode($serie_cotizacion);
 	}
+
+
 
 	protected function insertar_detalle(
 		$id_cotizacion,

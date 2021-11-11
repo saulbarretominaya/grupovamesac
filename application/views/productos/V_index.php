@@ -28,7 +28,6 @@
                   <th>Precio Unitario</th>
                   <th>Stock</th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -44,9 +43,7 @@
                       <td><?php echo $index->precio_costo; ?></td>
                       <td><?php echo $index->precio_unitario; ?></td>
                       <td><?php echo $index->stock; ?></td>
-                      <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus"></span></a></td>
                       <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_producto; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

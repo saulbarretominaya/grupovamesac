@@ -809,31 +809,26 @@ function calcular_fecha_condicion_pago() {
 
 }
 function aplicar_tipo_cambio() {
+	debugger;
 
-	var precio_unitario = Number($("#precio_unitario").val());
+	var precio_unitario = $("#precio_unitario").val();
 	var valor_cambio = $("#valor_cambio").val();
 	var tipo_moneda_origen = $("#tipo_moneda_origen").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
 
 	if (tipo_moneda_cambio == "Seleccionar") {
-
 		convertidor_unitario = 0;
 	}
 	else if (tipo_moneda_origen == tipo_moneda_cambio) {
-
-		convertidor_unitario = precio_unitario;
+		convertidor_unitario = Number(precio_unitario);
 	}
 	else if (tipo_moneda_origen == "SOLES") {
 		convertidor_unitario = precio_unitario / valor_cambio;
 	}
 	else if (tipo_moneda_origen == "DOLARES") {
-
 		convertidor_unitario = precio_unitario * valor_cambio;
 	}
-	else if (tipo_moneda_origen == tipo_moneda_cambio) {
 
-		convertidor_unitario = precio_unitario;
-	}
 	$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
 	$("#precio_inicial").val(convertidor_unitario.toFixed(5));
 	$("#precio_ganancia").val(convertidor_unitario.toFixed(5));
@@ -883,7 +878,6 @@ function limpiar_campos() {
 		$("#tipo_moneda_cambio").attr("disabled", false);
 	}
 }
-
 /* Fin Funciones */
 
 

@@ -524,7 +524,7 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-3">
-                              <label for="">&nbsp;</label>
+                              <label>&nbsp;</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
                               </div>
@@ -543,8 +543,8 @@
                     <div class="col-md-4">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">El Tipo Cambio es: <?php echo "4"; ?></h3>
-                          <input type="hidden" class="form-control" id="valor_cambio" value="4">
+                          <h3 class="card-title">El Tipo Cambio es: <?php echo $tipo_cambio->venta; ?></h3>
+                          <input type="hidden" class="form-control" id="valor_cambio" value="<?php echo $tipo_cambio->venta; ?>">
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
