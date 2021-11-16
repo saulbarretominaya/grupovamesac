@@ -1,5 +1,5 @@
 
-$("#id_datatable_comodin").dataTable({
+$("#listar").dataTable({
 
 	scrollX: true,
 	scrollCollapse: true,
@@ -57,6 +57,7 @@ $("#registrar").on("click", function () {
 		},
 	});
 });
+
 $("#actualizar").on("click", function () {
 	debugger;
 	var codigo_producto = $("#codigo_producto").val();

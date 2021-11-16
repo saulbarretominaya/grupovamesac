@@ -14,7 +14,6 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <!-- Recursos humanos -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fab fa-hive"></i>
@@ -40,9 +39,7 @@
               </li>
             </ul>
           </li>
-          <!-- fin de recursos humanos -->
 
-          <!-- multitablas -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-border-none"></i>
@@ -60,8 +57,6 @@
               </li>
             </ul>
           </li>
-          <!-- fin de multitablas -->
-          <!-- multitablas -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-border-none"></i>
@@ -79,7 +74,6 @@
               </li>
             </ul>
           </li>
-          <!-- fin de multitablas -->
 
           <!-- Logistica-->
           <!-- <li class="nav-item">
@@ -101,7 +95,6 @@
           </li> -->
           <!-- fin logistica-->
 
-          <!-- almacen -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-truck"></i>
@@ -125,9 +118,7 @@
               </li>
             </ul>
           </li>
-          <!-- fin de almacen -->
 
-          <!-- tipo de cambio -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-chart-line"></i>
@@ -145,9 +136,7 @@
               </li>
             </ul>
           </li>
-          <!-- fin de tipo de cambio-->
 
-          <!--comercial -->
           <li class="nav-item">
             <a href="" class="nav-link">
 
@@ -180,7 +169,26 @@
               </li>
             </ul>
           </li>
-          <!-- fin de comercial -->
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+
+              <i class="fas fa-users-cog"></i>
+              <p>
+                Administracion
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_usuarios" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
 
           <!-- orden despacho-->
           <!-- <li class="nav-item">

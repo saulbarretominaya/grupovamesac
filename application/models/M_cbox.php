@@ -549,13 +549,13 @@ class M_cbox extends CI_Model
           b.correlativo+1 AS correlativo_producto
           FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='24';");
+          WHERE b.id_multitabla='53';");
         return $resultados->result();
     }
     public function actualizar_correlativo_producto($codigo_producto)
     {
         $resultados = $this->db->query("
           UPDATE detalle_multitablas SET correlativo='$codigo_producto'
-          WHERE id_multitabla='24';");
+          WHERE id_multitabla='53';");
     }
 }

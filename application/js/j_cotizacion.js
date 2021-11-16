@@ -558,7 +558,7 @@ $(document).ready(function () {
 
 
 /*Evento */
-$("#numero_dias_condicion_pago").on("keyup", function () {
+$("#dias").on("keyup", function () {
 	calcular_fecha_condicion_pago();
 });
 $("#tipo_moneda_cambio").on("change", function () {
@@ -789,7 +789,7 @@ function calcular_monto() {
 }
 function calcular_fecha_condicion_pago() {
 	//let num = parseInt(frm.fechsa.value);
-	var num = parseInt(document.getElementById("numero_dias_condicion_pago").value);
+	var num = parseInt(document.getElementById("dias").value);
 
 	// la fecha viene en formato yyyy-mm-dd
 	var f = document.getElementById("fecha_cotizacion").value;
@@ -805,8 +805,12 @@ function calcular_fecha_condicion_pago() {
 
 	//rm.total.value = fecha.getUTCFullYear() + '-' + mes + '-' + dia;
 	//$("#total").val(fecha.getUTCFullYear() + '-' + mes + '-' + dia);
-	document.getElementById("fecha_condicion_pago").value = (dia + '-' + mes + '-' + fecha.getUTCFullYear());
-
+	debugger;
+	if (isNaN(num)) {
+		$("#fecha_condicion_pago").val("");
+	} else {
+		document.getElementById("fecha_condicion_pago").value = (dia + '-' + mes + '-' + fecha.getUTCFullYear());
+	}
 }
 function aplicar_tipo_cambio() {
 	debugger;

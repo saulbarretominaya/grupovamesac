@@ -188,13 +188,13 @@
                             <div class="col-md-3">
                               <label for="">Direccion Fiscal</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Correo Electronico</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor">
+                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-3">
@@ -252,13 +252,14 @@
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for=""># Dias</label>
+                              <label># Dias</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="numero_dias_condicion_pago">
+                                <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
+                                <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="">Fecha Pago</label>
+                              <label>Fecha Pago</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
                               </div>
