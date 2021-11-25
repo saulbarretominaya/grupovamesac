@@ -20,7 +20,7 @@ class M_compras extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_condicion_pago) AS ds_condicion_pago,
         id_moneda,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        total_factura,fecha_emision_voucher,fecha_vencimiento_voucher,observacion_voucher,id_estado_compra       
+        total_factura,fecha_emision_voucher,fecha_vencimiento_voucher,observacion_pago,id_estado_compra       
         FROM compras"
         );
         return $resultados->result();
@@ -36,7 +36,7 @@ class M_compras extends CI_Model
     public function encargado()
     {
         $resultados = $this->db->query("
-           SELECT CONCAT (nombres,' ',ape_paterno,' ',ape_materno) AS ds_omar FROM trabajadores WHERE id_estado = '1';");
+           SELECT CONCAT (nombres,' ',ape_paterno,' ',ape_materno) AS ds_encargado FROM trabajadores WHERE id_estado = '1';");
         return $resultados->result();
     }
 
@@ -48,7 +48,7 @@ class M_compras extends CI_Model
     }
 
     public function insertar(
-        $id_compras,
+
         $id_trabajador,
         $fecha_emision_voucher,
         $fecha_vencimiento_voucher,
@@ -65,18 +65,9 @@ class M_compras extends CI_Model
         $total_factura,
         $id_estado_compra,
         $observacion_pago,
-        $num_voucher_pago,
-        $id_transaccion,
-        $fecha_pago_voucher,
-        $tipo_cambio,
-        $numero_deposito,
-        $numero_letra_cheque,
-        $id_banco,
-        $id_medio_pago_voucher,
-        $importe_pago,
-        $id_leyenda,
-        $observacion_voucher,
-        $id_estado_voucher
+        $total_deuda_voucher,
+        $monto_pagado_voucher,
+        $monto_pendiente_voucher
     ) {
         return $this->db->query("INSERT INTO compras
         (id_compras,
@@ -96,18 +87,9 @@ class M_compras extends CI_Model
         total_factura,
         id_estado_compra,
         observacion_pago,
-        num_voucher_pago,
-        id_transaccion,
-        fecha_pago_voucher,
-        tipo_cambio,
-        numero_deposito,
-        numero_letra_cheque,
-        id_banco,
-        id_medio_pago_voucher,
-        importe_pago,
-        id_leyenda,
-        observacion_voucher,
-        id_estado_voucher)
+        total_deuda_voucher,
+        monto_pagado_voucher,
+        monto_pendiente_voucher)
         VALUES ('',
         '$id_trabajador',
         '$fecha_emision_voucher',
@@ -125,18 +107,9 @@ class M_compras extends CI_Model
         '$total_factura',
         '$id_estado_compra',
         '$observacion_pago',
-        '$num_voucher_pago',
-        '$id_transaccion',
-        '$fecha_pago_voucher',
-        '$tipo_cambio',
-        '$numero_deposito',
-        '$numero_letra_cheque',
-        '$id_banco',
-        '$id_medio_pago_voucher',
-        '$importe_pago',
-        '$id_leyenda',
-        '$observacion_voucher',
-        '$id_estado_voucher')");
+        '$total_deuda_voucher',
+        '$monto_pagado_voucher',
+        '$monto_pendiente_voucher')");
     }
 
     public function lastID()
@@ -146,51 +119,70 @@ class M_compras extends CI_Model
 
     public function insertar_detalle(
         $id_compras,
-        $dt_voucher_pago,
-        $dt_fecha_pago_voucher,
-        $dt_ds_medio_pago_voucher,
-        $id_dt_medio_pago_voucher,
-        $id_dt_banco,
-        $dt_ds_banco,
-        $dt_importe_pago,
-        $id_dt_estado_voucher,
-        $total_deuda_voucher,
-        $monto_pagado_voucher,
-        $monto_pendiente_voucher
+        $voucher_pago,
+        $id_transaccion,
+        $fecha_pago_voucher,
+        $tipo_cambio,
+        $numero_deposito,
+        $numero_letra_cheque,
+        $id_banco,
+        $id_medio_pago_voucher,
+        $importe_pago,
+        $id_leyenda,
+        $observacion_voucher,
+        $id_estado_voucher
+
     ) {
         return $this->db->query("INSERT INTO detalle_compras
         (id_dcompras,
         id_compras,
-        dt_voucher_pago,
-        dt_fecha_pago_voucher,
-        dt_ds_medio_pago_voucher,
-        id_dt_medio_pago_voucher,
-        id_dt_banco,
-        dt_ds_banco,
-        dt_importe_pago,
-        id_dt_estado_voucher,
-        total_deuda_voucher,
-        monto_pagado_voucher,
-        monto_pendiente_voucher)
+        voucher_pago,
+        id_transaccion,
+        fecha_pago_voucher,
+        tipo_cambio,
+        numero_deposito,
+        numero_letra_cheque,
+        id_banco,
+        id_medio_pago_voucher,
+        importe_pago,
+        id_leyenda,
+        observacion_voucher,
+        id_estado_voucher)
         VALUES ('','$id_compras',
-        '$dt_voucher_pago',
-        '$dt_fecha_pago_voucher',
-        '$dt_ds_medio_pago_voucher',
-        '$id_dt_medio_pago_voucher',
-        '$id_dt_banco',
-        '$dt_ds_banco',
-        '$dt_importe_pago',
-        '$id_dt_estado_voucher',
-        '$total_deuda_voucher',
-        '$monto_pagado_voucher',
-        '$monto_pendiente_voucher')");
+         '$id_compras',
+        '$voucher_pago',
+        '$id_transaccion',
+        '$fecha_pago_voucher',
+        '$tipo_cambio',
+        '$numero_deposito',
+        '$numero_letra_cheque',
+        '$id_banco',
+        '$id_medio_pago_voucher',
+        '$importe_pago',
+       '$id_leyenda',
+        '$observacion_voucher',
+        '$id_estado_voucher')");
     }
 
-    public function enlace_actualizar($id_cliente_proveedor)
+    public function enlace_actualizar($id_compras)
     {
-        $this->db->where("id_cliente_proveedor", $id_cliente_proveedor);
-        $resultados = $this->db->get("clientes_proveedores");
+        $this->db->where("id_compras", $id_compras);
+        $resultados = $this->db->get("compras");
         return $resultados->row();
+    }
+
+    public function detalle_pagos($id_compras)
+    {
+        $resultados = $this->db->query("SELECT 
+        a.id_compras, -- COMPRAS
+        b.id_dcompras,b.dt_voucher_pago,b.dt_fecha_pago_voucher,b.dt_ds_medio_pago_voucher,b.dt_ds_banco,b.dt_importe_pago,
+        b.id_dt_medio_pago_voucher,b.id_dt_estado_voucher,b.id_dt_banco
+        
+        FROM compras a
+        LEFT JOIN detalle_compras b ON b.id_compras=a.id_compras
+        WHERE a.id_compras='$id_compras'
+         ");
+        return $resultados->result();
     }
 
 

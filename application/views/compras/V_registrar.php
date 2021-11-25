@@ -58,8 +58,8 @@
                                     <select class="custom-select " id="encargado" required>
                                       <option value="0" selected>Selecciona...</option>
                                       <?php foreach ($encargado as $encargado) : ?>
-                                        <option value="<?php echo $encargado->ds_omar; ?>">
-                                          <?php echo $encargado->ds_omar; ?>
+                                        <option value="<?php echo $encargado->ds_encargado; ?>">
+                                          <?php echo $encargado->ds_encargado; ?>
                                         </option>
                                       <?php endforeach; ?>
                                     </select>
