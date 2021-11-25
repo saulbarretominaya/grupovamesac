@@ -537,6 +537,15 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
+    //54
+    public function cbox_roles_usuarios()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='54';");
+        return $resultados->result();
+    }
 
 
     /* No tocar */

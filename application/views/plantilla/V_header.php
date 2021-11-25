@@ -73,6 +73,13 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
+          <a class="nav-link">
+            <!-- <i class="fas fa-expand-arrows-alt"></i> -->
+            <p>Saul Barreto</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
