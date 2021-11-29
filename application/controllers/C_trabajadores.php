@@ -65,6 +65,8 @@ class C_trabajadores extends CI_Controller
             'cbox_departamento' => $this->M_cbox->cbox_departamento(),
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'cbox_empresa' => $this->M_cbox->cbox_empresa(),
+
         );
 
         $this->load->view('plantilla/V_header');
@@ -96,9 +98,33 @@ class C_trabajadores extends CI_Controller
         $departamento = $this->input->post("departamento");
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
+        $id_empresa = $this->input->post("id_empresa");
 
-
-        $this->M_trabajadores->insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+        $this->M_trabajadores->insertar(
+            $num_documento,
+            $nombres,
+            $ape_paterno,
+            $ape_materno,
+            $email,
+            $fecha_nacimiento,
+            $lugar_nacimiento,
+            $domicilio,
+            $referencia,
+            $telefono,
+            $celular,
+            $tipo_trabajador,
+            $tipo_documento,
+            $almacen,
+            $cargo_trabajador,
+            $sexo,
+            $nacionalidad,
+            $estado_civil,
+            $grado_instruccion,
+            $departamento,
+            $provincia,
+            $distrito,
+            $id_empresa
+        );
 
         echo json_encode($num_documento);
     }
@@ -120,6 +146,7 @@ class C_trabajadores extends CI_Controller
             'cbox_departamento' => $this->M_cbox->cbox_departamento(),
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'cbox_empresa' => $this->M_cbox->cbox_empresa(),
         );
 
 
@@ -153,6 +180,7 @@ class C_trabajadores extends CI_Controller
         $departamento = $this->input->post("departamento");
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
+        $id_empresa = $this->input->post("id_empresa");
 
         // print_r($fecha_nacimiento1);
 
@@ -162,7 +190,32 @@ class C_trabajadores extends CI_Controller
 
         // // STR_TO_DATE(REPLACE('$fecha_nacimiento', '/', '.'), GET_FORMAT(date, 'EUR'))
 
-        $this->M_trabajadores->actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+        $this->M_trabajadores->actualizar(
+            $id_trabajador,
+            $num_documento,
+            $nombres,
+            $ape_paterno,
+            $ape_materno,
+            $email,
+            $fecha_nacimiento,
+            $lugar_nacimiento,
+            $domicilio,
+            $referencia,
+            $telefono,
+            $celular,
+            $tipo_trabajador,
+            $tipo_documento,
+            $almacen,
+            $cargo_trabajador,
+            $sexo,
+            $nacionalidad,
+            $estado_civil,
+            $grado_instruccion,
+            $departamento,
+            $provincia,
+            $distrito,
+            $id_empresa
+        );
 
 
         echo json_encode($num_documento);

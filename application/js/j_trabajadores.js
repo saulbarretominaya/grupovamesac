@@ -74,8 +74,6 @@ $(document).ready(function () {
 });
 
 
-// INSERTAR
-
 $("#registrar").on("click", function () {
 	debugger;
 
@@ -101,6 +99,8 @@ $("#registrar").on("click", function () {
 	var departamento = $("#departamento").val();
 	var provincia = $("#provincia").val();
 	var distrito = $("#distrito").val();
+	var id_empresa = $("#id_empresa").val();
+
 
 	// if (
 	// 	// // id_trabajador === "" ||
@@ -165,6 +165,7 @@ $("#registrar").on("click", function () {
 			departamento: departamento,
 			provincia: provincia,
 			distrito: distrito,
+			id_empresa: id_empresa
 		},
 		success: function (data) {
 			debugger;
@@ -175,7 +176,7 @@ $("#registrar").on("click", function () {
 	// }
 });
 
-$("#actualizar_trabajadores").on("click", function () {
+$("#actualizar").on("click", function () {
 	debugger;
 
 	var id_trabajador = $("#id_trabajador").val();
@@ -201,6 +202,7 @@ $("#actualizar_trabajadores").on("click", function () {
 	var departamento = $("#departamento").val();
 	var provincia = $("#provincia").val();
 	var distrito = $("#distrito").val();
+	var id_empresa = $("#id_empresa").val();
 	var resultado = "";
 
 	// if (
@@ -268,6 +270,7 @@ $("#actualizar_trabajadores").on("click", function () {
 			departamento: departamento,
 			provincia: provincia,
 			distrito: distrito,
+			id_empresa: id_empresa
 		},
 
 		success: function (data) {
@@ -306,6 +309,7 @@ $("#actualizar_trabajadores").on("click", function () {
 					departamento: departamento,
 					provincia: provincia,
 					distrito: distrito,
+					id_empresa: id_empresa
 				},
 				success: function (data) {
 					window.location.href = base_url + "C_trabajadores";

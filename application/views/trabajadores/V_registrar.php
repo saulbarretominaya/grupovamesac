@@ -96,8 +96,22 @@
                       </div>
                       <!-- Segunda Fila -->
                       <div class="form-row align-items-center">
+                        <!-- EMPRESA -->
+                        <div class="col-md-3 mb-3">
+                          <label for="tipo_documento">Empresa</label>
+                          <div class="input-group">
+                            <select class="custom-select " id="id_empresa" aria-describedby="inputGroupTdocumento" required>
+                              <option value="0" selected>Selecciona...</option>
+                              <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
+                                <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
+                                  <?php echo $cbox_empresa->descripcion; ?>
+                                </option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
                         <!-- TIPO DE DOCUMENTO -->
-                        <div class="col-md-5 mb-3">
+                        <div class="col-md-3 mb-3">
                           <label for="tipo_documento">Tipo Documento</label>
                           <div class="input-group">
                             <select class="custom-select " id="tipo_documento" aria-describedby="inputGroupTdocumento" required>
@@ -111,10 +125,10 @@
                           </div>
                         </div>
                         <!-- NUMERO DE DOCUMENTO -->
-                        <div class="col-md-7 mb-3">
+                        <div class="col-md-3 mb-3">
                           <label for="num_documento">Numero Documento</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="num_documento" maxlength="15" placeholder="Ingresa el N° Documento1" required>
+                            <input type="text" class="form-control" id="num_documento" maxlength="15" placeholder="Ingresa el N° Documento" required>
                           </div>
                         </div>
                       </div>

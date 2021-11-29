@@ -6,7 +6,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1>Trabajadores
-            <button type="button" class="btn btn-warning btn-sm" id="actualizar_trabajadores">ACTUALIZAR</button>
+            <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
             <a href="<?php echo base_url(); ?>C_trabajadores" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
@@ -127,8 +127,28 @@
                           </select>
                         </div>
                       </div>
+                      <!-- EMPRESA -->
+                      <div class="col-md-3 mb-3">
+                        <label for="sexo">Empresa</label>
+                        <div class="input-group">
+                          <select class="custom-select " id="id_empresa" required>
+                            <option selected>Selecciona...</option>
+                            <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
+                              <?php if ($cbox_empresa->id_dmultitabla == $enlace_actualizar->id_empresa) : ?>
+                                <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>" selected>
+                                  <?php echo $cbox_empresa->descripcion; ?>
+                                </option>
+                              <?php else : ?>
+                                <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
+                                  <?php echo $cbox_empresa->descripcion; ?>
+                                </option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
+                      </div>
                       <!-- TIPO DE DOCUMENTO -->
-                      <div class="col-md-5 mb-3">
+                      <div class="col-md-3 mb-3">
                         <label for="tipo_documento">Tipo Documento</label>
                         <div class="input-group">
                           <select class="custom-select " id="tipo_documento" required>
@@ -148,7 +168,7 @@
                         </div>
                       </div>
                       <!-- NUMERO DE DOCUMENTO -->
-                      <div class="col-md-4 mb-3">
+                      <div class="col-md-3 mb-3">
                         <label for="num_documento">Numero Documento</label>
                         <div class="input-group">
                           <input type="text" class="form-control" id="num_documento" value="<?php echo $enlace_actualizar->num_documento; ?>" maxlength="15" placeholder="Ingresa el N° Documento" required>
