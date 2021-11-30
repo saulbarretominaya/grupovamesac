@@ -10,14 +10,19 @@ class C_inicio extends CI_Controller
     {
         parent::__construct();
         $this->load->model("M_inicio");
+        $this->load->model("M_cbox");
     }
 
     public function index()
     {
+        $data = array(
+            'cbox_empresa' => $this->M_cbox->cbox_empresa(),
+        );
+
         if ($this->session->userdata("login")) {
             redirect(base_url() . "C_menu");
         } else {
-            $this->load->view("inicio/V_index");
+            $this->load->view("inicio/V_index", $data);
         }
     }
 

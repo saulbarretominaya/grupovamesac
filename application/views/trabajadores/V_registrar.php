@@ -42,7 +42,7 @@
                           <label for="tipo_trabajador">Tipo Trabajador</label>
                           <div class="input-group">
                             <select class="custom-select " data-placeholder="Prueba" id="tipo_trabajador" required>
-                              <option value="0" selected>Selecciona...</option>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_trabajador as $cbox_tipo_trabajador) : ?>
                                 <option value="<?php echo $cbox_tipo_trabajador->id_dmultitabla; ?>">
                                   <?php echo $cbox_tipo_trabajador->descripcion; ?>
@@ -56,7 +56,7 @@
                           <label for="almacen">Sucursal</label>
                           <div class="input-group">
                             <select class="custom-select " id="almacen" required>
-                              <option value="0" selected>Selecciona...</option>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                                 <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
                                   <?php echo $cbox_almacen->descripcion; ?>
@@ -70,7 +70,7 @@
                           <label for="cargo_trabajador">Cargo del Trabajador</label>
                           <div class="input-group">
                             <select class="custom-select " id="cargo_trabajador" required>
-                              <option value="0" selected>Selecciona...</option>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_cargo_trabajador as $cbox_cargo_trabajador) : ?>
                                 <option value="<?php echo $cbox_cargo_trabajador->id_dmultitabla; ?>">
                                   <?php echo $cbox_cargo_trabajador->descripcion; ?>
@@ -84,7 +84,7 @@
                           <label for="sexo">Sexo</label>
                           <div class="input-group">
                             <select class="custom-select " id="sexo" required>
-                              <option value="0" selected>Selecciona...</option>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_sexo as $cbox_sexo) : ?>
                                 <option value="<?php echo $cbox_sexo->id_dmultitabla; ?>">
                                   <?php echo $cbox_sexo->descripcion; ?>
@@ -101,7 +101,7 @@
                           <label for="tipo_documento">Empresa</label>
                           <div class="input-group">
                             <select class="custom-select " id="id_empresa" aria-describedby="inputGroupTdocumento" required>
-                              <option value="0" selected>Selecciona...</option>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
                                 <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
                                   <?php echo $cbox_empresa->descripcion; ?>
@@ -115,7 +115,7 @@
                           <label for="tipo_documento">Tipo Documento</label>
                           <div class="input-group">
                             <select class="custom-select " id="tipo_documento" aria-describedby="inputGroupTdocumento" required>
-                              <option value="0" selected>Selecciona...</option>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
                                 <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
                                   <?php echo $cbox_tipo_documento->descripcion; ?>

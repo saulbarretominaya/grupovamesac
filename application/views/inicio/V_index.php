@@ -26,6 +26,15 @@
                 <hr>
                 <input name="contraseña" class="frm-control frm-control-lg" type="password" placeholder="Contraseña">
                 <hr>
+                <select name="id_empresa" class="frm-control frm-control-lg">
+                    <option value="0" selected>Seleccionar</option>
+                    <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
+                        <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
+                            <?php echo $cbox_empresa->descripcion; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <hr>
                 <button type="submit" class="btn btn-2 btn-lg btn-eff-1 btn-block">Ingresar</button>
             </form>
         </div>

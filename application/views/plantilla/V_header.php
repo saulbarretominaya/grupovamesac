@@ -75,7 +75,7 @@
         <li class="nav-item">
           <a class="nav-link">
             <!-- <i class="fas fa-expand-arrows-alt"></i> -->
-            <p><?php echo $this->session->userdata("ds_nombre_trabajador") ?></p>
+            <p><?php echo $this->session->userdata("ds_nombre_usuario") ?></p>
           </a>
         </li>
 

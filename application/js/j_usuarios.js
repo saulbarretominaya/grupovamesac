@@ -25,11 +25,12 @@ $("#listar").dataTable({
 	"ordering": false
 });
 $("#registrar").on("click", function () {
-	debugger;
-	var id_trabajador = $("#id_trabajador").val();
 	var usuario = $("#usuario").val();
 	var password = $("#password").val();
+	var id_empresa = $("#id_empresa").val();
 	var id_rol = $("#id_rol").val();
+	var id_trabajador = $("#id_trabajador").val();
+
 	debugger;
 	$.ajax({
 		async: false,
@@ -37,10 +38,11 @@ $("#registrar").on("click", function () {
 		type: "POST",
 		dataType: "json",
 		data: {
-			id_trabajador: id_trabajador,
 			usuario: usuario,
 			password: password,
-			id_rol: id_rol
+			id_empresa: id_empresa,
+			id_rol: id_rol,
+			id_trabajador: id_trabajador
 		},
 		success: function (data) {
 			debugger;
@@ -50,7 +52,7 @@ $("#registrar").on("click", function () {
 });
 $("#actualizar").on("click", function () {
 	debugger;
-	var id_trabajador = $("#id_trabajador").val();
+	var id_usuario = $("#id_usuario").val();
 	var usuario = $("#usuario").val();
 	var password = $("#password").val();
 	var id_rol = $("#id_rol").val();
@@ -61,7 +63,7 @@ $("#actualizar").on("click", function () {
 		type: "POST",
 		dataType: "json",
 		data: {
-			id_trabajador: id_trabajador,
+			id_usuario: id_usuario,
 			usuario: usuario,
 			password: password,
 			id_rol: id_rol
@@ -78,7 +80,6 @@ $("#actualizar").on("click", function () {
 
 /*  Ventanas Modal Registrar */
 $(document).on("click", ".js_seleccionar_modal_trabajadores", function () {
-	debugger;
 	trabajadores = $(this).val();
 	split_trabajadores = trabajadores.split("*");
 	$("#id_trabajador").val(split_trabajadores[0]);
