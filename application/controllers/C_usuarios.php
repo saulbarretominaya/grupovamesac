@@ -63,6 +63,7 @@ class C_usuarios extends CI_Controller
             'enlace_actualizar' => $this->M_usuarios->enlace_actualizar($id_usuario),
             'index_trabajadores' => $this->M_usuarios->index_trabajadores(),
             'cbox_roles_usuarios' => $this->M_cbox->cbox_roles_usuarios(),
+            'cbox_empresa' => $this->M_cbox->cbox_empresa(),
         );
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
@@ -74,13 +75,18 @@ class C_usuarios extends CI_Controller
         $id_usuario = $this->input->post("id_usuario");
         $usuario = $this->input->post("usuario");
         $password = $this->input->post("password");
+        $id_empresa = $this->input->post("id_empresa");
         $id_rol = $this->input->post("id_rol");
+        $id_trabajador = $this->input->post("id_trabajador");
+
 
         if ($this->M_usuarios->actualizar(
             $id_usuario,
             $usuario,
             $password,
-            $id_rol
+            $id_empresa,
+            $id_rol,
+            $id_trabajador
         ));
         echo json_encode($id_usuario);
     }

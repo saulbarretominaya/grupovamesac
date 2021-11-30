@@ -36,7 +36,7 @@ class C_inicio extends CI_Controller
             redirect(base_url());
         } else {
             $data = array(
-                'ds_nombre_trabajador' => $res->ds_nombre_trabajador,
+                'ds_nombre_usuario' => $res->ds_nombre_usuario,
                 'login' => TRUE
             );
             $this->session->set_userdata($data);

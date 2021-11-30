@@ -55,7 +55,9 @@ $("#actualizar").on("click", function () {
 	var id_usuario = $("#id_usuario").val();
 	var usuario = $("#usuario").val();
 	var password = $("#password").val();
+	var id_empresa = $("#id_empresa").val();
 	var id_rol = $("#id_rol").val();
+	var id_trabajador = $("#id_trabajador").val();
 	debugger;
 	$.ajax({
 		async: false,
@@ -66,7 +68,9 @@ $("#actualizar").on("click", function () {
 			id_usuario: id_usuario,
 			usuario: usuario,
 			password: password,
-			id_rol: id_rol
+			id_empresa: id_empresa,
+			id_rol: id_rol,
+			id_trabajador: id_trabajador
 		},
 		success: function (data) {
 			debugger;
