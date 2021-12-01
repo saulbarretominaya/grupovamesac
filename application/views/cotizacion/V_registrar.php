@@ -304,6 +304,7 @@
                                           <th id="dtable_ds_unidad_medida">U.M</th>
                                           <th id="dtable_ds_marca_producto">Marca</th>
                                           <th id="dtable_ds_grupo">Grupo</th>
+                                          <th id="dtable_ds_stock">Stock</th>
                                           <th id="dtable_ds_moneda">Moneda</th>
                                           <th id="dtable_precio_unitario">Precio Unitario</th>
                                         </tr>
@@ -333,6 +334,7 @@
                                               <td><?php echo $index_productos->ds_unidad_medida; ?></td>
                                               <td><?php echo $index_productos->ds_marca_producto; ?></td>
                                               <td><?php echo $index_productos->ds_grupo; ?></td>
+                                              <td><?php echo $index_productos->stock; ?></td>
                                               <td><?php echo $index_productos->ds_moneda; ?></td>
                                               <td><?php echo $index_productos->precio_unitario; ?></td>
                                             </tr>
@@ -553,9 +555,10 @@
                               <label for="">Moneda</label>
                               <div class="input-group">
                                 <select class="form-select" id="tipo_moneda_cambio">
-                                  <option>Seleccionar</option>
-                                  <option value="1">SOLES</option>
-                                  <option value="2">DOLARES</option>
+                                  <option value="0">Seleccionar</option>
+                                  <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
+                                    <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>
+                                  <?php endforeach; ?>
                                 </select>
                               </div>
                             </div>

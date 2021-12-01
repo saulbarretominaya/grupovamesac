@@ -13,9 +13,7 @@ class C_cotizacion extends CI_Controller
 	}
 
 	public function index()
-
 	{
-
 		$data = array(
 			'index' => $this->M_cotizacion->index(),
 		);
@@ -31,9 +29,7 @@ class C_cotizacion extends CI_Controller
 
 		$data = array(
 			"detalle_modal" => $this->M_cotizacion->detalle_modal($id_cotizacion),
-
 		);
-
 
 		$this->load->view("cotizacion/V_index_modal", $data);
 	}
@@ -48,6 +44,7 @@ class C_cotizacion extends CI_Controller
 			'index_comodin' => $this->M_cotizacion->index_comodin(),
 			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
 			'tipo_cambio' => $this->M_cotizacion->tipo_cambio(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -83,6 +80,8 @@ class C_cotizacion extends CI_Controller
 		$descuento_total = $this->input->post("descuento_total");
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
+		$id_moneda = $this->input->post("id_moneda");
+
 
 		//Detalle
 		$id_producto = $this->input->post("id_producto");
@@ -134,7 +133,8 @@ class C_cotizacion extends CI_Controller
 			$total,
 			$descuento_total,
 			$igv,
-			$precio_venta
+			$precio_venta,
+			$id_moneda
 		));
 
 		$id_cotizacion = $this->M_cotizacion->lastID();
@@ -168,8 +168,6 @@ class C_cotizacion extends CI_Controller
 		);
 		echo json_encode($serie_cotizacion);
 	}
-
-
 
 	protected function insertar_detalle(
 		$id_cotizacion,

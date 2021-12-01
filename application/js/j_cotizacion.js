@@ -70,7 +70,8 @@ $("#registrar").on("click", function () {
 	var descuento_total = $("#descuento_total").val();
 	var igv = $("#igv").val();
 	var precio_venta = $("#precio_venta").val();
-
+	var id_moneda = $("#tipo_moneda_cambio").val();
+	debugger;
 
 
 	//Detalle
@@ -136,6 +137,7 @@ $("#registrar").on("click", function () {
 			descuento_total: descuento_total,
 			igv: igv,
 			precio_venta: precio_venta,
+			id_moneda: id_moneda,
 
 			//Detalle
 			id_producto: id_producto,
@@ -377,6 +379,10 @@ $(document).ready(function () {
 	$("#id_datatable_productos thead #dtable_ds_grupo").each(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_productos thead #dtable_ds_stock").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_productos thead #dtable_ds_moneda").each(function () {
 		var title = $(this).text();
@@ -819,6 +825,7 @@ function aplicar_tipo_cambio() {
 	var valor_cambio = $("#valor_cambio").val();
 	var tipo_moneda_origen = $("#tipo_moneda_origen").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+	var convertidor_unitario = 0;
 
 	if (tipo_moneda_cambio == "Seleccionar") {
 		convertidor_unitario = 0;

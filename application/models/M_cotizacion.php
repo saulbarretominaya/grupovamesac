@@ -7,9 +7,18 @@ class M_cotizacion extends CI_Model
 
     public function index()
     {
-        $resultados = $this->db->query("
-        select * from cotizacion
-        ");
+        $resultados = $this->db->query(
+            "
+            SELECT 
+            id_cotizacion,
+            DATE_FORMAT(fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+            ds_nombre_cliente_proveedor,
+            precio_venta
+            FROM
+            cotizacion
+            "
+        );
         return $resultados->result();
     }
 
@@ -37,7 +46,8 @@ class M_cotizacion extends CI_Model
         $total,
         $descuento_total,
         $igv,
-        $precio_venta
+        $precio_venta,
+        $id_moneda
     ) {
         return $this->db->query(
             "
@@ -49,7 +59,7 @@ class M_cotizacion extends CI_Model
             ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
 			clausula,lugar_entrega,nombre_encargado,observacion,
             id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
-			total,descuento_total,igv,precio_venta
+			total,descuento_total,igv,precio_venta,id_moneda
         )
         VALUES
         (
@@ -59,7 +69,7 @@ class M_cotizacion extends CI_Model
             '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
             '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
             '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
-            '$total','$descuento_total','$igv','$precio_venta'
+            '$total','$descuento_total','$igv','$precio_venta','$id_moneda'
         )"
         );
     }
@@ -269,9 +279,7 @@ class M_cotizacion extends CI_Model
     {
         $resultados = $this->db->query(
             "
-        SELECT (@rownum:=@rownum+1) AS item, a.* FROM (  
         SELECT
-	@rownum:=0,
         a.id_cotizacion,
         b.id_dcotizacion,
         b.id_producto,
@@ -286,7 +294,7 @@ class M_cotizacion extends CI_Model
         b.precio_descuento AS precio_descuento_tablero,
         b.valor_venta AS valor_venta_tablero, 
         b.dias_entrega AS dias_entrega_tablero,
-	(CASE 
+        (CASE 
         WHEN b.id_tablero  != '0' THEN d.cantidad_total_producto
         WHEN b.id_producto !='0' THEN b.cantidad
         WHEN b.id_comodin !='0' THEN b.cantidad
@@ -337,7 +345,7 @@ class M_cotizacion extends CI_Model
         LEFT JOIN tableros c ON c.id_tablero=b.id_tablero
         LEFT JOIN detalle_tableros d ON d.id_tablero=b.id_tablero
         WHERE a.id_cotizacion='$id_cotizacion'
-        ORDER BY b.id_dcotizacion ASC) a"
+        ORDER BY b.id_dcotizacion ASC "
         );
         return $resultados->result();
     }

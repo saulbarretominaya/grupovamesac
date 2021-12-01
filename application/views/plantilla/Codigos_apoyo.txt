@@ -9,7 +9,7 @@ Codigo de Mysql
 SELECT FORMAT(12000.50,2); => Formatear en miles y redondear con 2 decimal en MySQL
 SELECT LEFT('Hola Brando',2) => Muestra los caracteres de un parrafo
 SELECT UPPER('Holaaa'); => Pone en mayuscula
-
+DATE_FORMAT(fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion, => convierte año, mes, dia
 
 JavaScript
 var xxx = precio_costo.replace(",", "");
