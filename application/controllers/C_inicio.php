@@ -36,6 +36,7 @@ class C_inicio extends CI_Controller
             redirect(base_url());
         } else {
             $data = array(
+                'id_usuario' => $res->id_usuario,
                 'ds_nombre_usuario' => $res->ds_nombre_usuario,
                 'login' => TRUE
             );

@@ -6,7 +6,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1>Cliente/Proveedor
-            <button type="button" class="btn btn-warning btn-sm" id="actualizar_clientes_proveedores">ACTUALIZAR</button>
+            <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
             <a href="<?php echo base_url(); ?>C_clientes_proveedores" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
@@ -48,8 +48,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="origen">Origen</label>
                         <div class="input-group">
-                          <select class="custom-select " id="origen" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="origen" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_origen as $cbox_origen) : ?>
                               <?php if ($cbox_origen->id_dmultitabla == $enlace_actualizar->id_origen) : ?>
                                 <option value="<?php echo $cbox_origen->id_dmultitabla; ?>" selected>
@@ -68,8 +68,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="condicion">Condicion</label>
                         <div class="input-group">
-                          <select class="custom-select " id="condicion" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="condicion" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_condicion as $cbox_condicion) : ?>
                               <?php if ($cbox_condicion->id_dmultitabla == $enlace_actualizar->id_condicion) : ?>
                                 <option value="<?php echo $cbox_condicion->id_dmultitabla; ?>" selected>
@@ -91,8 +91,8 @@
                       <div class="col-md-3 ">
                         <label for="tipo_persona">Tipo Persona</label>
                         <div class="input-group">
-                          <select class="custom-select " id="tipo_persona" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="tipo_persona" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_tipo_persona as $cbox_tipo_persona) : ?>
                               <?php if ($cbox_tipo_persona->id_dmultitabla == $enlace_actualizar->id_tipo_persona) : ?>
                                 <option value="<?php echo $cbox_tipo_persona->id_dmultitabla; ?>" selected>
@@ -111,8 +111,8 @@
                       <div class="col-md-4 ">
                         <label for="tipo_persona_sunat">Tipo Persona Sunat</label>
                         <div class="input-group">
-                          <select class="custom-select " id="tipo_persona_sunat" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="tipo_persona_sunat" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_tipo_persona_sunat as $cbox_tipo_persona_sunat) : ?>
                               <?php if ($cbox_tipo_persona_sunat->id_dmultitabla == $enlace_actualizar->id_tipo_persona_sunat) : ?>
                                 <option value="<?php echo $cbox_tipo_persona_sunat->id_dmultitabla; ?>" selected>
@@ -131,8 +131,8 @@
                       <div class="col-md-2 ">
                         <label for="tipo_documento">Tipo Documento</label>
                         <div class="input-group">
-                          <select class="custom-select " id="tipo_documento" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="tipo_documento" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
                               <?php if ($cbox_tipo_documento->id_dmultitabla == $enlace_actualizar->id_tipo_documento) : ?>
                                 <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>" selected>
@@ -249,8 +249,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="departamento">Departamento</label>
                         <div class="input-group">
-                          <select class="custom-select " id="departamento" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="departamento" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                               <?php if ($cbox_departamento->id_dmultitabla == $enlace_actualizar->id_departamento) : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>" selected>
@@ -269,8 +269,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="provincia">Provincia</label>
                         <div class="input-group">
-                          <select class="custom-select " id="provincia" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="provincia" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
                               <?php if ($cbox_provincia->id_dmultitabla == $enlace_actualizar->id_provincia) : ?>
                                 <option value="<?php echo $cbox_provincia->id_dmultitabla; ?>" selected>
@@ -289,8 +289,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="distrito">Distrito</label>
                         <div class="input-group">
-                          <select class="custom-select " id="distrito" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="distrito" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
                               <?php if ($cbox_distrito->id_dmultitabla == $enlace_actualizar->id_distrito) : ?>
                                 <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>" selected>
@@ -326,19 +326,19 @@
                       <div class="col-md-4 mb-3">
                         <label for="tipo_giro">Tipo de Giro</label>
                         <div class="input-group">
-                          <select class="custom-select " id="tipo_giro" required>
-                            <option value="0" selected>Selecciona...</option>
-                            <?php foreach ($cbox_tipo_giro as $cbox_tipo_giro) : ?>
-                              <?php if ($cbox_tipo_giro->id_dmultitabla == $enlace_actualizar->id_tipo_giro) : ?>
-                                <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>" selected>
-                                  <?php echo $cbox_tipo_giro->descripcion; ?>
-                                </option>
-                              <?php else : ?>
-                                <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>">
-                                  <?php echo $cbox_tipo_giro->descripcion; ?>
-                                </option>
-                              <?php endif; ?>
-                            <?php endforeach; ?>
+                          <select class="form-select" id="tipo_giro" required>
+                            <option value="0" selected>Seleccionaroption>
+                              <?php foreach ($cbox_tipo_giro as $cbox_tipo_giro) : ?>
+                                <?php if ($cbox_tipo_giro->id_dmultitabla == $enlace_actualizar->id_tipo_giro) : ?>
+                            <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>" selected>
+                              <?php echo $cbox_tipo_giro->descripcion; ?>
+                            </option>
+                          <?php else : ?>
+                            <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>">
+                              <?php echo $cbox_tipo_giro->descripcion; ?>
+                            </option>
+                          <?php endif; ?>
+                        <?php endforeach; ?>
                           </select>
                         </div>
                       </div>
@@ -349,8 +349,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="condicion_pago">Condicion de Pago</label>
                         <div class="input-group">
-                          <select class="custom-select " id="condicion_pago" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select" id="condicion_pago" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_condicion_pago as $cbox_condicion_pago) : ?>
                               <?php if ($cbox_condicion_pago->id_dmultitabla == $enlace_actualizar->id_condicion_pago) : ?>
                                 <option value="<?php echo $cbox_condicion_pago->id_dmultitabla; ?>" selected>
@@ -433,8 +433,8 @@
                       <div class="col-md-4 mb-3">
                         <label for="linea_disponible">Linea Disponible</label>
                         <div class="input-group">
-                          <select class="custom-select " id="linea_disponible" aria-describedby="inputGroupLineaDisponible" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="linea_disponible" aria-describedby="inputGroupLineaDisponible" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_linea_disponible as $cbox_linea_disponible) : ?>
                               <?php if ($cbox_linea_disponible->id_dmultitabla == $enlace_actualizar->id_linea_disponible) : ?>
                                 <option value="<?php echo $cbox_linea_disponible->id_dmultitabla; ?>" selected>
@@ -468,11 +468,11 @@
                         </div>
                       </div>
                       <!-- ESTADO-->
-                      <div class=" col-md-4 mb-3">
+                      <!-- <div class=" col-md-4 mb-3">
                         <label for="estado_cliente">Estado</label>
                         <div class="input-group">
-                          <select class="custom-select " id="estado_cliente" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="estado_cliente" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                               <?php if ($cbox_departamento->id_dmultitabla == $enlace_actualizar->id_departamento) : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>" selected>
@@ -486,7 +486,7 @@
                             <?php endforeach; ?>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                     <!-- Octava Fila -->
                     <div class="form-row">
@@ -508,8 +508,8 @@
                       <div class=" col-md-4 mb-3">
                         <label for="tipo_cliente_pago">Tipo de Cliente de Pago</label>
                         <div class="input-group">
-                          <select class="custom-select " id="tipo_cliente_pago" required>
-                            <option value="0" selected>Selecciona...</option>
+                          <select class="form-select " id="tipo_cliente_pago" required>
+                            <option value="0" selected>Seleccionar</option>
                             <?php foreach ($cbox_tipo_cliente_pago as $cbox_tipo_cliente_pago) : ?>
                               <?php if ($cbox_tipo_cliente_pago->id_dmultitabla == $enlace_actualizar->id_tipo_cliente_pago) : ?>
                                 <option value="<?php echo $cbox_tipo_cliente_pago->id_dmultitabla; ?>" selected>

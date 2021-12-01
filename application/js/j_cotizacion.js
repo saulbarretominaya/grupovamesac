@@ -281,7 +281,7 @@ $(document).ready(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
 	});
-	$("#id_datatable_clientes_proveedores thead #dtable_descripcion_razon_social").each(function () {
+	$("#id_datatable_clientes_proveedores thead #dtable_ds_nombre_cliente_proveedor").each(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
 	});

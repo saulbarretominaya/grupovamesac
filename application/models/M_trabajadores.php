@@ -56,10 +56,6 @@ class M_trabajadores extends CI_Model
         VALUES ('','$num_documento', '$nombres', '$ape_paterno', '$ape_materno', '$email', STR_TO_DATE(REPLACE('$fecha_nacimiento','/','.') ,GET_FORMAT(date,'EUR')), '$lugar_nacimiento', '$domicilio', '$referencia', '$telefono', '$celular', '$tipo_trabajador', '$tipo_documento', '$almacen', '$cargo_trabajador', '$sexo', '$nacionalidad', '$estado_civil', '$grado_instruccion', '$departamento', '$provincia', '$distrito','$id_empresa')");
     }
 
-    //  STR_TO_DATE(REPLACE('$fecha_nacimiento','/','-'))
-    //  STR_TO_DATE(REPLACE('$fecha_nacimiento','/','.') ,GET_FORMAT(date,'EUR'))
-    // http://codigolinea.com/insertando-fechas-con-diferente-formato-en-mysql/
-
 
     public function enlace_actualizar($id_trabajador)
     {
@@ -96,20 +92,5 @@ class M_trabajadores extends CI_Model
         $id_empresa
     ) {
         return $this->db->query("UPDATE trabajadores SET num_documento='$num_documento' , nombres = '$nombres', ape_paterno ='$ape_paterno',    ape_materno = '$ape_materno', email ='$email', fecha_nacimiento = STR_TO_DATE(REPLACE('$fecha_nacimiento','/','.') ,GET_FORMAT(date,'EUR')), lugar_nacimiento='$lugar_nacimiento', domicilio ='$domicilio',referencia ='$referencia', telefono ='$telefono', celular ='$celular', id_tipo_trabajador ='$tipo_trabajador', id_almacen ='$almacen', id_cargo_trabajador ='$cargo_trabajador', id_sexo ='$sexo', id_tipo_documento='$tipo_documento', id_nacionalidad ='$nacionalidad', id_est_civil ='$estado_civil', id_grado_instruccion ='$grado_instruccion', id_departamento ='$departamento', id_provincia ='$provincia', id_distrito ='$distrito',id_empresa='$id_empresa' WHERE  id_trabajador='$id_trabajador'");
-    }
-
-
-    public function verificar_trabajador($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito)
-    {
-        $resultados = $this->db->query("SELECT * from trabajadores WHERE num_documento='$num_documento' && nombres = '$nombres' && ape_paterno ='$ape_paterno' && ape_materno && '$ape_materno' && email ='$email' && fecha_nacimiento ='$fecha_nacimiento' && lugar_nacimiento='$lugar_nacimiento' && domicilio ='$domicilio' && referencia ='$referencia' && telefono ='$telefono' && celular ='$celular' && id_tipo_trabajador ='$tipo_trabajador' && id_almacen ='$almacen' && id_cargo_trabajador ='$cargo_trabajador' && id_sexo ='$sexo' && id_tipo_documento='$tipo_documento' && id_nacionalidad ='$nacionalidad' && id_est_civil ='$estado_civil' && id_grado_instruccion ='$grado_instruccion' && id_departamento ='$departamento' && id_provincia ='$provincia' && id_distrito ='$distrito'");
-
-        return $resultados->row();
-    }
-
-
-    public function actualizar_estado($id_trabajador)
-    {
-        return $this->db->query(" UPDATE trabajadores SET  id_estado='0'
-                                    WHERE id_trabajador='$id_trabajador'");
     }
 }
