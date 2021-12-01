@@ -45,6 +45,7 @@ class C_cotizacion extends CI_Controller
 			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
 			'tipo_cambio' => $this->M_cotizacion->tipo_cambio(),
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_estado_cotizacion' => $this->M_cbox->cbox_estado_cotizacion()
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -81,6 +82,7 @@ class C_cotizacion extends CI_Controller
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
 		$id_moneda = $this->input->post("id_moneda");
+		$id_estado_cotizacion = $this->input->post("id_estado_cotizacion");
 
 
 		//Detalle
@@ -134,7 +136,8 @@ class C_cotizacion extends CI_Controller
 			$descuento_total,
 			$igv,
 			$precio_venta,
-			$id_moneda
+			$id_moneda,
+			$id_estado_cotizacion
 		));
 
 		$id_cotizacion = $this->M_cotizacion->lastID();

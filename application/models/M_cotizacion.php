@@ -14,7 +14,10 @@ class M_cotizacion extends CI_Model
             DATE_FORMAT(fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
             ds_nombre_cliente_proveedor,
-            precio_venta
+            precio_venta,
+            id_estado_cotizacion,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_cotizacion
             FROM
             cotizacion
             "
@@ -47,7 +50,8 @@ class M_cotizacion extends CI_Model
         $descuento_total,
         $igv,
         $precio_venta,
-        $id_moneda
+        $id_moneda,
+        $id_estado_cotizacion
     ) {
         return $this->db->query(
             "
@@ -59,7 +63,7 @@ class M_cotizacion extends CI_Model
             ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
 			clausula,lugar_entrega,nombre_encargado,observacion,
             id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
-			total,descuento_total,igv,precio_venta,id_moneda
+			total,descuento_total,igv,precio_venta,id_moneda,id_estado_cotizacion
         )
         VALUES
         (
@@ -69,7 +73,7 @@ class M_cotizacion extends CI_Model
             '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
             '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
             '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
-            '$total','$descuento_total','$igv','$precio_venta','$id_moneda'
+            '$total','$descuento_total','$igv','$precio_venta','$id_moneda','$id_estado_cotizacion'
         )"
         );
     }

@@ -71,6 +71,7 @@ $("#registrar").on("click", function () {
 	var igv = $("#igv").val();
 	var precio_venta = $("#precio_venta").val();
 	var id_moneda = $("#tipo_moneda_cambio").val();
+	var id_estado_cotizacion = $("#id_estado_cotizacion").val();
 	debugger;
 
 
@@ -138,6 +139,7 @@ $("#registrar").on("click", function () {
 			igv: igv,
 			precio_venta: precio_venta,
 			id_moneda: id_moneda,
+			id_estado_cotizacion: id_estado_cotizacion,
 
 			//Detalle
 			id_producto: id_producto,

@@ -547,6 +547,15 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
+    //55
+    public function cbox_estado_cotizacion()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='55';");
+        return $resultados->result();
+    }
 
     /* No tocar */
     public function correlativo_producto()

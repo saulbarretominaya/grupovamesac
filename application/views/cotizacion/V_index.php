@@ -24,6 +24,7 @@
                   <th>Moneda</th>
                   <th>Cliente</th>
                   <th>Monto</th>
+                  <th>Estado</th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -32,12 +33,28 @@
               <tbody>
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
+
+                    <?php
+                    switch ($index->ds_estado_valor) {
+                      case "0":
+                        $ds_estado = '<div class="text-center"><span class="badge bg-warning">PENDIENTE</span></div>';
+                        break;
+                      case "1":
+                        $ds_estado = '<div class="text-center"><span class="badge bg-success">APROBADO</span></div>';
+                        break;
+                      case "2":
+                        $ds_estado = '<div class="text-center"><span class="badge bg-secondary">CADUCADO</span></div>';
+                        break;
+                    }
+                    ?>
+
                     <tr>
                       <td><?php echo $index->id_cotizacion; ?></td>
                       <td><?php echo $index->fecha_cotizacion; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
+                      <td><?php echo $ds_estado; ?> </td>
 
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
                       <!-- Inicio Modal -->

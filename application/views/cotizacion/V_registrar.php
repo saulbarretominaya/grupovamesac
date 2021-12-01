@@ -40,18 +40,6 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <div class="col-md-1">
-                          <label for="tipo_trabajador">Serie</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" placeholder="COT" id="serie_cotizacion" readonly>
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <label for="local"># Cotizacion</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Automatico" readonly>
-                          </div>
-                        </div>
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
@@ -71,6 +59,17 @@
                           <label for="cargo">Validez Oferta</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="validez_oferta_cotizacion" value="10">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="">Estado</label>
+                          <div class="input-group">
+                            <select class="form-select select2" id="id_estado_cotizacion">
+                              <option value="0">Seleccionar</option>
+                              <?php foreach ($cbox_estado_cotizacion as $cbox_estado_cotizacion) : ?>
+                                <option value="<?php echo $cbox_estado_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_estado_cotizacion->descripcion; ?></option>
+                              <?php endforeach; ?>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -335,7 +334,7 @@
                                               <td><?php echo $index_productos->ds_marca_producto; ?></td>
                                               <td><?php echo $index_productos->ds_grupo; ?></td>
                                               <td><?php echo $index_productos->stock; ?></td>
-                                              <td><?php echo $index_productos->ds_moneda; ?></td>
+                                              . <td><?php echo $index_productos->ds_moneda; ?></td>
                                               <td><?php echo $index_productos->precio_unitario; ?></td>
                                             </tr>
                                           <?php endforeach; ?>
