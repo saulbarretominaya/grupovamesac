@@ -58,18 +58,13 @@
                         <div class="col-md-2">
                           <label for="cargo">Validez Oferta</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="validez_oferta_cotizacion" value="10">
+                            <input type="text" class="form-control" id="validez_oferta_cotizacion">
                           </div>
                         </div>
                         <div class="col-md-3">
-                          <label for="">Estado</label>
+                          <label>Fecha Venc. Validez Oferta</label>
                           <div class="input-group">
-                            <select class="form-select select2" id="id_estado_cotizacion">
-                              <option value="0">Seleccionar</option>
-                              <?php foreach ($cbox_estado_cotizacion as $cbox_estado_cotizacion) : ?>
-                                <option value="<?php echo $cbox_estado_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_estado_cotizacion->descripcion; ?></option>
-                              <?php endforeach; ?>
-                            </select>
+                            <input type="text" class="form-control" id="fecha_vencimiento_validez_oferta" readonly>
                           </div>
                         </div>
                       </div>

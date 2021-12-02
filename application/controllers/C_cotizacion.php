@@ -62,6 +62,7 @@ class C_cotizacion extends CI_Controller
 		$ds_nombre_vendedor = $this->input->post("ds_nombre_vendedor");
 		$fecha_cotizacion = $this->input->post("fecha_cotizacion");
 		$validez_oferta_cotizacion = $this->input->post("validez_oferta_cotizacion");
+		$fecha_vencimiento_validez_oferta = $this->input->post("fecha_vencimiento_validez_oferta");
 		$id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
 		$ds_nombre_cliente_proveedor = $this->input->post("ds_nombre_cliente_proveedor");
 		$ds_departamento_cliente_proveedor = $this->input->post("ds_departamento_cliente_proveedor");
@@ -117,6 +118,7 @@ class C_cotizacion extends CI_Controller
 			$ds_nombre_vendedor,
 			$fecha_cotizacion,
 			$validez_oferta_cotizacion,
+			$fecha_vencimiento_validez_oferta,
 			$id_cliente_proveedor,
 			$ds_nombre_cliente_proveedor,
 			$ds_departamento_cliente_proveedor,
@@ -230,5 +232,12 @@ class C_cotizacion extends CI_Controller
 
 			);
 		}
+	}
+
+	public function aprobar_estado()
+	{
+		$id_cotizacion = $this->input->post("id_cotizacion");
+		$this->M_cotizacion->aprobar_estado($id_cotizacion);
+		echo json_encode($id_cotizacion);
 	}
 }

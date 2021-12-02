@@ -5,11 +5,19 @@ echo "<script>console.log('Imprimiendo: " . json_encode($detalle) . "');</script
 echo "<script>console.log('Imprimiendo: " . $count . ";</script>";
 
 
+
+
+
+
 Codigo de Mysql
 SELECT FORMAT(12000.50,2); => Formatear en miles y redondear con 2 decimal en MySQL
 SELECT LEFT('Hola Brando',2) => Muestra los caracteres de un parrafo
 SELECT UPPER('Holaaa'); => Pone en mayuscula
 DATE_FORMAT(fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion, => convierte año, mes, dia
+SELECT DATE_ADD('2021-12-01', INTERVAL 5 DAY) AS fecha_vencimiento => te devuelve el intervalo de fechas con un numero entero
+
+
+
 
 JavaScript
 var xxx = precio_costo.replace(",", "");

@@ -31,6 +31,7 @@ class M_cotizacion extends CI_Model
         $ds_nombre_vendedor,
         $fecha_cotizacion,
         $validez_oferta_cotizacion,
+        $fecha_vencimiento_validez_oferta,
         $id_cliente_proveedor,
         $ds_nombre_cliente_proveedor,
         $ds_departamento_cliente_proveedor,
@@ -50,8 +51,7 @@ class M_cotizacion extends CI_Model
         $descuento_total,
         $igv,
         $precio_venta,
-        $id_moneda,
-        $id_estado_cotizacion
+        $id_moneda
     ) {
         return $this->db->query(
             "
@@ -59,7 +59,7 @@ class M_cotizacion extends CI_Model
         (
             id_cotizacion,
             serie_cotizacion,id_vendedor,ds_nombre_vendedor,fecha_cotizacion,
-            validez_oferta_cotizacion,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
+            validez_oferta_cotizacion,fecha_vencimiento_validez_oferta,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
             ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
 			clausula,lugar_entrega,nombre_encargado,observacion,
             id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
@@ -69,11 +69,11 @@ class M_cotizacion extends CI_Model
         (
             '',
             '$serie_cotizacion','$id_vendedor','$ds_nombre_vendedor','$fecha_cotizacion',
-            '$validez_oferta_cotizacion','$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
+            '$validez_oferta_cotizacion',STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y'),'$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
             '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
             '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
             '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
-            '$total','$descuento_total','$igv','$precio_venta','$id_moneda','$id_estado_cotizacion'
+            '$total','$descuento_total','$igv','$precio_venta','$id_moneda','857'
         )"
         );
     }
@@ -352,5 +352,17 @@ class M_cotizacion extends CI_Model
         ORDER BY b.id_dcotizacion ASC "
         );
         return $resultados->result();
+    }
+
+    public function aprobar_estado($id_cotizacion)
+    {
+        return $this->db->query(
+            "
+            update cotizacion set
+            id_estado_cotizacion='858',
+            fecha_aprobacion=NOW()
+            where id_cotizacion='$id_cotizacion'
+            "
+        );
     }
 }

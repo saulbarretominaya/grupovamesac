@@ -21,8 +21,8 @@
                 <tr>
                   <th>Num Cotizacion</th>
                   <th>Fecha</th>
-                  <th>Moneda</th>
                   <th>Cliente</th>
+                  <th>Moneda</th>
                   <th>Monto</th>
                   <th>Estado</th>
                   <th></th>
@@ -51,8 +51,8 @@
                     <tr>
                       <td><?php echo $index->id_cotizacion; ?></td>
                       <td><?php echo $index->fecha_cotizacion; ?></td>
-                      <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                      <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
 
@@ -66,7 +66,7 @@
                       </div>
                       <!-- Fin de Modal -->
                       <td><a class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-                      <td><a class="btn btn btn-outline-success btn-sm"><span class="fas fa-check-circle"></span></a></td>
+                      <td><button id="btn_aprobar_estado" type="button" class="btn btn-outline-success btn-sm " value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

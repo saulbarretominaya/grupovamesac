@@ -51,6 +51,7 @@ $("#registrar").on("click", function () {
 	var ds_nombre_vendedor = "Roger Saul Barreto Minaya";
 	var fecha_cotizacion = $("#fecha_cotizacion").val();
 	var validez_oferta_cotizacion = $("#validez_oferta_cotizacion").val();
+	var fecha_vencimiento_validez_oferta = $("#fecha_vencimiento_validez_oferta").val();
 	var id_cliente_proveedor = $("#id_cliente_proveedor").val();
 	var ds_nombre_cliente_proveedor = $("#ds_nombre_cliente_proveedor").val();
 	var ds_departamento_cliente_proveedor = $("#ds_departamento_cliente_proveedor").val();
@@ -64,14 +65,13 @@ $("#registrar").on("click", function () {
 	var observacion = $("#observacion").val();
 	var id_condicion_pago = $("#id_condicion_pago").val();
 	var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
-	var numero_dias_condicion_pago = $("#numero_dias_condicion_pago").val();
+	var numero_dias_condicion_pago = $("#dias").val();
 	var fecha_condicion_pago = $("#fecha_condicion_pago").val();
 	var total = $("#total").val();
 	var descuento_total = $("#descuento_total").val();
 	var igv = $("#igv").val();
 	var precio_venta = $("#precio_venta").val();
 	var id_moneda = $("#tipo_moneda_cambio").val();
-	var id_estado_cotizacion = $("#id_estado_cotizacion").val();
 	debugger;
 
 
@@ -119,6 +119,7 @@ $("#registrar").on("click", function () {
 			ds_nombre_vendedor: ds_nombre_vendedor,
 			fecha_cotizacion: fecha_cotizacion,
 			validez_oferta_cotizacion: validez_oferta_cotizacion,
+			fecha_vencimiento_validez_oferta: fecha_vencimiento_validez_oferta,
 			id_cliente_proveedor: id_cliente_proveedor,
 			ds_nombre_cliente_proveedor: ds_nombre_cliente_proveedor,
 			ds_departamento_cliente_proveedor: ds_departamento_cliente_proveedor,
@@ -139,7 +140,6 @@ $("#registrar").on("click", function () {
 			igv: igv,
 			precio_venta: precio_venta,
 			id_moneda: id_moneda,
-			id_estado_cotizacion: id_estado_cotizacion,
 
 			//Detalle
 			id_producto: id_producto,
@@ -566,6 +566,9 @@ $(document).ready(function () {
 
 
 /*Evento */
+$("#validez_oferta_cotizacion").on("keyup", function () {
+	calcular_fecha_validez_oferta_cotizacion();
+});
 $("#dias").on("keyup", function () {
 	calcular_fecha_condicion_pago();
 });
@@ -661,6 +664,30 @@ $(document).on("click", ".eliminar_fila", function () {
 	// calcular_margen();
 	limpiar_campos();
 });
+
+$("#btn_aprobar_estado").on("click", function (e) {
+	var id_cotizacion = $(this).val();
+	alertify.confirm("This is a confirm dialog.",
+		function () {
+			$.ajax({
+				async: false,
+				url: base_url + "C_cotizacion/aprobar_estado",
+				type: "POST",
+				dataType: "json",
+				data: {
+					id_cotizacion: id_cotizacion,
+				},
+				success: function (data) {
+					window.location.href = base_url + "C_cotizacion";
+				},
+			});
+		},
+		function () {
+		});
+
+});
+
+
 /* Fin Evento */
 
 
@@ -795,6 +822,31 @@ function calcular_monto() {
 	$("#d_cant_total").val(d_cant_total.toFixed(2));
 
 }
+function calcular_fecha_validez_oferta_cotizacion() {
+	//let num = parseInt(frm.fechsa.value);
+	var num = parseInt(document.getElementById("validez_oferta_cotizacion").value);
+
+	// la fecha viene en formato yyyy-mm-dd
+	var f = document.getElementById("fecha_cotizacion").value;
+
+	var fecha = new Date(f);
+	fecha.setDate(fecha.getDate() + num);
+
+	var mes = fecha.getUTCMonth() + 1;
+	if (mes <= 9) mes = '0' + mes;
+
+	var dia = fecha.getUTCDate();
+	if (dia <= 9) dia = '0' + dia;
+
+	//rm.total.value = fecha.getUTCFullYear() + '-' + mes + '-' + dia;
+	//$("#total").val(fecha.getUTCFullYear() + '-' + mes + '-' + dia);
+	debugger;
+	if (isNaN(num)) {
+		$("#fecha_vencimiento_validez_oferta").val("");
+	} else {
+		document.getElementById("fecha_vencimiento_validez_oferta").value = (dia + '/' + mes + '/' + fecha.getUTCFullYear());
+	}
+}
 function calcular_fecha_condicion_pago() {
 	//let num = parseInt(frm.fechsa.value);
 	var num = parseInt(document.getElementById("dias").value);
@@ -817,7 +869,7 @@ function calcular_fecha_condicion_pago() {
 	if (isNaN(num)) {
 		$("#fecha_condicion_pago").val("");
 	} else {
-		document.getElementById("fecha_condicion_pago").value = (dia + '-' + mes + '-' + fecha.getUTCFullYear());
+		document.getElementById("fecha_condicion_pago").value = (dia + '/' + mes + '/' + fecha.getUTCFullYear());
 	}
 }
 function aplicar_tipo_cambio() {
