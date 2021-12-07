@@ -53,6 +53,8 @@ class C_cotizacion extends CI_Controller
 		$this->load->view('cotizacion/V_registrar', $data);
 	}
 
+
+
 	public function insertar()
 	{
 
@@ -240,5 +242,26 @@ class C_cotizacion extends CI_Controller
 		$this->M_cotizacion->aprobar_estado($id_cotizacion);
 		$this->M_cotizacion->insertar_orden_despacho($id_cotizacion);
 		echo json_encode($id_cotizacion);
+	}
+
+
+	public function enlace_actualizar($id_cotizacion)
+
+	{
+
+		$data = array(
+			'index_clientes_proveedores' => $this->M_cotizacion->index_clientes_proveedores(),
+			'index_productos' => $this->M_cotizacion->index_productos(),
+			'index_tableros' => $this->M_cotizacion->index_tableros(),
+			'index_comodin' => $this->M_cotizacion->index_comodin(),
+			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+			'tipo_cambio' => $this->M_cotizacion->tipo_cambio(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_estado_cotizacion' => $this->M_cbox->cbox_estado_cotizacion()
+		);
+
+		$this->load->view('plantilla/V_header');
+		$this->load->view('plantilla/V_aside');
+		$this->load->view('cotizacion/V_actualizar', $data);
 	}
 }

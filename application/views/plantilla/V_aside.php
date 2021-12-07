@@ -34,7 +34,7 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "C_clientes_proveedores" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Clientes</p>
+                  <p>Clientes - Proveedores</p>
                 </a>
               </li>
             </ul>

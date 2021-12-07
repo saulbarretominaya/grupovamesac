@@ -29,4 +29,11 @@ class C_orden_despacho extends CI_Controller
 		$this->M_orden_despacho->aprobar_estado($id_orden_despacho);
 		echo json_encode($id_orden_despacho);
 	}
+
+	public function desaprobar_estado()
+	{
+		$id_orden_despacho = $this->input->post("id_orden_despacho");
+		$this->M_orden_despacho->desaprobar_estado($id_orden_despacho);
+		echo json_encode($id_orden_despacho);
+	}
 }

@@ -45,7 +45,7 @@
                         $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
                         break;
                       case "2":
-                        $ds_estado = '<div><span class="badge bg-secondary">CADUCADO</span></div>';
+                        $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
                         break;
                     }
                     ?>
@@ -55,13 +55,13 @@
                       <td><?php echo $index->id_orden_despacho; ?></td>
                       <td><?php echo $index->fecha_orden_despacho; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <td><?php echo '600.00'; ?></td>
+                      <td><?php echo $index->disponible_soles; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
                       <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
-                      <td><a class="btn btn btn-outline-danger btn-sm"><span class="fas fa-times-circle"></span></a></td>
+                      <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

@@ -166,7 +166,7 @@ class M_cotizacion extends CI_Model
             id_tipo_persona,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
             (CASE
-            WHEN razon_social='' THEN CONCAT(ape_paterno,' ',ape_materno,' ',nombres)
+            WHEN razon_social='' THEN CONCAT(nombres,' ',ape_paterno,' ',ape_materno)
             WHEN nombres='' AND ape_paterno='' AND ape_materno='' THEN razon_social
             ELSE 'Existe un conflicto'
             END) ds_nombre_cliente_proveedor,

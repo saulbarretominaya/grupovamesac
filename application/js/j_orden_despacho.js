@@ -51,6 +51,7 @@ $(".btn_aprobar_estado").on("click", function (e) {
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
 	var estado_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
 
+
 	if (estado_orden_despacho == "PENDIENTE") {
 		alertify.confirm("This is a confirm dialog.",
 			function () {
@@ -69,13 +70,46 @@ $(".btn_aprobar_estado").on("click", function (e) {
 			},
 			function () {
 			});
-	} else {
-		alert("Ya fue aprobado bateria! :D ")
+	} else if (estado_orden_despacho == "APROBADO") {
+		alert("Ya fue Aprobado")
+	} else if (estado_orden_despacho == "DESAPROBADO") {
+		alert("Ya fue Desaprobado")
+	} else if (estado_orden_despacho == "DESAPROBADO") {
+		alert("Ya fue Desaprobado")
 	}
-
-
-
 });
+
+$(".btn_desaprobar_estado").on("click", function (e) {
+
+	debugger;
+	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
+
+	if (estado_orden_despacho == "PENDIENTE") {
+		alertify.confirm("This is a confirm dialog.",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_orden_despacho/desaprobar_estado",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_orden_despacho: id_orden_despacho,
+					},
+					success: function (data) {
+						window.location.href = base_url + "C_orden_despacho";
+					},
+				});
+			},
+			function () {
+			});
+	} else if (estado_orden_despacho == "APROBADO") {
+		alert("Ya fue Aprobado")
+	} else if (estado_orden_despacho == "DESAPROBADO") {
+		alert("Ya fue Desaprobado")
+	}
+});
+
 /* Fin Evento */
 
 
