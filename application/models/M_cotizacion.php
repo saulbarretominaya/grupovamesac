@@ -10,16 +10,22 @@ class M_cotizacion extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT 
-            id_cotizacion,
-            DATE_FORMAT(fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-            ds_nombre_cliente_proveedor,
-            precio_venta,
+            a.id_cotizacion,
+            DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            a.ds_nombre_cliente_proveedor,
+            a.precio_venta,
             id_estado_cotizacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_cotizacion
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
+            b.id_orden_despacho,
+            DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
+            id_estado_orden_despacho,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
             FROM
-            cotizacion
+            cotizacion a
+            LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             "
         );
         return $resultados->result();
@@ -363,6 +369,26 @@ class M_cotizacion extends CI_Model
             fecha_aprobacion=NOW()
             where id_cotizacion='$id_cotizacion'
             "
+        );
+    }
+
+
+
+    public function insertar_orden_despacho(
+        $id_cotizacion
+    ) {
+        return $this->db->query(
+            "
+        INSERT INTO orden_despacho
+        (
+            id_orden_despacho,
+            id_cotizacion,fecha_orden_despacho,id_estado_orden_despacho
+        )
+        VALUES
+        (
+            '',
+            '$id_cotizacion',CURDATE(),'861'
+        )"
         );
     }
 }

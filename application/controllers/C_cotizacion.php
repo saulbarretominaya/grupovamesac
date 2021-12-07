@@ -238,6 +238,7 @@ class C_cotizacion extends CI_Controller
 	{
 		$id_cotizacion = $this->input->post("id_cotizacion");
 		$this->M_cotizacion->aprobar_estado($id_cotizacion);
+		$this->M_cotizacion->insertar_orden_despacho($id_cotizacion);
 		echo json_encode($id_cotizacion);
 	}
 }

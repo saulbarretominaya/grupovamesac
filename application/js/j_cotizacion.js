@@ -665,25 +665,35 @@ $(document).on("click", ".eliminar_fila", function () {
 	limpiar_campos();
 });
 
-$("#btn_aprobar_estado").on("click", function (e) {
-	var id_cotizacion = $(this).val();
-	alertify.confirm("This is a confirm dialog.",
-		function () {
-			$.ajax({
-				async: false,
-				url: base_url + "C_cotizacion/aprobar_estado",
-				type: "POST",
-				dataType: "json",
-				data: {
-					id_cotizacion: id_cotizacion,
-				},
-				success: function (data) {
-					window.location.href = base_url + "C_cotizacion";
-				},
+$(".btn_aprobar_estado").on("click", function (e) {
+
+	debugger;
+	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
+	var estado_cotizacion = $(this).parents("tr").find("td")[5].innerText;
+
+	if (estado_cotizacion == "PENDIENTE") {
+		alertify.confirm("This is a confirm dialog.",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_cotizacion/aprobar_estado",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_cotizacion: id_cotizacion,
+					},
+					success: function (data) {
+						window.location.href = base_url + "C_cotizacion";
+					},
+				});
+			},
+			function () {
 			});
-		},
-		function () {
-		});
+	} else {
+		alert("Ya fue aprobado bateria! :D ")
+	}
+
+
 
 });
 

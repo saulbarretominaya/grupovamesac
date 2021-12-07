@@ -22,4 +22,11 @@ class C_orden_despacho extends CI_Controller
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('orden_despacho/V_index', $data);
 	}
+
+	public function aprobar_estado()
+	{
+		$id_orden_despacho = $this->input->post("id_orden_despacho");
+		$this->M_orden_despacho->aprobar_estado($id_orden_despacho);
+		echo json_encode($id_orden_despacho);
+	}
 }

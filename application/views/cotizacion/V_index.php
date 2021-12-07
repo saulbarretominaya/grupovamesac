@@ -19,12 +19,13 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Num Cotizacion</th>
-                  <th>Fecha</th>
+                  <th>Num COT</th>
+                  <th>Fecha COT</th>
                   <th>Cliente</th>
                   <th>Moneda</th>
                   <th>Monto</th>
-                  <th>Estado</th>
+                  <th>Estado COT</th>
+                  <!-- <th>Estado OD</th> -->
                   <th></th>
                   <th></th>
                   <th></th>
@@ -35,17 +36,32 @@
                   <?php foreach ($index as $index) : ?>
 
                     <?php
-                    switch ($index->ds_estado_valor) {
+                    switch ($index->ds_estado_valor_cot) {
                       case "0":
-                        $ds_estado = '<div class="text-center"><span class="badge bg-warning">PENDIENTE</span></div>';
+                        $ds_estado_cot = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                         break;
                       case "1":
-                        $ds_estado = '<div class="text-center"><span class="badge bg-success">APROBADO</span></div>';
+                        $ds_estado_cot = '<div><span class="badge bg-success">APROBADO</span></div>';
                         break;
                       case "2":
-                        $ds_estado = '<div class="text-center"><span class="badge bg-secondary">CADUCADO</span></div>';
+                        $ds_estado_cot = '<div><span class="badge bg-secondary">CADUCADO</span></div>';
                         break;
                     }
+
+                    // switch ($index->ds_estado_valor_od) {
+                    //   case "0":
+                    //     $ds_estado_od = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                    //     break;
+                    //   case "1":
+                    //     $ds_estado_od = '<div><span class="badge bg-success">APROBADO</span></div>';
+                    //     break;
+                    //   case "2":
+                    //     $ds_estado_od = '<div><span class="badge bg-secondary">DESAPROBADO</span></div>';
+                    //     break;
+                    //   case "NULL":
+                    //     $ds_estado_od = '<div><span class="badge bg-secondary">DESAPROBADO</span></div>';
+                    //     break;
+                    // }
                     ?>
 
                     <tr>
@@ -54,19 +70,11 @@
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $ds_estado; ?> </td>
-
+                      <td><?php echo $ds_estado_cot; ?> </td>
+                      <!-- <td><?php echo $ds_estado_od;; ?> </td> -->
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-                      <!-- Inicio Modal -->
-                      <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                          <div class="modal-content">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Fin de Modal -->
                       <td><a class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-                      <td><button id="btn_aprobar_estado" type="button" class="btn btn-outline-success btn-sm " value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
+                      <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -81,7 +89,14 @@
     </section>
   </div>
 
-
+  <!-- Inicio Modal -->
+  <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+  <!-- Fin de Modal -->
 
 
   <!-- Control Sidebar -->
