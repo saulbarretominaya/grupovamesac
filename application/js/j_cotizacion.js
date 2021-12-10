@@ -71,7 +71,9 @@ $("#registrar").on("click", function () {
 	var descuento_total = $("#descuento_total").val();
 	var igv = $("#igv").val();
 	var precio_venta = $("#precio_venta").val();
+	var valor_cambio = $("#valor_cambio").val();
 	var id_moneda = $("#tipo_moneda_cambio").val();
+
 	debugger;
 
 
@@ -139,6 +141,7 @@ $("#registrar").on("click", function () {
 			descuento_total: descuento_total,
 			igv: igv,
 			precio_venta: precio_venta,
+			valor_cambio: valor_cambio,
 			id_moneda: id_moneda,
 
 			//Detalle

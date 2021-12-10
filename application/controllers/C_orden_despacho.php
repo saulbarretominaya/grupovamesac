@@ -26,7 +26,13 @@ class C_orden_despacho extends CI_Controller
 	public function aprobar_estado()
 	{
 		$id_orden_despacho = $this->input->post("id_orden_despacho");
+		$id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+		$nueva_linea_credito = $this->input->post("nueva_linea_credito");
+		$monto_cotizacion = $this->input->post("monto_cotizacion");
+
+
 		$this->M_orden_despacho->aprobar_estado($id_orden_despacho);
+		$this->M_orden_despacho->actualizar_linea_credito($id_cliente_proveedor, $nueva_linea_credito, $monto_cotizacion);
 		echo json_encode($id_orden_despacho);
 	}
 

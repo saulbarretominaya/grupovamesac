@@ -58,6 +58,7 @@ class M_cotizacion extends CI_Model
         $descuento_total,
         $igv,
         $precio_venta,
+        $valor_cambio,
         $id_moneda
     ) {
         return $this->db->query(
@@ -70,7 +71,7 @@ class M_cotizacion extends CI_Model
             ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
 			clausula,lugar_entrega,nombre_encargado,observacion,
             id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
-			total,descuento_total,igv,precio_venta,id_moneda,id_estado_cotizacion
+			total,descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion
         )
         VALUES
         (
@@ -80,7 +81,7 @@ class M_cotizacion extends CI_Model
             '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
             '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
             '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
-            '$total','$descuento_total','$igv','$precio_venta','$id_moneda','857'
+            '$total','$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857'
         )"
         );
     }

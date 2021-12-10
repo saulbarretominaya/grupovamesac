@@ -11,10 +11,10 @@ class M_orden_despacho extends CI_Model
             "
             SELECT 
             a.id_cotizacion,
+            a.valor_cambio,
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             a.ds_nombre_cliente_proveedor,
-            c.disponible_soles,
             a.precio_venta,
             id_estado_cotizacion,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
@@ -23,7 +23,11 @@ class M_orden_despacho extends CI_Model
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             id_estado_orden_despacho,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
+            c.id_cliente_proveedor,
+            c.linea_credito_dolares,
+            c.credito_unitario_dolares,
+            c.disponible_dolares
             FROM
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
@@ -41,6 +45,19 @@ class M_orden_despacho extends CI_Model
             update orden_despacho set
             id_estado_orden_despacho='862'
             where id_orden_despacho='$id_orden_despacho'
+            "
+        );
+    }
+
+    public function actualizar_linea_credito($id_cliente_proveedor, $nueva_linea_credito, $monto_cotizacion)
+    {
+        return $this->db->query(
+            "
+            UPDATE clientes_proveedores 
+            SET 
+            credito_unitario_dolares='$monto_cotizacion',
+            disponible_dolares='$nueva_linea_credito'
+            WHERE id_cliente_proveedor='$id_cliente_proveedor'
             "
         );
     }

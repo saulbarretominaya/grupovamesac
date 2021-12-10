@@ -84,6 +84,7 @@ class C_cotizacion extends CI_Controller
 		$descuento_total = $this->input->post("descuento_total");
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
+		$valor_cambio = $this->input->post("valor_cambio");
 		$id_moneda = $this->input->post("id_moneda");
 		$id_estado_cotizacion = $this->input->post("id_estado_cotizacion");
 
@@ -140,6 +141,7 @@ class C_cotizacion extends CI_Controller
 			$descuento_total,
 			$igv,
 			$precio_venta,
+			$valor_cambio,
 			$id_moneda,
 			$id_estado_cotizacion
 		));

@@ -24,9 +24,12 @@
                   <th>Fecha OD</th>
                   <th>Cliente</th>
                   <th>Linea Credito $</th>
+                  <th>Tipo Cambio</th>
+                  <th>Convertidor $</th>
                   <th>Moneda</th>
-                  <th>Monto</th>
+                  <th>Monto COT</th>
                   <th>Estado OD</th>
+                  <th></th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -54,12 +57,18 @@
                       <td><?php echo $index->fecha_cotizacion; ?></td>
                       <td><?php echo $index->id_orden_despacho; ?></td>
                       <td><?php echo $index->fecha_orden_despacho; ?></td>
+                      <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
+                      <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
+                      <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <td><?php echo $index->disponible_soles; ?></td>
+                      <td><?php echo $index->disponible_dolares; ?></td>
+                      <td><?php echo $index->valor_cambio;; ?></td>
+                      <td></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                      <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
                       <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
                       <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
                     </tr>
