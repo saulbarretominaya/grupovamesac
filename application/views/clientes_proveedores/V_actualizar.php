@@ -327,18 +327,18 @@
                         <label for="tipo_giro">Tipo de Giro</label>
                         <div class="input-group">
                           <select class="form-select" id="tipo_giro" required>
-                            <option value="0" selected>Seleccionaroption>
-                              <?php foreach ($cbox_tipo_giro as $cbox_tipo_giro) : ?>
-                                <?php if ($cbox_tipo_giro->id_dmultitabla == $enlace_actualizar->id_tipo_giro) : ?>
-                            <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>" selected>
-                              <?php echo $cbox_tipo_giro->descripcion; ?>
-                            </option>
-                          <?php else : ?>
-                            <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>">
-                              <?php echo $cbox_tipo_giro->descripcion; ?>
-                            </option>
-                          <?php endif; ?>
-                        <?php endforeach; ?>
+                            <option value="0" selected>Seleccionar</option>
+                            <?php foreach ($cbox_tipo_giro as $cbox_tipo_giro) : ?>
+                              <?php if ($cbox_tipo_giro->id_dmultitabla == $enlace_actualizar->id_tipo_giro) : ?>
+                                <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>" selected>
+                                  <?php echo $cbox_tipo_giro->descripcion; ?>
+                                </option>
+                              <?php else : ?>
+                                <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>">
+                                  <?php echo $cbox_tipo_giro->descripcion; ?>
+                                </option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           </select>
                         </div>
                       </div>
@@ -367,29 +367,7 @@
                       </div>
                     </div>
                     <!-- Cuarta Fila -->
-                    <div class="form-row">
-                      <!-- LINEA DE CREDITO - SOLES -->
-                      <div class="col-md-4 mb-3">
-                        <label for="linea_credito_soles">Linea de Credito S/.</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" value="<?php echo $enlace_actualizar->linea_credito_soles; ?>" required>
-                        </div>
-                      </div>
-                      <!-- CREDITO UNITARIO - SOLES-->
-                      <div class="col-md-4 mb-3">
-                        <label for="credito_unitario_soles">Credito Unitario S/.</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" value="<?php echo $enlace_actualizar->credito_unitario_soles; ?>" required>
-                        </div>
-                      </div>
-                      <!-- DISPONIBLE - SOLES-->
-                      <div class="col-md-4 mb-3">
-                        <label for="disponible_soles">Disponible S/.</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" value="<?php echo $enlace_actualizar->disponible_soles; ?>" required>
-                        </div>
-                      </div>
-                    </div>
+
                     <!-- Quinta Fila -->
                     <div class="form-row">
                       <!-- LINEA DE CREDITO - DOLARES -->

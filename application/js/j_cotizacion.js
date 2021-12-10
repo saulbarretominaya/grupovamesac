@@ -179,11 +179,19 @@ $(".btn_aprobar_estado").on("click", function (e) {
 	debugger;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
 	var estado_cotizacion = $(this).parents("tr").find("td")[5].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[5].innerText;
+	var id_orden_despacho = $(this).parents("tr").find("td")[6].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[7].innerText;
 
+	if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "PENDIENTE") {
 
-	if (estado_cotizacion == "PENDIENTE") {
-		alertify.confirm("This is a confirm dialog.",
+		alert("Ya fue aprobado por el vendedor, pendiente por OD");
+
+	} else if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "APROBADO") {
+
+		alert("Ya fue aprobado por OD, llamar al area de TI para cualquier cambio, que tenga buen dia :D");
+
+	} else if (id_orden_despacho == "") {
+		alertify.confirm("Esta seguro que desea aprobarlo",
 			function () {
 				$.ajax({
 					async: false,
@@ -197,11 +205,24 @@ $(".btn_aprobar_estado").on("click", function (e) {
 						window.location.href = base_url + "C_cotizacion";
 					},
 				});
-			},
-			function () {
 			});
-	} else if (estado_orden_despacho == "APROBADO") {
-		alert("Ya fue Aprobado por el vendedor")
+	} else if (id_orden_despacho != "") {
+		alertify.confirm("Esta Cotizacion ya fue aprobada anteriormente, seguro que desea hacerlo otra vez?",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_cotizacion/cambiar_estado_pendiente_cotizacion",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_cotizacion: id_cotizacion,
+						id_orden_despacho: id_orden_despacho,
+					},
+					success: function (data) {
+						window.location.href = base_url + "C_cotizacion";
+					},
+				});
+			});
 	}
 
 
@@ -218,7 +239,6 @@ $(".btn_alerta_actualizar").on("click", function (e) {
 });
 
 /*Fin CRUD*/
-
 
 
 /*  Ventanas Modal Registrar */

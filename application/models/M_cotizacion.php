@@ -22,7 +22,8 @@ class M_cotizacion extends CI_Model
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             id_estado_orden_despacho,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
+            b.id_orden_despacho
             FROM
             cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
@@ -372,7 +373,16 @@ class M_cotizacion extends CI_Model
         );
     }
 
-
+    public function cambiar_estado_pendiente_orden_despacho($id_orden_despacho)
+    {
+        return $this->db->query(
+            "
+            update orden_despacho set
+            id_estado_orden_despacho='861'
+            where id_orden_despacho='$id_orden_despacho'
+            "
+        );
+    }
 
     public function insertar_orden_despacho(
         $id_cotizacion

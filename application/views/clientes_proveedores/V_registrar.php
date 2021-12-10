@@ -300,29 +300,7 @@
                         </div>
                       </div>
                       <!-- Cuarta Fila -->
-                      <div class="form-row">
-                        <!-- LINEA DE CREDITO - SOLES -->
-                        <div class="col-md-4 mb-3">
-                          <label for="linea_credito_soles">Linea de Credito S/.</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
-                          </div>
-                        </div>
-                        <!-- CREDITO UNITARIO - SOLES-->
-                        <div class="col-md-4 mb-3">
-                          <label for="credito_unitario_soles">Credito Unitario S/.</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" required>
-                          </div>
-                        </div>
-                        <!-- DISPONIBLE - SOLES-->
-                        <div class="col-md-4 mb-3">
-                          <label for="disponible_soles">Disponible S/.</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
-                          </div>
-                        </div>
-                      </div>
+
                       <!-- Quinta Fila -->
                       <div class="form-row">
                         <!-- LINEA DE CREDITO - DOLARES -->

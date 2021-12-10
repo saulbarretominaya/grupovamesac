@@ -25,6 +25,7 @@
                   <th>Moneda</th>
                   <th>Monto</th>
                   <th>Estado COT</th>
+                  <th>Num OD</th>
                   <th>Estado OD</th>
                   <th></th>
                   <th></th>
@@ -58,7 +59,7 @@
                         $ds_estado_od = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
                         break;
                       default;
-                        $ds_estado_od = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                        $ds_estado_od = '';
                         break;
                     }
                     ?>
@@ -70,6 +71,7 @@
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado_cot; ?> </td>
+                      <td><?php echo $index->id_orden_despacho; ?> </td>
                       <td><?php echo $ds_estado_od;; ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
 

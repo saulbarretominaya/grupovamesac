@@ -244,6 +244,15 @@ class C_cotizacion extends CI_Controller
 		echo json_encode($id_cotizacion);
 	}
 
+	public function cambiar_estado_pendiente_cotizacion()
+	{
+		$id_orden_despacho = $this->input->post("id_orden_despacho");
+		$id_cotizacion = $this->input->post("id_cotizacion");
+		$this->M_cotizacion->aprobar_estado($id_cotizacion);
+		$this->M_cotizacion->cambiar_estado_pendiente_orden_despacho($id_orden_despacho);
+		echo json_encode($id_cotizacion);
+	}
+
 
 	public function enlace_actualizar($id_cotizacion)
 

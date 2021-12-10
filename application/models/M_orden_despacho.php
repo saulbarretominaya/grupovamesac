@@ -27,7 +27,7 @@ class M_orden_despacho extends CI_Model
             FROM
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            RIGHT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
+            LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
             "
         );
         return $resultados->result();
@@ -52,6 +52,17 @@ class M_orden_despacho extends CI_Model
             update orden_despacho set
             id_estado_orden_despacho='863'
             where id_orden_despacho='$id_orden_despacho'
+            "
+        );
+    }
+
+    public function cambiar_estado_pendiente_cotizacion($id_cotizacion)
+    {
+        return $this->db->query(
+            "
+            update cotizacion set
+            id_estado_cotizacion='857'
+            where id_cotizacion='$id_cotizacion'
             "
         );
     }

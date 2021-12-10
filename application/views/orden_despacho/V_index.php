@@ -23,7 +23,7 @@
                   <th>Num OD</th>
                   <th>Fecha OD</th>
                   <th>Cliente</th>
-                  <th>Linea Credito</th>
+                  <th>Linea Credito $</th>
                   <th>Moneda</th>
                   <th>Monto</th>
                   <th>Estado OD</th>

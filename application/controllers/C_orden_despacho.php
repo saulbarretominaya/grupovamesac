@@ -33,7 +33,10 @@ class C_orden_despacho extends CI_Controller
 	public function desaprobar_estado()
 	{
 		$id_orden_despacho = $this->input->post("id_orden_despacho");
+		$id_cotizacion = $this->input->post("id_cotizacion");
+
 		$this->M_orden_despacho->desaprobar_estado($id_orden_despacho);
+		$this->M_orden_despacho->cambiar_estado_pendiente_cotizacion($id_cotizacion);
 		echo json_encode($id_orden_despacho);
 	}
 }
