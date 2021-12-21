@@ -42,27 +42,67 @@ $(document).on("click", ".js_lupa_cotizacion", function () {
 });
 /*Fin CRUD*/
 
-
-
 /*Evento */
-$(".btn_aprobar_estado").on("click", function (e) {
+$(document).on("click", ".btn_aplicar_tipo_cambio", function () {
 
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
+	var valor_cambio = $(this).parents("tr").find("td")[5].innerText;
+	var resultado_valor_c = $(this).parents("tr").find("td")[6].innerText;
+	var moneda = $(this).parents("tr").find("td")[7].innerText;
+	var monto_cotizacion = $(this).parents("tr").find("td")[8].innerText;
+	var resultado_valor_cambio = Number(monto_cotizacion) / Number(valor_cambio);
+	debugger;
+	if (moneda == "SOLES" && resultado_valor_c == "") {
+		alertify.confirm("Esta seguro de aplicar el Tipo de Cambio",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_orden_despacho/aplicar_tipo_cambio",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_orden_despacho: id_orden_despacho,
+						resultado_valor_cambio: resultado_valor_cambio,
+					},
+					success: function (data) {
+						window.location.href = base_url + "C_orden_despacho";
+					},
+				});
+			},
+			function () {
+			});
+	} else {
+		alert("No puede aplicar el Tipo Cambio");
+	}
 
+
+
+});
+
+$(document).on("click", ".btn_aprobar_estado", function () {
+
+	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
 	var id_cliente_proveedor = $(this).parents("tr").find(document.getElementsByName("id_cliente_proveedor")).val();
-	var linea_credito_dolares = $(this).parents("tr").find(document.getElementsByName("linea_credito_dolares")).val();
-	var credito_unitario_dolares = $(this).parents("tr").find(document.getElementsByName("credito_unitario_dolares")).val();
-	var disponible_dolares = $(this).parents("tr").find("td")[5].innerText;
-	var monto_cotizacion = $(this).parents("tr").find("td")[7].innerText;
-
-	var nueva_linea_credito = Number(disponible_dolares) - Number(monto_cotizacion)
-
+	var linea_credito_dolares = $(this).parents("tr").find(document.getElementsByName("disponible_dolares")).val();
+	var resultado_valor_cambio = $(this).parents("tr").find("td")[6].innerText;
+	var tipo_moneda = $(this).parents("tr").find("td")[7].innerText;
+	var monto_cotizacion = $(this).parents("tr").find("td")[8].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
+	debugger;
+	if (resultado_valor_cambio == "" && tipo_moneda == "DOLARES") {
+		var nueva_linea_credito = Number(linea_credito_dolares) - Number(monto_cotizacion)
+	} else if (resultado_valor_cambio != "" && tipo_moneda == "SOLES") {
+		var nueva_linea_credito = Number(linea_credito_dolares) - Number(resultado_valor_cambio)
+	}
 	debugger;
 
+	if (tipo_moneda == "SOLES" && resultado_valor_cambio == "") {
 
-	if (estado_orden_despacho == "PENDIENTE") {
-		alertify.confirm("Esta seguro de aprobar la linea de credito",
+		alert("Primero debe aplicar el tipo de cambio");
+
+	} else if (estado_orden_despacho == "PENDIENTE") {
+
+		alertify.confirm("Su linea de credito del cliente es de: $ " + linea_credito_dolares + ", esta seguro que desea aprobarlo?",
 			function () {
 				$.ajax({
 					async: false,
@@ -73,7 +113,8 @@ $(".btn_aprobar_estado").on("click", function (e) {
 						id_orden_despacho: id_orden_despacho,
 						id_cliente_proveedor: id_cliente_proveedor,
 						nueva_linea_credito: nueva_linea_credito,
-						monto_cotizacion: monto_cotizacion
+						monto_cotizacion: monto_cotizacion,
+						linea_credito_dolares: linea_credito_dolares
 					},
 					success: function (data) {
 						window.location.href = base_url + "C_orden_despacho";
@@ -91,13 +132,13 @@ $(".btn_aprobar_estado").on("click", function (e) {
 	}
 });
 
-$(".btn_desaprobar_estado").on("click", function (e) {
+$(document).on("click", ".btn_desaprobar_estado", function () {
 
 	debugger;
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
 
-	var estado_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
 
 	if (estado_orden_despacho == "PENDIENTE") {
 		alertify.confirm("Seguro que desea desaprobarlo?",

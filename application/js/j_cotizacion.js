@@ -177,7 +177,7 @@ $("#registrar").on("click", function () {
 		},
 	});
 });
-$(".btn_aprobar_estado").on("click", function (e) {
+$(document).on("click", ".btn_aprobar_estado", function () {
 
 	debugger;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
@@ -231,9 +231,7 @@ $(".btn_aprobar_estado").on("click", function (e) {
 
 
 });
-$(".btn_alerta_actualizar").on("click", function (e) {
-
-	debugger;
+$(document).on("click", ".btn_alerta_actualizar", function () {
 	var estado_orden_despacho = $(this).parents("tr").find("td")[6].innerText;
 
 	if (estado_orden_despacho == "APROBADO") {
@@ -918,6 +916,7 @@ function calcular_fecha_condicion_pago() {
 		document.getElementById("fecha_condicion_pago").value = (dia + '/' + mes + '/' + fecha.getUTCFullYear());
 	}
 }
+
 function aplicar_tipo_cambio() {
 	debugger;
 

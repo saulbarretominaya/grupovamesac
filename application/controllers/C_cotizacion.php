@@ -43,6 +43,7 @@ class C_cotizacion extends CI_Controller
 			'index_tableros' => $this->M_cotizacion->index_tableros(),
 			'index_comodin' => $this->M_cotizacion->index_comodin(),
 			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+			'cbox_condicion_pago_cotizacion' => $this->M_cbox->cbox_condicion_pago_cotizacion(),
 			'tipo_cambio' => $this->M_cotizacion->tipo_cambio(),
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 			'cbox_estado_cotizacion' => $this->M_cbox->cbox_estado_cotizacion()

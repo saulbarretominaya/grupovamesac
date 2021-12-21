@@ -43,7 +43,7 @@
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="">
+                            <input type="text" class="form-control" id="" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -162,19 +162,19 @@
                             <div class="col-md-2">
                               <label for="">Departamento</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label for="">Provincia</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label for="">Distrito</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly></textarea>
                               </div>
                             </div>
                           </div>
@@ -182,7 +182,7 @@
                             <div class="col-md-3">
                               <label for="">Direccion Fiscal</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope"></textarea>
+                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
@@ -221,11 +221,12 @@
                         </div>
                       </div>
 
+                    </div>
 
-
+                    <div class="col-md-6">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Condiciones de Pago</h3>
+                          <h3 class="card-title">Fecha de Vencimiento</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -234,26 +235,15 @@
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-3">
-                              <label for="">Condicion Pago</label>
-                              <div class="input-group">
-                                <select class="form-select select2" id="id_condicion_pago">
-                                  <option value="0">Seleccionar</option>
-                                  <?php foreach ($cbox_condicion_pago as $cbox_condicion_pago) : ?>
-                                    <option value="<?php echo $cbox_condicion_pago->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago->descripcion; ?></option>
-                                  <?php endforeach; ?>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                               <label># Dias</label>
                               <div class="input-group">
                                 <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
                                 <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <label>Fecha Pago</label>
+                            <div class="col-md-6">
+                              <label>Fecha Vencimiento</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
                               </div>
@@ -261,8 +251,8 @@
                           </div>
                         </div>
                       </div>
-
                     </div>
+
                   </div>
                 </div>
 
@@ -754,6 +744,72 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="col-md-6">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Condiciones de Pago</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                              <!-- <label for="">&nbsp;</label> -->
+                              <div class="input-group">
+                                <select class="form-select select2" id="id_condicion_pago">
+                                  <option value="0">Seleccionar</option>
+                                  <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
+                                    <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                                  <?php endforeach; ?>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <!-- <label>&nbsp;</label> -->
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <!-- <label for="">&nbsp;</label> -->
+                              <div class="input-group">
+                                <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-12">
+                              <div class="card card-primary">
+                                <div class="card-header">
+                                  <h3 class="card-title">Detalle Condicion Pago</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                  <div class="card-body" style="overflow-x:auto;">
+                                    <table id="id_table_detalle_cotizacion">
+                                      <thead>
+                                        <tr>
+                                          <th>Fecha </th>
+                                          <th>Monto</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      </tbody>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </form>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
 
                 </div>

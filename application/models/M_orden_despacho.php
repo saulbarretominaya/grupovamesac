@@ -20,6 +20,7 @@ class M_orden_despacho extends CI_Model
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
+            b.resultado_valor_cambio,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             id_estado_orden_despacho,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
@@ -27,7 +28,8 @@ class M_orden_despacho extends CI_Model
             c.id_cliente_proveedor,
             c.linea_credito_dolares,
             c.credito_unitario_dolares,
-            c.disponible_dolares
+            c.disponible_dolares,
+            b.linea_credito_uso
             FROM
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
@@ -38,12 +40,24 @@ class M_orden_despacho extends CI_Model
     }
 
 
-    public function aprobar_estado($id_orden_despacho)
+    public function aprobar_estado($id_orden_despacho, $linea_credito_dolares)
     {
         return $this->db->query(
             "
             update orden_despacho set
+            linea_credito_uso='$linea_credito_dolares',
             id_estado_orden_despacho='862'
+            where id_orden_despacho='$id_orden_despacho'
+            "
+        );
+    }
+
+    public function aplicar_tipo_cambio($id_orden_despacho, $resultado_valor_cambio)
+    {
+        return $this->db->query(
+            "
+            update orden_despacho set
+            resultado_valor_cambio='$resultado_valor_cambio'
             where id_orden_despacho='$id_orden_despacho'
             "
         );

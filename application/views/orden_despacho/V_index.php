@@ -19,14 +19,15 @@
               <thead>
                 <tr>
                   <th>Num COT</th>
-                  <th>Fecha COT</th>
+                  <th>Fec COT</th>
                   <th>Num OD</th>
                   <th>Fecha OD</th>
                   <th>Cliente</th>
-                  <th>Linea Credito $</th>
+                  <!-- <th>Linea Credito $ </th> -->
+                  <!-- <th>###############</th> -->
                   <th>Tipo Cambio</th>
-                  <th>Convertidor $</th>
-                  <th>Moneda</th>
+                  <th>Resultado Valor $</th>
+                  <th>Tipo Moneda</th>
                   <th>Monto COT</th>
                   <th>Estado OD</th>
                   <th></th>
@@ -60,10 +61,12 @@
                       <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
                       <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
                       <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
+                      <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <td><?php echo $index->disponible_dolares; ?></td>
+                      <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
+                      <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
                       <td><?php echo $index->valor_cambio;; ?></td>
-                      <td></td>
+                      <td><?php echo $index->resultado_valor_cambio; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
