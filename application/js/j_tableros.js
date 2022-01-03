@@ -695,6 +695,7 @@ function validar_detalle_tablero() {
 
 	$("#id_table_detalle_tableros tbody tr").each(function () {
 
+		debugger;
 		var valorcito = $(this).find("td:eq(1)").text();
 		valor = valorcito.replace(/ /g, '');
 		var hidden_codigo_producto = $("#hidden_codigo_producto").val();

@@ -43,11 +43,12 @@
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="" readonly>
+                            <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
+                            <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
-                          <label for="cargo">Fecha</label>
+                          <label for="cargo">Fecha Emision</label>
                           <div class="input-group">
                             <?php
                             date_default_timezone_set("America/Lima");
@@ -721,25 +722,25 @@
                         <div class="col-md-3">
                           <label for="tipo_trabajador">Total</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="total" value="100.00">
+                            <input type="text" class="form-control" id="total" value="">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <label for=" local">DCTO Total</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="descuento_total" value="200.00">
+                            <input type="text" class="form-control" id="descuento_total" value="">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <label for=" local">IGV</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="igv" value="300.00">
+                            <input type="text" class="form-control" id="igv" value="">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="precio_venta" value="400.00">
+                            <input type="text" class="form-control" id="precio_venta" value="">
                           </div>
                         </div>
                       </div>
@@ -771,13 +772,13 @@
                             <div class="col-md-4">
                               <!-- <label>&nbsp;</label> -->
                               <div class="input-group">
-                                <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
+                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-2">
                               <!-- <label for="">&nbsp;</label> -->
                               <div class="input-group">
-                                <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
+                                <button type="button" class="btn btn-outline-success" id="id_agregar_condicion_pago"><span class="fas fa-plus"></span></button>
                               </div>
                             </div>
                           </div>
@@ -789,7 +790,7 @@
                                 </div>
                                 <form class="form-horizontal">
                                   <div class="card-body" style="overflow-x:auto;">
-                                    <table id="id_table_detalle_cotizacion">
+                                    <table id="id_table_detalle_condicion_pago">
                                       <thead>
                                         <tr>
                                           <th>Fecha </th>
@@ -798,12 +799,20 @@
                                       </thead>
                                       <tbody>
                                       </tbody>
+                                      <tfoot>
+                                        <tr>
+                                          <th></th>
+                                          <th>Monto Total:
+                                            <label style="font-weight: normal;" class="control-label" id="precio_final_final"></label>
+                                          </th>
+                                        </tr>
+                                      </tfoot>
                                       </tbody>
                                     </table>
+
                                   </div>
                                 </form>
                               </div>
-
                             </div>
                           </div>
                         </div>
