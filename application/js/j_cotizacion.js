@@ -44,7 +44,7 @@ $(document).on("click", ".js_lupa_cotizacion", function () {
 	});
 });
 $("#registrar").on("click", function () {
-	validar_insertar();
+	validar_registrar();
 	if (resultado_campo == true) {
 
 		//Cabecera
@@ -76,16 +76,12 @@ $("#registrar").on("click", function () {
 		var valor_cambio = $("#valor_cambio").val();
 		var id_moneda = $("#tipo_moneda_cambio").val();
 
-		debugger;
-
-
-		//Detalle
+		//Detalle cotizacion
 		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
 		var id_tablero = Array.prototype.slice.call(document.getElementsByName("id_tablero[]")).map((o) => o.value);
 		var id_comodin = Array.prototype.slice.call(document.getElementsByName("id_comodin[]")).map((o) => o.value);
 		var codigo_producto = Array.prototype.slice.call(document.getElementsByName("codigo_producto[]")).map((o) => o.value);
 		var descripcion_producto = Array.prototype.slice.call(document.getElementsByName("descripcion_producto[]")).map((o) => o.value);
-
 
 		var id_unidad_medida = Array.prototype.slice.call(document.getElementsByName("id_unidad_medida[]")).map((o) => o.value);
 		var ds_unidad_medida = Array.prototype.slice.call(document.getElementsByName("ds_unidad_medida[]")).map((o) => o.value);
@@ -93,15 +89,12 @@ $("#registrar").on("click", function () {
 		var ds_marca_producto = Array.prototype.slice.call(document.getElementsByName("ds_marca_producto[]")).map((o) => o.value);
 		var cantidad = Array.prototype.slice.call(document.getElementsByName("cantidad[]")).map((o) => o.value);
 
-
-
 		var precio_inicial = Array.prototype.slice.call(document.getElementsByName("precio_inicial[]")).map((o) => o.value);
 		var precio_ganancia = Array.prototype.slice.call(document.getElementsByName("precio_ganancia[]")).map((o) => o.value);
 		var g = Array.prototype.slice.call(document.getElementsByName("g[]")).map((o) => o.value);
 		var g_unidad = Array.prototype.slice.call(document.getElementsByName("g_unidad[]")).map((o) => o.value);
 		var g_cant_total = Array.prototype.slice.call(document.getElementsByName("g_cant_total[]")).map((o) => o.value);
 
-		debugger;
 		var precio_descuento = Array.prototype.slice.call(document.getElementsByName("precio_descuento[]")).map((o) => o.value);
 		var d = Array.prototype.slice.call(document.getElementsByName("d[]")).map((o) => o.value);
 		var d_unidad = Array.prototype.slice.call(document.getElementsByName("d_unidad[]")).map((o) => o.value);
@@ -110,6 +103,11 @@ $("#registrar").on("click", function () {
 		var valor_venta = Array.prototype.slice.call(document.getElementsByName("valor_venta[]")).map((o) => o.value);
 		var dias_entrega = Array.prototype.slice.call(document.getElementsByName("dias_entrega[]")).map((o) => o.value);
 
+		//Detalle condicion_pago
+		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
+		var monto_cuota = Array.prototype.slice.call(document.getElementsByName("monto_cuota[]")).map((o) => o.value);
+
+		debugger;
 
 		$.ajax({
 			async: false,
@@ -146,7 +144,7 @@ $("#registrar").on("click", function () {
 				valor_cambio: valor_cambio,
 				id_moneda: id_moneda,
 
-				//Detalle
+				//Detalle cotizacion
 				id_producto: id_producto,
 				id_tablero: id_tablero,
 				id_comodin: id_comodin,
@@ -157,20 +155,21 @@ $("#registrar").on("click", function () {
 				id_marca_producto: id_marca_producto,
 				ds_marca_producto: ds_marca_producto,
 				cantidad: cantidad,
-
 				precio_inicial: precio_inicial,
 				precio_ganancia: precio_ganancia,
 				g: g,
 				g_unidad: g_unidad,
 				g_cant_total: g_cant_total,
-
 				precio_descuento: precio_descuento,
 				d: d,
 				d_unidad: d_unidad,
 				d_cant_total: d_cant_total,
-
 				valor_venta: valor_venta,
-				dias_entrega: dias_entrega
+				dias_entrega: dias_entrega,
+
+				//Detalle condicion pago
+				fecha_cuota: fecha_cuota,
+				monto_cuota: monto_cuota
 			},
 			success: function (data) {
 				debugger;
@@ -721,12 +720,13 @@ $("#id_agregar_condicion_pago").on("click", function (e) {
 
 	validar_detalle_condicion_pago();
 
+	var fecha_cuota = $("#fecha_cuota").val();
 	var monto_cuota = $("#monto_cuota").val();
 
 	if (resultado_campo == true) {
 		html = "<tr>";
-		html += "<td style='width:10%'><input type='date' name='dias_entrega[]' class='form-control'></td>";
-		html += "<td><input type='hidden' name='valor_venta[]' 				value='" + monto_cuota + "'>" + monto_cuota + "</td>";
+		html += "<td><input type='hidden' name='fecha_cuota[]' value='" + fecha_cuota + "'>" + fecha_cuota + "</td>";
+		html += "<td><input type='hidden' name='monto_cuota[]' value='" + monto_cuota + "'>" + monto_cuota + "</td>";
 		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_condicion_pago'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
 		$("#id_table_detalle_condicion_pago tbody").append(html);
@@ -760,7 +760,7 @@ $(document).on("click", ".eliminar_fila_condicion_pago", function () {
 
 	$("#container_solicitud_id_remove").append(html);
 	$(this).closest("tr").remove();
-	validar_detalle_condicion_pago();
+	calcular_sumatoria_cuotas_eliminar_detalle();
 
 });
 /* Fin Evento */
@@ -1052,38 +1052,66 @@ function validar_detalle_cotizacion() {
 	}
 };
 function validar_detalle_condicion_pago() {
-	var acumulador = 0;
-	var nuevo_monto_ingresante = Number($("#monto_cuota").val());
-	var precio_venta = Number($("#precio_venta").val());
+	var monto_cuota = Number($("#monto_cuota").val());
+	var fecha_cuota = $("#fecha_cuota").val();
 
 	debugger;
 
-	if (isNaN(nuevo_monto_ingresante)) {
+	if (isNaN(monto_cuota)) {
 		alert("A ingresado un monto incorrecto");
 		resultado_campo = false;
+	}
+	else if (fecha_cuota == "") {
+		alert("Ingrese Fecha de Cuota");
+		resultado_campo = false;
+	}
+	else if (monto_cuota == 0) {
+		alert("Ingrese Monto de Cuota");
+		resultado_campo = false;
+	}
+	else if (fecha_cuota == "") {
+		alert("Seleccione una fecha en la condicion de pago");
+		resultado_campo = false;
+	}
+	else {
+		calcular_sumatoria_cuotas();
+	}
+};
+function calcular_sumatoria_cuotas() {
+	var acumulador = 0;
+	var precio_venta = Number($("#precio_venta").val());
+	var nuevo_monto_ingresante = Number($("#monto_cuota").val());
+
+	$("#id_table_detalle_condicion_pago tbody tr").each(function () {
+		var posicion_valor_tabla = Number($(this).find("td:eq(1)").text());
+		acumulador = (acumulador + posicion_valor_tabla)
+	});
+
+	monto_total_sumatorio_cuotas = acumulador + nuevo_monto_ingresante;
+
+	if (monto_total_sumatorio_cuotas > precio_venta) {
+		alert("A superado la suma de cuotas");
+		resultado_campo = false;
 	} else {
-
-		$("#id_table_detalle_condicion_pago tbody tr").each(function () {
-			debugger;
-			var posicion_valor_tabla = Number($(this).find("td:eq(1)").text());
-			acumulador = (acumulador + posicion_valor_tabla)
-		});
-
-		monto_total_sumatorio_cuotas = acumulador + nuevo_monto_ingresante;
-
-		debugger;
-
-		if (monto_total_sumatorio_cuotas > precio_venta) {
-			alert("A superado la suma de cuotas");
-			resultado_campo = false;
-			$("#monto_cuota").val("");
-		} else {
-			$("#precio_final_final").text(monto_total_sumatorio_cuotas);
-			resultado_campo = true;
-		}
+		$("#precio_final_final").text(monto_total_sumatorio_cuotas);
+		resultado_campo = true;
 	}
 
-};
+}
+function calcular_sumatoria_cuotas_eliminar_detalle() {
+	var acumulador = 0;
+
+	$("#id_table_detalle_condicion_pago tbody tr").each(function () {
+		debugger
+		var posicion_valor_tabla = Number($(this).find("td:eq(1)").text());
+		acumulador = (acumulador + posicion_valor_tabla)
+	});
+
+	debugger;
+
+	$("#precio_final_final").text(acumulador);
+
+}
 function limpiar_campos() {
 
 	var count = $('#id_table_detalle_cotizacion tr').length;
@@ -1126,15 +1154,18 @@ function limpiar_campos() {
 }
 function limpiar_campos_condicion_pago() {
 
+	$("#fecha_cuota").val("");
 	$("#monto_cuota").val("");
+
 }
-function validar_insertar() {
+function validar_registrar() {
 	debugger
 
 	var count_detalle_cotizacion = $('#id_table_detalle_cotizacion tr').length;
 	var count_detalle_condicion_pago = $('#id_table_detalle_condicion_pago tr').length;
 	var precio_venta_detalle_cotizacion = Number($("#precio_venta").val());
 	var monto_total_detalle_condicion_pago = Number($("#precio_final_final").html());
+	var id_condicion_pago = $("#id_condicion_pago").val();
 	var validez_oferta_cotizacion = $("#validez_oferta_cotizacion").val();
 	var ds_nombre_cliente_proveedor = $("#ds_nombre_cliente_proveedor").val();
 	var ds_departamento_cliente_proveedor = $("#ds_departamento_cliente_proveedor").val();
@@ -1153,6 +1184,10 @@ function validar_insertar() {
 	}
 	else if (precio_venta_detalle_cotizacion != monto_total_detalle_condicion_pago) {
 		alert("El precio total de la cotizacion no coincide con el monto final de la condicion de pago");
+		resultado_campo = false;
+	}
+	else if (id_condicion_pago == "0") {
+		alert("Selecione la condicion Pago")
 		resultado_campo = false;
 	}
 	else if (validez_oferta_cotizacion == "") {

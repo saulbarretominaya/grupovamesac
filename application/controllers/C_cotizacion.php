@@ -54,8 +54,6 @@ class C_cotizacion extends CI_Controller
 		$this->load->view('cotizacion/V_registrar', $data);
 	}
 
-
-
 	public function insertar()
 	{
 
@@ -90,7 +88,7 @@ class C_cotizacion extends CI_Controller
 		$id_estado_cotizacion = $this->input->post("id_estado_cotizacion");
 
 
-		//Detalle
+		//Detalle Cotizacion
 		$id_producto = $this->input->post("id_producto");
 		$id_tablero = $this->input->post("id_tablero");
 		$id_comodin = $this->input->post("id_comodin");
@@ -106,14 +104,17 @@ class C_cotizacion extends CI_Controller
 		$g = $this->input->post("g");
 		$g_unidad = $this->input->post("g_unidad");
 		$g_cant_total = $this->input->post("g_cant_total");
-
 		$precio_descuento = $this->input->post("precio_descuento");
 		$d = $this->input->post("d");
 		$d_unidad = $this->input->post("d_unidad");
 		$d_cant_total = $this->input->post("d_cant_total");
-
 		$valor_venta = $this->input->post("valor_venta");
 		$dias_entrega = $this->input->post("dias_entrega");
+
+		//Detalle_condicion pago
+		$fecha_cuota = $this->input->post("fecha_cuota");
+		$monto_cuota = $this->input->post("monto_cuota");
+
 
 		if ($this->M_cotizacion->insertar(
 			//Cabecera
@@ -148,7 +149,7 @@ class C_cotizacion extends CI_Controller
 		));
 
 		$id_cotizacion = $this->M_cotizacion->lastID();
-		$this->insertar_detalle(
+		$this->insertar_detalle_cotizacion(
 			$id_cotizacion,
 			$id_producto,
 			$id_tablero,
@@ -176,10 +177,17 @@ class C_cotizacion extends CI_Controller
 			$dias_entrega
 
 		);
+
+		$this->insertar_detalle_condicion_pago(
+			$id_cotizacion,
+			$fecha_cuota,
+			$monto_cuota
+
+		);
 		echo json_encode($serie_cotizacion);
 	}
 
-	protected function insertar_detalle(
+	protected function insertar_detalle_cotizacion(
 		$id_cotizacion,
 		$id_producto,
 		$id_tablero,
@@ -208,7 +216,7 @@ class C_cotizacion extends CI_Controller
 
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
-			$this->M_cotizacion->insertar_detalle(
+			$this->M_cotizacion->insertar_detalle_cotizacion(
 				$id_cotizacion,
 				$id_producto[$i],
 				$id_tablero[$i],
@@ -239,6 +247,22 @@ class C_cotizacion extends CI_Controller
 		}
 	}
 
+	protected function insertar_detalle_condicion_pago(
+		$id_cotizacion,
+		$fecha_cuota,
+		$monto_cuota
+
+	) {
+		for ($i = 0; $i < count($fecha_cuota); $i++) {
+			$this->M_cotizacion->insertar_detalle_condicion_pago(
+				$id_cotizacion,
+				$fecha_cuota[$i],
+				$monto_cuota[$i],
+
+			);
+		}
+	}
+
 	public function aprobar_estado()
 	{
 		$id_cotizacion = $this->input->post("id_cotizacion");
@@ -255,7 +279,6 @@ class C_cotizacion extends CI_Controller
 		$this->M_cotizacion->cambiar_estado_pendiente_orden_despacho($id_orden_despacho);
 		echo json_encode($id_cotizacion);
 	}
-
 
 	public function enlace_actualizar($id_cotizacion)
 

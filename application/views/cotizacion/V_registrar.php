@@ -746,7 +746,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                       <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">Condiciones de Pago</h3>
@@ -758,7 +758,7 @@
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <!-- <label for="">&nbsp;</label> -->
                               <div class="input-group">
                                 <select class="form-select select2" id="id_condicion_pago">
@@ -772,10 +772,16 @@
                             <div class="col-md-4">
                               <!-- <label>&nbsp;</label> -->
                               <div class="input-group">
-                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope">
+                                <input type="date" class="form-control" id="fecha_cuota" value="" autocomplete="nope">
                               </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
+                              <!-- <label>&nbsp;</label> -->
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope" placeholder="Ingrese Cuota">
+                              </div>
+                            </div>
+                            <div class="col-md-1">
                               <!-- <label for="">&nbsp;</label> -->
                               <div class="input-group">
                                 <button type="button" class="btn btn-outline-success" id="id_agregar_condicion_pago"><span class="fas fa-plus"></span></button>

@@ -91,7 +91,7 @@ class M_cotizacion extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insertar_detalle(
+    public function insertar_detalle_cotizacion(
         $id_cotizacion,
         $id_producto,
         $id_tablero,
@@ -142,6 +142,28 @@ class M_cotizacion extends CI_Model
         '$precio_inicial','$precio_ganancia','$g','$g_unidad','$g_cant_total',
         '$precio_descuento','$d','$d_unidad','$d_cant_total',
         '$valor_venta','$dias_entrega'
+        )
+        "
+        );
+    }
+
+    public function insertar_detalle_condicion_pago(
+        $id_cotizacion,
+        $fecha_cuota,
+        $monto_cuota
+
+    ) {
+        return $this->db->query(
+            "
+        INSERT INTO detalle_condicion_pago
+        (
+        id_dcondicion_pago,
+        id_cotizacion,fecha_cuota,monto_cuota
+        )
+        VALUES
+        (
+        '', 
+        '$id_cotizacion','$fecha_cuota','$monto_cuota'
         )
         "
         );
