@@ -66,19 +66,12 @@
   <div class="modal fade" id="modal-clientes">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <div class="modal-header" style="background-color:#48C9B0">
-          <h4 class="modal-title w-100 text-center ">DETALLE DE CLIENTES</h4>
-
-          <h4 class="modal-title w-100 text-center ">DETALLE DE TRABAJADORES</h4>
-
+        <div class="modal-header">
           <button type="button" class="close " data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-
           <p></p>
-
-
         </div>
       </div>
       <!-- /.modal-content -->

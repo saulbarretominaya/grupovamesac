@@ -1,41 +1,5 @@
   <!-- PROBAMOS -->
 
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="card card-info">
-
-            <form>
-              <div class="form-row">
-                <div class="col-md-6 ">
-                  <div class="input-group">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_S6w9eNX3jtyzwNk5LwnkomXSVidGe64PhONqh-4eiD9jM8ayLUwBO10GmVH7WKDapIA&usqp=CAU" alt="Cinque Terre" />
-                  </div>
-                </div>
-                <div class="col-md-6 ">
-                  <div class="col-12">
-                    <br>
-                    <b>GRUPO VAME SAC</b><br><br>
-                    Av. Proceres 316 Int.2 Urb.Condevilla Señor - San Martin de Porres - Lima - Lima <br>
-                    Telefonos: (01) 496 88 31 / 960 430 277<br>
-                    Email: contabilidad@vamesac.pe<br>
-                    Tienda: Av.Pacasmayo 403 - Pabellon I - Puesto 7 C.C
-                    Página web:<a href="#"> grupovamesac.com</a>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </div>
-    <!-- /.div -->
-  </section>
 
   <?php
   $datos = $detalle->nombres . " " . $detalle->ape_paterno . " " . $detalle->ape_materno
@@ -214,7 +178,10 @@
                           <!-- Linea de Disponible -->
                           <div class="form-row">
                             <div class="col-md-5 mb-3">
-                              <label for="">Linea Disponible</label>
+                              <label for="">Linea Disponible $</label>
+                            </div>
+                            <div class="col-md-7 mb-3">
+                              <?php echo $detalle->linea_credito_dolares; ?>
                             </div>
                             <div class="col-md-7 mb-3">
                               <?php foreach ($cbox_linea_disponible as $cbox_linea_disponible) : ?>

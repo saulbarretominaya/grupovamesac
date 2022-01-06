@@ -90,7 +90,7 @@
                                   <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_clientes_proveedores">
                                     Buscar
                                   </button>
-                                  <a href="<?php echo base_url() . "C_clientes_proveedores" ?>"><button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button></a>
+                                  <!-- <a href="<?php echo base_url() . "C_clientes_proveedores" ?>"><button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button></a> -->
                                   <!-- Modal -->
                                   <div class="modal fade" id="opcion_target_clientes_proveedores" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered modal-xl">

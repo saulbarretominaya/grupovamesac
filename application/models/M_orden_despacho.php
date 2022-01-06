@@ -15,6 +15,7 @@ class M_orden_despacho extends CI_Model
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             a.ds_nombre_cliente_proveedor,
+            a.ds_condicion_pago,
             a.precio_venta,
             id_estado_cotizacion,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
@@ -46,6 +47,17 @@ class M_orden_despacho extends CI_Model
             "
             update orden_despacho set
             linea_credito_uso='$linea_credito_dolares',
+            id_estado_orden_despacho='862'
+            where id_orden_despacho='$id_orden_despacho'
+            "
+        );
+    }
+
+    public function aprobar_estado_directo($id_orden_despacho)
+    {
+        return $this->db->query(
+            "
+            update orden_despacho set
             id_estado_orden_despacho='862'
             where id_orden_despacho='$id_orden_despacho'
             "

@@ -22,6 +22,7 @@
                   <th>Num COT</th>
                   <th>Fecha COT</th>
                   <th>Cliente</th>
+                  <th>Condicion Pago</th>
                   <th>Moneda</th>
                   <th>Monto</th>
                   <th>Estado COT</th>
@@ -68,6 +69,7 @@
                       <td><?php echo $index->id_cotizacion; ?></td>
                       <td><?php echo $index->fecha_cotizacion; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                      <td><?php echo $index->ds_condicion_pago; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado_cot; ?> </td>

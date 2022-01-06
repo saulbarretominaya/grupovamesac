@@ -1,5 +1,3 @@
-
-
 /* CRUD */
 $("#listar").dataTable({
 
@@ -46,13 +44,17 @@ $(document).on("click", ".js_lupa_cotizacion", function () {
 $(document).on("click", ".btn_aplicar_tipo_cambio", function () {
 
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
-	var valor_cambio = $(this).parents("tr").find("td")[5].innerText;
-	var resultado_valor_c = $(this).parents("tr").find("td")[6].innerText;
-	var moneda = $(this).parents("tr").find("td")[7].innerText;
-	var monto_cotizacion = $(this).parents("tr").find("td")[8].innerText;
+	var condicion_pago = $(this).parents("tr").find("td")[5].innerText;
+	var valor_cambio = $(this).parents("tr").find("td")[6].innerText;
+	var resultado_valor_c = $(this).parents("tr").find("td")[7].innerText;
+	var moneda = $(this).parents("tr").find("td")[8].innerText;
+	var monto_cotizacion = $(this).parents("tr").find("td")[9].innerText;
 	var resultado_valor_cambio = Number(monto_cotizacion) / Number(valor_cambio);
 	debugger;
-	if (moneda == "SOLES" && resultado_valor_c == "") {
+	if (condicion_pago == "CONTADO") {
+		alert("No puede aplicar el Tipo Cambio ya que la condicion de Pago es al Contado");
+	}
+	else if (moneda == "SOLES" && resultado_valor_c == "") {
 		alertify.confirm("Esta seguro de aplicar el Tipo de Cambio",
 			function () {
 				$.ajax({
@@ -84,10 +86,12 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
 	var id_cliente_proveedor = $(this).parents("tr").find(document.getElementsByName("id_cliente_proveedor")).val();
 	var linea_credito_dolares = $(this).parents("tr").find(document.getElementsByName("disponible_dolares")).val();
-	var resultado_valor_cambio = $(this).parents("tr").find("td")[6].innerText;
-	var tipo_moneda = $(this).parents("tr").find("td")[7].innerText;
-	var monto_cotizacion = $(this).parents("tr").find("td")[8].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
+	var condicion_pago = $(this).parents("tr").find("td")[5].innerText;
+
+	var resultado_valor_cambio = $(this).parents("tr").find("td")[7].innerText;
+	var tipo_moneda = $(this).parents("tr").find("td")[8].innerText;
+	var monto_cotizacion = $(this).parents("tr").find("td")[9].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
 	debugger;
 	if (resultado_valor_cambio == "" && tipo_moneda == "DOLARES") {
 		var nueva_linea_credito = Number(linea_credito_dolares) - Number(monto_cotizacion)
@@ -96,7 +100,26 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 	}
 	debugger;
 
-	if (tipo_moneda == "SOLES" && resultado_valor_cambio == "") {
+	if (condicion_pago == "CONTADO" && estado_orden_despacho == "PENDIENTE") {
+		$.ajax({
+			async: false,
+			url: base_url + "C_orden_despacho/aprobar_estado_directo",
+			type: "POST",
+			dataType: "json",
+			data: {
+				id_orden_despacho: id_orden_despacho,
+			},
+			success: function (data) {
+				window.location.href = base_url + "C_orden_despacho";
+			},
+		});
+	}
+	else if (estado_orden_despacho == "APROBADO") {
+
+		alert("Ya fue Aprobado");
+
+	}
+	else if (tipo_moneda == "SOLES" && resultado_valor_cambio == "") {
 
 		alert("Primero debe aplicar el tipo de cambio");
 
@@ -138,7 +161,7 @@ $(document).on("click", ".btn_desaprobar_estado", function () {
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
 
-	var estado_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
 
 	if (estado_orden_despacho == "PENDIENTE") {
 		alertify.confirm("Seguro que desea desaprobarlo?",

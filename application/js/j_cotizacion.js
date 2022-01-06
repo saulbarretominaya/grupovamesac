@@ -183,9 +183,9 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 
 	debugger;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
-	var estado_cotizacion = $(this).parents("tr").find("td")[5].innerText;
-	var id_orden_despacho = $(this).parents("tr").find("td")[6].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[7].innerText;
+	var estado_cotizacion = $(this).parents("tr").find("td")[6].innerText;
+	var id_orden_despacho = $(this).parents("tr").find("td")[7].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
 
 	if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "PENDIENTE") {
 
