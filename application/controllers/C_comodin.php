@@ -38,7 +38,7 @@ class C_comodin extends CI_Controller
 	{
 
 		$codigo_producto = $this->input->post("codigo_producto");
-		$nombre_producto = $this->input->post("nombre_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
 		$id_unidad_medida = $this->input->post("id_unidad_medida");
 		$id_marca_producto = $this->input->post("id_marca_producto");
 		$precio_unitario = $this->input->post("precio_unitario");
@@ -48,7 +48,7 @@ class C_comodin extends CI_Controller
 
 		if ($this->M_comodin->insertar(
 			$codigo_producto,
-			$nombre_producto,
+			$descripcion_producto,
 			$id_unidad_medida,
 			$id_marca_producto,
 			$precio_unitario,
@@ -78,8 +78,9 @@ class C_comodin extends CI_Controller
 	public function actualizar()
 	{
 
+		$id_comodin = $this->input->post("id_comodin");
 		$codigo_producto = $this->input->post("codigo_producto");
-		$nombre_producto = $this->input->post("nombre_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
 		$id_unidad_medida = $this->input->post("id_unidad_medida");
 		$id_marca_producto = $this->input->post("id_marca_producto");
 		$precio_unitario = $this->input->post("precio_unitario");
@@ -87,8 +88,9 @@ class C_comodin extends CI_Controller
 		$nombre_proveedor = $this->input->post("nombre_proveedor");
 
 		if ($this->M_comodin->actualizar(
+			$id_comodin,
 			$codigo_producto,
-			$nombre_producto,
+			$descripcion_producto,
 			$id_unidad_medida,
 			$id_marca_producto,
 			$precio_unitario,

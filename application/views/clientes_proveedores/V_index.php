@@ -24,9 +24,8 @@
               <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Paterno</th>
-                  <th>Materno</th>
+                  <th>Nombre / Razon Social</th>
+                  <th>DNI / RUC </th>
                   <th>Tipo Persona</th>
                   <th>Vendedor</th>
                   <th></th>
@@ -39,9 +38,8 @@
                   <?php foreach ($index as $index) : ?>
                     <tr>
                       <td><?php echo $index->id_cliente_proveedor; ?></td>
-                      <td><?php echo $index->nombres; ?></td>
-                      <td><?php echo $index->ape_paterno; ?></td>
-                      <td><?php echo $index->ape_materno; ?></td>
+                      <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                      <td><?php echo $index->num_documento; ?></td>
                       <td><?php echo $index->ds_tipo_persona; ?></td>
                       <td></td>
                       <td><button type="button" class="btn btn-outline-info btn-sm btn-view-clientes" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-clientes"><span class="fa fa-search"></span></button></td>

@@ -14,9 +14,11 @@ class M_clientes_proveedores extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
-            nombres,
-            ape_materno,
-            ape_paterno,
+            (CASE
+            WHEN razon_social='' THEN CONCAT_WS(' ',nombres,ape_paterno,ape_materno)
+            WHEN nombres='' AND ape_paterno='' AND ape_materno='' THEN razon_social
+            END) ds_nombre_cliente_proveedor,
+            num_documento,
             id_cliente_proveedor,
             id_usuario,
             ds_nombre_usuario,

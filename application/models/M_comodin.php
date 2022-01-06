@@ -69,6 +69,7 @@ class M_comodin extends CI_Model
 
 
     public function actualizar(
+        $id_comodin,
         $codigo_producto,
         $descripcion_producto,
         $id_unidad_medida,
@@ -80,14 +81,14 @@ class M_comodin extends CI_Model
     ) {
         return $this->db->query("
         update comodin set
-        codigo_producto='$codigo_producto',
-        descripcion_producto='$descripcion_producto',
-        id_unidad_medida='$id_unidad_medida',
-        id_marca_producto='$id_marca_producto',
-        precio_unitario='$precio_unitario',
-        id_moneda='$id_moneda',
-        nombre_proveedor='$nombre_proveedor',
-        
-    '");
+                codigo_producto='$codigo_producto',
+                descripcion_producto='$descripcion_producto',
+                id_unidad_medida='$id_unidad_medida',
+                id_marca_producto='$id_marca_producto',
+                precio_unitario='$precio_unitario',
+                id_moneda='$id_moneda',
+                nombre_proveedor='$nombre_proveedor'
+        where id_comodin='$id_comodin'
+    ");
     }
 }

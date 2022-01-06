@@ -22,8 +22,14 @@ SELECT NOW() => Devuelve fecha y hora del sistema
 
 
 JavaScript
-var xxx = precio_costo.replace(",", "");
-var xxx = precio_costo.replaceAll(",", "");
+var xxx = precio_costo.replace(",", ""); => Reemplaza solo el primer caracter que encuentre en la linea del codigo
+var xxx = precio_costo.replaceAll(",", "");  => Reemplaza todos los caracteres que encuentra en toda la linea del codigo
+
+/* uso de split para separar y acomodar valor por posicion 'ejemplo esta cotizacion'
+var fecha_cuota = $("#fecha_cuota").val();
+var fecha_split = fecha_cuota.split("-");
+var fecha_cuota = fecha_split[2] + '/' + fecha_split[1] + '/' + fecha_split[0];
+*/
 
 /*Funcion para validar solo numeros enteros
 $("#porcentaje").on({

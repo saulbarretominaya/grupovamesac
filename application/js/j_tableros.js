@@ -633,14 +633,10 @@ function validar_insertar() {
 	var codigo_tablero = $("#codigo_tablero").val();
 	var id_sunat = $("#id_sunat").val();
 	var descripcion_tablero = $("#descripcion_tablero").val();
-	var descripcion_producto = $("#descripcion_producto").val();
 	var id_marca_tablero = $("#id_marca_tablero").val();
 	var id_modelo_tablero = $("#id_modelo_tablero").val();
 	var id_moneda = $("#id_moneda").val();
 	var id_almacen = $("#id_almacen").val();
-	var precio_unitario = $("#precio_unitario").val();
-	var cantidad_unitaria = $("#cantidad_unitaria").val();
-	var monto_item = $("#monto_item").val();
 
 	if (count == "1") {
 		alertify.dialog('alert').set({ transition: 'zoom', message: 'Debe registrar al menos 1 producto en el detalle de tablero', title: 'CATALOGO' }).show();
@@ -669,22 +665,6 @@ function validar_insertar() {
 		resultado_campo = false;
 	} else if (id_almacen == "0") {
 		alert("Seleccione Almacen")
-		resultado_campo = false;
-	}
-	else if (descripcion_producto == "") {
-		alert("Seleccione un Producto")
-		resultado_campo = false;
-	}
-	else if (precio_unitario == "") {
-		alert("Precio Vacio")
-		resultado_campo = false;
-	}
-	else if (cantidad_unitaria == "") {
-		alert("Cantidad Vacio")
-		resultado_campo = false;
-	}
-	else if (monto_item == "") {
-		alert("Monto Item Vacio")
 		resultado_campo = false;
 	}
 	else {

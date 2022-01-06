@@ -163,7 +163,7 @@ class M_cotizacion extends CI_Model
         VALUES
         (
         '', 
-        '$id_cotizacion','$fecha_cuota','$monto_cuota'
+        '$id_cotizacion',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota'
         )
         "
         );
@@ -216,6 +216,7 @@ class M_cotizacion extends CI_Model
         SELECT 
         id_producto,
         stock,
+        CONCAT('PRO',id_producto) AS id_general,
         UPPER(codigo_producto) as codigo_producto,
         id_almacen,
         (select descripcion from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
@@ -260,8 +261,10 @@ class M_cotizacion extends CI_Model
             "
         SELECT 
         id_tablero,
+        CONCAT('TAB',id_tablero) AS id_general,
         codigo_tablero,
         id_almacen,
+        cantidad_tablero,
         precio_unitario_por_tablero,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_almacen,
         id_sunat,
@@ -286,6 +289,7 @@ class M_cotizacion extends CI_Model
             "
             SELECT
             id_comodin,
+            CONCAT('COM',id_comodin) AS id_general,
             codigo_producto,
             descripcion_producto,
             id_marca_producto,

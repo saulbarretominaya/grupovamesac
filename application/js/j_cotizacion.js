@@ -262,21 +262,22 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	productos = $(this).val();
 	split_productos = productos.split("*");
 	$("#hidden_id_producto").val(split_productos[0]);
-	$("#hidden_codigo_producto").val(split_productos[1]);
-	$("#descripcion_producto").val(split_productos[2]);
-	$("#hidden_id_unidad_medida").val(split_productos[3]);
-	$("#hidden_ds_unidad_medida").val(split_productos[4]);
-	$("#hidden_id_marca_producto").val(split_productos[5]);
-	$("#hidden_ds_marca_producto").val(split_productos[6]);
-	$("#hidden_id_moneda").val(split_productos[7]);
-	$("#tipo_moneda_origen").val(split_productos[8]);
-	var simbolo_moneda = split_productos[8];
+	$("#hidden_id_general").val(split_productos[1]);
+	$("#hidden_codigo_producto").val(split_productos[2]);
+	$("#descripcion_producto").val(split_productos[3]);
+	$("#hidden_id_unidad_medida").val(split_productos[4]);
+	$("#hidden_ds_unidad_medida").val(split_productos[5]);
+	$("#hidden_id_marca_producto").val(split_productos[6]);
+	$("#hidden_ds_marca_producto").val(split_productos[7]);
+	$("#hidden_id_moneda").val(split_productos[8]);
+	$("#tipo_moneda_origen").val(split_productos[9]);
+	var simbolo_moneda = split_productos[9];
 	if (simbolo_moneda == "SOLES") {
 		$("#simbolo_moneda").val("S/");
 	} else if (simbolo_moneda == "DOLARES") {
 		$("#simbolo_moneda").val("$");
 	}
-	$("#precio_unitario").val(split_productos[9]);
+	$("#precio_unitario").val(split_productos[10]);
 	aplicar_tipo_cambio();
 	calcular_monto();
 	$("#opcion_target_producto").modal("hide");
@@ -286,19 +287,22 @@ $(document).on("click", ".js_seleccionar_modal_tablero", function () {
 	tableros = $(this).val();
 	split_tableros = tableros.split("*");
 	$("#hidden_id_tablero").val(split_tableros[0]);
-	$("#hidden_codigo_producto").val(split_tableros[1]);
-	$("#descripcion_producto").val(split_tableros[2]);
-	$("#hidden_id_marca_producto").val(split_tableros[3]);
-	$("#hidden_ds_marca_producto").val(split_tableros[4]);
-	$("#hidden_id_moneda").val(split_tableros[5]);
-	$("#tipo_moneda_origen").val(split_tableros[6]);
-	var simbolo_moneda = split_tableros[6];
+	$("#hidden_id_general").val(split_tableros[1]);
+	$("#hidden_codigo_producto").val(split_tableros[2]);
+	$("#descripcion_producto").val(split_tableros[3]);
+	$("#cantidad").val(split_tableros[4]);
+	$("#cantidad").attr("readonly", true);
+	$("#hidden_id_marca_producto").val(split_tableros[5]);
+	$("#hidden_ds_marca_producto").val(split_tableros[6]);
+	$("#hidden_id_moneda").val(split_tableros[7]);
+	$("#tipo_moneda_origen").val(split_tableros[8]);
+	var simbolo_moneda = split_tableros[8];
 	if (simbolo_moneda == "SOLES") {
 		$("#simbolo_moneda").val("S/");
 	} else if (simbolo_moneda == "DOLARES") {
 		$("#simbolo_moneda").val("$");
 	}
-	$("#precio_unitario").val(split_tableros[7]);
+	$("#precio_unitario").val(split_tableros[9]);
 	aplicar_tipo_cambio();
 	calcular_monto();
 	$("#opcion_target_tablero").modal("hide");
@@ -308,21 +312,22 @@ $(document).on("click", ".js_seleccionar_modal_comodin", function () {
 	comodin = $(this).val();
 	split_comodin = comodin.split("*");
 	$("#hidden_id_comodin").val(split_comodin[0]);
-	$("#hidden_codigo_producto").val(split_comodin[1]);
-	$("#descripcion_producto").val(split_comodin[2]);
-	$("#hidden_id_unidad_medida").val(split_comodin[3]);
-	$("#hidden_ds_unidad_medida").val(split_comodin[4]);
-	$("#hidden_id_marca_producto").val(split_comodin[5]);
-	$("#hidden_ds_marca_producto").val(split_comodin[6]);
-	$("#hidden_id_moneda").val(split_comodin[7]);
-	$("#tipo_moneda_origen").val(split_comodin[8]);
-	var simbolo_moneda = split_comodin[8];
+	$("#hidden_id_general").val(split_comodin[1]);
+	$("#hidden_codigo_producto").val(split_comodin[2]);
+	$("#descripcion_producto").val(split_comodin[3]);
+	$("#hidden_id_unidad_medida").val(split_comodin[4]);
+	$("#hidden_ds_unidad_medida").val(split_comodin[5]);
+	$("#hidden_id_marca_producto").val(split_comodin[6]);
+	$("#hidden_ds_marca_producto").val(split_comodin[7]);
+	$("#hidden_id_moneda").val(split_comodin[8]);
+	$("#tipo_moneda_origen").val(split_comodin[9]);
+	var simbolo_moneda = split_comodin[9];
 	if (simbolo_moneda == "SOLES") {
 		$("#simbolo_moneda").val("S/");
 	} else if (simbolo_moneda == "DOLARES") {
 		$("#simbolo_moneda").val("$");
 	}
-	$("#precio_unitario").val(split_comodin[9]);
+	$("#precio_unitario").val(split_comodin[10]);
 	aplicar_tipo_cambio();
 	calcular_monto();
 	$("#opcion_target_tablero").modal("hide");
@@ -508,6 +513,10 @@ $(document).ready(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:350px;" placeholder="' + title + '" /> ');
 	});
+	$("#id_datatable_tableros thead #dtable_cantidad_tablero").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
 	$("#id_datatable_tableros thead #dtable_ds_marca_producto_tablero").each(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
@@ -656,10 +665,12 @@ $("#d").on("keyup", function () {
 $("#id_agregar_cotizacion").on("click", function (e) {
 
 	validar_detalle_cotizacion();
+	var id_general = $("#hidden_id_general").val();
 
 	var id_producto = $("#hidden_id_producto").val();
 	var id_tablero = $("#hidden_id_tablero").val();
 	var id_comodin = $("#hidden_id_comodin").val();
+
 	var codigo_producto = $("#hidden_codigo_producto").val();
 	var descripcion_producto = $("#descripcion_producto").val();
 	var id_unidad_medida = $("#hidden_id_unidad_medida").val();
@@ -682,6 +693,7 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 
 	if (resultado_campo == true) {
 		html = "<tr>";
+		html += "    <input type='hidden' name='id_general[]' 				value='" + id_general + "' id='id_general' >";
 		html += "    <input type='hidden' name='id_producto[]' 				value='" + id_producto + "' id='id_producto' >";
 		html += "    <input type='hidden' name='id_tablero[]' 				value='" + id_tablero + "'>";
 		html += "    <input type='hidden' name='id_comodin[]' 				value='" + id_comodin + "'>";
@@ -719,8 +731,11 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 $("#id_agregar_condicion_pago").on("click", function (e) {
 
 	validar_detalle_condicion_pago();
-
+	debugger
 	var fecha_cuota = $("#fecha_cuota").val();
+	var fecha_split = fecha_cuota.split("-");
+	var fecha_cuota = fecha_split[2] + '/' + fecha_split[1] + '/' + fecha_split[0];
+
 	var monto_cuota = $("#monto_cuota").val();
 
 	if (resultado_campo == true) {
@@ -1001,18 +1016,21 @@ function aplicar_tipo_cambio() {
 }
 function validar_detalle_cotizacion() {
 
+
 	$("#id_table_detalle_cotizacion tbody tr").each(function () {
 
 		debugger;
-		id_producto = $(this).find("#id_producto").val();
-		var hidden_id_producto = $("#hidden_id_producto").val();
+		id_general_table = $(this).find("#id_general").val();
+		var id_general = $("#hidden_id_general").val();
 
-		if (id_producto == hidden_id_producto) {
+		if (id_general_table == id_general) {
 			codigo_producto_duplicado = false;
 			return false;
 		}
 
 	});
+
+	debugger;
 
 	var descripcion_producto = $("#descripcion_producto").val();
 	var precio_unitario = $("#precio_unitario").val();
@@ -1049,6 +1067,7 @@ function validar_detalle_cotizacion() {
 		} else {
 			$("#tipo_moneda_cambio").attr("disabled", false);
 		}
+
 	}
 };
 function validar_detalle_condicion_pago() {
@@ -1115,10 +1134,12 @@ function calcular_sumatoria_cuotas_eliminar_detalle() {
 function limpiar_campos() {
 
 	var count = $('#id_table_detalle_cotizacion tr').length;
+	$("#hidden_id_general").val("");
 
 	$("#hidden_id_producto").val("");
 	$("#hidden_id_tablero").val("");
 	$("#hidden_id_comodin").val("");
+
 	$("#hidden_codigo_producto").val("");
 	$("#descripcion_producto").val("");
 	$("#hidden_id_unidad_medida").val("");
@@ -1131,7 +1152,6 @@ function limpiar_campos() {
 	$("#convertidor_unitario").val("");
 	$("#cantidad").val("");
 	$("#monto").val("");
-
 	$("#precio_inicial").val("");
 	$("#precio_ganancia").val("");
 	$("#g").val("");
@@ -1142,7 +1162,7 @@ function limpiar_campos() {
 	$("#d").val("");
 	$("#d_unidad").val("");
 	$("#d_cant_total").val("");
-
+	$("#cantidad").attr("readonly", false);
 
 	if (count == 1) {
 		$("#tipo_moneda_cambio").attr("disabled", false);

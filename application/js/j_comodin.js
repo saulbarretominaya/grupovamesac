@@ -60,6 +60,8 @@ $("#registrar").on("click", function () {
 
 $("#actualizar").on("click", function () {
 	debugger;
+
+	var id_comodin = $("#id_comodin").val();
 	var codigo_producto = $("#codigo_producto").val();
 	var descripcion_producto = $("#descripcion_producto").val();
 	var id_unidad_medida = $("#id_unidad_medida").val();
@@ -70,10 +72,11 @@ $("#actualizar").on("click", function () {
 
 	$.ajax({
 		async: false,
-		url: base_url + "C_comodin/insertar",
+		url: base_url + "C_comodin/actualizar",
 		type: "POST",
 		dataType: "json",
 		data: {
+			id_comodin: id_comodin,
 			codigo_producto: codigo_producto,
 			descripcion_producto: descripcion_producto,
 			id_unidad_medida: id_unidad_medida,

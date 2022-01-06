@@ -301,6 +301,7 @@
                                               <td>
                                                 <?php $split_productos =
                                                   $index_productos->id_producto . "*" .
+                                                  $index_productos->id_general . "*" .
                                                   $index_productos->codigo_producto . "*" .
                                                   $index_productos->descripcion_producto . "*" .
                                                   $index_productos->id_unidad_medida . "*" .
@@ -360,10 +361,11 @@
                                           <th id="dtable_ds_almacen_tablero">Almacen</th>
                                           <th id="dtable_codigo_tablero">Codigo</th>
                                           <th id="dtable_descripcion_producto_tablero">Descripcion</th>
+                                          <th id="dtable_cantidad_tablero">Cant Tablero</th>
                                           <th id="dtable_ds_marca_producto_tablero">Marca</th>
                                           <th id="dtable_ds_grupo_tablero">Modelo</th>
                                           <th id="dtable_ds_moneda_tablero">Moneda</th>
-                                          <th id="dtable_precio_unitario_por_tablero">Moneda</th>
+                                          <th id="dtable_precio_unitario_por_tablero">Precio Unitario</th>
                                           <th></th>
                                         </tr>
                                       </thead>
@@ -374,8 +376,10 @@
                                               <td>
                                                 <?php $split_tableros =
                                                   $index_tableros->id_tablero . "*" .
+                                                  $index_tableros->id_general . "*" .
                                                   $index_tableros->codigo_tablero . "*" .
                                                   $index_tableros->descripcion_tablero . "*" .
+                                                  $index_tableros->cantidad_tablero . "*" .
                                                   $index_tableros->id_marca_tablero . "*" .
                                                   $index_tableros->ds_marca_tablero . "*" .
                                                   $index_tableros->id_moneda . "*" .
@@ -387,6 +391,7 @@
                                               <td><?php echo $index_tableros->ds_almacen; ?></td>
                                               <td><?php echo $index_tableros->codigo_tablero; ?></td>
                                               <td><?php echo $index_tableros->descripcion_tablero; ?></td>
+                                              <td><?php echo $index_tableros->cantidad_tablero; ?></td>
                                               <td><?php echo $index_tableros->ds_marca_tablero; ?></td>
                                               <td><?php echo $index_tableros->ds_modelo_tablero; ?></td>
                                               <td><?php echo $index_tableros->ds_moneda; ?></td>
@@ -452,6 +457,7 @@
                                               <td>
                                                 <?php $split_comodin =
                                                   $index_comodin->id_comodin . "*" .
+                                                  $index_comodin->id_general . "*" .
                                                   $index_comodin->codigo_producto . "*" .
                                                   $index_comodin->descripcion_producto . "*" .
                                                   $index_comodin->id_unidad_medida . "*" .
@@ -494,6 +500,7 @@
                         </div>
                       </div>
                       <input type="hidden" id="hidden_id_producto">
+                      <input type="hidden" id="hidden_id_general">
                       <input type="hidden" id="hidden_id_tablero">
                       <input type="hidden" id="hidden_id_comodin">
                       <input type="hidden" id="hidden_codigo_producto">
@@ -529,7 +536,7 @@
                     </div>
 
                     <div class="col-md-4">
-                      <div class="card">
+                      <div class="card card-info">
                         <div class="card-header">
                           <h3 class="card-title">El Tipo Cambio es: <?php echo $tipo_cambio->venta; ?></h3>
                           <input type="hidden" class="form-control" id="valor_cambio" value="<?php echo $tipo_cambio->venta; ?>">

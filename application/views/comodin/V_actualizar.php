@@ -25,6 +25,7 @@
                   <div class="form-group row">
                     <div class="col-sm-3">
                       <label>Codigo Producto</label>
+                      <input type="hidden" id="id_comodin" value="<?php echo $enlace_actualizar->id_comodin ?>">
                       <input type="text" class="form-control" id="codigo_producto" value="<?php echo $enlace_actualizar->codigo_producto ?>">
                     </div>
                     <div class="col-sm-3">
