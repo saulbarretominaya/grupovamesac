@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Orden Despacho / Linea Credito
+            <h1>Parciales / Completas
             </h1>
           </div>
         </div>
@@ -19,19 +19,13 @@
               <thead>
                 <tr>
                   <th>Num COT</th>
-                  <th>Fec COT</th>
                   <th>Num OD</th>
-                  <th>Fecha OD</th>
                   <th>Cliente</th>
-                  <th>Condicion Pago</th>
                   <!-- <th>Linea Credito $ </th> -->
                   <!-- <th>###############</th> -->
-                  <th>Tipo Cambio</th>
-                  <th>Resultado Valor $</th>
                   <th>Tipo Moneda</th>
                   <th>Monto COT</th>
                   <th>Estado OD</th>
-                  <th></th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -40,7 +34,6 @@
               <tbody>
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
-
                     <?php
                     switch ($index->ds_estado_valor_od) {
                       case "0":
@@ -56,26 +49,20 @@
                     ?>
                     <tr>
                       <td><?php echo $index->id_cotizacion; ?></td>
-                      <td><?php echo $index->fecha_cotizacion; ?></td>
                       <td><?php echo $index->id_orden_despacho; ?></td>
-                      <td><?php echo $index->fecha_orden_despacho; ?></td>
                       <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
                       <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
                       <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
                       <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <td><?php echo $index->ds_condicion_pago; ?></td>
                       <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
                       <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
-                      <td><?php echo $index->valor_cambio;; ?></td>
-                      <td><?php echo $index->resultado_valor_cambio; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
+                      <td><a href=" <?php echo base_url(); ?>C_parciales_completas/enlace_registrar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                       <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
-                      <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -138,7 +125,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_orden_despacho.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_parciales_completas.js"></script>
 
   </body>
 

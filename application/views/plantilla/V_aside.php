@@ -188,6 +188,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_parciales_completas" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Parciales / Completas</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
           <!-- guia  de remision-->

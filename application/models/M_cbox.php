@@ -556,7 +556,9 @@ class M_cbox extends CI_Model
             WHERE b.id_multitabla='55';");
         return $resultados->result();
     }
+
     //56 - ESTADO DE ORDEN DE DESPACHO HARCODE
+
     //57
     public function cbox_condicion_pago_cotizacion()
     {
@@ -564,6 +566,16 @@ class M_cbox extends CI_Model
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
             WHERE b.id_multitabla='57';");
+        return $resultados->result();
+    }
+
+    //58
+    public function cbox_tipo_orden_parcial_completa()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='58';");
         return $resultados->result();
     }
 
