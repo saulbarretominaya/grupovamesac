@@ -18,51 +18,44 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Num COT</th>
                   <th>Num OD</th>
+                  <th>Num OR</th>
+                  <th>Fecha OR</th>
                   <th>Cliente</th>
-                  <!-- <th>Linea Credito $ </th> -->
-                  <!-- <th>###############</th> -->
-                  <th>Tipo Moneda</th>
-                  <th>Monto COT</th>
-                  <th>Estado OD</th>
-                  <th></th>
+                  <th>Condicion Pago</th>
+                  <th>Moneda</th>
+                  <th>Precio venta</th>
+                  <th>Vendedor</th>
+                  <th>Estado OR</th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <?php if (!empty($index)) : ?>
-                  <?php foreach ($index as $index) : ?>
-                    <?php
-                    switch ($index->ds_estado_valor_od) {
-                      case "0":
-                        $ds_estado = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
-                        break;
+                  <?php foreach ($index as $index) :
+                    switch ($index->ds_estado_valor_pc) {
                       case "1":
-                        $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
+                        $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                         break;
                       case "2":
-                        $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
+                        $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                         break;
                     }
-                    ?>
+
+                  ?>
                     <tr>
-                      <td><?php echo $index->id_cotizacion; ?></td>
                       <td><?php echo $index->id_orden_despacho; ?></td>
-                      <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
-                      <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
-                      <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
-                      <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
+                      <td><?php echo $index->id_parcial_completa; ?></td>
+                      <td><?php echo $index->fecha_parcial_completa; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
-                      <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
+                      <td><?php echo $index->ds_condicion_pago; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $ds_estado; ?> </td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a href=" <?php echo base_url(); ?>C_parciales_completas/enlace_registrar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-                      <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
+                      <td><?php echo $index->ds_nombre_vendedor; ?></td>
+                      <td><?php echo $ds_estado_pc; ?></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                      <td><a href=" <?php echo base_url(); ?>C_parciales_completas/enlace_registrar/<?php echo $index->id_parcial_completa; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>

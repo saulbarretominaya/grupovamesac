@@ -25,6 +25,7 @@
                   <th>Condicion Pago</th>
                   <th>Moneda</th>
                   <th>Monto</th>
+                  <th>Vendedor</th>
                   <th>Estado COT</th>
                   <th>Num OD</th>
                   <th>Estado OD</th>
@@ -72,6 +73,7 @@
                       <td><?php echo $index->ds_condicion_pago; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
+                      <td><?php echo $index->ds_nombre_vendedor; ?></td>
                       <td><?php echo $ds_estado_cot; ?> </td>
                       <td><?php echo $index->id_orden_despacho; ?> </td>
                       <td><?php echo $ds_estado_od;; ?> </td>

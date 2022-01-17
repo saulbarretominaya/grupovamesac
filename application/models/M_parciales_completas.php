@@ -9,33 +9,22 @@ class M_parciales_completas extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT 
-            a.id_cotizacion,
-            a.valor_cambio,
-            DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
-            a.ds_nombre_cliente_proveedor,
-            a.ds_condicion_pago,
-            a.precio_venta,
-            id_estado_cotizacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
-            b.id_orden_despacho,
-            b.resultado_valor_cambio,
-            DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            id_estado_orden_despacho,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
-            c.id_cliente_proveedor,
-            c.linea_credito_dolares,
-            c.credito_unitario_dolares,
-            c.disponible_dolares,
-            b.linea_credito_uso
-            FROM
-            cotizacion a
-            RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
-            WHERE id_estado_orden_despacho='862'
+SELECT
+a.id_parcial_completa,
+a.precio_venta,
+DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
+a.id_estado_parcial_completa,
+(SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
+(SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
+b.ds_nombre_cliente_proveedor,
+b.ds_nombre_vendedor,
+b.ds_condicion_pago,
+(SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
+c.id_orden_despacho
+FROM
+parciales_completas a 
+LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
+LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
             "
         );
         return $resultados->result();

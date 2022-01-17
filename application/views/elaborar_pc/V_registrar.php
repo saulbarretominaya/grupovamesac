@@ -6,7 +6,7 @@
         <div class="col-sm-6">
           <h3>PARCIALES / COMPLETAS
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-            <a href="<?php echo base_url(); ?>C_parciales_completas" class="btn btn-danger btn-sm">CANCELAR</a>
+            <a href="<?php echo base_url(); ?>C_elaborar_pc" class="btn btn-danger btn-sm">CANCELAR</a>
           </h3>
         </div>
       </div>
@@ -54,22 +54,6 @@
                             <input type="date" class="form-control" id="fecha_parcial_completa" value="<?php echo date("Y-m-d"); ?>" readonly>
                           </div>
                         </div>
-
-                        <div class="col-md-3">
-                          <label for="">Tipo Orden</label>
-                          <div class="input-group">
-                            <select class="form-select" id="id_tipo_orden">
-                              <option value="0">Seleccionar</option>
-                              <?php foreach ($cbox_tipo_orden_parcial_completa as $cbox_tipo_orden_parcial_completa) : ?>
-                                <option value="<?php echo $cbox_tipo_orden_parcial_completa->id_dmultitabla; ?>">
-                                  <?php echo $cbox_tipo_orden_parcial_completa->abreviatura; ?>
-                                </option>
-                              <?php endforeach; ?>
-                            </select>
-                          </div>
-                        </div>
-
-
                       </div>
 
                       <div class="card collapsed-card">
@@ -252,12 +236,13 @@
                                 <?php if (!empty($enlace_actualizar_detalle)) : ?>
                                   <?php foreach ($enlace_actualizar_detalle as $index) : ?>
                                     <tr>
+                                      <input type="hidden" value="<?php echo $index->id_dcotizacion; ?>" name="id_dcotizacion[]">
                                       <td><?php echo $index->codigo_producto; ?></td>
                                       <td><?php echo $index->descripcion_producto; ?></td>
                                       <td><?php echo $index->ds_unidad_medida; ?></td>
                                       <td><?php echo $index->ds_marca_producto; ?></td>
                                       <td><?php echo $index->precio_ganancia; ?></td>
-                                      <td><?php echo $index->cantidad; ?></td>
+                                      <td><?php echo $index->cantidad_por_despachar; ?></td>
                                       <td><?php echo $index->valor_venta; ?> </td>
                                       <td class="table-info"><?php echo $index->stock; ?> </td>
                                       <td class="table-info"><input type="text" class="form-control" id="salida_prod" name="salida_prod[]"> </td>
@@ -353,7 +338,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
-<script src="<?php echo base_url() ?>application/js/xxxx.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_elaborar_pc.js"></script>
 
 </body>
 

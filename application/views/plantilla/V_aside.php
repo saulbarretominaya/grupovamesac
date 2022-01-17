@@ -190,6 +190,14 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="<?php echo base_url() . "C_elaborar_pc" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Elaborar P/C</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="<?php echo base_url() . "C_parciales_completas" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Parciales / Completas</p>

@@ -1,3 +1,6 @@
+resultado_campo = true;
+campo_vacio_tabla = true;
+
 /* CRUD */
 $("#listar").dataTable({
 
@@ -25,7 +28,6 @@ $("#listar").dataTable({
 });
 
 $(document).on("click", ".js_lupa_cotizacion", function () {
-	debugger;
 	valor_id = $(this).val();
 	$.ajax({
 		url: base_url + "C_cotizacion/index_modal",
@@ -42,53 +44,52 @@ $(document).on("click", ".js_lupa_cotizacion", function () {
 
 $("#registrar").on("click", function () {
 
-	//Cabecera
-	var id_cotizacion = $("#id_cotizacion").val();
-	var total = $("#total").val();
-	var igv = $("#igv").val();
-	var precio_venta = $("#precio_venta").val();
-	var fecha_parcial_completa = $("#fecha_parcial_completa").val();
-	var id_tipo_orden = $("#id_tipo_orden").val();
+	validar_detalle_parciales_completas();
 
-	debugger;
-
-	//Detalle parciales y completas
-	var salida_prod = Array.prototype.slice.call(document.getElementsByName("salida_prod[]")).map((o) => o.value);
-	var pendiente_prod = Array.prototype.slice.call(document.getElementsByName("pendiente_prod[]")).map((o) => o.value);
-	var valor_venta = Array.prototype.slice.call(document.getElementsByName("valor_venta[]")).map((o) => o.value);
+	if (resultado_campo == true) {
+		//Cabecera
+		var id_cotizacion = $("#id_cotizacion").val();
+		var total = $("#total").val();
+		var igv = $("#igv").val();
+		var precio_venta = $("#precio_venta").val();
+		var fecha_parcial_completa = $("#fecha_parcial_completa").val();
 
 
-	$.ajax({
-		async: false,
-		url: base_url + "C_parciales_completas/registrar",
-		type: "POST",
-		dataType: "json",
-		data: {
-			//Cabecera
-			id_cotizacion: id_cotizacion,
-			total: total,
-			igv: igv,
-			precio_venta: precio_venta,
-			fecha_parcial_completa: fecha_parcial_completa,
-			id_tipo_orden: id_tipo_orden,
+		//Detalle parciales y completas
+		var id_dcotizacion = Array.prototype.slice.call(document.getElementsByName("id_dcotizacion[]")).map((o) => o.value);
+		var salida_prod = Array.prototype.slice.call(document.getElementsByName("salida_prod[]")).map((o) => o.value);
+		var pendiente_prod = Array.prototype.slice.call(document.getElementsByName("pendiente_prod[]")).map((o) => o.value);
+		var valor_venta = Array.prototype.slice.call(document.getElementsByName("valor_venta[]")).map((o) => o.value);
 
-			//Detalle cotizacion
-			salida_prod: salida_prod,
-			pendiente_prod: pendiente_prod,
-			valor_venta: valor_venta
-		},
-		success: function (data) {
-			debugger;
-			window.location.href = base_url + "C_parciales_completas";
-			debugger;
-		},
-	});
+
+		$.ajax({
+			async: false,
+			url: base_url + "C_elaborar_pc/registrar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				//Cabecera
+				id_cotizacion: id_cotizacion,
+				total: total,
+				igv: igv,
+				precio_venta: precio_venta,
+				fecha_parcial_completa: fecha_parcial_completa,
+				//Detalle cotizacion
+				id_dcotizacion: id_dcotizacion,
+				salida_prod: salida_prod,
+				pendiente_prod: pendiente_prod,
+				valor_venta: valor_venta
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_elaborar_pc";
+				debugger;
+			},
+		});
+	}
 });
 
 /*Fin CRUD*/
-
-
-
 
 $(document).on("keyup", "#salida_prod", function () {
 
@@ -96,16 +97,7 @@ $(document).on("keyup", "#salida_prod", function () {
 	var precio_u = Number($(this).parents("tr").find("td")[4].innerText);
 	var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
 
-	if (salida_prod == 0) {
-		console.log("No puede ingresar datos Vacios");
-		$(this).closest('tr').find('#pendiente_prod').val("");
-		$(this).closest('tr').find('#valor_venta').val("");
-		$(this).closest('tr').find('#salida_prod').val("");
-		total();
-		igv();
-		precio_venta();
-	}
-	else if (isNaN(salida_prod)) {
+	if (isNaN(salida_prod)) {
 		console.log("No puede ingresar datos isNaN");
 		$(this).closest('tr').find('#pendiente_prod').val("");
 		$(this).closest('tr').find('#valor_venta').val("");
@@ -140,8 +132,7 @@ $("#salida_prod").on({
 	},
 	"keyup": function (event) {
 		$(event.target).val(function (index, value) {
-			return value.replace(/\D/g, "")
-				.replace(/^0*/, '');
+			return value.replace(/\D/g, "");
 			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
 		});
 	}
@@ -170,4 +161,35 @@ function precio_venta() {
 	var igv = Number($("#igv").val());
 	var precio_venta = total + igv;
 	$("#precio_venta").val(precio_venta.toFixed(2));
+}
+
+function validar_detalle_parciales_completas() {
+
+	$("#id_table_detalle_parciales_completas tbody tr").each(function () {
+
+		salida_prod = $(this).find("#salida_prod").val();
+		numero_fila = $(this).closest('tr').index() + 1;
+
+		if (salida_prod == "") {
+			campo_vacio_tabla = false;
+			return false;
+		}
+	});
+
+	var precio_venta = $("#precio_venta").val();
+
+
+	if (campo_vacio_tabla == false) {
+		alert("No puede dejar el campo Salida Prod vacio, Fila #" + numero_fila);
+		resultado_campo = false;
+		campo_vacio_tabla = true;
+	}
+	else if (precio_venta == "0.00") {
+		alert("Todos los campos Salida Prod no pueden estar en 0");
+		resultado_campo = false;
+	}
+	else {
+		resultado_campo = true;
+	}
+
 }
