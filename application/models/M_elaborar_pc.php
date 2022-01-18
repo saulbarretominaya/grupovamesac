@@ -130,16 +130,16 @@ class M_elaborar_pc extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT INTO parciales_completas
-        (
+            INSERT INTO parciales_completas
+            (
             id_parcial_completa,
             id_cotizacion,total,igv,precio_venta,fecha_parcial_completa
-        )
-        VALUES
-        (
+            )
+            VALUES
+            (
             '',
             '$id_cotizacion','$total','$igv','$precio_venta','$fecha_parcial_completa'
-        )"
+            )"
         );
     }
 
@@ -207,43 +207,47 @@ class M_elaborar_pc extends CI_Model
         return $resultados->row();
     }
 
-    public function finalizado_estado_elaborar_cotizacion(
-        $id_cotizacion
-    ) {
-        return $this->db->query("
+    public function finalizado_estado_elaborar_cotizacion($id_cotizacion)
+    {
+        return $this->db->query(
+            "
         update cotizacion set
-                id_estado_elaborar_pc='870'
+        id_estado_elaborar_pc='870'
         where id_cotizacion='$id_cotizacion'
-    ");
+        "
+        );
     }
 
-    public function pendiente_estado_elaborar_cotizacion(
-        $id_cotizacion
-    ) {
-        return $this->db->query("
-        update cotizacion set
-                id_estado_elaborar_pc='869'
-        where id_cotizacion='$id_cotizacion'
-    ");
+    public function pendiente_estado_elaborar_cotizacion($id_cotizacion)
+    {
+        return $this->db->query(
+            "
+            update cotizacion set
+            id_estado_elaborar_pc='869'
+            where id_cotizacion='$id_cotizacion'
+            "
+        );
     }
 
-    public function completa_estado_parciales_completas(
-        $id_parcial_completa
-    ) {
-        return $this->db->query("
-        update parciales_completas set
-                id_estado_parcial_completa='868'
-        where id_parcial_completa='$id_parcial_completa'
-    ");
+    public function completa_estado_parciales_completas($id_parcial_completa)
+    {
+        return $this->db->query(
+            "
+            update parciales_completas set
+            id_estado_parcial_completa='868'
+            where id_parcial_completa='$id_parcial_completa'
+            "
+        );
     }
 
-    public function parcial_estado_parciales_completas(
-        $id_parcial_completa
-    ) {
-        return $this->db->query("
-        update parciales_completas set
-                id_estado_parcial_completa='867'
-        where id_parcial_completa='$id_parcial_completa'
-    ");
+    public function parcial_estado_parciales_completas($id_parcial_completa)
+    {
+        return $this->db->query(
+            "
+            update parciales_completas set
+            id_estado_parcial_completa='867'
+            where id_parcial_completa='$id_parcial_completa'
+            "
+        );
     }
 }

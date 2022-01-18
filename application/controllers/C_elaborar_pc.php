@@ -33,7 +33,6 @@ class C_elaborar_pc extends CI_Controller
 
 
 		$data = array(
-			'cbox_tipo_orden_parcial_completa' => $this->M_cbox->cbox_tipo_orden_parcial_completa(),
 			'enlace_actualizar_cabecera' => $this->M_elaborar_pc->enlace_actualizar_cabecera($id_cotizacion),
 			'enlace_actualizar_detalle' => $this->M_elaborar_pc->enlace_actualizar_detalle($id_cotizacion, $id_parcial_completa)
 		);

@@ -207,7 +207,7 @@
           </li>
 
           <!-- guia  de remision-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-clipboard-list"></i>
               <p>
@@ -219,17 +219,11 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "C_guia_remision" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pre guia</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url() . "C_orden_despacho" ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
                   <p>Guia de remision</p>
                 </a>
               </li>
             </ul>
-          </li> -->
+          </li>
           <!-- fin guia de remisión-->
 
           <!-- facturacion-->
