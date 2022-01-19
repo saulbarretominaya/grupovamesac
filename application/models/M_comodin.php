@@ -38,20 +38,19 @@ class M_comodin extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT INTO comodin
-        (
-            id_comodin,codigo_producto ,descripcion_producto ,id_unidad_medida,id_marca_producto,
-             precio_unitario,id_moneda,nombre_proveedor   
-        )
-        VALUES
-        (
-            '','$codigo_producto','$descripcion_producto', '$id_unidad_medida',
-       ' $id_marca_producto',
-        '$precio_unitario',
-        '$id_moneda',
-        '$nombre_proveedor'
-            
-        )"
+            INSERT INTO comodin
+            (
+            id_comodin,
+            codigo_producto, descripcion_producto, id_unidad_medida, 
+            id_marca_producto,precio_unitario,id_moneda,nombre_proveedor   
+            )
+            VALUES
+            (
+            '',
+            '$codigo_producto','$descripcion_producto', '$id_unidad_medida',
+            '$id_marca_producto','$precio_unitario','$id_moneda','$nombre_proveedor'
+            )
+            "
         );
     }
 

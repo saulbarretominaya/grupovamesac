@@ -21,6 +21,7 @@
                   <th>Usuario</th>
                   <th>Nombres Completos</th>
                   <th>Empresa</th>
+                  <th>Sucursal</th>
                   <th>Rol</th>
                   <th></th>
                 </tr>
@@ -32,6 +33,7 @@
                       <td><?php echo $index->usuario; ?></td>
                       <td><?php echo $index->ds_nombre_usuario; ?></td>
                       <td><?php echo $index->ds_empresa; ?></td>
+                      <td><?php echo $index->ds_sucursal; ?></td>
                       <td><?php echo $index->ds_rol_usuario; ?></td>
                       <td><a href=" <?php echo base_url(); ?>C_usuarios/enlace_actualizar/<?php echo $index->id_usuario; ?>" class="btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>

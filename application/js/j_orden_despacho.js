@@ -91,7 +91,7 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 	var resultado_valor_cambio = $(this).parents("tr").find("td")[7].innerText;
 	var tipo_moneda = $(this).parents("tr").find("td")[8].innerText;
 	var monto_cotizacion = $(this).parents("tr").find("td")[9].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[11].innerText;
 	debugger;
 	if (resultado_valor_cambio == "" && tipo_moneda == "DOLARES") {
 		var nueva_linea_credito = Number(linea_credito_dolares) - Number(monto_cotizacion)

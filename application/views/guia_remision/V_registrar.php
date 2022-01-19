@@ -44,7 +44,20 @@
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
                             <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
+                            <input type="hidden" id="id_parcial_completa" value="<?php echo $enlace_actualizar_cabecera->id_parcial_completa ?>">
                             <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" readonly>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="cargo">Sucursal</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="ds_sucursal_trabajador" value="<?php echo $enlace_actualizar_cabecera->ds_sucursal_trabajador ?>" readonly>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <label for="cargo">Serie</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="ds_serie_guia_remision" value="<?php echo $enlace_actualizar_cabecera->ds_serie_guia_remision ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -203,7 +216,7 @@
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion" readonly><?php echo $enlace_actualizar_cabecera->observacion ?></textarea>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->observacion ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -224,25 +237,25 @@
                             <div class="col-md-3">
                               <label for="">Tipo de Transporte</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="tipo_transporte"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">RUC</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="ruc"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Transportista</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="transportista"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Domiciliado</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="domiciliado"></textarea>
                               </div>
                             </div>
                           </div>
@@ -250,25 +263,25 @@
                             <div class="col-md-3">
                               <label for="">Licencia</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope"></textarea>
+                                <textarea class="form-control" rows="1" id="licencia" autocomplete="nope"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Marca y Modelo</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula"></textarea>
+                                <textarea class="form-control" rows="1" id="marca_modelo"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Placa</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega"></textarea>
+                                <textarea class="form-control" rows="1" id="placa"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Observaciones</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" value="">
+                                <textarea class="form-control" rows="1" id="observaciones"></textarea>
                               </div>
                             </div>
                           </div>
@@ -289,7 +302,7 @@
                             <div class="col-md-3">
                               <label for="">Tipo Envio</label>
                               <div class="input-group">
-                                <select class="form-select select2" id="id_unidad_medida" style="width: 100%;">
+                                <select class="form-select select2" id="id_tipo_envio_guia_remision" style="width: 100%;">
                                   <option value="0">Seleccionar</option>
                                   <?php foreach ($cbox_tipo_envio_guia_remision as $cbox_tipo_envio_guia_remision) : ?>
                                     <option value="<?php echo $cbox_tipo_envio_guia_remision->id_dmultitabla; ?>"><?php echo $cbox_tipo_envio_guia_remision->descripcion; ?></option>
@@ -300,13 +313,19 @@
                             <div class="col-md-3">
                               <label for="">Peso Bruto Total</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="peso_bruto_total"></textarea>
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
+                              <label for="">Kilos</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="kilos">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
                               <label for="">Punto de Partida</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="punto_partida"></textarea>
                               </div>
                             </div>
                           </div>
@@ -314,19 +333,19 @@
                             <div class="col-md-6">
                               <label for="">Punto de Llegada</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope"></textarea>
+                                <textarea class="form-control" rows="1" id="punto_llegada" autocomplete="nope"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Contenedor</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" value="">
+                                <input type="text" class="form-control" id="contenedor" autocomplete="nope" value="">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Embarque</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula"></textarea>
+                                <textarea class="form-control" rows="1" id="embarque"></textarea>
                               </div>
                             </div>
                           </div>
@@ -429,7 +448,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
-<script src="<?php echo base_url() ?>application/js/j_cotizacion.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_guia_remision.js"></script>
 
 </body>
 

@@ -353,7 +353,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
-<script src="<?php echo base_url() ?>application/js/xxxx.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_parciales_completas.js"></script>
 
 </body>
 

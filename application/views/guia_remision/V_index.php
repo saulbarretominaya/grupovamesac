@@ -20,6 +20,7 @@
                 <tr>
                   <th>Num OD</th>
                   <th>Num OR</th>
+                  <th>Num GUIA</th>
                   <th>Fecha OR</th>
                   <th>Cliente</th>
                   <th>Condicion Pago</th>
@@ -47,6 +48,7 @@
                     <tr>
                       <td><?php echo $index->id_orden_despacho; ?></td>
                       <td><?php echo $index->id_parcial_completa; ?></td>
+                      <td><?php echo $index->ds_correlativo_guia; ?></td>
                       <td><?php echo $index->fecha_parcial_completa; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->ds_condicion_pago; ?></td>
@@ -119,7 +121,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_cotizacion.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_guia_remision.js"></script>
 
   </body>
 

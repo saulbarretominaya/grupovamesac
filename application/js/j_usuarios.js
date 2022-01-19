@@ -88,6 +88,8 @@ $(document).on("click", ".js_seleccionar_modal_trabajadores", function () {
 	split_trabajadores = trabajadores.split("*");
 	$("#id_trabajador").val(split_trabajadores[0]);
 	$("#ds_nombre_trabajador").val(split_trabajadores[1]);
+	$("#ds_empresa").val(split_trabajadores[2]);
+	$("#ds_almacen").val(split_trabajadores[3]);
 	$("#opcion_target_trabajadores").modal("hide");
 });
 $(document).ready(function () {
@@ -99,23 +101,27 @@ $(document).ready(function () {
 	});
 	$("#id_datatable_trabajadores thead #dtable_nombres").each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_trabajadores thead #dtable_ape_paterno").each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_trabajadores thead #dtable_ape_materno").each(function () {
 		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_trabajadores thead #dtable_ds_empresa").each(function () {
+		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
 	});
-	$("#id_datatable_trabajadores thead #dtable_ds_tipo_empresa").each(function () {
+	$("#id_datatable_trabajadores thead #dtable_ds_sucursal").each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
+		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_trabajadores thead #dtable_telefono").each(function () {
 		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_trabajadores").dataTable({
 

@@ -27,12 +27,11 @@
                     <label for="">Trabajador</label>
                     <div class="input-group">
                       <input type="hidden" class="form-control" id="id_trabajador">
-                      <input type="text" class="form-control" id="ds_nombre_trabajador">
+                      <input type="text" class="form-control" id="ds_nombre_trabajador" readonly>
                       <span class="input-group-append">
                         <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_trabajadores">
                           Buscar
                         </button>
-                        <a href="<?php echo base_url() . "C_clientes_proveedores" ?>"><button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button></a>
                         <!-- Modal -->
                         <div class="modal fade" id="opcion_target_trabajadores" tabindex="-1">
                           <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -52,7 +51,8 @@
                                       <th id="dtable_nombres">Nombres</th>
                                       <th id="dtable_ape_paterno">Ape Paterno</th>
                                       <th id="dtable_ape_materno">Ape Materno</th>
-                                      <th id="dtable_ds_tipo_empresa">Tipo Empresa</th>
+                                      <th id="dtable_ds_empresa">Empresa</th>
+                                      <th id="dtable_ds_sucursal">Sucursal</th>
                                       <th id="dtable_telefono">Celular</th>
                                     </tr>
                                   </thead>
@@ -63,14 +63,18 @@
                                           <td>
                                             <?php $split_trabajadores =
                                               $index_trabajadores->id_trabajador . "*" .
-                                              $index_trabajadores->ds_nombre_usuario;                                            ?>
+                                              $index_trabajadores->ds_nombre_usuario . "*" .
+                                              $index_trabajadores->ds_empresa . "*" .
+                                              $index_trabajadores->ds_sucursal;
+                                            ?>
                                             <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_trabajadores" value="<?php echo $split_trabajadores; ?>" data-toggle="modal" data-target="#opcion_target_trabajadores"><span class="fas fa-check"></span></button>
                                           </td>
                                           <td><?php echo $index_trabajadores->num_documento; ?></td>
                                           <td><?php echo $index_trabajadores->nombres; ?></td>
                                           <td><?php echo $index_trabajadores->ape_paterno; ?></td>
                                           <td><?php echo $index_trabajadores->ape_materno; ?></td>
-                                          <td><?php echo '' ?></td>
+                                          <td><?php echo $index_trabajadores->ds_empresa; ?></td>
+                                          <td><?php echo $index_trabajadores->ds_sucursal; ?></td>
                                           <td><?php echo $index_trabajadores->celular; ?></td>
                                         </tr>
                                       <?php endforeach; ?>
@@ -91,14 +95,13 @@
                   <div class="col-md-3">
                     <label>Empresa</label>
                     <div class="input-group">
-                      <select class="form-select " id="id_empresa">
-                        <option value="0" selected>Seleccionar</option>
-                        <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
-                          <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
-                            <?php echo $cbox_empresa->descripcion; ?>
-                          </option>
-                        <?php endforeach; ?>
-                      </select>
+                      <input class="form-control" type="text" class="form-control" id="ds_empresa" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Sucursal</label>
+                    <div class="input-group">
+                      <input class="form-control" type="text" class="form-control" id="ds_almacen" readonly>
                     </div>
                   </div>
                 </div>

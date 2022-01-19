@@ -68,7 +68,7 @@
                       <td><?php echo $index->ds_condicion_pago; ?></td>
                       <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
                       <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
-                      <td><?php echo $index->valor_cambio;; ?></td>
+                      <td><?php echo $index->valor_cambio; ?></td>
                       <td><?php echo $index->resultado_valor_cambio; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>

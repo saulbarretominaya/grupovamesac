@@ -101,42 +101,6 @@ $("#registrar").on("click", function () {
 	var distrito = $("#distrito").val();
 	var id_empresa = $("#id_empresa").val();
 
-
-	// if (
-	// 	// // id_trabajador === "" ||
-	// 	num_documento === "" ||
-	// 	nombres === "" ||
-	// 	ape_paterno === "" ||
-	// 	ape_materno === "" ||
-	// 	email === "" ||
-	// 	fecha_nacimiento === "" ||
-	// 	lugar_nacimiento === "" ||
-	// 	domicilio === "" ||
-	// 	referencia === "" ||
-	// 	telefono === "" ||
-	// 	celular === "" ||
-	// 	tipo_trabajador === "0" ||
-	// 	local === "0" ||
-	// 	cargo === "0" ||
-	// 	sexo === "0" ||
-	// 	tipo_documento === "0" ||
-	// 	nacionalidad === "0" ||
-	// 	est_civil === "0" ||
-	// 	grado_instruccion === "0" ||
-	// 	departamento === "0" ||
-	// 	provincia === "0" ||
-	// 	distrito === "0"
-	// ) {
-	// 	//alert('NO PUEDE DEJARLO VACIO');
-	// 	alertify
-	// 		.dialog("alert")
-	// 		.set({
-	// 			transition: "zoom",
-	// 			message: "SEÑOR UD NO ENTIENDE QUE NO PUEDE QUEDAR VACIO",
-	// 			title: "TRABAJADORES",
-	// 		})
-	// 		.show();
-	// } else {
 	$.ajax({
 		async: false,
 		url: base_url + "C_trabajadores/insertar",
@@ -173,7 +137,7 @@ $("#registrar").on("click", function () {
 			debugger;
 		},
 	});
-	// }
+
 });
 
 $("#actualizar").on("click", function () {
@@ -205,47 +169,11 @@ $("#actualizar").on("click", function () {
 	var id_empresa = $("#id_empresa").val();
 	var resultado = "";
 
-	// if (
-	// 	id_trabajador === "" ||
-	// 	num_documento === "" ||
-	// 	nombres === "" ||
-	// 	ape_paterno === "" ||
-	// 	ape_materno === "" ||
-	// 	email === "" ||
-	// 	fecha_nacimiento === "" ||
-	// 	lugar_nacimiento === "" ||
-	// 	domicilio === "" ||
-	// 	referencia === "" ||
-	// 	telefono === "" ||
-	// 	celular === "" ||
-	// 	tipo_trabajador === "" ||
-	// 	local === "" ||
-	// 	cargo === "" ||
-	// 	sexo === "" ||
-	// 	tipo_documento === "" ||
-	// 	nacionalidad === "" ||
-	// 	est_civil === "" ||
-	// 	grado_instruccion === "" ||
-	// 	departamento === "" ||
-	// 	provincia === "" ||
-	// 	distrito === ""
-	// ) {
-	// 	//alert('NO PUEDE DEJARLO VACIO');
-	// 	alertify
-	// 		.dialog("alert")
-	// 		.set({
-	// 			transition: "zoom",
-	// 			message: "SEÑOR UD NO ENTIENDE QUE NO PUEDE QUEDAR VACIO",
-	// 			title: "TRABAJADORES",
-	// 		})
-	// 		.show();
-	// } else {
 	$.ajax({
 		async: false,
-		url: base_url + "C_trabajadores/verificar_trabajador",
+		url: base_url + "C_trabajadores/actualizar",
 		type: "POST",
 		dataType: "json",
-
 		data: {
 			id_trabajador: id_trabajador,
 			num_documento: num_documento,
@@ -272,59 +200,11 @@ $("#actualizar").on("click", function () {
 			distrito: distrito,
 			id_empresa: id_empresa
 		},
-
 		success: function (data) {
-			console.log(data);
+			window.location.href = base_url + "C_trabajadores";
 			debugger;
-			// if (data == null) {
-			// 	//ESA VALIDACION NULL REPRESENTA QUE ESE REGISTRO NO SE ENCUENTRA EN LA BD, X LO TANTO EJECUTA UN METODO INSERTAR
-			// 	resultado = data;
-			// 	alert("PUEDE INGRESAR EL REGISTRO");
-			$.ajax({
-				async: false,
-				url: base_url + "C_trabajadores/actualizar",
-				type: "POST",
-				dataType: "json",
-				data: {
-					id_trabajador: id_trabajador,
-					num_documento: num_documento,
-					nombres: nombres,
-					ape_paterno: ape_paterno,
-					ape_materno: ape_materno,
-					email: email,
-					fecha_nacimiento: fecha_nacimiento,
-					lugar_nacimiento: lugar_nacimiento,
-					domicilio: domicilio,
-					referencia: referencia,
-					telefono: telefono,
-					celular: celular,
-					tipo_trabajador: tipo_trabajador,
-					almacen: almacen,
-					cargo_trabajador: cargo_trabajador,
-					sexo: sexo,
-					tipo_documento: tipo_documento,
-					nacionalidad: nacionalidad,
-					est_civil: est_civil,
-					grado_instruccion: grado_instruccion,
-					departamento: departamento,
-					provincia: provincia,
-					distrito: distrito,
-					id_empresa: id_empresa
-				},
-				success: function (data) {
-					window.location.href = base_url + "C_trabajadores";
-					debugger;
-				},
-			});
-			// } else {
-			// 	resultado = data;
-			// 	//alert('YA SE ENCUENTRA REGISTRADO');
-			// 	alertify.error("ESTO ES EL COLMO SEÑORES");
-			// }
-
-			//window.location.href = base_url+"Recursos_humanos/Controller_cargos/enlace_insertar";
-			//echo json_encode($data);
 		},
+
 	});
 
 	debugger;
