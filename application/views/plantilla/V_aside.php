@@ -206,7 +206,6 @@
             </ul>
           </li>
 
-          <!-- guia  de remision-->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-clipboard-list"></i>
@@ -224,27 +223,24 @@
               </li>
             </ul>
           </li>
-          <!-- fin guia de remisión-->
 
-          <!-- facturacion-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-tasks"></i>
               <p>
-                Facturacion
+                Comprobantes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "C_facturacion" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_comprobantes" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Facturacion</p>
+                  <p>Comprobantes</p>
                 </a>
               </li>
             </ul>
-          </li> -->
-          <!-- fin guia de remisión-->
+          </li>
 
           <!-- Reporte-->
           <!-- <li class="nav-item">
