@@ -1,7 +1,9 @@
+/* Variables Globales */
+resultado_campo = true;
+/*Fin de Variables Globales */
+
 $("#datemask").inputmask("dd/mm/yyyy", { placeholder: "dd/mm/yyyy" });
-//Datemask2 mm/dd/yyyy
 $("#datemask2").inputmask("mm/dd/yyyy", { placeholder: "mm/dd/yyyy" });
-//Money Euro
 $("[data-mask]").inputmask();
 
 $(document).ready(function () {
@@ -10,7 +12,6 @@ $(document).ready(function () {
  or    Inputmask().mask(document.querySelectorAll("input"));*/
 });
 
-//MODAL DE DETALLE DE CLIENTES
 $(document).on("click", ".btn-view-clientes", function () {
 	valor_id = $(this).val();
 	$.ajax({
@@ -73,191 +74,236 @@ $(document).ready(function () {
 	});
 });
 
-// INSERTAR
-
 $("#registrar").on("click", function () {
-	debugger;
 
-	var origen = $("#origen").val();
-	var condicion = $("#condicion").val();
-	var tipo_persona = $("#tipo_persona").val();
-	var tipo_persona_sunat = $("#tipo_persona_sunat").val();
-	var tipo_documento = $("#tipo_documento").val();
-	var num_documento = $("#num_documento").val();
-	var nombres = $("#nombres").val();
-	var ape_paterno = $("#ape_paterno").val();
-	var ape_materno = $("#ape_materno").val();
-	var razon_social = $("#razon_social").val();
-	var direccion_fiscal = $("#direccion_fiscal").val();
-	var direccion_alm1 = $("#direccion_alm1").val();
-	var direccion_alm2 = $("#direccion_alm2").val();
-	var departamento = $("#departamento").val();
-	var provincia = $("#provincia").val();
-	var distrito = $("#distrito").val();
-	var telefono = $("#telefono").val();
-	var celular = $("#celular").val();
-	var tipo_giro = $("#tipo_giro").val();
-	var condicion_pago = $("#condicion_pago").val();
-	var linea_credito_soles = $("#linea_credito_soles").val();
-	var credito_unitario_soles = $("#credito_unitario_soles").val();
-	var disponible_soles = $("#disponible_soles").val();
-	var linea_credito_dolares = $("#linea_credito_dolares").val();
-	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
-	var disponible_dolares = $("#disponible_dolares ").val();
-	var linea_opcional = $("#linea_opcional").val();
-	var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
-	var linea_disponible = $("#linea_disponible ").val();
-	var email = $("#email").val();
-	var contacto_registro = $("#contacto_registro").val();
-	var email_cobranza = $("#email_cobranza").val();
-	var contacto_cobranza = $("#contacto_cobranza").val();
-	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
-	var id_usuario = $("#id_usuario").val();
-	var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+	validar_registrar();
 
+	if (resultado_campo == true) {
+		var origen = $("#origen").val();
+		var condicion = $("#condicion").val();
+		var tipo_persona = $("#tipo_persona").val();
+		var tipo_persona_sunat = $("#tipo_persona_sunat").val();
+		var tipo_documento = $("#tipo_documento").val();
+		var num_documento = $("#num_documento").val();
+		var nombres = $("#nombres").val();
+		var ape_paterno = $("#ape_paterno").val();
+		var ape_materno = $("#ape_materno").val();
+		var razon_social = $("#razon_social").val();
+		var direccion_fiscal = $("#direccion_fiscal").val();
+		var direccion_alm1 = $("#direccion_alm1").val();
+		var direccion_alm2 = $("#direccion_alm2").val();
+		var departamento = $("#departamento").val();
+		var provincia = $("#provincia").val();
+		var distrito = $("#distrito").val();
+		var telefono = $("#telefono").val();
+		var celular = $("#celular").val();
+		var tipo_giro = $("#tipo_giro").val();
+		var condicion_pago = $("#condicion_pago").val();
+		var linea_credito_soles = $("#linea_credito_soles").val();
+		var credito_unitario_soles = $("#credito_unitario_soles").val();
+		var disponible_soles = $("#disponible_soles").val();
+		var linea_credito_dolares = $("#linea_credito_dolares").val();
+		var credito_unitario_dolares = $("#credito_unitario_dolares").val();
+		var disponible_dolares = $("#disponible_dolares ").val();
+		var linea_opcional = $("#linea_opcional").val();
+		var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
+		var linea_disponible = $("#linea_disponible ").val();
+		var email = $("#email").val();
+		var contacto_registro = $("#contacto_registro").val();
+		var email_cobranza = $("#email_cobranza").val();
+		var contacto_cobranza = $("#contacto_cobranza").val();
+		var tipo_cliente_pago = $("#tipo_cliente_pago").val();
+		var id_usuario = $("#id_usuario").val();
+		var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+		$.ajax({
+			async: false,
+			url: base_url + "C_clientes_proveedores/insertar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				origen: origen,
+				condicion: condicion,
+				tipo_persona: tipo_persona,
+				tipo_persona_sunat: tipo_persona_sunat,
+				tipo_documento: tipo_documento,
+				num_documento: num_documento,
+				nombres: nombres,
+				ape_paterno: ape_paterno,
+				ape_materno: ape_materno,
+				razon_social: razon_social,
+				direccion_fiscal: direccion_fiscal,
+				direccion_alm1: direccion_alm1,
+				direccion_alm2: direccion_alm2,
+				departamento: departamento,
+				provincia: provincia,
+				distrito: distrito,
+				telefono: telefono,
+				celular: celular,
+				tipo_giro: tipo_giro,
+				condicion_pago: condicion_pago,
+				linea_credito_soles: linea_credito_soles,
+				credito_unitario_soles: credito_unitario_soles,
+				disponible_soles: disponible_soles,
+				linea_credito_dolares: linea_credito_dolares,
+				credito_unitario_dolares: credito_unitario_dolares,
+				disponible_dolares: disponible_dolares,
+				linea_opcional: linea_opcional,
+				linea_opcional_unitaria: linea_opcional_unitaria,
+				linea_disponible: linea_disponible,
+				email: email,
+				contacto_registro: contacto_registro,
+				email_cobranza: email_cobranza,
+				contacto_cobranza: contacto_cobranza,
+				tipo_cliente_pago: tipo_cliente_pago,
+				id_usuario: id_usuario,
+				ds_nombre_usuario: ds_nombre_usuario
 
-	$.ajax({
-		async: false,
-		url: base_url + "C_clientes_proveedores/insertar",
-		type: "POST",
-		dataType: "json",
-		data: {
-			origen: origen,
-			condicion: condicion,
-			tipo_persona: tipo_persona,
-			tipo_persona_sunat: tipo_persona_sunat,
-			tipo_documento: tipo_documento,
-			num_documento: num_documento,
-			nombres: nombres,
-			ape_paterno: ape_paterno,
-			ape_materno: ape_materno,
-			razon_social: razon_social,
-			direccion_fiscal: direccion_fiscal,
-			direccion_alm1: direccion_alm1,
-			direccion_alm2: direccion_alm2,
-			departamento: departamento,
-			provincia: provincia,
-			distrito: distrito,
-			telefono: telefono,
-			celular: celular,
-			tipo_giro: tipo_giro,
-			condicion_pago: condicion_pago,
-			linea_credito_soles: linea_credito_soles,
-			credito_unitario_soles: credito_unitario_soles,
-			disponible_soles: disponible_soles,
-			linea_credito_dolares: linea_credito_dolares,
-			credito_unitario_dolares: credito_unitario_dolares,
-			disponible_dolares: disponible_dolares,
-			linea_opcional: linea_opcional,
-			linea_opcional_unitaria: linea_opcional_unitaria,
-			linea_disponible: linea_disponible,
-			email: email,
-			contacto_registro: contacto_registro,
-			email_cobranza: email_cobranza,
-			contacto_cobranza: contacto_cobranza,
-			tipo_cliente_pago: tipo_cliente_pago,
-			id_usuario: id_usuario,
-			ds_nombre_usuario: ds_nombre_usuario
-
-		},
-		success: function (data) {
-			debugger;
-			window.location.href = base_url + "C_clientes_proveedores";
-			debugger;
-		},
-	});
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_clientes_proveedores";
+				debugger;
+			},
+		});
+	}
 
 });
 
 $("#actualizar").on("click", function () {
-	debugger;
 
-	var id_cliente_proveedor = $("#id_cliente_proveedor").val();
-	var origen = $("#origen").val();
-	var condicion = $("#condicion").val();
-	var tipo_persona = $("#tipo_persona").val();
-	var tipo_persona_sunat = $("#tipo_persona_sunat").val();
-	var tipo_documento = $("#tipo_documento").val();
-	var num_documento = $("#num_documento").val();
-	var nombres = $("#nombres").val();
-	var ape_paterno = $("#ape_paterno").val();
-	var ape_materno = $("#ape_materno").val();
-	var razon_social = $("#razon_social").val();
-	var direccion_fiscal = $("#direccion_fiscal").val();
-	var direccion_alm1 = $("#direccion_alm1").val();
-	var direccion_alm2 = $("#direccion_alm2").val();
-	var departamento = $("#departamento").val();
-	var provincia = $("#provincia").val();
-	var distrito = $("#distrito").val();
-	var telefono = $("#telefono").val();
-	var celular = $("#celular").val();
-	var tipo_giro = $("#tipo_giro").val();
-	var condicion_pago = $("#condicion_pago").val();
-	var linea_credito_soles = $("#linea_credito_soles").val();
-	var credito_unitario_soles = $("#credito_unitario_soles").val();
-	var disponible_soles = $("#disponible_soles").val();
-	var linea_credito_dolares = $("#linea_credito_dolares").val();
-	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
-	var disponible_dolares = $("#disponible_dolares ").val();
-	var linea_opcional = $("#linea_opcional").val();
-	var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
-	var linea_disponible = $("#linea_disponible ").val();
-	var email = $("#email").val();
-	var contacto_registro = $("#contacto_registro").val();
-	var email_cobranza = $("#email_cobranza").val();
-	var contacto_cobranza = $("#contacto_cobranza").val();
-	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
-	var id_usuario = $("#id_usuario").val();
-	var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+	validar_registrar();
 
-	$.ajax({
-		async: false,
-		url: base_url + "C_clientes_proveedores/actualizar",
-		type: "POST",
-		dataType: "json",
-		data: {
-			id_cliente_proveedor: id_cliente_proveedor,
-			origen: origen,
-			condicion: condicion,
-			tipo_persona: tipo_persona,
-			tipo_persona_sunat: tipo_persona_sunat,
-			tipo_documento: tipo_documento,
-			num_documento: num_documento,
-			nombres: nombres,
-			ape_paterno: ape_paterno,
-			ape_materno: ape_materno,
-			razon_social: razon_social,
-			direccion_fiscal: direccion_fiscal,
-			direccion_alm1: direccion_alm1,
-			direccion_alm2: direccion_alm2,
-			departamento: departamento,
-			provincia: provincia,
-			distrito: distrito,
-			telefono: telefono,
-			celular: celular,
-			tipo_giro: tipo_giro,
-			condicion_pago: condicion_pago,
-			linea_credito_soles: linea_credito_soles,
-			credito_unitario_soles: credito_unitario_soles,
-			disponible_soles: disponible_soles,
-			linea_credito_dolares: linea_credito_dolares,
-			credito_unitario_dolares: credito_unitario_dolares,
-			disponible_dolares: disponible_dolares,
-			linea_opcional: linea_opcional,
-			linea_opcional_unitaria: linea_opcional_unitaria,
-			linea_disponible: linea_disponible,
-			email: email,
-			contacto_registro: contacto_registro,
-			email_cobranza: email_cobranza,
-			contacto_cobranza: contacto_cobranza,
-			tipo_cliente_pago: tipo_cliente_pago,
-			id_usuario: id_usuario,
-			ds_nombre_usuario: ds_nombre_usuario
-		},
-		success: function (data) {
-			debugger;
-			window.location.href = base_url + "C_clientes_proveedores";
-		},
-	});
+	if (resultado_campo == true) {
 
+		var id_cliente_proveedor = $("#id_cliente_proveedor").val();
+		var origen = $("#origen").val();
+		var condicion = $("#condicion").val();
+		var tipo_persona = $("#tipo_persona").val();
+		var tipo_persona_sunat = $("#tipo_persona_sunat").val();
+		var tipo_documento = $("#tipo_documento").val();
+		var num_documento = $("#num_documento").val();
+		var nombres = $("#nombres").val();
+		var ape_paterno = $("#ape_paterno").val();
+		var ape_materno = $("#ape_materno").val();
+		var razon_social = $("#razon_social").val();
+		var direccion_fiscal = $("#direccion_fiscal").val();
+		var direccion_alm1 = $("#direccion_alm1").val();
+		var direccion_alm2 = $("#direccion_alm2").val();
+		var departamento = $("#departamento").val();
+		var provincia = $("#provincia").val();
+		var distrito = $("#distrito").val();
+		var telefono = $("#telefono").val();
+		var celular = $("#celular").val();
+		var tipo_giro = $("#tipo_giro").val();
+		var condicion_pago = $("#condicion_pago").val();
+		var linea_credito_soles = $("#linea_credito_soles").val();
+		var credito_unitario_soles = $("#credito_unitario_soles").val();
+		var disponible_soles = $("#disponible_soles").val();
+		var linea_credito_dolares = $("#linea_credito_dolares").val();
+		var credito_unitario_dolares = $("#credito_unitario_dolares").val();
+		var disponible_dolares = $("#disponible_dolares ").val();
+		var linea_opcional = $("#linea_opcional").val();
+		var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
+		var linea_disponible = $("#linea_disponible ").val();
+		var email = $("#email").val();
+		var contacto_registro = $("#contacto_registro").val();
+		var email_cobranza = $("#email_cobranza").val();
+		var contacto_cobranza = $("#contacto_cobranza").val();
+		var tipo_cliente_pago = $("#tipo_cliente_pago").val();
+		var id_usuario = $("#id_usuario").val();
+		var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+
+		$.ajax({
+			async: false,
+			url: base_url + "C_clientes_proveedores/actualizar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				id_cliente_proveedor: id_cliente_proveedor,
+				origen: origen,
+				condicion: condicion,
+				tipo_persona: tipo_persona,
+				tipo_persona_sunat: tipo_persona_sunat,
+				tipo_documento: tipo_documento,
+				num_documento: num_documento,
+				nombres: nombres,
+				ape_paterno: ape_paterno,
+				ape_materno: ape_materno,
+				razon_social: razon_social,
+				direccion_fiscal: direccion_fiscal,
+				direccion_alm1: direccion_alm1,
+				direccion_alm2: direccion_alm2,
+				departamento: departamento,
+				provincia: provincia,
+				distrito: distrito,
+				telefono: telefono,
+				celular: celular,
+				tipo_giro: tipo_giro,
+				condicion_pago: condicion_pago,
+				linea_credito_soles: linea_credito_soles,
+				credito_unitario_soles: credito_unitario_soles,
+				disponible_soles: disponible_soles,
+				linea_credito_dolares: linea_credito_dolares,
+				credito_unitario_dolares: credito_unitario_dolares,
+				disponible_dolares: disponible_dolares,
+				linea_opcional: linea_opcional,
+				linea_opcional_unitaria: linea_opcional_unitaria,
+				linea_disponible: linea_disponible,
+				email: email,
+				contacto_registro: contacto_registro,
+				email_cobranza: email_cobranza,
+				contacto_cobranza: contacto_cobranza,
+				tipo_cliente_pago: tipo_cliente_pago,
+				id_usuario: id_usuario,
+				ds_nombre_usuario: ds_nombre_usuario
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_clientes_proveedores";
+			},
+		});
+
+	}
+});
+
+function validar_registrar() {
+
+	debugger
+	var id_tipo_documento = $('#tipo_documento').val();
+	var num_documento = $("#num_documento").val().length;
+
+	if (id_tipo_documento == "0") {
+		alert("Debe seleccionar el tipo de documento")
+		resultado_campo = false;
+	}
+	else if (id_tipo_documento == "594" && num_documento != 8) {
+		alert("El numero de DNI son 8 Digitos")
+		resultado_campo = false;
+	}
+	else if (id_tipo_documento == "595" && num_documento != 12) {
+		alert("El numero de CARNET DE EXTRANJERIA son 12 Digitos")
+		resultado_campo = false;
+	}
+	else if (id_tipo_documento == "596" && num_documento != 11) {
+		alert("El numero de PERSONA JURIDICA son 11 Digitos")
+		resultado_campo = false;
+	}
+	else if (id_tipo_documento == "597" && num_documento != 11) {
+		alert("El numero de PERSONA NATURAl CON NEGOCIO son 11 Digitos")
+		resultado_campo = false;
+	}
+	else {
+		resultado_campo = true;
+	}
+}
+
+$("#num_documento").on({
+	"focus": function (event) {
+		$(event.target).select();
+	},
+	"keyup": function (event) {
+		$(event.target).val(function (index, value) {
+			return value.replace(/\D/g, "");
+		});
+	}
 });

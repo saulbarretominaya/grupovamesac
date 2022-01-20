@@ -207,7 +207,7 @@ class M_cotizacion extends CI_Model
             id_tipo_giro,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro
             FROM clientes_proveedores
-            where id_usuario='$id_usuario';
+            where id_usuario='$id_usuario' and id_tipo_persona='615';
         ");
         return $resultados->result();
     }

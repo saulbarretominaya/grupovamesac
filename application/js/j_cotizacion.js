@@ -44,6 +44,7 @@ $(document).on("click", ".js_lupa_cotizacion", function () {
 	});
 });
 $("#registrar").on("click", function () {
+
 	validar_registrar();
 	if (resultado_campo == true) {
 

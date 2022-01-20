@@ -18,6 +18,7 @@
             <table id="id_datatable_productos" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
+                  <th>Almacen</th>
                   <th>Codigo</th>
                   <th>Descripcion</th>
                   <th>U.M</th>
@@ -34,6 +35,7 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
+                      <td><?php echo $index->ds_almacen; ?></td>
                       <td><?php echo $index->codigo_producto; ?></td>
                       <td><?php echo $index->descripcion_producto; ?></td>
                       <td><?php echo $index->ds_unidad_medida; ?></td>

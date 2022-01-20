@@ -72,7 +72,7 @@
 
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Datos de Cliente/Proveedor</h3>
+                          <h3 class="card-title">Datos de Cliente</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -96,7 +96,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h4 class="modal-title">Clientes / Provedores</h4>
+                                          <h4 class="modal-title">Clientes</h4>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -224,36 +224,6 @@
 
                     </div>
 
-                    <div class="col-md-6">
-                      <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">Fecha de Vencimiento</h3>
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="form-group row">
-                            <div class="col-md-6">
-                              <label># Dias</label>
-                              <div class="input-group">
-                                <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
-                                <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>Fecha Vencimiento</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
                 </div>
 
@@ -321,7 +291,7 @@
                                               <td><?php echo $index_productos->ds_marca_producto; ?></td>
                                               <td><?php echo $index_productos->ds_grupo; ?></td>
                                               <td><?php echo $index_productos->stock; ?></td>
-                                              . <td><?php echo $index_productos->ds_moneda; ?></td>
+                                              <td><?php echo $index_productos->ds_moneda; ?></td>
                                               <td><?php echo $index_productos->precio_unitario; ?></td>
                                             </tr>
                                           <?php endforeach; ?>

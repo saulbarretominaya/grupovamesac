@@ -104,9 +104,7 @@
                             <select class="form-select " id="tipo_documento" required>
                               <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
-                                <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
-                                  <?php echo $cbox_tipo_documento->descripcion; ?>
-                                </option>
+                                <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>"><?php echo $cbox_tipo_documento->descripcion; ?></option>
                               <?php endforeach; ?>
                             </select>
                           </div>
@@ -115,7 +113,7 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="num_documento">Numero Documento</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="num_documento" maxlength="15" placeholder="Ingresa el N° Documento" required>
+                            <input type="text" class="form-control" id="num_documento" maxlength="12" placeholder="Ingresa el N° Documento" required>
                           </div>
                         </div>
                       </div>

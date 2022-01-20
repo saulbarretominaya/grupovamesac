@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>CLIENTES - PROVEEDORES
-              <a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            <h1>Clientes - Proveedores
+              <a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -16,9 +16,9 @@
     <section class="content">
       <div class="col-12">
         <div class="card">
-          <div class="card-header">
+          <!-- <div class="card-header">
             <h3 class="card-title">Listar</h3>
-          </div>
+          </div> -->
           <div class="card-body">
             <table id="id_datatable_clientes_proveedores" class="table table-sm table-hover" style="width: 100%;">
               <thead>
