@@ -1,5 +1,10 @@
-$("#id_datatable_multitablas").dataTable({
-	/*------------------*/
+$("#listar").dataTable({
+
+	scrollX: true,
+	scrollCollapse: true,
+	paging: true,
+	searching: true,
+
 	language: {
 		lengthMenu: "Mostrar _MENU_ registros por pagina",
 		zeroRecords: "No se encontraron resultados en su busqueda",
@@ -15,6 +20,7 @@ $("#id_datatable_multitablas").dataTable({
 			previous: "Anterior",
 		},
 	},
+	"ordering": false
 });
 
 $("#id_agregar_multitabla").on("click", function (e) {

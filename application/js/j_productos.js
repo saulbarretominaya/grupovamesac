@@ -1,13 +1,12 @@
 //Declaracion de variables Globales
 var resultado_campo = "";
 
-$("#id_datatable_productos").dataTable({
+$("#listar").dataTable({
 
 	scrollX: true,
 	scrollCollapse: true,
 	paging: true,
 	searching: true,
-
 
 	language: {
 		lengthMenu: "Mostrar _MENU_ registros por pagina",
@@ -24,8 +23,7 @@ $("#id_datatable_productos").dataTable({
 			previous: "Anterior",
 		},
 	},
-
-	order: []
+	"ordering": false
 });
 
 $("#registrar_productos").on("click", function () {

@@ -15,7 +15,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_multitablas" class="table table-sm table-hover" style="width: 100%;">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
                   <th>Codigo</th>

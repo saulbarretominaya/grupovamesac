@@ -1,11 +1,9 @@
-
 $("#listar").dataTable({
 
 	scrollX: true,
 	scrollCollapse: true,
 	paging: true,
 	searching: true,
-
 
 	language: {
 		lengthMenu: "Mostrar _MENU_ registros por pagina",
@@ -22,8 +20,7 @@ $("#listar").dataTable({
 			previous: "Anterior",
 		},
 	},
-
-	order: []
+	"ordering": false
 });
 
 $("#registrar").on("click", function () {

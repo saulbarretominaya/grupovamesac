@@ -25,53 +25,29 @@ $(document).on("click", ".btn-view-clientes", function () {
 	});
 });
 
-$(document).ready(function () {
-	$("#id_datatable_clientes_proveedores tfoot th").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
-	});
+$("#listar").dataTable({
 
-	var table = $("#id_datatable_clientes_proveedores").dataTable({
-		//scrollY: true,
-		scrollX: true,
-		scrollCollapse: true,
-		paging: true,
-		searching: true,
+	scrollX: true,
+	scrollCollapse: true,
+	paging: true,
+	searching: true,
 
-		// /*------------------*/
-		initComplete: function () {
-			// Apply the search
-			this.api()
-				.columns()
-				.every(function () {
-					var that = this;
-
-					$("input", this.footer()).on("keyup change clear", function () {
-						if (that.search() !== this.value) {
-							that.search(this.value).draw();
-						}
-					});
-				});
+	language: {
+		lengthMenu: "Mostrar _MENU_ registros por pagina",
+		zeroRecords: "No se encontraron resultados en su busqueda",
+		searchPlaceholder: "Buscar registros",
+		info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+		infoEmpty: "No existen registros",
+		infoFiltered: "(filtrado de un total de _MAX_ registros)",
+		search: "Buscar:",
+		paginate: {
+			first: "Primero",
+			last: "Último",
+			next: "Siguiente",
+			previous: "Anterior",
 		},
-
-		/*------------------*/
-
-		language: {
-			lengthMenu: "Mostrar _MENU_ registros por pagina",
-			zeroRecords: "No se encontraron resultados en su busqueda",
-			searchPlaceholder: "Buscar registros",
-			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
-			infoEmpty: "No existen registros",
-			infoFiltered: "(filtrado de un total de _MAX_ registros)",
-			search: "Buscar:",
-			paginate: {
-				first: "Primero",
-				last: "Último",
-				next: "Siguiente",
-				previous: "Anterior",
-			},
-		},
-	});
+	},
+	"ordering": false
 });
 
 $("#registrar").on("click", function () {
@@ -268,29 +244,47 @@ $("#actualizar").on("click", function () {
 
 function validar_registrar() {
 
-	debugger
-	var id_tipo_documento = $('#tipo_documento').val();
+	var tipo_persona = $('#tipo_persona').val();
+	var tipo_documento = $('#tipo_documento').val();
 	var num_documento = $("#num_documento").val().length;
+	var nombres = $("#nombres").val();
+	var ape_paterno = $("#ape_paterno").val();
+	var razon_social = $("#razon_social").val();
 
-	if (id_tipo_documento == "0") {
+	debugger;
+
+
+	if (tipo_persona == "0") {
+		alert("Debe seleccionar el tipo de persona")
+		resultado_campo = false;
+	}
+	else if (tipo_documento == "0") {
 		alert("Debe seleccionar el tipo de documento")
 		resultado_campo = false;
 	}
-	else if (id_tipo_documento == "594" && num_documento != 8) {
+	else if (tipo_documento == "594" && num_documento != 8) {
 		alert("El numero de DNI son 8 Digitos")
 		resultado_campo = false;
 	}
-	else if (id_tipo_documento == "595" && num_documento != 12) {
+	else if (tipo_documento == "595" && num_documento != 12) {
 		alert("El numero de CARNET DE EXTRANJERIA son 12 Digitos")
 		resultado_campo = false;
 	}
-	else if (id_tipo_documento == "596" && num_documento != 11) {
+	else if (tipo_documento == "596" && num_documento != 11) {
 		alert("El numero de PERSONA JURIDICA son 11 Digitos")
 		resultado_campo = false;
 	}
-	else if (id_tipo_documento == "597" && num_documento != 11) {
+	else if (tipo_documento == "597" && num_documento != 11) {
 		alert("El numero de PERSONA NATURAl CON NEGOCIO son 11 Digitos")
 		resultado_campo = false;
+	}
+	else if (nombres == "" && ape_paterno == "") {
+		if (razon_social == "") {
+			alert("Debe Ingresar al menos un Nombre, Apellido o Razon Social")
+			resultado_campo = false;
+		} else {
+			resultado_campo = true;
+		}
 	}
 	else {
 		resultado_campo = true;
@@ -307,3 +301,48 @@ $("#num_documento").on({
 		});
 	}
 });
+
+$("#nombres").on("keyup", function () {
+	validar_nombres();
+});
+
+$("#ape_paterno").on("keyup", function () {
+	validar_nombres();
+});
+
+$("#ape_materno").on("keyup", function () {
+	validar_nombres();
+});
+
+$("#razon_social").on("keyup", function () {
+	validar_razon_social();
+});
+
+function validar_nombres() {
+	debugger;
+	var nombres = $("#nombres").val();
+	var ape_paterno = $("#ape_paterno").val();
+	var ape_materno = $("#ape_materno").val();
+
+	if (nombres == "" && ape_paterno == "" && ape_materno == "") {
+		$("#razon_social").attr("readonly", false);
+	} else {
+		$("#razon_social").attr("readonly", true);
+
+	}
+}
+
+function validar_razon_social() {
+	debugger;
+	var razon_social = $("#razon_social").val();
+
+	if (razon_social == "") {
+		$("#nombres").attr("readonly", false);
+		$("#ape_paterno").attr("readonly", false);
+		$("#ape_materno").attr("readonly", false);
+	} else {
+		$("#nombres").attr("readonly", true);
+		$("#ape_paterno").attr("readonly", true);
+		$("#ape_materno").attr("readonly", true);
+	}
+}

@@ -20,7 +20,7 @@
             <h3 class="card-title">Listar</h3>
           </div> -->
           <div class="card-body">
-            <table id="id_datatable_trabajadores" class="table table-sm table-hover" style="width: 100%;">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
                   <th>Tipo Documento</th>

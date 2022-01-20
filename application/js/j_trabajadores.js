@@ -3,14 +3,11 @@ $("#datemask").inputmask("dd/mm/yyyy", { placeholder: "dd/mm/yyyy" });
 $("#datemask2").inputmask("mm/dd/yyyy", { placeholder: "mm/dd/yyyy" });
 //Money Euro
 $("[data-mask]").inputmask();
-
 $(document).ready(function () {
 	$(":input").inputmask();
-	/*
- or    Inputmask().mask(document.querySelectorAll("input"));*/
+
 });
 
-//MODAL DE DETALLE DE TRABAJADORES
 $(document).on("click", ".btn-view-trabajador", function () {
 	valor_id = $(this).val();
 	$.ajax({
@@ -24,53 +21,29 @@ $(document).on("click", ".btn-view-trabajador", function () {
 	});
 });
 
-$(document).ready(function () {
-	$("#id_datatable_trabajadores tfoot th").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" placeholder="Buscar ' + title + '" /> ');
-	});
+$("#listar").dataTable({
 
-	var table = $("#id_datatable_trabajadores").dataTable({
-		//scrollY: true,
-		scrollX: true,
-		scrollCollapse: true,
-		paging: true,
-		searching: true,
+	scrollX: true,
+	scrollCollapse: true,
+	paging: true,
+	searching: true,
 
-		/*------------------*/
-		initComplete: function () {
-			// Apply the search
-			this.api()
-				.columns()
-				.every(function () {
-					var that = this;
-
-					$("input", this.footer()).on("keyup change clear", function () {
-						if (that.search() !== this.value) {
-							that.search(this.value).draw();
-						}
-					});
-				});
+	language: {
+		lengthMenu: "Mostrar _MENU_ registros por pagina",
+		zeroRecords: "No se encontraron resultados en su busqueda",
+		searchPlaceholder: "Buscar registros",
+		info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+		infoEmpty: "No existen registros",
+		infoFiltered: "(filtrado de un total de _MAX_ registros)",
+		search: "Buscar:",
+		paginate: {
+			first: "Primero",
+			last: "Último",
+			next: "Siguiente",
+			previous: "Anterior",
 		},
-
-		/*------------------*/
-
-		language: {
-			lengthMenu: "Mostrar _MENU_ registros por pagina",
-			zeroRecords: "No se encontraron resultados en su busqueda",
-			searchPlaceholder: "Buscar registros",
-			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
-			infoEmpty: "No existen registros",
-			infoFiltered: "(filtrado de un total de _MAX_ registros)",
-			search: "Buscar:",
-			paginate: {
-				first: "Primero",
-				last: "Último",
-				next: "Siguiente",
-				previous: "Anterior",
-			},
-		},
-	});
+	},
+	"ordering": false
 });
 
 
