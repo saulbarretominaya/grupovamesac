@@ -51,7 +51,8 @@
                                       <th id="dtable_nombres">Nombres</th>
                                       <th id="dtable_ape_paterno">Ape Paterno</th>
                                       <th id="dtable_ape_materno">Ape Materno</th>
-                                      <th id="dtable_ds_empresa">Empresa</th>
+                                      <th id="dtable_ds_cargo_trabajador">Cargo</th>
+                                      <th id="dtable_ds_empresa">Trabaja RRHH</th>
                                       <th id="dtable_ds_sucursal">Sucursal</th>
                                       <th id="dtable_telefono">Celular</th>
                                     </tr>
@@ -73,6 +74,7 @@
                                           <td><?php echo $index_trabajadores->nombres; ?></td>
                                           <td><?php echo $index_trabajadores->ape_paterno; ?></td>
                                           <td><?php echo $index_trabajadores->ape_materno; ?></td>
+                                          <td><?php echo $index_trabajadores->ds_cargo_trabajador; ?></td>
                                           <td><?php echo $index_trabajadores->ds_empresa; ?></td>
                                           <td><?php echo $index_trabajadores->ds_sucursal; ?></td>
                                           <td><?php echo $index_trabajadores->celular; ?></td>
@@ -93,7 +95,7 @@
                     </div>
                   </div>
                   <div class="col-md-3">
-                    <label>Empresa</label>
+                    <label>Trabaja RRHH</label>
                     <div class="input-group">
                       <input class="form-control" type="text" class="form-control" id="ds_empresa" readonly>
                     </div>
@@ -131,6 +133,19 @@
                     </div>
                   </div>
                   <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-8">
+                        <label for="">Accesos Empresas</label>
+                        <select class="form-select " id="id_empresa" aria-describedby="inputGroupTdocumento" required>
+                          <option value="0" selected>Seleccionar</option>
+                          <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
+                            <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
+                              <?php echo $cbox_empresa->descripcion; ?>
+                            </option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Rol</label>

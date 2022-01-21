@@ -91,6 +91,9 @@ $("#registrar").on("click", function () {
 		var tipo_cliente_pago = $("#tipo_cliente_pago").val();
 		var id_usuario = $("#id_usuario").val();
 		var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+
+		debugger;
+
 		$.ajax({
 			async: false,
 			url: base_url + "C_clientes_proveedores/insertar",
@@ -250,16 +253,18 @@ function validar_registrar() {
 	var nombres = $("#nombres").val();
 	var ape_paterno = $("#ape_paterno").val();
 	var razon_social = $("#razon_social").val();
-
-	debugger;
+	var direccion_fiscal = $("#direccion_fiscal").val();
+	var departamento = $("#departamento").val();
+	var provincia = $("#provincia").val();
+	var distrito = $("#distrito").val();
 
 
 	if (tipo_persona == "0") {
-		alert("Debe seleccionar el tipo de persona")
+		alert("Debe seleccionar el tipo de Persona")
 		resultado_campo = false;
 	}
 	else if (tipo_documento == "0") {
-		alert("Debe seleccionar el tipo de documento")
+		alert("Debe seleccionar el Tipo de Documento")
 		resultado_campo = false;
 	}
 	else if (tipo_documento == "594" && num_documento != 8) {
@@ -276,6 +281,22 @@ function validar_registrar() {
 	}
 	else if (tipo_documento == "597" && num_documento != 11) {
 		alert("El numero de PERSONA NATURAl CON NEGOCIO son 11 Digitos")
+		resultado_campo = false;
+	}
+	else if (direccion_fiscal == "") {
+		alert("Ingrese Direccion Fiscal")
+		resultado_campo = false;
+	}
+	else if (departamento == 0) {
+		alert("Debe seleccionar Departamento")
+		resultado_campo = false;
+	}
+	else if (provincia == 0) {
+		alert("Debe seleccionar Provincia")
+		resultado_campo = false;
+	}
+	else if (distrito == 0) {
+		alert("Debe seleccionar Distrito")
 		resultado_campo = false;
 	}
 	else if (nombres == "" && ape_paterno == "") {
@@ -319,7 +340,6 @@ $("#razon_social").on("keyup", function () {
 });
 
 function validar_nombres() {
-	debugger;
 	var nombres = $("#nombres").val();
 	var ape_paterno = $("#ape_paterno").val();
 	var ape_materno = $("#ape_materno").val();
@@ -333,7 +353,7 @@ function validar_nombres() {
 }
 
 function validar_razon_social() {
-	debugger;
+
 	var razon_social = $("#razon_social").val();
 
 	if (razon_social == "") {

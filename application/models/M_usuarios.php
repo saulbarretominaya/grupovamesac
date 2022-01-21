@@ -12,14 +12,11 @@ class M_usuarios extends CI_Model
       SELECT
       a.id_usuario,
       a.usuario,
-      a.password,
       CONCAT(b.nombres,' ',b.ape_paterno,' ',b.ape_materno) AS ds_nombre_usuario,
-      a.id_rol,
-      (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_rol) AS ds_rol_usuario,
-      a.id_empresa,
-      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_empresa,
-      b.id_almacen,
-      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_almacen) AS ds_sucursal
+      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_accesos_empresas,
+      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_empresa) AS ds_trabaja_rrhh,
+      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_almacen) AS ds_sucursal,
+      (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_rol) AS ds_rol_usuario
       FROM usuarios a
       LEFT JOIN trabajadores b ON b.id_trabajador=a.id_trabajador 
     "
@@ -40,6 +37,7 @@ class M_usuarios extends CI_Model
     num_documento,
     id_empresa,
     celular,
+    (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cargo_trabajador) AS ds_cargo_trabajador,
     (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_empresa) AS ds_empresa,
     (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_sucursal
     FROM trabajadores

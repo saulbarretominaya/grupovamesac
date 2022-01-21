@@ -4,7 +4,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Productos
-              <button type="button" class="btn btn-primary btn-sm" id="registrar_productos">REGISTRAR</button>
+              <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
               <a href="<?php echo base_url(); ?>C_productos" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
@@ -80,7 +80,7 @@
                     </select>
                   </div>
                   <div class="col-sm-4">
-                    <label>Descripcion</label>
+                    <label>Nombre Producto</label>
                     <textarea class="form-control" id="descripcion_producto" rows="1"></textarea>
                   </div>
                   <div class="col-sm-2">
@@ -110,7 +110,7 @@
                       <option value="0">Seleccionar</option>
                       <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                         <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
-                          <?php echo $cbox_moneda->abreviatura; ?>
+                          <?php echo $cbox_moneda->descripcion; ?>
                         </option>
                       <?php endforeach; ?>
                     </select>

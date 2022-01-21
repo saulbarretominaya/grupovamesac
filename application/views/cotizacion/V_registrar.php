@@ -43,8 +43,8 @@
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
-                            <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" readonly>
+                            <input type="hidden" id="id_vendedor" value="<?php echo $this->session->userdata("id_usuario") ?>">
+                            <input type="text" class="form-control" id="ds_nombre_vendedor" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -85,7 +85,7 @@
                               <label for="">Cliente</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
-                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor">
+                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" readonly>
                                 <span class="input-group-append">
                                   <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_clientes_proveedores">
                                     Buscar
@@ -195,13 +195,13 @@
                             <div class="col-md-3">
                               <label for="">Clausula</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula">Ninguna Clausula</textarea>
+                                <textarea class="form-control" rows="1" id="clausula"></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Lugar Entrega</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega">Carabayllo</textarea>
+                                <textarea class="form-control" rows="1" id="lugar_entrega"></textarea>
                               </div>
                             </div>
                           </div>
@@ -209,13 +209,13 @@
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Nombre Encargado</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres">
+                                <input type="text" class="form-control" id="nombre_encargado" value="">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion">Ninguna Observacion</textarea>
+                                <textarea class="form-control" rows="1" id="observacion"></textarea>
                               </div>
                             </div>
                           </div>

@@ -1,5 +1,6 @@
-//Declaracion de variables Globales
-var resultado_campo = "";
+/* Variables Globales */
+resultado_campo = true;
+/*Fin de Variables Globales */
 
 $("#listar").dataTable({
 
@@ -26,128 +27,134 @@ $("#listar").dataTable({
 	"ordering": false
 });
 
-$("#registrar_productos").on("click", function () {
-	var codigo_producto = $("#codigo_producto").val();
-	var descripcion_producto = $("#descripcion_producto").val();
-	var id_almacen = $("#id_almacen").val();
-	var id_unidad_medida = $("#id_unidad_medida").val();
-	debugger;
-	var precio_costo = $("#precio_costo").val();
-	var precio_costo_replace = precio_costo.replaceAll(",", "");
+$("#registrar").on("click", function () {
 
-	var porcentaje = $("#porcentaje").val();
-	var precio_unitario = $("#precio_unitario").val();
-	var precio_unitario_replace = precio_unitario.replaceAll(",", "");
+	validar_registrar();
 
-	var rentabilidad = $("#rentabilidad").val();
-	var id_moneda = $("#id_moneda").val();
-	var ganancia_unidad = $("#ganancia_unidad").val();
-	var ganancia_unidad_replace = ganancia_unidad.replaceAll(",", "");
+	if (resultado_campo == true) {
 
-	var id_grupo = $("#id_grupo").val();
-	var id_familia = $("#id_familia").val();
-	var id_clase = $("#id_clase").val();
-	var id_sub_clase = $("#id_sub_clase").val();
-	var id_sub_clase_dos = $("#id_sub_clase_dos").val();
-	var id_marca_producto = $("#id_marca_producto").val();
-	var id_cta_vta = $("#id_cta_vta").val();
-	var id_cta_ent = $("#id_cta_ent").val();
-	var id_sunat = $("#id_sunat").val();
+		var codigo_producto = $("#codigo_producto").val();
+		var descripcion_producto = $("#descripcion_producto").val();
+		var id_almacen = $("#id_almacen").val();
+		var id_unidad_medida = $("#id_unidad_medida").val();
+		var precio_costo = $("#precio_costo").val();
+		var precio_costo_replace = precio_costo.replaceAll(",", "");
+		var porcentaje = $("#porcentaje").val();
+		var precio_unitario = $("#precio_unitario").val();
+		var precio_unitario_replace = precio_unitario.replaceAll(",", "");
+		var rentabilidad = $("#rentabilidad").val();
+		var id_moneda = $("#id_moneda").val();
+		var ganancia_unidad = $("#ganancia_unidad").val();
+		var ganancia_unidad_replace = ganancia_unidad.replaceAll(",", "");
+		var id_grupo = $("#id_grupo").val();
+		var id_familia = $("#id_familia").val();
+		var id_clase = $("#id_clase").val();
+		var id_sub_clase = $("#id_sub_clase").val();
+		var id_sub_clase_dos = $("#id_sub_clase_dos").val();
+		var id_marca_producto = $("#id_marca_producto").val();
+		var id_cta_vta = $("#id_cta_vta").val();
+		var id_cta_ent = $("#id_cta_ent").val();
+		var id_sunat = $("#id_sunat").val();
 
-	validar_radio();
+		validar_radio();
 
-	debugger;
-	$.ajax({
-		async: false,
-		url: base_url + "C_productos/insertar",
-		type: "POST",
-		dataType: "json",
-		data: {
-			codigo_producto: codigo_producto,
-			descripcion_producto: descripcion_producto,
-			id_almacen: id_almacen,
-			id_unidad_medida: id_unidad_medida,
-			precio_costo: precio_costo_replace,
-			porcentaje: porcentaje,
-			precio_unitario: precio_unitario_replace,
-			rentabilidad: rentabilidad,
-			id_moneda: id_moneda,
-			ganancia_unidad: ganancia_unidad_replace,
-			id_grupo: id_grupo,
-			id_familia: id_familia,
-			id_clase: id_clase,
-			id_sub_clase: id_sub_clase,
-			id_sub_clase_dos: id_sub_clase_dos,
-			id_marca_producto: id_marca_producto,
-			id_cta_vta: id_cta_vta,
-			id_cta_ent: id_cta_ent,
-			id_sunat: id_sunat,
-			resultado_campo: resultado_campo
-		},
-		success: function (data) {
-			debugger;
-			window.location.href = base_url + "C_productos";
-		},
-	});
+		$.ajax({
+			async: false,
+			url: base_url + "C_productos/insertar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				codigo_producto: codigo_producto,
+				descripcion_producto: descripcion_producto,
+				id_almacen: id_almacen,
+				id_unidad_medida: id_unidad_medida,
+				precio_costo: precio_costo_replace,
+				porcentaje: porcentaje,
+				precio_unitario: precio_unitario_replace,
+				rentabilidad: rentabilidad,
+				id_moneda: id_moneda,
+				ganancia_unidad: ganancia_unidad_replace,
+				id_grupo: id_grupo,
+				id_familia: id_familia,
+				id_clase: id_clase,
+				id_sub_clase: id_sub_clase,
+				id_sub_clase_dos: id_sub_clase_dos,
+				id_marca_producto: id_marca_producto,
+				id_cta_vta: id_cta_vta,
+				id_cta_ent: id_cta_ent,
+				id_sunat: id_sunat,
+				resultado_campo: resultado_campo
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_productos";
+			},
+		});
+	}
 });
 
-$("#actualizar_productos").on("click", function () {
-	var id_producto = $("#id_producto").val();
-	var codigo_producto = $("#codigo_producto").val();
-	var descripcion_producto = $("#descripcion_producto").val();
-	var id_almacen = $("#id_almacen").val();
-	var id_unidad_medida = $("#id_unidad_medida").val();
-	var precio_costo = $("#precio_costo").val();
-	var porcentaje = $("#porcentaje").val();
-	var precio_unitario = $("#precio_unitario").val();
-	var rentabilidad = $("#rentabilidad").val();
-	var id_moneda = $("#id_moneda").val();
-	var ganancia_unidad = $("#ganancia_unidad").val();
-	var id_grupo = $("#id_grupo").val();
-	var id_familia = $("#id_familia").val();
-	var id_clase = $("#id_clase").val();
-	var id_sub_clase = $("#id_sub_clase").val();
-	var id_sub_clase_dos = $("#id_sub_clase_dos").val();
-	var id_marca_producto = $("#id_marca_producto").val();
-	var id_cta_vta = $("#id_cta_vta").val();
-	var id_cta_ent = $("#id_cta_ent").val();
-	var id_sunat = $("#id_sunat").val();
+$("#actualizar").on("click", function () {
 
-	debugger;
+	validar_registrar();
 
-	$.ajax({
-		async: false,
-		url: base_url + "C_productos/actualizar",
-		type: "POST",
-		dataType: "json",
-		data: {
-			id_producto: id_producto,
-			codigo_producto: codigo_producto,
-			descripcion_producto: descripcion_producto,
-			id_almacen: id_almacen,
-			id_unidad_medida: id_unidad_medida,
-			precio_costo: precio_costo,
-			porcentaje: porcentaje,
-			precio_unitario: precio_unitario,
-			rentabilidad: rentabilidad,
-			id_moneda: id_moneda,
-			ganancia_unidad, ganancia_unidad,
-			id_grupo: id_grupo,
-			id_familia: id_familia,
-			id_clase: id_clase,
-			id_sub_clase: id_sub_clase,
-			id_sub_clase_dos: id_sub_clase_dos,
-			id_marca_producto: id_marca_producto,
-			id_cta_vta: id_cta_vta,
-			id_cta_ent: id_cta_ent,
-			id_sunat: id_sunat,
-		},
-		success: function (data) {
-			debugger;
-			window.location.href = base_url + "C_productos";
-			debugger;
-		},
-	});
+	if (resultado_campo == true) {
+
+		var id_producto = $("#id_producto").val();
+		var codigo_producto = $("#codigo_producto").val();
+		var descripcion_producto = $("#descripcion_producto").val();
+		var id_almacen = $("#id_almacen").val();
+		var id_unidad_medida = $("#id_unidad_medida").val();
+		var precio_costo = $("#precio_costo").val();
+		var porcentaje = $("#porcentaje").val();
+		var precio_unitario = $("#precio_unitario").val();
+		var rentabilidad = $("#rentabilidad").val();
+		var id_moneda = $("#id_moneda").val();
+		var ganancia_unidad = $("#ganancia_unidad").val();
+		var id_grupo = $("#id_grupo").val();
+		var id_familia = $("#id_familia").val();
+		var id_clase = $("#id_clase").val();
+		var id_sub_clase = $("#id_sub_clase").val();
+		var id_sub_clase_dos = $("#id_sub_clase_dos").val();
+		var id_marca_producto = $("#id_marca_producto").val();
+		var id_cta_vta = $("#id_cta_vta").val();
+		var id_cta_ent = $("#id_cta_ent").val();
+		var id_sunat = $("#id_sunat").val();
+
+
+		$.ajax({
+			async: false,
+			url: base_url + "C_productos/actualizar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				id_producto: id_producto,
+				codigo_producto: codigo_producto,
+				descripcion_producto: descripcion_producto,
+				id_almacen: id_almacen,
+				id_unidad_medida: id_unidad_medida,
+				precio_costo: precio_costo,
+				porcentaje: porcentaje,
+				precio_unitario: precio_unitario,
+				rentabilidad: rentabilidad,
+				id_moneda: id_moneda,
+				ganancia_unidad, ganancia_unidad,
+				id_grupo: id_grupo,
+				id_familia: id_familia,
+				id_clase: id_clase,
+				id_sub_clase: id_sub_clase,
+				id_sub_clase_dos: id_sub_clase_dos,
+				id_marca_producto: id_marca_producto,
+				id_cta_vta: id_cta_vta,
+				id_cta_ent: id_cta_ent,
+				id_sunat: id_sunat,
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_productos";
+				debugger;
+			},
+		});
+	}
 });
 
 $(".select2").select2({
@@ -181,7 +188,7 @@ $("#manual").on("click", function () {
 });
 
 function validar_radio() {
-	debugger;
+
 	var automatico = document.getElementById("automatico").checked;
 
 	if (automatico == true) {
@@ -405,3 +412,52 @@ $("#porcentaje").on("keyup", function () {
 
 });
 
+
+function validar_registrar() {
+
+	var codigo_producto = $('#codigo_producto').val();
+	var id_almacen = $('#id_almacen').val();
+	var id_unidad_medida = $('#id_unidad_medida').val();
+	var id_sunat = $('#id_sunat').val();
+	var descripcion_producto = $('#descripcion_producto').val();
+	var id_moneda = $('#id_moneda').val();
+	var precio_costo = $('#precio_costo').val();
+	var id_marca_producto = $('#id_marca_producto').val();
+
+
+	if (codigo_producto == "") {
+		alert("Debe ingresar Codigo Producto")
+		resultado_campo = false;
+	}
+	else if (id_almacen == 0) {
+		alert("Debe seleccionar Almacen")
+		resultado_campo = false;
+	}
+	else if (id_unidad_medida == 0) {
+		alert("Debe seleccionar Unidad Medida")
+		resultado_campo = false;
+	}
+	else if (id_sunat == 0) {
+		alert("Debe seleccionar Codigo Sunat")
+		resultado_campo = false;
+	}
+	else if (descripcion_producto == "") {
+		alert("Debe ingresar Nombre Producto")
+		resultado_campo = false;
+	}
+	else if (id_moneda == 0) {
+		alert("Debe seleccionar Moneda")
+		resultado_campo = false;
+	}
+	else if (precio_costo == 0) {
+		alert("Debe ingresar Precio Costo")
+		resultado_campo = false;
+	}
+	else if (id_marca_producto == 0) {
+		alert("Debe seleccionar Marca Producto")
+		resultado_campo = false;
+	}
+	else {
+		resultado_campo = true;
+	}
+}

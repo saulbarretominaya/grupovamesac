@@ -92,6 +92,7 @@ $(document).on("click", ".js_seleccionar_modal_trabajadores", function () {
 	$("#ds_almacen").val(split_trabajadores[3]);
 	$("#opcion_target_trabajadores").modal("hide");
 });
+
 $(document).ready(function () {
 
 	/* Modal 1 */
@@ -110,6 +111,10 @@ $(document).ready(function () {
 	$("#id_datatable_trabajadores thead #dtable_ape_materno").each(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_trabajadores thead #dtable_ds_cargo_trabajador").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
 	});
 	$("#id_datatable_trabajadores thead #dtable_ds_empresa").each(function () {
 		var title = $(this).text();
@@ -160,8 +165,6 @@ $(document).ready(function () {
 
 });
 /* Fin de Ventanas Modal Registrar*/
-
-
 
 /* Otros */
 $(".select2").select2({
