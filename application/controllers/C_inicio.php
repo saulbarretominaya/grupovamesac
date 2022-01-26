@@ -38,6 +38,8 @@ class C_inicio extends CI_Controller
             $data = array(
                 'id_usuario' => $res->id_usuario,
                 'ds_nombre_usuario' => $res->ds_nombre_usuario,
+                'ds_cargo_trabajador' => $res->ds_cargo_trabajador,
+                'ds_accesos_empresas' => $res->ds_accesos_empresas,
                 'login' => TRUE
             );
             $this->session->set_userdata($data);

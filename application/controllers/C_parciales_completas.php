@@ -38,8 +38,8 @@ class C_parciales_completas extends CI_Controller
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 			'cbox_estado_cotizacion' => $this->M_cbox->cbox_estado_cotizacion(),
 			'cbox_tipo_orden_parcial_completa' => $this->M_cbox->cbox_tipo_orden_parcial_completa(),
-			'enlace_actualizar_cabecera' => $this->M_cotizacion->enlace_actualizar_cabecera($id_cotizacion),
-			'enlace_actualizar_detalle' => $this->M_cotizacion->enlace_actualizar_detalle($id_cotizacion)
+			'enlace_actualizar_cabecera' => $this->M_parciales_completas->enlace_actualizar_cabecera($id_cotizacion),
+			'enlace_actualizar_detalle' => $this->M_parciales_completas->enlace_actualizar_detalle($id_cotizacion)
 		);
 
 		$this->load->view('plantilla/V_header');

@@ -17,6 +17,6 @@ class C_menu extends CI_Controller
     {
         $this->load->view('plantilla/V_header');
         $this->load->view('plantilla/V_aside');
-        $this->load->view('usuarios/V_index');
+        $this->load->view('menu/V_index');
     }
 }

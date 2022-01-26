@@ -35,7 +35,7 @@
                     <input type="hidden" class="form-control" id="id_multitabla" value="">
                     <label class="col-sm-2 col-form-label">Nombre General</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="nombre_tabla" value="" name="nombre_tabla" style="background-color: #7C7C7C; color: white ;">
+                      <input type="text" class="form-control" id="nombre_tabla" value="" name="nombre_tabla">
                     </div>
                   </div>
                   <div class="form-group row">
