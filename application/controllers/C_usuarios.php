@@ -37,6 +37,22 @@ class C_usuarios extends CI_Controller
         $this->load->view('usuarios/V_registrar', $data);
     }
 
+
+    public function validar_usuario_repetido_registrar()
+    {
+        $usuario = $this->input->post("usuario");
+        $cantidad_usuario = $this->M_usuarios->validar_usuario_repetido_registrar($usuario);
+        echo json_encode($cantidad_usuario);
+    }
+
+    public function validar_usuario_repetido_actualizar()
+    {
+        $id_usuario = $this->input->post("id_usuario");
+        $usuario = $this->input->post("usuario");
+        $cantidad_usuario = $this->M_usuarios->validar_usuario_repetido_actualizar($id_usuario, $usuario);
+        echo json_encode($cantidad_usuario);
+    }
+
     public function registrar()
     {
         $usuario = $this->input->post("usuario");

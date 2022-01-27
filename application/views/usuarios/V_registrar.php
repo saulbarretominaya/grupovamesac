@@ -122,13 +122,13 @@
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Usuario</label>
-                        <input class="form-control" type="text" class="form-control" id="usuario" autocomplete="nope">
+                        <input class="form-control" type="text" class="form-control" id="usuario">
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Contraseña</label>
-                        <input class="form-control" type="password" class="form-control" id="password" autocomplete="nope">
+                        <input class="form-control" type="password" class="form-control" id="password">
                       </div>
                     </div>
                   </div>
@@ -136,7 +136,7 @@
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Accesos Empresas</label>
-                        <select class="form-select " id="id_empresa" aria-describedby="inputGroupTdocumento" required>
+                        <select class="form-select " id="id_empresa">
                           <option value="0" selected>Seleccionar</option>
                           <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
                             <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">

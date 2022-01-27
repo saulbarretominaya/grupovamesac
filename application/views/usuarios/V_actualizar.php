@@ -32,7 +32,6 @@
                         <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_trabajadores">
                           Buscar
                         </button>
-                        <a><button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button></a>
                         <!-- Modal -->
                         <div class="modal fade" id="opcion_target_trabajadores" tabindex="-1">
                           <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -52,7 +51,9 @@
                                       <th id="dtable_nombres">Nombres</th>
                                       <th id="dtable_ape_paterno">Ape Paterno</th>
                                       <th id="dtable_ape_materno">Ape Materno</th>
-                                      <th id="dtable_ds_tipo_empresa">Tipo Empresa</th>
+                                      <th id="dtable_ds_cargo_trabajador">Cargo</th>
+                                      <th id="dtable_ds_empresa">Trabaja RRHH</th>
+                                      <th id="dtable_ds_sucursal">Sucursal</th>
                                       <th id="dtable_telefono">Celular</th>
                                     </tr>
                                   </thead>
@@ -63,7 +64,9 @@
                                           <td>
                                             <?php $split_trabajadores =
                                               $index_trabajadores->id_trabajador . "*" .
-                                              $index_trabajadores->ds_nombre_usuario;
+                                              $index_trabajadores->ds_nombre_usuario . "*" .
+                                              $index_trabajadores->ds_empresa . "*" .
+                                              $index_trabajadores->ds_sucursal;
                                             ?>
                                             <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_trabajadores" value="<?php echo $split_trabajadores; ?>" data-toggle="modal" data-target="#opcion_target_trabajadores"><span class="fas fa-check"></span></button>
                                           </td>
@@ -71,9 +74,10 @@
                                           <td><?php echo $index_trabajadores->nombres; ?></td>
                                           <td><?php echo $index_trabajadores->ape_paterno; ?></td>
                                           <td><?php echo $index_trabajadores->ape_materno; ?></td>
+                                          <td><?php echo $index_trabajadores->ds_cargo_trabajador; ?></td>
                                           <td><?php echo $index_trabajadores->ds_empresa; ?></td>
+                                          <td><?php echo $index_trabajadores->ds_sucursal; ?></td>
                                           <td><?php echo $index_trabajadores->celular; ?></td>
-
                                         </tr>
                                       <?php endforeach; ?>
                                     <?php endif; ?>
@@ -90,25 +94,20 @@
                       </span>
                     </div>
                   </div>
+
                   <div class="col-md-3">
-                    <label>Empresa</label>
+                    <label>Trabaja RRHH</label>
                     <div class="input-group">
-                      <select class="form-select " id="id_empresa" required>
-                        <option selected>Seleccionar</option>
-                        <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
-                          <?php if ($cbox_empresa->id_dmultitabla == $enlace_actualizar->id_empresa) : ?>
-                            <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>" selected>
-                              <?php echo $cbox_empresa->descripcion; ?>
-                            </option>
-                          <?php else : ?>
-                            <option value="<?php echo $cbox_empresa->id_dmultitabla; ?>">
-                              <?php echo $cbox_empresa->descripcion; ?>
-                            </option>
-                          <?php endif; ?>
-                        <?php endforeach; ?>
-                      </select>
+                      <input class="form-control" type="text" class="form-control" id="ds_empresa" value="<?php echo $enlace_actualizar->ds_trabaja_rrhh; ?>" readonly>
                     </div>
                   </div>
+                  <div class="col-md-3">
+                    <label>Sucursal</label>
+                    <div class="input-group">
+                      <input class="form-control" type="text" class="form-control" id="ds_almacen" value="<?php echo $enlace_actualizar->ds_sucursal; ?>" readonly>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -135,6 +134,25 @@
                     </div>
                   </div>
                   <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-8">
+                        <label for="">Accesos Empresas</label>
+                        <select class="form-select " id="id_empresa">
+                          <option value="0" selected>Seleccionar</option>
+                          <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
+                            <?php if ($cbox_empresa->id_dmultitabla == $enlace_actualizar->id_empresa) : ?>
+                              <option value="<?php echo $cbox_empresa->id_dmultitabla ?>" selected>
+                                <?php echo $cbox_empresa->descripcion; ?>
+                              </option>
+                            <?php else : ?>
+                              <option value="<?php echo $cbox_empresa->id_dmultitabla ?>">
+                                <?php echo $cbox_empresa->descripcion; ?>
+                              </option>
+                            <?php endif; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Rol</label>

@@ -45,6 +45,31 @@ class M_usuarios extends CI_Model
     return $resultados->result();
   }
 
+  public function validar_usuario_repetido_registrar($usuario)
+  {
+    $resultados = $this->db->query(
+      "
+      SELECT 
+      COUNT(*) AS cantidad_usuario
+      FROM usuarios
+      WHERE usuario='$usuario';
+      "
+    );
+    return $resultados->row();
+  }
+
+  public function validar_usuario_repetido_actualizar($id_usuario, $usuario)
+  {
+    $resultados = $this->db->query(
+      "
+      SELECT 
+      COUNT(*) AS cantidad_usuario
+      FROM usuarios
+      WHERE id_usuario='$id_usuario' and usuario='$usuario';
+      "
+    );
+    return $resultados->row();
+  }
 
   public function registrar($usuario, $password, $id_empresa, $id_rol, $id_trabajador)
   {
@@ -62,19 +87,21 @@ class M_usuarios extends CI_Model
   {
     $resultados = $this->db->query(
       "
-    SELECT
-    a.id_usuario,
-    a.usuario,
-    a.password,
-    b.id_trabajador,
-    CONCAT(b.nombres,' ',b.ape_paterno,' ',b.ape_materno) AS ds_nombre_usuario,
-    a.id_rol,
-    (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_rol) AS ds_rol_usuario,
-    a.id_empresa,
-    (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_empresa
-    FROM usuarios a
-    LEFT JOIN trabajadores b ON b.id_trabajador=a.id_trabajador
-    where a.id_usuario='$id_usuario'
+      SELECT
+      a.id_usuario,
+      a.usuario,
+      a.password,
+      a.id_empresa,
+      a.id_rol,
+      CONCAT(b.nombres,' ',b.ape_paterno,' ',b.ape_materno) AS ds_nombre_usuario,
+      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_accesos_empresas,
+      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_empresa) AS ds_trabaja_rrhh,
+      (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_almacen) AS ds_sucursal,
+      (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_rol) AS ds_rol_usuario,
+      b.id_trabajador
+      FROM usuarios a
+      LEFT JOIN trabajadores b ON b.id_trabajador=a.id_trabajador 
+      where a.id_usuario='$id_usuario'
       "
     );
     return $resultados->row();

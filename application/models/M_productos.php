@@ -17,7 +17,7 @@ class M_productos extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
         id_sunat,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        LEFT(descripcion_producto,30) as descripcion_producto,
+        UPPER(descripcion_producto) as descripcion_producto,
         id_moneda,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
         precio_costo,

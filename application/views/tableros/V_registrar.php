@@ -47,7 +47,7 @@
                               <div class="col-md-5">
                                 <div class="input-group">
                                   <label class="col-sm-6 col-form-label">Codigo Tablero</label>
-                                  <input type="text" class="form-control" id="codigo_tablero" placeholder="Codigo Tablero" value="100">
+                                  <input type="text" class="form-control" id="codigo_tablero" placeholder="Codigo Tablero" value="">
                                 </div>
                               </div>
                               <!-- Codigos Sunat< -->
@@ -73,7 +73,7 @@
                               <div class="col-md-12">
                                 <div class="input-group">
                                   <label class="col-sm-12 col-form-label">Descripcion Tablero</label>
-                                  <textarea class="form-control" id="descripcion_tablero" rows="2">Prueba</textarea>
+                                  <textarea class="form-control" id="descripcion_tablero" rows="2"></textarea>
                                 </div>
                               </div>
 
