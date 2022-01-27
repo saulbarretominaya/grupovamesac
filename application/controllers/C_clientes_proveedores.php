@@ -161,8 +161,6 @@ class C_clientes_proveedores extends CI_Controller
         echo json_encode($num_documento);
     }
 
-
-
     public function enlace_actualizar($id_cliente_proveedor)
     {
 
@@ -268,5 +266,21 @@ class C_clientes_proveedores extends CI_Controller
             $tipo_cliente_pago
         );
         echo json_encode($num_documento);
+    }
+
+
+    public function validar_num_documento_repetido_registrar()
+    {
+        $num_documento = $this->input->post("num_documento");
+        $cantidad_num_documento = $this->M_clientes_proveedores->validar_num_documento_repetido_registrar($num_documento);
+        echo json_encode($cantidad_num_documento);
+    }
+
+    public function validar_num_documento_repetido_actualizar()
+    {
+        $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
+        $num_documento = $this->input->post("num_documento");
+        $cantidad_num_documento = $this->M_clientes_proveedores->validar_num_documento_repetido_actualizar($id_cliente_proveedor, $num_documento);
+        echo json_encode($cantidad_num_documento);
     }
 }

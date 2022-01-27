@@ -55,93 +55,25 @@ $("#registrar").on("click", function () {
 	validar_registrar();
 
 	if (resultado_campo == true) {
-		var origen = $("#origen").val();
-		var condicion = $("#condicion").val();
-		var tipo_persona = $("#tipo_persona").val();
-		var tipo_persona_sunat = $("#tipo_persona_sunat").val();
-		var tipo_documento = $("#tipo_documento").val();
-		var num_documento = $("#num_documento").val();
-		var nombres = $("#nombres").val();
-		var ape_paterno = $("#ape_paterno").val();
-		var ape_materno = $("#ape_materno").val();
-		var razon_social = $("#razon_social").val();
-		var direccion_fiscal = $("#direccion_fiscal").val();
-		var direccion_alm1 = $("#direccion_alm1").val();
-		var direccion_alm2 = $("#direccion_alm2").val();
-		var departamento = $("#departamento").val();
-		var provincia = $("#provincia").val();
-		var distrito = $("#distrito").val();
-		var telefono = $("#telefono").val();
-		var celular = $("#celular").val();
-		var tipo_giro = $("#tipo_giro").val();
-		var condicion_pago = $("#condicion_pago").val();
-		var linea_credito_soles = $("#linea_credito_soles").val();
-		var credito_unitario_soles = $("#credito_unitario_soles").val();
-		var disponible_soles = $("#disponible_soles").val();
-		var linea_credito_dolares = $("#linea_credito_dolares").val();
-		var credito_unitario_dolares = $("#credito_unitario_dolares").val();
-		var disponible_dolares = $("#disponible_dolares ").val();
-		var linea_opcional = $("#linea_opcional").val();
-		var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
-		var linea_disponible = $("#linea_disponible ").val();
-		var email = $("#email").val();
-		var contacto_registro = $("#contacto_registro").val();
-		var email_cobranza = $("#email_cobranza").val();
-		var contacto_cobranza = $("#contacto_cobranza").val();
-		var tipo_cliente_pago = $("#tipo_cliente_pago").val();
-		var id_usuario = $("#id_usuario").val();
-		var ds_nombre_usuario = $("#ds_nombre_usuario").val();
 
-		debugger;
+		var num_documento = $("#num_documento").val();
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_clientes_proveedores/insertar",
+			url: base_url + "C_clientes_proveedores/validar_num_documento_repetido_registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
-				origen: origen,
-				condicion: condicion,
-				tipo_persona: tipo_persona,
-				tipo_persona_sunat: tipo_persona_sunat,
-				tipo_documento: tipo_documento,
-				num_documento: num_documento,
-				nombres: nombres,
-				ape_paterno: ape_paterno,
-				ape_materno: ape_materno,
-				razon_social: razon_social,
-				direccion_fiscal: direccion_fiscal,
-				direccion_alm1: direccion_alm1,
-				direccion_alm2: direccion_alm2,
-				departamento: departamento,
-				provincia: provincia,
-				distrito: distrito,
-				telefono: telefono,
-				celular: celular,
-				tipo_giro: tipo_giro,
-				condicion_pago: condicion_pago,
-				linea_credito_soles: linea_credito_soles,
-				credito_unitario_soles: credito_unitario_soles,
-				disponible_soles: disponible_soles,
-				linea_credito_dolares: linea_credito_dolares,
-				credito_unitario_dolares: credito_unitario_dolares,
-				disponible_dolares: disponible_dolares,
-				linea_opcional: linea_opcional,
-				linea_opcional_unitaria: linea_opcional_unitaria,
-				linea_disponible: linea_disponible,
-				email: email,
-				contacto_registro: contacto_registro,
-				email_cobranza: email_cobranza,
-				contacto_cobranza: contacto_cobranza,
-				tipo_cliente_pago: tipo_cliente_pago,
-				id_usuario: id_usuario,
-				ds_nombre_usuario: ds_nombre_usuario
-
+				num_documento: num_documento
 			},
 			success: function (data) {
 				debugger;
-				window.location.href = base_url + "C_clientes_proveedores";
-				debugger;
+				cantidad_num_documento = data["cantidad_num_documento"]
+				if (cantidad_num_documento == "0") {
+					registrar();
+				} else if (cantidad_num_documento == "1") {
+					alert("El Num. Documento ya se encuentra Registrado");
+				}
 			},
 		});
 	}
@@ -155,90 +87,39 @@ $("#actualizar").on("click", function () {
 	if (resultado_campo == true) {
 
 		var id_cliente_proveedor = $("#id_cliente_proveedor").val();
-		var origen = $("#origen").val();
-		var condicion = $("#condicion").val();
-		var tipo_persona = $("#tipo_persona").val();
-		var tipo_persona_sunat = $("#tipo_persona_sunat").val();
-		var tipo_documento = $("#tipo_documento").val();
 		var num_documento = $("#num_documento").val();
-		var nombres = $("#nombres").val();
-		var ape_paterno = $("#ape_paterno").val();
-		var ape_materno = $("#ape_materno").val();
-		var razon_social = $("#razon_social").val();
-		var direccion_fiscal = $("#direccion_fiscal").val();
-		var direccion_alm1 = $("#direccion_alm1").val();
-		var direccion_alm2 = $("#direccion_alm2").val();
-		var departamento = $("#departamento").val();
-		var provincia = $("#provincia").val();
-		var distrito = $("#distrito").val();
-		var telefono = $("#telefono").val();
-		var celular = $("#celular").val();
-		var tipo_giro = $("#tipo_giro").val();
-		var condicion_pago = $("#condicion_pago").val();
-		var linea_credito_soles = $("#linea_credito_soles").val();
-		var credito_unitario_soles = $("#credito_unitario_soles").val();
-		var disponible_soles = $("#disponible_soles").val();
-		var linea_credito_dolares = $("#linea_credito_dolares").val();
-		var credito_unitario_dolares = $("#credito_unitario_dolares").val();
-		var disponible_dolares = $("#disponible_dolares ").val();
-		var linea_opcional = $("#linea_opcional").val();
-		var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
-		var linea_disponible = $("#linea_disponible ").val();
-		var email = $("#email").val();
-		var contacto_registro = $("#contacto_registro").val();
-		var email_cobranza = $("#email_cobranza").val();
-		var contacto_cobranza = $("#contacto_cobranza").val();
-		var tipo_cliente_pago = $("#tipo_cliente_pago").val();
-		var id_usuario = $("#id_usuario").val();
-		var ds_nombre_usuario = $("#ds_nombre_usuario").val();
-
 		$.ajax({
 			async: false,
-			url: base_url + "C_clientes_proveedores/actualizar",
+			url: base_url + "C_clientes_proveedores/validar_num_documento_repetido_actualizar",
 			type: "POST",
 			dataType: "json",
 			data: {
 				id_cliente_proveedor: id_cliente_proveedor,
-				origen: origen,
-				condicion: condicion,
-				tipo_persona: tipo_persona,
-				tipo_persona_sunat: tipo_persona_sunat,
-				tipo_documento: tipo_documento,
-				num_documento: num_documento,
-				nombres: nombres,
-				ape_paterno: ape_paterno,
-				ape_materno: ape_materno,
-				razon_social: razon_social,
-				direccion_fiscal: direccion_fiscal,
-				direccion_alm1: direccion_alm1,
-				direccion_alm2: direccion_alm2,
-				departamento: departamento,
-				provincia: provincia,
-				distrito: distrito,
-				telefono: telefono,
-				celular: celular,
-				tipo_giro: tipo_giro,
-				condicion_pago: condicion_pago,
-				linea_credito_soles: linea_credito_soles,
-				credito_unitario_soles: credito_unitario_soles,
-				disponible_soles: disponible_soles,
-				linea_credito_dolares: linea_credito_dolares,
-				credito_unitario_dolares: credito_unitario_dolares,
-				disponible_dolares: disponible_dolares,
-				linea_opcional: linea_opcional,
-				linea_opcional_unitaria: linea_opcional_unitaria,
-				linea_disponible: linea_disponible,
-				email: email,
-				contacto_registro: contacto_registro,
-				email_cobranza: email_cobranza,
-				contacto_cobranza: contacto_cobranza,
-				tipo_cliente_pago: tipo_cliente_pago,
-				id_usuario: id_usuario,
-				ds_nombre_usuario: ds_nombre_usuario
+				num_documento: num_documento
 			},
 			success: function (data) {
-				debugger;
-				window.location.href = base_url + "C_clientes_proveedores";
+				cantidad_num_documento = data["cantidad_num_documento"]
+				if (cantidad_num_documento == "1") {
+					actualizar();
+				} else if (cantidad_num_documento == "0") {
+					$.ajax({
+						async: false,
+						url: base_url + "C_clientes_proveedores/validar_num_documento_repetido_registrar",
+						type: "POST",
+						dataType: "json",
+						data: {
+							num_documento: num_documento
+						},
+						success: function (data) {
+							cantidad_num_documento = data["cantidad_num_documento"]
+							if (cantidad_num_documento == "0") {
+								actualizar();
+							} else if (cantidad_num_documento == "1") {
+								alert("El Num. Documento ya se encuentra Registrado");
+							}
+						},
+					});
+				}
 			},
 		});
 
@@ -365,4 +246,190 @@ function validar_razon_social() {
 		$("#ape_paterno").attr("readonly", true);
 		$("#ape_materno").attr("readonly", true);
 	}
+}
+
+function registrar() {
+
+	var origen = $("#origen").val();
+	var condicion = $("#condicion").val();
+	var tipo_persona = $("#tipo_persona").val();
+	var tipo_persona_sunat = $("#tipo_persona_sunat").val();
+	var tipo_documento = $("#tipo_documento").val();
+	var num_documento = $("#num_documento").val();
+	var nombres = $("#nombres").val();
+	var ape_paterno = $("#ape_paterno").val();
+	var ape_materno = $("#ape_materno").val();
+	var razon_social = $("#razon_social").val();
+	var direccion_fiscal = $("#direccion_fiscal").val();
+	var direccion_alm1 = $("#direccion_alm1").val();
+	var direccion_alm2 = $("#direccion_alm2").val();
+	var departamento = $("#departamento").val();
+	var provincia = $("#provincia").val();
+	var distrito = $("#distrito").val();
+	var telefono = $("#telefono").val();
+	var celular = $("#celular").val();
+	var tipo_giro = $("#tipo_giro").val();
+	var condicion_pago = $("#condicion_pago").val();
+	var linea_credito_soles = $("#linea_credito_soles").val();
+	var credito_unitario_soles = $("#credito_unitario_soles").val();
+	var disponible_soles = $("#disponible_soles").val();
+	var linea_credito_dolares = $("#linea_credito_dolares").val();
+	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
+	var disponible_dolares = $("#disponible_dolares ").val();
+	var linea_opcional = $("#linea_opcional").val();
+	var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
+	var linea_disponible = $("#linea_disponible ").val();
+	var email = $("#email").val();
+	var contacto_registro = $("#contacto_registro").val();
+	var email_cobranza = $("#email_cobranza").val();
+	var contacto_cobranza = $("#contacto_cobranza").val();
+	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
+	var id_usuario = $("#id_usuario").val();
+	var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+
+	debugger;
+
+	$.ajax({
+		async: false,
+		url: base_url + "C_clientes_proveedores/insertar",
+		type: "POST",
+		dataType: "json",
+		data: {
+			origen: origen,
+			condicion: condicion,
+			tipo_persona: tipo_persona,
+			tipo_persona_sunat: tipo_persona_sunat,
+			tipo_documento: tipo_documento,
+			num_documento: num_documento,
+			nombres: nombres,
+			ape_paterno: ape_paterno,
+			ape_materno: ape_materno,
+			razon_social: razon_social,
+			direccion_fiscal: direccion_fiscal,
+			direccion_alm1: direccion_alm1,
+			direccion_alm2: direccion_alm2,
+			departamento: departamento,
+			provincia: provincia,
+			distrito: distrito,
+			telefono: telefono,
+			celular: celular,
+			tipo_giro: tipo_giro,
+			condicion_pago: condicion_pago,
+			linea_credito_soles: linea_credito_soles,
+			credito_unitario_soles: credito_unitario_soles,
+			disponible_soles: disponible_soles,
+			linea_credito_dolares: linea_credito_dolares,
+			credito_unitario_dolares: credito_unitario_dolares,
+			disponible_dolares: disponible_dolares,
+			linea_opcional: linea_opcional,
+			linea_opcional_unitaria: linea_opcional_unitaria,
+			linea_disponible: linea_disponible,
+			email: email,
+			contacto_registro: contacto_registro,
+			email_cobranza: email_cobranza,
+			contacto_cobranza: contacto_cobranza,
+			tipo_cliente_pago: tipo_cliente_pago,
+			id_usuario: id_usuario,
+			ds_nombre_usuario: ds_nombre_usuario
+
+		},
+		success: function (data) {
+			debugger;
+			window.location.href = base_url + "C_clientes_proveedores";
+			debugger;
+		},
+	});
+
+}
+
+function actualizar() {
+
+	var id_cliente_proveedor = $("#id_cliente_proveedor").val();
+	var origen = $("#origen").val();
+	var condicion = $("#condicion").val();
+	var tipo_persona = $("#tipo_persona").val();
+	var tipo_persona_sunat = $("#tipo_persona_sunat").val();
+	var tipo_documento = $("#tipo_documento").val();
+	var num_documento = $("#num_documento").val();
+	var nombres = $("#nombres").val();
+	var ape_paterno = $("#ape_paterno").val();
+	var ape_materno = $("#ape_materno").val();
+	var razon_social = $("#razon_social").val();
+	var direccion_fiscal = $("#direccion_fiscal").val();
+	var direccion_alm1 = $("#direccion_alm1").val();
+	var direccion_alm2 = $("#direccion_alm2").val();
+	var departamento = $("#departamento").val();
+	var provincia = $("#provincia").val();
+	var distrito = $("#distrito").val();
+	var telefono = $("#telefono").val();
+	var celular = $("#celular").val();
+	var tipo_giro = $("#tipo_giro").val();
+	var condicion_pago = $("#condicion_pago").val();
+	var linea_credito_soles = $("#linea_credito_soles").val();
+	var credito_unitario_soles = $("#credito_unitario_soles").val();
+	var disponible_soles = $("#disponible_soles").val();
+	var linea_credito_dolares = $("#linea_credito_dolares").val();
+	var credito_unitario_dolares = $("#credito_unitario_dolares").val();
+	var disponible_dolares = $("#disponible_dolares ").val();
+	var linea_opcional = $("#linea_opcional").val();
+	var linea_opcional_unitaria = $("#linea_opcional_unitaria").val();
+	var linea_disponible = $("#linea_disponible ").val();
+	var email = $("#email").val();
+	var contacto_registro = $("#contacto_registro").val();
+	var email_cobranza = $("#email_cobranza").val();
+	var contacto_cobranza = $("#contacto_cobranza").val();
+	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
+	var id_usuario = $("#id_usuario").val();
+	var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+
+	$.ajax({
+		async: false,
+		url: base_url + "C_clientes_proveedores/actualizar",
+		type: "POST",
+		dataType: "json",
+		data: {
+			id_cliente_proveedor: id_cliente_proveedor,
+			origen: origen,
+			condicion: condicion,
+			tipo_persona: tipo_persona,
+			tipo_persona_sunat: tipo_persona_sunat,
+			tipo_documento: tipo_documento,
+			num_documento: num_documento,
+			nombres: nombres,
+			ape_paterno: ape_paterno,
+			ape_materno: ape_materno,
+			razon_social: razon_social,
+			direccion_fiscal: direccion_fiscal,
+			direccion_alm1: direccion_alm1,
+			direccion_alm2: direccion_alm2,
+			departamento: departamento,
+			provincia: provincia,
+			distrito: distrito,
+			telefono: telefono,
+			celular: celular,
+			tipo_giro: tipo_giro,
+			condicion_pago: condicion_pago,
+			linea_credito_soles: linea_credito_soles,
+			credito_unitario_soles: credito_unitario_soles,
+			disponible_soles: disponible_soles,
+			linea_credito_dolares: linea_credito_dolares,
+			credito_unitario_dolares: credito_unitario_dolares,
+			disponible_dolares: disponible_dolares,
+			linea_opcional: linea_opcional,
+			linea_opcional_unitaria: linea_opcional_unitaria,
+			linea_disponible: linea_disponible,
+			email: email,
+			contacto_registro: contacto_registro,
+			email_cobranza: email_cobranza,
+			contacto_cobranza: contacto_cobranza,
+			tipo_cliente_pago: tipo_cliente_pago,
+			id_usuario: id_usuario,
+			ds_nombre_usuario: ds_nombre_usuario
+		},
+		success: function (data) {
+			debugger;
+			window.location.href = base_url + "C_clientes_proveedores";
+		},
+	});
+
 }
