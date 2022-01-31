@@ -259,7 +259,7 @@
                                           <th id="dtable_ds_unidad_medida">U.M</th>
                                           <th id="dtable_ds_marca_producto">Marca</th>
                                           <th id="dtable_ds_grupo">Grupo</th>
-                                          <th id="dtable_ds_stock">Stock</th>
+                                          <th id="dtable_stock">Stock</th>
                                           <th id="dtable_ds_moneda">Moneda</th>
                                           <th id="dtable_precio_unitario">Precio Unitario</th>
                                         </tr>

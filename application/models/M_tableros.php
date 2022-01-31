@@ -17,7 +17,7 @@ class M_tableros extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_almacen,
         id_sunat,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        LEFT(descripcion_tablero,30) AS descripcion_tablero,
+        UPPER(descripcion_tablero) as descripcion_tablero,
         id_moneda,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
         id_marca_tablero,

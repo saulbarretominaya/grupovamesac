@@ -248,6 +248,10 @@ $(document).ready(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
 	});
+	$("#id_datatable_productos thead #dtable_stock").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
 	$("#id_datatable_productos thead #dtable_ds_moneda").each(function () {
 		var title = $(this).text();
 		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');

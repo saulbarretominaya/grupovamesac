@@ -30,22 +30,10 @@ $("#id_agregar_multitabla").on("click", function (e) {
 	var descripcion = document.getElementById("descripcion_tabla").value;
 
 	html = "<tr>";
-	html +=
-		"<input type='hidden' name='id_multitabla' value='" + id_multitabla + "'>";
-	html +=
-		"<td>   <input type='hidden' name='abreviatura[]' id='abreviatura' value='" +
-		abreviatura +
-		"'>" +
-		abreviatura +
-		"</td>";
-	html +=
-		"<td>   <input type='hidden' name='descripcion[]' id='descripcion' value='" +
-		descripcion +
-		"'>" +
-		descripcion +
-		"</td>";
-	html +=
-		"<td><button type='button' class='btn btn-danger btn-xs eliminar_fila'><span class='fas fa-trash-alt'></span></button></td>";
+	html += "<input type='hidden' name='id_multitabla' value='" + id_multitabla + "'>";
+	html += "<td><input type='text' class='form-control' name='abreviatura[]' id='abreviatura' value='" + abreviatura + "'></td>";
+	html += "<td><input type='text' class='form-control' name='descripcion[]' id='descripcion' value='" + descripcion + "'></td>";
+	html += "<td><button type='button' class='btn btn-danger btn-xs eliminar_fila'><span class='fas fa-trash-alt'></span></button></td>";
 	html += "</tr>";
 
 	$("#id_table_detalle_multitablas tbody").append(html);
@@ -66,10 +54,8 @@ $("#registrar").on("click", function () {
 	debugger;
 
 	var nombre_tabla = $("#nombre_tabla").val();
-	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]"));
-	var abreviatura = abreviatura.map((o) => o.value);
-	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]"));
-	var descripcion = descripcion.map((o) => o.value);
+	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]")).map((o) => o.value);
+	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]")).map((o) => o.value);
 
 	$.ajax({
 		async: false,
@@ -97,20 +83,11 @@ $("#actualizar").on("click", function () {
 	var nombre_tabla = $("#nombre_tabla").val();
 
 	//Detalle
-	var id_dmultitabla = Array.prototype.slice.call(
-		document.getElementsByName("id_solicitud_to_remove[]")
-	);
-	var id_dmultitabla = id_dmultitabla.map((o) => o.value);
+	var id_dmultitabla = Array.prototype.slice.call(document.getElementsByName("id_solicitud_to_remove[]")).map((o) => o.value);
+	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]")).map((o) => o.value);
+	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]")).map((o) => o.value);
 
-	var abreviatura = Array.prototype.slice.call(
-		document.getElementsByName("abreviatura[]")
-	);
-	var abreviatura = abreviatura.map((o) => o.value);
-
-	var descripcion = Array.prototype.slice.call(
-		document.getElementsByName("descripcion[]")
-	);
-	var descripcion = descripcion.map((o) => o.value);
+	debugger;
 
 	$.ajax({
 		async: false,

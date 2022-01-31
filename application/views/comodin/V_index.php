@@ -26,7 +26,6 @@
                   <th>Moneda</th>
                   <th>Precio Unitario</th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -40,7 +39,6 @@
                       <td><?php echo $index->ds_unidad_medida; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_unitario; ?></td>
-                      <td><a class="btn btn-outline-info btn-sm"><span class="fas fa-search-plus""></span></a></td>
                       <td><a href=" <?php echo base_url(); ?>C_comodin/enlace_actualizar/<?php echo $index->id_comodin; ?>" class="btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>

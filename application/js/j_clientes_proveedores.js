@@ -69,10 +69,11 @@ $("#registrar").on("click", function () {
 			success: function (data) {
 				debugger;
 				cantidad_num_documento = data["cantidad_num_documento"]
+				ds_nombre_usuario = data["ds_nombre_usuario"]
 				if (cantidad_num_documento == "0") {
 					registrar();
 				} else if (cantidad_num_documento == "1") {
-					alert("El Num. Documento ya se encuentra Registrado");
+					alert("El Num. Documento ya se encuentra Registrado por el Vendedor: " + ds_nombre_usuario);
 				}
 			},
 		});
@@ -112,10 +113,11 @@ $("#actualizar").on("click", function () {
 						},
 						success: function (data) {
 							cantidad_num_documento = data["cantidad_num_documento"]
+							ds_nombre_usuario = data["ds_nombre_usuario"]
 							if (cantidad_num_documento == "0") {
 								actualizar();
 							} else if (cantidad_num_documento == "1") {
-								alert("El Num. Documento ya se encuentra Registrado");
+								alert("El Num. Documento ya se encuentra Registrado por el Vendedor: " + ds_nombre_usuario);
 							}
 						},
 					});
