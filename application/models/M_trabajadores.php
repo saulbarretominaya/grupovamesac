@@ -19,10 +19,25 @@ class M_trabajadores extends CI_Model
         return $resultados->result();
     }
 
-    public function index_modal($id_trabajador)
+    public function index_modal_cabecera($id_trabajador)
     {
-        $this->db->where("id_trabajador", $id_trabajador);
-        $resultados = $this->db->get("trabajadores");
+        $resultados = $this->db->query(
+            "
+            SELECT
+            a.nombres,a.ape_materno,a.ape_paterno,a.num_documento,a.celular,id_trabajador,
+            a.email,a.fecha_nacimiento,a.num_documento,a.referencia,a.telefono,a.celular,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_nacionalidad) AS ds_nacionalidad,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_est_civil) AS ds_estado_civil,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_grado_instruccion) AS ds_grado_instruccion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_trabajador) AS ds_tipo_trabajador,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_empresa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_almacen) AS ds_sucursal,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_documento) AS ds_tipo_documento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cargo_trabajador) AS ds_cargo_trabajador
+            FROM trabajadores a
+        where a.id_trabajador='$id_trabajador'
+        "
+        );
         return $resultados->row();
     }
 

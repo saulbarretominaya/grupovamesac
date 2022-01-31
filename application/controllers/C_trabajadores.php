@@ -26,25 +26,15 @@ class C_trabajadores extends CI_Controller
 
     {
         $id_trabajador = $this->input->post("id_trabajador");
+
         $data = array(
-            'detalle' => $this->M_trabajadores->index_modal($id_trabajador),
-            'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
-            'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_almacen' => $this->M_cbox->cbox_almacen(),
-            'cbox_cargo_trabajador' => $this->M_cbox->cbox_cargo_trabajador(),
-            'cbox_sexo' => $this->M_cbox->cbox_sexo(),
-            'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
-            'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
-            'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
-            'cbox_departamento' => $this->M_cbox->cbox_departamento(),
-            'cbox_provincia' => $this->M_cbox->cbox_provincia(),
-            'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'index_modal_cabecera' => $this->M_trabajadores->index_modal_cabecera($id_trabajador)
         );
 
+        print_r($data);
 
 
-        // $this->load->view('plantilla/V_header');
-        // $this->load->view('plantilla/V_aside');
+
         $this->load->view('trabajadores/V_index_modal', $data);
     }
 

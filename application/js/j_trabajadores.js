@@ -12,15 +12,15 @@ $(document).ready(function () {
 	$(":input").inputmask();
 });
 
-$(document).on("click", ".btn-view-trabajador", function () {
+$(document).on("click", ".js_lupa_trabajador", function () {
 	valor_id = $(this).val();
 	$.ajax({
 		url: base_url + "C_trabajadores/index_modal",
 		type: "POST",
 		dataType: "html",
-		data: { id_trabajador: valor_id }, // Verificar
+		data: { id_trabajador: valor_id },
 		success: function (data) {
-			$("#modal-trabajador .modal-body").html(data);
+			$("#id_target_trabajador .modal-content").html(data);
 		},
 	});
 });
