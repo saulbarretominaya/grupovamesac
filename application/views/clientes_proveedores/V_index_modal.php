@@ -1,277 +1,269 @@
-  <!-- PROBAMOS -->
+ <div class="modal-header">
+     <h4 class="modal-title">CLIENTES PROVEEDORES</h4>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+     </button>
+ </div>
+ <div class="modal-body">
+     <div class="row">
+         <div class="col-md-12">
+             <div class="card">
+                 <div class="col-md-12">
+                     <div class="form-group row">
+                         <div class="col-md-6">
+                             <div class="form-group row">
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">NOMBRES</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->nombres ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">APE. PATERNO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->ape_paterno ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">APE. MATERNO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->ape_materno ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">NUM. DOCUMENTO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->email ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">RAZON SOCIAL</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->razon_social ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">DIRECCION FISCAL</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->direccion_fiscal ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">DIRECCION ALMACEN 1</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->direccion_alm1 ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">DIRECCION ALMACEN 2</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->direccion_alm2 ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">TELEFONO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->telefono ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">CELULAR</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->celular ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">LINEA CREDITO SOLES</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->linea_credito_soles ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">LINEA CREDITO DOLARES</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->linea_credito_dolares ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">CREDITO UNITARIO SOLES</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->credito_unitario_soles ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">CREDITO UNITARIO DOLARES</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->credito_unitario_dolares ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">DISPONIBLE SOLES</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->disponible_soles ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <div class="form-group row">
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">DISPONIBLE DOLARES</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->disponible_dolares ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">LINEA OPCIONAL</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->linea_opcional ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">LINEA OPCION UNITARIA</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->linea_opcional_unitaria ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">CORREO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->email ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">CONTACTO REGISTRO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->contacto_registro ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">CORREO COBRANZA</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->email_cobranza ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">CONTACTO COBRANZA</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->contacto_cobranza ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">ORIGEN</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_origen ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">CONDICION</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_condicion ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">TIPO PERSONA</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_tipo_persona ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">TIPO PERSONA SUNAT</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_tipo_persona_sunat ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">TIPO DOCUMENTO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_tipo_documento ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">DEPARTAMENTO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_departamento ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">PROVINCIA</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_tipo_provincia ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">DISTRITO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_distrito ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">TIPO GIRO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_tipo_giro ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">LINEA DISPONIBLE</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_linea_disponible ?>
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-4">TIPO CLIENTE PAGO</label>
+                                         <div class="col-md-7">
+                                             <?php echo $index_modal_cabecera->ds_tipo_cliente_pago ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
 
+     </div>
+ </div>
 
-  <?php
-  $datos = $detalle->nombres . " " . $detalle->ape_paterno . " " . $detalle->ape_materno
-  ?>
-
-  <!-- DETALLE DE TRABAJADORES LOCAL -->
-
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="card">
-            <div class="card-body">
-              <form>
-                <div class="form-row">
-                  <!-- DATOS DE LA EMPRESA-->
-                  <div class="col-md-12 mb-3">
-                    <div class="card card-info">
-                      <div class="card-header">
-                        <h3 class="card-title">Datos de la Empresa</h3>
-                      </div>
-                      <div class="card-body">
-                        <form>
-                          <!-- ID TRABAJADOR
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Codigo </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->id_trabajador; ?>
-                            </div>
-                          </div> -->
-                          <!--TIPO DE PERSONA-->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Tipo de Persona </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_tipo_persona as $cbox_tipo_persona) : ?>
-                                <?php if ($cbox_tipo_persona->id_dmultitabla == $detalle->id_tipo_persona) : ?>
-                                  <?php echo $cbox_tipo_persona->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- TIPO DE PERSONA SUNAT -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for="">Tipo de Persona Sunat </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_tipo_persona_sunat as $cbox_tipo_persona_sunat) : ?>
-                                <?php if ($cbox_tipo_persona_sunat->id_dmultitabla == $detalle->id_tipo_persona_sunat) : ?>
-                                  <?php echo $cbox_tipo_persona_sunat->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- CONDICION -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Condicion de la Persona </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_condicion as $cbox_condicion) : ?>
-                                <?php if ($cbox_condicion->id_dmultitabla == $detalle->id_condicion) : ?>
-                                  <?php echo $cbox_condicion->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- TIPO DE DOCUMENTO -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Tipo de Documento </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
-                                <?php if ($cbox_tipo_documento->id_dmultitabla == $detalle->id_tipo_documento) : ?>
-                                  <?php echo $cbox_tipo_documento->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- NUMERO DE DOCUMENTO-->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Numero de Documento </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->num_documento ?>
-                            </div>
-                          </div>
-
-                        </form>
-                      </div>
-
-                    </div>
-                  </div>
-                  <!-- DATOS PERSONALES-->
-                  <div class="col-md-12 mb-3">
-                    <div class="card card-info">
-                      <div class="card-header">
-                        <h3 class="card-title">Datos Personales</h3>
-                      </div>
-                      <div class="card-body">
-                        <form>
-                          <!--NOMBRE-->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Nombre y Apellidos</label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $datos ?>
-                            </div>
-                          </div>
-                          <!-- EMAIL -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Email </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->email; ?>
-                            </div>
-                          </div>
-                          <!-- RAZON SOCIAL-->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Razon Social </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->razon_social; ?>
-                            </div>
-                          </div>
-                          <!-- ORIGEN -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Origen</label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_origen as $cbox_origen) : ?>
-                                <?php if ($cbox_origen->id_dmultitabla == $detalle->id_origen) : ?>
-                                  <?php echo $cbox_origen->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- DIRECCION FISCAL -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Direccion Fiscal </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->direccion_fiscal; ?>
-                            </div>
-                          </div>
-                          <!-- DIRECCION ALMACEN 1 -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Direccion Almacen 1 </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->direccion_alm1; ?>
-                            </div>
-                          </div>
-                          <!-- DIRECCION ALMACEN 2 -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Direccion Almacen 2 </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->direccion_alm2; ?>
-                            </div>
-                          </div>
-                          <!-- Linea de Disponible -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for="">Linea Disponible $</label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php echo $detalle->linea_credito_dolares; ?>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_linea_disponible as $cbox_linea_disponible) : ?>
-                                <?php if ($cbox_linea_disponible->id_dmultitabla == $detalle->id_linea_disponible) : ?>
-                                  <?php echo $cbox_linea_disponible->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <!-- UBIGEO-->
-                  <div class="col-md-12 mb-3">
-                    <div class="card card-info">
-                      <div class="card-header">
-                        <h3 class="card-title">Ubigeo</h3>
-                      </div>
-                      <div class="card-body">
-                        <form>
-                          <!--DEPARTAMENTO-->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Departamento </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
-                                <?php if ($cbox_departamento->id_dmultitabla == $detalle->id_departamento) : ?>
-                                  <?php echo $cbox_departamento->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- PROVINCIA -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for="">Provincia </label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
-                                <?php if ($cbox_provincia->id_dmultitabla == $detalle->id_provincia) : ?>
-                                  <?php echo $cbox_provincia->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                          <!-- DISTRITO -->
-                          <div class="form-row">
-                            <div class="col-md-5 mb-3">
-                              <label for=""> Distrito</label>
-                            </div>
-                            <div class="col-md-7 mb-3">
-                              <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
-                                <?php if ($cbox_distrito->id_dmultitabla == $detalle->id_distrito) : ?>
-                                  <?php echo $cbox_distrito->descripcion ?>
-                                <?php endif; ?>
-                              <?php endforeach; ?>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-              <!-- /.card-body -->
-            </div>
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </div>
-    <!-- /.div -->
-  </section>
-
-
-  <!-- <div class="row">
-    <div class="col-xs-12">
-
-    </div>
-  </div> -->
-
-  <div class="row">
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"><span class="fa fa-reply"> CERRAR</span></button>
-      <!-- <a href="<?php echo base_url(); ?>Reportes/Ventas/Controller_reportes/reporte_modal/<?php echo $cabecera->id_venta; ?>" class="btn btn-primary" download=""><span class="fa fa-print"></span> DESCARGAR VENTA</a> -->
-    </div>
-  </div>
+ <div class=" modal-footer justify-content-between">
+     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-exit"> Cerrar</span></button>
+     <a href="<?php echo base_url(); ?>C_reportes/cotizacion_id" class="btn btn-primary" download=""><span class="fa fa-print"></span> Descargar</a>
+ </div>
+ </div>

@@ -42,7 +42,7 @@
                       <td><?php echo $index->num_documento; ?></td>
                       <td><?php echo $index->ds_tipo_persona; ?></td>
                       <td><?php echo $index->ds_nombre_usuario; ?></td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm btn-view-clientes" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#modal-clientes"><span class="fa fa-search"></span></button></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cliente_proveedor" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#id_target_cliente_proveedor"><span class="fa fa-search"></span></button></td>
                       <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
                       <!-- <td> <a href="<?php echo base_url(); ?>C_clientes_proveedores/eliminar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-outline-danger btn-sm"><span class="fa fa-trash"></a></td> -->
                     </tr>
@@ -62,22 +62,13 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- MODAL CLIENTES -->
-  <div class="modal fade" id="modal-clientes">
-    <div class="modal-dialog modal-xl">
+  <div class="modal fade" id="id_target_cliente_proveedor" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <p></p>
-        </div>
       </div>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
   </div>
+
 
   <!-- MODAL ADMIN -->
   <div class="modal fade" id="modal-clientes2">

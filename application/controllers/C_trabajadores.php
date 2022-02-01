@@ -31,10 +31,6 @@ class C_trabajadores extends CI_Controller
             'index_modal_cabecera' => $this->M_trabajadores->index_modal_cabecera($id_trabajador)
         );
 
-        print_r($data);
-
-
-
         $this->load->view('trabajadores/V_index_modal', $data);
     }
 

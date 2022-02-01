@@ -12,15 +12,16 @@ $(document).ready(function () {
  or    Inputmask().mask(document.querySelectorAll("input"));*/
 });
 
-$(document).on("click", ".btn-view-clientes", function () {
+$(document).on("click", ".js_lupa_cliente_proveedor", function () {
 	valor_id = $(this).val();
 	$.ajax({
 		url: base_url + "C_clientes_proveedores/index_modal",
 		type: "POST",
 		dataType: "html",
-		data: { id_cliente_proveedor: valor_id }, // Verificar
+		data: { id_cliente_proveedor: valor_id },
 		success: function (data) {
 			$("#modal-clientes .modal-body").html(data);
+			$("#id_target_cliente_proveedor .modal-content").html(data);
 		},
 	});
 });

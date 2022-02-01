@@ -27,24 +27,8 @@ class C_clientes_proveedores extends CI_Controller
     {
         $id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
         $data = array(
-            'detalle' => $this->M_clientes_proveedores->index_modal($id_cliente_proveedor),
-            'cbox_origen' => $this->M_cbox->cbox_origen(),
-            'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_condicion' => $this->M_cbox->cbox_condicion(),
-            'cbox_tipo_persona' => $this->M_cbox->cbox_tipo_persona(),
-            'cbox_tipo_persona_sunat' => $this->M_cbox->cbox_tipo_persona_sunat(),
-            'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
-            'cbox_tipo_cliente_pago' => $this->M_cbox->cbox_tipo_cliente_pago(),
-            'cbox_departamento' => $this->M_cbox->cbox_departamento(),
-            'cbox_provincia' => $this->M_cbox->cbox_provincia(),
-            'cbox_distrito' => $this->M_cbox->cbox_distrito(),
-            'cbox_tipo_giro' => $this->M_cbox->cbox_tipo_giro(),
-            'cbox_linea_disponible' => $this->M_cbox->cbox_linea_disponible(),
-
+            'index_modal_cabecera' => $this->M_clientes_proveedores->index_modal_cabecera($id_cliente_proveedor)
         );
-
-
-
 
         $this->load->view('clientes_proveedores/V_index_modal', $data);
     }

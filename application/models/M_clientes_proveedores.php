@@ -31,10 +31,30 @@ class M_clientes_proveedores extends CI_Model
     }
 
 
-    public function index_modal($id_cliente_proveedor)
+    public function index_modal_cabecera($id_cliente_proveedor)
     {
-        $this->db->where("id_cliente_proveedor", $id_cliente_proveedor);
-        $resultados = $this->db->get("clientes_proveedores");
+        $resultados = $this->db->query(
+            "
+            SELECT
+            nombres,ape_materno,ape_paterno,num_documento,razon_social,direccion_fiscal,direccion_alm1,
+            direccion_alm2,telefono,celular,linea_credito_soles,linea_credito_dolares,credito_unitario_soles,
+            credito_unitario_dolares,disponible_soles,disponible_dolares,linea_opcional,linea_opcional_unitaria,
+            email,contacto_registro,email_cobranza,contacto_cobranza,ds_nombre_usuario,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_origen) AS ds_origen,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_condicion) AS ds_condicion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona_sunat) AS ds_tipo_persona_sunat,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_documento) AS ds_tipo_documento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_tipo_provincia,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_linea_disponible) AS ds_linea_disponible,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_cliente_pago) AS ds_tipo_cliente_pago
+            FROM clientes_proveedores
+            where id_cliente_proveedor='$id_cliente_proveedor'
+        "
+        );
         return $resultados->row();
     }
 

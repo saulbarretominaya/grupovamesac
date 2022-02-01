@@ -24,18 +24,23 @@ class M_trabajadores extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
-            a.nombres,a.ape_materno,a.ape_paterno,a.num_documento,a.celular,id_trabajador,
-            a.email,a.fecha_nacimiento,a.num_documento,a.referencia,a.telefono,a.celular,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_nacionalidad) AS ds_nacionalidad,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_est_civil) AS ds_estado_civil,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_grado_instruccion) AS ds_grado_instruccion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_trabajador) AS ds_tipo_trabajador,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_empresa,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_almacen) AS ds_sucursal,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_documento) AS ds_tipo_documento,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cargo_trabajador) AS ds_cargo_trabajador
+            nombres,ape_materno,ape_paterno,num_documento,celular,id_trabajador,
+            email,fecha_nacimiento,num_documento,referencia,telefono,celular,
+            lugar_nacimiento,domicilio,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_nacionalidad) AS ds_nacionalidad,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_provincia,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_est_civil) AS ds_estado_civil,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grado_instruccion) AS ds_grado_instruccion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_trabajador) AS ds_tipo_trabajador,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_empresa) AS ds_empresa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_sucursal,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_documento) AS ds_tipo_documento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sexo) AS ds_tipo_sexo,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cargo_trabajador) AS ds_cargo_trabajador
             FROM trabajadores a
-        where a.id_trabajador='$id_trabajador'
+        where id_trabajador='$id_trabajador'
         "
         );
         return $resultados->row();
