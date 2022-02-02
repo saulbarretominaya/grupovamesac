@@ -28,7 +28,8 @@ class C_cotizacion extends CI_Controller
 		$id_cotizacion = $this->input->post("id_cotizacion");
 
 		$data = array(
-			"detalle_modal" => $this->M_cotizacion->detalle_modal($id_cotizacion),
+			//"index_modal_cabecera" => $this->M_cotizacion->index_modal_cabecera($id_cotizacion),
+			"index_modal_detalle" => $this->M_cotizacion->index_modal_detalle($id_cotizacion),
 		);
 
 		$this->load->view("cotizacion/V_index_modal", $data);
@@ -59,8 +60,8 @@ class C_cotizacion extends CI_Controller
 
 		//Cabecera
 		$serie_cotizacion = $this->input->post("serie_cotizacion");
-		$id_vendedor = $this->input->post("id_vendedor");
-		$ds_nombre_vendedor = $this->input->post("ds_nombre_vendedor");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 		$fecha_cotizacion = $this->input->post("fecha_cotizacion");
 		$validez_oferta_cotizacion = $this->input->post("validez_oferta_cotizacion");
 		$fecha_vencimiento_validez_oferta = $this->input->post("fecha_vencimiento_validez_oferta");
@@ -119,8 +120,8 @@ class C_cotizacion extends CI_Controller
 		if ($this->M_cotizacion->insertar(
 			//Cabecera
 			$serie_cotizacion,
-			$id_vendedor,
-			$ds_nombre_vendedor,
+			$id_trabajador,
+			$ds_nombre_trabajador,
 			$fecha_cotizacion,
 			$validez_oferta_cotizacion,
 			$fecha_vencimiento_validez_oferta,

@@ -38,23 +38,23 @@
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">CORREO</label>
+                                         <label class="col-md-3">TIPO DE DOC.</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->email ?>
+                                             <?php echo $index_modal_cabecera->ds_tipo_documento ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">FECHA NACIMIENTO</label>
+                                         <label class="col-md-3">NUM. DOC.</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->fecha_nacimiento ?>
+                                             <?php echo $index_modal_cabecera->num_documento ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">NACIONALIDAD</label>
+                                         <label class="col-md-3">NACIONALID.</label>
                                          <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->ds_nacionalidad ?>
                                          </div>
@@ -116,79 +116,88 @@
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-3">TIPO DE DOCUMENTO</label>
-                                         <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->ds_tipo_documento ?>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-3">NUM. DOCUMENTO</label>
-                                         <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->num_documento ?>
-                                         </div>
-                                     </div>
-                                 </div>
+
                              </div>
                          </div>
                          <div class="col-md-6">
                              <div class="form-group row">
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">LUGAR DE NACIMIENTO</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">FECHA NACIMIENTO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->fecha_nacimiento ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">LUGAR DE NACIMIENTO</label>
+                                         <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->lugar_nacimiento ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">DEPARTAMENTO</label>
-                                         <div class="col-md-7">
-                                             <?php echo $index_modal_cabecera->ds_departamento ?>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-4">DOMICILIO ACTUAL</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">DOMICILIO ACTUAL</label>
+                                         <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->domicilio ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">PROVINCIA</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">DEPART.</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->ds_departamento ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">PROVINCIA</label>
+                                         <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->ds_provincia ?>
                                          </div>
                                      </div>
+                                 </div>
+                                 <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">REFERENCIA</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">DISTRITO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->ds_distrito ?>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-3">REFERENCIA</label>
+                                         <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->referencia ?>
                                          </div>
                                      </div>
+                                 </div>
+                                 <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">TELEFONO</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">TELEFONO</label>
+                                         <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->telefono ?>
                                          </div>
                                      </div>
+                                 </div>
+                                 <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">CELULAR</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">CELULAR</label>
+                                         <div class="col-md-9">
                                              <?php echo $index_modal_cabecera->celular ?>
                                          </div>
                                      </div>
+                                 </div>
+                                 <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">DISTRITO</label>
-                                         <div class="col-md-7">
-                                             <?php echo $index_modal_cabecera->ds_distrito ?>
+                                         <label class="col-md-3">CORREO</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->email ?>
                                          </div>
                                      </div>
                                  </div>
@@ -198,8 +207,9 @@
                  </div>
              </div>
          </div>
-
      </div>
+
+ </div>
  </div>
 
  <div class=" modal-footer justify-content-between">

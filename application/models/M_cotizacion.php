@@ -15,7 +15,7 @@ class M_cotizacion extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             a.ds_nombre_cliente_proveedor,
             a.ds_condicion_pago,
-            a.ds_nombre_vendedor,
+            a.ds_nombre_trabajador,
             a.precio_venta,
             id_estado_cotizacion,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
@@ -35,8 +35,8 @@ class M_cotizacion extends CI_Model
 
     public function insertar(
         $serie_cotizacion,
-        $id_vendedor,
-        $ds_nombre_vendedor,
+        $id_trabajador,
+        $ds_nombre_trabajador,
         $fecha_cotizacion,
         $validez_oferta_cotizacion,
         $fecha_vencimiento_validez_oferta,
@@ -67,7 +67,7 @@ class M_cotizacion extends CI_Model
         INSERT INTO cotizacion
         (
             id_cotizacion,
-            serie_cotizacion,id_vendedor,ds_nombre_vendedor,fecha_cotizacion,
+            serie_cotizacion,id_trabajador,ds_nombre_trabajador,fecha_cotizacion,
             validez_oferta_cotizacion,fecha_vencimiento_validez_oferta,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
             ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
 			clausula,lugar_entrega,nombre_encargado,observacion,
@@ -77,7 +77,7 @@ class M_cotizacion extends CI_Model
         VALUES
         (
             '',
-            '$serie_cotizacion','$id_vendedor','$ds_nombre_vendedor','$fecha_cotizacion',
+            '$serie_cotizacion','$id_trabajador','$ds_nombre_trabajador','$fecha_cotizacion',
             '$validez_oferta_cotizacion',STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y'),'$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
             '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
             '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
@@ -314,7 +314,34 @@ class M_cotizacion extends CI_Model
         return $resultados->row();
     }
 
-    public function detalle_modal($id_cotizacion)
+    public function index_modal_cabecera($id_cotizacion)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            nombres,ape_materno,ape_paterno,num_documento,razon_social,direccion_fiscal,direccion_alm1,
+            direccion_alm2,telefono,celular,linea_credito_soles,linea_credito_dolares,credito_unitario_soles,
+            credito_unitario_dolares,disponible_soles,disponible_dolares,linea_opcional,linea_opcional_unitaria,
+            email,contacto_registro,email_cobranza,contacto_cobranza,ds_nombre_usuario,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_origen) AS ds_origen,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_condicion) AS ds_condicion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona_sunat) AS ds_tipo_persona_sunat,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_documento) AS ds_tipo_documento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_tipo_provincia,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_linea_disponible) AS ds_linea_disponible,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_cliente_pago) AS ds_tipo_cliente_pago
+            FROM clientes_proveedores
+            where id_cliente_proveedor='$id_cotizacion'
+        "
+        );
+        return $resultados->row();
+    }
+
+    public function index_modal_detalle($id_cotizacion)
     {
         $resultados = $this->db->query(
             "
@@ -438,7 +465,7 @@ class M_cotizacion extends CI_Model
             a.valor_cambio,
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
-            a.ds_nombre_vendedor,
+            a.ds_nombre_trabajador,
             a.fecha_cotizacion,
             a.ds_nombre_cliente_proveedor,
             a.ds_departamento_cliente_proveedor,

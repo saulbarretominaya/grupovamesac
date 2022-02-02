@@ -327,21 +327,21 @@
                       <div class="form-row">
                         <!-- LINEA OPCIONAL -->
                         <div class="col-md-4 mb-3">
-                          <label for="linea_opcional">Linea Opcional</label>
+                          <label for="linea_opcional">Observaciones</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" required>
                           </div>
                         </div>
                         <!-- LINEA OPCIONAL UNITARIO-->
                         <div class="col-md-4 mb-3">
-                          <label for="linea_opcional_unitaria">Linea Opcional Unitario </label>
+                          <label for="linea_opcional_unitaria">Linea Opcional</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" required>
                           </div>
                         </div>
                         <!-- LINEA DISPONIBLE-->
                         <div class="col-md-4 mb-3">
-                          <label for="linea_disponible">Linea Disponible</label>
+                          <label for="linea_disponible">Estado Cliente</label>
                           <div class="input-group">
                             <select class="form-select " id="linea_disponible" required>
                               <option value="0" selected>Seleccionar</option>

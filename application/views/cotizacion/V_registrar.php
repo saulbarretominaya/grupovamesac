@@ -43,8 +43,8 @@
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="hidden" id="id_vendedor" value="<?php echo $this->session->userdata("id_usuario") ?>">
-                            <input type="text" class="form-control" id="ds_nombre_vendedor" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" readonly>
+                            <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+                            <input type="text" class="form-control" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -790,7 +790,6 @@
                                           </th>
                                         </tr>
                                       </tfoot>
-                                      </tbody>
                                     </table>
 
                                   </div>

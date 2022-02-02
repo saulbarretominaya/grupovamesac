@@ -50,8 +50,8 @@ $("#registrar").on("click", function () {
 
 		//Cabecera
 		var serie_cotizacion = $("#serie_cotizacion").val();
-		var id_vendedor = $("#id_vendedor").val();
-		var ds_nombre_vendedor = $("#ds_nombre_vendedor").val();
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 		var fecha_cotizacion = $("#fecha_cotizacion").val();
 		var validez_oferta_cotizacion = $("#validez_oferta_cotizacion").val();
 		var fecha_vencimiento_validez_oferta = $("#fecha_vencimiento_validez_oferta").val();
@@ -118,8 +118,8 @@ $("#registrar").on("click", function () {
 			data: {
 				//Cabecera
 				serie_cotizacion: serie_cotizacion,
-				id_vendedor: id_vendedor,
-				ds_nombre_vendedor: ds_nombre_vendedor,
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
 				fecha_cotizacion: fecha_cotizacion,
 				validez_oferta_cotizacion: validez_oferta_cotizacion,
 				fecha_vencimiento_validez_oferta: fecha_vencimiento_validez_oferta,

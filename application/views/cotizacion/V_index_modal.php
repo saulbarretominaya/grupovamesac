@@ -10,109 +10,104 @@
              <div class="card">
                  <div class="col-md-12">
                      <div class="form-group row">
-                         <div class="col-md-8">
+                         <div class="col-md-7">
                              <div class="form-group row">
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">FECHA EMISION</label>
-                                         <div class="col-md-9">
-                                             21/10/2021
+                                         <label class="col-md-4">FECHA EMISION COT</label>
+                                         <div class="col-md-8">
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">VALIDEZ OFERTA</label>
+                                         <div class="col-md-8">
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">CONDICION PAGO</label>
-                                         <div class="col-md-9">
-                                             EFECTIVO
+                                         <label class="col-md-4">FECHA VENCIMIENTO COT</label>
+                                         <div class="col-md-8">
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">FECHA VENCIMIENTO</label>
-                                         <div class="col-md-9">
-                                             21/10/2021
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-3">CLIENTE</label>
-                                         <div class="col-md-9">
-                                             JULIAN PACHECO JENNIFER SOLANGE
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-3">DIRECCION</label>
-                                         <div class="col-md-9">
+                                         <label class="col-md-4">MONEDA</label>
+                                         <div class="col-md-8">
 
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">RUC</label>
-                                         <div class="col-md-9">
-                                             45267674
+                                         <label class="col-md-4">CONDICION PAGO</label>
+                                         <div class="col-md-8">
+
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">OBSERVACION</label>
-                                         <div class="col-md-9">
-                                             CABLES
+                                         <label class="col-md-4">CLIENTE</label>
+                                         <div class="col-md-8">
                                          </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">RUC</label>
+                                         <div class="col-md-8">
+
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">DIRECCION</label>
+                                         <div class="col-md-8">
+
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="input-group">
+                                     <label class="col-md-4">LUGAR ENTREGA</label>
+                                     <div class="col-md-8">
                                      </div>
                                  </div>
                              </div>
                          </div>
-                         <div class="col-md-4">
+                         <div class="col-md-5">
                              <div class="form-group row">
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-4">MONEDA</label>
-                                         <div class="col-md-7">
-                                             SOLES
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-4">O. COMPRA</label>
-                                         <div class="col-md-7">
 
-                                         </div>
-                                     </div>
-                                 </div>
                                  <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-4">GUIA</label>
-                                         <div class="col-md-7">
 
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <center><b>DATOS DEL ASESOR COMERCIAL</b></center>
+                                     <center><label>DATOS DEL ASESOR COMERCIAL</label></center>
                                      <div class="input-group">
-                                         <label class="col-md-4">NOMBRE</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">NOMBRE</label>
+                                         <div class="col-md-9">
 
                                          </div>
                                      </div>
                                      <div class="input-group">
-                                         <label class="col-md-4">CELULAR</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">CELULAR</label>
+                                         <div class="col-md-9">
 
                                          </div>
                                      </div>
                                      <div class="input-group">
-                                         <label class="col-md-4">CORREO</label>
-                                         <div class="col-md-7">
+                                         <label class="col-md-3">CORREO</label>
+                                         <div class="col-md-9">
+
+                                         </div>
+                                     </div>
+                                     <div class="input-group">
+                                         <label class="col-md-3">OBSERV.</label>
+                                         <div class="col-md-9">
 
                                          </div>
                                      </div>
@@ -149,40 +144,56 @@
                              </thead>
                              <tbody>
                                  <?php $variable_agrupamiento = "RSBM"; ?>
-                                 <?php foreach ($detalle_modal as $detalle_modal) : ?>
-                                     <?php if ($detalle_modal->id_tablero != '0') { ?>
+                                 <?php foreach ($index_modal_detalle as $index_modal_detalle) : ?>
+                                     <?php if ($index_modal_detalle->id_tablero != '0') { ?>
                                          <tr>
-                                             <?php if ($detalle_modal->id_tablero != $variable_agrupamiento) { ?>
+                                             <?php if ($index_modal_detalle->id_tablero != $variable_agrupamiento) { ?>
                                                  <th></th>
-                                                 <th><?php echo $detalle_modal->cantidad_tablero; ?></th>
-                                                 <th><?php echo $detalle_modal->codigo_tablero; ?></th>
-                                                 <th><?php echo $detalle_modal->descripcion_tablero; ?></th>
-                                                 <th><?php echo $detalle_modal->ds_marca_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->cantidad_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->codigo_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->descripcion_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->ds_marca_tablero; ?></th>
                                                  <th></th>
-                                                 <th><?php echo $detalle_modal->precio_ganancia; ?></th>
-                                                 <th><?php echo $detalle_modal->d_tablero; ?></th>
-                                                 <th><?php echo $detalle_modal->precio_descuento_tablero; ?></th>
-                                                 <th><?php echo $detalle_modal->valor_venta_tablero; ?></th>
-                                                 <th><?php echo $detalle_modal->dias_entrega_tablero; ?></th>
-                                             <?php $variable_agrupamiento = $detalle_modal->id_tablero;
+                                                 <th><?php echo $index_modal_detalle->precio_ganancia; ?></th>
+                                                 <th><?php echo $index_modal_detalle->d_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->precio_descuento_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->valor_venta_tablero; ?></th>
+                                                 <th><?php echo $index_modal_detalle->dias_entrega_tablero; ?></th>
+                                             <?php $variable_agrupamiento = $index_modal_detalle->id_tablero;
                                                 } ?>
                                          </tr>
                                      <?php } ?>
                                      <tr>
                                          <td></td>
-                                         <td><?php echo $detalle_modal->cantidad_producto; ?></td>
-                                         <td><?php echo $detalle_modal->codigo_producto; ?></td>
-                                         <td><?php echo $detalle_modal->descripcion_producto; ?></td>
-                                         <td><?php echo $detalle_modal->ds_marca_producto; ?></td>
-                                         <td><?php echo $detalle_modal->ds_unidad_medida; ?></td>
-                                         <td><?php echo $detalle_modal->precio_unitario; ?></td>
-                                         <td><?php echo $detalle_modal->d_producto; ?></td>
-                                         <td><?php echo $detalle_modal->precio_descuento; ?></td>
-                                         <td><?php echo $detalle_modal->valor_venta; ?></td>
-                                         <td><?php echo $detalle_modal->dias_entrega; ?></td>
+                                         <td><?php echo $index_modal_detalle->cantidad_producto; ?></td>
+                                         <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
+                                         <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>
+                                         <td><?php echo $index_modal_detalle->ds_marca_producto; ?></td>
+                                         <td><?php echo $index_modal_detalle->ds_unidad_medida; ?></td>
+                                         <td><?php echo $index_modal_detalle->precio_unitario; ?></td>
+                                         <td><?php echo $index_modal_detalle->d_producto; ?></td>
+                                         <td><?php echo $index_modal_detalle->precio_descuento; ?></td>
+                                         <td><?php echo $index_modal_detalle->valor_venta; ?></td>
+                                         <td><?php echo $index_modal_detalle->dias_entrega; ?></td>
                                      </tr>
                                  <?php endforeach; ?>
                              </tbody>
+                             <tfoot>
+                                 <tfoot>
+                                     <tr>
+                                         <td colspan="9" class="text-right"><strong>SUB TOTAL</strong></td>
+                                         <td>100.00</td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="9" class="text-right"><strong>SUB TOTAL</strong></td>
+                                         <td>100.00</td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="9" class="text-right"><strong>SUB TOTAL</strong></td>
+                                         <td>100.00</td>
+                                     </tr>
+                                 </tfoot>
+                             </tfoot>
                          </table>
                      </div>
                  </form>
