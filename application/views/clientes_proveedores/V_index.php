@@ -41,7 +41,7 @@
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->num_documento; ?></td>
                       <td><?php echo $index->ds_tipo_persona; ?></td>
-                      <td><?php echo $index->ds_nombre_usuario; ?></td>
+                      <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cliente_proveedor" value="<?php echo $index->id_cliente_proveedor; ?>" data-toggle="modal" data-target="#id_target_cliente_proveedor"><span class="fa fa-search"></span></button></td>
                       <td><a href="<?php echo base_url(); ?>C_clientes_proveedores/enlace_actualizar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
                       <!-- <td> <a href="<?php echo base_url(); ?>C_clientes_proveedores/eliminar/<?php echo $index->id_cliente_proveedor; ?>" class="btn btn-outline-danger btn-sm"><span class="fa fa-trash"></a></td> -->

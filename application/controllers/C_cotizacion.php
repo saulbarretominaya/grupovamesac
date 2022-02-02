@@ -28,7 +28,7 @@ class C_cotizacion extends CI_Controller
 		$id_cotizacion = $this->input->post("id_cotizacion");
 
 		$data = array(
-			//"index_modal_cabecera" => $this->M_cotizacion->index_modal_cabecera($id_cotizacion),
+			"index_modal_cabecera" => $this->M_cotizacion->index_modal_cabecera($id_cotizacion),
 			"index_modal_detalle" => $this->M_cotizacion->index_modal_detalle($id_cotizacion),
 		);
 

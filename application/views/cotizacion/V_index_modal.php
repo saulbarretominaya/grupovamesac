@@ -16,21 +16,23 @@
                                      <div class="input-group">
                                          <label class="col-md-4">FECHA EMISION COT</label>
                                          <div class="col-md-8">
+                                             <?php echo $index_modal_cabecera->fecha_emision; ?>
                                          </div>
                                      </div>
                                  </div>
-
                                  <div class="col-md-12">
                                      <div class="input-group">
                                          <label class="col-md-4">VALIDEZ OFERTA</label>
                                          <div class="col-md-8">
+                                             <?php echo $index_modal_cabecera->validez_oferta_cotizacion; ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">FECHA VENCIMIENTO COT</label>
+                                         <label class="col-md-4">FECHA VENC. COT</label>
                                          <div class="col-md-8">
+                                             <?php echo $index_modal_cabecera->fecha_vencimiento_validez_oferta; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -38,7 +40,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">MONEDA</label>
                                          <div class="col-md-8">
-
+                                             <?php echo $index_modal_cabecera->ds_moneda; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -46,7 +48,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">CONDICION PAGO</label>
                                          <div class="col-md-8">
-
+                                             <?php echo $index_modal_cabecera->ds_condicion_pago; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -54,14 +56,15 @@
                                      <div class="input-group">
                                          <label class="col-md-4">CLIENTE</label>
                                          <div class="col-md-8">
+                                             <?php echo $index_modal_cabecera->ds_nombre_cliente_proveedor; ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">RUC</label>
+                                         <label class="col-md-4">RUC/DNI</label>
                                          <div class="col-md-8">
-
+                                             <?php echo $index_modal_cabecera->num_documento; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -69,46 +72,44 @@
                                      <div class="input-group">
                                          <label class="col-md-4">DIRECCION</label>
                                          <div class="col-md-8">
-
+                                             <?php echo $index_modal_cabecera->direccion_fiscal; ?>
                                          </div>
                                      </div>
                                  </div>
-
                                  <div class="input-group">
                                      <label class="col-md-4">LUGAR ENTREGA</label>
                                      <div class="col-md-8">
+                                         <?php echo $index_modal_cabecera->lugar_entrega; ?>
                                      </div>
                                  </div>
                              </div>
                          </div>
                          <div class="col-md-5">
                              <div class="form-group row">
-
                                  <div class="col-md-12">
-
                                      <center><label>DATOS DEL ASESOR COMERCIAL</label></center>
                                      <div class="input-group">
                                          <label class="col-md-3">NOMBRE</label>
                                          <div class="col-md-9">
-
+                                             <?php echo $index_modal_cabecera->ds_nombre_trabajador; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">CELULAR</label>
                                          <div class="col-md-9">
-
+                                             <?php echo $index_modal_cabecera->celular; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">CORREO</label>
                                          <div class="col-md-9">
-
+                                             <?php echo $index_modal_cabecera->email; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">OBSERV.</label>
                                          <div class="col-md-9">
-
+                                             <?php echo $index_modal_cabecera->observacion; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -181,16 +182,20 @@
                              <tfoot>
                                  <tfoot>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>SUB TOTAL</strong></td>
-                                         <td>100.00</td>
+                                         <td colspan="9" class="text-right"><strong>TOTAL</strong></td>
+                                         <td> <?php echo $index_modal_cabecera->total; ?></td>
                                      </tr>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>SUB TOTAL</strong></td>
-                                         <td>100.00</td>
+                                         <td colspan="9" class="text-right"><strong> DCTO TOTAL</strong></td>
+                                         <td> <?php echo $index_modal_cabecera->descuento_total; ?> </td>
                                      </tr>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>SUB TOTAL</strong></td>
-                                         <td>100.00</td>
+                                         <td colspan="9" class="text-right"><strong>IGV</strong></td>
+                                         <td> <?php echo $index_modal_cabecera->igv; ?> </td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="9" class="text-right"><strong>PRECIO VENTA</strong></td>
+                                         <td> <?php echo $index_modal_cabecera->precio_venta; ?> </td>
                                      </tr>
                                  </tfoot>
                              </tfoot>

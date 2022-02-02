@@ -98,8 +98,8 @@ class C_clientes_proveedores extends CI_Controller
         $contacto_cobranza = $this->input->post("contacto_cobranza");
         $tipo_cliente_pago = $this->input->post("tipo_cliente_pago");
 
-        $id_usuario = $this->input->post("id_usuario");
-        $ds_nombre_usuario = $this->input->post("ds_nombre_usuario");
+        $id_trabajador = $this->input->post("id_trabajador");
+        $ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 
 
 
@@ -138,8 +138,8 @@ class C_clientes_proveedores extends CI_Controller
             $email_cobranza,
             $contacto_cobranza,
             $tipo_cliente_pago,
-            $id_usuario,
-            $ds_nombre_usuario,
+            $id_trabajador,
+            $ds_nombre_trabajador,
         );
 
         echo json_encode($num_documento);

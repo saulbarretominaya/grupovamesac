@@ -9,7 +9,7 @@ class M_clientes_proveedores extends CI_Model
     public function index()
 
     {
-        $id_usuario = $this->session->userdata('id_usuario');
+        $id_trabajador = $this->session->userdata('id_trabajador');
 
         $resultados = $this->db->query(
             "
@@ -20,11 +20,11 @@ class M_clientes_proveedores extends CI_Model
             END) ds_nombre_cliente_proveedor,
             num_documento,
             id_cliente_proveedor,
-            id_usuario,
-            ds_nombre_usuario,
+            id_trabajador,
+            ds_nombre_trabajador,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona
             FROM clientes_proveedores
-            WHERE id_usuario='$id_usuario'
+            WHERE id_trabajador='$id_trabajador'
             "
         );
         return $resultados->result();
@@ -39,7 +39,7 @@ class M_clientes_proveedores extends CI_Model
             nombres,ape_materno,ape_paterno,num_documento,razon_social,direccion_fiscal,direccion_alm1,
             direccion_alm2,telefono,celular,linea_credito_soles,linea_credito_dolares,credito_unitario_soles,
             credito_unitario_dolares,disponible_soles,disponible_dolares,linea_opcional,linea_opcional_unitaria,
-            email,contacto_registro,email_cobranza,contacto_cobranza,ds_nombre_usuario,
+            email,contacto_registro,email_cobranza,contacto_cobranza,ds_nombre_trabajador,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_origen) AS ds_origen,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_condicion) AS ds_condicion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
@@ -93,15 +93,15 @@ class M_clientes_proveedores extends CI_Model
         $email_cobranza,
         $contacto_cobranza,
         $tipo_cliente_pago,
-        $id_usuario,
-        $ds_nombre_usuario
+        $id_trabajador,
+        $ds_nombre_trabajador
 
     ) {
         return $this->db->query("INSERT INTO clientes_proveedores
         (id_cliente_proveedor, id_origen,id_condicion, id_tipo_persona, id_tipo_persona_sunat, id_tipo_documento,num_documento,nombres,ape_paterno, ape_materno, razon_social, direccion_fiscal, direccion_alm1, direccion_alm2, id_departamento, id_provincia, id_distrito, telefono, celular, id_tipo_giro, id_condicion_pago,linea_credito_soles,credito_unitario_soles,disponible_soles,linea_credito_dolares, credito_unitario_dolares,disponible_dolares,linea_opcional, linea_opcional_unitaria, id_linea_disponible,email,contacto_registro,email_cobranza,contacto_cobranza,id_tipo_cliente_pago,
-        id_usuario,ds_nombre_usuario)
+        id_trabajador,ds_nombre_trabajador)
         VALUES ('','$origen', '$condicion', '$tipo_persona', '$tipo_persona_sunat', '$tipo_documento',  '$num_documento', '$nombres', '$ape_paterno', '$ape_materno', '$razon_social', '$direccion_fiscal', '$direccion_alm1', '$direccion_alm2', '$departamento', '$provincia', '$distrito', '$telefono', '$celular', '$tipo_giro', '$condicion_pago','$linea_credito_soles', '$credito_unitario_soles', '$disponible_soles', '$linea_credito_dolares', '$credito_unitario_dolares', '$disponible_dolares','$linea_opcional', '$linea_opcional_unitaria', '$linea_disponible', '$email', '$contacto_registro', '$email_cobranza', '$contacto_cobranza', '$tipo_cliente_pago',
-        '$id_usuario','$ds_nombre_usuario')");
+        '$id_trabajador','$ds_nombre_trabajador')");
     }
 
 
@@ -124,7 +124,7 @@ class M_clientes_proveedores extends CI_Model
             "
             SELECT 
             COUNT(*) AS cantidad_num_documento,
-            ds_nombre_usuario
+            ds_nombre_trabajador
             FROM clientes_proveedores
             WHERE num_documento='$num_documento';
             "
@@ -138,7 +138,7 @@ class M_clientes_proveedores extends CI_Model
             "
             SELECT 
             COUNT(*) AS cantidad_num_documento,
-            ds_nombre_usuario
+            ds_nombre_trabajador
             FROM clientes_proveedores
             WHERE id_cliente_proveedor='$id_cliente_proveedor' and num_documento='$num_documento';
             "

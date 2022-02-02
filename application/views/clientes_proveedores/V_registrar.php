@@ -12,8 +12,8 @@
           </div>
         </div>
       </div>
-      <input type="hidden" value="<?php echo $this->session->userdata("id_usuario") ?>" id="id_usuario">
-      <input type="hidden" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" id="ds_nombre_usuario">
+      <input type="hidden" value="<?php echo $this->session->userdata("id_trabajador") ?>" id="id_trabajador">
+      <input type="hidden" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" id="ds_nombre_trabajador">
     </section>
 
     <section class="content">

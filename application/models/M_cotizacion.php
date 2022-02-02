@@ -64,26 +64,27 @@ class M_cotizacion extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT INTO cotizacion
-        (
-            id_cotizacion,
-            serie_cotizacion,id_trabajador,ds_nombre_trabajador,fecha_cotizacion,
-            validez_oferta_cotizacion,fecha_vencimiento_validez_oferta,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
-            ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
-			clausula,lugar_entrega,nombre_encargado,observacion,
-            id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
-			total,descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion
-        )
-        VALUES
-        (
-            '',
-            '$serie_cotizacion','$id_trabajador','$ds_nombre_trabajador','$fecha_cotizacion',
-            '$validez_oferta_cotizacion',STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y'),'$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
-            '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
-            '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
-            '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
-            '$total','$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857'
-        )"
+            INSERT INTO cotizacion
+            (
+                id_cotizacion,
+                serie_cotizacion,id_trabajador,ds_nombre_trabajador,fecha_cotizacion,
+                validez_oferta_cotizacion,fecha_vencimiento_validez_oferta,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
+                ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
+                clausula,lugar_entrega,nombre_encargado,observacion,
+                id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
+                total,descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion
+            )
+            VALUES
+            (
+                '',
+                '$serie_cotizacion','$id_trabajador','$ds_nombre_trabajador','$fecha_cotizacion',
+                '$validez_oferta_cotizacion',STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y'),'$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
+                '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
+                '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
+                '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
+                '$total','$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857'
+            )
+            "
         );
     }
 
@@ -172,7 +173,7 @@ class M_cotizacion extends CI_Model
 
     public function index_clientes_proveedores()
     {
-        $id_usuario = $this->session->userdata('id_usuario');
+        $id_trabajador = $this->session->userdata('id_trabajador');
 
         $resultados = $this->db->query("
             SELECT
@@ -206,7 +207,7 @@ class M_cotizacion extends CI_Model
             id_tipo_giro,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro
             FROM clientes_proveedores
-            where id_usuario='$id_usuario' and id_tipo_persona='615';
+            where id_trabajador='$id_trabajador' and id_tipo_persona='615';
         ");
         return $resultados->result();
     }
@@ -319,23 +320,17 @@ class M_cotizacion extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
-            nombres,ape_materno,ape_paterno,num_documento,razon_social,direccion_fiscal,direccion_alm1,
-            direccion_alm2,telefono,celular,linea_credito_soles,linea_credito_dolares,credito_unitario_soles,
-            credito_unitario_dolares,disponible_soles,disponible_dolares,linea_opcional,linea_opcional_unitaria,
-            email,contacto_registro,email_cobranza,contacto_cobranza,ds_nombre_usuario,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_origen) AS ds_origen,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_condicion) AS ds_condicion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona_sunat) AS ds_tipo_persona_sunat,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_documento) AS ds_tipo_documento,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_tipo_provincia,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_linea_disponible) AS ds_linea_disponible,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_cliente_pago) AS ds_tipo_cliente_pago
-            FROM clientes_proveedores
-            where id_cliente_proveedor='$id_cotizacion'
+            DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_emision,a.validez_oferta_cotizacion,
+            DATE_FORMAT(a.fecha_vencimiento_validez_oferta,'%d/%m/%Y') AS fecha_vencimiento_validez_oferta,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+            a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
+            b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
+            c.celular,c.email,a.observacion,a.total,a.descuento_total,a.igv,a.precio_venta
+            FROM
+            cotizacion a
+            LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
+            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
+            where a.id_cotizacion='$id_cotizacion'
         "
         );
         return $resultados->row();

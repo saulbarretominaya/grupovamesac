@@ -70,11 +70,11 @@ $("#registrar").on("click", function () {
 			success: function (data) {
 				debugger;
 				cantidad_num_documento = data["cantidad_num_documento"]
-				ds_nombre_usuario = data["ds_nombre_usuario"]
+				ds_nombre_trabajador = data["ds_nombre_trabajador"]
 				if (cantidad_num_documento == "0") {
 					registrar();
 				} else if (cantidad_num_documento == "1") {
-					alert("El Num. Documento ya se encuentra Registrado por el Vendedor: " + ds_nombre_usuario);
+					alert("El Num. Documento ya se encuentra Registrado por el Vendedor: " + ds_nombre_trabajador);
 				}
 			},
 		});
@@ -114,11 +114,11 @@ $("#actualizar").on("click", function () {
 						},
 						success: function (data) {
 							cantidad_num_documento = data["cantidad_num_documento"]
-							ds_nombre_usuario = data["ds_nombre_usuario"]
+							ds_nombre_trabajador = data["ds_nombre_trabajador"]
 							if (cantidad_num_documento == "0") {
 								actualizar();
 							} else if (cantidad_num_documento == "1") {
-								alert("El Num. Documento ya se encuentra Registrado por el Vendedor: " + ds_nombre_usuario);
+								alert("El Num. Documento ya se encuentra Registrado por el Vendedor: " + ds_nombre_trabajador);
 							}
 						},
 					});
@@ -287,8 +287,8 @@ function registrar() {
 	var email_cobranza = $("#email_cobranza").val();
 	var contacto_cobranza = $("#contacto_cobranza").val();
 	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
-	var id_usuario = $("#id_usuario").val();
-	var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+	var id_trabajador = $("#id_trabajador").val();
+	var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 
 	debugger;
 
@@ -332,8 +332,8 @@ function registrar() {
 			email_cobranza: email_cobranza,
 			contacto_cobranza: contacto_cobranza,
 			tipo_cliente_pago: tipo_cliente_pago,
-			id_usuario: id_usuario,
-			ds_nombre_usuario: ds_nombre_usuario
+			id_trabajador: id_trabajador,
+			ds_nombre_trabajador: ds_nombre_trabajador
 
 		},
 		success: function (data) {
@@ -382,8 +382,8 @@ function actualizar() {
 	var email_cobranza = $("#email_cobranza").val();
 	var contacto_cobranza = $("#contacto_cobranza").val();
 	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
-	var id_usuario = $("#id_usuario").val();
-	var ds_nombre_usuario = $("#ds_nombre_usuario").val();
+	var id_trabajador = $("#id_trabajador").val();
+	var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 
 	$.ajax({
 		async: false,
@@ -426,8 +426,8 @@ function actualizar() {
 			email_cobranza: email_cobranza,
 			contacto_cobranza: contacto_cobranza,
 			tipo_cliente_pago: tipo_cliente_pago,
-			id_usuario: id_usuario,
-			ds_nombre_usuario: ds_nombre_usuario
+			id_trabajador: id_trabajador,
+			ds_nombre_trabajador: ds_nombre_trabajador
 		},
 		success: function (data) {
 			debugger;
