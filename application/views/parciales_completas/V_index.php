@@ -52,7 +52,7 @@
                       <td><?php echo $index->ds_condicion_pago; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->ds_nombre_vendedor; ?></td>
+                      <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><?php echo $ds_estado_pc; ?></td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
                       <td><a href=" <?php echo base_url(); ?>C_parciales_completas/enlace_registrar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>

@@ -72,7 +72,7 @@
                       <td><?php echo $index->resultado_valor_cambio; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->ds_nombre_vendedor; ?></td>
+                      <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
                       <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>

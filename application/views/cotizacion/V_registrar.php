@@ -479,6 +479,7 @@
                       <input type="hidden" id="hidden_id_marca_producto">
                       <input type="hidden" id="hidden_ds_marca_producto">
                       <input type="hidden" id="tipo_moneda_origen">
+                      <input type="hidden" id="hidden_item">
                     </div>
 
                     <div class="col-md-4">

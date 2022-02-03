@@ -144,8 +144,10 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php $variable_agrupamiento = "RSBM"; ?>
-                                 <?php foreach ($index_modal_detalle as $index_modal_detalle) : ?>
+                                 <?php
+                                    $variable_agrupamiento = "RSBM";
+
+                                    foreach ($index_modal_detalle as $index_modal_detalle) : ?>
                                      <?php if ($index_modal_detalle->id_tablero != '0') { ?>
                                          <tr>
                                              <?php if ($index_modal_detalle->id_tablero != $variable_agrupamiento) { ?>
@@ -165,7 +167,8 @@
                                          </tr>
                                      <?php } ?>
                                      <tr>
-                                         <td></td>
+                                         <?php $contador = 0; ?>
+                                         <td><?php echo $contador += 1 ?></td>
                                          <td><?php echo $index_modal_detalle->cantidad_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>

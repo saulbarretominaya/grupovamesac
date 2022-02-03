@@ -42,7 +42,7 @@
                           <label for="">Vendedor</label>
                           <div class="input-group">
                             <input type="hidden" id="id_cotizacion" value="<?php echo $enlace_actualizar_cabecera->id_cotizacion ?>">
-                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_vendedor ?>" readonly>
+                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">

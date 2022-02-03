@@ -16,7 +16,7 @@ class M_orden_despacho extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             a.ds_nombre_cliente_proveedor,
             a.ds_condicion_pago,
-            a.ds_nombre_vendedor,
+            a.ds_nombre_trabajador,
             a.precio_venta,
             id_estado_cotizacion,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,

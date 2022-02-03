@@ -122,29 +122,29 @@ class M_cotizacion extends CI_Model
 
     ) {
         return $this->db->query(
+
             "
-        INSERT INTO detalle_cotizacion
-        (
-        id_dcotizacion,
-        id_cotizacion,id_producto,id_tablero,id_comodin,
-        codigo_producto,descripcion_producto,
-        id_unidad_medida,ds_unidad_medida,id_marca_producto,ds_marca_producto,
-        cantidad,
-        precio_inicial,precio_ganancia,g,g_unidad,g_cant_total,
-        precio_descuento,d,d_unidad,d_cant_total,
-        valor_venta,dias_entrega
-        )
-        VALUES
-        (
-        '', 
-        '$id_cotizacion','$id_producto','$id_tablero','$id_comodin',
-        '$codigo_producto','$descripcion_producto',
-        '$id_unidad_medida','$ds_unidad_medida','$id_marca_producto','$ds_marca_producto',
-        '$cantidad',
-        '$precio_inicial','$precio_ganancia','$g','$g_unidad','$g_cant_total',
-        '$precio_descuento','$d','$d_unidad','$d_cant_total',
-        '$valor_venta','$dias_entrega'
-        )
+            INSERT INTO detalle_cotizacion
+            (
+            id_dcotizacion,
+            id_cotizacion,id_producto,id_tablero,id_comodin,
+            codigo_producto,descripcion_producto,
+            id_unidad_medida,ds_unidad_medida,id_marca_producto,ds_marca_producto,
+            cantidad,
+            precio_inicial,precio_ganancia,g,g_unidad,g_cant_total,
+            precio_descuento,d,d_unidad,d_cant_total,
+            valor_venta,dias_entrega
+            )
+            VALUES
+            (
+            '', 
+            '$id_cotizacion','$id_producto','$id_tablero','$id_comodin',
+            '$codigo_producto','$descripcion_producto',
+            '$id_unidad_medida','$ds_unidad_medida','$id_marca_producto','$ds_marca_producto',
+            '$cantidad',
+            '$precio_inicial','$precio_ganancia','$g','$g_unidad','$g_cant_total',
+            '$precio_descuento','$d','$d_unidad','$d_cant_total',
+            '$valor_venta','$dias_entrega');
         "
         );
     }
