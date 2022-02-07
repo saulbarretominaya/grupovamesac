@@ -668,9 +668,11 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
+                            <!-- <button type='button' class='btn btn-outline-primary btn-sm' id="id_item"><span class='fas fa-sync-alt'></span></button></td> -->
                             <table id="id_table_detalle_cotizacion">
                               <thead>
                                 <tr>
+                                  <th>Item </th>
                                   <th>Codigo </th>
                                   <th>Descripcion</th>
                                   <th>U.M</th>

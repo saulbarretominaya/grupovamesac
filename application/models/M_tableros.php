@@ -138,7 +138,7 @@ class M_tableros extends CI_Model
         id_tablero,id_almacen_det,ds_almacen,id_producto,
         codigo_producto,descripcion_producto,id_unidad_medida,ds_unidad_medida,
         id_marca_producto,ds_marca_producto,precio_unitario,cantidad_unitaria,
-        cantidad_total_producto,monto_total_producto
+        cantidad_total_producto,monto_total_producto,fecha_tablero
         )
         VALUES
         (
@@ -146,7 +146,7 @@ class M_tableros extends CI_Model
         '$id_tablero','$id_almacen_det','$ds_almacen','$id_producto',
         '$codigo_producto','$descripcion_producto','$id_unidad_medida','$ds_unidad_medida',
         '$id_marca_producto','$ds_marca_producto','$precio_unitario','$cantidad_unitaria',
-        '$cantidad_total_producto','$monto_total_producto'
+        '$cantidad_total_producto','$monto_total_producto',NOW(5)
         )
         "
         );

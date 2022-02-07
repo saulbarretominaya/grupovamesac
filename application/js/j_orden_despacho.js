@@ -23,18 +23,18 @@ $("#listar").dataTable({
 	},
 	"ordering": false
 });
-$(document).on("click", ".js_lupa_cotizacion", function () {
+$(document).on("click", ".js_lupa_orden_despacho", function () {
 	debugger;
 	valor_id = $(this).val();
 	$.ajax({
-		url: base_url + "C_cotizacion/index_modal",
+		url: base_url + "C_orden_despacho/index_modal",
 		type: "POST",
 		dataType: "html",
 		data: {
-			id_cotizacion: valor_id
+			id_orden_despacho: valor_id
 		},
 		success: function (data) {
-			$("#id_target_cotizacion .modal-content").html(data);
+			$("#id_target_orden_despacho .modal-content").html(data);
 		}
 	});
 });

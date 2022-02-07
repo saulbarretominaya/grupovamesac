@@ -219,6 +219,7 @@
                             <table id="id_table_detalle_parciales_completas">
                               <thead>
                                 <tr>
+                                  <th>Item </th>
                                   <th>Codigo </th>
                                   <th>Descripcion</th>
                                   <th>U.M</th>
@@ -237,6 +238,7 @@
                                   <?php foreach ($enlace_actualizar_detalle as $index) : ?>
                                     <tr>
                                       <input type="hidden" value="<?php echo $index->id_dcotizacion; ?>" name="id_dcotizacion[]">
+                                      <td><?php echo $index->item; ?></td>
                                       <td><?php echo $index->codigo_producto; ?></td>
                                       <td><?php echo $index->descripcion_producto; ?></td>
                                       <td><?php echo $index->ds_unidad_medida; ?></td>
@@ -245,9 +247,10 @@
                                       <td><?php echo $index->cantidad_por_despachar; ?></td>
                                       <td><?php echo $index->valor_venta; ?> </td>
                                       <td class="table-info"><?php echo $index->stock; ?> </td>
-                                      <td class="table-info"><input type="text" class="form-control" id="salida_prod" name="salida_prod[]"> </td>
-                                      <td class="table-info"><input type="text" class="form-control" id="pendiente_prod" value="" name="pendiente_prod[]" readonly></td>
-                                      <td class="table-info"><input type="text" class="form-control" id="valor_venta" value="" name="valor_venta[]" readonly></td>
+                                      <td class="table-info" style="width:90px;"><input type="text" class="form-control" id="salida_prod" name="salida_prod[]"> </td>
+                                      <td class="table-info" style="width:90px;"><input type="text" class="form-control" id="pendiente_prod" value="" name="pendiente_prod[]" readonly></td>
+                                      <td class="table-info" style="width:150px;"><input type="text" class="form-control" id="valor_venta" value="" name="valor_venta[]" readonly></td>
+                                      <input type="hidden" class="form-control" id="estado_elaboracion_pc" value="" name="estado_elaboracion_pc[]" readonly>
                                     </tr>
                                   <?php endforeach; ?>
                                 <?php endif; ?>

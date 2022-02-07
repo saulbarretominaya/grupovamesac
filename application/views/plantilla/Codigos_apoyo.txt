@@ -18,6 +18,7 @@ SELECT DATE_ADD('2021-12-01', INTERVAL 5 DAY) AS fecha_vencimiento => te devuelv
 STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y') formatea fecha
 SELECT CURDATE() => Te devuelve solo Fecha sin la hora
 SELECT NOW() => Devuelve fecha y hora del sistema
+ALTER TABLE detalle_tableros MODIFY fecha_tablero DATETIME(3); => Modifica los nombres de los campos creados
 
 
 

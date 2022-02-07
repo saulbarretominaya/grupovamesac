@@ -74,7 +74,7 @@
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><?php echo $ds_estado; ?> </td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho"><span class="fas fa-search-plus"></span></button></td>
                       <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
                       <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
                       <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
@@ -93,7 +93,7 @@
   </div>
 
   <!-- Inicio Modal -->
-  <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
+  <div class="modal fade" id="id_target_orden_despacho" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
       </div>

@@ -111,6 +111,7 @@ class C_cotizacion extends CI_Controller
 		$d_cant_total = $this->input->post("d_cant_total");
 		$valor_venta = $this->input->post("valor_venta");
 		$dias_entrega = $this->input->post("dias_entrega");
+		$item = $this->input->post("item");
 
 		//Detalle_condicion pago
 		$fecha_cuota = $this->input->post("fecha_cuota");
@@ -175,7 +176,8 @@ class C_cotizacion extends CI_Controller
 			$d_cant_total,
 
 			$valor_venta,
-			$dias_entrega
+			$dias_entrega,
+			$item
 
 		);
 
@@ -213,7 +215,8 @@ class C_cotizacion extends CI_Controller
 		$d_cant_total,
 
 		$valor_venta,
-		$dias_entrega
+		$dias_entrega,
+		$item
 
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
@@ -242,7 +245,8 @@ class C_cotizacion extends CI_Controller
 				$d_cant_total[$i],
 
 				$valor_venta[$i],
-				$dias_entrega[$i]
+				$dias_entrega[$i],
+				$item[$i]
 
 			);
 		}

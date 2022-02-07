@@ -71,7 +71,7 @@
                       <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><?php echo $ds_estado_od; ?> </td>
                       <td><?php echo $ds_estado_epc; ?> </td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_elaborar_pc" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_elaborar_pc"><span class="fas fa-search-plus"></span></button></td>
                       <td><a href=" <?php echo base_url(); ?>C_elaborar_pc/enlace_registrar?id_cotizacion=<?php echo $index->id_cotizacion; ?>&id_parcial_completa=<?php echo $index->id_parcial_completa; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
@@ -88,7 +88,7 @@
   </div>
 
   <!-- Inicio Modal -->
-  <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
+  <div class="modal fade" id="id_target_elaborar_pc" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
       </div>

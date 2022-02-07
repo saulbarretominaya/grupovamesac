@@ -1,5 +1,5 @@
  <div class="modal-header">
-     <h4 class="modal-title">Cotizacion</h4>
+     <h4 class="modal-title">COTIZACION</h4>
      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
      </button>
@@ -85,6 +85,12 @@
                              </div>
                          </div>
                          <div class="col-md-5">
+                             <div class="input-group">
+                                 <label class="col-md-3">CONTACTO</label>
+                                 <div class="col-md-9">
+                                     <?php echo $index_modal_cabecera->nombre_encargado; ?>
+                                 </div>
+                             </div>
                              <div class="form-group row">
                                  <div class="col-md-12">
                                      <center><label>DATOS DEL ASESOR COMERCIAL</label></center>
@@ -112,6 +118,12 @@
                                              <?php echo $index_modal_cabecera->observacion; ?>
                                          </div>
                                      </div>
+                                     <div class="input-group">
+                                         <label class="col-md-3">CLAUSULA.</label>
+                                         <div class="col-md-9">
+                                             <?php echo $index_modal_cabecera->clausula; ?>
+                                         </div>
+                                     </div>
                                  </div>
                              </div>
                          </div>
@@ -129,7 +141,7 @@
                      <div class="card-body" style="overflow-x:auto;">
                          <table>
                              <thead>
-                                 <tr style="background-color: gray;">
+                                 <tr style="background-color:#B0B0B0">
                                      <th>Item</th>
                                      <th>Cantidad</th>
                                      <th>Codigo</th>
@@ -149,9 +161,9 @@
 
                                     foreach ($index_modal_detalle as $index_modal_detalle) : ?>
                                      <?php if ($index_modal_detalle->id_tablero != '0') { ?>
-                                         <tr>
+                                         <tr style="background-color: #F0F0F0;">
                                              <?php if ($index_modal_detalle->id_tablero != $variable_agrupamiento) { ?>
-                                                 <th></th>
+                                                 <th><?php echo $index_modal_detalle->item; ?></th>
                                                  <th><?php echo $index_modal_detalle->cantidad_tablero; ?></th>
                                                  <th><?php echo $index_modal_detalle->codigo_tablero; ?></th>
                                                  <th><?php echo $index_modal_detalle->descripcion_tablero; ?></th>
@@ -167,8 +179,11 @@
                                          </tr>
                                      <?php } ?>
                                      <tr>
-                                         <?php $contador = 0; ?>
-                                         <td><?php echo $contador += 1 ?></td>
+                                         <?php if ($index_modal_detalle->id_tablero != '0') { ?>
+                                             <td><?php echo ""; ?></td>
+                                         <?php } else { ?>
+                                             <td><?php echo $index_modal_detalle->item; ?></td>
+                                         <?php } ?>
                                          <td><?php echo $index_modal_detalle->cantidad_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>

@@ -92,6 +92,7 @@ class M_elaborar_pc extends CI_Model
     {
         $resultados = $this->db->query("
         SELECT
+        a.item, 
         a.id_cotizacion,
         a.id_dcotizacion,
         b.id_parcial_completa,
@@ -148,13 +149,12 @@ class M_elaborar_pc extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function registrar_detalle_cotizacion(
+    public function registrar_detalle_parciales_completas(
         $id_parcial_completa,
         $id_dcotizacion,
         $salida_prod,
         $pendiente_prod,
         $valor_venta
-
     ) {
         return $this->db->query(
             "
@@ -249,5 +249,108 @@ class M_elaborar_pc extends CI_Model
             where id_parcial_completa='$id_parcial_completa'
             "
         );
+    }
+
+    public function actualizar_detalle_cotizacion_estado_elaboracio_pc(
+        $id_dcotizacion,
+        $estado_elaboracion_pc
+    ) {
+        return $this->db->query(
+            "
+        UPDATE detalle_cotizacion
+        SET estado_elaboracion_pc='$estado_elaboracion_pc'
+        where id_dcotizacion='$id_dcotizacion' 
+        "
+        );
+    }
+
+    public function index_modal_cabecera($id_orden_despacho)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            d.id_orden_despacho,
+            DATE_FORMAT(d.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+            a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
+            b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
+            c.celular,c.email,a.observacion,a.total,a.descuento_total,a.igv,a.precio_venta,a.clausula,a.nombre_encargado
+            FROM
+            cotizacion a
+            LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
+            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
+            LEFT JOIN orden_despacho d ON d.id_cotizacion=a.id_cotizacion
+            WHERE d.id_orden_despacho='$id_orden_despacho'
+            "
+        );
+        return $resultados->row();
+    }
+
+    public function index_modal_detalle($id_orden_despacho)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            e.id_orden_despacho,
+            b.item,b.estado_elaboracion_pc as ds_estado_valor_del,a.id_cotizacion,b.id_dcotizacion,b.id_producto,
+            b.id_tablero,b.id_comodin,c.descripcion_tablero,
+            b.cantidad AS cantidad_tablero,d.id_dtablero,c.codigo_tablero,'VAME' AS ds_marca_tablero,
+            b.precio_ganancia,b.d AS d_tablero,b.precio_descuento AS precio_descuento_tablero,
+            b.valor_venta AS valor_venta_tablero,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN d.cantidad_total_producto
+            WHEN b.id_producto !='0' THEN b.cantidad
+            WHEN b.id_comodin !='0' THEN b.cantidad
+            END) AS cantidad_producto,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN d.codigo_producto 
+            WHEN b.id_producto !='0' THEN b.codigo_producto
+            WHEN b.id_comodin !='0' THEN b.codigo_producto 
+            END) AS codigo_producto,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN d.descripcion_producto
+            WHEN b.id_producto !='0' THEN b.descripcion_producto
+            WHEN b.id_comodin  !='0' THEN b.descripcion_producto
+            END) AS descripcion_producto,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN d.ds_marca_producto
+            WHEN b.id_producto !='0' THEN b.ds_marca_producto
+            WHEN b.id_comodin !='0' THEN b.ds_marca_producto
+            END) AS ds_marca_producto,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN d.ds_unidad_medida
+            WHEN b.id_producto !='0' THEN b.ds_unidad_medida
+            WHEN b.id_comodin !='0' THEN b.ds_unidad_medida
+            END) AS ds_unidad_medida,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN ''
+            WHEN b.id_producto !='0' THEN b.precio_ganancia
+            WHEN b.id_comodin !='0' THEN b.precio_ganancia
+            END) AS precio_unitario,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN ''
+            WHEN b.id_producto !='0' THEN b.d
+            WHEN b.id_comodin !='0' THEN b.d
+            END) AS d_producto,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN ''
+            WHEN b.id_producto !='0' THEN b.precio_descuento
+            WHEN b.id_comodin !='0' THEN b.precio_descuento
+            END) AS precio_descuento,
+            (CASE 
+            WHEN b.id_tablero  != '0' THEN ''
+            WHEN b.id_producto !='0' THEN b.valor_venta
+            WHEN b.id_comodin !='0' THEN b.valor_venta
+            END) AS valor_venta
+            FROM cotizacion a
+            LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN tableros c ON c.id_tablero=b.id_tablero
+            LEFT JOIN detalle_tableros d ON d.id_tablero=b.id_tablero
+            LEFT JOIN orden_despacho e ON e.id_cotizacion=a.id_cotizacion
+            WHERE e.id_orden_despacho='$id_orden_despacho'
+            ORDER BY b.id_dcotizacion ASC, d.id_dtablero ASC
+        "
+        );
+        return $resultados->result();
     }
 }

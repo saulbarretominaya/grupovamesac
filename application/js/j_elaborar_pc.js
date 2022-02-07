@@ -27,17 +27,18 @@ $("#listar").dataTable({
 	"ordering": false
 });
 
-$(document).on("click", ".js_lupa_cotizacion", function () {
+$(document).on("click", ".js_lupa_elaborar_pc", function () {
+	debugger;
 	valor_id = $(this).val();
 	$.ajax({
-		url: base_url + "C_cotizacion/index_modal",
+		url: base_url + "C_elaborar_pc/index_modal",
 		type: "POST",
 		dataType: "html",
 		data: {
-			id_cotizacion: valor_id
+			id_orden_despacho: valor_id
 		},
 		success: function (data) {
-			$("#id_target_cotizacion .modal-content").html(data);
+			$("#id_target_elaborar_pc .modal-content").html(data);
 		}
 	});
 });
@@ -60,7 +61,7 @@ $("#registrar").on("click", function () {
 		var salida_prod = Array.prototype.slice.call(document.getElementsByName("salida_prod[]")).map((o) => o.value);
 		var pendiente_prod = Array.prototype.slice.call(document.getElementsByName("pendiente_prod[]")).map((o) => o.value);
 		var valor_venta = Array.prototype.slice.call(document.getElementsByName("valor_venta[]")).map((o) => o.value);
-
+		var estado_elaboracion_pc = Array.prototype.slice.call(document.getElementsByName("estado_elaboracion_pc[]")).map((o) => o.value);
 
 		$.ajax({
 			async: false,
@@ -74,11 +75,12 @@ $("#registrar").on("click", function () {
 				igv: igv,
 				precio_venta: precio_venta,
 				fecha_parcial_completa: fecha_parcial_completa,
-				//Detalle cotizacion
+				//Detalle Update (estado_elaboracion_pc - Elaboracion PC)
 				id_dcotizacion: id_dcotizacion,
 				salida_prod: salida_prod,
 				pendiente_prod: pendiente_prod,
-				valor_venta: valor_venta
+				valor_venta: valor_venta,
+				estado_elaboracion_pc: estado_elaboracion_pc
 			},
 			success: function (data) {
 				debugger;
@@ -93,9 +95,11 @@ $("#registrar").on("click", function () {
 
 $(document).on("keyup", "#salida_prod", function () {
 
-	var cant = Number($(this).parents("tr").find("td")[5].innerText);
-	var precio_u = Number($(this).parents("tr").find("td")[4].innerText);
+	var cant = Number($(this).parents("tr").find("td")[6].innerText);
+	var precio_u = Number($(this).parents("tr").find("td")[5].innerText);
 	var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
+
+	debugger;
 
 	if (isNaN(salida_prod)) {
 		console.log("No puede ingresar datos isNaN");
@@ -122,7 +126,15 @@ $(document).on("keyup", "#salida_prod", function () {
 		total();
 		igv();
 		precio_venta();
+
+		if (pendiente_prod == 0) {
+			$(this).closest('tr').find('#estado_elaboracion_pc').val("completado");
+		} else {
+			$(this).closest('tr').find('#estado_elaboracion_pc').val("pendiente");
+		}
 	}
+
+
 
 });
 

@@ -65,4 +65,16 @@ class C_orden_despacho extends CI_Controller
 		$this->M_orden_despacho->aplicar_tipo_cambio($id_orden_despacho, $resultado_valor_cambio);
 		echo json_encode($id_orden_despacho);
 	}
+
+	public function index_modal()
+	{
+		$id_orden_despacho = $this->input->post("id_orden_despacho");
+
+		$data = array(
+			"index_modal_cabecera" => $this->M_orden_despacho->index_modal_cabecera($id_orden_despacho),
+			"index_modal_detalle" => $this->M_orden_despacho->index_modal_detalle($id_orden_despacho),
+		);
+
+		$this->load->view("orden_despacho/V_index_modal", $data);
+	}
 }
