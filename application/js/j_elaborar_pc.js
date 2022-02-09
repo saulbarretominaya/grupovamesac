@@ -95,8 +95,9 @@ $("#registrar").on("click", function () {
 
 $(document).on("keyup", "#salida_prod", function () {
 
-	var cant = Number($(this).parents("tr").find("td")[6].innerText);
+	var cant = Number($(this).parents("tr").find("td")[7].innerText);
 	var precio_u = Number($(this).parents("tr").find("td")[5].innerText);
+	var precio_u_d = Number($(this).parents("tr").find("td")[6].innerText);
 	var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
 
 	debugger;
@@ -119,14 +120,23 @@ $(document).on("keyup", "#salida_prod", function () {
 		igv();
 		precio_venta();
 	} else {
-		pendiente_prod = cant - salida_prod;
-		valor_venta = precio_u * salida_prod;
-		$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
-		$(this).closest('tr').find('#valor_venta').val(valor_venta.toFixed(2));
-		total();
-		igv();
-		precio_venta();
-
+		if (precio_u_d != 0) {
+			pendiente_prod = cant - salida_prod;
+			valor_venta = precio_u_d * salida_prod;
+			$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
+			$(this).closest('tr').find('#valor_venta').val(valor_venta.toFixed(2));
+			total();
+			igv();
+			precio_venta();
+		} else {
+			pendiente_prod = cant - salida_prod;
+			valor_venta = precio_u * salida_prod;
+			$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
+			$(this).closest('tr').find('#valor_venta').val(valor_venta.toFixed(2));
+			total();
+			igv();
+			precio_venta();
+		}
 		if (pendiente_prod == 0) {
 			$(this).closest('tr').find('#estado_elaboracion_pc').val("completado");
 		} else {

@@ -103,6 +103,11 @@ class M_elaborar_pc extends CI_Model
         a.precio_ganancia,
         a.valor_venta,
         a.cantidad,
+	    (
+        CASE WHEN a.precio_descuento =0 THEN '' ELSE
+        CASE WHEN a.precio_descuento !=0 THEN precio_descuento
+        END END
+        ) AS precio_descuento,       
         b.pendiente_prod,
         c.stock,
         (

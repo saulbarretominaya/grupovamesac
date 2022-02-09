@@ -29,6 +29,7 @@
                   <th>Estado OR</th>
                   <th></th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -54,8 +55,9 @@
                       <td><?php echo $index->precio_venta; ?></td>
                       <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><?php echo $ds_estado_pc; ?></td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a href=" <?php echo base_url(); ?>C_parciales_completas/enlace_registrar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_parciales_completas" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_parciales_completas"><span class="fas fa-search-plus"></span></button></td>
+                      <td></td>
+                      <td></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -71,7 +73,7 @@
   </div>
 
   <!-- Inicio Modal -->
-  <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
+  <div class="modal fade" id="id_target_parciales_completas" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
       </div>

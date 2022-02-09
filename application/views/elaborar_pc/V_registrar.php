@@ -216,7 +216,7 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_parciales_completas">
+                            <table id="id_table_detalle_parciales_completas" style="width: 150%;">
                               <thead>
                                 <tr>
                                   <th>Item </th>
@@ -225,10 +225,11 @@
                                   <th>U.M</th>
                                   <th>Marca</th>
                                   <th>Precio U</th>
+                                  <th>Precio U/D</th>
                                   <th>Cant</th>
                                   <th>Valor Venta</th>
                                   <th class="table-info">Stock</th>
-                                  <th class="table-info">Salida Prod</th>
+                                  <th class=" table-info">Salida Prod</th>
                                   <th class="table-info">Pendiente Prod</th>
                                   <th class="table-info">Valor Venta</th>
                                 </tr>
@@ -244,12 +245,13 @@
                                       <td><?php echo $index->ds_unidad_medida; ?></td>
                                       <td><?php echo $index->ds_marca_producto; ?></td>
                                       <td><?php echo $index->precio_ganancia; ?></td>
+                                      <td><?php echo $index->precio_descuento; ?></td>
                                       <td><?php echo $index->cantidad_por_despachar; ?></td>
                                       <td><?php echo $index->valor_venta; ?> </td>
                                       <td class="table-info"><?php echo $index->stock; ?> </td>
-                                      <td class="table-info" style="width:90px;"><input type="text" class="form-control" id="salida_prod" name="salida_prod[]"> </td>
-                                      <td class="table-info" style="width:90px;"><input type="text" class="form-control" id="pendiente_prod" value="" name="pendiente_prod[]" readonly></td>
-                                      <td class="table-info" style="width:150px;"><input type="text" class="form-control" id="valor_venta" value="" name="valor_venta[]" readonly></td>
+                                      <td class="table-info"><input type="text" class="form-control" id="salida_prod" name="salida_prod[]"> </td>
+                                      <td class="table-info"><input type="text" class="form-control" id="pendiente_prod" value="" name="pendiente_prod[]" readonly></td>
+                                      <td class="table-info"><input type="text" class="form-control" id="valor_venta" value="" name="valor_venta[]" readonly></td>
                                       <input type="hidden" class="form-control" id="estado_elaboracion_pc" value="" name="estado_elaboracion_pc[]" readonly>
                                     </tr>
                                   <?php endforeach; ?>

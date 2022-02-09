@@ -80,7 +80,8 @@ class C_cotizacion extends CI_Controller
 		$ds_condicion_pago = $this->input->post("ds_condicion_pago");
 		$numero_dias_condicion_pago = $this->input->post("numero_dias_condicion_pago");
 		$fecha_condicion_pago = $this->input->post("fecha_condicion_pago");
-		$total = $this->input->post("total");
+		$valor_venta_total_sin_d = $this->input->post("valor_venta_total_sin_d");
+		$valor_venta_total_con_d = $this->input->post("valor_venta_total_con_d");
 		$descuento_total = $this->input->post("descuento_total");
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
@@ -109,7 +110,10 @@ class C_cotizacion extends CI_Controller
 		$d = $this->input->post("d");
 		$d_unidad = $this->input->post("d_unidad");
 		$d_cant_total = $this->input->post("d_cant_total");
-		$valor_venta = $this->input->post("valor_venta");
+
+		$valor_venta_sin_d = $this->input->post("valor_venta_sin_d");
+		$valor_venta_con_d = $this->input->post("valor_venta_con_d");
+
 		$dias_entrega = $this->input->post("dias_entrega");
 		$item = $this->input->post("item");
 
@@ -141,7 +145,8 @@ class C_cotizacion extends CI_Controller
 			$ds_condicion_pago,
 			$numero_dias_condicion_pago,
 			$fecha_condicion_pago,
-			$total,
+			$valor_venta_total_sin_d,
+			$valor_venta_total_con_d,
 			$descuento_total,
 			$igv,
 			$precio_venta,
@@ -175,7 +180,8 @@ class C_cotizacion extends CI_Controller
 			$d_unidad,
 			$d_cant_total,
 
-			$valor_venta,
+			$valor_venta_sin_d,
+			$valor_venta_con_d,
 			$dias_entrega,
 			$item
 
@@ -214,7 +220,8 @@ class C_cotizacion extends CI_Controller
 		$d_unidad,
 		$d_cant_total,
 
-		$valor_venta,
+		$valor_venta_sin_d,
+		$valor_venta_con_d,
 		$dias_entrega,
 		$item
 
@@ -244,7 +251,8 @@ class C_cotizacion extends CI_Controller
 				$d_unidad[$i],
 				$d_cant_total[$i],
 
-				$valor_venta[$i],
+				$valor_venta_sin_d[$i],
+				$valor_venta_con_d[$i],
 				$dias_entrega[$i],
 				$item[$i]
 

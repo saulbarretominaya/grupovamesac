@@ -29,7 +29,6 @@ $("#listar").dataTable({
 	"ordering": false
 });
 $(document).on("click", ".js_lupa_cotizacion", function () {
-	debugger;
 	valor_id = $(this).val();
 	$.ajax({
 		url: base_url + "C_cotizacion/index_modal",
@@ -70,7 +69,8 @@ $("#registrar").on("click", function () {
 		var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
 		var numero_dias_condicion_pago = $("#dias").val();
 		var fecha_condicion_pago = $("#fecha_condicion_pago").val();
-		var total = $("#total").val();
+		var valor_venta_total_sin_d = $("#valor_venta_total_sin_d").val();
+		var valor_venta_total_con_d = $("#valor_venta_total_con_d").val();
 		var descuento_total = $("#descuento_total").val();
 		var igv = $("#igv").val();
 		var precio_venta = $("#precio_venta").val();
@@ -101,15 +101,15 @@ $("#registrar").on("click", function () {
 		var d_unidad = Array.prototype.slice.call(document.getElementsByName("d_unidad[]")).map((o) => o.value);
 		var d_cant_total = Array.prototype.slice.call(document.getElementsByName("d_cant_total[]")).map((o) => o.value);
 
-		var valor_venta = Array.prototype.slice.call(document.getElementsByName("valor_venta[]")).map((o) => o.value);
+		var valor_venta_sin_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_sin_d[]")).map((o) => o.value);
+		var valor_venta_con_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_con_d[]")).map((o) => o.value);
+
 		var dias_entrega = Array.prototype.slice.call(document.getElementsByName("dias_entrega[]")).map((o) => o.value);
-		debugger;
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
 		//Detalle condicion_pago
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
 		var monto_cuota = Array.prototype.slice.call(document.getElementsByName("monto_cuota[]")).map((o) => o.value);
 
-		debugger;
 
 		$.ajax({
 			async: false,
@@ -139,7 +139,8 @@ $("#registrar").on("click", function () {
 				ds_condicion_pago: ds_condicion_pago,
 				numero_dias_condicion_pago: numero_dias_condicion_pago,
 				fecha_condicion_pago: fecha_condicion_pago,
-				total: total,
+				valor_venta_total_sin_d: valor_venta_total_sin_d,
+				valor_venta_total_con_d: valor_venta_total_con_d,
 				descuento_total: descuento_total,
 				igv: igv,
 				precio_venta: precio_venta,
@@ -166,7 +167,10 @@ $("#registrar").on("click", function () {
 				d: d,
 				d_unidad: d_unidad,
 				d_cant_total: d_cant_total,
-				valor_venta: valor_venta,
+
+				valor_venta_sin_d: valor_venta_sin_d,
+				valor_venta_con_d: valor_venta_con_d,
+
 				dias_entrega: dias_entrega,
 				item: item,
 				//Detalle condicion pago
@@ -176,14 +180,12 @@ $("#registrar").on("click", function () {
 			success: function (data) {
 				debugger;
 				window.location.href = base_url + "C_cotizacion";
-				debugger;
 			},
 		});
 	};
 });
 $(document).on("click", ".btn_aprobar_estado", function () {
 
-	debugger;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
 	var estado_cotizacion = $(this).parents("tr").find("td")[7].innerText;
 	var id_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
@@ -281,7 +283,6 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	}
 	$("#precio_unitario").val(split_productos[10]);
 	aplicar_tipo_cambio();
-	calcular_monto();
 	$("#opcion_target_producto").modal("hide");
 });
 $(document).on("click", ".js_seleccionar_modal_tablero", function () {
@@ -306,7 +307,6 @@ $(document).on("click", ".js_seleccionar_modal_tablero", function () {
 	}
 	$("#precio_unitario").val(split_tableros[9]);
 	aplicar_tipo_cambio();
-	calcular_monto();
 	$("#opcion_target_tablero").modal("hide");
 });
 $(document).on("click", ".js_seleccionar_modal_comodin", function () {
@@ -331,11 +331,9 @@ $(document).on("click", ".js_seleccionar_modal_comodin", function () {
 	}
 	$("#precio_unitario").val(split_comodin[10]);
 	aplicar_tipo_cambio();
-	calcular_monto();
 	$("#opcion_target_tablero").modal("hide");
 });
 $(document).on("click", ".js_seleccionar_modal_detalle_tablero", function () {
-	debugger;
 	valor_id = $(this).val();
 	$.ajax({
 		url: base_url + "C_tableros/index_modal",
@@ -345,7 +343,6 @@ $(document).on("click", ".js_seleccionar_modal_detalle_tablero", function () {
 			id_tablero: valor_id
 		},
 		success: function (data) {
-			debugger;
 			$("#opcion_target_detalle_tablero .modal-content").html(data);
 		}
 	});
@@ -650,25 +647,141 @@ $("#dias").on("keyup", function () {
 });
 $("#tipo_moneda_cambio").on("change", function () {
 
-	aplicar_tipo_cambio();
-	calcular_monto();
+	var descripcion_producto = $("#descripcion_producto").val();
+	var precio_unitario = $("#precio_unitario").val();
+	var simbolo_moneda = $("#precio_unitario").val();
+	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+
+
+	if (descripcion_producto == "") {
+		alert("Seleccione un producto, tablero o comodin");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (precio_unitario == "") {
+		alert("Ingrese el precio unitario");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (simbolo_moneda == "") {
+		alert("Ese producto no tiene asignado si es soles o dolar");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (tipo_moneda_cambio == "Seleccionar") {
+		$("#convertidor_unitario").val("");
+		$("#cantidad").val("");
+		$("#valor_venta_sin_d").val("");
+		$("#valor_venta_con_d").val("");
+		$("#precio_inicial").val("");
+		$("#precio_ganancia").val("");
+		$("#g").val("");
+		$("#g_unidad").val("");
+		$("#g_cant_total").val("");
+		$("#precio_ganancia_visor").val("");
+		$("#precio_descuento").val("");
+		$("#d").val("");
+		$("#d_unidad").val("");
+		$("#d_cant_total").val("");
+	} else {
+		aplicar_tipo_cambio();
+		calcular_valor_venta();
+	}
 });
 $("#g").on("keyup", function () {
-	calcular_precio_ganancia();
-	calcular_monto();
+
+	var descripcion_producto = $("#descripcion_producto").val();
+	var precio_unitario = $("#precio_unitario").val();
+	var simbolo_moneda = $("#precio_unitario").val();
+	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+	var cantidad = $("#cantidad").val();
+
+
+	if (descripcion_producto == "") {
+		alert("Seleccione un producto, tablero o comodin");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (precio_unitario == "") {
+		alert("Ingrese el precio unitario");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (simbolo_moneda == "") {
+		alert("Ese producto no tiene asignado si es soles o dolar");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (tipo_moneda_cambio == "Seleccionar") {
+		alert("Selecione su tipo de cambio");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (cantidad == "") {
+		alert("Debe ingresar una cantidad antes de Aplicar Ganancia");
+		$("#g").val("");
+		$("#g_cant_total").val("");
+	}
+	else {
+		calcular_precio_ganancia();
+		calcular_valor_venta();
+	}
+
 });
 $("#cantidad").on("keyup", function () {
-	calcular_monto();
+
+	var descripcion_producto = $("#descripcion_producto").val();
+	var precio_unitario = $("#precio_unitario").val();
+	var simbolo_moneda = $("#precio_unitario").val();
+	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+	var precio_inicial = $("#precio_inicial").val();
+	var cantidad = $("#cantidad").val();
+
+
+	if (descripcion_producto == "") {
+		alert("Seleccione un producto, tablero o comodin");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (precio_unitario == "") {
+		alert("Ingrese el precio unitario");
+		$("#cantidad").val("");
+	}
+	else if (simbolo_moneda == "") {
+		alert("Ese producto no tiene asignado si es soles o dolar");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (tipo_moneda_cambio == "Seleccionar") {
+		alert("Selecione su tipo de cambio");
+		$("#cantidad").val("");
+		$("#g").val("");
+	}
+	else if (cantidad == "") {
+		$("#valor_venta_sin_d").val("");
+		$("#valor_venta_con_d").val("");
+		$("#precio_ganancia").val(precio_inicial);
+		$("#g").val("");
+		$("#g_unidad").val("");
+		$("#g_cant_total").val("");
+		$("#precio_ganancia_visor").val("");
+		$("#precio_descuento").val("");
+		$("#d").val("");
+		$("#d_unidad").val("");
+		$("#d_cant_total").val("");
+	}
+	else {
+		calcular_valor_venta();
+	}
 });
 $("#d").on("keyup", function () {
 	calcular_precio_descuento();
-	calcular_monto();
+	calcular_valor_venta();
 });
 $("#id_agregar_cotizacion").on("click", function (e) {
 
-	//validar_detalle_cotizacion();
+	validar_detalle_cotizacion();
 
-	debugger;
 	var resume_table = document.getElementById("id_table_detalle_cotizacion");
 	for (var i = 0, row; row = resume_table.rows[i]; i++) {
 		console.log(`Fila': ${i}`);
@@ -700,7 +813,9 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 	var precio_descuento = $("#precio_descuento").val();
 	var d_unidad = $("#d_unidad").val();
 	var d_cant_total = $("#d_cant_total").val();
-	var valor_venta = $("#monto").val();
+	var valor_venta_sin_d = $("#valor_venta_sin_d").val();
+	var valor_venta_con_d = $("#valor_venta_con_d").val();
+
 
 	if (resultado_campo == true) {
 		html = "<tr>";
@@ -725,12 +840,15 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 		html += "<td><input type='hidden' name='precio_descuento[]' 		value='" + precio_descuento + "'>" + precio_descuento + "</td>";
 		html += "    <input type='hidden' name='d_unidad[]' 				value='" + d_unidad + "'>";
 		html += "<td><input type='hidden' name='d_cant_total[]' 			value='" + d_cant_total + "'>" + d_cant_total + "</td>";
-		html += "<td><input type='hidden' name='valor_venta[]' 				value='" + valor_venta + "'>" + valor_venta + "</td>";
+		html += "<td><input type='hidden' name='valor_venta_sin_d[]' 				value='" + valor_venta_sin_d + "'>" + valor_venta_sin_d + "</td>";
+		html += "<td><input type='hidden' name='valor_venta_con_d[]' 				value='" + valor_venta_con_d + "'>" + valor_venta_con_d + "</td>";
+
 		html += "<td style='width:10%'><input type='number' name='dias_entrega[]' class='form-control'></td>";
 		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_cotizacion'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
 		$("#id_table_detalle_cotizacion tbody").append(html);
-		total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
 		descuento_total();
 		igv();
 		precio_venta();
@@ -738,29 +856,10 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 
 	}
 });
-
-// $("#id_item").on("click", function (e) {
-// 	generar_item();
-// });
-
-
-function generar_item() {
-
-	var acumulador = 0;
-	$("#id_table_detalle_cotizacion tbody tr").each(function () {
-		debugger;
-		var item = $(this).closest('tr').find('#item').val();
-		acumulador = acumulador + 1;
-		$(this).closest('tr').find('#item').val(acumulador);
-		debugger;
-	});
-}
-
-
 $("#id_agregar_condicion_pago").on("click", function (e) {
 
 	validar_detalle_condicion_pago();
-	debugger
+
 	var fecha_cuota = $("#fecha_cuota").val();
 	var fecha_split = fecha_cuota.split("-");
 	var fecha_cuota = fecha_split[2] + '/' + fecha_split[1] + '/' + fecha_split[0];
@@ -780,23 +879,13 @@ $("#id_agregar_condicion_pago").on("click", function (e) {
 });
 $(document).on("click", ".eliminar_fila_cotizacion", function () {
 
-	//$(this).closest('tr').find('#item').val("100");
-
-	debugger;
 	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
 	html = "<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" + id_detalle + "'>";
-
 	$("#container_solicitud_id_remove").append(html);
 	$(this).closest("tr").remove();
 	generar_item();
-
-	// var resume_table = document.getElementById("id_table_detalle_cotizacion");
-	// for (var i = 0, row; row = resume_table.rows[i]; i++) {
-	// 	console.log(`Fila': ${i}`);
-
-	// }
-
-	total();
+	valor_venta_total_sin_d();
+	valor_venta_total_con_d();
 	igv();
 	precio_venta();
 	limpiar_campos();
@@ -846,14 +935,22 @@ $("#monto_cuota").on({
 
 
 /* Funciones */
-function total() {
+function valor_venta_total_sin_d() {
 	var acumulador = 0;
 	$("#id_table_detalle_cotizacion tbody tr").each(function () {
 		var posicion_valor_venta = $(this).find("td:eq(10)").text();
-		// valor = Number(valorcito.replace(/,/g, ''));
 		valor_venta = Number(posicion_valor_venta);
 		acumulador = (acumulador + valor_venta)
-		$("#total").val(acumulador.toFixed(2));
+		$("#valor_venta_total_sin_d").val(acumulador.toFixed(2));
+	});
+}
+function valor_venta_total_con_d() {
+	var acumulador = 0;
+	$("#id_table_detalle_cotizacion tbody tr").each(function () {
+		var posicion_valor_venta = $(this).find("td:eq(11)").text();
+		valor_venta = Number(posicion_valor_venta);
+		acumulador = (acumulador + valor_venta)
+		$("#valor_venta_total_con_d").val(acumulador.toFixed(2));
 	});
 }
 function descuento_total() {
@@ -870,24 +967,42 @@ function descuento_total() {
 
 }
 function igv() {
-	var total = Number($("#total").val());
-	var igv = (total * 0.18);
-	$("#igv").val(igv.toFixed(2));
+	debugger;
+	var valor_venta_total_sin_d = Number($("#valor_venta_total_sin_d").val());
+	var valor_venta_total_con_d = Number($("#valor_venta_total_con_d").val());
+
+	if (valor_venta_total_con_d == 0) {
+		var valor_venta_total_sin_d = (valor_venta_total_sin_d * 0.18);
+		$("#igv").val(valor_venta_total_sin_d.toFixed(2));
+	} else {
+		var valor_venta_total_con_d = (valor_venta_total_con_d * 0.18);
+		$("#igv").val(valor_venta_total_con_d.toFixed(2));
+	}
 }
 function precio_venta() {
-	var total = Number($("#total").val());
+	var valor_venta_total_con_d = Number($("#valor_venta_total_con_d").val());
 	var igv = Number($("#igv").val());
-	var precio_venta = total + igv;
+	var precio_venta = valor_venta_total_con_d + igv;
 	$("#precio_venta").val(precio_venta.toFixed(2));
 }
 function calcular_precio_ganancia() {
+
 	var precio_inicial = Number($("#precio_inicial").val());
 	var g = Number($("#g").val());
 	var g_unidad = (precio_inicial * g / 100);
 	var precio_ganancia = Number(g_unidad) + Number(precio_inicial);
-	$("#g_unidad").val(g_unidad.toFixed(2));
-	$("#precio_ganancia").val(precio_ganancia.toFixed(5));
-	$("#precio_ganancia_visor").val(precio_ganancia.toFixed(5));
+
+
+	if (g == 0) {
+		$("#g_unidad").val("");
+		$("#precio_ganancia_visor").val("");
+		$("#precio_ganancia").val(precio_inicial.toFixed(5));
+	} else {
+		$("#g_unidad").val(g_unidad.toFixed(5));
+		$("#precio_ganancia").val(precio_ganancia.toFixed(5));
+		$("#precio_ganancia_visor").val(precio_ganancia.toFixed(5));
+	}
+
 
 }
 function calcular_precio_descuento() {
@@ -898,9 +1013,8 @@ function calcular_precio_descuento() {
 	var hidden_precio_descuento = precio_ganancia - d_unidad;
 	var precio_inicial = Number($("#precio_inicial").val());
 
-	$("#d_unidad").val(d_unidad.toFixed(2));
+	$("#d_unidad").val(d_unidad.toFixed(5));
 	$("#hidden_precio_descuento").val(hidden_precio_descuento);
-	debugger;
 
 	if (d == "") {
 		$("#hidden_precio_descuento").val(hidden_precio_descuento);
@@ -920,60 +1034,6 @@ function calcular_precio_descuento() {
 		alert("El precio con Descuento es: " + hidden_precio_descuento.toFixed(5) + ", y tiene que ser mayor o igual que el precio inicial de venta: " + precio_inicial.toFixed(5));
 	}
 }
-function calcular_monto() {
-	var cantidad = Number($("#cantidad").val());
-	if (isNaN(cantidad)) {
-		alert("A ingresado una cantidad incorrecta");
-	} else {
-		var g = Number($("#g").val());
-		var d = Number($("#d").val());
-		var precio_ganancia = Number($("#precio_ganancia").val());
-		var precio_descuento = Number($("#precio_descuento").val());
-		var g_unidad = Number($("#g_unidad").val());
-		var d_unidad = Number($("#d_unidad").val());
-		var monto = 0;
-		var d_cant_total = d_unidad * cantidad;
-		var g_cant_total = Number(cantidad) * Number(g_unidad)
-
-		if (g == "" & d == "") {
-			monto = precio_ganancia * cantidad;
-		}
-		else if (g != "" & d != "") {
-			monto = precio_descuento * cantidad;
-		} else if (d == "") {
-			monto = precio_ganancia * cantidad;
-		}
-
-		if (g_cant_total == 0 & d_cant_total == 0) {
-			g_cant_total = 0
-			d_cant_total = 0
-		}
-		else if (d_cant_total == 0) {
-			d_cant_total = 0
-		} else if (g_cant_total == 0) {
-			g_cant_total = 0
-		}
-
-		if (g == "") {
-			$("#precio_ganancia_visor").val("");
-			$("#precio_descuento").val("");
-			$("#d_unidad").val("");
-			$("#d").val("");
-			$("#d_cant_total").val("");
-			$("#g_unidad").val("");
-		} else if (d == "") {
-			$("#d_cant_total").val("");
-		}
-
-		if (monto == 0) {
-			monto = 0;
-		}
-
-		$("#monto").val(monto.toFixed(2));
-		$("#g_cant_total").val(g_cant_total.toFixed(2));
-		$("#d_cant_total").val(d_cant_total.toFixed(2));
-	}
-}
 function calcular_fecha_validez_oferta_cotizacion() {
 	//let num = parseInt(frm.fechsa.value);
 	var num = parseInt(document.getElementById("validez_oferta_cotizacion").value);
@@ -990,9 +1050,6 @@ function calcular_fecha_validez_oferta_cotizacion() {
 	var dia = fecha.getUTCDate();
 	if (dia <= 9) dia = '0' + dia;
 
-	//rm.total.value = fecha.getUTCFullYear() + '-' + mes + '-' + dia;
-	//$("#total").val(fecha.getUTCFullYear() + '-' + mes + '-' + dia);
-	debugger;
 	if (isNaN(num)) {
 		$("#fecha_vencimiento_validez_oferta").val("");
 	} else {
@@ -1015,9 +1072,6 @@ function calcular_fecha_condicion_pago() {
 	var dia = fecha.getUTCDate();
 	if (dia <= 9) dia = '0' + dia;
 
-	//rm.total.value = fecha.getUTCFullYear() + '-' + mes + '-' + dia;
-	//$("#total").val(fecha.getUTCFullYear() + '-' + mes + '-' + dia);
-	debugger;
 	if (isNaN(num)) {
 		$("#fecha_condicion_pago").val("");
 	} else {
@@ -1026,35 +1080,116 @@ function calcular_fecha_condicion_pago() {
 }
 function aplicar_tipo_cambio() {
 
+	debugger;
 	var precio_unitario = $("#precio_unitario").val();
 	var valor_cambio = $("#valor_cambio").val();
 	var tipo_moneda_origen = $("#tipo_moneda_origen").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
 	var convertidor_unitario = 0;
 
-	if (tipo_moneda_cambio == "Seleccionar") {
-		convertidor_unitario = 0;
-	}
-	else if (tipo_moneda_origen == tipo_moneda_cambio) {
+	if (tipo_moneda_origen == tipo_moneda_cambio) {
 		convertidor_unitario = Number(precio_unitario);
+		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+		$("#precio_inicial").val(convertidor_unitario.toFixed(5));
+		$("#precio_ganancia").val(convertidor_unitario.toFixed(5));
+		$("#valor_venta_sin_d").val("");
+		$("#valor_venta_con_d").val("");
+	}
+	else if (tipo_moneda_cambio == "Seleccionar") {
+		$("#convertidor_unitario").val("");
+		$("#precio_inicial").val("");
+		$("#precio_ganancia").val("");
+		$("#valor_venta_sin_d").val("");
+		$("#valor_venta_con_d").val("");
 	}
 	else if (tipo_moneda_origen == "SOLES") {
 		convertidor_unitario = precio_unitario / valor_cambio;
+		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+		$("#precio_inicial").val(convertidor_unitario.toFixed(5));
+		$("#precio_ganancia").val(convertidor_unitario.toFixed(5));
+		$("#valor_venta_sin_d").val("");
+		$("#valor_venta_con_d").val("");
 	}
 	else if (tipo_moneda_origen == "DOLARES") {
 		convertidor_unitario = precio_unitario * valor_cambio;
+		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+		$("#precio_inicial").val(convertidor_unitario.toFixed(5));
+		$("#precio_ganancia").val(convertidor_unitario.toFixed(5));
+		$("#valor_venta_sin_d").val("");
+		$("#valor_venta_con_d").val("");
 	}
 
-	$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
-	$("#precio_inicial").val(convertidor_unitario.toFixed(5));
-	$("#precio_ganancia").val(convertidor_unitario.toFixed(5));
+}
+function calcular_valor_venta() {
+	debugger;
+	var cantidad = Number($("#cantidad").val());
+	if (isNaN(cantidad)) {
+		alert("A ingresado una cantidad incorrecta");
+	} else {
+		var g = Number($("#g").val());
+		var d = Number($("#d").val());
+		var precio_ganancia = Number($("#precio_ganancia").val());
+		var precio_descuento = Number($("#precio_descuento").val());
+		var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+
+		var g_unidad = Number($("#g_unidad").val());
+		var d_unidad = Number($("#d_unidad").val());
+		var valor_venta_sin_d = 0;
+		var valor_venta_con_d = 0;
+		var d_cant_total = d_unidad * cantidad;
+		var g_cant_total = Number(cantidad) * Number(g_unidad);
+
+		if (tipo_moneda_cambio == "Seleccionar" & cantidad == 0) {
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+		} else if (tipo_moneda_cambio == "SOLES" & cantidad == 0) {
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+		} else if (tipo_moneda_cambio == "DOLARES" & cantidad == 0) {
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+		} else if (g == 0 & d == 0) {
+			valor_venta_sin_d = precio_ganancia * cantidad;
+			valor_venta_con_d = precio_ganancia * cantidad;
+			$("#valor_venta_sin_d").val(valor_venta_sin_d.toFixed(5));
+			$("#valor_venta_con_d").val(valor_venta_con_d.toFixed(5));
+			$("#g_cant_total").val("");
+		}
+
+		if (g != 0) {
+			valor_venta_sin_d = precio_ganancia * cantidad;
+			valor_venta_con_d = precio_ganancia * cantidad;
+			$("#valor_venta_sin_d").val(valor_venta_sin_d.toFixed(5));
+			$("#valor_venta_con_d").val(valor_venta_con_d.toFixed(5));
+			$("#g_cant_total").val(g_cant_total.toFixed(2));
+		} else if (g == 0 & d != 0) {
+			$("#g_unidad").val("");
+			g_cant_total = 0;
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#hidden_precio_descuento").val("");
+			d = 0;
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+			$("#valor_venta_con_d").val("");
+		}
+
+		if (d != 0) {
+			valor_venta_con_d = precio_descuento * cantidad;
+			$("#valor_venta_con_d").val(valor_venta_con_d.toFixed(5));
+			$("#d_cant_total").val(d_cant_total.toFixed(2));
+		}
+
+
+	}
 }
 function validar_detalle_cotizacion() {
 
 
 	$("#id_table_detalle_cotizacion tbody tr").each(function () {
 
-		debugger;
 		id_general_table = $(this).find("#id_general").val();
 		var id_general = $("#hidden_id_general").val();
 
@@ -1065,7 +1200,6 @@ function validar_detalle_cotizacion() {
 
 	});
 
-	debugger;
 
 	var descripcion_producto = $("#descripcion_producto").val();
 	var precio_unitario = $("#precio_unitario").val();
@@ -1109,7 +1243,6 @@ function validar_detalle_condicion_pago() {
 	var monto_cuota = Number($("#monto_cuota").val());
 	var fecha_cuota = $("#fecha_cuota").val();
 
-	debugger;
 
 	if (isNaN(monto_cuota)) {
 		alert("A ingresado un monto incorrecto");
@@ -1130,7 +1263,7 @@ function validar_detalle_condicion_pago() {
 	else {
 		calcular_sumatoria_cuotas();
 	}
-};
+}
 function calcular_sumatoria_cuotas() {
 	var acumulador = 0;
 	var precio_venta = Number($("#precio_venta").val());
@@ -1156,12 +1289,11 @@ function calcular_sumatoria_cuotas_eliminar_detalle() {
 	var acumulador = 0;
 
 	$("#id_table_detalle_condicion_pago tbody tr").each(function () {
-		debugger
+
 		var posicion_valor_tabla = Number($(this).find("td:eq(1)").text());
 		acumulador = (acumulador + posicion_valor_tabla)
 	});
 
-	debugger;
 
 	$("#precio_final_final").text(acumulador);
 
@@ -1186,7 +1318,8 @@ function limpiar_campos() {
 	$("#simbolo_moneda").val("");
 	$("#convertidor_unitario").val("");
 	$("#cantidad").val("");
-	$("#monto").val("");
+	$("#valor_venta_sin_d").val("");
+	$("#valor_venta_con_d").val("");
 	$("#precio_inicial").val("");
 	$("#precio_ganancia").val("");
 	$("#g").val("");
@@ -1201,7 +1334,8 @@ function limpiar_campos() {
 
 	if (count == 1) {
 		$("#tipo_moneda_cambio").attr("disabled", false);
-		$("#total").val("");
+		$("#valor_venta_total_sin_d").val("");
+		$("#valor_venta_total_con_d").val("");
 		$("#descuento_total").val("");
 		$("#igv").val("");
 		$("#precio_venta").val("");
@@ -1214,7 +1348,6 @@ function limpiar_campos_condicion_pago() {
 
 }
 function validar_registrar() {
-	debugger
 
 	var count_detalle_cotizacion = $('#id_table_detalle_cotizacion tr').length;
 	var count_detalle_condicion_pago = $('#id_table_detalle_condicion_pago tr').length;
@@ -1276,6 +1409,15 @@ function validar_registrar() {
 	else {
 		resultado_campo = true;
 	}
+}
+function generar_item() {
+
+	var acumulador = 0;
+	$("#id_table_detalle_cotizacion tbody tr").each(function () {
+		var item = $(this).closest('tr').find('#item').val();
+		acumulador = acumulador + 1;
+		$(this).closest('tr').find('#item').val(acumulador);
+	});
 }
 /* Fin Funciones */
 

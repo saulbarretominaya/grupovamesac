@@ -17,7 +17,7 @@ class M_guia_remision extends CI_Model
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
             b.ds_nombre_cliente_proveedor,
-            b.ds_nombre_vendedor,
+            b.ds_nombre_trabajador,
             b.ds_condicion_pago,
             b.id_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
@@ -41,7 +41,7 @@ class M_guia_remision extends CI_Model
             SELECT
             b.id_parcial_completa,
             a.id_cotizacion,
-            a.ds_nombre_vendedor,
+            a.ds_nombre_trabajador,
             a.ds_nombre_cliente_proveedor,
             a.ds_departamento_cliente_proveedor,
             a.ds_provincia_cliente_proveedor,
@@ -57,7 +57,7 @@ class M_guia_remision extends CI_Model
             FROM
             cotizacion a
             RIGHT JOIN parciales_completas b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_vendedor 
+            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador 
             WHERE b.id_parcial_completa='$id_parcial_completa'
             "
         );

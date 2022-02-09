@@ -489,13 +489,13 @@
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                               <label>&nbsp;</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
                               </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                               <label for="">Precio Unitario</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="precio_unitario" readonly>
@@ -537,25 +537,25 @@
                     </div>
 
                     <div class="col-md-4">
+                      <!-- <div class="card collapsed-card"> -->
                       <div class="card">
+
                         <div class="card-header">
                           <h3 class="card-title">Salida de Producto</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                               <label for="">Cantidad</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="cantidad">
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label for="">Monto</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="monto" readonly>
-                              </div>
-                            </div>
-
                             <div class="col-md-2">
                               <label for="">&nbsp;</label>
                               <div class="input-group">
@@ -565,6 +565,20 @@
 
                           </div>
 
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                              <label for="">Valor Vnta Sin/D</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="valor_venta_sin_d" readonly>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="">Valor Vnta Con/D</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="valor_venta_con_d" readonly>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -668,8 +682,7 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <!-- <button type='button' class='btn btn-outline-primary btn-sm' id="id_item"><span class='fas fa-sync-alt'></span></button></td> -->
-                            <table id="id_table_detalle_cotizacion">
+                            <table id="id_table_detalle_cotizacion" style="width: 100%;">
                               <thead>
                                 <tr>
                                   <th>Item </th>
@@ -682,7 +695,8 @@
                                   <th>Desc %</th>
                                   <th>Precio U/D</th>
                                   <th>Total D</th>
-                                  <th>Valor Venta</th>
+                                  <th>Valor Venta Sin/D</th>
+                                  <th>Valor Venta Con/D</th>
                                   <th>Dias Entrega</th>
                                   <th></th>
                                 </tr>
@@ -700,24 +714,30 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="tipo_trabajador">Total</label>
+                          <label for="">Valor V. Total Sin/D</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="total" value="">
+                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <label for=" local">DCTO Total</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="descuento_total" value="">
                           </div>
                         </div>
                         <div class="col-md-3">
+                          <label for="">Valor V. Total Con/D</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="">
+                          </div>
+                        </div>
+                        <div class="col-md-2">
                           <label for=" local">IGV</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="igv" value="">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="precio_venta" value="">
