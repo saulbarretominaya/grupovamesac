@@ -486,6 +486,11 @@
                       <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">Datos del Producto</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
@@ -511,6 +516,11 @@
                         <div class="card-header">
                           <h3 class="card-title">El Tipo Cambio es: <?php echo $tipo_cambio->venta; ?></h3>
                           <input type="hidden" class="form-control" id="valor_cambio" value="<?php echo $tipo_cambio->venta; ?>">
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
@@ -694,7 +704,8 @@
                                   <th>Cant</th>
                                   <th>Desc %</th>
                                   <th>Precio U/D</th>
-                                  <th>Total D</th>
+                                  <th>D Unidad</th>
+                                  <th>D. Cant/Total</th>
                                   <th>Valor Venta Sin/D</th>
                                   <th>Valor Venta Con/D</th>
                                   <th>Dias Entrega</th>

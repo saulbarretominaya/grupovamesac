@@ -40,10 +40,10 @@ class M_compras extends CI_Model
         return $resultados->result();
     }
 
-    public function proveedor()
+    public function proveedor($id_tipo_persona)
     {
         $resultados = $this->db->query("
-           SELECT * FROM clientes_proveedores WHERE id_tipo_persona = '616';");
+           SELECT * FROM clientes_proveedores WHERE id_tipo_persona = '$id_tipo_persona';");
         return $resultados->result();
     }
 

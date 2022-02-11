@@ -185,8 +185,15 @@
                                              <td><?php echo $index_modal_detalle->item; ?></td>
                                          <?php } ?>
                                          <td><?php echo $index_modal_detalle->cantidad_producto; ?></td>
-                                         <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
-                                         <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>
+
+                                         <?php if ($index_modal_detalle->id_comodin != '0') { ?>
+                                             <td style="background-color: #F0F0F0;"><?php echo $index_modal_detalle->codigo_producto; ?></td>
+                                             <td style="background-color: #F0F0F0;"><?php echo $index_modal_detalle->descripcion_producto; ?></td>
+                                         <?php } else { ?>
+                                             <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
+                                             <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>
+                                         <?php } ?>
+
                                          <td><?php echo $index_modal_detalle->ds_marca_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->ds_unidad_medida; ?></td>
                                          <td><?php echo $index_modal_detalle->precio_unitario; ?></td>

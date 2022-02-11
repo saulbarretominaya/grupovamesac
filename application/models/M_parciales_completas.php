@@ -116,6 +116,7 @@ class M_parciales_completas extends CI_Model
             LEFT JOIN parciales_completas e ON e.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_parciales_completas f ON f.id_dcotizacion=b.id_dcotizacion
             WHERE e.id_parcial_completa='$id_parcial_completa'
+            GROUP BY d.id_dtablero,b.id_dcotizacion
             ORDER BY b.id_dcotizacion ASC, d.id_dtablero ASC
         "
         );

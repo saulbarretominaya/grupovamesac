@@ -229,10 +229,58 @@
 
 
                 <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
+                        <div class="col-md-8">
+                          <div class="card">
+                            <div class="card-header">
+                              <h3 class="card-title">Salida de Producto</h3>
+                              <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                  <i class="fas fa-plus"></i>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              <div class="form-group row">
+                                <div class="col-md-6">
+                                  <label for="">Nombre Producto</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="">Cantidad</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="cantidad">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <label for="">&nbsp;</label>
+                                  <div class="input-group">
+                                    <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <div class="col-md-6">
+                                  <label for="">Precio U -Ven</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="valor_venta_sin_d">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="">Precio U -Compr</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="valor_venta_con_d">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <!-- Producto -->
                         <div class="col-md-2">
                           <div class="form-check">
@@ -307,13 +355,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Fin Producto -->
-                        <div class="col-md-10">
-                          <div class="input-group">
-                            <label class="col-sm-2 col-form-label">Producto</label>
-                            <textarea class="form-control" rows="1" placeholder="Nombre Producto" id="descripcion_producto" readonly></textarea>
-                          </div>
-                        </div>
                       </div>
                       <input type="hidden" id="hidden_id_producto">
                       <input type="hidden" id="hidden_id_general">
@@ -326,58 +367,6 @@
                       <input type="hidden" id="hidden_ds_marca_producto">
                       <input type="hidden" id="tipo_moneda_origen">
                       <input type="hidden" id="hidden_item">
-                    </div>
-
-
-
-
-
-                    <div class="col-md-4">
-                      <!-- <div class="card collapsed-card"> -->
-                      <div class="card">
-
-                        <div class="card-header">
-                          <h3 class="card-title">Salida de Producto</h3>
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="form-group row">
-                            <div class="col-md-6">
-                              <label for="">Cantidad</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="cantidad">
-                              </div>
-                            </div>
-
-                            <div class="col-md-2">
-                              <label for="">&nbsp;</label>
-                              <div class="input-group">
-                                <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
-                              </div>
-                            </div>
-
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-6">
-                              <label for="">Precio U -Ven</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="valor_venta_sin_d">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="">Precio U -Compr</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="valor_venta_con_d">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                     <div class="col-md-12">
@@ -410,7 +399,6 @@
                           </div>
                         </form>
                       </div>
-
                     </div>
 
                     <div class="col-md-12">
