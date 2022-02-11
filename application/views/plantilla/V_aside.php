@@ -59,7 +59,7 @@
           </li>
 
           <!-- Logistica-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-luggage-cart"></i>
               <p>
@@ -69,13 +69,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "#" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_orden_compra" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Orden de compra</p>
                 </a>
               </li>
             </ul>
-          </li> -->
+          </li>
           <!-- fin logistica-->
 
           <li class="nav-item">
@@ -99,6 +99,12 @@
                   <p>Tableros</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_tableros" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Carga Inicial</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -119,6 +125,29 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-chart-line"></i>
+              <p>
+                Finanzas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_compras" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compra - Pagos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_compras" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cobranza</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-item">
             <a href="" class="nav-link">
@@ -134,12 +163,6 @@
                 <a href="<?php echo base_url() . "C_cotizacion" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cotizacion</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url() . "C_compras" ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compras</p>
                 </a>
               </li>
             </ul>
