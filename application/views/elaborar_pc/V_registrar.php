@@ -216,7 +216,7 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_parciales_completas" style="width: 150%;">
+                            <table id="id_table_detalle_parciales_completas" style="width: 120%;">
                               <thead>
                                 <tr>
                                   <th>Item </th>
@@ -226,12 +226,16 @@
                                   <th>Marca</th>
                                   <th>Precio U</th>
                                   <th>Precio U/D</th>
+                                  <th>D Unidad</th>
+                                  <th>D Cant/Total</th>
                                   <th>Cant</th>
                                   <th>Valor Venta</th>
                                   <th class="table-info">Stock</th>
                                   <th class=" table-info">Salida Prod</th>
                                   <th class="table-info">Pendiente Prod</th>
-                                  <th class="table-info">Valor Venta</th>
+                                  <th class="table-info">D Cant/T</th>
+                                  <th class="table-info">Valor Venta Sin/D</th>
+                                  <th class="table-info">Valor Venta Con/D</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -246,12 +250,16 @@
                                       <td><?php echo $index->ds_marca_producto; ?></td>
                                       <td><?php echo $index->precio_ganancia; ?></td>
                                       <td><?php echo $index->precio_descuento; ?></td>
+                                      <td><?php echo $index->d_unidad; ?></td>
+                                      <td><?php echo $index->d_cant_total; ?></td>
                                       <td><?php echo $index->cantidad_por_despachar; ?></td>
-                                      <td><?php echo $index->valor_venta; ?> </td>
+                                      <td><?php echo $index->valor_venta_con_d; ?> </td>
                                       <td class="table-info"><?php echo $index->stock; ?> </td>
                                       <td class="table-info"><input type="text" class="form-control" id="salida_prod" name="salida_prod[]"> </td>
                                       <td class="table-info"><input type="text" class="form-control" id="pendiente_prod" value="" name="pendiente_prod[]" readonly></td>
-                                      <td class="table-info"><input type="text" class="form-control" id="valor_venta" value="" name="valor_venta[]" readonly></td>
+                                      <td class="table-info"><input type="text" class="form-control" id="d_cant_total" value="" name="d_cant_total[]" readonly></td>
+                                      <td class="table-info"><input type="text" class="form-control" id="valor_venta_sin_d" value="" name="valor_venta_sin_d[]" readonly></td>
+                                      <td class="table-info"><input type="text" class="form-control" id="valor_venta_con_d" value="" name="valor_venta_con_d[]" readonly></td>
                                       <input type="hidden" class="form-control" id="estado_elaboracion_pc" value="" name="estado_elaboracion_pc[]" readonly>
                                     </tr>
                                   <?php endforeach; ?>
@@ -268,21 +276,33 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="tipo_trabajador">Total</label>
+                          <label for="">Valor V. Total Sin/D</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="total" value="" readonly>
+                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <label for=" local">DCTO Total</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="descuento_total" value="">
                           </div>
                         </div>
                         <div class="col-md-3">
+                          <label for="">Valor V. Total Con/D</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="">
+                          </div>
+                        </div>
+                        <div class="col-md-2">
                           <label for=" local">IGV</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="igv" value="" readonly>
+                            <input type="text" class="form-control" id="igv" value="">
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="precio_venta" value="" readonly>
+                            <input type="text" class="form-control" id="precio_venta" value="">
                           </div>
                         </div>
                       </div>

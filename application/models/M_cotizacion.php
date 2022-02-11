@@ -515,7 +515,7 @@ class M_cotizacion extends CI_Model
             LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN tableros c ON c.id_tablero=b.id_tablero
             LEFT JOIN detalle_tableros d ON d.id_tablero=b.id_tablero
-            WHERE a.id_cotizacion='67'
+            WHERE a.id_cotizacion='$id_cotizacion'
             ORDER BY b.id_dcotizacion ASC,d.id_dtablero ASC
         "
         );

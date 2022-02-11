@@ -101,10 +101,11 @@ class M_elaborar_pc extends CI_Model
         a.ds_unidad_medida,
         a.ds_marca_producto,
         a.precio_ganancia,
-        a.valor_venta,
-        a.cantidad,
+        a.valor_venta_con_d,
+        a.d_unidad,
+        a.d_cant_total,
 	    (
-        CASE WHEN a.precio_descuento =0 THEN '' ELSE
+        CASE WHEN a.precio_descuento =0 THEN precio_ganancia ELSE
         CASE WHEN a.precio_descuento !=0 THEN precio_descuento
         END END
         ) AS precio_descuento,       
@@ -129,7 +130,9 @@ class M_elaborar_pc extends CI_Model
 
     public function registrar(
         $id_cotizacion,
-        $total,
+        $valor_venta_total_sin_d,
+        $valor_venta_total_con_d,
+        $descuento_total,
         $igv,
         $precio_venta,
         $fecha_parcial_completa
@@ -139,12 +142,16 @@ class M_elaborar_pc extends CI_Model
             INSERT INTO parciales_completas
             (
             id_parcial_completa,
-            id_cotizacion,total,igv,precio_venta,fecha_parcial_completa
+            id_cotizacion,
+            valor_venta_total_sin_d,valor_venta_total_con_d,descuento_total,
+            igv,precio_venta,fecha_parcial_completa
             )
             VALUES
             (
             '',
-            '$id_cotizacion','$total','$igv','$precio_venta','$fecha_parcial_completa'
+            '$id_cotizacion',
+            '$valor_venta_total_sin_d','$valor_venta_total_con_d','$descuento_total',
+            '$igv','$precio_venta','$fecha_parcial_completa'
             )"
         );
     }
@@ -159,7 +166,9 @@ class M_elaborar_pc extends CI_Model
         $id_dcotizacion,
         $salida_prod,
         $pendiente_prod,
-        $valor_venta
+        $d_cant_total,
+        $valor_venta_sin_d,
+        $valor_venta_con_d
     ) {
         return $this->db->query(
             "
@@ -167,13 +176,15 @@ class M_elaborar_pc extends CI_Model
         (
         id_dparcial_completa,
         id_dcotizacion,
-        id_parcial_completa,salida_prod,pendiente_prod,valor_venta
+        id_parcial_completa,salida_prod,pendiente_prod,
+        d_cant_total,valor_venta_sin_d,valor_venta_con_d
         )
         VALUES
         (
         '',
         '$id_dcotizacion',
-        '$id_parcial_completa','$salida_prod','$pendiente_prod','$valor_venta'
+        '$id_parcial_completa','$salida_prod','$pendiente_prod',
+        '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d'
         )
         "
         );
@@ -191,7 +202,6 @@ class M_elaborar_pc extends CI_Model
         a.ds_unidad_medida,
         a.ds_marca_producto,
         a.precio_ganancia,
-        a.valor_venta,
         a.cantidad,
         b.pendiente_prod,
         c.stock,
@@ -274,12 +284,13 @@ class M_elaborar_pc extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
+     
             d.id_orden_despacho,
             DATE_FORMAT(d.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
             a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
             b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
-            c.celular,c.email,a.observacion,a.total,a.descuento_total,a.igv,a.precio_venta,a.clausula,a.nombre_encargado
+            c.celular,c.email,a.observacion,a.valor_venta_total_sin_d,a.valor_venta_total_con_d,a.descuento_total,a.igv,a.precio_venta,a.clausula,a.nombre_encargado
             FROM
             cotizacion a
             LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
@@ -295,13 +306,13 @@ class M_elaborar_pc extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT
+          SELECT
             e.id_orden_despacho,
-            b.item,b.estado_elaboracion_pc as ds_estado_valor_del,a.id_cotizacion,b.id_dcotizacion,b.id_producto,
+            b.item,b.estado_elaboracion_pc AS ds_estado_valor_del,a.id_cotizacion,b.id_dcotizacion,b.id_producto,
             b.id_tablero,b.id_comodin,c.descripcion_tablero,
             b.cantidad AS cantidad_tablero,d.id_dtablero,c.codigo_tablero,'VAME' AS ds_marca_tablero,
             b.precio_ganancia,b.d AS d_tablero,b.precio_descuento AS precio_descuento_tablero,
-            b.valor_venta AS valor_venta_tablero,
+            b.valor_venta_con_d AS valor_venta_tablero,
             (CASE 
             WHEN b.id_tablero  != '0' THEN d.cantidad_total_producto
             WHEN b.id_producto !='0' THEN b.cantidad
@@ -344,9 +355,9 @@ class M_elaborar_pc extends CI_Model
             END) AS precio_descuento,
             (CASE 
             WHEN b.id_tablero  != '0' THEN ''
-            WHEN b.id_producto !='0' THEN b.valor_venta
-            WHEN b.id_comodin !='0' THEN b.valor_venta
-            END) AS valor_venta
+            WHEN b.id_producto !='0' THEN b.valor_venta_con_d
+            WHEN b.id_comodin !='0' THEN b.valor_venta_con_d
+            END) AS valor_venta_con_d
             FROM cotizacion a
             LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN tableros c ON c.id_tablero=b.id_tablero

@@ -652,19 +652,23 @@ $("#tipo_moneda_cambio").on("change", function () {
 	var simbolo_moneda = $("#precio_unitario").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
 
+	debugger;
 
 	if (descripcion_producto == "") {
 		alert("Seleccione un producto, tablero o comodin");
+		$("#tipo_moneda_cambio").val(0);
 		$("#cantidad").val("");
 		$("#g").val("");
 	}
 	else if (precio_unitario == "") {
 		alert("Ingrese el precio unitario");
+		$("#tipo_moneda_cambio").val(0);
 		$("#cantidad").val("");
 		$("#g").val("");
 	}
 	else if (simbolo_moneda == "") {
 		alert("Ese producto no tiene asignado si es soles o dolar");
+		$("#tipo_moneda_cambio").val(0);
 		$("#cantidad").val("");
 		$("#g").val("");
 	}
@@ -685,7 +689,7 @@ $("#tipo_moneda_cambio").on("change", function () {
 		$("#d_cant_total").val("");
 	} else {
 		aplicar_tipo_cambio();
-		calcular_valor_venta();
+		//calcular_valor_venta();
 	}
 });
 $("#g").on("keyup", function () {
@@ -1086,14 +1090,18 @@ function aplicar_tipo_cambio() {
 	var tipo_moneda_origen = $("#tipo_moneda_origen").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
 	var convertidor_unitario = 0;
+	var cantidad = Number($("#cantidad").val());
 
 	if (tipo_moneda_origen == tipo_moneda_cambio) {
 		convertidor_unitario = Number(precio_unitario);
+		valor_venta_sin_d = convertidor_unitario * cantidad;
+		valor_venta_con_d = convertidor_unitario * cantidad;
+
 		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
 		$("#precio_inicial").val(convertidor_unitario.toFixed(5));
 		$("#precio_ganancia").val(convertidor_unitario.toFixed(5));
-		$("#valor_venta_sin_d").val("");
-		$("#valor_venta_con_d").val("");
+		$("#valor_venta_sin_d").val(valor_venta_sin_d.toFixed(5));
+		$("#valor_venta_con_d").val(valor_venta_con_d.toFixed(5));
 	}
 	else if (tipo_moneda_cambio == "Seleccionar") {
 		$("#convertidor_unitario").val("");
@@ -1333,6 +1341,7 @@ function limpiar_campos() {
 	$("#cantidad").attr("readonly", false);
 
 	if (count == 1) {
+		$("#tipo_moneda_cambio").val(0);
 		$("#tipo_moneda_cambio").attr("disabled", false);
 		$("#valor_venta_total_sin_d").val("");
 		$("#valor_venta_total_con_d").val("");

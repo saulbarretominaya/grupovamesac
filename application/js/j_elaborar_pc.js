@@ -50,7 +50,9 @@ $("#registrar").on("click", function () {
 	if (resultado_campo == true) {
 		//Cabecera
 		var id_cotizacion = $("#id_cotizacion").val();
-		var total = $("#total").val();
+		var valor_venta_total_sin_d = $("#valor_venta_total_sin_d").val();
+		var valor_venta_total_con_d = $("#valor_venta_total_con_d").val();
+		var descuento_total = $("#descuento_total").val();
 		var igv = $("#igv").val();
 		var precio_venta = $("#precio_venta").val();
 		var fecha_parcial_completa = $("#fecha_parcial_completa").val();
@@ -60,7 +62,9 @@ $("#registrar").on("click", function () {
 		var id_dcotizacion = Array.prototype.slice.call(document.getElementsByName("id_dcotizacion[]")).map((o) => o.value);
 		var salida_prod = Array.prototype.slice.call(document.getElementsByName("salida_prod[]")).map((o) => o.value);
 		var pendiente_prod = Array.prototype.slice.call(document.getElementsByName("pendiente_prod[]")).map((o) => o.value);
-		var valor_venta = Array.prototype.slice.call(document.getElementsByName("valor_venta[]")).map((o) => o.value);
+		var d_cant_total = Array.prototype.slice.call(document.getElementsByName("d_cant_total[]")).map((o) => o.value);
+		var valor_venta_sin_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_sin_d[]")).map((o) => o.value);
+		var valor_venta_con_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_con_d[]")).map((o) => o.value);
 		var estado_elaboracion_pc = Array.prototype.slice.call(document.getElementsByName("estado_elaboracion_pc[]")).map((o) => o.value);
 
 		$.ajax({
@@ -71,15 +75,20 @@ $("#registrar").on("click", function () {
 			data: {
 				//Cabecera
 				id_cotizacion: id_cotizacion,
-				total: total,
+				valor_venta_total_sin_d: valor_venta_total_sin_d,
+				valor_venta_total_con_d: valor_venta_total_con_d,
+				descuento_total: descuento_total,
 				igv: igv,
 				precio_venta: precio_venta,
 				fecha_parcial_completa: fecha_parcial_completa,
+
 				//Detalle Update (estado_elaboracion_pc - Elaboracion PC)
 				id_dcotizacion: id_dcotizacion,
 				salida_prod: salida_prod,
 				pendiente_prod: pendiente_prod,
-				valor_venta: valor_venta,
+				d_cant_total: d_cant_total,
+				valor_venta_sin_d: valor_venta_sin_d,
+				valor_venta_con_d: valor_venta_con_d,
 				estado_elaboracion_pc: estado_elaboracion_pc
 			},
 			success: function (data) {
@@ -95,48 +104,62 @@ $("#registrar").on("click", function () {
 
 $(document).on("keyup", "#salida_prod", function () {
 
-	var cant = Number($(this).parents("tr").find("td")[7].innerText);
+	var cant = Number($(this).parents("tr").find("td")[9].innerText);
 	var precio_u = Number($(this).parents("tr").find("td")[5].innerText);
 	var precio_u_d = Number($(this).parents("tr").find("td")[6].innerText);
+	var d_unidad = Number($(this).parents("tr").find("td")[7].innerText);
 	var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
-
-	debugger;
 
 	if (isNaN(salida_prod)) {
 		console.log("No puede ingresar datos isNaN");
 		$(this).closest('tr').find('#pendiente_prod').val("");
-		$(this).closest('tr').find('#valor_venta').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
 		$(this).closest('tr').find('#salida_prod').val("");
-		total();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
 		igv();
 		precio_venta();
 	}
 	else if (salida_prod > cant) {
 		alert("La salida de productos es mayor que la cantidad que se registro");
 		$(this).closest('tr').find('#pendiente_prod').val("");
-		$(this).closest('tr').find('#valor_venta').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
 		$(this).closest('tr').find('#salida_prod').val("");
-		total();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	} else if (salida_prod == 0) {
+		$(this).closest('tr').find('#pendiente_prod').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
+		$(this).closest('tr').find('#salida_prod').val("");
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
 		igv();
 		precio_venta();
 	} else {
-		if (precio_u_d != 0) {
-			pendiente_prod = cant - salida_prod;
-			valor_venta = precio_u_d * salida_prod;
-			$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
-			$(this).closest('tr').find('#valor_venta').val(valor_venta.toFixed(2));
-			total();
-			igv();
-			precio_venta();
-		} else {
-			pendiente_prod = cant - salida_prod;
-			valor_venta = precio_u * salida_prod;
-			$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
-			$(this).closest('tr').find('#valor_venta').val(valor_venta.toFixed(2));
-			total();
-			igv();
-			precio_venta();
-		}
+		pendiente_prod = cant - salida_prod;
+		d_cant_total = d_unidad * salida_prod;
+		valor_venta_sin_d = precio_u * salida_prod;
+		valor_venta_con_d = precio_u_d * salida_prod;
+		$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
+		$(this).closest('tr').find('#d_cant_total').val(d_cant_total.toFixed(2));
+		$(this).closest('tr').find('#valor_venta_sin_d').val(valor_venta_sin_d.toFixed(5));
+		$(this).closest('tr').find('#valor_venta_con_d').val(valor_venta_con_d.toFixed(5));
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
 		if (pendiente_prod == 0) {
 			$(this).closest('tr').find('#estado_elaboracion_pc').val("completado");
 		} else {
@@ -160,28 +183,49 @@ $("#salida_prod").on({
 	}
 });
 
-function total() {
+
+function descuento_total() {
 
 	var acumulador = 0;
 	$("#id_table_detalle_parciales_completas tbody tr").each(function () {
-		var posicion_valor_venta = $(this).closest('tr').find('#valor_venta').val();
+		var posicion_valor_d_cant_total = $(this).closest('tr').find('#d_cant_total').val();
+		d_cant_total = Number(posicion_valor_d_cant_total);
+		acumulador = (acumulador + d_cant_total)
+		$("#descuento_total").val(acumulador.toFixed(2));
+	});
+}
+function valor_venta_total_sin_d() {
 
+	var acumulador = 0;
+	$("#id_table_detalle_parciales_completas tbody tr").each(function () {
+		var posicion_valor_venta = $(this).closest('tr').find('#valor_venta_sin_d').val();
 		valor_venta = Number(posicion_valor_venta);
 		acumulador = (acumulador + valor_venta)
-		$("#total").val(acumulador.toFixed(2));
+		$("#valor_venta_total_sin_d").val(acumulador.toFixed(2));
+	});
+}
+
+function valor_venta_total_con_d() {
+
+	var acumulador = 0;
+	$("#id_table_detalle_parciales_completas tbody tr").each(function () {
+		var posicion_valor_venta = $(this).closest('tr').find('#valor_venta_con_d').val();
+		valor_venta = Number(posicion_valor_venta);
+		acumulador = (acumulador + valor_venta)
+		$("#valor_venta_total_con_d").val(acumulador.toFixed(2));
 	});
 }
 
 function igv() {
-	var total = Number($("#total").val());
-	var igv = (total * 0.18);
+	var valor_venta_total_con_d = Number($("#valor_venta_total_con_d").val());
+	var igv = (valor_venta_total_con_d * 0.18);
 	$("#igv").val(igv.toFixed(2));
 }
 
 function precio_venta() {
-	var total = Number($("#total").val());
+	var valor_venta_total_con_d = Number($("#valor_venta_total_con_d").val());
 	var igv = Number($("#igv").val());
-	var precio_venta = total + igv;
+	var precio_venta = valor_venta_total_con_d + igv;
 	$("#precio_venta").val(precio_venta.toFixed(2));
 }
 

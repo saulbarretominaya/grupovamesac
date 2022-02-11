@@ -120,7 +120,7 @@ class M_orden_despacho extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
             a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
             b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
-            c.celular,c.email,a.observacion,a.total,a.descuento_total,a.igv,a.precio_venta,a.clausula,a.nombre_encargado
+            c.celular,c.email,a.observacion,a.valor_venta_total_sin_d,a.valor_venta_total_con_d,a.descuento_total,a.igv,a.precio_venta,a.clausula,a.nombre_encargado
             FROM
             cotizacion a
             LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
@@ -142,7 +142,7 @@ class M_orden_despacho extends CI_Model
             b.id_tablero,b.id_comodin,c.descripcion_tablero,
             b.cantidad AS cantidad_tablero,d.id_dtablero,c.codigo_tablero,'VAME' AS ds_marca_tablero,
             b.precio_ganancia,b.d AS d_tablero,b.precio_descuento AS precio_descuento_tablero,
-            b.valor_venta AS valor_venta_tablero,b.dias_entrega AS dias_entrega_tablero,
+            b.valor_venta_con_d AS valor_venta_tablero,b.dias_entrega AS dias_entrega_tablero,
             (CASE 
             WHEN b.id_tablero  != '0' THEN d.cantidad_total_producto
             WHEN b.id_producto !='0' THEN b.cantidad
@@ -185,9 +185,9 @@ class M_orden_despacho extends CI_Model
             END) AS precio_descuento,
             (CASE 
             WHEN b.id_tablero  != '0' THEN ''
-            WHEN b.id_producto !='0' THEN b.valor_venta
-            WHEN b.id_comodin !='0' THEN b.valor_venta
-            END) AS valor_venta,
+            WHEN b.id_producto !='0' THEN b.valor_venta_con_d
+            WHEN b.id_comodin !='0' THEN b.valor_venta_con_d
+            END) AS valor_venta_con_d,
             (CASE 
             WHEN b.id_tablero  != '0' THEN ''
             WHEN b.id_producto !='0' THEN b.dias_entrega

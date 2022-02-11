@@ -135,7 +135,7 @@
                                      <th>Precio U</th>
                                      <th>Dscto %</th>
                                      <th>Precio U/D</th>
-                                     <th>Valor Total</th>
+                                     <th>Valor Venta</th>
                                      <th>Estado</th>
                                  </tr>
                              </thead>
@@ -188,7 +188,7 @@
                                          <td><?php echo $index_modal_detalle->precio_unitario; ?></td>
                                          <td><?php echo $index_modal_detalle->d_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->precio_descuento; ?></td>
-                                         <td><?php echo $index_modal_detalle->valor_venta; ?></td>
+                                         <td><?php echo $index_modal_detalle->valor_venta_con_d; ?></td>
                                          <?php if ($index_modal_detalle->id_tablero != '0') { ?>
                                              <td><?php echo ""; ?></td>
                                          <?php } else { ?>
@@ -201,11 +201,15 @@
                                  <tfoot>
                                      <tr>
                                          <td colspan="9" class="text-right"><strong>TOTAL</strong></td>
-                                         <td> <?php echo $index_modal_cabecera->total; ?></td>
+                                         <td> <?php echo $index_modal_cabecera->valor_venta_total_sin_d; ?></td>
                                      </tr>
                                      <tr>
                                          <td colspan="9" class="text-right"><strong> DCTO TOTAL</strong></td>
                                          <td> <?php echo $index_modal_cabecera->descuento_total; ?> </td>
+                                     </tr>
+                                     <tr>
+                                         <td colspan="9" class="text-right"><strong> TOTAL</strong></td>
+                                         <td> <?php echo $index_modal_cabecera->valor_venta_total_con_d; ?> </td>
                                      </tr>
                                      <tr>
                                          <td colspan="9" class="text-right"><strong>IGV</strong></td>

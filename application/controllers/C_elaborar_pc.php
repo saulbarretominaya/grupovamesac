@@ -47,23 +47,29 @@ class C_elaborar_pc extends CI_Controller
 
 		//Cabecera
 		$id_cotizacion = $this->input->post("id_cotizacion");
-		$total = $this->input->post("total");
+		$valor_venta_total_sin_d = $this->input->post("valor_venta_total_sin_d");
+		$valor_venta_total_con_d = $this->input->post("valor_venta_total_con_d");
+		$descuento_total = $this->input->post("descuento_total");
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
 		$fecha_parcial_completa = $this->input->post("fecha_parcial_completa");
+
 		//Detalle Update (estado_elaboracion_pc - Elaboracion PC)
 		$id_dcotizacion = $this->input->post("id_dcotizacion");
 		$salida_prod = $this->input->post("salida_prod");
 		$pendiente_prod = $this->input->post("pendiente_prod");
-		$valor_venta = $this->input->post("valor_venta");
-
+		$d_cant_total = $this->input->post("d_cant_total");
+		$valor_venta_sin_d = $this->input->post("valor_venta_sin_d");
+		$valor_venta_con_d = $this->input->post("valor_venta_con_d");
 		$estado_elaboracion_pc = $this->input->post("estado_elaboracion_pc");
 
 
 		if ($this->M_elaborar_pc->registrar(
 			//Cabecera
 			$id_cotizacion,
-			$total,
+			$valor_venta_total_sin_d,
+			$valor_venta_total_con_d,
+			$descuento_total,
 			$igv,
 			$precio_venta,
 			$fecha_parcial_completa
@@ -77,7 +83,9 @@ class C_elaborar_pc extends CI_Controller
 			$id_dcotizacion,
 			$salida_prod,
 			$pendiente_prod,
-			$valor_venta,
+			$d_cant_total,
+			$valor_venta_sin_d,
+			$valor_venta_con_d
 		);
 
 		$rows = $this->M_elaborar_pc->verifica_numero_filas($id_cotizacion, $id_parcial_completa);
@@ -103,7 +111,9 @@ class C_elaborar_pc extends CI_Controller
 		$id_dcotizacion,
 		$salida_prod,
 		$pendiente_prod,
-		$valor_venta
+		$d_cant_total,
+		$valor_venta_sin_d,
+		$valor_venta_con_d
 	) {
 		for ($i = 0; $i < count($salida_prod); $i++) {
 			$this->M_elaborar_pc->registrar_detalle_parciales_completas(
@@ -111,7 +121,9 @@ class C_elaborar_pc extends CI_Controller
 				$id_dcotizacion[$i],
 				$salida_prod[$i],
 				$pendiente_prod[$i],
-				$valor_venta[$i],
+				$d_cant_total[$i],
+				$valor_venta_sin_d[$i],
+				$valor_venta_con_d[$i]
 			);
 		}
 	}
