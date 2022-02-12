@@ -60,7 +60,7 @@ class M_parciales_completas extends CI_Model
             e.id_parcial_completa,
             b.item,a.id_cotizacion,b.id_dcotizacion,b.id_producto,
             b.id_tablero,b.id_comodin,c.descripcion_tablero,
-            b.cantidad AS cantidad_tablero,d.id_dtablero,c.codigo_tablero,'VAME' AS ds_marca_tablero,
+            f.salida_prod AS cantidad_tablero,d.id_dtablero,c.codigo_tablero,'VAME' AS ds_marca_tablero,
             b.precio_ganancia,b.d AS d_tablero,b.precio_descuento AS precio_descuento_tablero,
             b.valor_venta_con_d AS valor_venta_tablero,b.dias_entrega AS dias_entrega_tablero,
 	    '-----------' AS '-----------',		

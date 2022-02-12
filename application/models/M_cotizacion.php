@@ -321,6 +321,20 @@ class M_cotizacion extends CI_Model
         return $resultados->row();
     }
 
+    public function validar_existencia_comodin_registrar($id_cotizacion)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT 
+            COUNT(*) AS cantidad_num_comodin,
+            item
+            FROM detalle_cotizacion
+            WHERE id_cotizacion='$id_cotizacion' AND id_comodin != '0';
+            "
+        );
+        return $resultados->row();
+    }
+
     public function aprobar_estado($id_cotizacion)
     {
         return $this->db->query(

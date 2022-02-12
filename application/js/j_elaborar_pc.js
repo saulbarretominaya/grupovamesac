@@ -109,7 +109,7 @@ $(document).on("keyup", "#salida_prod", function () {
 	var precio_u_d = Number($(this).parents("tr").find("td")[6].innerText);
 	var d_unidad = Number($(this).parents("tr").find("td")[7].innerText);
 	var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
-
+	debugger;
 	if (isNaN(salida_prod)) {
 		console.log("No puede ingresar datos isNaN");
 		$(this).closest('tr').find('#pendiente_prod').val("");
@@ -136,11 +136,15 @@ $(document).on("keyup", "#salida_prod", function () {
 		igv();
 		precio_venta();
 	} else if (salida_prod == 0) {
-		$(this).closest('tr').find('#pendiente_prod').val("");
-		$(this).closest('tr').find('#d_cant_total').val("");
-		$(this).closest('tr').find('#valor_venta_sin_d').val("");
-		$(this).closest('tr').find('#valor_venta_con_d').val("");
-		$(this).closest('tr').find('#salida_prod').val("");
+		pendiente_prod = cant - salida_prod;
+		d_cant_total = d_unidad * salida_prod;
+		valor_venta_sin_d = precio_u * salida_prod;
+		valor_venta_con_d = precio_u_d * salida_prod;
+		$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
+		$(this).closest('tr').find('#d_cant_total').val(d_cant_total.toFixed(2));
+		$(this).closest('tr').find('#valor_venta_sin_d').val(valor_venta_sin_d.toFixed(5));
+		$(this).closest('tr').find('#valor_venta_con_d').val(valor_venta_con_d.toFixed(5));
+		$(this).closest('tr').find('#salida_prod').val(0);
 		descuento_total();
 		valor_venta_total_sin_d();
 		valor_venta_total_con_d();
@@ -171,18 +175,17 @@ $(document).on("keyup", "#salida_prod", function () {
 
 });
 
-$("#salida_prod").on({
-	"focus": function (event) {
-		$(event.target).select();
-	},
-	"keyup": function (event) {
-		$(event.target).val(function (index, value) {
-			return value.replace(/\D/g, "");
-			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-		});
-	}
-});
-
+// $("#salida_prod").on({
+// 	"focus": function (event) {
+// 		$(event.target).select();
+// 	},
+// 	"keyup": function (event) {
+// 		$(event.target).val(function (index, value) {
+// 			return value.replace(/\D/g, "");
+// 			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+// 		});
+// 	}
+// });
 
 function descuento_total() {
 
@@ -204,7 +207,6 @@ function valor_venta_total_sin_d() {
 		$("#valor_venta_total_sin_d").val(acumulador.toFixed(2));
 	});
 }
-
 function valor_venta_total_con_d() {
 
 	var acumulador = 0;
@@ -215,20 +217,17 @@ function valor_venta_total_con_d() {
 		$("#valor_venta_total_con_d").val(acumulador.toFixed(2));
 	});
 }
-
 function igv() {
 	var valor_venta_total_con_d = Number($("#valor_venta_total_con_d").val());
 	var igv = (valor_venta_total_con_d * 0.18);
 	$("#igv").val(igv.toFixed(2));
 }
-
 function precio_venta() {
 	var valor_venta_total_con_d = Number($("#valor_venta_total_con_d").val());
 	var igv = Number($("#igv").val());
 	var precio_venta = valor_venta_total_con_d + igv;
 	$("#precio_venta").val(precio_venta.toFixed(2));
 }
-
 function validar_detalle_parciales_completas() {
 
 	$("#id_table_detalle_parciales_completas tbody tr").each(function () {

@@ -276,6 +276,12 @@ class C_cotizacion extends CI_Controller
 		}
 	}
 
+	public function validar_existencia_comodin_registrar()
+	{
+		$id_cotizacion = $this->input->post("id_cotizacion");
+		$cantidad_num_comodin = $this->M_cotizacion->validar_existencia_comodin_registrar($id_cotizacion);
+		echo json_encode($cantidad_num_comodin);
+	}
 	public function aprobar_estado()
 	{
 		$id_cotizacion = $this->input->post("id_cotizacion");

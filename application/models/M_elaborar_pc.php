@@ -172,20 +172,14 @@ class M_elaborar_pc extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT INTO detalle_parciales_completas
-        (
-        id_dparcial_completa,
-        id_dcotizacion,
-        id_parcial_completa,salida_prod,pendiente_prod,
-        d_cant_total,valor_venta_sin_d,valor_venta_con_d
-        )
-        VALUES
-        (
-        '',
-        '$id_dcotizacion',
-        '$id_parcial_completa','$salida_prod','$pendiente_prod',
-        '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d'
-        )
+        INSERT 
+        INTO detalle_parciales_completas (id_dparcial_completa, id_dcotizacion, id_parcial_completa,salida_prod,pendiente_prod, d_cant_total,valor_venta_sin_d,valor_venta_con_d )
+        SELECT ('',
+                '$id_dcotizacion',
+                '$id_parcial_completa','$salida_prod','$pendiente_prod',
+                '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d')
+        FROM detalle_parciales_completas 
+        WHERE '$salida_prod' >= '1';
         "
         );
     }

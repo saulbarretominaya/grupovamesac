@@ -200,22 +200,41 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 		alert("Ya fue aprobado por OD, llamar al area de TI para cualquier cambio, que tenga buen dia :D");
 
 	} else if (id_orden_despacho == "") {
-		alertify.confirm("Esta seguro que desea aprobarlo",
-			function () {
-				$.ajax({
-					async: false,
-					url: base_url + "C_cotizacion/aprobar_estado",
-					type: "POST",
-					dataType: "json",
-					data: {
-						id_cotizacion: id_cotizacion,
-					},
-					success: function (data) {
-						window.location.href = base_url + "C_cotizacion";
-					},
-				});
-			});
-	} else if (id_orden_despacho != "") {
+		$.ajax({
+			async: false,
+			url: base_url + "C_cotizacion/validar_existencia_comodin_registrar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				id_cotizacion: id_cotizacion,
+			},
+			success: function (data) {
+				debugger;
+				cantidad_num_comodin = data["cantidad_num_comodin"]
+				item = data["item"]
+				if (Number(cantidad_num_comodin) == 0) {
+					alertify.confirm("Esta seguro que desea aprobarlo",
+						function () {
+							$.ajax({
+								async: false,
+								url: base_url + "C_cotizacion/aprobar_estado",
+								type: "POST",
+								dataType: "json",
+								data: {
+									id_cotizacion: id_cotizacion,
+								},
+								success: function (data) {
+									window.location.href = base_url + "C_cotizacion";
+								},
+							});
+						});
+				} else if (Number(cantidad_num_comodin) >= 1) {
+					alert("No puede ser aprobada esta cotizacion porque existe un Comodin.   Fila: #" + item);
+				}
+			},
+		});
+	}
+	else if (id_orden_despacho != "") {
 		alertify.confirm("Esta Cotizacion ya fue aprobada anteriormente, seguro que desea hacerlo otra vez?",
 			function () {
 				$.ajax({
@@ -293,6 +312,7 @@ $(document).on("click", ".js_seleccionar_modal_tablero", function () {
 	$("#hidden_id_general").val(split_tableros[1]);
 	$("#hidden_codigo_producto").val(split_tableros[2]);
 	$("#descripcion_producto").val(split_tableros[3]);
+	debugger;
 	$("#cantidad").val(split_tableros[4]);
 	$("#cantidad").attr("readonly", true);
 	$("#hidden_id_marca_producto").val(split_tableros[5]);
@@ -308,8 +328,8 @@ $(document).on("click", ".js_seleccionar_modal_tablero", function () {
 	$("#precio_unitario").val(split_tableros[9]);
 	$("#opcion_target_tablero").modal("hide");
 	aplicar_tipo_cambio();
-	calcular_valor_venta();
 });
+
 $(document).on("click", ".js_seleccionar_modal_comodin", function () {
 	limpiar_campos();
 	comodin = $(this).val();
@@ -750,7 +770,9 @@ $("#tipo_moneda_cambio").on("change", function () {
 	var precio_unitario = $("#precio_unitario").val();
 	var simbolo_moneda = $("#precio_unitario").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+	var id_tablero = $("#hidden_id_tablero").val();
 
+	debugger;
 
 	if (descripcion_producto == "") {
 		alert("Seleccione un producto, tablero o comodin");
@@ -771,20 +793,37 @@ $("#tipo_moneda_cambio").on("change", function () {
 		$("#g").val("");
 	}
 	else if (tipo_moneda_cambio == "Seleccionar") {
-		$("#convertidor_unitario").val("");
-		$("#cantidad").val("");
-		$("#valor_venta_sin_d").val("");
-		$("#valor_venta_con_d").val("");
-		$("#precio_inicial").val("");
-		$("#precio_ganancia").val("");
-		$("#g").val("");
-		$("#g_unidad").val("");
-		$("#g_cant_total").val("");
-		$("#precio_ganancia_visor").val("");
-		$("#precio_descuento").val("");
-		$("#d").val("");
-		$("#d_unidad").val("");
-		$("#d_cant_total").val("");
+		if (id_tablero == "") {
+			$("#convertidor_unitario").val("");
+			$("#cantidad").val("");
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+			$("#precio_inicial").val("");
+			$("#precio_ganancia").val("");
+			$("#g").val("");
+			$("#g_unidad").val("");
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+		} else {
+			$("#convertidor_unitario").val("");
+			// $("#cantidad").val("");
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+			$("#precio_inicial").val("");
+			$("#precio_ganancia").val("");
+			$("#g").val("");
+			$("#g_unidad").val("");
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+		}
 	} else {
 		aplicar_tipo_cambio();
 	}
@@ -1077,39 +1116,99 @@ function aplicar_tipo_cambio() {
 	var tipo_moneda_origen = $("#tipo_moneda_origen").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
 	var convertidor_unitario = 0;
-	var cantidad = Number($("#cantidad").val());
+	var id_tablero = $("#hidden_id_tablero").val();
 
 	//Si ambas monedas son iguales
+	debugger;
 	if (tipo_moneda_origen == tipo_moneda_cambio) {
 		convertidor_unitario = Number(precio_unitario);
 		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+		if (id_tablero == "") {
+		} else {
+			calcular_valor_venta();
+		}
 	}
+
 	else if (tipo_moneda_cambio == "Seleccionar") {
-		$("#tipo_moneda_cambio").val(0);
-		$("#cantidad").val("");
-		$("#convertidor_unitario").val("");
-		$("#valor_venta_sin_d").val("");
-		$("#valor_venta_con_d").val("");
-		$("#precio_inicial").val("");
-		$("#precio_ganancia").val("");
+		if (id_tablero == "") {
+			$("#tipo_moneda_cambio").val(0);
+			$("#cantidad").val("");
+			$("#convertidor_unitario").val("");
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+			$("#precio_inicial").val("");
+			$("#precio_ganancia").val("");
+		} else {
+			$("#tipo_moneda_cambio").val(0);
+			// $("#cantidad").val("");
+			$("#convertidor_unitario").val("");
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+			$("#precio_inicial").val("");
+			$("#precio_ganancia").val("");
+		}
 	}
 	else if (tipo_moneda_origen == "SOLES") {
-		convertidor_unitario = precio_unitario / valor_cambio;
-		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
-		$("#cantidad").val("");
-		$("#valor_venta_sin_d").val("");
-		$("#valor_venta_con_d").val("");
-		$("#precio_inicial").val("");
-		$("#precio_ganancia").val("");
+		if (id_tablero == "") {
+			convertidor_unitario = precio_unitario / valor_cambio;
+			$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+			$("#cantidad").val("");
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+			$("#precio_inicial").val("");
+			$("#precio_ganancia").val("");
+			$("#g").val("");
+			$("#g_unidad").val("");
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+		} else {
+			convertidor_unitario = precio_unitario / valor_cambio;
+			$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+			calcular_valor_venta();
+			$("#g").val("");
+			$("#g_unidad").val("");
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+		}
 	}
 	else if (tipo_moneda_origen == "DOLARES") {
-		convertidor_unitario = precio_unitario * valor_cambio;
-		$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
-		$("#cantidad").val("");
-		$("#valor_venta_sin_d").val("");
-		$("#valor_venta_con_d").val("");
-		$("#precio_inicial").val("");
-		$("#precio_ganancia").val("");
+		if (id_tablero == "") {
+			convertidor_unitario = precio_unitario * valor_cambio;
+			$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+			$("#cantidad").val("");
+			$("#valor_venta_sin_d").val("");
+			$("#valor_venta_con_d").val("");
+			$("#precio_inicial").val("");
+			$("#precio_ganancia").val("");
+			$("#g").val("");
+			$("#g_unidad").val("");
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+		} else {
+			convertidor_unitario = precio_unitario * valor_cambio;
+			$("#convertidor_unitario").val(convertidor_unitario.toFixed(5));
+			calcular_valor_venta();
+			$("#g").val("");
+			$("#g_unidad").val("");
+			$("#g_cant_total").val("");
+			$("#precio_ganancia_visor").val("");
+			$("#precio_descuento").val("");
+			$("#d").val("");
+			$("#d_unidad").val("");
+			$("#d_cant_total").val("");
+		}
 	}
 
 }
