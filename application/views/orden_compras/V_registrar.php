@@ -6,7 +6,7 @@
         <div class="col-sm-6">
           <h1>Orden compra
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-            <a href="<?php echo base_url(); ?>C_orden_compra" class="btn btn-danger btn-sm">CANCELAR</a>
+            <a href="<?php echo base_url(); ?>C_orden_compras" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
       </div>
@@ -55,16 +55,27 @@
                           <div class="input-group">
                             <select class="form-select select2" id="id_condicion_pago">
                               <option value="0">Seleccionar</option>
-                              <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                              <?php foreach ($cbox_condicion_pago  as $cbox_condicion_pago) : ?>
+                                <option value="<?php echo $cbox_condicion_pago->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago->descripcion; ?></option>
                               <?php endforeach; ?>
                             </select>
                           </div>
                         </div>
-
+                        <div class="col-md-3">
+                          <label for="cargo">Tipo Moneda</label>
+                          <div class="input-group">
+                            <select class="form-select select2" id="id_moneda">
+                              <option value="0">Seleccionar</option>
+                              <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
+                                <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
                       </div>
 
-                      <div class="card card-primary collapsed-card">
+                      <!-- <div class="card card-primary collapsed-card"> -->
+                      <div class="card card-primary">
                         <div class="card-header">
                           <h3 class="card-title">Datos del proveedor</h3>
                           <div class="card-tools">
@@ -90,7 +101,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h4 class="modal-title">Clientes</h4>
+                                          <h4 class="modal-title">Proveedores</h4>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -226,7 +237,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                           <div class="card card-primary">
                             <div class="card-header">
                               <h3 class="card-title"> Busqueda de Producto</h3>
@@ -241,10 +252,10 @@
                                 <div class="col-md-6">
                                   <label for="">Descripcion</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="">
+                                    <input type="text" class="form-control" id="descripcion_producto" readonly>
                                   </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                   <label for="">Cantidad</label>
                                   <div class="input-group">
                                     <input type="text" class="form-control" id="cantidad">
@@ -253,23 +264,34 @@
                                 <div class="col-md-2">
                                   <label for="">&nbsp;</label>
                                   <div class="input-group">
-                                    <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
+                                    <button type="button" class="btn btn-outline-success" id="id_agregar_orden_compra"><span class="fas fa-plus"></span></button>
                                   </div>
                                 </div>
                                 <div class="col-md-2">
-
                                 </div>
                               </div>
 
                               <div class="form-group row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                   <label for="">Precio U -Ven</label>
                                   <div class="input-group">
                                     <input type="text" class="form-control" id="valor_venta_sin_d">
                                   </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                   <label for="">Precio U -Compr</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="valor_venta_con_d">
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <label for="">Rentabilidad</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="valor_venta_con_d">
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <label for="">Total Compra</label>
                                   <div class="input-group">
                                     <input type="text" class="form-control" id="valor_venta_con_d">
                                   </div>
@@ -356,15 +378,11 @@
 
                       </div>
                       <input type="hidden" id="hidden_id_producto">
-                      <input type="hidden" id="hidden_id_general">
-                      <input type="hidden" id="hidden_id_tablero">
-                      <input type="hidden" id="hidden_id_comodin">
                       <input type="hidden" id="hidden_codigo_producto">
                       <input type="hidden" id="hidden_id_unidad_medida">
                       <input type="hidden" id="hidden_ds_unidad_medida">
                       <input type="hidden" id="hidden_id_marca_producto">
                       <input type="hidden" id="hidden_ds_marca_producto">
-                      <input type="hidden" id="tipo_moneda_origen">
                       <input type="hidden" id="hidden_item">
                     </div>
 
@@ -375,7 +393,7 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_cotizacion" style="width: 100%;">
+                            <table id="id_table_detalle_orden_compra" style="width: 100%;">
                               <thead>
                                 <tr>
                                   <th>Item </th>
@@ -423,9 +441,7 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
@@ -477,7 +493,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
-<script src="<?php echo base_url() ?>application/js/j_cotizacion.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_orden_compras.js"></script>
 
 </body>
 

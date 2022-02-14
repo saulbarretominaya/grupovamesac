@@ -69,7 +69,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "C_orden_compra" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_orden_compras" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Orden de compra</p>
                 </a>

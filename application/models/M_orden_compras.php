@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_cotizacion extends CI_Model
+class M_orden_compras extends CI_Model
 {
 
     public function index()
@@ -155,32 +155,8 @@ class M_cotizacion extends CI_Model
         );
     }
 
-    public function insertar_detalle_condicion_pago(
-        $id_cotizacion,
-        $fecha_cuota,
-        $monto_cuota
-
-    ) {
-        return $this->db->query(
-            "
-        INSERT INTO detalle_condicion_pago
-        (
-        id_dcondicion_pago,
-        id_cotizacion,fecha_cuota,monto_cuota
-        )
-        VALUES
-        (
-        '', 
-        '$id_cotizacion',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota'
-        )
-        "
-        );
-    }
-
     public function index_clientes_proveedores()
     {
-        $id_trabajador = $this->session->userdata('id_trabajador');
-
         $resultados = $this->db->query("
             SELECT
             id_cliente_proveedor,
@@ -213,7 +189,7 @@ class M_cotizacion extends CI_Model
             id_tipo_giro,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro
             FROM clientes_proveedores
-            where id_trabajador='$id_trabajador' and id_tipo_persona='615';
+            where id_tipo_persona='616';
         ");
         return $resultados->result();
     }
@@ -263,172 +239,6 @@ class M_cotizacion extends CI_Model
         return $resultados->result();
     }
 
-    public function index_tableros()
-    {
-        $resultados = $this->db->query(
-            "
-        SELECT 
-        id_tablero,
-        CONCAT('TAB',id_tablero) AS id_general,
-        codigo_tablero,
-        id_almacen,
-        cantidad_tablero,
-        precio_unitario_por_tablero,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_almacen,
-        id_sunat,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        LEFT(descripcion_tablero,30) AS descripcion_tablero,
-        id_moneda,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        id_marca_tablero,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_tablero) AS ds_marca_tablero,
-        id_modelo_tablero,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_modelo_tablero) AS ds_modelo_tablero
-        FROM tableros
-        ORDER BY id_tablero ASC
-        "
-        );
-        return $resultados->result();
-    }
-
-    public function index_comodin()
-    {
-        $resultados = $this->db->query(
-            "
-            SELECT
-            id_comodin,
-            CONCAT('COM',id_comodin) AS id_general,
-            codigo_producto,
-            descripcion_producto,
-            id_marca_producto,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
-            id_unidad_medida,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
-            id_moneda,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-            precio_unitario,
-            nombre_proveedor
-            FROM comodin
-        "
-        );
-        return $resultados->result();
-    }
-
-    public function tipo_cambio()
-    {
-        $resultados = $this->db->query("
-        select * from tipo_cambio where id_tipo_cambio='1'");
-        return $resultados->row();
-    }
-
-    public function aprobar_estado($id_cotizacion)
-    {
-        return $this->db->query(
-            "
-            update cotizacion set
-            id_estado_cotizacion='858',
-            fecha_aprobacion=NOW()
-            where id_cotizacion='$id_cotizacion'
-            "
-        );
-    }
-
-    public function cambiar_estado_pendiente_orden_despacho($id_orden_despacho)
-    {
-        return $this->db->query(
-            "
-            update orden_despacho set
-            id_estado_orden_despacho='861'
-            where id_orden_despacho='$id_orden_despacho'
-            "
-        );
-    }
-
-    public function insertar_orden_despacho(
-        $id_cotizacion
-    ) {
-        return $this->db->query(
-            "
-        INSERT INTO orden_despacho
-        (
-            id_orden_despacho,
-            id_cotizacion,fecha_orden_despacho,id_estado_orden_despacho
-        )
-        VALUES
-        (
-            '',
-            '$id_cotizacion',CURDATE(),'861'
-        )"
-        );
-    }
-
-    public function enlace_actualizar_cabecera($id_cotizacion)
-    {
-        $resultados = $this->db->query("
-            SELECT 
-            a.id_cotizacion,
-            a.valor_cambio,
-            DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
-            a.ds_nombre_trabajador,
-            a.fecha_cotizacion,
-            a.ds_nombre_cliente_proveedor,
-            a.ds_departamento_cliente_proveedor,
-            a.ds_provincia_cliente_proveedor,
-            a.ds_distrito_cliente_proveedor,
-            a.direccion_fiscal_cliente_proveedor,
-            a.email_cliente_proveedor,
-            a.clausula,
-            a.lugar_entrega,
-            a.nombre_encargado,
-            a.observacion,
-            a.ds_condicion_pago,
-            a.precio_venta,
-            id_estado_cotizacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
-            b.id_orden_despacho,
-            b.resultado_valor_cambio,
-            DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            id_estado_orden_despacho,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
-            c.id_cliente_proveedor,
-            c.linea_credito_dolares,
-            c.credito_unitario_dolares,
-            c.disponible_dolares,
-            b.linea_credito_uso
-            FROM
-            cotizacion a
-            RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
-            WHERE  a.id_cotizacion ='$id_cotizacion' AND id_estado_orden_despacho='862'
-               ");
-        return $resultados->row();
-    }
-
-    public function enlace_actualizar_detalle($id_cotizacion)
-    {
-        $resultados = $this->db->query("
-        SELECT 
-        a.id_cotizacion,
-        b.codigo_producto,
-        b.descripcion_producto,
-        b.ds_unidad_medida,
-        b.ds_marca_producto,
-        b.precio_ganancia,
-        b.cantidad,
-        b.valor_venta,
-        '||',
-        c.stock
-        FROM
-        cotizacion a
-        LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion
-        LEFT JOIN productos c ON c.id_producto=b.id_producto
-        WHERE  a.id_cotizacion ='$id_cotizacion'
-               ");
-        return $resultados->result();
-    }
 
     public function index_modal_cabecera($id_cotizacion)
     {

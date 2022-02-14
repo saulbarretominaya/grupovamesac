@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class C_orden_compra extends CI_Controller
+class C_orden_compras extends CI_Controller
 {
 
 	public function __construct()
 
 	{
 		parent::__construct();
-		//	$this->load->model("M_orden_compra");
+		$this->load->model("M_orden_compras");
 		$this->load->model("M_cbox");
 	}
 
@@ -20,7 +20,7 @@ class C_orden_compra extends CI_Controller
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('orden_compra/V_index');
+		$this->load->view('orden_compras/V_index');
 	}
 
 	public function index_modal()
@@ -38,21 +38,16 @@ class C_orden_compra extends CI_Controller
 	public function enlace_registrar()
 	{
 
-		// $data = array(
-		// 	'index_clientes_proveedores' => $this->M_orden_compra->index_clientes_proveedores(),
-		// 	'index_productos' => $this->M_orden_compra->index_productos(),
-		// 	'index_tableros' => $this->M_orden_compra->index_tableros(),
-		// 	'index_comodin' => $this->M_orden_compra->index_comodin(),
-		// 	'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
-		// 	'cbox_condicion_pago_cotizacion' => $this->M_cbox->cbox_condicion_pago_cotizacion(),
-		// 	'tipo_cambio' => $this->M_orden_compra->tipo_cambio(),
-		// 	'cbox_moneda' => $this->M_cbox->cbox_moneda(),
-		// 	'cbox_estado_cotizacion' => $this->M_cbox->cbox_estado_cotizacion()
-		// );    , $data
+		$data = array(
+			'index_clientes_proveedores' => $this->M_orden_compras->index_clientes_proveedores(),
+			'index_productos' => $this->M_orden_compras->index_productos(),
+			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('orden_compra/V_registrar');
+		$this->load->view('orden_compras/V_registrar', $data);
 	}
 
 	public function insertar()
