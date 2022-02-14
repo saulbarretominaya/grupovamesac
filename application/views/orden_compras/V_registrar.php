@@ -40,14 +40,15 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-
+                        <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+                        <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
                         <div class="col-md-3">
                           <label for="cargo">Fecha Emision</label>
                           <div class="input-group">
                             <?php
                             date_default_timezone_set("America/Lima");
                             ?>
-                            <input type="date" class="form-control" id="fecha_cotizacion" value="<?php echo date("Y-m-d"); ?>" readonly>
+                            <input type="date" class="form-control" id="fecha_orden_compra" value="<?php echo date("Y-m-d"); ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -193,9 +194,12 @@
                             </div>
                             <div class="col-md-3">
                               <label for="">Tipo orden</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" placeholder="nacional/importada">
-                              </div>
+                              <select class="form-select select2" id="id_tipo_orden">
+                                <option value="0">Seleccionar</option>
+                                <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
+                                  <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>
+                                <?php endforeach; ?>
+                              </select>
                             </div>
                             <div class="col-md-3">
                               <label for="">Clausula</label>
@@ -273,27 +277,27 @@
 
                               <div class="form-group row">
                                 <div class="col-md-3">
-                                  <label for="">Precio U -Ven</label>
+                                  <label for="">Precio U Venta</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="valor_venta_sin_d">
+                                    <input type="text" class="form-control" id="precio_unitario_venta">
                                   </div>
                                 </div>
                                 <div class="col-md-3">
-                                  <label for="">Precio U -Compr</label>
+                                  <label for="">Precio U Compra</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="valor_venta_con_d">
+                                    <input type="text" class="form-control" id="precio_unitario_compra">
                                   </div>
                                 </div>
                                 <div class="col-md-3">
                                   <label for="">Rentabilidad</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="valor_venta_con_d">
+                                    <input type="text" class="form-control" id="rentabilidad">
                                   </div>
                                 </div>
                                 <div class="col-md-3">
                                   <label for="">Total Compra</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="valor_venta_con_d">
+                                    <input type="text" class="form-control" id="total_compra">
                                   </div>
                                 </div>
                               </div>
@@ -401,11 +405,11 @@
                                   <th>Descripcion</th>
                                   <th>U.M</th>
                                   <th>Marca</th>
-                                  <th>Precio U -Ven</th>
                                   <th>Cant</th>
-                                  <th style="background-color:#5EF8EC">Precio U -Compr</th>
+                                  <th>Precio U Venta</th>
+                                  <th class="table-info">Precio U Compra</th>
                                   <th>Rentabilidad</th>
-                                  <th>Total- compra</th>
+                                  <th>Total Compra</th>
                                   <th></th>
                                 </tr>
                               </thead>
@@ -421,9 +425,9 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="">Valor venta </label>
+                          <label for="">Valor Venta </label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                            <input type="text" class="form-control" id="valor_venta" value="">
                           </div>
                         </div>
 

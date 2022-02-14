@@ -43,114 +43,79 @@ $(document).on("click", ".js_lupa_cotizacion", function () {
 	});
 });
 $("#registrar").on("click", function () {
-
-	validar_registrar();
+	debugger;
+	// validar_registrar();
 	if (resultado_campo == true) {
 
 		//Cabecera
-		var serie_cotizacion = $("#serie_cotizacion").val();
 		var id_trabajador = $("#id_trabajador").val();
 		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
-		var fecha_cotizacion = $("#fecha_cotizacion").val();
-		var validez_oferta_cotizacion = $("#validez_oferta_cotizacion").val();
-		var fecha_vencimiento_validez_oferta = $("#fecha_vencimiento_validez_oferta").val();
+		var fecha_orden_compra = $("#fecha_orden_compra").val();
 		var id_cliente_proveedor = $("#id_cliente_proveedor").val();
 		var ds_nombre_cliente_proveedor = $("#ds_nombre_cliente_proveedor").val();
 		var ds_departamento_cliente_proveedor = $("#ds_departamento_cliente_proveedor").val();
 		var ds_provincia_cliente_proveedor = $("#ds_provincia_cliente_proveedor").val();
 		var ds_distrito_cliente_proveedor = $("#ds_distrito_cliente_proveedor").val();
 		var direccion_fiscal_cliente_proveedor = $("#direccion_fiscal_cliente_proveedor").val();
-		var email_cliente_proveedor = $("#email_cliente_proveedor").val();
 		var clausula = $("#clausula").val();
 		var lugar_entrega = $("#lugar_entrega").val();
 		var nombre_encargado = $("#nombre_encargado").val();
 		var observacion = $("#observacion").val();
 		var id_condicion_pago = $("#id_condicion_pago").val();
 		var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
-		var numero_dias_condicion_pago = $("#dias").val();
-		var fecha_condicion_pago = $("#fecha_condicion_pago").val();
-		var valor_venta_total_sin_d = $("#valor_venta_total_sin_d").val();
-		var valor_venta_total_con_d = $("#valor_venta_total_con_d").val();
-		var descuento_total = $("#descuento_total").val();
+		var id_moneda = $("#id_moneda").val();
+		var ds_moneda = $('#id_moneda option:selected').text();
+		var valor_venta = $("#valor_venta").val();
 		var igv = $("#igv").val();
 		var precio_venta = $("#precio_venta").val();
-		var valor_cambio = $("#valor_cambio").val();
-		var id_moneda = $("#tipo_moneda_cambio").val();
 
 		//Detalle cotizacion
 		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
-		var id_tablero = Array.prototype.slice.call(document.getElementsByName("id_tablero[]")).map((o) => o.value);
-		var id_comodin = Array.prototype.slice.call(document.getElementsByName("id_comodin[]")).map((o) => o.value);
 		var codigo_producto = Array.prototype.slice.call(document.getElementsByName("codigo_producto[]")).map((o) => o.value);
 		var descripcion_producto = Array.prototype.slice.call(document.getElementsByName("descripcion_producto[]")).map((o) => o.value);
-
 		var id_unidad_medida = Array.prototype.slice.call(document.getElementsByName("id_unidad_medida[]")).map((o) => o.value);
 		var ds_unidad_medida = Array.prototype.slice.call(document.getElementsByName("ds_unidad_medida[]")).map((o) => o.value);
 		var id_marca_producto = Array.prototype.slice.call(document.getElementsByName("id_marca_producto[]")).map((o) => o.value);
 		var ds_marca_producto = Array.prototype.slice.call(document.getElementsByName("ds_marca_producto[]")).map((o) => o.value);
 		var cantidad = Array.prototype.slice.call(document.getElementsByName("cantidad[]")).map((o) => o.value);
 
-		var precio_inicial = Array.prototype.slice.call(document.getElementsByName("precio_inicial[]")).map((o) => o.value);
-		var precio_ganancia = Array.prototype.slice.call(document.getElementsByName("precio_ganancia[]")).map((o) => o.value);
-		var g = Array.prototype.slice.call(document.getElementsByName("g[]")).map((o) => o.value);
-		var g_unidad = Array.prototype.slice.call(document.getElementsByName("g_unidad[]")).map((o) => o.value);
-		var g_cant_total = Array.prototype.slice.call(document.getElementsByName("g_cant_total[]")).map((o) => o.value);
-
-		var precio_descuento = Array.prototype.slice.call(document.getElementsByName("precio_descuento[]")).map((o) => o.value);
-		var d = Array.prototype.slice.call(document.getElementsByName("d[]")).map((o) => o.value);
-		var d_unidad = Array.prototype.slice.call(document.getElementsByName("d_unidad[]")).map((o) => o.value);
-		var d_cant_total = Array.prototype.slice.call(document.getElementsByName("d_cant_total[]")).map((o) => o.value);
-
-		var valor_venta_sin_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_sin_d[]")).map((o) => o.value);
-		var valor_venta_con_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_con_d[]")).map((o) => o.value);
-
-		var dias_entrega = Array.prototype.slice.call(document.getElementsByName("dias_entrega[]")).map((o) => o.value);
+		var precio_unitario_venta = Array.prototype.slice.call(document.getElementsByName("precio_unitario_venta[]")).map((o) => o.value);
+		var precio_unitario_compra = Array.prototype.slice.call(document.getElementsByName("precio_unitario_compra[]")).map((o) => o.value);
+		var rentabilidad = Array.prototype.slice.call(document.getElementsByName("rentabilidad[]")).map((o) => o.value);
+		var total_compra = Array.prototype.slice.call(document.getElementsByName("total_compra[]")).map((o) => o.value);
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
-		//Detalle condicion_pago
-		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
-		var monto_cuota = Array.prototype.slice.call(document.getElementsByName("monto_cuota[]")).map((o) => o.value);
 
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_cotizacion/insertar",
+			url: base_url + "C_orden_compras/insertar",
 			type: "POST",
 			dataType: "json",
 			data: {
 				//Cabecera
-				serie_cotizacion: serie_cotizacion,
 				id_trabajador: id_trabajador,
 				ds_nombre_trabajador: ds_nombre_trabajador,
-				fecha_cotizacion: fecha_cotizacion,
-				validez_oferta_cotizacion: validez_oferta_cotizacion,
-				fecha_vencimiento_validez_oferta: fecha_vencimiento_validez_oferta,
+				fecha_orden_compra: fecha_orden_compra,
 				id_cliente_proveedor: id_cliente_proveedor,
 				ds_nombre_cliente_proveedor: ds_nombre_cliente_proveedor,
 				ds_departamento_cliente_proveedor: ds_departamento_cliente_proveedor,
 				ds_provincia_cliente_proveedor: ds_provincia_cliente_proveedor,
 				ds_distrito_cliente_proveedor: ds_distrito_cliente_proveedor,
 				direccion_fiscal_cliente_proveedor: direccion_fiscal_cliente_proveedor,
-				email_cliente_proveedor: email_cliente_proveedor,
 				clausula: clausula,
 				lugar_entrega: lugar_entrega,
 				nombre_encargado: nombre_encargado,
 				observacion: observacion,
 				id_condicion_pago: id_condicion_pago,
 				ds_condicion_pago: ds_condicion_pago,
-				numero_dias_condicion_pago: numero_dias_condicion_pago,
-				fecha_condicion_pago: fecha_condicion_pago,
-				valor_venta_total_sin_d: valor_venta_total_sin_d,
-				valor_venta_total_con_d: valor_venta_total_con_d,
-				descuento_total: descuento_total,
+				id_moneda: id_moneda,
+				ds_moneda: ds_moneda,
+				valor_venta: valor_venta,
 				igv: igv,
 				precio_venta: precio_venta,
-				valor_cambio: valor_cambio,
-				id_moneda: id_moneda,
 
-				//Detalle cotizacion
+				//Detalle Orden Compras
 				id_producto: id_producto,
-				id_tablero: id_tablero,
-				id_comodin: id_comodin,
 				codigo_producto: codigo_producto,
 				descripcion_producto: descripcion_producto,
 				id_unidad_medida: id_unidad_medida,
@@ -158,28 +123,15 @@ $("#registrar").on("click", function () {
 				id_marca_producto: id_marca_producto,
 				ds_marca_producto: ds_marca_producto,
 				cantidad: cantidad,
-				precio_inicial: precio_inicial,
-				precio_ganancia: precio_ganancia,
-				g: g,
-				g_unidad: g_unidad,
-				g_cant_total: g_cant_total,
-				precio_descuento: precio_descuento,
-				d: d,
-				d_unidad: d_unidad,
-				d_cant_total: d_cant_total,
-
-				valor_venta_sin_d: valor_venta_sin_d,
-				valor_venta_con_d: valor_venta_con_d,
-
-				dias_entrega: dias_entrega,
-				item: item,
-				//Detalle condicion pago
-				fecha_cuota: fecha_cuota,
-				monto_cuota: monto_cuota
+				precio_unitario_venta: precio_unitario_venta,
+				precio_unitario_compra: precio_unitario_compra,
+				rentabilidad: rentabilidad,
+				total_compra: total_compra,
+				item: item
 			},
 			success: function (data) {
 				debugger;
-				window.location.href = base_url + "C_cotizacion";
+				window.location.href = base_url + "C_orden_compras";
 			},
 		});
 	};
@@ -379,8 +331,8 @@ $("#id_agregar_orden_compra").on("click", function (e) {
 		console.log(`Fila': ${i}`);
 		$("#hidden_item").val(i + 1);
 	}
-	var item = $("#hidden_item").val();
 
+	var item = $("#hidden_item").val();
 	var id_producto = $("#hidden_id_producto").val();
 	var codigo_producto = $("#hidden_codigo_producto").val();
 	var descripcion_producto = $("#descripcion_producto").val();
@@ -389,6 +341,10 @@ $("#id_agregar_orden_compra").on("click", function (e) {
 	var id_marca_producto = $("#hidden_id_marca_producto").val();
 	var ds_marca_producto = $("#hidden_ds_marca_producto").val();
 	var cantidad = $("#cantidad").val();
+	var precio_unitario_venta = $("#precio_unitario_venta").val();
+	var precio_unitario_compra = $("#precio_unitario_compra").val();
+	var rentabilidad = $("#rentabilidad").val();
+	var total_compra = $("#total_compra").val();
 
 	if (resultado_campo == true) {
 		html = "<tr>";
@@ -400,11 +356,11 @@ $("#id_agregar_orden_compra").on("click", function (e) {
 		html += "<td><input type='hidden' name='ds_unidad_medida[]' 		value='" + ds_unidad_medida + "'>" + ds_unidad_medida + "</td>";
 		html += "    <input type='hidden' name='id_marca_producto[]' 		value='" + id_marca_producto + "'>";
 		html += "<td><input type='hidden' name='ds_marca_producto[]'		value='" + ds_marca_producto + "'>" + ds_marca_producto + "</td>";
-		html += "<td><input type='hidden' name='ds_marca_producto[]'		value='" + ds_marca_producto + "'>" + ds_marca_producto + "</td>";
-		html += "<td><input type='hidden' name='ds_marca_producto[]'		value='" + ds_marca_producto + "'>" + ds_marca_producto + "</td>";
-		html += "<td><input type='hidden' name='ds_marca_producto[]'		value='" + ds_marca_producto + "'>" + ds_marca_producto + "</td>";
-		html += "<td><input type='hidden' name='ds_marca_producto[]'		value='" + ds_marca_producto + "'>" + ds_marca_producto + "</td>";
-		html += "<td><input type='hidden' name='cantidad[]' 				value='" + cantidad + "'>" + cantidad + "</td>";
+		html += "<td><input type='hidden' name='cantidad[]'					value='" + cantidad + "'>" + cantidad + "</td>";
+		html += "<td><input type='hidden' name='precio_unitario_venta[]'	value='" + precio_unitario_venta + "'>" + precio_unitario_venta + "</td>";
+		html += "<td><input type='hidden' name='precio_unitario_compra[]'	value='" + precio_unitario_compra + "'>" + precio_unitario_compra + "</td>";
+		html += "<td><input type='hidden' name='rentabilidad[]'				value='" + rentabilidad + "'>" + rentabilidad + "</td>";
+		html += "<td><input type='hidden' name='total_compra[]' 			value='" + total_compra + "'>" + total_compra + "</td>";
 		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_orden_compra'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
 		$("#id_table_detalle_orden_compra tbody").append(html);
@@ -413,57 +369,59 @@ $("#id_agregar_orden_compra").on("click", function (e) {
 		limpiar_campos();
 	}
 });
-$("#cantidad").on("keyup", function () {
 
-	var descripcion_producto = $("#descripcion_producto").val();
-	var precio_unitario = $("#precio_unitario").val();
-	var simbolo_moneda = $("#precio_unitario").val();
-	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
-	var cantidad = $("#cantidad").val();
 
-	if (descripcion_producto == "") {
-		alert("Seleccione un producto, tablero o comodin");
-		$("#cantidad").val("");
-	}
-	else if (precio_unitario == "") {
-		alert("Ingrese el precio unitario");
-		$("#cantidad").val("");
-	}
-	else if (simbolo_moneda == "") {
-		alert("Ese producto no tiene asignado si es soles o dolar");
-		$("#cantidad").val("");
-	}
-	else if (tipo_moneda_cambio == "Seleccionar") {
-		alert("Selecione su tipo de cambio");
-		$("#cantidad").val("");
-	}
-	else if (cantidad == "" || isNaN(cantidad)) {
-		$("#cantidad").val("");
-		$("#valor_venta_sin_d").val("");
-		$("#valor_venta_con_d").val("");
-		$("#precio_inicial").val("");
-		$("#precio_ganancia").val("");
-		$("#g").val("");
-		$("#g_unidad").val("");
-		$("#g_cant_total").val("");
-		$("#precio_ganancia_visor").val("");
-		$("#precio_descuento").val("");
-		$("#d").val("");
-		$("#d_unidad").val("");
-		$("#d_cant_total").val("");
-	}
-	else {
-		calcular_valor_venta();
-		$("#g").val("");
-		$("#g_unidad").val("");
-		$("#g_cant_total").val("");
-		$("#precio_ganancia_visor").val("");
-		$("#precio_descuento").val("");
-		$("#d").val("");
-		$("#d_unidad").val("");
-		$("#d_cant_total").val("");
-	}
-});
+// $("#cantidad").on("keyup", function () {
+
+// 	var descripcion_producto = $("#descripcion_producto").val();
+// 	var precio_unitario = $("#precio_unitario").val();
+// 	var simbolo_moneda = $("#precio_unitario").val();
+// 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
+// 	var cantidad = $("#cantidad").val();
+
+// 	if (descripcion_producto == "") {
+// 		alert("Seleccione un producto, tablero o comodin");
+// 		$("#cantidad").val("");
+// 	}
+// 	else if (precio_unitario == "") {
+// 		alert("Ingrese el precio unitario");
+// 		$("#cantidad").val("");
+// 	}
+// 	else if (simbolo_moneda == "") {
+// 		alert("Ese producto no tiene asignado si es soles o dolar");
+// 		$("#cantidad").val("");
+// 	}
+// 	else if (tipo_moneda_cambio == "Seleccionar") {
+// 		alert("Selecione su tipo de cambio");
+// 		$("#cantidad").val("");
+// 	}
+// 	else if (cantidad == "" || isNaN(cantidad)) {
+// 		$("#cantidad").val("");
+// 		$("#valor_venta_sin_d").val("");
+// 		$("#valor_venta_con_d").val("");
+// 		$("#precio_inicial").val("");
+// 		$("#precio_ganancia").val("");
+// 		$("#g").val("");
+// 		$("#g_unidad").val("");
+// 		$("#g_cant_total").val("");
+// 		$("#precio_ganancia_visor").val("");
+// 		$("#precio_descuento").val("");
+// 		$("#d").val("");
+// 		$("#d_unidad").val("");
+// 		$("#d_cant_total").val("");
+// 	}
+// 	else {
+// 		calcular_valor_venta();
+// 		$("#g").val("");
+// 		$("#g_unidad").val("");
+// 		$("#g_cant_total").val("");
+// 		$("#precio_ganancia_visor").val("");
+// 		$("#precio_descuento").val("");
+// 		$("#d").val("");
+// 		$("#d_unidad").val("");
+// 		$("#d_cant_total").val("");
+// 	}
+// });
 $(document).on("click", ".eliminar_fila_orden_compra", function () {
 
 	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();

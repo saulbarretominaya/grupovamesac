@@ -34,58 +34,46 @@ class M_orden_compras extends CI_Model
     }
 
     public function insertar(
-        $serie_cotizacion,
         $id_trabajador,
         $ds_nombre_trabajador,
-        $fecha_cotizacion,
-        $validez_oferta_cotizacion,
-        $fecha_vencimiento_validez_oferta,
+        $fecha_orden_compra,
         $id_cliente_proveedor,
         $ds_nombre_cliente_proveedor,
         $ds_departamento_cliente_proveedor,
         $ds_provincia_cliente_proveedor,
         $ds_distrito_cliente_proveedor,
         $direccion_fiscal_cliente_proveedor,
-        $email_cliente_proveedor,
         $clausula,
         $lugar_entrega,
         $nombre_encargado,
         $observacion,
         $id_condicion_pago,
         $ds_condicion_pago,
-        $numero_dias_condicion_pago,
-        $fecha_condicion_pago,
-        $valor_venta_total_sin_d,
-        $valor_venta_total_con_d,
-        $descuento_total,
+        $id_moneda,
+        $ds_moneda,
+        $valor_venta,
         $igv,
-        $precio_venta,
-        $valor_cambio,
-        $id_moneda
+        $precio_venta
     ) {
         return $this->db->query(
             "
-            INSERT INTO cotizacion
+            INSERT INTO orden_compras
             (
-                id_cotizacion,
-                serie_cotizacion,id_trabajador,ds_nombre_trabajador,fecha_cotizacion,
-                validez_oferta_cotizacion,fecha_vencimiento_validez_oferta,id_cliente_proveedor,ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,
-                ds_provincia_cliente_proveedor,ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,email_cliente_proveedor,
-                clausula,lugar_entrega,nombre_encargado,observacion,
-                id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
-                valor_venta_total_sin_d,valor_venta_total_con_d,
-                descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion
+                id_orden_compra,
+                id_trabajador,ds_nombre_trabajador,fecha_orden_compra,id_cliente_proveedor,
+                ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,ds_provincia_cliente_proveedor,
+                ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,clausula,
+                lugar_entrega,nombre_encargado,observacion,id_condicion_pago,
+                ds_condicion_pago,id_moneda,ds_moneda,valor_venta,igv,precio_venta
             )
             VALUES
             (
                 '',
-                '$serie_cotizacion','$id_trabajador','$ds_nombre_trabajador','$fecha_cotizacion',
-                '$validez_oferta_cotizacion',STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y'),'$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor',
-                '$ds_provincia_cliente_proveedor','$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$email_cliente_proveedor',
-                '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
-                '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
-                '$valor_venta_total_sin_d','$valor_venta_total_con_d',
-                '$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857'
+                '$id_trabajador','$ds_nombre_trabajador','$fecha_orden_compra','$id_cliente_proveedor',
+                '$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor','$ds_provincia_cliente_proveedor',
+                '$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$clausula',
+                '$lugar_entrega','$nombre_encargado','$observacion','$id_condicion_pago',
+                '$ds_condicion_pago','$id_moneda','$ds_moneda','$valor_venta','$igv','$precio_venta'
             )
             "
         );
@@ -96,11 +84,9 @@ class M_orden_compras extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insertar_detalle_cotizacion(
-        $id_cotizacion,
+    public function insertar_detalle_orden_compras(
+        $id_orden_compra,
         $id_producto,
-        $id_tablero,
-        $id_comodin,
         $codigo_producto,
         $descripcion_producto,
         $id_unidad_medida,
@@ -108,49 +94,32 @@ class M_orden_compras extends CI_Model
         $id_marca_producto,
         $ds_marca_producto,
         $cantidad,
-
-        $precio_inicial,
-        $precio_ganancia,
-        $g,
-        $g_unidad,
-        $g_cant_total,
-
-        $precio_descuento,
-        $d,
-        $d_unidad,
-        $d_cant_total,
-
-        $valor_venta_sin_d,
-        $valor_venta_con_d,
-        $dias_entrega,
+        $precio_unitario_venta,
+        $precio_unitario_compra,
+        $rentabilidad,
+        $total_compra,
         $item
 
     ) {
         return $this->db->query(
             "
-            INSERT INTO detalle_cotizacion
+            INSERT INTO detalle_orden_compras
             (
-            id_dcotizacion,
-            id_cotizacion,id_producto,id_tablero,id_comodin,
+            id_dorden_compra,
+            id_orden_compra,id_producto,
             codigo_producto,descripcion_producto,
             id_unidad_medida,ds_unidad_medida,id_marca_producto,ds_marca_producto,
             cantidad,
-            precio_inicial,precio_ganancia,g,g_unidad,g_cant_total,
-            precio_descuento,d,d_unidad,d_cant_total,
-            valor_venta_sin_d,valor_venta_con_d,
-            dias_entrega,item
+            precio_unitario_venta,precio_unitario_compra,rentabilidad,total_compra,item
             )
             VALUES
             (
             '', 
-            '$id_cotizacion','$id_producto','$id_tablero','$id_comodin',
+            '$id_orden_compra','$id_producto',
             '$codigo_producto','$descripcion_producto',
             '$id_unidad_medida','$ds_unidad_medida','$id_marca_producto','$ds_marca_producto',
             '$cantidad',
-            '$precio_inicial','$precio_ganancia','$g','$g_unidad','$g_cant_total',
-            '$precio_descuento','$d','$d_unidad','$d_cant_total',
-            '$valor_venta_sin_d','$valor_venta_con_d',
-            '$dias_entrega','$item');
+            '$precio_unitario_venta','$precio_unitario_compra','$rentabilidad','$total_compra','$item');
         "
         );
     }
