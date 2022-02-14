@@ -43,8 +43,8 @@
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
-                            <input type="text" class="form-control" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
+                            <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
+                            <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_usuario") ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -70,9 +70,9 @@
                         </div>
                       </div>
 
-                      <div class="card card-primary collapsed-card">
+                      <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Datos de Cliente</h3>
+                          <h3 class="card-title">Datos de Cliente/Proveedor</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -85,7 +85,7 @@
                               <label for="">Cliente</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
-                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" readonly>
+                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor">
                                 <span class="input-group-append">
                                   <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_clientes_proveedores">
                                     Buscar
@@ -96,7 +96,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h4 class="modal-title">Clientes</h4>
+                                          <h4 class="modal-title">Clientes / Provedores</h4>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -195,13 +195,13 @@
                             <div class="col-md-3">
                               <label for="">Clausula</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula"></textarea>
+                                <textarea class="form-control" rows="1" id="clausula">Ninguna Clausula</textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Lugar Entrega</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega"></textarea>
+                                <textarea class="form-control" rows="1" id="lugar_entrega">Carabayllo</textarea>
                               </div>
                             </div>
                           </div>
@@ -209,19 +209,49 @@
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Nombre Encargado</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="nombre_encargado" value="">
+                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion"></textarea>
+                                <textarea class="form-control" rows="1" id="observacion">Ninguna Observacion</textarea>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
 
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Fecha de Vencimiento</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                              <label># Dias</label>
+                              <div class="input-group">
+                                <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
+                                <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>Fecha Vencimiento</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                   </div>
@@ -259,7 +289,7 @@
                                           <th id="dtable_ds_unidad_medida">U.M</th>
                                           <th id="dtable_ds_marca_producto">Marca</th>
                                           <th id="dtable_ds_grupo">Grupo</th>
-                                          <th id="dtable_stock">Stock</th>
+                                          <th id="dtable_ds_stock">Stock</th>
                                           <th id="dtable_ds_moneda">Moneda</th>
                                           <th id="dtable_precio_unitario">Precio Unitario</th>
                                         </tr>
@@ -291,7 +321,7 @@
                                               <td><?php echo $index_productos->ds_marca_producto; ?></td>
                                               <td><?php echo $index_productos->ds_grupo; ?></td>
                                               <td><?php echo $index_productos->stock; ?></td>
-                                              <td><?php echo $index_productos->ds_moneda; ?></td>
+                                              . <td><?php echo $index_productos->ds_moneda; ?></td>
                                               <td><?php echo $index_productos->precio_unitario; ?></td>
                                             </tr>
                                           <?php endforeach; ?>
@@ -464,8 +494,8 @@
                         <!-- Fin Comodin -->
                         <div class="col-md-6">
                           <div class="input-group">
-                            <label class="col-sm-3 col-form-label">Descripcion</label>
-                            <textarea class="form-control" rows="1" placeholder="Descripcion Producto" id="descripcion_producto" readonly></textarea>
+                            <label class="col-sm-3 col-form-label">Producto</label>
+                            <textarea class="form-control" rows="1" placeholder="Nombre Producto" id="descripcion_producto" readonly></textarea>
                           </div>
                         </div>
                       </div>
@@ -479,28 +509,22 @@
                       <input type="hidden" id="hidden_id_marca_producto">
                       <input type="hidden" id="hidden_ds_marca_producto">
                       <input type="hidden" id="tipo_moneda_origen">
-                      <input type="hidden" id="hidden_item">
                     </div>
 
                     <div class="col-md-4">
                       <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">Datos del Producto</h3>
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                               <label>&nbsp;</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
                               </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                               <label for="">Precio Unitario</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="precio_unitario" readonly>
@@ -516,11 +540,6 @@
                         <div class="card-header">
                           <h3 class="card-title">El Tipo Cambio es: <?php echo $tipo_cambio->venta; ?></h3>
                           <input type="hidden" class="form-control" id="valor_cambio" value="<?php echo $tipo_cambio->venta; ?>">
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
@@ -547,25 +566,25 @@
                     </div>
 
                     <div class="col-md-4">
-                      <!-- <div class="card collapsed-card"> -->
                       <div class="card">
-
                         <div class="card-header">
                           <h3 class="card-title">Salida de Producto</h3>
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <label for="">Cantidad</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="cantidad">
                               </div>
                             </div>
+                            <div class="col-md-6">
+                              <label for="">Monto</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="monto" readonly>
+                              </div>
+                            </div>
+
                             <div class="col-md-2">
                               <label for="">&nbsp;</label>
                               <div class="input-group">
@@ -575,20 +594,6 @@
 
                           </div>
 
-                          <div class="form-group row">
-                            <div class="col-md-6">
-                              <label for="">Valor Vnta Sin/D</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="valor_venta_sin_d" readonly>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="">Valor Vnta Con/D</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="valor_venta_con_d" readonly>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -692,10 +697,9 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_cotizacion" style="width: 100%;">
+                            <table id="id_table_detalle_cotizacion">
                               <thead>
                                 <tr>
-                                  <th>Item </th>
                                   <th>Codigo </th>
                                   <th>Descripcion</th>
                                   <th>U.M</th>
@@ -703,11 +707,9 @@
                                   <th>Precio U</th>
                                   <th>Cant</th>
                                   <th>Desc %</th>
-                                  <th style="background-color:#3DE7DA">Precio U/D</th>
-                                  <th>D Unidad</th>
-                                  <th>D. Cant/Total</th>
-                                  <th>Valor Venta Sin/D</th>
-                                  <th>Valor Venta Con/D</th>
+                                  <th>Precio U/D</th>
+                                  <th>Total D</th>
+                                  <th>Valor Venta</th>
                                   <th>Dias Entrega</th>
                                   <th></th>
                                 </tr>
@@ -725,30 +727,24 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="">Valor V. Total Sin/D</label>
+                          <label for="tipo_trabajador">Total</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                            <input type="text" class="form-control" id="total" value="">
                           </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                           <label for=" local">DCTO Total</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="descuento_total" value="">
                           </div>
                         </div>
                         <div class="col-md-3">
-                          <label for="">Valor V. Total Con/D</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="">
-                          </div>
-                        </div>
-                        <div class="col-md-2">
                           <label for=" local">IGV</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="igv" value="">
                           </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="precio_venta" value="">
@@ -758,7 +754,7 @@
                     </div>
 
                     <div class="col-md-8">
-                      <div class="card card-primary collapsed-card">
+                      <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">Condiciones de Pago</h3>
                           <div class="card-tools">
@@ -824,6 +820,7 @@
                                           </th>
                                         </tr>
                                       </tfoot>
+                                      </tbody>
                                     </table>
 
                                   </div>

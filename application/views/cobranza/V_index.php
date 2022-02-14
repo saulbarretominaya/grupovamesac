@@ -4,8 +4,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>ORDEN COMPRA
-              <a href="<?php echo base_url(); ?>C_orden_compra/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
+            <h1>Cobranza
+              <a href="<?php echo base_url(); ?>C_cobranza/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -19,15 +19,16 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Num Orden</th>
-                  <th>Fecha</th>
-                  <th>Proveedor</th>
-                  <th>Condicion Pago</th>
+                  <th>Tipo </th>
+                  <th>Fecha Emision </th>
+                  <th>Fecha Vencim</th>
+                  <th>Cliente/Proveedor</th>
+                  <th>Tipo documento</th>
+                  <th>N. -Serie</th>
+                  <th>Sucursal</th>
                   <th>Moneda</th>
                   <th>Monto</th>
-                  <th>Estado Orden</th>
-                  <th></th>
-                  <th></th>
+                  <th>Estado</th>
                 </tr>
               </thead>
               <tbody>

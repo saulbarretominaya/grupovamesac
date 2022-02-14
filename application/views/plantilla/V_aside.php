@@ -100,7 +100,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url() . "C_tableros" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_carga_inicial" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Carga Inicial</p>
                 </a>
@@ -141,7 +141,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url() . "C_compras" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_cobranza" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cobranza</p>
                 </a>

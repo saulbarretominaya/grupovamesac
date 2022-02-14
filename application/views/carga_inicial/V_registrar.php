@@ -4,9 +4,9 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Orden compra
+          <h1>Carga inicial
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-            <a href="<?php echo base_url(); ?>C_orden_compra" class="btn btn-danger btn-sm">CANCELAR</a>
+            <a href="<?php echo base_url(); ?>C_carga_inicial" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
       </div>
@@ -28,7 +28,7 @@
                   <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Datos Generales</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Detalle Orden Compra</a>
+                  <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Detalle Carga Inicial</a>
                 </li>
               </ul>
             </div>
@@ -40,7 +40,6 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-
                         <div class="col-md-3">
                           <label for="cargo">Fecha Emision</label>
                           <div class="input-group">
@@ -51,7 +50,7 @@
                           </div>
                         </div>
                         <div class="col-md-3">
-                          <label for="cargo">Condicion pago</label>
+                          <label for="cargo">Tipo ingreso</label>
                           <div class="input-group">
                             <select class="form-select select2" id="id_condicion_pago">
                               <option value="0">Seleccionar</option>
@@ -61,12 +60,29 @@
                             </select>
                           </div>
                         </div>
+                        <div class="col-md-3">
+                          <label for="cargo">Moneda</label>
+                          <div class="input-group">
+                            <select class="form-select select2" id="id_condicion_pago">
+                              <option value="0">Seleccionar</option>
+                              <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
+                                <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="cargo">Tipo cambio</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="fecha_cotizacion">
+                          </div>
+                        </div>
 
                       </div>
 
                       <div class="card card-primary collapsed-card">
                         <div class="card-header">
-                          <h3 class="card-title">Datos del proveedor</h3>
+                          <h3 class="card-title">Datos de Cliente/Proveedor</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -76,7 +92,7 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-6">
-                              <label for="">Proveedor</label>
+                              <label for="">Cliente/Proveedor</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
                                 <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" readonly>
@@ -155,64 +171,62 @@
                               </div>
                             </div>
                             <div class="col-md-2">
-                              <label for="">Departamento</label>
+                              <label for="">N.guia</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly></textarea>
+                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor"></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
-                              <label for="">Provincia</label>
+                              <label for="">N.orden compra</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly></textarea>
+                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor"></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
-                              <label for="">Distrito</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly></textarea>
-                              </div>
+                              <label for="cargo">Almacen</label>
+                              <select class="form-select select2" id="id_condicion_pago">
+                                <option value="0">Seleccionar</option>
+                                <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
+                                  <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                                <?php endforeach; ?>
+                              </select>
+
+
                             </div>
                           </div>
+
+
+
                           <div class="form-group row">
                             <div class="col-md-3">
-                              <label for="">Direccion Fiscal</label>
+                              <label for="cargo">Tipo de documento</label>
+                              <select class="form-select select2" id="id_condicion_pago">
+                                <option value="0">Seleccionar</option>
+                                <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
+                                  <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                                <?php endforeach; ?>
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="">Fecha</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly></textarea>
+                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="">Tipo orden</label>
+                              <label for="">N.Factura</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" placeholder="nacional/importada">
+                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="">Clausula</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula"></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="">Lugar Entrega</label>
+                              <label for="">Observacion</label>
                               <div class="input-group">
                                 <textarea class="form-control" rows="1" id="lugar_entrega"></textarea>
                               </div>
                             </div>
                           </div>
-                          <div class="form-group row">
-                            <div class="col-md-6">
-                              <label for="tipo_trabajador">Nombre Encargado</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="nombre_encargado" value="">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="tipo_trabajador">Observacion</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion"></textarea>
-                              </div>
-                            </div>
-                          </div>
+
                         </div>
                       </div>
 
@@ -227,9 +241,9 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-8">
-                          <div class="card card-primary">
+                          <div class="card card-primary collapsed-card">
                             <div class="card-header">
-                              <h3 class="card-title"> Busqueda de Producto</h3>
+                              <h3 class="card-title">Entrada de Producto</h3>
                               <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                   <i class="fas fa-plus"></i>
@@ -241,13 +255,13 @@
                                 <div class="col-md-6">
                                   <label for="">Descripcion</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="">
+                                    <input type="text" class="form-control" id="" readonly>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <label for="">Cantidad</label>
+                                  <label for="">Cantidad Stock</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="cantidad">
+                                    <input type="text" class="form-control" id="cantidad" placeholder="Cantidad Stock">
                                   </div>
                                 </div>
                                 <div class="col-md-2">
@@ -263,15 +277,9 @@
 
                               <div class="form-group row">
                                 <div class="col-md-6">
-                                  <label for="">Precio U -Ven</label>
+                                  <label for="">Precio Unitario</label>
                                   <div class="input-group">
                                     <input type="text" class="form-control" id="valor_venta_sin_d">
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <label for="">Precio U -Compr</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="valor_venta_con_d">
                                   </div>
                                 </div>
                               </div>
@@ -371,7 +379,7 @@
                     <div class="col-md-12">
                       <div class="card card-primary">
                         <div class="card-header">
-                          <h3 class="card-title">Detalle Orden Compra</h3>
+                          <h3 class="card-title">Detalle Carga inicial</h3>
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
@@ -379,15 +387,14 @@
                               <thead>
                                 <tr>
                                   <th>Item </th>
-                                  <th>Codigo </th>
-                                  <th>Descripcion</th>
-                                  <th>U.M</th>
-                                  <th>Marca</th>
-                                  <th>Precio U -Ven</th>
-                                  <th>Cant</th>
-                                  <th style="background-color:#5EF8EC">Precio U -Compr</th>
-                                  <th>Rentabilidad</th>
-                                  <th>Total- compra</th>
+                                  <th style="background-color:#5EF8EC">Codigo </th>
+                                  <th style="background-color:#5EF8EC">Descripcion</th>
+                                  <th style="background-color:#5EF8EC">Marca</th>
+                                  <th style="background-color:#5EF8EC">U.M</th>
+                                  <th style="background-color:#5EF8EC">C.Stock</th>
+                                  <th>Precio U</th>
+                                  <th>Precio T</th>
+                                  <th style="background-color:#3972F4">C.Stock Carga</th>
                                   <th></th>
                                 </tr>
                               </thead>
@@ -403,24 +410,14 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="">Valor venta </label>
+                          <label for="">Valor Producto Total </label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
                           </div>
                         </div>
 
-                        <div class="col-md-2">
-                          <label for=" local">IGV</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="igv" value="">
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <label for="sexo">Precio Venta</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="precio_venta" value="">
-                          </div>
-                        </div>
+
+
                       </div>
                     </div>
 
