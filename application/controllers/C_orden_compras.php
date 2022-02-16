@@ -14,25 +14,25 @@ class C_orden_compras extends CI_Controller
 
 	public function index()
 	{
-		//$data = array(
-		//	'index' => $this->M_orden_compra->index(), , $data
-		//);
+		$data = array(
+			'index' => $this->M_orden_compras->index(),
+		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('orden_compras/V_index');
+		$this->load->view('orden_compras/V_index', $data);
 	}
 
 	public function index_modal()
 	{
-		$id_cotizacion = $this->input->post("id_cotizacion");
+		$id_orden_compra = $this->input->post("id_orden_compra");
 
 		$data = array(
-			"index_modal_cabecera" => $this->M_cotizacion->index_modal_cabecera($id_cotizacion),
-			"index_modal_detalle" => $this->M_cotizacion->index_modal_detalle($id_cotizacion),
+			"index_modal_cabecera" => $this->M_orden_compras->index_modal_cabecera($id_orden_compra),
+			"index_modal_detalle" => $this->M_orden_compras->index_modal_detalle($id_orden_compra),
 		);
 
-		$this->load->view("cotizacion/V_index_modal", $data);
+		$this->load->view("orden_compras/V_index_modal", $data);
 	}
 
 	public function enlace_registrar()
@@ -85,7 +85,7 @@ class C_orden_compras extends CI_Controller
 		$ds_marca_producto = $this->input->post("ds_marca_producto");
 		$cantidad = $this->input->post("cantidad");
 		$precio_unitario_venta = $this->input->post("precio_unitario_venta");
-		$precio_unitario_compra = $this->input->post("precio_unitario_compra");
+		$precio_unitario_costo = $this->input->post("precio_unitario_costo");
 		$rentabilidad = $this->input->post("rentabilidad");
 		$total_compra = $this->input->post("total_compra");
 		$item = $this->input->post("item");
@@ -128,7 +128,7 @@ class C_orden_compras extends CI_Controller
 			$ds_marca_producto,
 			$cantidad,
 			$precio_unitario_venta,
-			$precio_unitario_compra,
+			$precio_unitario_costo,
 			$rentabilidad,
 			$total_compra,
 			$item
@@ -148,7 +148,7 @@ class C_orden_compras extends CI_Controller
 		$ds_marca_producto,
 		$cantidad,
 		$precio_unitario_venta,
-		$precio_unitario_compra,
+		$precio_unitario_costo,
 		$rentabilidad,
 		$total_compra,
 		$item
@@ -166,7 +166,7 @@ class C_orden_compras extends CI_Controller
 				$ds_marca_producto[$i],
 				$cantidad[$i],
 				$precio_unitario_venta[$i],
-				$precio_unitario_compra[$i],
+				$precio_unitario_costo[$i],
 				$rentabilidad[$i],
 				$total_compra[$i],
 				$item[$i]

@@ -43,7 +43,7 @@
                         <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
                         <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
                         <div class="col-md-3">
-                          <label for="cargo">Fecha Emision</label>
+                          <label for="cargo">Fecha Orden Compra</label>
                           <div class="input-group">
                             <?php
                             date_default_timezone_set("America/Lima");
@@ -283,21 +283,21 @@
                                   </div>
                                 </div>
                                 <div class="col-md-3">
-                                  <label for="">Precio U Compra</label>
+                                  <label for="">Precio U Costo</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="precio_unitario_compra">
+                                    <input type="text" class="form-control" id="precio_unitario_costo">
                                   </div>
                                 </div>
                                 <div class="col-md-3">
-                                  <label for="">Rentabilidad</label>
+                                  <label for="">Rentabilidad %</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="rentabilidad">
+                                    <input type="text" class="form-control" id="rentabilidad" readonly>
                                   </div>
                                 </div>
                                 <div class="col-md-3">
                                   <label for="">Total Compra</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="total_compra">
+                                    <input type="text" class="form-control" id="total_compra" readonly>
                                   </div>
                                 </div>
                               </div>
@@ -407,7 +407,7 @@
                                   <th>Marca</th>
                                   <th>Cant</th>
                                   <th>Precio U Venta</th>
-                                  <th class="table-info">Precio U Compra</th>
+                                  <th class="table-info">Precio U Costo</th>
                                   <th>Rentabilidad</th>
                                   <th>Total Compra</th>
                                   <th></th>
@@ -427,20 +427,20 @@
                         <div class="col-md-3">
                           <label for="">Valor Venta </label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta" value="">
+                            <input type="text" class="form-control" id="valor_venta" value="" readonly>
                           </div>
                         </div>
 
                         <div class="col-md-2">
                           <label for=" local">IGV</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="igv" value="">
+                            <input type="text" class="form-control" id="igv" value="" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="precio_venta" value="">
+                            <input type="text" class="form-control" id="precio_venta" value="" readonly>
                           </div>
                         </div>
                       </div>

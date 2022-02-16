@@ -25,62 +25,22 @@
                   <th>Condicion Pago</th>
                   <th>Moneda</th>
                   <th>Monto</th>
-                  <th>Estado Orden</th>
-                  <th></th>
+                  <th>Observacion</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
-
-                    <?php
-                    switch ($index->ds_estado_valor_cot) {
-                      case "0":
-                        $ds_estado_cot = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
-                        break;
-                      case "1":
-                        $ds_estado_cot = '<div><span class="badge bg-success">APROBADO</span></div>';
-                        break;
-                      case "2":
-                        $ds_estado_cot = '<div><span class="badge bg-secondary">CADUCADO</span></div>';
-                        break;
-                    }
-                    switch ($index->ds_estado_valor_od) {
-                      case "0":
-                        $ds_estado_od = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
-                        break;
-                      case "1":
-                        $ds_estado_od = '<div><span class="badge bg-success">APROBADO</span></div>';
-                        break;
-                      case "2":
-                        $ds_estado_od = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
-                        break;
-                      default;
-                        $ds_estado_od = '';
-                        break;
-                    }
-                    ?>
-
                     <tr>
-                      <td><?php echo $index->id_cotizacion; ?></td>
-                      <td><?php echo $index->fecha_cotizacion; ?></td>
+                      <td><?php echo $index->id_orden_compra; ?></td>
+                      <td><?php echo $index->fecha_orden_compra; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->ds_condicion_pago; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
                       <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                      <td><?php echo $ds_estado_cot; ?> </td>
-                      <td><?php echo $index->id_orden_despacho; ?> </td>
-                      <td><?php echo $ds_estado_od;; ?> </td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-
-                      <?php if ($index->ds_estado_valor_od == '0' or $index->ds_estado_valor_od == '2' or $index->ds_estado_valor_od == NULL) { ?>
-                        <td><a href=" <?php echo base_url(); ?>C_cotizacion/enlace_actualizar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-                      <?php } else { ?>
-                        <td><a class="btn btn btn-outline-warning btn-sm btn_alerta_actualizar"><span class="far fa-edit"></span></a></td>
-                      <?php } ?>
-                      <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
+                      <td><?php echo $index->observacion; ?></td>
+                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_compra" value="<?php echo $index->id_orden_compra; ?>" data-toggle="modal" data-target="#id_target_orden_compra"><span class="fas fa-search-plus"></span></button></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -96,7 +56,7 @@
   </div>
 
   <!-- Inicio Modal -->
-  <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
+  <div class="modal fade" id="id_target_orden_compra" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
       </div>
@@ -113,7 +73,7 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0
@@ -144,7 +104,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_cotizacion.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_orden_compras.js"></script>
 
   </body>
 
