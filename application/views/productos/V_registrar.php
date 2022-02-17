@@ -85,7 +85,7 @@
                   </div>
                   <div class="col-sm-2">
                     <label>Stock</label>
-                    <input type="text" class="form-control" id="">
+                    <input type="text" class="form-control" readonly>
                   </div>
                 </div>
               </div>

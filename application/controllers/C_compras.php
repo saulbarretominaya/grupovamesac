@@ -37,7 +37,6 @@ class C_compras extends CI_Controller
             'cbox_transaccion' => $this->M_cbox->cbox_transaccion(),
             'cbox_banco' => $this->M_cbox->cbox_banco(),
             'cbox_leyenda' => $this->M_cbox->cbox_leyenda(),
-
         );
 
         $this->load->view('compras/V_index_modal', $data);
@@ -47,7 +46,7 @@ class C_compras extends CI_Controller
     {
         $data = array(
 
-            'proveedor' => $this->M_compras->proveedor(),
+            //'proveedor' => $this->M_compras->proveedor(),
             'encargado' => $this->M_compras->encargado(),
             'cbox_tipo_comprobante' => $this->M_cbox->cbox_tipo_comprobante(),
             'cbox_mercaderia' => $this->M_cbox->cbox_mercaderia(),

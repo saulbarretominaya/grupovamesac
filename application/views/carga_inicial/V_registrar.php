@@ -41,32 +41,34 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="cargo">Fecha Emision</label>
+                          <label for="cargo">Fecha Carga Inicial</label>
                           <div class="input-group">
                             <?php
                             date_default_timezone_set("America/Lima");
                             ?>
-                            <input type="date" class="form-control" id="fecha_cotizacion" value="<?php echo date("Y-m-d"); ?>" readonly>
+                            <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+                            <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+                            <input type="date" class="form-control" id="fecha_carga_inicial" value="<?php echo date("Y-m-d"); ?>" readonly>
                           </div>
                         </div>
-                        <div class="col-md-3">
-                          <label for="cargo">Tipo ingreso</label>
+                        <div class="col-md-4">
+                          <label for="cargo">Tipo Ingreso</label>
                           <div class="input-group">
-                            <select class="form-select select2" id="id_condicion_pago">
+                            <select class="form-select select2" id="id_tipo_ingreso">
                               <option value="0">Seleccionar</option>
-                              <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                              <?php foreach ($cbox_tipo_ingresos as $cbox_tipo_ingresos) : ?>
+                                <option value="<?php echo $cbox_tipo_ingresos->id_dmultitabla; ?>"><?php echo $cbox_tipo_ingresos->descripcion; ?></option>
                               <?php endforeach; ?>
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <label for="cargo">Moneda</label>
                           <div class="input-group">
-                            <select class="form-select select2" id="id_condicion_pago">
+                            <select class="form-select select2" id="id_moneda">
                               <option value="0">Seleccionar</option>
-                              <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                              <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
+                                <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>
                               <?php endforeach; ?>
                             </select>
                           </div>
@@ -74,13 +76,14 @@
                         <div class="col-md-3">
                           <label for="cargo">Tipo cambio</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="fecha_cotizacion">
+                            <input type="text" class="form-control" id="tipo_cambio">
                           </div>
                         </div>
 
                       </div>
 
-                      <div class="card card-primary collapsed-card">
+                      <!-- <div class="card card-primary collapsed-card"> -->
+                      <div class="card card-primary ">
                         <div class="card-header">
                           <h3 class="card-title">Datos de Cliente/Proveedor</h3>
                           <div class="card-tools">
@@ -106,7 +109,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h4 class="modal-title">Clientes</h4>
+                                          <h4 class="modal-title">Clientes Proveedores</h4>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -170,59 +173,51 @@
                                 </span>
                               </div>
                             </div>
-                            <div class="col-md-2">
-                              <label for="">N.guia</label>
+                            <div class="col-md-3">
+                              <label for="">N. Guia</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="num_guia"></textarea>
                               </div>
                             </div>
-                            <div class="col-md-2">
-                              <label for="">N.orden compra</label>
+                            <div class="col-md-3">
+                              <label for="">N. Orden Compra</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor"></textarea>
+                                <textarea class="form-control" rows="1" id="num_orden_compra"></textarea>
                               </div>
                             </div>
-                            <div class="col-md-2">
-                              <label for="cargo">Almacen</label>
-                              <select class="form-select select2" id="id_condicion_pago">
-                                <option value="0">Seleccionar</option>
-                                <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                  <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
-                                <?php endforeach; ?>
-                              </select>
 
-
-                            </div>
                           </div>
 
 
 
                           <div class="form-group row">
                             <div class="col-md-3">
-                              <label for="cargo">Tipo de documento</label>
-                              <select class="form-select select2" id="id_condicion_pago">
-                                <option value="0">Seleccionar</option>
-                                <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                  <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                              <label for="cargo">Tipo de Comprobante</label>
+                              <select class="form-select select2" id="id_tipo_comprobante">
+                                <option value="0" selected>Seleccionar</option>
+                                <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?>
+                                  <option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>">
+                                    <?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                  </option>
                                 <?php endforeach; ?>
                               </select>
                             </div>
                             <div class="col-md-3">
-                              <label for="">Fecha</label>
+                              <label for="">Fecha Comprobante</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope">
+                                <input type="date" class="form-control" id="fecha_comprobante" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="">N.Factura</label>
+                              <label for="">Num. Comprobante</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope">
+                                <input type="text" class="form-control" id="num_comprobante" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega"></textarea>
+                                <textarea class="form-control" rows="1" id="observacion"></textarea>
                               </div>
                             </div>
                           </div>
@@ -240,8 +235,9 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <div class="col-md-8">
-                          <div class="card card-primary collapsed-card">
+                        <div class="col-md-10">
+                          <div class="card card-primary">
+                            <!-- <div class="card card-primary collapsed-card"> -->
                             <div class="card-header">
                               <h3 class="card-title">Entrada de Producto</h3>
                               <div class="card-tools">
@@ -252,34 +248,55 @@
                             </div>
                             <div class="card-body">
                               <div class="form-group row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                   <label for="">Descripcion</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="" readonly>
+                                    <input type="text" class="form-control" id="descripcion_producto" readonly>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <label for="">Cantidad Stock</label>
+                                  <label for="">Almacen</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="cantidad" placeholder="Cantidad Stock">
+                                    <input type="text" class="form-control" id="ds_almacen" readonly>
                                   </div>
-                                </div>
-                                <div class="col-md-2">
-                                  <label for="">&nbsp;</label>
-                                  <div class="input-group">
-                                    <button type="button" class="btn btn-outline-success" id="id_agregar_cotizacion"><span class="fas fa-plus"></span></button>
-                                  </div>
-                                </div>
-                                <div class="col-md-2">
-
                                 </div>
                               </div>
 
                               <div class="form-group row">
-                                <div class="col-md-6">
+                                <div class="col-md-2">
+                                  <label for="">Stock Actual</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="stock_actual" readonly>
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <label for="">Nueva Cant.</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="nueva_cantidad">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <label for="">Total Stock</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="total_stock" readonly>
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
                                   <label for="">Precio Unitario</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="valor_venta_sin_d">
+                                    <input type="text" class="form-control" id="precio_unitario">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <label for="">Valor Total</label>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control" id="valor_total" readonly>
+                                  </div>
+                                </div>
+                                <div class="col-md-1">
+                                  <label for="">&nbsp;</label>
+                                  <div class="input-group">
+                                    <button type="button" class="btn btn-outline-success" id="id_agregar_carga_inicial"><span class="fas fa-plus"></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -325,7 +342,8 @@
                                               <td>
                                                 <?php $split_productos =
                                                   $index_productos->id_producto . "*" .
-                                                  $index_productos->id_general . "*" .
+                                                  $index_productos->id_almacen . "*" .
+                                                  $index_productos->ds_almacen . "*" .
                                                   $index_productos->codigo_producto . "*" .
                                                   $index_productos->descripcion_producto . "*" .
                                                   $index_productos->id_unidad_medida . "*" .
@@ -334,7 +352,8 @@
                                                   $index_productos->ds_marca_producto . "*" .
                                                   $index_productos->id_moneda . "*" .
                                                   $index_productos->ds_moneda . "*" .
-                                                  $index_productos->precio_unitario;
+                                                  $index_productos->precio_unitario . "*" .
+                                                  $index_productos->stock;
                                                 ?>
                                                 <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_producto" value="<?php echo $split_productos; ?>" data-toggle="modal" data-target="#opcion_target_producto"><span class="fas fa-check"></span></button>
                                               </td>
@@ -361,18 +380,14 @@
                             </div>
                           </div>
                         </div>
-
                       </div>
                       <input type="hidden" id="hidden_id_producto">
-                      <input type="hidden" id="hidden_id_general">
-                      <input type="hidden" id="hidden_id_tablero">
-                      <input type="hidden" id="hidden_id_comodin">
+                      <input type="hidden" id="hidden_id_almacen">
                       <input type="hidden" id="hidden_codigo_producto">
                       <input type="hidden" id="hidden_id_unidad_medida">
                       <input type="hidden" id="hidden_ds_unidad_medida">
                       <input type="hidden" id="hidden_id_marca_producto">
                       <input type="hidden" id="hidden_ds_marca_producto">
-                      <input type="hidden" id="tipo_moneda_origen">
                       <input type="hidden" id="hidden_item">
                     </div>
 
@@ -383,18 +398,20 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_cotizacion" style="width: 100%;">
+                            <table id="id_table_detalle_carga_inicial" style="width: 100%;">
                               <thead>
                                 <tr>
                                   <th>Item </th>
-                                  <th style="background-color:#5EF8EC">Codigo </th>
-                                  <th style="background-color:#5EF8EC">Descripcion</th>
-                                  <th style="background-color:#5EF8EC">Marca</th>
-                                  <th style="background-color:#5EF8EC">U.M</th>
-                                  <th style="background-color:#5EF8EC">C.Stock</th>
-                                  <th>Precio U</th>
-                                  <th>Precio T</th>
-                                  <th style="background-color:#3972F4">C.Stock Carga</th>
+                                  <th>Almacen </th>
+                                  <th class="table-info">Codigo </th>
+                                  <th class="table-info">Descripcion</th>
+                                  <th class="table-info">U.M</th>
+                                  <th class="table-info">Marca</th>
+                                  <th class="table-info">Stock Actual</th>
+                                  <th>Nueva Cant.</th>
+                                  <th>Total Stock</th>
+                                  <th>Precio Unitario</th>
+                                  <th>Valor Total</th>
                                   <th></th>
                                 </tr>
                               </thead>
@@ -410,19 +427,14 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-3">
-                          <label for="">Valor Producto Total </label>
+                          <label for="">Monto Total </label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                            <input type="text" class="form-control" id="monto_total" readonly>
                           </div>
                         </div>
-
-
-
                       </div>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
@@ -474,7 +486,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
-<script src="<?php echo base_url() ?>application/js/j_cotizacion.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_carga_inicial.js"></script>
 
 </body>
 

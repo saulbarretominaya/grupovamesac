@@ -36,7 +36,7 @@ class M_compras extends CI_Model
     public function encargado()
     {
         $resultados = $this->db->query("
-           SELECT CONCAT (nombres,' ',ape_paterno,' ',ape_materno) AS ds_omar FROM trabajadores WHERE id_estado = '1';");
+           SELECT CONCAT (nombres,' ',ape_paterno,' ',ape_materno) AS ds_omar FROM trabajadores;");
         return $resultados->result();
     }
 
