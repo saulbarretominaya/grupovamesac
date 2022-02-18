@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_carga_inicial extends CI_Model
+class M_compras_cobranzas extends CI_Model
 {
 
     public function index()
@@ -62,85 +62,56 @@ class M_carga_inicial extends CI_Model
         return $resultados->result();
     }
 
-    public function index_productos()
-    {
-        $resultados = $this->db->query("
-        SELECT 
-        id_producto,
-        stock,
-        CONCAT('PRO',id_producto) AS id_general,
-        UPPER(codigo_producto) as codigo_producto,
-        id_almacen,
-        (select descripcion from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
-        id_unidad_medida,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
-        id_sunat,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        UPPER(descripcion_producto) as descripcion_producto,
-        id_moneda,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        precio_costo,
-        porcentaje,
-        ganancia_unidad,
-        precio_unitario,
-        rentabilidad
-        id_grupo,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
-        id_familia,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
-        id_clase,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
-        id_sub_clase,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
-        id_sub_clase_dos,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
-        id_marca_producto,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
-        id_cta_vta,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
-        id_cta_ent,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
-        stock
-        FROM productos
-        ORDER BY id_producto ASC
-        ");
-        return $resultados->result();
-    }
-
     public function insertar(
         $id_trabajador,
         $ds_nombre_trabajador,
-        $fecha_carga_inicial,
-        $id_tipo_ingreso,
-        $id_moneda,
-        $tipo_cambio,
+        $fecha_compra_cobranza,
+        $id_tipo_comprobante,
+        $ds_tipo_comprobante,
+        $num_comprobante,
+        $id_almacen,
+        $ds_almacen,
+        $fecha_emision,
+        $fecha_vencimiento,
+        $id_tipo_compra_cobranza,
+        $ds_tipo_compra_cobranza,
         $id_cliente_proveedor,
         $ds_nombre_cliente_proveedor,
-        $num_guia,
-        $num_orden_compra,
-        $id_tipo_comprobante,
-        $fecha_comprobante,
-        $num_comprobante,
         $observacion,
-        $monto_total
+        $id_moneda,
+        $ds_moneda,
+        $sub_total,
+        $igv,
+        $total,
+        $id_condicion_pago,
+        $ds_condicion_pago,
+        $pendiente,
+        $pagado,
+        $id_estado_compra_cobranza
     ) {
         return $this->db->query(
             "
-            INSERT INTO carga_inicial
+            INSERT INTO compras_cobranzas
             (
-                id_carga_inicial,
-                id_trabajador,ds_nombre_trabajador,fecha_carga_inicial,id_tipo_ingreso,
-                id_moneda,tipo_cambio,id_cliente_proveedor,ds_nombre_cliente_proveedor,num_guia,
-                num_orden_compra,id_tipo_comprobante,fecha_comprobante,num_comprobante,
-                observacion,monto_total
+            id_compra_cobranza,
+            id_trabajador,ds_nombre_trabajador,fecha_compra_cobranza,id_tipo_comprobante,
+            ds_tipo_comprobante,num_comprobante,id_almacen,ds_almacen,
+            fecha_emision,fecha_vencimiento,id_tipo_compra_cobranza,ds_tipo_compra_cobranza,
+            id_cliente_proveedor,ds_nombre_cliente_proveedor,observacion,id_moneda,
+            ds_moneda,sub_total,igv,total,
+            id_condicion_pago,ds_condicion_pago,pendiente,pagado,
+            id_estado_compra_cobranza
             )
             VALUES
             (
-                '',
-                '$id_trabajador','$ds_nombre_trabajador','$fecha_carga_inicial','$id_tipo_ingreso',
-                '$id_moneda','$tipo_cambio','$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$num_guia',
-                '$num_orden_compra','$id_tipo_comprobante','$fecha_comprobante','$num_comprobante',
-                '$observacion','$monto_total'
+            '',
+            '$id_trabajador','$ds_nombre_trabajador','$fecha_compra_cobranza','$id_tipo_comprobante',
+            '$ds_tipo_comprobante','$num_comprobante','$id_almacen','$ds_almacen',
+            '$fecha_emision','$fecha_vencimiento','$id_tipo_compra_cobranza','$ds_tipo_compra_cobranza',
+            '$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$observacion','$id_moneda',
+            '$ds_moneda','$sub_total','$igv','$total',
+            '$id_condicion_pago','$ds_condicion_pago','$pendiente','$pagado',
+            '$id_estado_compra_cobranza'
             )
             "
         );
@@ -151,7 +122,7 @@ class M_carga_inicial extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insertar_detalle_carga_inicial(
+    public function insertar_detalle_compras_cobranzas(
         $id_carga_inicial,
         $item,
         $id_almacen,
@@ -191,18 +162,6 @@ class M_carga_inicial extends CI_Model
         );
     }
 
-    public function actualizar_stock_productos(
-        $id_producto,
-        $total_stock
-    ) {
-        return $this->db->query(
-            "
-            update productos
-            set stock='$total_stock'
-            where id_producto='$id_producto'
-            "
-        );
-    }
 
     public function index_modal_cabecera($id_carga_inicial)
     {

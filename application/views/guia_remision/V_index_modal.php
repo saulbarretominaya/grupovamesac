@@ -1,5 +1,5 @@
  <div class="modal-header">
-     <h4 class="modal-title">Cotizacion</h4>
+     <h4 class="modal-title">Guia Remision</h4>
      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
      </button>
@@ -14,7 +14,7 @@
                              <div class="form-group row">
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-3">FECHA EMISION</label>
+                                         <label class="col-md-3">FECHA EMISION GUIA</label>
                                          <div class="col-md-9">
                                              21/10/2021
                                          </div>

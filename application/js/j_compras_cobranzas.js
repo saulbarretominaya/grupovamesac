@@ -44,94 +44,115 @@ $(document).on("click", ".js_lupa_carga_inicial", function () {
 });
 $("#registrar").on("click", function () {
 	debugger;
-	validar_registrar();
+	// validar_registrar();
 	if (resultado_campo == true) {
 
 		//Cabecera
 		var id_trabajador = $("#id_trabajador").val();
 		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
-		var fecha_carga_inicial = $("#fecha_carga_inicial").val();
-		var id_tipo_ingreso = $("#id_tipo_ingreso").val();
-		var id_moneda = $("#id_moneda").val();
-		var tipo_cambio = $("#tipo_cambio").val();
+		var fecha_compra_cobranza = $("#fecha_compra_cobranza").val();
+		var id_tipo_comprobante = $("#id_tipo_comprobante").val();
+		var ds_tipo_comprobante = $('#id_tipo_comprobante option:selected').text();
+		var num_comprobante = $("#num_comprobante").val();
+		var id_almacen = $("#id_almacen").val();
+		var ds_almacen = $('#id_almacen option:selected').text();
+		var fecha_emision = $("#fecha_emision").val();
+		var fecha_vencimiento = $("#fecha_vencimiento").val();
+		var id_tipo_compra_cobranza = $("#id_tipo_compra_cobranza").val();
+		var ds_tipo_compra_cobranza = $('#id_tipo_compra_cobranza option:selected').text();
 		var id_cliente_proveedor = $("#id_cliente_proveedor").val();
 		var ds_nombre_cliente_proveedor = $("#ds_nombre_cliente_proveedor").val();
-		var num_guia = $("#num_guia").val();
-		var num_orden_compra = $("#num_orden_compra").val();
-		var id_tipo_comprobante = $("#id_tipo_comprobante").val();
-		var fecha_comprobante = $("#fecha_comprobante").val();
-		var num_comprobante = $("#num_comprobante").val();
 		var observacion = $("#observacion").val();
-		var monto_total = $('#monto_total').val();
+		var id_moneda = $("#id_moneda").val();
+		var ds_moneda = $('#id_moneda option:selected').text();
+		var sub_total = $("#sub_total").val();
+		var igv = $("#igv").val();
+		var total = $("#total").val();
+		var id_condicion_pago = $("#id_condicion_pago").val();
+		var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
+		var pendiente = $('#pendiente').val();
+		var pagado = $('#pagado').val();
+		var id_estado_compra_cobranza = $("#id_estado_compra_cobranza").val();
 
-
-		//Detalle
+		//Detalle compras / cobranza
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
-		var id_almacen = Array.prototype.slice.call(document.getElementsByName("id_almacen[]")).map((o) => o.value);
-		var ds_almacen = Array.prototype.slice.call(document.getElementsByName("ds_almacen[]")).map((o) => o.value);
-		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
-		var codigo_producto = Array.prototype.slice.call(document.getElementsByName("codigo_producto[]")).map((o) => o.value);
-		var descripcion_producto = Array.prototype.slice.call(document.getElementsByName("descripcion_producto[]")).map((o) => o.value);
-		var id_unidad_medida = Array.prototype.slice.call(document.getElementsByName("id_unidad_medida[]")).map((o) => o.value);
-		var ds_unidad_medida = Array.prototype.slice.call(document.getElementsByName("ds_unidad_medida[]")).map((o) => o.value);
-		var id_marca_producto = Array.prototype.slice.call(document.getElementsByName("id_marca_producto[]")).map((o) => o.value);
-		var ds_marca_producto = Array.prototype.slice.call(document.getElementsByName("ds_marca_producto[]")).map((o) => o.value);
-		var stock_actual = Array.prototype.slice.call(document.getElementsByName("stock_actual[]")).map((o) => o.value);
-		var nueva_cantidad = Array.prototype.slice.call(document.getElementsByName("nueva_cantidad[]")).map((o) => o.value);
-		var total_stock = Array.prototype.slice.call(document.getElementsByName("total_stock[]")).map((o) => o.value);
+		var id_detalle_compra_cobranza = Array.prototype.slice.call(document.getElementsByName("id_detalle_compra_cobranza[]")).map((o) => o.value);
+		var id_compra_cobranza = Array.prototype.slice.call(document.getElementsByName("id_compra_cobranza[]")).map((o) => o.value);
+		var fecha_deposito = Array.prototype.slice.call(document.getElementsByName("fecha_deposito[]")).map((o) => o.value);
+		var num_deposito = Array.prototype.slice.call(document.getElementsByName("num_deposito[]")).map((o) => o.value);
+		var num_letra_cheque = Array.prototype.slice.call(document.getElementsByName("num_letra_cheque[]")).map((o) => o.value);
+		var id_medio_pago = Array.prototype.slice.call(document.getElementsByName("id_medio_pago[]")).map((o) => o.value);
+		var id_banco = Array.prototype.slice.call(document.getElementsByName("id_banco[]")).map((o) => o.value);
+		var monto = Array.prototype.slice.call(document.getElementsByName("monto[]")).map((o) => o.value);
+		var tipo_cambio = Array.prototype.slice.call(document.getElementsByName("total_stock[]")).map((o) => o.value);
 
-
-		var precio_unitario = Array.prototype.slice.call(document.getElementsByName("precio_unitario[]")).map((o) => o.value);
-		var valor_total = Array.prototype.slice.call(document.getElementsByName("valor_total[]")).map((o) => o.value);
+		//Detalle programacion_pagos
+		var id_dprogramacion_pagos = Array.prototype.slice.call(document.getElementsByName("id_dprogramacion_pagos[]")).map((o) => o.value);
+		var id_compra_cobranza = Array.prototype.slice.call(document.getElementsByName("id_compra_cobranza[]")).map((o) => o.value);
+		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
 
 
 
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_carga_inicial/insertar",
+			url: base_url + "C_compras_cobranzas/insertar",
 			type: "POST",
 			dataType: "json",
 			data: {
+
 				//Cabecera
 				id_trabajador: id_trabajador,
 				ds_nombre_trabajador: ds_nombre_trabajador,
-				fecha_carga_inicial: fecha_carga_inicial,
-				id_tipo_ingreso: id_tipo_ingreso,
-				id_moneda: id_moneda,
-				tipo_cambio: tipo_cambio,
-				id_cliente_proveedor: id_cliente_proveedor,
-				ds_nombre_cliente_proveedor: ds_nombre_cliente_proveedor,
-				num_guia: num_guia,
-				num_orden_compra: num_orden_compra,
+				fecha_compra_cobranza: fecha_compra_cobranza,
 				id_tipo_comprobante: id_tipo_comprobante,
-				fecha_comprobante: fecha_comprobante,
+				ds_tipo_comprobante: ds_tipo_comprobante,
 				num_comprobante: num_comprobante,
-				observacion: observacion,
-				monto_total: monto_total,
-
-
-				//Detalle Carga inicial
-				item: item,
 				id_almacen: id_almacen,
 				ds_almacen: ds_almacen,
-				id_producto: id_producto,
-				codigo_producto: codigo_producto,
-				descripcion_producto: descripcion_producto,
-				id_unidad_medida: id_unidad_medida,
-				ds_unidad_medida: ds_unidad_medida,
-				id_marca_producto: id_marca_producto,
-				ds_marca_producto: ds_marca_producto,
-				stock_actual: stock_actual,
-				nueva_cantidad: nueva_cantidad,
-				total_stock: total_stock,
-				precio_unitario: precio_unitario,
-				valor_total: valor_total,
+				fecha_emision: fecha_emision,
+				fecha_vencimiento: fecha_vencimiento,
+				id_tipo_compra_cobranza: id_tipo_compra_cobranza,
+				ds_tipo_compra_cobranza: ds_tipo_compra_cobranza,
+				id_cliente_proveedor: id_cliente_proveedor,
+				ds_nombre_cliente_proveedor: ds_nombre_cliente_proveedor,
+				observacion: observacion,
+				id_moneda: id_moneda,
+				ds_moneda: ds_moneda,
+				sub_total: sub_total,
+				igv: igv,
+				total: total,
+				id_condicion_pago: id_condicion_pago,
+				ds_condicion_pago: ds_condicion_pago,
+				pendiente: pendiente,
+				pagado: pagado,
+				id_estado_compra_cobranza: id_estado_compra_cobranza,
+
+				//Detalle compras / cobranza
+				item: item,
+				id_detalle_compra_cobranza: id_detalle_compra_cobranza,
+				id_compra_cobranza: id_compra_cobranza,
+				fecha_deposito: fecha_deposito,
+				num_deposito: num_deposito,
+				num_letra_cheque: num_letra_cheque,
+				id_medio_pago: id_medio_pago,
+				id_banco: id_banco,
+				monto: monto,
+				id_moneda: id_moneda,
+				tipo_cambio: tipo_cambio,
+
+
+				//Detalle programacion_pagos
+				id_dprogramacion_pagos: id_dprogramacion_pagos,
+				id_compra_cobranza: id_compra_cobranza,
+				fecha_cuota: fecha_cuota,
+				id_condicion_pago: id_condicion_pago,
+
 
 			},
 			success: function (data) {
 				debugger;
-				window.location.href = base_url + "C_carga_inicial";
+				window.location.href = base_url + "C_compras_cobranzas";
 			},
 		});
 	};

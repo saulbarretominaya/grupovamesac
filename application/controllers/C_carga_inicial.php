@@ -51,6 +51,9 @@ class C_carga_inicial extends CI_Controller
 		$fecha_carga_inicial = $this->input->post("fecha_carga_inicial");
 		$id_tipo_ingreso = $this->input->post("id_tipo_ingreso");
 		$id_moneda = $this->input->post("id_moneda");
+		$tipo_cambio = $this->input->post("tipo_cambio");
+
+		$id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
 		$ds_nombre_cliente_proveedor = $this->input->post("ds_nombre_cliente_proveedor");
 		$num_guia = $this->input->post("num_guia");
 		$num_orden_compra = $this->input->post("num_orden_compra");
@@ -86,6 +89,8 @@ class C_carga_inicial extends CI_Controller
 			$fecha_carga_inicial,
 			$id_tipo_ingreso,
 			$id_moneda,
+			$tipo_cambio,
+			$id_cliente_proveedor,
 			$ds_nombre_cliente_proveedor,
 			$num_guia,
 			$num_orden_compra,
@@ -115,6 +120,11 @@ class C_carga_inicial extends CI_Controller
 			$total_stock,
 			$precio_unitario,
 			$valor_total,
+		);
+
+		$this->actualizar_stock_productos(
+			$id_producto,
+			$total_stock
 		);
 
 		echo json_encode($item);
@@ -160,15 +170,28 @@ class C_carga_inicial extends CI_Controller
 		}
 	}
 
+	protected function actualizar_stock_productos(
+		$id_producto,
+		$total_stock
+	) {
+		for ($i = 0; $i < count($id_producto); $i++) {
+			$this->M_carga_inicial->actualizar_stock_productos(
+				$id_producto[$i],
+				$total_stock[$i]
+			);
+		}
+	}
+
+
 	public function index_modal()
 	{
-		$id_orden_compra = $this->input->post("id_orden_compra");
+		$id_carga_inicial = $this->input->post("id_carga_inicial");
 
 		$data = array(
-			"index_modal_cabecera" => $this->M_orden_compras->index_modal_cabecera($id_orden_compra),
-			"index_modal_detalle" => $this->M_orden_compras->index_modal_detalle($id_orden_compra),
+			"index_modal_cabecera" => $this->M_carga_inicial->index_modal_cabecera($id_carga_inicial),
+			"index_modal_detalle" => $this->M_carga_inicial->index_modal_detalle($id_carga_inicial),
 		);
 
-		$this->load->view("orden_compras/V_index_modal", $data);
+		$this->load->view("carga_inicial/V_index_modal", $data);
 	}
 }

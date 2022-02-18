@@ -202,7 +202,7 @@
                             <div class="col-md-3">
                               <label for="">Lugar Entrega</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega" readonly><?php echo $enlace_actualizar_cabecera->lugar_entrega ?></textarea>
+                                <textarea class="form-control" rows="1" id="lugar_entrega"><?php echo $enlace_actualizar_cabecera->lugar_entrega ?></textarea>
                               </div>
                             </div>
                           </div>
