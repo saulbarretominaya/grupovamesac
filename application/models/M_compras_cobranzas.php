@@ -122,45 +122,77 @@ class M_compras_cobranzas extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insertar_detalle_compras_cobranzas(
-        $id_carga_inicial,
-        $item,
-        $id_almacen,
-        $ds_almacen,
-        $id_producto,
-        $codigo_producto,
-        $descripcion_producto,
-        $id_unidad_medida,
-        $ds_unidad_medida,
-        $id_marca_producto,
-        $ds_marca_producto,
-        $stock_actual,
-        $nueva_cantidad,
-        $total_stock,
-        $precio_unitario,
-        $valor_total
+    public function insertar_detalle_programacion_pagos(
+        $id_compra_cobranza,
+        $fecha_cuota,
+        $monto_cuota
+
     ) {
         return $this->db->query(
             "
-            INSERT INTO detalle_carga_inicial
+        INSERT INTO detalle_programacion_pagos
+        (
+        id_dprogramacion_pago,
+        id_compra_cobranza,fecha_cuota,monto_cuota
+        )
+        VALUES
+        (
+        '', 
+        '$id_compra_cobranza',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota'
+        )
+        "
+        );
+    }
+
+    public function insertar_detalle_compras_cobranzas(
+        $id_compra_cobranza,
+        $item,
+        $fecha_deposito,
+        $num_deposito,
+        $num_letra_cheque,
+        $id_medio_pago,
+        $ds_medio_pago,
+        $id_banco,
+        $ds_banco,
+        $monto,
+        $tipo_cambio
+    ) {
+        return $this->db->query(
+            "
+            INSERT INTO detalle_compras_cobranzas
             (
-            id_dcarga_inicial,
-            id_carga_inicial,item,id_almacen,ds_almacen,id_producto,
-            codigo_producto,descripcion_producto,
-            id_unidad_medida,ds_unidad_medida,id_marca_producto,ds_marca_producto,
-            stock_actual,nueva_cantidad,total_stock,precio_unitario,valor_total
+            id_dcompra_cobranza,
+            id_compra_cobranza,
+            item,
+            fecha_deposito,
+            num_deposito,
+            num_letra_cheque,
+            id_medio_pago,
+            ds_medio_pago,
+            id_banco,
+            ds_banco,
+            monto,
+            tipo_cambio
             )
             VALUES
             (
             '', 
-            '$id_carga_inicial','$item','$id_almacen','$ds_almacen','$id_producto',
-            '$codigo_producto','$descripcion_producto',
-            '$id_unidad_medida','$ds_unidad_medida','$id_marca_producto','$ds_marca_producto',
-            '$stock_actual','$nueva_cantidad','$total_stock','$precio_unitario','$valor_total'
+            '$id_compra_cobranza',
+            '$item',
+            '$fecha_deposito',
+            '$num_deposito',
+            '$num_letra_cheque',
+            '$id_medio_pago',
+            '$ds_medio_pago',
+            '$id_banco',
+            '$ds_banco',
+            '$monto',
+            '$tipo_cambio'
             )
         "
         );
     }
+
 
 
     public function index_modal_cabecera($id_carga_inicial)

@@ -73,28 +73,23 @@ class C_compras_cobranzas extends CI_Controller
 		$pagado = $this->input->post("pagado");
 		$id_estado_compra_cobranza = $this->input->post("id_estado_compra_cobranza");
 
+		//Detalle_condicion pago
+		$fecha_cuota = $this->input->post("fecha_cuota");
+		$monto_cuota = $this->input->post("monto_cuota");
 
-		// //Detalle Compras / cobranzas
-		// $item = $this->input->post("item");
-		// $id_detalle_compra_cobranza = $this->input->post("id_detalle_compra_cobranza");
-		// $id_compra_cobranza = $this->input->post("id_compra_cobranza");
-		// $fecha_deposito = $this->input->post("fecha_deposito");
-		// $num_deposito = $this->input->post("num_deposito");
-		// $num_letra_cheque = $this->input->post("num_letra_cheque");
-		// $id_medio_pago = $this->input->post("id_medio_pago");
-		// $id_banco = $this->input->post("id_banco");
-		// $monto = $this->input->post("monto");
-		// $id_moneda = $this->input->post("id_moneda");
-		// $tipo_cambio = $this->input->post("tipo_cambio");
+		//Detalle Compras / cobranzas
+		$item = $this->input->post("item");
+		$fecha_deposito = $this->input->post("fecha_deposito");
+		$num_deposito = $this->input->post("num_deposito");
+		$num_letra_cheque = $this->input->post("num_letra_cheque");
+		$id_medio_pago = $this->input->post("id_medio_pago");
+		$ds_medio_pago = $this->input->post("ds_medio_pago");
+		$id_banco = $this->input->post("id_banco");
+		$ds_banco = $this->input->post("ds_banco");
+		$monto = $this->input->post("monto");
+		$tipo_cambio = $this->input->post("tipo_cambio");
 
-		// //Detalle_condicion pago
-		// $id_dprogramacion_pagos = $this->input->post("id_dprogramacion_pagos");
-		// $id_compra_cobranza = $this->input->post("id_compra_cobranza");
-		// $fecha_cuota = $this->input->post("fecha_cuota");
-		// $id_condicion_pago = $this->input->post("id_condicion_pago");
-
-
-		if ($this->M_compras_cobranzas->insertar(
+		$this->M_compras_cobranzas->insertar(
 			//Cabecera
 			$id_trabajador,
 			$ds_nombre_trabajador,
@@ -122,124 +117,90 @@ class C_compras_cobranzas extends CI_Controller
 			$pagado,
 			$id_estado_compra_cobranza
 
-		));
+		);
 
-		// $id_compra_cobranza = $this->M_compras_cobranzas->lastID();
-		// $this->insertar_detalle_compras_cobranzas(
-		// 	$item,
-		// 	$id_detalle_compra_cobranza,
-		// 	$id_compra_cobranza,
-		// 	$fecha_deposito,
-		// 	$num_deposito,
-		// 	$num_letra_cheque,
-		// 	$id_medio_pago,
-		// 	$id_banco,
-		// 	$monto,
-		// 	$id_moneda,
-		// 	$tipo_cambio,
+		$id_compra_cobranza = $this->M_compras_cobranzas->lastID();
 
+		if ($fecha_cuota != NULL) {
+			$this->insertar_detalle_programacion_pagos(
+				$id_compra_cobranza,
+				$fecha_cuota,
+				$monto_cuota
+			);
+		}
 
-		// );
+		if ($item != NULL) {
+			$this->insertar_detalle_compras_cobranzas(
+				$id_compra_cobranza,
+				$item,
+				$fecha_deposito,
+				$num_deposito,
+				$num_letra_cheque,
+				$id_medio_pago,
+				$ds_medio_pago,
+				$id_banco,
+				$ds_banco,
+				$monto,
+				$tipo_cambio
+			);
+		}
 
-		// $this->insertar_detalle_programacion_pago(
-		// 	$id_dprogramacion_pagos,
-		// 	$id_compra_cobranza,
-		// 	$fecha_cuota,
-		// 	$id_condicion_pago
-		// );
-		// echo json_encode($id_trabajador);
+		echo json_encode($id_trabajador);
+	}
+
+	protected function insertar_detalle_programacion_pagos(
+		$id_compra_cobranza,
+		$fecha_cuota,
+		$monto_cuota
+	) {
+		for ($i = 0; $i < count($fecha_cuota); $i++) {
+			$this->M_compras_cobranzas->insertar_detalle_programacion_pagos(
+				$id_compra_cobranza,
+				$fecha_cuota[$i],
+				$monto_cuota[$i]
+			);
+		}
+	}
+
+	protected function insertar_detalle_compras_cobranzas(
+		$id_compra_cobranza,
+		$item,
+		$fecha_deposito,
+		$num_deposito,
+		$num_letra_cheque,
+		$id_medio_pago,
+		$ds_medio_pago,
+		$id_banco,
+		$ds_banco,
+		$monto,
+		$tipo_cambio
+	) {
+		for ($i = 0; $i < count($item); $i++) {
+			$this->M_compras_cobranzas->insertar_detalle_compras_cobranzas(
+				$id_compra_cobranza,
+				$item[$i],
+				$fecha_deposito[$i],
+				$num_deposito[$i],
+				$num_letra_cheque[$i],
+				$id_medio_pago[$i],
+				$ds_medio_pago[$i],
+				$id_banco[$i],
+				$ds_banco[$i],
+				$monto[$i],
+				$tipo_cambio[$i]
+			);
+		}
 	}
 
 	public function index_modal()
 	{
-		$id_cotizacion = $this->input->post("id_cotizacion");
+		$id_compra_cobranza = $this->input->post("id_compra_cobranza");
 
 		$data = array(
-			"index_modal_cabecera" => $this->M_cotizacion->index_modal_cabecera($id_cotizacion),
-			"index_modal_detalle" => $this->M_cotizacion->index_modal_detalle($id_cotizacion),
+			"index_modal_cabecera" => $this->M_compras_cobranzas->index_modal_cabecera($id_compra_cobranza),
+			"index_modal_detalle" => $this->M_compras_cobranzas->index_modal_detalle($id_compra_cobranza),
 		);
 
-		$this->load->view("cotizacion/V_index_modal", $data);
+		$this->load->view("compras_cobranzas/V_index_modal", $data);
 	}
-
-	// protected function insertar_detalle_cotizacion(
-	// 	$id_cotizacion,
-	// 	$id_producto,
-	// 	$id_tablero,
-	// 	$id_comodin,
-	// 	$codigo_producto,
-	// 	$descripcion_producto,
-	// 	$id_unidad_medida,
-	// 	$ds_unidad_medida,
-	// 	$id_marca_producto,
-	// 	$ds_marca_producto,
-	// 	$cantidad,
-
-	// 	$precio_inicial,
-	// 	$precio_ganancia,
-	// 	$g,
-	// 	$g_unidad,
-	// 	$g_cant_total,
-
-	// 	$precio_descuento,
-	// 	$d,
-	// 	$d_unidad,
-	// 	$d_cant_total,
-
-	// 	$valor_venta_sin_d,
-	// 	$valor_venta_con_d,
-	// 	$dias_entrega,
-	// 	$item
-
-	// ) {
-	// 	for ($i = 0; $i < count($id_producto); $i++) {
-	// 		$this->M_cotizacion->insertar_detalle_cotizacion(
-	// 			$id_cotizacion,
-	// 			$id_producto[$i],
-	// 			$id_tablero[$i],
-	// 			$id_comodin[$i],
-	// 			$codigo_producto[$i],
-	// 			$descripcion_producto[$i],
-	// 			$id_unidad_medida[$i],
-	// 			$ds_unidad_medida[$i],
-	// 			$id_marca_producto[$i],
-	// 			$ds_marca_producto[$i],
-	// 			$cantidad[$i],
-
-	// 			$precio_inicial[$i],
-	// 			$precio_ganancia[$i],
-	// 			$g[$i],
-	// 			$g_unidad[$i],
-	// 			$g_cant_total[$i],
-
-	// 			$precio_descuento[$i],
-	// 			$d[$i],
-	// 			$d_unidad[$i],
-	// 			$d_cant_total[$i],
-
-	// 			$valor_venta_sin_d[$i],
-	// 			$valor_venta_con_d[$i],
-	// 			$dias_entrega[$i],
-	// 			$item[$i]
-
-	// 		);
-	// 	}
-	// }
-
-	// protected function insertar_detalle_condicion_pago(
-	// 	$id_cotizacion,
-	// 	$fecha_cuota,
-	// 	$monto_cuota
-
-	// ) {
-	// 	for ($i = 0; $i < count($fecha_cuota); $i++) {
-	// 		$this->M_cotizacion->insertar_detalle_condicion_pago(
-	// 			$id_cotizacion,
-	// 			$fecha_cuota[$i],
-	// 			$monto_cuota[$i],
-
-	// 		);
-	// 	}
-	// }
-
 }

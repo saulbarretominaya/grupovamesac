@@ -43,8 +43,8 @@ $(document).on("click", ".js_lupa_carga_inicial", function () {
 	});
 });
 $("#registrar").on("click", function () {
-	debugger;
 	// validar_registrar();
+
 	if (resultado_campo == true) {
 
 		//Cabecera
@@ -74,23 +74,23 @@ $("#registrar").on("click", function () {
 		var pagado = $('#pagado').val();
 		var id_estado_compra_cobranza = $("#id_estado_compra_cobranza").val();
 
+		//Detalle programacion_pagos
+		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
+		var monto_cuota = Array.prototype.slice.call(document.getElementsByName("monto_cuota[]")).map((o) => o.value);
+		debugger;
+
 		//Detalle compras / cobranza
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
-		var id_detalle_compra_cobranza = Array.prototype.slice.call(document.getElementsByName("id_detalle_compra_cobranza[]")).map((o) => o.value);
-		var id_compra_cobranza = Array.prototype.slice.call(document.getElementsByName("id_compra_cobranza[]")).map((o) => o.value);
 		var fecha_deposito = Array.prototype.slice.call(document.getElementsByName("fecha_deposito[]")).map((o) => o.value);
 		var num_deposito = Array.prototype.slice.call(document.getElementsByName("num_deposito[]")).map((o) => o.value);
 		var num_letra_cheque = Array.prototype.slice.call(document.getElementsByName("num_letra_cheque[]")).map((o) => o.value);
 		var id_medio_pago = Array.prototype.slice.call(document.getElementsByName("id_medio_pago[]")).map((o) => o.value);
+		var ds_medio_pago = Array.prototype.slice.call(document.getElementsByName("ds_medio_pago[]")).map((o) => o.value);
 		var id_banco = Array.prototype.slice.call(document.getElementsByName("id_banco[]")).map((o) => o.value);
+		var ds_banco = Array.prototype.slice.call(document.getElementsByName("ds_banco[]")).map((o) => o.value);
 		var monto = Array.prototype.slice.call(document.getElementsByName("monto[]")).map((o) => o.value);
-		var tipo_cambio = Array.prototype.slice.call(document.getElementsByName("total_stock[]")).map((o) => o.value);
-
-		//Detalle programacion_pagos
-		var id_dprogramacion_pagos = Array.prototype.slice.call(document.getElementsByName("id_dprogramacion_pagos[]")).map((o) => o.value);
-		var id_compra_cobranza = Array.prototype.slice.call(document.getElementsByName("id_compra_cobranza[]")).map((o) => o.value);
-		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
-
+		var tipo_cambio = Array.prototype.slice.call(document.getElementsByName("tipo_cambio[]")).map((o) => o.value);
+		debugger;
 
 
 
@@ -128,27 +128,21 @@ $("#registrar").on("click", function () {
 				pagado: pagado,
 				id_estado_compra_cobranza: id_estado_compra_cobranza,
 
+				//Detalle programacion_pagos
+				fecha_cuota,
+				monto_cuota,
+
 				//Detalle compras / cobranza
 				item: item,
-				id_detalle_compra_cobranza: id_detalle_compra_cobranza,
-				id_compra_cobranza: id_compra_cobranza,
 				fecha_deposito: fecha_deposito,
 				num_deposito: num_deposito,
 				num_letra_cheque: num_letra_cheque,
 				id_medio_pago: id_medio_pago,
+				ds_medio_pago: ds_medio_pago,
 				id_banco: id_banco,
+				ds_banco: ds_banco,
 				monto: monto,
-				id_moneda: id_moneda,
-				tipo_cambio: tipo_cambio,
-
-
-				//Detalle programacion_pagos
-				id_dprogramacion_pagos: id_dprogramacion_pagos,
-				id_compra_cobranza: id_compra_cobranza,
-				fecha_cuota: fecha_cuota,
-				id_condicion_pago: id_condicion_pago,
-
-
+				tipo_cambio: tipo_cambio
 			},
 			success: function (data) {
 				debugger;
@@ -167,22 +161,6 @@ $(document).on("click", ".js_seleccionar_modal_clientes_proveedores", function (
 	$("#id_cliente_proveedor").val(split_clientes_proveedores[0]);
 	$("#ds_nombre_cliente_proveedor").val(split_clientes_proveedores[1]);
 	$("#opcion_target_clientes_proveedores").modal("hide");
-});
-$(document).on("click", ".js_seleccionar_modal_producto", function () {
-	productos = $(this).val();
-	split_productos = productos.split("*");
-	$("#hidden_id_producto").val(split_productos[0]);
-	$("#hidden_id_almacen").val(split_productos[1]);
-	$("#ds_almacen").val(split_productos[2]);
-	$("#hidden_codigo_producto").val(split_productos[3]);
-	$("#descripcion_producto").val(split_productos[4]);
-	$("#hidden_id_unidad_medida").val(split_productos[5]);
-	$("#hidden_ds_unidad_medida").val(split_productos[6]);
-	$("#hidden_id_marca_producto").val(split_productos[7]);
-	$("#hidden_ds_marca_producto").val(split_productos[8]);
-	$("#stock_actual").val(split_productos[12]);
-	$("#opcion_target_producto").modal("hide");
-	calcular_total_stock();
 });
 $(document).ready(function () {
 
@@ -262,295 +240,213 @@ $(document).ready(function () {
 	});
 	/*Fin Modal 1 */
 
-
-	/* Modal 2 */
-	$("#id_datatable_productos thead #dtable_ds_almacen").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_codigo").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_descripcion_producto").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:400px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_ds_unidad_medida").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:50px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_ds_marca_producto").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_ds_grupo").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_stock").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_ds_moneda").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos thead #dtable_precio_unitario").each(function () {
-		var title = $(this).text();
-		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
-	});
-	$("#id_datatable_productos").dataTable({
-
-		initComplete: function () {
-			this.api()
-				.columns()
-				.every(function () {
-					var that = this;
-
-					$("input", this.header()).on("keyup change clear", function () {
-						if (that.search() !== this.value) {
-							that.search(this.value).draw();
-						}
-					});
-				});
-		},
-
-		language: {
-			lengthMenu: "Mostrar _MENU_ registros por pagina",
-			zeroRecords: "No se encontraron resultados en su busqueda",
-			searchPlaceholder: "Buscar registros",
-			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
-			infoEmpty: "No existen registros",
-			infoFiltered: "(filtrado de un total de _MAX_ registros)",
-			search: "Buscar:",
-			paginate: {
-				first: "Primero",
-				last: "Último",
-				next: "Siguiente",
-				previous: "Anterior",
-			},
-		},
-		"ordering": false
-	});
-	/*Fin Modal 2 */
-
 });
 /* Fin de Ventanas Modal Registrar*/
 
 
 /*Evento */
-$("#id_agregar_carga_inicial").on("click", function (e) {
+$("#id_agregar_programacion_pagos").on("click", function (e) {
 
-	validar_detalle_carga_inicial();
+	validar_detalle_programacion_pagos();
 
-	var resume_table = document.getElementById("id_table_detalle_carga_inicial");
+	var fecha_cuota = $("#fecha_cuota").val();
+	var fecha_split = fecha_cuota.split("-");
+	var fecha_cuota = fecha_split[2] + '/' + fecha_split[1] + '/' + fecha_split[0];
+	var monto_cuota = $("#monto_cuota").val();
+
+
+	if (resultado_campo == true) {
+		html = "<tr>";
+		html += "<td><input type='hidden' name='fecha_cuota[]' value='" + fecha_cuota + "'>" + fecha_cuota + "</td>";
+		html += "<td><input type='hidden' name='monto_cuota[]' value='" + monto_cuota + "'>" + monto_cuota + "</td>";
+		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_programacion_pago'><span class='fas fa-trash-alt'></span></button></td>";
+		html += "</tr>";
+		$("#id_table_detalle_programacion_pagos tbody").append(html);
+		calcular_programacion_pagos();
+		limpiar_campos_programacion_pagos();
+	}
+});
+$("#id_agregar_compras_cobranzas").on("click", function (e) {
+
+	validar_detalle_compras_cobranzas();
+
+	var resume_table = document.getElementById("id_table_detalle_compras_cobranzas");
 	for (var i = 0, row; row = resume_table.rows[i]; i++) {
 		console.log(`Fila': ${i}`);
 		$("#hidden_item").val(i + 1);
 	}
 
 	var item = $("#hidden_item").val();
-	var id_almacen = $("#hidden_id_almacen").val();
-	var ds_almacen = $("#ds_almacen").val();
-	var id_producto = $("#hidden_id_producto").val();
-	var codigo_producto = $("#hidden_codigo_producto").val();
-	var descripcion_producto = $("#descripcion_producto").val();
-	var id_unidad_medida = $("#hidden_id_unidad_medida").val();
-	var ds_unidad_medida = $("#hidden_ds_unidad_medida").val();
-	var id_marca_producto = $("#hidden_id_marca_producto").val();
-	var ds_marca_producto = $("#hidden_ds_marca_producto").val();
-	var stock_actual = $("#stock_actual").val();
-	var nueva_cantidad = $("#nueva_cantidad").val();
-	var total_stock = $("#total_stock").val();
-	var precio_unitario = $("#precio_unitario").val();
-	var valor_total = $("#valor_total").val();
+	var fecha_deposito = $("#fecha_deposito").val();
+	var num_deposito = $("#num_deposito").val();
+	var num_letra_cheque = $("#num_letra_cheque").val();
+	var id_medio_pago = $("#id_medio_pago").val();
+	var ds_medio_pago = $('#id_medio_pago option:selected').text();
+	var id_banco = $("#id_banco").val();
+	var ds_banco = $('#id_banco option:selected').text();
+	var monto = $("#monto").val();
+	var tipo_cambio = $("#tipo_cambio").val();
 
 	if (resultado_campo == true) {
 		html = "<tr>";
 		html += "<td width='70px'><input type='text'   name='item[]'		value='" + item + "'       id='item' class='form-control' readonly=''></td>";
-		html += "    <input type='hidden' name='id_almacen[]' 				value='" + id_almacen + "'>";
-		html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + ds_almacen + "'>" + ds_almacen + "</td>";
-		html += "    <input type='hidden' name='id_producto[]' 				value='" + id_producto + "' id='id_producto' >";
-		html += "<td><input type='hidden' name='codigo_producto[]'			value='" + codigo_producto + "'>" + codigo_producto + "</td>";
-		html += "<td><input type='hidden' name='descripcion_producto[]' 	value='" + descripcion_producto + "'>" + descripcion_producto + "</td>";
-		html += "    <input type='hidden' name='id_unidad_medida[]' 		value='" + id_unidad_medida + "'>";
-		html += "<td><input type='hidden' name='ds_unidad_medida[]' 		value='" + ds_unidad_medida + "'>" + ds_unidad_medida + "</td>";
-		html += "    <input type='hidden' name='id_marca_producto[]' 		value='" + id_marca_producto + "'>";
-		html += "<td><input type='hidden' name='ds_marca_producto[]'		value='" + ds_marca_producto + "'>" + ds_marca_producto + "</td>";
-		html += "<td><input type='hidden' name='stock_actual[]'			    value='" + stock_actual + "'>" + stock_actual + "</td>";
-		html += "<td><input type='hidden' name='nueva_cantidad[]'	        value='" + nueva_cantidad + "'>" + nueva_cantidad + "</td>";
-		html += "<td><input type='hidden' name='total_stock[]'	            value='" + total_stock + "'>" + total_stock + "</td>";
-		html += "<td><input type='hidden' name='precio_unitario[]'		    value='" + precio_unitario + "'>" + precio_unitario + "</td>";
-		html += "<td><input type='hidden' name='valor_total[]' 			    value='" + valor_total + "'>" + valor_total + "</td>";
-		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_carga_inicial'><span class='fas fa-trash-alt'></span></button></td>";
+		html += "<td><input type='hidden' name='fecha_deposito[]' 			value='" + fecha_deposito + "'>" + fecha_deposito + "</td>";
+		html += "<td><input type='hidden' name='num_deposito[]'				value='" + num_deposito + "'>" + num_deposito + "</td>";
+		html += "<td><input type='hidden' name='num_letra_cheque[]' 		value='" + num_letra_cheque + "'>" + num_letra_cheque + "</td>";
+		html += "    <input type='hidden' name='id_medio_pago[]' 			value='" + id_medio_pago + "'>";
+		html += "<td><input type='hidden' name='ds_medio_pago[]'			value='" + ds_medio_pago + "'>" + ds_medio_pago + "</td>";
+		html += "    <input type='hidden' name='id_banco[]' 				value='" + id_banco + "'>";
+		html += "<td><input type='hidden' name='ds_banco[]'	        		value='" + ds_banco + "'>" + ds_banco + "</td>";
+		html += "<td><input type='hidden' name='monto[]'	            	value='" + monto + "'>" + monto + "</td>";
+		html += "<td><input type='hidden' name='tipo_cambio[]'		    	value='" + tipo_cambio + "'>" + tipo_cambio + "</td>";
+		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_compras_cobranzas'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
-		$("#id_table_detalle_carga_inicial tbody").append(html);
-		calcular_monto_total();
-		limpiar_campos();
+		$("#id_table_detalle_compras_cobranzas tbody").append(html);
+		calcular_pagado();
+		calcular_pendiente();
+		limpiar_campos_compras_cobranzas();
 	}
 });
-$(document).on("click", ".eliminar_fila_carga_inicial", function () {
+$("#total").on("keyup", function () {
+
+	var total = $("#total").val();
+
+	if (isNaN(total)) {
+		alert("Ingrese un Total Valido");
+		$('#total').val("");
+	} else {
+		$('#total_espejo').val(total);
+		calcular_pendiente();
+	}
+
+});
+$(document).on("click", ".eliminar_fila_compras_cobranzas", function () {
 
 	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
 	html = "<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" + id_detalle + "'>";
 	$("#container_solicitud_id_remove").append(html);
 	$(this).closest("tr").remove();
 	generar_item();
-	calcular_monto_total();
-	limpiar_campos();
+	//calcular_monto_total();
+	//limpiar_campos();
 });
-$("#precio_unitario").on("keyup", function () {
+$(document).on("click", ".eliminar_fila_programacion_pago", function () {
 
-	var precio_unitario = $("#precio_unitario").val();
-	var nueva_cantidad = $('#nueva_cantidad').val();
+	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
+	html =
+		"<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" +
+		id_detalle +
+		"'>";
 
-	if (isNaN(precio_unitario) || precio_unitario == "") {
-		$("#precio_unitario").val("");
-		$('#valor_total').val("");
-	} else if (isNaN(nueva_cantidad) || nueva_cantidad == "") {
-		alert("El producto no contiene una Nueva Cantidad")
-		$("#precio_unitario").val("");
-		$('#valor_total').val("");
-	} else {
-		calcular_valor_total();
-	}
+	$("#container_solicitud_id_remove").append(html);
+	$(this).closest("tr").remove();
+	// calcular_sumatoria_cuotas_eliminar_detalle();
 
-});
-$("#nueva_cantidad").on("keyup", function () {
-
-	debugger;
-	var nueva_cantidad = $('#nueva_cantidad').val();
-	var stock_actual = $("#stock_actual").val();
-	var precio_unitario = $("#precio_unitario").val();
-
-
-	if (isNaN(nueva_cantidad) || nueva_cantidad == "") {
-		$('#nueva_cantidad').val("");
-		$('#total_stock').val("");
-	}
-	else if (isNaN(stock_actual) || stock_actual == "") {
-		alert("El producto no contiene Stock Actual")
-		$('#nueva_cantidad').val("");
-		$('#total_stock').val("");
-	}
-	else {
-		calcular_total_stock();
-		if (precio_unitario != "") {
-			calcular_valor_total();
-		}
-	}
 });
 /* Fin Evento */
 
 
 /* Funciones */
 
-function calcular_total_stock() {
+function validar_detalle_programacion_pagos() {
 
-	var stock_actual = $("#stock_actual").val();
-	var nueva_cantidad = $('#nueva_cantidad').val();
+	var fecha_cuota = $("#fecha_cuota").val();
+	var monto_cuota = $("#monto_cuota").val();
 
-	var total_stock = Number(stock_actual) + Number(nueva_cantidad)
-	$('#total_stock').val(Math.round(total_stock));
-
-}
-function calcular_valor_total() {
-
-	var precio_unitario = $("#precio_unitario").val();
-	var nueva_cantidad = $('#nueva_cantidad').val();
-
-	var valor_total = Number(precio_unitario) * Number(nueva_cantidad)
-	$('#valor_total').val(valor_total.toFixed(2));
-
-}
-function validar_detalle_carga_inicial() {
-
-
-	$("#id_table_detalle_carga_inicial tbody tr").each(function () {
-
-		id_producto_table = $(this).find("#id_producto").val();
-		var id_producto = $("#hidden_id_producto").val();
-
-		if (id_producto_table == id_producto) {
-			codigo_producto_duplicado = false;
-			return false;
-		}
-
-	});
-	debugger;
-	var descripcion_producto = $("#descripcion_producto").val();
-	var ds_almacen = $("#ds_almacen").val();
-	var stock_actual = $("#stock_actual").val();
-	var nueva_cantidad = $("#nueva_cantidad").val();
-	var total_stock = $("#total_stock").val();
-	var precio_unitario = $("#precio_unitario").val();
-	var valor_total = $("#valor_total").val();
-
-	if (descripcion_producto == "") {
-		alert("Seleccione un Producto");
+	if (fecha_cuota == "") {
+		alert("Seleccione Fecha Cuota");
 		resultado_campo = false;
 	}
-	else if (ds_almacen == "") {
-		alert("No tiene asignado Almacen");
+	else if (isNaN(monto_cuota)) {
+		alert("Ingrese Monto Correcto");
+		$("#monto_cuota").val("");
 		resultado_campo = false;
 	}
-	else if (stock_actual == "") {
-		alert("El Stock Actual esta vacio");
+	else if (monto_cuota == "") {
+		alert("Ingrese Monto Cuota");
 		resultado_campo = false;
-	}
-	else if (nueva_cantidad == "") {
-		alert("Ingrese Nueva Cantidad");
-		resultado_campo = false;
-	}
-	else if (total_stock == "") {
-		alert("No tiene asignado Total Stock");
-		resultado_campo = false;
-	}
-	else if (precio_unitario == "") {
-		alert("No tiene asignado Precio Unitario");
-		resultado_campo = false;
-	}
-	else if (valor_total == "") {
-		alert("No tiene asignado Valor Total");
-		resultado_campo = false;
-	}
-	else if (codigo_producto_duplicado == false) {
-		alert("El producto: " + descripcion_producto + ", ya existe en la tabla detalle");
-		resultado_campo = false;
-		codigo_producto_duplicado = true;
 	}
 	else {
 		resultado_campo = true;
 	}
 };
-function calcular_monto_total() {
+function validar_detalle_compras_cobranzas() {
+
+	var fecha_deposito = $("#fecha_deposito").val();
+	var num_deposito = $("#num_deposito").val();
+	var id_medio_pago = $("#id_medio_pago").val();
+	var id_banco = $("#id_banco").val();
+	var monto = $("#monto").val();
+
+	if (fecha_deposito == "") {
+		alert("Seleccione Fecha Deposito");
+		resultado_campo = false;
+	}
+	else if (num_deposito == "") {
+		alert("Ingrese Num. Deposito");
+		resultado_campo = false;
+	}
+	else if (id_medio_pago == 0) {
+		alert("Seleccione Medio Pago");
+		resultado_campo = false;
+	}
+	else if (id_banco == 0) {
+		alert("Seleccione Banco");
+		resultado_campo = false;
+	}
+	else if (monto == "") {
+		alert("Ingrese Monto");
+		resultado_campo = false;
+	}
+	else if (isNaN(monto)) {
+		alert("Ingrese Monto Correcto");
+		$("#monto").val("");
+		resultado_campo = false;
+	}
+	else {
+		resultado_campo = true;
+	}
+};
+function calcular_programacion_pagos() {
+	var acumulador = 0;
+	$("#id_table_detalle_programacion_pagos tbody tr").each(function () {
+		var posicion_valor_tabla = Number($(this).find("td:eq(1)").text());
+		acumulador = (acumulador + posicion_valor_tabla)
+		$("#total_label").text(acumulador.toFixed(2));
+	});
+}
+function calcular_pagado() {
 
 	var acumulador = 0;
-	$("#id_table_detalle_carga_inicial tbody tr").each(function () {
-		var posicion_valor_total = $(this).find("td:eq(10)").text();
-		posicion_valor_total = Number(posicion_valor_total);
-		acumulador = (acumulador + posicion_valor_total)
-		$("#monto_total").val(acumulador.toFixed(2));
+	$("#id_table_detalle_compras_cobranzas tbody tr").each(function () {
+		var posicion_valor_monto = $(this).find("td:eq(6)").text();
+		posicion_valor_monto = Number(posicion_valor_monto);
+		acumulador = (acumulador + posicion_valor_monto)
+		$("#pagado").val(acumulador.toFixed(2));
 	});
 
 }
-function limpiar_campos() {
+function calcular_pendiente() {
+	var total = $("#total").val();
+	var pagado = $("#pagado").val();
+	var pendiente = Number(total) - Number(pagado);
+	$("#pendiente").val(pendiente.toFixed(2));
+}
+function limpiar_campos_programacion_pagos() {
 
-	$("#hidden_id_producto").val("");
-	$("#hidden_id_almacen").val("");
-	$("#ds_almacen").val("");
-	$("#hidden_codigo_producto").val("");
-	$("#descripcion_producto").val("");
-	$("#hidden_id_unidad_medida").val("");
-	$("#hidden_ds_unidad_medida").val("");
-	$("#hidden_id_marca_producto").val("");
-	$("#hidden_ds_marca_producto").val("");
-	$("#stock_actual").val("");
-	$("#nueva_cantidad").val("");
-	$("#total_stock").val("");
-	$("#precio_unitario").val("");
-	$("#valor_total").val("");
+	$("#fecha_cuota").val("");
+	$("#monto_cuota").val("");
+}
+function limpiar_campos_compras_cobranzas() {
+
+	debugger;
+	$("#fecha_deposito").val("");
+	$("#num_deposito").val("");
+	$("#num_letra_cheque").val("");
+	$("#id_medio_pago").select2("val", "0");
+	$("#id_banco").select2("val", "0");
+	$("#monto").val("");
+	$("#tipo_cambio").val("");
 
 }
 function validar_registrar() {
@@ -608,7 +504,7 @@ function validar_registrar() {
 function generar_item() {
 
 	var acumulador = 0;
-	$("#id_table_detalle_carga_inicial tbody tr").each(function () {
+	$("#id_table_detalle_compras_cobranzas tbody tr").each(function () {
 		var item = $(this).closest('tr').find('#item').val();
 		acumulador = acumulador + 1;
 		$(this).closest('tr').find('#item').val(acumulador);

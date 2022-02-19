@@ -56,6 +56,7 @@
                                 ?>
                                 <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
                                 <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+                                <input type="hidden" id="hidden_item">
                                 <input type="date" class="form-control" id="fecha_compra_cobranza" value="<?php echo date("Y-m-d"); ?>" readonly>
                               </div>
                             </div>
@@ -137,7 +138,7 @@
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                               <label for="">Cliente</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
@@ -216,10 +217,21 @@
                                 </span>
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <label for="cargo">Observacion</label>
                               <div class="input-group">
                                 <textarea class="form-control" rows="1" id="observacion"></textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="">Condicion Pago</label>
+                              <div class="input-group">
+                                <select class="form-select select2" id="id_condicion_pago">
+                                  <option value="0">Seleccionar</option>
+                                  <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
+                                    <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                                  <?php endforeach; ?>
+                                </select>
                               </div>
                             </div>
                           </div>
@@ -270,7 +282,7 @@
                         <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                           <div class="row">
 
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                               <div class="card card-primary">
                                 <!-- <div class="card card-primary collapsed-card"> -->
                                 <div class="card-header">
@@ -283,33 +295,22 @@
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group row">
-                                    <div class="col-md-4">
-                                      <!-- <label for="">&nbsp;</label> -->
-                                      <div class="input-group">
-                                        <select class="form-select select2" id="id_condicion_pago">
-                                          <option value="0">Seleccionar</option>
-                                          <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                            <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
-                                          <?php endforeach; ?>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                      <!-- <label>&nbsp;</label> -->
+                                    <div class="col-md-5">
+                                      <label>Fecha Cuota</label>
                                       <div class="input-group">
                                         <input type="date" class="form-control" id="fecha_cuota" value="" autocomplete="nope">
                                       </div>
                                     </div>
-                                    <div class="col-md-3">
-                                      <!-- <label>&nbsp;</label> -->
+                                    <div class="col-md-5">
+                                      <label>Monto Cuota</label>
                                       <div class="input-group">
-                                        <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope" placeholder="Ingrese Cuota">
+                                        <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope">
                                       </div>
                                     </div>
-                                    <div class="col-md-1">
-                                      <!-- <label for="">&nbsp;</label> -->
+                                    <div class="col-md-2">
+                                      <label for="">&nbsp;</label>
                                       <div class="input-group">
-                                        <button type="button" class="btn btn-outline-success" id="id_agregar_condicion_pago"><span class="fas fa-plus"></span></button>
+                                        <button type="button" class="btn btn-outline-success" id="id_agregar_programacion_pagos"><span class="fas fa-plus"></span></button>
                                       </div>
                                     </div>
                                   </div>
@@ -321,7 +322,7 @@
                                         </div>
                                         <form class="form-horizontal">
                                           <div class="card-body" style="overflow-x:auto;">
-                                            <table id="id_table_detalle_condicion_pago">
+                                            <table id="id_table_detalle_programacion_pagos">
                                               <thead>
                                                 <tr>
                                                   <th>Fecha </th>
@@ -333,8 +334,8 @@
                                               <tfoot>
                                                 <tr>
                                                   <th></th>
-                                                  <th>Monto Total:
-                                                    <label style="font-weight: normal;" class="control-label" id="precio_final_final"></label>
+                                                  <th>Total:
+                                                    <label style="font-weight: normal;" class="control-label" id="total_label"></label>
                                                   </th>
                                                 </tr>
                                               </tfoot>
@@ -366,31 +367,29 @@
                                       <div class="col-md-3">
                                         <label for="cargo">Fecha Deposito</label>
                                         <div class="input-group">
-                                          <input type="date" class="form-control" id="">
+                                          <input type="date" class="form-control" id="fecha_deposito">
                                         </div>
                                       </div>
                                       <div class="col-md-3">
                                         <label for="cargo">Num. Deposito</label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="">
+                                          <input type="text" class="form-control" id="num_deposito">
                                         </div>
                                       </div>
                                       <div class="col-md-3">
                                         <label for="cargo">Num. Letra / Cheque</label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="">
+                                          <input type="text" class="form-control" id="num_letra_cheque">
                                         </div>
                                       </div>
                                       <div class="col-md-3">
                                         <label for="cargo">Medio Pago</label>
-                                        <div class="input-group">
-                                          <select class="form-select select2" id="id_medio_pago">
-                                            <option value="0">Seleccionar</option>
-                                            <?php foreach ($cbox_medio_pago as $cbox_medio_pago) : ?>
-                                              <option value="<?php echo $cbox_medio_pago->id_dmultitabla; ?>"><?php echo $cbox_medio_pago->descripcion; ?></option>
-                                            <?php endforeach; ?>
-                                          </select>
-                                        </div>
+                                        <select class="form-select select2" id="id_medio_pago" style="width: 100%;">
+                                          <option value="0">Seleccionar</option>
+                                          <?php foreach ($cbox_medio_pago as $cbox_medio_pago) : ?>
+                                            <option value="<?php echo $cbox_medio_pago->id_dmultitabla; ?>"><?php echo $cbox_medio_pago->descripcion; ?></option>
+                                          <?php endforeach; ?>
+                                        </select>
                                       </div>
 
                                     </div>
@@ -401,7 +400,7 @@
                                       <div class="col-md-3">
                                         <label for="cargo">Banco</label>
                                         <div class="input-group">
-                                          <select class="form-select select2" id="">
+                                          <select class="form-select select2" id="id_banco">
                                             <option value="0">Seleccionar</option>
                                             <?php foreach ($cbox_banco  as $cbox_banco) : ?>
                                               <option value="<?php echo $cbox_banco->id_dmultitabla; ?>"><?php echo $cbox_banco->descripcion; ?></option>
@@ -412,19 +411,19 @@
                                       <div class="col-md-3">
                                         <label for="cargo">Monto</label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="">
+                                          <input type="text" class="form-control" id="monto">
                                         </div>
                                       </div>
                                       <div class="col-md-3">
                                         <label for="cargo">Tipo Cambio</label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="">
+                                          <input type="text" class="form-control" id="tipo_cambio">
                                         </div>
                                       </div>
                                       <div class="col-md-2">
                                         <label for="">&nbsp;</label>
                                         <div class="input-group">
-                                          <button type="button" class="btn btn-outline-success" id="id_agregar_condicion_pago"><span class="fas fa-plus"></span></button>
+                                          <button type="button" class="btn btn-outline-success" id="id_agregar_compras_cobranzas"><span class="fas fa-plus"></span></button>
                                         </div>
                                       </div>
                                     </div>
@@ -433,13 +432,13 @@
                                   <div class="col-md-12">
                                     <form class="form-horizontal">
                                       <div class="card-body" style="overflow-x:auto;">
-                                        <table id="id_table_detalle_cotizacion" style="width: 100%;">
+                                        <table id="id_table_detalle_compras_cobranzas" style="width: 100%;">
                                           <thead>
                                             <tr>
                                               <th>Item </th>
                                               <th>Fecha deposito</th>
-                                              <th>N.deposito</th>
-                                              <th>N.letra/ cheque</th>
+                                              <th>Num. deposito</th>
+                                              <th>Num. letra/ cheque</th>
                                               <th>Medio pago</th>
                                               <th>Banco</th>
                                               <th>Monto</th>
@@ -460,19 +459,19 @@
                                       <div class="col-md-3">
                                         <label for="">Total </label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                                          <input type="text" class="form-control" id="total_espejo" value="" readonly>
                                         </div>
                                       </div>
                                       <div class="col-md-3">
                                         <label for="">Pagado </label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                                          <input type="text" class="form-control" id="pagado" readonly>
                                         </div>
                                       </div>
                                       <div class="col-md-3">
                                         <label for="">Pendiente</label>
                                         <div class="input-group">
-                                          <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                                          <input type="text" class="form-control" id="pendiente" readonly>
                                         </div>
                                       </div>
 
