@@ -43,7 +43,8 @@ $(document).on("click", ".js_lupa_compras_cobranzas", function () {
 	});
 });
 $("#registrar").on("click", function () {
-	// validar_registrar();
+
+	validar_registrar();
 
 	if (resultado_campo == true) {
 
@@ -451,50 +452,80 @@ function limpiar_campos_compras_cobranzas() {
 }
 function validar_registrar() {
 
-	var fecha_carga_inicial = $("#fecha_carga_inicial").val();
-	var id_tipo_ingreso = $("#id_tipo_ingreso").val();
-	var id_moneda = $("#id_moneda").val();
-	var ds_nombre_cliente_proveedor = $("#ds_nombre_cliente_proveedor").val();
-	var num_guia = $("#num_guia").val();
 	var id_tipo_comprobante = $("#id_tipo_comprobante").val();
-	var fecha_comprobante = $("#fecha_comprobante").val();
 	var num_comprobante = $("#num_comprobante").val();
-	var count_detalle_carga_inicial = $('#id_table_detalle_carga_inicial tr').length;
+	var id_almacen = $("#id_almacen").val();
+	var fecha_emision = $("#fecha_emision").val();
+	var fecha_vencimiento = $("#fecha_vencimiento").val();
+	var id_tipo_compra_cobranza = $("#id_tipo_compra_cobranza").val();
+	var id_estado_compra_cobranza = $("#id_estado_compra_cobranza").val();
+	var ds_nombre_cliente_proveedor = $("#ds_nombre_cliente_proveedor").val();
+	var id_condicion_pago = $("#id_condicion_pago").val();
+	var id_moneda = $("#id_moneda").val();
+	var sub_total = $("#sub_total").val();
+	var igv = $("#igv").val();
+	var total = $("#total").val();
 
-	if (fecha_carga_inicial == "") {
-		alert("No tiene Fecha Orden");
-		resultado_campo = false;
-	}
-	else if (id_tipo_ingreso == "0") {
-		alert("Selecione Tipo Ingreso");
-		resultado_campo = false;
-	}
-	else if (id_moneda == "0") {
-		alert("Selecione Moneda");
-		resultado_campo = false;
-	}
-	else if (ds_nombre_cliente_proveedor == "") {
-		alert("Registre un Cliente o Proveedor");
-		resultado_campo = false;
-	}
-	else if (num_guia == "") {
-		alert("Registre Num. Guia");
-		resultado_campo = false;
-	}
-	else if (id_tipo_comprobante == "0") {
-		alert("Selecione Tipo Comprobante");
-		resultado_campo = false;
-	}
-	else if (fecha_comprobante == "") {
-		alert("Registre Fecha Comprobante");
+	if (id_tipo_comprobante == 0) {
+		alert("Seleccione Tipo Comprobante");
 		resultado_campo = false;
 	}
 	else if (num_comprobante == "") {
-		alert("Registre Num. Comprobante");
+		alert("Ingrese Num. Comprobante");
 		resultado_campo = false;
 	}
-	else if (count_detalle_carga_inicial == "1") {
-		alertify.dialog('alert').set({ transition: 'zoom', message: 'Debe registrar al menos 1 producto en el detalle de Carga Inicial', title: 'CARGA INICIAL' }).show();
+	else if (id_almacen == 0) {
+		alert("Seleccione Sucursal");
+		resultado_campo = false;
+	}
+	else if (fecha_emision == "") {
+		alert("Registre Fecha Emision");
+		resultado_campo = false;
+	}
+	else if (fecha_vencimiento == "") {
+		alert("Registre Fecha Vencimiento");
+		resultado_campo = false;
+	}
+	else if (id_tipo_compra_cobranza == 0) {
+		alert("Seleccione Tipo Compra o Cobranza");
+		resultado_campo = false;
+	}
+	else if (id_estado_compra_cobranza == 0) {
+		alert("Seleccione Estado Compra o Cobranza");
+		resultado_campo = false;
+	}
+	else if (ds_nombre_cliente_proveedor == "") {
+		alert("Ingrese Cliente o Proveedor");
+		resultado_campo = false;
+	}
+	else if (id_condicion_pago == 0) {
+		alert("Seleccione Condicion Pago");
+		resultado_campo = false;
+	}
+	else if (id_moneda == 0) {
+		alert("Seleccione Moneda");
+		resultado_campo = false;
+	}
+	else if (sub_total == "") {
+		alert("Registre Sub Total");
+		resultado_campo = false;
+	}
+	else if (isNaN(sub_total)) {
+		alert("Registre Sub Total Valido");
+		$("#sub_total").val("");
+		resultado_campo = false;
+	}
+	else if (igv == "") {
+		alert("Registre Igv");
+		resultado_campo = false;
+	}
+	else if (isNaN(igv)) {
+		alert("Registre Igv Valido");
+		$("#igv").val("");
+		resultado_campo = false;
+	}
+	else if (total == "") {
+		alert("Registre Total");
 		resultado_campo = false;
 	}
 	else {
