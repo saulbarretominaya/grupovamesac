@@ -43,6 +43,8 @@ class C_orden_compras extends CI_Controller
 			'index_productos' => $this->M_orden_compras->index_productos(),
 			'cbox_condicion_pago' => $this->M_cbox->cbox_condicion_pago(),
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_tipo_orden_compra' => $this->M_cbox->cbox_tipo_orden_compra()
 		);
 
 		$this->load->view('plantilla/V_header');

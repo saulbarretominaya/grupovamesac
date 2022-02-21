@@ -193,11 +193,11 @@
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="">Tipo orden</label>
+                              <label for="">Tipo Orden Compra</label>
                               <select class="form-select select2" id="id_tipo_orden">
                                 <option value="0">Seleccionar</option>
-                                <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
-                                  <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>
+                                <?php foreach ($cbox_tipo_orden_compra as $cbox_tipo_orden_compra) : ?>
+                                  <option value="<?php echo $cbox_tipo_orden_compra->id_dmultitabla; ?>"><?php echo $cbox_tipo_orden_compra->descripcion; ?></option>
                                 <?php endforeach; ?>
                               </select>
                             </div>

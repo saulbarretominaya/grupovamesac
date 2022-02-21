@@ -14,13 +14,13 @@ class C_compras_cobranzas extends CI_Controller
 
 	public function index()
 	{
-		//$data = array(
-		//	'index' => $this->M_orden_compra->index(), , $data
-		//);
+		$data = array(
+			'index' => $this->M_compras_cobranzas->index()
+		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('compras_cobranzas/V_index');
+		$this->load->view('compras_cobranzas/V_index', $data);
 	}
 
 
@@ -35,7 +35,9 @@ class C_compras_cobranzas extends CI_Controller
 			'cbox_tipo_comprobante' => $this->M_cbox->cbox_tipo_comprobante(),
 			'cbox_almacen' => $this->M_cbox->cbox_almacen(),
 			'cbox_banco' => $this->M_cbox->cbox_banco(),
-			'cbox_medio_pago' => $this->M_cbox->cbox_medio_pago()
+			'cbox_medio_pago' => $this->M_cbox->cbox_medio_pago(),
+			'cbox_tipo_compra_cobranza' => $this->M_cbox->cbox_tipo_compra_cobranza(),
+			'cbox_estado_compra_cobranza' => $this->M_cbox->cbox_estado_compra_cobranza()
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -198,7 +200,8 @@ class C_compras_cobranzas extends CI_Controller
 
 		$data = array(
 			"index_modal_cabecera" => $this->M_compras_cobranzas->index_modal_cabecera($id_compra_cobranza),
-			"index_modal_detalle" => $this->M_compras_cobranzas->index_modal_detalle($id_compra_cobranza),
+			"index_modal_detalle_programacion_pagos" => $this->M_compras_cobranzas->index_modal_detalle_programacion_pagos($id_compra_cobranza),
+			"index_modal_detalle" => $this->M_compras_cobranzas->index_modal_detalle($id_compra_cobranza)
 		);
 
 		$this->load->view("compras_cobranzas/V_index_modal", $data);

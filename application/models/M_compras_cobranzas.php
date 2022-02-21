@@ -9,16 +9,18 @@ class M_compras_cobranzas extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT
-            a.id_carga_inicial,
-            DATE_FORMAT(a.fecha_carga_inicial,'%d/%m/%Y') AS fecha_carga_inicial,
-            a.ds_nombre_cliente_proveedor,
-            a.num_guia,num_orden_compra,a.fecha_comprobante,a.num_comprobante,
-            a.observacion,a.monto_total,observacion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_ingreso) AS ds_tipo_ingreso,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda
-            FROM 
-            carga_inicial a
+            SELECT 
+            id_compra_cobranza,
+            ds_tipo_compra_cobranza,
+            fecha_emision,
+            fecha_vencimiento,
+            ds_nombre_cliente_proveedor,
+            ds_tipo_comprobante,
+            num_comprobante,
+            ds_almacen,
+            ds_moneda,
+            total
+            FROM compras_cobranzas;
             "
         );
         return $resultados->result();
@@ -193,50 +195,66 @@ class M_compras_cobranzas extends CI_Model
         );
     }
 
-
-
-    public function index_modal_cabecera($id_carga_inicial)
+    public function index_modal_cabecera($id_compra_cobranza)
     {
         $resultados = $this->db->query(
             "
             SELECT
-            a.id_carga_inicial,
-            DATE_FORMAT(a.fecha_carga_inicial,'%d/%m/%Y') AS fecha_carga_inicial,
-            a.ds_nombre_cliente_proveedor,tipo_cambio,
-            a.num_guia,num_orden_compra,a.num_comprobante,
-            a.observacion,a.monto_total,a.observacion,a.monto_total,
-            DATE_FORMAT(a.fecha_comprobante,'%d/%m/%Y') AS fecha_comprobante,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_comprobante) AS ds_tipo_comprobante,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_ingreso) AS ds_tipo_ingreso,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda
-            FROM 
-            carga_inicial a
-            where a.id_carga_inicial ='$id_carga_inicial'
+            id_compra_cobranza,
+            DATE_FORMAT(fecha_compra_cobranza,'%d/%m/%Y') AS fecha_compra_cobranza,
+            ds_tipo_comprobante,
+            num_comprobante,
+            ds_almacen,
+            DATE_FORMAT(fecha_emision,'%d/%m/%Y') AS fecha_emision,
+            DATE_FORMAT(fecha_vencimiento,'%d/%m/%Y') AS fecha_vencimiento,
+            ds_tipo_compra_cobranza,
+            ds_nombre_cliente_proveedor,
+            ds_condicion_pago,
+            ds_moneda,
+            sub_total,
+            igv,
+            total,
+            pagado,
+            observacion,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_compra_cobranza) AS ds_estado_compra_cobranza
+            FROM compras_cobranzas
+            where id_compra_cobranza='$id_compra_cobranza'
         "
         );
         return $resultados->row();
     }
 
-    public function index_modal_detalle($id_carga_inicial)
+    public function index_modal_detalle_programacion_pagos($id_compra_cobranza)
     {
         $resultados = $this->db->query(
             "
-            SELECT
-            a.id_carga_inicial,
-            a.item,
-            a.ds_almacen,
-            a.codigo_producto,
-            a.descripcion_producto,
-            a.ds_unidad_medida,
-            a.ds_marca_producto,
-            a.stock_actual,
-            a.nueva_cantidad,
-            a.total_stock,
-            a.precio_unitario,
-            a.valor_total
+            SELECT 
+            DATE_FORMAT(a.fecha_cuota,'%d/%m/%Y') AS fecha_cuota,
+            a.monto_cuota
             FROM 
-            detalle_carga_inicial a
-            WHERE a.id_carga_inicial ='$id_carga_inicial'
+            detalle_programacion_pagos a
+            WHERE a.id_compra_cobranza ='$id_compra_cobranza'
+        "
+        );
+        return $resultados->result();
+    }
+
+    public function index_modal_detalle($id_compra_cobranza)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT 
+            a.item,
+            DATE_FORMAT(a.fecha_deposito,'%d/%m/%Y') AS fecha_deposito,
+            a.num_deposito,
+            a.num_letra_cheque,
+            a.ds_medio_pago,
+            a.ds_banco,
+            a.monto,
+            a.tipo_cambio
+            FROM 
+            detalle_compras_cobranzas a
+            WHERE a.id_compra_cobranza ='$id_compra_cobranza'
         "
         );
         return $resultados->result();

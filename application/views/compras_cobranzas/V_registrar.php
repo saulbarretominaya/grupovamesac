@@ -6,7 +6,7 @@
         <div class="col-sm-6">
           <h1>Compras / Cobranzas
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-            <a href="<?php echo base_url(); ?>C_cobranza" class="btn btn-danger btn-sm">CANCELAR</a>
+            <a href="<?php echo base_url(); ?>C_compras_cobranzas" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
       </div>
@@ -107,8 +107,11 @@
                             <div class="col-md-3">
                               <label for="cargo">Tipo Compra / Cobranza</label>
                               <div class="input-group">
-                                <select class="form-select select2" id="id_tipo_compra_cobranza">
-                                  <option value="0" selected>Seleccionar</option>
+                                <select class="form-control select2" id="id_tipo_compra_cobranza" style="width: 100%;">
+                                  <option value="0">Seleccionar</option>
+                                  <?php foreach ($cbox_tipo_compra_cobranza as $cbox_tipo_compra_cobranza) : ?>
+                                    <option value="<?php echo $cbox_tipo_compra_cobranza->id_dmultitabla; ?>"><?php echo $cbox_tipo_compra_cobranza->descripcion; ?></option>
+                                  <?php endforeach; ?>
                                 </select>
                               </div>
                             </div>
@@ -116,7 +119,10 @@
                               <label for="cargo">Estado</label>
                               <div class="input-group">
                                 <select class="form-select select2" id="id_estado_compra_cobranza">
-                                  <option value="0" selected>Seleccionar</option>
+                                  <option value="0">Seleccionar</option>
+                                  <?php foreach ($cbox_estado_compra_cobranza as $cbox_estado_compra_cobranza) : ?>
+                                    <option value="<?php echo $cbox_estado_compra_cobranza->id_dmultitabla; ?>"><?php echo $cbox_estado_compra_cobranza->descripcion; ?></option>
+                                  <?php endforeach; ?>
                                 </select>
                               </div>
                             </div>
@@ -129,7 +135,7 @@
                       <!-- <div class="card card-primary collapsed-card"> -->
                       <div class="card card-primary">
                         <div class="card-header">
-                          <h3 class="card-title">Datos de Cliente</h3>
+                          <h3 class="card-title">Datos de Cliente / Proveedor</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -139,7 +145,7 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-5">
-                              <label for="">Cliente</label>
+                              <label for="">Cliente / Proveedor</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
                                 <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" readonly>
@@ -153,7 +159,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h4 class="modal-title">Clientes</h4>
+                                          <h4 class="modal-title">Cliente / Proveedor </h4>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -435,14 +441,14 @@
                                         <table id="id_table_detalle_compras_cobranzas" style="width: 100%;">
                                           <thead>
                                             <tr>
-                                              <th>Item </th>
-                                              <th>Fecha deposito</th>
-                                              <th>Num. deposito</th>
-                                              <th>Num. letra/ cheque</th>
-                                              <th>Medio pago</th>
+                                              <th>Item</th>
+                                              <th>Fecha Deposito</th>
+                                              <th>Num. Deposito</th>
+                                              <th>Num. Letra / Cheque</th>
+                                              <th>Medio Pago</th>
                                               <th>Banco</th>
                                               <th>Monto</th>
-                                              <th>Tipo cambio</th>
+                                              <th>Tipo Cambio</th>
                                               <th></th>
                                             </tr>
                                           </thead>

@@ -579,7 +579,7 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
-    //59 Estado Elaborar PC (pendiente o Finalizado)
+    //59 Estado Elaborar PC (Pendiente o Finalizado)
 
     //60
     public function cbox_tipo_envio_guia_remision()
@@ -588,6 +588,36 @@ class M_cbox extends CI_Model
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
             WHERE b.id_multitabla='60';");
+        return $resultados->result();
+    }
+
+    //61
+    public function cbox_tipo_compra_cobranza()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='61';");
+        return $resultados->result();
+    }
+
+    //62 Estado Compras Cobranzas  (Pendiente o Cancelado)
+    public function cbox_estado_compra_cobranza()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='62';");
+        return $resultados->result();
+    }
+
+    //63
+    public function cbox_tipo_orden_compra()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='63';");
         return $resultados->result();
     }
 

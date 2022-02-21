@@ -28,17 +28,17 @@ $("#listar").dataTable({
 	},
 	"ordering": false
 });
-$(document).on("click", ".js_lupa_carga_inicial", function () {
+$(document).on("click", ".js_lupa_compras_cobranzas", function () {
 	valor_id = $(this).val();
 	$.ajax({
-		url: base_url + "C_carga_inicial/index_modal",
+		url: base_url + "C_compras_cobranzas/index_modal",
 		type: "POST",
 		dataType: "html",
 		data: {
-			id_carga_inicial: valor_id
+			id_compra_cobranza: valor_id
 		},
 		success: function (data) {
-			$("#id_target_carga_inicial .modal-content").html(data);
+			$("#id_target_compras_cobranzas .modal-content").html(data);
 		}
 	});
 });
