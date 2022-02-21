@@ -18,7 +18,7 @@
         <div class="row">
 
           <div class="col-md-12">
-            <div class="card card-info collapsed-card">
+            <div class="card card-primary collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Dato de Producto</h3>
                 <div class="card-tools">
@@ -93,7 +93,7 @@
           </div>
 
           <div class="col-md-12">
-            <div class="card card-info collapsed-card">
+            <div class="card card-primary collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Precio de Producto</h3>
                 <div class="card-tools">
@@ -143,7 +143,7 @@
           </div>
 
           <div class="col-md-12">
-            <div class="card card-info collapsed-card">
+            <div class="card card-primary collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Caracteristica del Producto</h3>
                 <div class="card-tools">
@@ -230,7 +230,7 @@
           </div>
 
           <div class="col-md-12">
-            <div class="card card-info collapsed-card">
+            <div class="card card-primary collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Datos Cuentas Sunat</h3>
                 <div class="card-tools">

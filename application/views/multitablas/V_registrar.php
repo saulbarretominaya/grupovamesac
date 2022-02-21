@@ -23,7 +23,7 @@
 
           <div class="col-md-12">
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Datos Generales</h3>
               </div>
@@ -63,7 +63,7 @@
 
           <div class="col-md-12">
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Detalle Multitablas</h3>
               </div>

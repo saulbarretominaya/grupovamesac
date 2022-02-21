@@ -75,14 +75,14 @@ class M_productos extends CI_Model
         INSERT INTO productos
         (
             id_producto,codigo_producto,descripcion_producto,
-            precio_costo,precio_unitario,porcentaje,ganancia_unidad,rentabilidad,
+            precio_costo,precio_unitario,porcentaje,ganancia_unidad,stock,rentabilidad,
             id_unidad_medida,id_grupo,id_familia,id_clase,id_sub_clase,id_sub_clase_dos, 
             id_marca_producto,id_moneda,id_cta_vta,id_cta_ent,id_sunat,id_almacen
         )
         VALUES
         (
             '','$codigo_producto','$descripcion_producto',
-            '$precio_costo','$precio_unitario','$porcentaje','$ganancia_unidad','$rentabilidad',
+            '$precio_costo','$precio_unitario','$porcentaje','$ganancia_unidad','0','$rentabilidad',
             '$id_unidad_medida','$id_grupo','$id_familia','$id_clase','$id_sub_clase','$id_sub_clase_dos',
             '$id_marca_producto','$id_moneda','$id_cta_vta','$id_cta_ent','$id_sunat','$id_almacen'
         )"

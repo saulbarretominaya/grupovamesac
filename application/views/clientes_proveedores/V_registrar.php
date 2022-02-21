@@ -20,12 +20,12 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-info">
+            <div class="card card-primary card-tabs">
               <div class="card-header">
                 <h2 class="card-title">Registro de Clientes/Provedores</h3>
               </div>
               <div class="card-body">
-                <div class="card card-info collapsed-card">
+                <div class="card card-primary collapsed-card">
                   <div class="card-header">
                     <h3 class="card-title">Datos Sunat</h3>
                     <div class="card-tools">
@@ -121,7 +121,7 @@
                   </div>
                 </div>
                 <!-- Segundo Card -->
-                <div class="card card-info collapsed-card">
+                <div class="card card-primary collapsed-card">
                   <div class="card-header">
                     <h3 class="card-title">Datos Personales</h3>
                     <div class="card-tools">
@@ -193,7 +193,7 @@
                   </div>
                 </div>
                 <!-- Tercer Card -- UBIGEO -->
-                <div class="card card-info collapsed-card">
+                <div class="card card-primary collapsed-card">
                   <div class=" card-header">
                     <h3 class="card-title">Ubigeo</h3>
                     <div class="card-tools">
@@ -329,7 +329,7 @@
                         <div class="col-md-4 mb-3">
                           <label for="linea_opcional">Observaciones</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" required>
+                            <input type="text" class="form-control" id="linea_opcional" placeholder="Observaciones" required>
                           </div>
                         </div>
                         <!-- LINEA OPCIONAL UNITARIO-->
@@ -441,7 +441,7 @@
   <!-- /.control-sidebar -->
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0

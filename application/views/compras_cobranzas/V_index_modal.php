@@ -77,12 +77,21 @@
                                      </div>
                                  </div>
 
+                                 <div class="col-md-12">
+                                     <div class="input-group">
+                                         <label class="col-md-4">VENDEDOR</label>
+                                         <div class="col-md-8">
+                                             <!-- <?php echo $index_modal_cabecera->ds_estado_compra_cobranza; ?> -->
+                                         </div>
+                                     </div>
+                                 </div>
+
                              </div>
                          </div>
                          <div class="col-md-5">
                              <div class="col-md-12">
                                  <div class="input-group">
-                                     <label class="col-md-4">CLIENTE/PROVEEDOR </label>
+                                     <label class="col-md-4">CLI/PRO</label>
                                      <div class="col-md-8">
                                          <?php echo $index_modal_cabecera->ds_nombre_cliente_proveedor; ?>
                                      </div>

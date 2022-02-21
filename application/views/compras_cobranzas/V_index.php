@@ -16,10 +16,11 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 150%;">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>Num. Com. / Cobr.</th>
+                  <th>Fecha Registro</th>
                   <th>Tipo</th>
                   <th>Fecha Emision </th>
                   <th>Fecha Vencim</th>
@@ -39,16 +40,17 @@
                   <?php foreach ($index as $index) : ?>
                     <tr>
                       <td><?php echo $index->id_compra_cobranza; ?></td>
+                      <td><?php echo $index->fecha_compra_cobranza; ?></td>
                       <td><?php echo $index->ds_tipo_compra_cobranza; ?></td>
-                      <td><?php echo $index->fecha_emision;; ?></td>
-                      <td><?php echo $index->fecha_vencimiento;; ?></td>
-                      <td><?php echo $index->ds_nombre_cliente_proveedor;; ?></td>
+                      <td><?php echo $index->fecha_emision; ?></td>
+                      <td><?php echo $index->fecha_vencimiento; ?></td>
+                      <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->ds_tipo_comprobante; ?></td>
                       <td><?php echo $index->num_comprobante; ?></td>
                       <td><?php echo $index->ds_almacen; ?> </td>
                       <td><?php echo $index->ds_moneda; ?> </td>
                       <td><?php echo $index->total; ?> </td>
-                      <td><?php echo "" ?> </td>
+                      <td><?php echo $index->ds_estado_compra_cobranza ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_compras_cobranzas" value="<?php echo $index->id_compra_cobranza; ?>" data-toggle="modal" data-target="#id_target_compras_cobranzas"><span class="fas fa-search-plus"></span></button></td>
                       <td><a href="" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>

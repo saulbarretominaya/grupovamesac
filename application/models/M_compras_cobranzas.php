@@ -11,15 +11,18 @@ class M_compras_cobranzas extends CI_Model
             "
             SELECT 
             id_compra_cobranza,
+            DATE_FORMAT(fecha_compra_cobranza,'%d/%m/%Y') AS fecha_compra_cobranza,
             ds_tipo_compra_cobranza,
-            fecha_emision,
-            fecha_vencimiento,
+            DATE_FORMAT(fecha_emision,'%d/%m/%Y') AS fecha_emision,
+            DATE_FORMAT(fecha_vencimiento,'%d/%m/%Y') AS fecha_vencimiento,
             ds_nombre_cliente_proveedor,
             ds_tipo_comprobante,
             num_comprobante,
             ds_almacen,
             ds_moneda,
-            total
+            total,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_compra_cobranza) AS ds_estado_compra_cobranza
+
             FROM compras_cobranzas;
             "
         );

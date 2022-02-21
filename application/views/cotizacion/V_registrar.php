@@ -512,9 +512,11 @@
                     </div>
 
                     <div class="col-md-4">
-                      <div class="card card-info">
+                      <div class="card card-primary">
                         <div class="card-header">
-                          <h3 class="card-title">El Tipo Cambio es: <?php echo $tipo_cambio->venta; ?></h3>
+                          <strong>
+                            <h3 class="card-title">El Tipo Cambio es: <?php echo $tipo_cambio->venta; ?></h3>
+                          </strong>
                           <input type="hidden" class="form-control" id="valor_cambio" value="<?php echo $tipo_cambio->venta; ?>">
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
