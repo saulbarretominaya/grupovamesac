@@ -81,7 +81,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">VENDEDOR</label>
                                          <div class="col-md-8">
-                                             <!-- <?php echo $index_modal_cabecera->ds_estado_compra_cobranza; ?> -->
+                                             <?php echo $index_modal_cabecera->ds_nombre_trabajador_creacion_cliente_proveedor; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -101,7 +101,7 @@
                                  <div class="input-group">
                                      <label class="col-md-4">RUC / DNI </label>
                                      <div class="col-md-8">
-                                         <!-- <?php echo $index_modal_cabecera->ds_nombre_cliente_proveedor; ?> -->
+                                         <?php echo $index_modal_cabecera->num_documento; ?>
                                      </div>
                                  </div>
                              </div>

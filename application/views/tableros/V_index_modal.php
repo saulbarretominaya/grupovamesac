@@ -82,14 +82,13 @@
                                  <?php if (!empty($detalle_modal)) : ?>
                                      <?php foreach ($detalle_modal as $detalle_modal) : ?>
                                          <tr>
-                                             <td><?php echo "1"; ?></td>
+                                             <td><?php echo $detalle_modal->item;; ?></td>
                                              <td><?php echo $detalle_modal->ds_almacen; ?></td>
                                              <td><?php echo $detalle_modal->codigo_producto; ?></td>
                                              <td><?php echo $detalle_modal->descripcion_producto; ?></td>
                                              <td><?php echo $detalle_modal->ds_unidad_medida; ?></td>
                                              <td><?php echo $detalle_modal->ds_marca_producto; ?></td>
                                              <td><?php echo $detalle_modal->precio_unitario; ?></td>
-
                                              <td><?php echo $detalle_modal->cantidad_unitaria; ?></td>
                                              <td><?php echo $detalle_modal->cantidad_total_producto; ?></td>
                                              <td><?php echo $detalle_modal->monto_total_producto; ?></td>

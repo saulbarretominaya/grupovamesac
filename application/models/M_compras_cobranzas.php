@@ -203,25 +203,19 @@ class M_compras_cobranzas extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
-            id_compra_cobranza,
-            DATE_FORMAT(fecha_compra_cobranza,'%d/%m/%Y') AS fecha_compra_cobranza,
-            ds_tipo_comprobante,
-            num_comprobante,
-            ds_almacen,
-            DATE_FORMAT(fecha_emision,'%d/%m/%Y') AS fecha_emision,
-            DATE_FORMAT(fecha_vencimiento,'%d/%m/%Y') AS fecha_vencimiento,
-            ds_tipo_compra_cobranza,
-            ds_nombre_cliente_proveedor,
-            ds_condicion_pago,
-            ds_moneda,
-            sub_total,
-            igv,
-            total,
-            pagado,
-            observacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_compra_cobranza) AS ds_estado_compra_cobranza
-            FROM compras_cobranzas
-            where id_compra_cobranza='$id_compra_cobranza'
+            a.id_compra_cobranza,
+            DATE_FORMAT(a.fecha_compra_cobranza,'%d/%m/%Y') AS fecha_compra_cobranza,
+            a.ds_tipo_comprobante,a.num_comprobante,a.ds_almacen,
+            DATE_FORMAT(a.fecha_emision,'%d/%m/%Y') AS fecha_emision,
+            DATE_FORMAT(a.fecha_vencimiento,'%d/%m/%Y') AS fecha_vencimiento,
+            a.ds_tipo_compra_cobranza,a.ds_nombre_cliente_proveedor,a.ds_condicion_pago,
+            a.ds_moneda,a.sub_total,a.igv,a.total,a.pagado,a.observacion,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_compra_cobranza) AS ds_estado_compra_cobranza,
+            a.ds_nombre_trabajador AS ds_nombre_trabajador_creacion_compra_cobranza,
+            b.ds_nombre_trabajador AS ds_nombre_trabajador_creacion_cliente_proveedor,b.num_documento
+            FROM compras_cobranzas a
+            LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
+            WHERE a.id_compra_cobranza='$id_compra_cobranza'
         "
         );
         return $resultados->row();

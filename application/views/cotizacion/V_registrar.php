@@ -236,7 +236,7 @@
                         <!-- Producto -->
                         <div class="col-md-2">
                           <div class="form-check">
-                            <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_producto">
+                            <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_producto" id="btn_id_producto">
                             </button>
                             <label class="form-check-label">Productos</label>
                             <div class="modal fade" id="opcion_target_producto" tabindex="-1">
@@ -311,7 +311,7 @@
                         <!-- Tableros -->
                         <div class="col-md-2">
                           <div class="form-check">
-                            <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_tablero">
+                            <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_tablero" id="btn_id_tablero">
                             </button>
                             <label class="form-check-label">Tableros</label>
                             <div class="modal fade" id="opcion_target_tablero" tabindex="-1">
@@ -394,7 +394,7 @@
                         <!-- Comodin -->
                         <div class="col-md-2">
                           <div class="form-check">
-                            <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_comodin">
+                            <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_comodin" id="btn_id_comodin">
                             </button>
                             <label class="form-check-label">Comodin</label>
                             <div class="modal fade" id="opcion_target_comodin" tabindex="-1">
@@ -480,6 +480,7 @@
                       <input type="hidden" id="hidden_ds_marca_producto">
                       <input type="hidden" id="tipo_moneda_origen">
                       <input type="hidden" id="hidden_item">
+                      <input type="hidden" id="hidden_categoria">
                     </div>
 
                     <div class="col-md-4">
@@ -529,7 +530,7 @@
                             <div class="col-md-6">
                               <label for="">Moneda</label>
                               <div class="input-group">
-                                <select class="form-select select2" id="tipo_moneda_cambio">
+                                <select class="form-select" id="tipo_moneda_cambio">
                                   <option value="0">Seleccionar</option>
                                   <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                     <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>

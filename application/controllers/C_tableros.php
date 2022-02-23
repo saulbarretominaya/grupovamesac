@@ -69,6 +69,7 @@ class C_tableros extends CI_Controller
 		$cantidad_unitaria = $this->input->post("cantidad_unitaria");
 		$cantidad_total_producto = $this->input->post("cantidad_total_producto");
 		$monto_total_producto = $this->input->post("monto_total_producto");
+		$item = $this->input->post("item");
 
 		if ($this->M_tableros->insertar(
 			$codigo_tablero,
@@ -100,7 +101,8 @@ class C_tableros extends CI_Controller
 				$precio_unitario,
 				$cantidad_unitaria,
 				$cantidad_total_producto,
-				$monto_total_producto
+				$monto_total_producto,
+				$item
 			);
 			echo json_encode($codigo_tablero);
 		}
@@ -120,7 +122,8 @@ class C_tableros extends CI_Controller
 		$precio_unitario,
 		$cantidad_unitaria,
 		$cantidad_total_producto,
-		$monto_total_producto
+		$monto_total_producto,
+		$item
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
 			$this->M_tableros->insertar_detalle(
@@ -137,7 +140,8 @@ class C_tableros extends CI_Controller
 				$precio_unitario[$i],
 				$cantidad_unitaria[$i],
 				$cantidad_total_producto[$i],
-				$monto_total_producto[$i]
+				$monto_total_producto[$i],
+				$item[$i]
 			);
 		}
 	}

@@ -16,23 +16,12 @@ class C_cotizacion extends CI_Controller
 	{
 		$data = array(
 			'index' => $this->M_cotizacion->index(),
+			'index_2' => $this->M_cotizacion->index_2()
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('cotizacion/V_index', $data);
-	}
-
-	public function index_modal()
-	{
-		$id_cotizacion = $this->input->post("id_cotizacion");
-
-		$data = array(
-			"index_modal_cabecera" => $this->M_cotizacion->index_modal_cabecera($id_cotizacion),
-			"index_modal_detalle" => $this->M_cotizacion->index_modal_detalle($id_cotizacion),
-		);
-
-		$this->load->view("cotizacion/V_index_modal", $data);
 	}
 
 	public function enlace_registrar()
@@ -60,6 +49,7 @@ class C_cotizacion extends CI_Controller
 
 		//Cabecera
 		$serie_cotizacion = $this->input->post("serie_cotizacion");
+		$categoria = $this->input->post("categoria");
 		$id_trabajador = $this->input->post("id_trabajador");
 		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 		$fecha_cotizacion = $this->input->post("fecha_cotizacion");
@@ -125,6 +115,7 @@ class C_cotizacion extends CI_Controller
 		if ($this->M_cotizacion->insertar(
 			//Cabecera
 			$serie_cotizacion,
+			$categoria,
 			$id_trabajador,
 			$ds_nombre_trabajador,
 			$fecha_cotizacion,
@@ -317,5 +308,29 @@ class C_cotizacion extends CI_Controller
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('cotizacion/V_actualizar', $data);
+	}
+
+	public function index_modal_productos()
+	{
+		$id_cotizacion = $this->input->post("id_cotizacion");
+
+		$data = array(
+			"index_modal_cabecera_productos" => $this->M_cotizacion->index_modal_cabecera_productos($id_cotizacion),
+			"index_modal_detalle_productos" => $this->M_cotizacion->index_modal_detalle_productos($id_cotizacion),
+		);
+
+		$this->load->view("cotizacion/V_index_modal_productos", $data);
+	}
+
+	public function index_modal_tableros()
+	{
+		$id_cotizacion = $this->input->post("id_cotizacion");
+
+		$data = array(
+			"index_modal_cabecera_tableros" => $this->M_cotizacion->index_modal_cabecera_tableros($id_cotizacion),
+			"index_modal_detalle_tableros" => $this->M_cotizacion->index_modal_detalle_tableros($id_cotizacion),
+		);
+
+		$this->load->view("cotizacion/V_index_modal_tableros", $data);
 	}
 }

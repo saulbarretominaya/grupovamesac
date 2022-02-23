@@ -1,5 +1,5 @@
  <div class="modal-header">
-     <h4 class="modal-title">COTIZACION</h4>
+     <h4 class="modal-title">ORDEN DESPACHO</h4>
      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
      </button>
@@ -14,25 +14,9 @@
                              <div class="form-group row">
                                  <div class="col-md-12">
                                      <div class="input-group">
-                                         <label class="col-md-4">FECHA EMISION COT</label>
+                                         <label class="col-md-4">FECHA OD</label>
                                          <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->fecha_emision; ?>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-4">VALIDEZ OFERTA</label>
-                                         <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->validez_oferta_cotizacion; ?>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="col-md-12">
-                                     <div class="input-group">
-                                         <label class="col-md-4">FECHA VENC. COT</label>
-                                         <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->fecha_vencimiento_validez_oferta; ?>
+                                             <?php echo $index_modal_cabecera_tableros->fecha_orden_despacho; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -40,7 +24,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">MONEDA</label>
                                          <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->ds_moneda; ?>
+                                             <?php echo $index_modal_cabecera_tableros->ds_moneda; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -48,7 +32,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">CONDICION PAGO</label>
                                          <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->ds_condicion_pago; ?>
+                                             <?php echo $index_modal_cabecera_tableros->ds_condicion_pago; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -56,7 +40,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">CLIENTE</label>
                                          <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->ds_nombre_cliente_proveedor; ?>
+                                             <?php echo $index_modal_cabecera_tableros->ds_nombre_cliente_proveedor; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -64,7 +48,7 @@
                                      <div class="input-group">
                                          <label class="col-md-4">RUC/DNI</label>
                                          <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->num_documento; ?>
+                                             <?php echo $index_modal_cabecera_tableros->num_documento; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -72,14 +56,14 @@
                                      <div class="input-group">
                                          <label class="col-md-4">DIRECCION</label>
                                          <div class="col-md-8">
-                                             <?php echo $index_modal_cabecera->direccion_fiscal; ?>
+                                             <?php echo $index_modal_cabecera_tableros->direccion_fiscal; ?>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="input-group">
                                      <label class="col-md-4">LUGAR ENTREGA</label>
                                      <div class="col-md-8">
-                                         <?php echo $index_modal_cabecera->lugar_entrega; ?>
+                                         <?php echo $index_modal_cabecera_tableros->lugar_entrega; ?>
                                      </div>
                                  </div>
                              </div>
@@ -88,7 +72,7 @@
                              <div class="input-group">
                                  <label class="col-md-3">CONTACTO</label>
                                  <div class="col-md-9">
-                                     <?php echo $index_modal_cabecera->nombre_encargado; ?>
+                                     <?php echo $index_modal_cabecera_tableros->nombre_encargado; ?>
                                  </div>
                              </div>
                              <div class="form-group row">
@@ -97,31 +81,31 @@
                                      <div class="input-group">
                                          <label class="col-md-3">NOMBRE</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->ds_nombre_trabajador; ?>
+                                             <?php echo $index_modal_cabecera_tableros->ds_nombre_trabajador; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">CELULAR</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->celular; ?>
+                                             <?php echo $index_modal_cabecera_tableros->celular; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">CORREO</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->email; ?>
+                                             <?php echo $index_modal_cabecera_tableros->email; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">OBSERV.</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->observacion; ?>
+                                             <?php echo $index_modal_cabecera_tableros->observacion; ?>
                                          </div>
                                      </div>
                                      <div class="input-group">
                                          <label class="col-md-3">CLAUSULA.</label>
                                          <div class="col-md-9">
-                                             <?php echo $index_modal_cabecera->clausula; ?>
+                                             <?php echo $index_modal_cabecera_tableros->clausula; ?>
                                          </div>
                                      </div>
                                  </div>
@@ -143,7 +127,8 @@
                              <thead>
                                  <tr style="background-color:#B0B0B0">
                                      <th>Item</th>
-                                     <th>Cantidad</th>
+                                     <th>Cantidad Unitaria</th>
+                                     <th>Cantidad Total</th>
                                      <th>Codigo</th>
                                      <th>Descripcion</th>
                                      <th>Marca</th>
@@ -152,79 +137,66 @@
                                      <th>Dscto %</th>
                                      <th>Precio U/D</th>
                                      <th>Valor Venta</th>
-                                     <th>Dias Entrega</th>
                                  </tr>
                              </thead>
                              <tbody>
                                  <?php
                                     $variable_agrupamiento = "RSBM";
-
-                                    foreach ($index_modal_detalle as $index_modal_detalle) : ?>
-                                     <?php if ($index_modal_detalle->id_tablero != '0') { ?>
-                                         <tr style="background-color: #F0F0F0;">
-                                             <?php if ($index_modal_detalle->id_tablero != $variable_agrupamiento) { ?>
-                                                 <th><?php echo $index_modal_detalle->item; ?></th>
-                                                 <th><?php echo $index_modal_detalle->cantidad_tablero; ?></th>
-                                                 <th><?php echo $index_modal_detalle->codigo_tablero; ?></th>
-                                                 <th><?php echo $index_modal_detalle->descripcion_tablero; ?></th>
-                                                 <th><?php echo $index_modal_detalle->ds_marca_tablero; ?></th>
-                                                 <th></th>
-                                                 <th><?php echo $index_modal_detalle->precio_ganancia; ?></th>
-                                                 <th><?php echo $index_modal_detalle->d_tablero; ?></th>
-                                                 <th><?php echo $index_modal_detalle->precio_descuento_tablero; ?></th>
-                                                 <th><?php echo $index_modal_detalle->valor_venta_tablero; ?></th>
-                                                 <th><?php echo $index_modal_detalle->dias_entrega_tablero; ?></th>
-                                             <?php $variable_agrupamiento = $index_modal_detalle->id_tablero;
-                                                } ?>
-                                         </tr>
+                                    foreach ($index_modal_detalle_tableros as $index_modal_detalle) :
+                                        if ($index_modal_detalle->id_tablero != '0') { ?>
+                                         <?php if ($index_modal_detalle->id_tablero != $variable_agrupamiento) { ?>
+                                             <tr style="background-color: #F0F0F0;">
+                                                 <th><?php echo $index_modal_detalle->item_tablero_cabecera; ?></th>
+                                                 <th><?php echo '' ?></th>
+                                                 <th><?php echo $index_modal_detalle->cantidad_tablero_cabecera; ?></th>
+                                                 <th><?php echo $index_modal_detalle->codigo_tablero_cabecera; ?></th>
+                                                 <th><?php echo $index_modal_detalle->descripcion_tablero_cabecera; ?></th>
+                                                 <th><?php echo $index_modal_detalle->marca_tablero_cabecera; ?></th>
+                                                 <th><?php echo '' ?></th>
+                                                 <th><?php echo $index_modal_detalle->precio_u_tablero_cabecera; ?></th>
+                                                 <th><?php echo $index_modal_detalle->porcentaje_descuento_tablero_cabecera; ?></th>
+                                                 <th><?php echo $index_modal_detalle->precio_u_d_tablero_cabecera; ?></th>
+                                                 <th><?php echo $index_modal_detalle->valor_venta_tablero_cabecera; ?></th>
+                                                 <?php $variable_agrupamiento = $index_modal_detalle->id_tablero; ?>
+                                             </tr>
+                                         <?php } ?>
                                      <?php } ?>
                                      <tr>
-                                         <?php if ($index_modal_detalle->id_tablero != '0') { ?>
-                                             <td><?php echo ""; ?></td>
-                                         <?php } else { ?>
-                                             <td><?php echo $index_modal_detalle->item; ?></td>
-                                         <?php } ?>
-                                         <td><?php echo $index_modal_detalle->cantidad_producto; ?></td>
-
-                                         <?php if ($index_modal_detalle->id_comodin != '0') { ?>
-                                             <td style="background-color: #F0F0F0;"><?php echo $index_modal_detalle->codigo_producto; ?></td>
-                                             <td style="background-color: #F0F0F0;"><?php echo $index_modal_detalle->descripcion_producto; ?></td>
-                                         <?php } else { ?>
-                                             <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
-                                             <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>
-                                         <?php } ?>
-
-                                         <td><?php echo $index_modal_detalle->ds_marca_producto; ?></td>
-                                         <td><?php echo $index_modal_detalle->ds_unidad_medida; ?></td>
-                                         <td><?php echo $index_modal_detalle->precio_unitario; ?></td>
-                                         <td><?php echo $index_modal_detalle->d_producto; ?></td>
-                                         <td><?php echo $index_modal_detalle->precio_descuento; ?></td>
-                                         <td><?php echo $index_modal_detalle->valor_venta_con_d; ?></td>
-                                         <td><?php echo $index_modal_detalle->dias_entrega; ?></td>
+                                         <td></td>
+                                         <td><?php echo $index_modal_detalle->cantidad_unitaria_componente; ?></td>
+                                         <td><?php echo $index_modal_detalle->cantidad_total_componente; ?></td>
+                                         <td><?php echo $index_modal_detalle->codigo_componente; ?></td>
+                                         <td><?php echo $index_modal_detalle->descripcion_componente; ?></td>
+                                         <td><?php echo $index_modal_detalle->marca_componente; ?></td>
+                                         <td><?php echo $index_modal_detalle->unidad_medida_componente; ?></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
                                      </tr>
                                  <?php endforeach; ?>
                              </tbody>
                              <tfoot>
                                  <tfoot>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>TOTAL BRUTO</strong></td>
-                                         <td> <?php echo $index_modal_cabecera->valor_venta_total_sin_d; ?></td>
+                                         <td colspan="10" class="text-right"><strong>TOTAL BRUTO</strong></td>
+                                         <td> <?php echo $index_modal_cabecera_tableros->valor_venta_total_sin_d; ?></td>
                                      </tr>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong> DCTO TOTAL</strong></td>
-                                         <td> <?php echo $index_modal_cabecera->descuento_total; ?> </td>
+                                         <td colspan="10" class="text-right"><strong> DCTO TOTAL</strong></td>
+                                         <td> <?php echo $index_modal_cabecera_tableros->descuento_total; ?> </td>
                                      </tr>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong> TOTAL</strong></td>
-                                         <td> <?php echo $index_modal_cabecera->valor_venta_total_con_d; ?> </td>
+                                         <td colspan="10" class="text-right"><strong> TOTAL</strong></td>
+                                         <td> <?php echo $index_modal_cabecera_tableros->valor_venta_total_con_d; ?> </td>
                                      </tr>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>IGV</strong></td>
-                                         <td> <?php echo $index_modal_cabecera->igv; ?> </td>
+                                         <td colspan="10" class="text-right"><strong>IGV</strong></td>
+                                         <td> <?php echo $index_modal_cabecera_tableros->igv; ?> </td>
                                      </tr>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>PRECIO VENTA</strong></td>
-                                         <td> <?php echo $index_modal_cabecera->precio_venta; ?> </td>
+                                         <td colspan="10" class="text-right"><strong>PRECIO VENTA</strong></td>
+                                         <td> <?php echo $index_modal_cabecera_tableros->precio_venta; ?> </td>
                                      </tr>
                                  </tfoot>
                              </tfoot>

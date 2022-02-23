@@ -218,6 +218,7 @@
                           <!-- Fin Opcion 1 -->
                           <!-- Producto -->
                           <div class="col-md-10">
+                            <input type="hidden" id="hidden_item">
                             <input type="hidden" id="hidden_id_almacen">
                             <input type="hidden" id="hidden_ds_almacen">
                             <input type="hidden" id="hidden_id_producto">
@@ -325,7 +326,7 @@
                               <table id="id_table_detalle_tableros">
                                 <thead>
                                   <tr>
-                                    <!-- <th>Item</th> -->
+                                    <th>Item</th>
                                     <th>Almacen</th>
                                     <th>Codigo</th>
                                     <th>Nombre Producto</th>

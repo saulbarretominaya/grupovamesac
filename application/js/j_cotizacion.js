@@ -28,17 +28,86 @@ $("#listar").dataTable({
 	},
 	"ordering": false
 });
-$(document).on("click", ".js_lupa_cotizacion", function () {
+
+$("#listar_2").dataTable({
+
+	scrollX: true,
+	scrollCollapse: true,
+	paging: true,
+	searching: true,
+
+	language: {
+		lengthMenu: "Mostrar _MENU_ registros por pagina",
+		zeroRecords: "No se encontraron resultados en su busqueda",
+		searchPlaceholder: "Buscar registros",
+		info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+		infoEmpty: "No existen registros",
+		infoFiltered: "(filtrado de un total de _MAX_ registros)",
+		search: "Buscar:",
+		paginate: {
+			first: "Primero",
+			last: "Último",
+			next: "Siguiente",
+			previous: "Anterior",
+		},
+	},
+	"ordering": false
+});
+
+$(document).on("click", ".js_lupa_cotizacion_productos", function () {
 	valor_id = $(this).val();
 	$.ajax({
-		url: base_url + "C_cotizacion/index_modal",
+		url: base_url + "C_cotizacion/index_modal_productos",
 		type: "POST",
 		dataType: "html",
 		data: {
 			id_cotizacion: valor_id
 		},
 		success: function (data) {
-			$("#id_target_cotizacion .modal-content").html(data);
+			$("#id_target_cotizacion_productos .modal-content").html(data);
+		}
+	});
+});
+$(document).on("click", ".js_lupa_cotizacion_tableros", function () {
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_cotizacion/index_modal_tableros",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_cotizacion: valor_id
+		},
+		success: function (data) {
+			$("#id_target_cotizacion_tableros .modal-content").html(data);
+		}
+	});
+});
+$(document).on("click", ".js_lupa_orden_despacho_productos", function () {
+	debugger;
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_orden_despacho/index_modal_productos",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_orden_despacho: valor_id
+		},
+		success: function (data) {
+			$("#id_target_orden_despacho_productos .modal-content").html(data);
+		}
+	});
+});
+$(document).on("click", ".js_lupa_orden_despacho_tableros", function () {
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_orden_despacho/index_modal_tableros",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_orden_despacho: valor_id
+		},
+		success: function (data) {
+			$("#id_target_orden_despacho_tableros .modal-content").html(data);
 		}
 	});
 });
@@ -49,6 +118,7 @@ $("#registrar").on("click", function () {
 
 		//Cabecera
 		var serie_cotizacion = $("#serie_cotizacion").val();
+		var categoria = $("#hidden_categoria").val();
 		var id_trabajador = $("#id_trabajador").val();
 		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 		var fecha_cotizacion = $("#fecha_cotizacion").val();
@@ -119,6 +189,7 @@ $("#registrar").on("click", function () {
 			data: {
 				//Cabecera
 				serie_cotizacion: serie_cotizacion,
+				categoria: categoria,
 				id_trabajador: id_trabajador,
 				ds_nombre_trabajador: ds_nombre_trabajador,
 				fecha_cotizacion: fecha_cotizacion,
@@ -188,8 +259,8 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
 	var estado_cotizacion = $(this).parents("tr").find("td")[7].innerText;
-	var id_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
+	var id_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
 
 	if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "PENDIENTE") {
 
@@ -257,7 +328,7 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 
 });
 $(document).on("click", ".btn_alerta_actualizar", function () {
-	var estado_orden_despacho = $(this).parents("tr").find("td")[6].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
 
 	if (estado_orden_despacho == "APROBADO") {
 		alert("Ya fue Aprobado por la OD, no puede Actualizar")
@@ -329,7 +400,6 @@ $(document).on("click", ".js_seleccionar_modal_tablero", function () {
 	$("#opcion_target_tablero").modal("hide");
 	aplicar_tipo_cambio();
 });
-
 $(document).on("click", ".js_seleccionar_modal_comodin", function () {
 	limpiar_campos();
 	comodin = $(this).val();
@@ -682,6 +752,14 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 	var id_tablero = $("#hidden_id_tablero").val();
 	var id_comodin = $("#hidden_id_comodin").val();
 
+	if (id_producto != "") {
+		$("#hidden_categoria").val("PRODUCTOS"); //COMODIN O PRODUCTO
+	} else if (id_comodin != "") {
+		$("#hidden_categoria").val("PRODUCTOS"); //COMODIN O PRODUCTO
+	} else {
+		$("#hidden_categoria").val("TABLEROS"); // 
+	}
+
 	var codigo_producto = $("#hidden_codigo_producto").val();
 	var descripcion_producto = $("#descripcion_producto").val();
 	var id_unidad_medida = $("#hidden_id_unidad_medida").val();
@@ -729,7 +807,6 @@ $("#id_agregar_cotizacion").on("click", function (e) {
 		html += "<td><input type='hidden' name='d_cant_total[]' 			value='" + d_cant_total + "'>" + d_cant_total + "</td>";
 		html += "<td><input type='hidden' name='valor_venta_sin_d[]' 		value='" + valor_venta_sin_d + "'>" + valor_venta_sin_d + "</td>";
 		html += "<td><input type='hidden' name='valor_venta_con_d[]' 		value='" + valor_venta_con_d + "'>" + valor_venta_con_d + "</td>";
-
 		html += "<td style='width:10%'><input type='number' name='dias_entrega[]' class='form-control'></td>";
 		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_cotizacion'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
@@ -1290,6 +1367,9 @@ function validar_detalle_cotizacion() {
 	var precio_unitario = $("#precio_unitario").val();
 	var tipo_moneda_cambio = $('#tipo_moneda_cambio option:selected').text();
 	var cantidad = $("#cantidad").val();
+	var id_producto = $("#hidden_id_producto").val();
+	var id_tablero = $("#hidden_id_tablero").val();
+	var id_comodin = $("#hidden_id_comodin").val();
 
 
 	if (descripcion_producto == "") {
@@ -1320,6 +1400,19 @@ function validar_detalle_cotizacion() {
 			$("#tipo_moneda_cambio").attr("disabled", true);
 		} else {
 			$("#tipo_moneda_cambio").attr("disabled", false);
+		}
+
+		if (id_producto != "") {
+			$("#btn_id_tablero").attr("disabled", true);
+		}
+
+		if (id_tablero != "") {
+			$("#btn_id_producto").attr("disabled", true);
+			$("#btn_id_comodin").attr("disabled", true);
+		}
+
+		if (id_comodin != "") {
+			$("#btn_id_tablero").attr("disabled", true);
 		}
 
 	}
@@ -1386,12 +1479,12 @@ function calcular_sumatoria_cuotas_eliminar_detalle() {
 function limpiar_campos() {
 
 	var count = $('#id_table_detalle_cotizacion tr').length;
-	$("#hidden_id_general").val("");
 
+
+	$("#hidden_id_general").val("");
 	$("#hidden_id_producto").val("");
 	$("#hidden_id_tablero").val("");
 	$("#hidden_id_comodin").val("");
-
 	$("#hidden_codigo_producto").val("");
 	$("#descripcion_producto").val("");
 	$("#hidden_id_unidad_medida").val("");
@@ -1417,7 +1510,10 @@ function limpiar_campos() {
 	$("#d_cant_total").val("");
 	$("#cantidad").attr("readonly", false);
 
+	debugger;
+
 	if (count == 1) {
+
 		$("#tipo_moneda_cambio").val(0);
 		$("#tipo_moneda_cambio").attr("disabled", false);
 		$("#valor_venta_total_sin_d").val("");
@@ -1425,6 +1521,9 @@ function limpiar_campos() {
 		$("#descuento_total").val("");
 		$("#igv").val("");
 		$("#precio_venta").val("");
+		$("#btn_id_producto").attr("disabled", false);
+		$("#btn_id_tablero").attr("disabled", false);
+		$("#btn_id_comodin").attr("disabled", false);
 	}
 }
 function limpiar_campos_condicion_pago() {

@@ -16,6 +16,7 @@ class C_orden_despacho extends CI_Controller
 	{
 		$data = array(
 			'index' => $this->M_orden_despacho->index(),
+			'index_2' => $this->M_orden_despacho->index_2()
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -66,15 +67,27 @@ class C_orden_despacho extends CI_Controller
 		echo json_encode($id_orden_despacho);
 	}
 
-	public function index_modal()
+	public function index_modal_productos()
 	{
 		$id_orden_despacho = $this->input->post("id_orden_despacho");
 
 		$data = array(
-			"index_modal_cabecera" => $this->M_orden_despacho->index_modal_cabecera($id_orden_despacho),
-			"index_modal_detalle" => $this->M_orden_despacho->index_modal_detalle($id_orden_despacho),
+			"index_modal_cabecera_productos" => $this->M_orden_despacho->index_modal_cabecera_productos($id_orden_despacho),
+			"index_modal_detalle_productos" => $this->M_orden_despacho->index_modal_detalle_productos($id_orden_despacho),
 		);
 
-		$this->load->view("orden_despacho/V_index_modal", $data);
+		$this->load->view("orden_despacho/V_index_modal_productos", $data);
+	}
+
+	public function index_modal_tableros()
+	{
+		$id_orden_despacho = $this->input->post("id_orden_despacho");
+
+		$data = array(
+			"index_modal_cabecera_tableros" => $this->M_orden_despacho->index_modal_cabecera_tableros($id_orden_despacho),
+			"index_modal_detalle_tableros" => $this->M_orden_despacho->index_modal_detalle_tableros($id_orden_despacho),
+		);
+
+		$this->load->view("orden_despacho/V_index_modal_tableros", $data);
 	}
 }

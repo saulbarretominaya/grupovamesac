@@ -108,7 +108,7 @@ $(document).on("keyup", "#salida_prod", function () {
 	var precio_u = Number($(this).parents("tr").find("td")[5].innerText);
 	var precio_u_d = Number($(this).parents("tr").find("td")[6].innerText);
 	var d_unidad = Number($(this).parents("tr").find("td")[7].innerText);
-	var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
+	var salida_prod = $(this).closest('tr').find('#salida_prod').val();
 	debugger;
 	if (isNaN(salida_prod)) {
 		console.log("No puede ingresar datos isNaN");
@@ -125,17 +125,17 @@ $(document).on("keyup", "#salida_prod", function () {
 	}
 	else if (salida_prod > cant) {
 		alert("La salida de productos es mayor que la cantidad que se registro");
+		$(this).closest('tr').find('#salida_prod').val("");
 		$(this).closest('tr').find('#pendiente_prod').val("");
 		$(this).closest('tr').find('#d_cant_total').val("");
 		$(this).closest('tr').find('#valor_venta_sin_d').val("");
 		$(this).closest('tr').find('#valor_venta_con_d').val("");
-		$(this).closest('tr').find('#salida_prod').val("");
 		descuento_total();
 		valor_venta_total_sin_d();
 		valor_venta_total_con_d();
 		igv();
 		precio_venta();
-	} else if (salida_prod == 0) {
+	} else if (salida_prod == "0") {
 		pendiente_prod = cant - salida_prod;
 		d_cant_total = d_unidad * salida_prod;
 		valor_venta_sin_d = precio_u * salida_prod;
@@ -150,7 +150,20 @@ $(document).on("keyup", "#salida_prod", function () {
 		valor_venta_total_con_d();
 		igv();
 		precio_venta();
-	} else {
+	}
+	else if (salida_prod == "") {
+		$(this).closest('tr').find('#salida_prod').val("");
+		$(this).closest('tr').find('#pendiente_prod').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	}
+	else {
 		pendiente_prod = cant - salida_prod;
 		d_cant_total = d_unidad * salida_prod;
 		valor_venta_sin_d = precio_u * salida_prod;
@@ -174,18 +187,6 @@ $(document).on("keyup", "#salida_prod", function () {
 
 
 });
-
-// $("#salida_prod").on({
-// 	"focus": function (event) {
-// 		$(event.target).select();
-// 	},
-// 	"keyup": function (event) {
-// 		$(event.target).val(function (index, value) {
-// 			return value.replace(/\D/g, "");
-// 			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-// 		});
-// 	}
-// });
 
 function descuento_total() {
 

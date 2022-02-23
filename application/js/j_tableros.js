@@ -7,9 +7,15 @@ resultado_campo = true;
 
 /* Eventos en la tabla detalle  */
 $("#id_agregar_tablero").on("click", function (e) {
-	debugger;
+
 	validar_detalle_tablero();
 
+	var resume_table = document.getElementById("id_table_detalle_tableros");
+	for (var i = 0, row; row = resume_table.rows[i]; i++) {
+		console.log(`Fila': ${i}`);
+		$("#hidden_item").val(i + 1);
+	}
+	var item = $("#hidden_item").val();
 	var id_almacen_det = $("#hidden_id_almacen").val();
 	var ds_almacen = $("#hidden_ds_almacen").val();
 	var id_producto = $("#hidden_id_producto").val();
@@ -27,6 +33,7 @@ $("#id_agregar_tablero").on("click", function (e) {
 
 	if (resultado_campo == true) {
 		html = "<tr>";
+		html += "<td width='70px'><input type='text'   name='item[]'		value='" + item + "'       id='item' class='form-control' readonly=''></td>";
 		html += "    <input type='hidden' name='id_almacen_det[]' 			value='" + id_almacen_det + "'>";
 		html += "<td><input type='hidden' name='ds_almacen[]' 				value='" + ds_almacen + "'>" + ds_almacen + "</td>";
 		html += "    <input type='hidden' name='id_producto[]' 				value='" + id_producto + "'>";
@@ -61,7 +68,7 @@ $(document).on("click", ".eliminar_fila", function () {
 
 	$("#container_solicitud_id_remove").append(html);
 	$(this).closest("tr").remove();
-
+	generar_item();
 	sumar_monto_item();
 	calcular_margen();
 	limpiar_campos();
@@ -129,6 +136,8 @@ $("#registrar").on("click", function () {
 		var cantidad_unitaria = Array.prototype.slice.call(document.getElementsByName("cantidad_unitaria[]")).map((o) => o.value);
 		var cantidad_total_producto = Array.prototype.slice.call(document.getElementsByName("cantidad_total_producto[]")).map((o) => o.value);
 		var monto_total_producto = Array.prototype.slice.call(document.getElementsByName("monto_total_producto[]")).map((o) => o.value);
+		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
+
 
 		$.ajax({
 			async: false,
@@ -163,7 +172,8 @@ $("#registrar").on("click", function () {
 				precio_unitario: precio_unitario,
 				cantidad_unitaria: cantidad_unitaria,
 				cantidad_total_producto: cantidad_total_producto,
-				monto_total_producto: monto_total_producto
+				monto_total_producto: monto_total_producto,
+				item: item
 
 			},
 			success: function (data) {
@@ -311,6 +321,7 @@ $("#cantidad_tablero").on("keyup", function () {
 $("#porcentaje_margen").on("keyup", function () {
 	calcular_margen();
 });
+
 /* Fin de Eventos */
 
 
@@ -450,7 +461,7 @@ function sumar_monto_item() {
 
 	$("#id_table_detalle_tableros tbody tr").each(function () {
 		debugger;
-		var valorcito = $(this).find("td:eq(8)").text();
+		var valorcito = $(this).find("td:eq(9)").text();
 		valor = Number(valorcito.replace(/,/g, ''));
 		//monto_total = (monto_total + valor).toFixed(2);
 		monto_total = (monto_total + valor);
@@ -680,7 +691,7 @@ function validar_detalle_tablero() {
 	$("#id_table_detalle_tableros tbody tr").each(function () {
 
 		debugger;
-		var valorcito = $(this).find("td:eq(1)").text();
+		var valorcito = $(this).find("td:eq(2)").text();
 		valor = valorcito.replace(/ /g, '');
 		var hidden_codigo_producto = $("#hidden_codigo_producto").val();
 
@@ -752,6 +763,14 @@ function validar_detalle_tablero() {
 			$("#id_moneda").attr("disabled", false);
 		}
 	}
+}
+function generar_item() {
+	var acumulador = 0;
+	$("#id_table_detalle_tableros tbody tr").each(function () {
+		var item = $(this).closest('tr').find('#item').val();
+		acumulador = acumulador + 1;
+		$(this).closest('tr').find('#item').val(acumulador);
+	});
 }
 /* Fin Funciones */
 

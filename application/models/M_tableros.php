@@ -128,7 +128,8 @@ class M_tableros extends CI_Model
         $precio_unitario,
         $cantidad_unitaria,
         $cantidad_total_producto,
-        $monto_total_producto
+        $monto_total_producto,
+        $item
     ) {
         return $this->db->query(
             "
@@ -138,7 +139,7 @@ class M_tableros extends CI_Model
         id_tablero,id_almacen_det,ds_almacen,id_producto,
         codigo_producto,descripcion_producto,id_unidad_medida,ds_unidad_medida,
         id_marca_producto,ds_marca_producto,precio_unitario,cantidad_unitaria,
-        cantidad_total_producto,monto_total_producto,fecha_tablero
+        cantidad_total_producto,monto_total_producto,fecha_tablero,item
         )
         VALUES
         (
@@ -146,7 +147,7 @@ class M_tableros extends CI_Model
         '$id_tablero','$id_almacen_det','$ds_almacen','$id_producto',
         '$codigo_producto','$descripcion_producto','$id_unidad_medida','$ds_unidad_medida',
         '$id_marca_producto','$ds_marca_producto','$precio_unitario','$cantidad_unitaria',
-        '$cantidad_total_producto','$monto_total_producto',NOW(5)
+        '$cantidad_total_producto','$monto_total_producto',NOW(5),'$item'
         )
         "
         );
@@ -196,7 +197,8 @@ class M_tableros extends CI_Model
         FORMAT(b.precio_unitario,2) as precio_unitario,
         b.cantidad_unitaria,
         b.cantidad_total_producto,
-        FORMAT(b.monto_total_producto,2) as monto_total_producto
+        FORMAT(b.monto_total_producto,2) as monto_total_producto,
+        b.item
         FROM tableros a
         LEFT JOIN detalle_tableros b ON a.id_tablero=b.id_tablero
         LEFT JOIN productos c ON c.id_producto=b.id_producto

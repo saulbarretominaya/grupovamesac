@@ -172,14 +172,20 @@ class M_elaborar_pc extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT 
-        INTO detalle_parciales_completas (id_dparcial_completa, id_dcotizacion, id_parcial_completa,salida_prod,pendiente_prod, d_cant_total,valor_venta_sin_d,valor_venta_con_d )
-        SELECT ('',
-                '$id_dcotizacion',
-                '$id_parcial_completa','$salida_prod','$pendiente_prod',
-                '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d')
-        FROM detalle_parciales_completas 
-        WHERE '$salida_prod' >= '1';
+        INSERT INTO detalle_parciales_completas
+        (
+        id_dparcial_completa,
+        id_dcotizacion,
+        id_parcial_completa,salida_prod,pendiente_prod,
+        d_cant_total,valor_venta_sin_d,valor_venta_con_d
+        )
+        VALUES
+        (
+        '',
+        '$id_dcotizacion',
+        '$id_parcial_completa','$salida_prod','$pendiente_prod',
+        '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d'
+        )
         "
         );
     }
@@ -349,8 +355,8 @@ class M_elaborar_pc extends CI_Model
             END) AS precio_descuento,
             (CASE 
             WHEN b.id_tablero  != '0' THEN ''
-            WHEN b.id_producto !='0' THEN b.valor_venta_con_d
-            WHEN b.id_comodin !='0' THEN b.valor_venta_con_d
+            WHEN b.id_producto !='0' THEN FORMAT(b.valor_venta_con_d,2)
+            WHEN b.id_comodin !='0' THEN FORMAT(b.valor_venta_con_d,2)
             END) AS valor_venta_con_d
             FROM cotizacion a
             LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion

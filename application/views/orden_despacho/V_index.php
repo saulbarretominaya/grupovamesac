@@ -12,94 +12,207 @@
     </section>
 
     <section class="content">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th>Num COT</th>
-                  <th>Fec COT</th>
-                  <th>Num OD</th>
-                  <th>Fecha OD</th>
-                  <th>Cliente</th>
-                  <th>Condicion Pago</th>
-                  <!-- <th>Linea Credito $ </th> -->
-                  <!-- <th>###############</th> -->
-                  <th>Tipo Cambio</th>
-                  <th>Resultado Valor $</th>
-                  <th>Moneda</th>
-                  <th>Monto OD</th>
-                  <th>Vendedor</th>
-                  <th>Estado OD</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php if (!empty($index)) : ?>
-                  <?php foreach ($index as $index) : ?>
 
-                    <?php
-                    switch ($index->ds_estado_valor_od) {
-                      case "0":
-                        $ds_estado = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
-                        break;
-                      case "1":
-                        $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
-                        break;
-                      case "2":
-                        $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
-                        break;
-                    }
-                    ?>
-                    <tr>
-                      <td><?php echo $index->id_cotizacion; ?></td>
-                      <td><?php echo $index->fecha_cotizacion; ?></td>
-                      <td><?php echo $index->id_orden_despacho; ?></td>
-                      <td><?php echo $index->fecha_orden_despacho; ?></td>
-                      <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
-                      <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
-                      <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
-                      <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
-                      <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <td><?php echo $index->ds_condicion_pago; ?></td>
-                      <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
-                      <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
-                      <td><?php echo $index->valor_cambio; ?></td>
-                      <td><?php echo $index->resultado_valor_cambio; ?></td>
-                      <td><?php echo $index->ds_moneda; ?></td>
-                      <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                      <td><?php echo $ds_estado; ?> </td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
-                      <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
-                      <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
-                    </tr>
-                  <?php endforeach; ?>
-                <?php endif; ?>
-              </tbody>
-            </table>
+
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Listar Productos</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
           </div>
-          <!-- /.card-body -->
+          <div class="card-body">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th>Num COT</th>
+                        <th>Fec COT</th>
+                        <th>Num OD</th>
+                        <th>Fecha OD</th>
+                        <th>Cliente</th>
+                        <th>Condicion Pago</th>
+                        <!-- <th>Linea Credito $ </th> -->
+                        <!-- <th>###############</th> -->
+                        <th>Tipo Cambio</th>
+                        <th>Resultado Valor $</th>
+                        <th>Moneda</th>
+                        <th>Monto OD</th>
+                        <th>Vendedor</th>
+                        <th>Estado OD</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (!empty($index)) : ?>
+                        <?php foreach ($index as $index) : ?>
+
+                          <?php
+                          switch ($index->ds_estado_valor_od) {
+                            case "0":
+                              $ds_estado = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "1":
+                              $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            case "2":
+                              $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
+                              break;
+                          }
+                          ?>
+                          <tr>
+                            <td><?php echo $index->id_cotizacion; ?></td>
+                            <td><?php echo $index->fecha_cotizacion; ?></td>
+                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <td><?php echo $index->fecha_orden_despacho; ?></td>
+                            <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
+                            <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
+                            <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
+                            <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
+                            <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                            <td><?php echo $index->ds_condicion_pago; ?></td>
+                            <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
+                            <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
+                            <td><?php echo $index->valor_cambio; ?></td>
+                            <td><?php echo $index->resultado_valor_cambio; ?></td>
+                            <td><?php echo $index->ds_moneda; ?></td>
+                            <td><?php echo $index->precio_venta; ?></td>
+                            <td><?php echo $index->ds_nombre_trabajador; ?></td>
+                            <td><?php echo $ds_estado; ?> </td>
+                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho_productos" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho_productos"><span class="fas fa-search-plus"></span></button></td>
+                            <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
+                            <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
+                            <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- /.card -->
       </div>
-      <!-- /.div -->
+
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Listar Tableros</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <table id="listar_2" class="table table-bordered table-sm table-hover" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th>Num COT</th>
+                        <th>Fec COT</th>
+                        <th>Num OD</th>
+                        <th>Fecha OD</th>
+                        <th>Cliente</th>
+                        <th>Condicion Pago</th>
+                        <!-- <th>Linea Credito $ </th> -->
+                        <!-- <th>###############</th> -->
+                        <th>Tipo Cambio</th>
+                        <th>Resultado Valor $</th>
+                        <th>Moneda</th>
+                        <th>Monto OD</th>
+                        <th>Vendedor</th>
+                        <th>Estado OD</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (!empty($index_2)) : ?>
+                        <?php foreach ($index_2 as $index) : ?>
+
+                          <?php
+                          switch ($index->ds_estado_valor_od) {
+                            case "0":
+                              $ds_estado = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "1":
+                              $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            case "2":
+                              $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
+                              break;
+                          }
+                          ?>
+                          <tr>
+                            <td><?php echo $index->id_cotizacion; ?></td>
+                            <td><?php echo $index->fecha_cotizacion; ?></td>
+                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <td><?php echo $index->fecha_orden_despacho; ?></td>
+                            <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
+                            <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
+                            <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
+                            <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
+                            <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                            <td><?php echo $index->ds_condicion_pago; ?></td>
+                            <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
+                            <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
+                            <td><?php echo $index->valor_cambio; ?></td>
+                            <td><?php echo $index->resultado_valor_cambio; ?></td>
+                            <td><?php echo $index->ds_moneda; ?></td>
+                            <td><?php echo $index->precio_venta; ?></td>
+                            <td><?php echo $index->ds_nombre_trabajador; ?></td>
+                            <td><?php echo $ds_estado; ?> </td>
+                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho_tableros" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho_tableros"><span class="fas fa-search-plus"></span></button></td>
+                            <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
+                            <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
+                            <td><a class="btn btn btn-outline-danger btn-sm btn_desaprobar_estado"><span class="fas fa-times-circle"></span></a></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </section>
   </div>
 
-  <!-- Inicio Modal -->
-  <div class="modal fade" id="id_target_orden_despacho" tabindex="-1">
+  <!-- Inicio Modal Orden Despacho Productos -->
+  <div class="modal fade" id="id_target_orden_despacho_productos" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
       </div>
     </div>
   </div>
-  <!-- Fin de Modal -->
+  <!-- Fin de Modal Orden Despacho Productos -->
+
+  <!-- Inicio Modal Orden Despacho Tableros -->
+  <div class="modal fade" id="id_target_orden_despacho_tableros" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+  <!-- Fin de Modal Orden Despacho Tableros -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

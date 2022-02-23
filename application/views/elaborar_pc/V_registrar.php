@@ -216,7 +216,7 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_parciales_completas" style="width: 120%;">
+                            <table id="id_table_detalle_parciales_completas" style="width: 150%;">
                               <thead>
                                 <tr>
                                   <th>Item </th>

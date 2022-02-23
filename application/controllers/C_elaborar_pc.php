@@ -87,9 +87,7 @@ class C_elaborar_pc extends CI_Controller
 			$valor_venta_sin_d,
 			$valor_venta_con_d
 		);
-
 		$rows = $this->M_elaborar_pc->verifica_numero_filas($id_cotizacion, $id_parcial_completa);
-
 		if ($rows->numero_filas == 0) {
 			$this->M_elaborar_pc->finalizado_estado_elaborar_cotizacion($id_cotizacion);
 			$this->M_elaborar_pc->completa_estado_parciales_completas($id_parcial_completa);
@@ -97,12 +95,10 @@ class C_elaborar_pc extends CI_Controller
 			$this->M_elaborar_pc->pendiente_estado_elaborar_cotizacion($id_cotizacion);
 			$this->M_elaborar_pc->parcial_estado_parciales_completas($id_parcial_completa);
 		}
-
 		$this->actualizar_detalle_cotizacion_estado_elaboracio_pc(
 			$id_dcotizacion,
 			$estado_elaboracion_pc
 		);
-
 		echo json_encode($id_cotizacion);
 	}
 
