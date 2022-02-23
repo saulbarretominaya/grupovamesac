@@ -26,19 +26,57 @@ $("#listar").dataTable({
 	},
 	"ordering": false
 });
+$("#listar_2").dataTable({
 
-$(document).on("click", ".js_lupa_elaborar_pc", function () {
+	scrollX: true,
+	scrollCollapse: true,
+	paging: true,
+	searching: true,
+
+	language: {
+		lengthMenu: "Mostrar _MENU_ registros por pagina",
+		zeroRecords: "No se encontraron resultados en su busqueda",
+		searchPlaceholder: "Buscar registros",
+		info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+		infoEmpty: "No existen registros",
+		infoFiltered: "(filtrado de un total de _MAX_ registros)",
+		search: "Buscar:",
+		paginate: {
+			first: "Primero",
+			last: "Último",
+			next: "Siguiente",
+			previous: "Anterior",
+		},
+	},
+	"ordering": false
+});
+$(document).on("click", ".js_lupa_elaborar_pc_productos", function () {
 	debugger;
 	valor_id = $(this).val();
 	$.ajax({
-		url: base_url + "C_elaborar_pc/index_modal",
+		url: base_url + "C_elaborar_pc/index_modal_productos",
 		type: "POST",
 		dataType: "html",
 		data: {
 			id_orden_despacho: valor_id
 		},
 		success: function (data) {
-			$("#id_target_elaborar_pc .modal-content").html(data);
+			$("#id_target_elaborar_pc_productos .modal-content").html(data);
+		}
+	});
+});
+$(document).on("click", ".js_lupa_elaborar_pc_tableros", function () {
+	debugger;
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_elaborar_pc/index_modal_tableros",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_orden_despacho: valor_id
+		},
+		success: function (data) {
+			$("#id_target_elaborar_pc_tableros .modal-content").html(data);
 		}
 	});
 });
@@ -99,7 +137,6 @@ $("#registrar").on("click", function () {
 		});
 	}
 });
-
 /*Fin CRUD*/
 
 $(document).on("keyup", "#salida_prod", function () {
