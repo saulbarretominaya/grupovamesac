@@ -42,6 +42,7 @@
                           <label for="">Vendedor</label>
                           <div class="input-group">
                             <input type="hidden" id="id_cotizacion" value="<?php echo $enlace_actualizar_cabecera->id_cotizacion ?>">
+                            <input type="hidden" id="hidden_item">
                             <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?>" readonly>
                           </div>
                         </div>
@@ -216,9 +217,10 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_parciales_completas" style="width: 150%;">
+                            <table id="id_table_detalle_parciales_completas" style="width: 100%;">
                               <thead>
                                 <tr>
+                                  <th class="table-danger">N°</th>
                                   <th>Item </th>
                                   <th>Codigo </th>
                                   <th>Descripcion</th>
@@ -231,7 +233,7 @@
                                   <th>Cant</th>
                                   <th>Valor Venta</th>
                                   <th class="table-info">Stock</th>
-                                  <th class=" table-info">Salida Prod</th>
+                                  <th class="table-info">Salida Prod</th>
                                   <th class="table-info">Pendiente Prod</th>
                                   <th class="table-info">D Cant/T</th>
                                   <th class="table-info">Valor Venta Sin/D</th>
@@ -243,6 +245,7 @@
                                   <?php foreach ($enlace_actualizar_detalle as $index) : ?>
                                     <tr>
                                       <input type="hidden" value="<?php echo $index->id_dcotizacion; ?>" name="id_dcotizacion[]">
+                                      <td class="table-danger"><input type="text" class="form-control" id="item" name="item[]" readonly></td>
                                       <td><?php echo $index->item; ?></td>
                                       <td><?php echo $index->codigo_producto; ?></td>
                                       <td><?php echo $index->descripcion_producto; ?></td>
