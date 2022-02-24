@@ -142,7 +142,7 @@
                                  <?php
                                     foreach ($index_modal_detalle_productos as $index_modal_detalle) : ?>
                                      <tr>
-                                         <td><?php echo $index_modal_detalle->item;; ?></td>
+                                         <td><?php echo $index_modal_detalle->item; ?></td>
                                          <td><?php echo $index_modal_detalle->cantidad; ?></td>
                                          <td><?php echo $index_modal_detalle->codigo_producto; ?></td>
                                          <td><?php echo $index_modal_detalle->descripcion_producto; ?></td>
@@ -158,7 +158,7 @@
                              <tfoot>
                                  <tfoot>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>TOTAL</strong></td>
+                                         <td colspan="9" class="text-right"><strong>TOTAL BRUTO</strong></td>
                                          <td> <?php echo $index_modal_cabecera_productos->valor_venta_total_sin_d; ?></td>
                                      </tr>
                                      <tr>

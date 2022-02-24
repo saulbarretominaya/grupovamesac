@@ -193,7 +193,7 @@
                              <tfoot>
                                  <tfoot>
                                      <tr>
-                                         <td colspan="10" class="text-right"><strong>TOTAL</strong></td>
+                                         <td colspan="10" class="text-right"><strong>TOTAL BRUTO</strong></td>
                                          <td> <?php echo $index_modal_cabecera_tableros->valor_venta_total_sin_d; ?></td>
                                      </tr>
                                      <tr>

@@ -84,9 +84,8 @@ class M_parciales_completas extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT (@rownum:=@rownum+1) AS item,a.* FROM 
-            (SELECT
-            @rownum:=0,
+            SELECT 
+            a.item,
             a.salida_prod AS cantidad,
             b.codigo_producto,
             b.descripcion_producto,
@@ -99,7 +98,7 @@ class M_parciales_completas extends CI_Model
             FROM 
             detalle_parciales_completas a
             LEFT JOIN detalle_cotizacion b ON b.id_dcotizacion=a.id_dcotizacion
-            WHERE a.id_parcial_completa='$id_parcial_completa' AND a.salida_prod > '0') a
+            WHERE a.id_parcial_completa='$id_parcial_completa' AND a.salida_prod > '0'
         "
         );
         return $resultados->result();
@@ -133,6 +132,7 @@ class M_parciales_completas extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
+            d.item AS item_tablero_cabecera,
             a.id_tablero,
             '-------',
             d.salida_prod AS cantidad_tablero_cabecera,

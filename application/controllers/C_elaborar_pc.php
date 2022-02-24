@@ -63,6 +63,7 @@ class C_elaborar_pc extends CI_Controller
 		$valor_venta_sin_d = $this->input->post("valor_venta_sin_d");
 		$valor_venta_con_d = $this->input->post("valor_venta_con_d");
 		$estado_elaboracion_pc = $this->input->post("estado_elaboracion_pc");
+		$item = $this->input->post("item");
 
 
 		if ($this->M_elaborar_pc->registrar(
@@ -86,7 +87,8 @@ class C_elaborar_pc extends CI_Controller
 			$pendiente_prod,
 			$d_cant_total,
 			$valor_venta_sin_d,
-			$valor_venta_con_d
+			$valor_venta_con_d,
+			$item
 		);
 		$rows = $this->M_elaborar_pc->verifica_numero_filas($id_cotizacion, $id_parcial_completa);
 		if ($rows->numero_filas == 0) {
@@ -110,7 +112,8 @@ class C_elaborar_pc extends CI_Controller
 		$pendiente_prod,
 		$d_cant_total,
 		$valor_venta_sin_d,
-		$valor_venta_con_d
+		$valor_venta_con_d,
+		$item
 	) {
 		for ($i = 0; $i < count($salida_prod); $i++) {
 			$this->M_elaborar_pc->registrar_detalle_parciales_completas(
@@ -120,7 +123,8 @@ class C_elaborar_pc extends CI_Controller
 				$pendiente_prod[$i],
 				$d_cant_total[$i],
 				$valor_venta_sin_d[$i],
-				$valor_venta_con_d[$i]
+				$valor_venta_con_d[$i],
+				$item[$i]
 			);
 		}
 	}

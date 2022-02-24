@@ -171,7 +171,7 @@
                              <tfoot>
                                  <tfoot>
                                      <tr>
-                                         <td colspan="9" class="text-right"><strong>TOTAL</strong></td>
+                                         <td colspan="9" class="text-right"><strong>TOTAL BRUTO</strong></td>
                                          <td> <?php echo $index_modal_cabecera_productos->valor_venta_total_sin_d; ?></td>
                                      </tr>
                                      <tr>

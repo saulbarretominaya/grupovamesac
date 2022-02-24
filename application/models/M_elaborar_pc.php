@@ -197,7 +197,8 @@ class M_elaborar_pc extends CI_Model
         $pendiente_prod,
         $d_cant_total,
         $valor_venta_sin_d,
-        $valor_venta_con_d
+        $valor_venta_con_d,
+        $item
     ) {
         return $this->db->query(
             "
@@ -206,14 +207,14 @@ class M_elaborar_pc extends CI_Model
         id_dparcial_completa,
         id_dcotizacion,
         id_parcial_completa,salida_prod,pendiente_prod,
-        d_cant_total,valor_venta_sin_d,valor_venta_con_d
+        d_cant_total,valor_venta_sin_d,valor_venta_con_d,item
         )
         VALUES
         (
         '',
         '$id_dcotizacion',
         '$id_parcial_completa','$salida_prod','$pendiente_prod',
-        '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d'
+        '$d_cant_total','$valor_venta_sin_d','$valor_venta_con_d','$item'
         )
         "
         );

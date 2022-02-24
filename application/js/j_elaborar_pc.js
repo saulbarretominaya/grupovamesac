@@ -104,6 +104,8 @@ $("#registrar").on("click", function () {
 		var valor_venta_sin_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_sin_d[]")).map((o) => o.value);
 		var valor_venta_con_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_con_d[]")).map((o) => o.value);
 		var estado_elaboracion_pc = Array.prototype.slice.call(document.getElementsByName("estado_elaboracion_pc[]")).map((o) => o.value);
+		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
+
 
 		$.ajax({
 			async: false,
@@ -127,7 +129,8 @@ $("#registrar").on("click", function () {
 				d_cant_total: d_cant_total,
 				valor_venta_sin_d: valor_venta_sin_d,
 				valor_venta_con_d: valor_venta_con_d,
-				estado_elaboracion_pc: estado_elaboracion_pc
+				estado_elaboracion_pc: estado_elaboracion_pc,
+				item: item
 			},
 			success: function (data) {
 				debugger;
@@ -305,7 +308,6 @@ function validar_detalle_parciales_completas() {
 	}
 
 }
-
 function generar_item() {
 	debugger;
 	var acumulador = 0;

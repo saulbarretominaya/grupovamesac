@@ -146,7 +146,7 @@
                                         if ($index_modal_detalle->id_tablero != '0') { ?>
                                          <?php if ($index_modal_detalle->id_tablero != $variable_agrupamiento) { ?>
                                              <tr style="background-color: #F0F0F0;">
-                                                 <th><?php echo '' ?></th>
+                                                 <th><?php echo $index_modal_detalle->item_tablero_cabecera; ?></th>
                                                  <th><?php echo '' ?></th>
                                                  <th><?php echo $index_modal_detalle->cantidad_tablero_cabecera; ?></th>
                                                  <th><?php echo $index_modal_detalle->codigo_tablero_cabecera; ?></th>
@@ -179,7 +179,7 @@
                              <tfoot>
                                  <tfoot>
                                      <tr>
-                                         <td colspan="10" class="text-right"><strong>TOTAL</strong></td>
+                                         <td colspan="10" class="text-right"><strong>TOTAL BRUTO</strong></td>
                                          <td> <?php echo $index_modal_cabecera_tableros->valor_venta_total_sin_d; ?></td>
                                      </tr>
                                      <tr>
