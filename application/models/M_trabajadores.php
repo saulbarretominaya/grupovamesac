@@ -12,7 +12,9 @@ class M_trabajadores extends CI_Model
         SELECT
         a.nombres,a.ape_materno,a.ape_paterno,a.num_documento,a.celular,id_trabajador,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_documento) AS ds_tipo_documento,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_empresa
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_empresa,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_almacen) AS ds_sucursal,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cargo_trabajador) AS ds_cargo_trabajador
         FROM trabajadores a
         "
         );

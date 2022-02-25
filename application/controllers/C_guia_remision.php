@@ -16,6 +16,7 @@ class C_guia_remision extends CI_Controller
 	{
 		$data = array(
 			'index' => $this->M_guia_remision->index(),
+			'index_2' => $this->M_guia_remision->index_2()
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -52,7 +53,7 @@ class C_guia_remision extends CI_Controller
 		$id_tipo_envio_guia_remision = $this->input->post("id_tipo_envio_guia_remision");
 		$ds_tipo_envio_guia_remision = $this->input->post("ds_tipo_envio_guia_remision");
 		$peso_bruto_total = $this->input->post("peso_bruto_total");
-		$kilos = $this->input->post("kilos");
+		$num_bulto = $this->input->post("num_bulto");
 		$punto_partida = $this->input->post("punto_partida");
 		$punto_llegada = $this->input->post("punto_llegada");
 		$contenedor = $this->input->post("contenedor");
@@ -76,7 +77,7 @@ class C_guia_remision extends CI_Controller
 				$id_tipo_envio_guia_remision,
 				$ds_tipo_envio_guia_remision,
 				$peso_bruto_total,
-				$kilos,
+				$num_bulto,
 				$punto_partida,
 				$punto_llegada,
 				$contenedor,
@@ -101,7 +102,7 @@ class C_guia_remision extends CI_Controller
 				$id_tipo_envio_guia_remision,
 				$ds_tipo_envio_guia_remision,
 				$peso_bruto_total,
-				$kilos,
+				$num_bulto,
 				$punto_partida,
 				$punto_llegada,
 				$contenedor,
@@ -126,7 +127,7 @@ class C_guia_remision extends CI_Controller
 				$id_tipo_envio_guia_remision,
 				$ds_tipo_envio_guia_remision,
 				$peso_bruto_total,
-				$kilos,
+				$num_bulto,
 				$punto_partida,
 				$punto_llegada,
 				$contenedor,
@@ -138,5 +139,30 @@ class C_guia_remision extends CI_Controller
 			);
 		}
 		echo json_encode($tipo_transporte);
+	}
+
+	public function index_modal_productos()
+	{
+		$id_guia_remision = $this->input->post("id_guia_remision");
+
+		$data = array(
+			"index_modal_cabecera_productos" => $this->M_guia_remision->index_modal_cabecera_productos($id_guia_remision),
+			"index_modal_detalle_productos" => $this->M_guia_remision->index_modal_detalle_productos($id_guia_remision),
+		);
+
+		$this->load->view("guia_remision/V_index_modal_productos", $data);
+	}
+
+
+	public function index_modal_tableros()
+	{
+		$id_guia_remision = $this->input->post("id_guia_remision");
+
+		$data = array(
+			"index_modal_cabecera_tableros" => $this->M_guia_remision->index_modal_cabecera_tableros($id_guia_remision),
+			"index_modal_detalle_tableros" => $this->M_guia_remision->index_modal_detalle_tableros($id_guia_remision),
+		);
+
+		$this->load->view("guia_remision/V_index_modal_tableros", $data);
 	}
 }

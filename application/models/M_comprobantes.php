@@ -17,7 +17,7 @@ class M_comprobantes extends CI_Model
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
             b.ds_nombre_cliente_proveedor,
-            b.ds_nombre_vendedor,
+            b.ds_nombre_trabajador,
             b.ds_condicion_pago,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
             c.id_orden_despacho

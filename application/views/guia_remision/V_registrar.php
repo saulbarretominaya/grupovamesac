@@ -317,9 +317,9 @@
                               </div>
                             </div>
                             <div class="col-md-2">
-                              <label for="">Kilos</label>
+                              <label for="">Num Bultos</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="kilos">
+                                <input type="text" class="form-control" id="num_bulto">
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -368,11 +368,12 @@
                             <table id="id_table_detalle_cotizacion">
                               <thead>
                                 <tr>
-                                  <th>Cant</th>
-                                  <th>U.M</th>
-                                  <th>Codigo </th>
+                                  <th>Item</th>
+                                  <th>Cantidad</th>
+                                  <th>Codigo</th>
                                   <th>Descripcion</th>
                                   <th>Marca</th>
+                                  <th>U.M</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -380,11 +381,12 @@
                               <?php if (!empty($enlace_actualizar_detalle)) : ?>
                                 <?php foreach ($enlace_actualizar_detalle as $index) : ?>
                                   <tr>
+                                    <td><?php echo $index->item; ?></td>
                                     <td><?php echo $index->salida_prod; ?></td>
-                                    <td><?php echo $index->ds_unidad_medida; ?></td>
                                     <td><?php echo $index->codigo_producto; ?></td>
                                     <td><?php echo $index->descripcion_producto; ?></td>
                                     <td><?php echo $index->ds_marca_producto; ?></td>
+                                    <td><?php echo $index->ds_unidad_medida; ?></td>
                                   </tr>
                                 <?php endforeach; ?>
                               <?php endif; ?>
