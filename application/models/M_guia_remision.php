@@ -11,9 +11,10 @@ class M_guia_remision extends CI_Model
             "
             SELECT
             d.id_guia_remision,
+            d.id_sucursal,
             a.id_parcial_completa,
             a.precio_venta,
-            DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
+            DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
             a.id_estado_parcial_completa,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
@@ -24,7 +25,7 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
             c.id_orden_despacho,
             d.id_sucursal,
-            CONCAT(d.ds_serie_guia_remision,'-',d.id_sucursal) ds_correlativo_guia,
+            d.ds_serie_guia_remision,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
             FROM
             parciales_completas a 
@@ -46,7 +47,7 @@ class M_guia_remision extends CI_Model
             d.id_guia_remision,
             a.id_parcial_completa,
             a.precio_venta,
-            DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
+            DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
             a.id_estado_parcial_completa,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
@@ -57,14 +58,14 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
             c.id_orden_despacho,
             d.id_sucursal,
-            CONCAT(d.ds_serie_guia_remision,'-',d.id_sucursal) ds_correlativo_guia,
+            d.ds_serie_guia_remision,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
             FROM
             parciales_completas a 
             LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
             LEFT JOIN guia_remision d ON d.id_parcial_completa=a.id_parcial_completa
-            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador
+            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador 
             WHERE b.categoria='TABLEROS';
             "
         );

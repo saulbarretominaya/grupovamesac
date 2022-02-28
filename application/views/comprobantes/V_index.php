@@ -19,8 +19,13 @@
               <thead>
                 <tr>
                   <th>Num OD</th>
-                  <th>Num OR</th>
-                  <th>Fecha OR</th>
+                  <th>Num Orden</th>
+                  <th>Serie</th>
+                  <th>Num Guia</th>
+                  <th>Sucursal</th>
+                  <th>Tipo Comprobante </th>
+                  <th>Num comprobante</th>
+                  <th>Fecha comprobante</th>
                   <th>Cliente</th>
                   <th>Condicion Pago</th>
                   <th>Moneda</th>
@@ -47,7 +52,13 @@
                     <tr>
                       <td><?php echo $index->id_orden_despacho; ?></td>
                       <td><?php echo $index->id_parcial_completa; ?></td>
-                      <td><?php echo $index->fecha_parcial_completa; ?></td>
+                      <td><?php echo $index->ds_serie_guia_remision; ?></td>
+                      <td><?php echo $index->id_sucursal; ?></td>
+                      <td><?php echo $index->ds_sucursal_trabajador; ?></td>
+                      <td><?php echo '' ?></td>
+                      <td><?php echo '' ?></td>
+                      <td><?php echo '' ?></td>
+
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->ds_condicion_pago; ?></td>
                       <td><?php echo $index->ds_moneda; ?></td>
@@ -55,7 +66,7 @@
                       <td><?php echo $index->ds_nombre_trabajador; ?></td>
                       <td><?php echo $ds_estado_pc; ?></td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -70,14 +81,6 @@
     </section>
   </div>
 
-  <!-- Inicio Modal -->
-  <div class="modal fade" id="id_target_cotizacion" tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-  <!-- Fin de Modal -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -118,7 +121,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_parciales_completas.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_comprobantes.js"></script>
 
   </body>
 

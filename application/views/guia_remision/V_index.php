@@ -32,14 +32,15 @@
                       <tr>
                         <th>Num OD</th>
                         <th>Num Orden</th>
+                        <th>Serie</th>
                         <th>Num Guia</th>
+                        <th>Sucursal</th>
                         <th>Fecha Guia</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
                         <th>Precio venta</th>
                         <th>Vendedor</th>
-                        <th>Sucursal</th>
                         <th>Estado OR</th>
                         <th></th>
                         <th></th>
@@ -61,14 +62,15 @@
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
-                            <td><?php echo $index->ds_correlativo_guia; ?></td>
-                            <td><?php echo $index->fecha_parcial_completa; ?></td>
+                            <td><?php echo $index->ds_serie_guia_remision; ?></td>
+                            <td><?php echo $index->id_sucursal; ?></td>
+                            <td><?php echo $index->ds_sucursal_trabajador; ?></td>
+                            <td><?php echo $index->fecha_guia_remision; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $index->ds_sucursal_trabajador; ?></td>
                             <td><?php echo $ds_estado_pc; ?></td>
                             <?php if ($index->id_guia_remision != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_guia_remision_productos" value="<?php echo $index->id_guia_remision; ?>" data-toggle="modal" data-target="#id_target_guia_remision_productos"><span class="fas fa-search-plus"></span></button></td>
@@ -107,14 +109,15 @@
                       <tr>
                         <th>Num OD</th>
                         <th>Num Orden</th>
+                        <th>Serie</th>
                         <th>Num Guia</th>
+                        <th>Sucursal</th>
                         <th>Fecha Guia</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
                         <th>Precio venta</th>
                         <th>Vendedor</th>
-                        <th>Sucursal</th>
                         <th>Estado OR</th>
                         <th></th>
                         <th></th>
@@ -136,14 +139,15 @@
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
-                            <td><?php echo $index->ds_correlativo_guia; ?></td>
-                            <td><?php echo $index->fecha_parcial_completa; ?></td>
+                            <td><?php echo $index->ds_serie_guia_remision; ?></td>
+                            <td><?php echo $index->id_sucursal; ?></td>
+                            <td><?php echo $index->ds_sucursal_trabajador; ?></td>
+                            <td><?php echo $index->fecha_guia_remision; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $index->ds_sucursal_trabajador; ?></td>
                             <td><?php echo $ds_estado_pc; ?></td>
                             <?php if ($index->id_guia_remision != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_guia_remision_tableros" value="<?php echo $index->id_guia_remision; ?>" data-toggle="modal" data-target="#id_target_guia_remision_tableros"><span class="fas fa-search-plus"></span></button></td>

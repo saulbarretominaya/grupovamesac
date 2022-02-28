@@ -6,7 +6,7 @@
         <div class="col-sm-6">
           <h1>Comprobantes
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
-            <a href="<?php echo base_url(); ?>C_cotizacion" class="btn btn-danger btn-sm">CANCELAR</a>
+            <a href="<?php echo base_url(); ?>C_comprobantes" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
       </div>
@@ -36,58 +36,10 @@
                 <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                   <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Seleccionar Comprobante</h3>
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="form-group row">
-                            <div class="col-md-3">
-                              <label for="">Tipo Documento</label>
-                              <div class="input-group">
-                                <select class="form-select select2" id="id_condicion_pago">
-                                  <option value="0">Seleccionar</option>
-                                  <option value="0">FACTURA</option>
-                                  <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                    <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
-                                  <?php endforeach; ?>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-2">
-                              <label for="cargo">Serie</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_cotizacion" value="">
-                              </div>
-                            </div>
-                            <div class="col-md-2">
-                              <label for="cargo">Num. Documento</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_cotizacion" value="">
-                              </div>
-                            </div>
-
-                            <div class="col-md-2">
-                              <label for="cargo">Moneda</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_cotizacion" value="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">Datos</h3>
+                          <h3 class="card-title">Datos Comprobante</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -97,12 +49,58 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-4">
-                              <label>Vendedor</label>
+                              <label for="">Tipo Comprobante</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="" value="" readonly>
+                                <select class="form-select select2" id="id_tipo_comprobante">
+                                  <option value="0" selected>Seleccionar</option>
+                                  <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?><option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>"><?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                    </option>
+                                  <?php endforeach; ?>
+                                </select>
                               </div>
                             </div>
-                            <div class="col-md-3">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Datos Vendedor</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group row">
+                            <div class="col-md-12">
+                              <label>Nombre</label>
+                              <div class="input-group">
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Fecha Comprobante</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group row">
+                            <div class="col-md-4">
                               <label for="cargo">Fecha Emision</label>
                               <div class="input-group">
                                 <?php
@@ -111,17 +109,47 @@
                                 <input type="date" class="form-control" id="fecha_cotizacion" value="<?php echo date("Y-m-d"); ?>" readonly>
                               </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                               <label># Dias</label>
                               <div class="input-group">
                                 <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
                                 <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
                               </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                               <label>Fecha Vencimiento</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Informacion Extra</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                              <label>Orden Compra</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="" value="">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label># Guia</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="dias" value="<?php echo $enlace_actualizar_cabecera->id_sucursal ?>" readonly>
                               </div>
                             </div>
                           </div>
@@ -142,7 +170,7 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-4">
-                              <!-- <label for="">&nbsp;</label> -->
+                              <label for="">Condicion Pago</label>
                               <div class="input-group">
                                 <select class="form-select select2" id="id_condicion_pago">
                                   <option value="0">Seleccionar</option>
@@ -153,19 +181,19 @@
                               </div>
                             </div>
                             <div class="col-md-4">
-                              <!-- <label>&nbsp;</label> -->
+                              <label>Fecha</label>
                               <div class="input-group">
                                 <input type="date" class="form-control" id="fecha_cuota" value="" autocomplete="nope">
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <!-- <label>&nbsp;</label> -->
+                            <div class="col-md-2">
+                              <label>Monto</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope" placeholder="Ingrese Cuota">
+                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope" placeholder="">
                               </div>
                             </div>
-                            <div class="col-md-1">
-                              <!-- <label for="">&nbsp;</label> -->
+                            <div class="col-md-2">
+                              <label for="">&nbsp;</label>
                               <div class="input-group">
                                 <button type="button" class="btn btn-outline-success" id="id_agregar_condicion_pago"><span class="fas fa-plus"></span></button>
                               </div>
@@ -211,7 +239,7 @@
                     <div class="col-md-4">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Informacion Extra</h3>
+                          <h3 class="card-title">Datos de Cliente</h3>
                           <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-plus"></i>
@@ -220,171 +248,24 @@
                         </div>
                         <div class="card-body">
                           <div class="form-group row">
-                            <div class="col-md-6">
-                              <label>Orden Compra</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="" value="">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label># Guia</label>
-                              <div class="input-group">
-                                <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
-                                <input type="text" class="form-control" id="dias" value="" autocomplete="nope">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">Datos de Cliente/Proveedor</h3>
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                               <label for="">Cliente</label>
                               <div class="input-group">
-                                <input type="hidden" class="form-control" id="id_cliente_proveedor">
-                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor">
-                                <span class="input-group-append">
-                                  <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_clientes_proveedores">
-                                    Buscar
-                                  </button>
-                                  <!-- <a href="<?php echo base_url() . "C_clientes_proveedores" ?>"><button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button></a> -->
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="opcion_target_clientes_proveedores" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h4 class="modal-title">Clientes / Provedores</h4>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <table id="id_datatable_clientes_proveedores" class="table table-bordered table-sm table-hover table-responsive">
-                                            <thead>
-                                              <tr>
-                                                <th></th>
-                                                <th id="dtable_ds_tipo_persona">Tipo Persona</th>
-                                                <th id="dtable_ds_nombre_cliente_proveedor">Razon Social</th>
-                                                <th id="dtable_ds_tipo_documento">Tipo Documento</th>
-                                                <th id="dtable_num_documento">Num Documento</th>
-                                                <th id="dtable_direccion_fiscal">Direccion Fiscal</th>
-                                                <th id="dtable_email">Correo Electronico</th>
-                                                <th id="dtable_contacto_registro">Contacto Registro</th>
-                                                <th id="dtable_telefono">Telefono</th>
-                                                <th id="dtable_celular">Celular</th>
-                                                <th id="dtable_ds_tipo_giro">Tipo Giro</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <?php if (!empty($index_clientes_proveedores)) : ?>
-                                                <?php foreach ($index_clientes_proveedores as $index_clientes_proveedores) : ?>
-                                                  <tr>
-                                                    <td>
-                                                      <?php $split_clientes_proveedores =
-                                                        $index_clientes_proveedores->id_cliente_proveedor . "*" .
-                                                        $index_clientes_proveedores->ds_nombre_cliente_proveedor . "*" .
-                                                        $index_clientes_proveedores->ds_departamento_cliente_proveedor . "*" .
-                                                        $index_clientes_proveedores->ds_provincia_cliente_proveedor . "*" .
-                                                        $index_clientes_proveedores->ds_distrito_cliente_proveedor . "*" .
-                                                        $index_clientes_proveedores->direccion_fiscal_cliente_proveedor . "*" .
-                                                        $index_clientes_proveedores->email_cliente_proveedor;
-                                                      ?>
-                                                      <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_clientes_proveedores" value="<?php echo $split_clientes_proveedores; ?>" data-toggle="modal" data-target="#opcion_target_clientes_proveedores"><span class="fas fa-check"></span></button>
-                                                    </td>
-                                                    <td><?php echo $index_clientes_proveedores->ds_tipo_persona; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->ds_nombre_cliente_proveedor; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->ds_tipo_documento; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->num_documento; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->direccion_fiscal_cliente_proveedor; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->email_cliente_proveedor; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->contacto_registro; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->telefono; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->celular; ?></td>
-                                                    <td><?php echo $index_clientes_proveedores->ds_tipo_giro; ?></td>
-                                                  </tr>
-                                                <?php endforeach; ?>
-                                              <?php endif; ?>
-                                            </tbody>
-                                          </table>
-                                        </div>
-                                        <div class="modal-footer justify-content-between">
-                                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!-- Fin Modal -->
-                                </span>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->ds_nombre_cliente_proveedor ?></textarea>
                               </div>
                             </div>
-                            <div class="col-md-2">
-                              <label for="">Departamento</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-2">
-                              <label for="">Provincia</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-2">
-                              <label for="">Distrito</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly></textarea>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                               <label for="">Direccion Fiscal</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="">Correo Electronico</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope">
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="">Clausula</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula">Ninguna Clausula</textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="">Lugar Entrega</label>
-                              <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega">Carabayllo</textarea>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->direccion_fiscal_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <div class="col-md-6">
-                              <label for="tipo_trabajador">Nombre Encargado</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion">Ninguna Observacion</textarea>
+                                <textarea class="form-control" rows="1" id=""></textarea>
                               </div>
                             </div>
                           </div>
@@ -409,66 +290,59 @@
                                 <table id="id_table_detalle_cotizacion">
                                   <thead>
                                     <tr>
-                                      <th>Codigo </th>
+                                      <th>Item</th>
+                                      <th>Cantidad</th>
+                                      <th>Codigo</th>
                                       <th>Descripcion</th>
-                                      <th>U.M</th>
                                       <th>Marca</th>
+                                      <th>U.M.</th>
                                       <th>Precio U</th>
-                                      <th>Cant</th>
-                                      <th>Desc %</th>
+                                      <th>Dscto %</th>
                                       <th>Precio U/D</th>
-                                      <th>Total D</th>
                                       <th>Valor Venta</th>
-                                      <th>Dias Entrega</th>
-                                      <th></th>
                                     </tr>
                                   </thead>
                                   <tbody>
+                                    <?php
+                                    foreach ($enlace_actualizar_detalle as $index) : ?>
+                                      <tr>
+                                        <td><?php echo $index->item; ?></td>
+                                        <td><?php echo $index->cantidad; ?></td>
+                                        <td><?php echo $index->codigo_producto; ?></td>
+                                        <td><?php echo $index->descripcion_producto; ?></td>
+                                        <td><?php echo $index->ds_marca_producto; ?></td>
+                                        <td><?php echo $index->ds_unidad_medida; ?></td>
+                                        <td><?php echo $index->precio_u; ?></td>
+                                        <td><?php echo $index->d; ?></td>
+                                        <td><?php echo $index->precio_u_d; ?></td>
+                                        <td><?php echo $index->valor_venta; ?></td>
+                                      </tr>
+                                    <?php endforeach; ?>
+                                  </tbody>
+                                  </tbody>
+                                  <tfoot>
                                     <tr>
-                                      <th>Codigo </th>
-                                      <th>Descripcion</th>
-                                      <th>U.M</th>
-                                      <th>Marca</th>
-                                      <th>Precio U</th>
-                                      <th>Cant</th>
-                                      <th>Desc %</th>
-                                      <th>Precio U/D</th>
-                                      <th>Total D</th>
-                                      <th>Valor Venta</th>
-                                      <th>Dias Entrega</th>
-                                      <th></th>
+                                      <td colspan="9" class="text-right"><strong>TOTAL BRUTO</strong></td>
+                                      <td><?php echo $enlace_actualizar_cabecera->valor_venta_total_sin_d; ?></td>
                                     </tr>
-                                  </tbody>
-                                  </tbody>
+                                    <tr>
+                                      <td colspan="9" class="text-right"><strong> DCTO TOTAL</strong></td>
+                                      <td><?php echo $enlace_actualizar_cabecera->descuento_total; ?> </td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="9" class="text-right"><strong> TOTAL</strong></td>
+                                      <td><?php echo $enlace_actualizar_cabecera->valor_venta_total_con_d; ?> </td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="9" class="text-right"><strong>IGV</strong></td>
+                                      <td><?php echo $enlace_actualizar_cabecera->igv; ?> </td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="9" class="text-right"><strong>PRECIO VENTA</strong></td>
+                                      <td><?php echo $enlace_actualizar_cabecera->precio_venta; ?> </td>
+                                    </tr>
+                                  </tfoot>
                                 </table>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group row">
-                              <div class="col-md-3">
-                                <label for="tipo_trabajador">Total</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" id="total" value="">
-                                </div>
-                              </div>
-                              <div class="col-md-3">
-                                <label for=" local">DCTO Total</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" id="descuento_total" value="">
-                                </div>
-                              </div>
-                              <div class="col-md-3">
-                                <label for=" local">IGV</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" id="igv" value="">
-                                </div>
-                              </div>
-                              <div class="col-md-3">
-                                <label for="sexo">Precio Venta</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" id="precio_venta" value="">
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -530,7 +404,7 @@
   var base_url = "<?php echo base_url(); ?>";
 </script>
 
-<script src="<?php echo base_url() ?>application/js/j_cotizacion.js"></script>
+<script src="<?php echo base_url() ?>application/js/j_comprobantes.js"></script>
 
 </body>
 
