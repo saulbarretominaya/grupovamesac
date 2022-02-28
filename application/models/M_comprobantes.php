@@ -87,4 +87,130 @@ class M_comprobantes extends CI_Model
         );
         return $resultados->result();
     }
+
+
+    public function registrar_facturas()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO facturas
+            (
+            id_factura
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_boletas()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO boletas
+            (
+            id_boleta
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_nota_credito()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO nota_credito
+            (
+            id_nota_credito
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_nota_debito()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO nota_debito
+            (
+            id_nota_debito
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar(
+        $id_tipo_comprobante,
+        $ds_tipo_comprobante,
+        $fecha_emision,
+        $dias,
+        $fecha_vencimiento,
+        $orden_compra,
+        $id_condicion_pago,
+        $ds_condicion_pago,
+        $monto_total_condicion_pago,
+        $observacion,
+        $id_num_comprobante
+    ) {
+        return $this->db->query(
+            "
+            INSERT INTO comprobantes
+            (
+                id_comprobante,
+                id_tipo_comprobante,ds_tipo_comprobante,fecha_emision,dias,fecha_vencimiento,
+                orden_compra,id_condicion_pago,ds_condicion_pago,monto_total_condicion_pago,
+                observacion,id_num_comprobante
+
+            )
+            VALUES
+            (
+                '',
+                '$id_tipo_comprobante','$ds_tipo_comprobante','$fecha_emision','$dias',STR_TO_DATE('$fecha_vencimiento','%d/%m/%Y'),
+                '$orden_compra','$id_condicion_pago','$ds_condicion_pago','$monto_total_condicion_pago',
+                '$observacion','$id_num_comprobante'
+            )
+            "
+        );
+    }
+
+    public function lastID()
+    {
+        return $this->db->insert_id();
+    }
+
+    public function registrar_detalle_condicion_pago(
+        $id_comprobante,
+        $fecha_cuota,
+        $monto_cuota
+
+    ) {
+        return $this->db->query(
+            "
+        INSERT INTO detalle_condicion_pagos_comprobantes
+        (
+        id_dcondicion_pago,
+        id_comprobante,fecha_cuota,monto_cuota
+        )
+        VALUES
+        (
+        '', 
+        '$id_comprobante',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota'
+        )
+        "
+        );
+    }
 }

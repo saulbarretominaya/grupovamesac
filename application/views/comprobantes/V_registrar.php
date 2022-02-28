@@ -64,6 +64,7 @@
                       </div>
                     </div>
 
+                    <input type="hidden" id="precio_venta" value="<?php echo $enlace_actualizar_cabecera->precio_venta; ?>">
 
                     <div class="col-md-4">
                       <div class="card">
@@ -106,7 +107,7 @@
                                 <?php
                                 date_default_timezone_set("America/Lima");
                                 ?>
-                                <input type="date" class="form-control" id="fecha_cotizacion" value="<?php echo date("Y-m-d"); ?>" readonly>
+                                <input type="date" class="form-control" id="fecha_emision" value="<?php echo date("Y-m-d"); ?>" readonly>
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -119,7 +120,7 @@
                             <div class="col-md-4">
                               <label>Fecha Vencimiento</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_condicion_pago" readonly>
+                                <input type="text" class="form-control" id="fecha_vencimiento" readonly>
                               </div>
                             </div>
 
@@ -143,13 +144,13 @@
                             <div class="col-md-6">
                               <label>Orden Compra</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="" value="">
+                                <input type="text" class="form-control" id="orden_compra" value="">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label># Guia</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="dias" value="<?php echo $enlace_actualizar_cabecera->id_sucursal ?>" readonly>
+                                <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->id_sucursal ?>" readonly>
                               </div>
                             </div>
                           </div>
@@ -265,7 +266,7 @@
                             <div class="col-md-12">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id=""></textarea>
+                                <textarea class="form-control" rows="1" id="observacion"></textarea>
                               </div>
                             </div>
                           </div>
