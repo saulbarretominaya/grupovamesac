@@ -157,4 +157,28 @@ class C_comprobantes extends CI_Controller
 			);
 		}
 	}
+
+	public function index_modal_productos()
+	{
+		$id_comprobante = $this->input->post("id_comprobante");
+
+		$data = array(
+			"index_modal_cabecera_productos" => $this->M_comprobantes->index_modal_cabecera_productos($id_comprobante),
+			//"index_modal_detalle_productos" => $this->M_comprobantes->index_modal_detalle_productos($id_comprobante),
+		);
+
+		$this->load->view("comprobantes/V_index_modal_productos", $data);
+	}
+
+	public function index_modal_tableros()
+	{
+		$id_comprobante = $this->input->post("id_comprobante");
+
+		$data = array(
+			"index_modal_cabecera_tableros" => $this->M_comprobantes->index_modal_cabecera_tableros($id_comprobante),
+			//index_modal_detalle_tableros" => $this->M_parciales_completas->index_modal_detalle_tableros($id_parcial_completa),
+		);
+
+		$this->load->view("comprobantes/V_index_modal_tableros", $data);
+	}
 }

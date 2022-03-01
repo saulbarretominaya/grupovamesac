@@ -258,4 +258,52 @@ class M_comprobantes extends CI_Model
         "
         );
     }
+
+    public function index_modal_cabecera_productos($id_comprobante)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+            a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
+            b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
+            c.celular,c.email,a.observacion,
+            d.valor_venta_total_sin_d,d.valor_venta_total_con_d,d.descuento_total,d.igv,d.precio_venta,a.clausula,a.nombre_encargado
+            FROM
+            cotizacion a
+            LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
+            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
+            LEFT JOIN parciales_completas d ON d.id_cotizacion=a.id_cotizacion
+            LEFT JOIN guia_remision e ON e.id_parcial_completa=d.id_parcial_completa
+            LEFT JOIN comprobantes f ON f.id_guia_remision=e.id_guia_remision
+            WHERE f.id_comprobante='$id_comprobante'    
+        "
+        );
+        return $resultados->row();
+    }
+
+    public function index_modal_cabecera_tableros($id_comprobante)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
+            a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
+            b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
+            c.celular,c.email,a.observacion,
+            d.valor_venta_total_sin_d,d.valor_venta_total_con_d,d.descuento_total,d.igv,d.precio_venta,a.clausula,a.nombre_encargado
+            FROM
+            cotizacion a
+            LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
+            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
+            LEFT JOIN parciales_completas d ON d.id_cotizacion=a.id_cotizacion
+            LEFT JOIN guia_remision e ON e.id_parcial_completa=d.id_parcial_completa
+            LEFT JOIN comprobantes f ON f.id_guia_remision=e.id_guia_remision
+            WHERE f.id_comprobante='$id_comprobante'    
+        "
+        );
+        return $resultados->row();
+    }
 }

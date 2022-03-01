@@ -146,6 +146,37 @@ $(document).on("click", ".eliminar_fila_condicion_pago", function () {
 	calcular_sumatoria_cuotas_eliminar_detalle();
 
 });
+
+$(document).on("click", ".js_lupa_comprobantes_productos", function () {
+	debugger;
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_comprobantes/index_modal_productos",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_comprobante: valor_id
+		},
+		success: function (data) {
+			$("#id_target_comprobantes_productos .modal-content").html(data);
+		}
+	});
+});
+$(document).on("click", ".js_lupa_comprobantes_tableros", function () {
+	debugger;
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_comprobantes/index_modal_tableros",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_comprobante: valor_id
+		},
+		success: function (data) {
+			$("#id_target_comprobantes_tableros .modal-content").html(data);
+		}
+	});
+});
 /* Fin Evento */
 
 

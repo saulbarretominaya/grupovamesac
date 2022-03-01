@@ -79,7 +79,7 @@
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_pc; ?></td>
-                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
                             <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                           </tr>
                         <?php endforeach; ?>
@@ -158,7 +158,7 @@
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_pc; ?></td>
-                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_tableros" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_tableros"><span class="fas fa-search-plus"></span></button></td>
                             <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                           </tr>
                         <?php endforeach; ?>
@@ -176,6 +176,24 @@
     </section>
   </div>
 
+
+  <!-- Inicio Modal Comprobantes Productos -->
+  <div class="modal fade" id="id_target_comprobantes_productos" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+  <!-- Fin de Modal Comprobantes Productos -->
+
+  <!-- Inicio Modal Comprobantes Tableros -->
+  <div class="modal fade" id="id_target_comprobantes_tableros" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+  <!-- Fin de Modal Comprobantes Tableros -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
