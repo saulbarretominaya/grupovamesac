@@ -67,6 +67,7 @@ $("#registrar").on("click", function () {
 		var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
 		var monto_total_condicion_pago = $("#monto_total_condicion_pago").val();
 		var observacion = $("#observacion").val();
+		var id_guia_remision = $("#id_guia_remision").val();
 
 		//Detalle condicion_pago
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
@@ -89,6 +90,7 @@ $("#registrar").on("click", function () {
 				ds_condicion_pago: ds_condicion_pago,
 				monto_total_condicion_pago: monto_total_condicion_pago,
 				observacion: observacion,
+				id_guia_remision: id_guia_remision,
 
 				//Detalle condicion pago
 				fecha_cuota: fecha_cuota,

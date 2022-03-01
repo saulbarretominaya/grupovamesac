@@ -10,17 +10,20 @@ class M_comprobantes extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
+            f.id_comprobante,
+            f.ds_tipo_comprobante,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=f.id_tipo_comprobante) AS ds_serie_comprobante,
+            f.id_num_comprobante AS num_comprobante,
+            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
             d.id_guia_remision,
             a.id_parcial_completa,
             a.precio_venta,
-            DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
             a.id_estado_parcial_completa,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
             b.ds_nombre_cliente_proveedor,
             b.ds_nombre_trabajador,
             b.ds_condicion_pago,
-            b.id_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
             c.id_orden_despacho,
             d.id_sucursal,
@@ -31,8 +34,49 @@ class M_comprobantes extends CI_Model
             LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
             LEFT JOIN guia_remision d ON d.id_parcial_completa=a.id_parcial_completa
-            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador ;
-                        "
+            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador
+            LEFT JOIN comprobantes f ON f.id_guia_remision=d.id_guia_remision
+            WHERE b.categoria='PRODUCTOS';
+
+        "
+        );
+        return $resultados->result();
+    }
+
+    public function index_2()
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            f.id_comprobante,
+            f.ds_tipo_comprobante,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=f.id_tipo_comprobante) AS ds_serie_comprobante,
+            f.id_num_comprobante AS num_comprobante,
+            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            d.id_guia_remision,
+            a.id_parcial_completa,
+            a.precio_venta,
+            a.id_estado_parcial_completa,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
+            b.ds_nombre_cliente_proveedor,
+            b.ds_nombre_trabajador,
+            b.ds_condicion_pago,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
+            c.id_orden_despacho,
+            d.id_sucursal,
+            d.ds_serie_guia_remision,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
+            FROM
+            parciales_completas a 
+            LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=a.id_parcial_completa
+            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador
+            LEFT JOIN comprobantes f ON f.id_guia_remision=d.id_guia_remision
+            WHERE b.categoria='TABLEROS';
+
+        "
         );
         return $resultados->result();
     }
@@ -164,6 +208,7 @@ class M_comprobantes extends CI_Model
         $ds_condicion_pago,
         $monto_total_condicion_pago,
         $observacion,
+        $id_guia_remision,
         $id_num_comprobante
     ) {
         return $this->db->query(
@@ -173,7 +218,7 @@ class M_comprobantes extends CI_Model
                 id_comprobante,
                 id_tipo_comprobante,ds_tipo_comprobante,fecha_emision,dias,fecha_vencimiento,
                 orden_compra,id_condicion_pago,ds_condicion_pago,monto_total_condicion_pago,
-                observacion,id_num_comprobante
+                observacion,id_guia_remision,id_num_comprobante
 
             )
             VALUES
@@ -181,7 +226,7 @@ class M_comprobantes extends CI_Model
                 '',
                 '$id_tipo_comprobante','$ds_tipo_comprobante','$fecha_emision','$dias',STR_TO_DATE('$fecha_vencimiento','%d/%m/%Y'),
                 '$orden_compra','$id_condicion_pago','$ds_condicion_pago','$monto_total_condicion_pago',
-                '$observacion','$id_num_comprobante'
+                '$observacion','$id_guia_remision','$id_num_comprobante'
             )
             "
         );

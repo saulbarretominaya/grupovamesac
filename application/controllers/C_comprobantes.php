@@ -16,6 +16,7 @@ class C_comprobantes extends CI_Controller
 	{
 		$data = array(
 			'index' => $this->M_comprobantes->index(),
+			'index_2' => $this->M_comprobantes->index_2(),
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -51,6 +52,8 @@ class C_comprobantes extends CI_Controller
 		$ds_condicion_pago = $this->input->post("ds_condicion_pago");
 		$monto_total_condicion_pago = $this->input->post("monto_total_condicion_pago");
 		$observacion = $this->input->post("observacion");
+		$id_guia_remision = $this->input->post("id_guia_remision");
+
 
 
 		//Detalle_condicion pago
@@ -71,6 +74,7 @@ class C_comprobantes extends CI_Controller
 				$ds_condicion_pago,
 				$monto_total_condicion_pago,
 				$observacion,
+				$id_guia_remision,
 				$id_num_comprobante
 			);
 		} else if ($id_tipo_comprobante == "70") {
@@ -87,6 +91,7 @@ class C_comprobantes extends CI_Controller
 				$ds_condicion_pago,
 				$monto_total_condicion_pago,
 				$observacion,
+				$id_guia_remision,
 				$id_num_comprobante
 			);
 		} else if ($id_tipo_comprobante == "77") {
@@ -103,6 +108,7 @@ class C_comprobantes extends CI_Controller
 				$ds_condicion_pago,
 				$monto_total_condicion_pago,
 				$observacion,
+				$id_guia_remision,
 				$id_num_comprobante
 			);
 		} else if ($id_tipo_comprobante == "78") {
@@ -119,6 +125,7 @@ class C_comprobantes extends CI_Controller
 				$ds_condicion_pago,
 				$monto_total_condicion_pago,
 				$observacion,
+				$id_guia_remision,
 				$id_num_comprobante
 			);
 		}

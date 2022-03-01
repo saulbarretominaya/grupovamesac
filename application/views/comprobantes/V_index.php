@@ -12,72 +12,167 @@
     </section>
 
     <section class="content">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th>Num OD</th>
-                  <th>Num Orden</th>
-                  <th>Serie</th>
-                  <th>Num Guia</th>
-                  <th>Sucursal</th>
-                  <th>Tipo Comprobante </th>
-                  <th>Num comprobante</th>
-                  <th>Fecha comprobante</th>
-                  <th>Cliente</th>
-                  <th>Condicion Pago</th>
-                  <th>Moneda</th>
-                  <th>Precio venta</th>
-                  <th>Vendedor</th>
-                  <th>Estado OR</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php if (!empty($index)) : ?>
-                  <?php foreach ($index as $index) :
-                    switch ($index->ds_estado_valor_pc) {
-                      case "1":
-                        $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
-                        break;
-                      case "2":
-                        $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
-                        break;
-                    }
 
-                  ?>
-                    <tr>
-                      <td><?php echo $index->id_orden_despacho; ?></td>
-                      <td><?php echo $index->id_parcial_completa; ?></td>
-                      <td><?php echo $index->ds_serie_guia_remision; ?></td>
-                      <td><?php echo $index->id_sucursal; ?></td>
-                      <td><?php echo $index->ds_sucursal_trabajador; ?></td>
-                      <td><?php echo '' ?></td>
-                      <td><?php echo '' ?></td>
-                      <td><?php echo '' ?></td>
 
-                      <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
-                      <td><?php echo $index->ds_condicion_pago; ?></td>
-                      <td><?php echo $index->ds_moneda; ?></td>
-                      <td><?php echo $index->precio_venta; ?></td>
-                      <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                      <td><?php echo $ds_estado_pc; ?></td>
-                      <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-                    </tr>
-                  <?php endforeach; ?>
-                <?php endif; ?>
-              </tbody>
-            </table>
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Listar Productos</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
           </div>
-          <!-- /.card-body -->
+          <div class="card-body">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th>Num OD</th>
+                        <th>Num Orden</th>
+                        <th>Serie Guia</th>
+                        <th>Num Guia</th>
+                        <th>Sucursal</th>
+                        <th>Tipo Comprobante </th>
+                        <th>Serie Comprobante</th>
+                        <th>Num comprobante</th>
+                        <th>Fecha comprobante</th>
+                        <th>Cliente</th>
+                        <th>Condicion Pago</th>
+                        <th>Moneda</th>
+                        <th>Precio venta</th>
+                        <th>Vendedor</th>
+                        <th>Estado OR</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (!empty($index)) : ?>
+                        <?php foreach ($index as $index) :
+                          switch ($index->ds_estado_valor_pc) {
+                            case "1":
+                              $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                              break;
+                            case "2":
+                              $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              break;
+                          }
+
+                        ?>
+                          <tr>
+                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->ds_serie_guia_remision; ?></td>
+                            <td><?php echo $index->id_sucursal; ?></td>
+                            <td><?php echo $index->ds_sucursal_trabajador; ?></td>
+                            <td><?php echo $index->ds_tipo_comprobante;  ?></td>
+                            <td><?php echo $index->ds_serie_comprobante;  ?></td>
+                            <td><?php echo $index->num_comprobante;  ?></td>
+                            <td><?php echo $index->fecha_comprobante;  ?></td>
+                            <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                            <td><?php echo $index->ds_condicion_pago; ?></td>
+                            <td><?php echo $index->ds_moneda; ?></td>
+                            <td><?php echo $index->precio_venta; ?></td>
+                            <td><?php echo $index->ds_nombre_trabajador; ?></td>
+                            <td><?php echo $ds_estado_pc; ?></td>
+                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                            <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- /.card -->
       </div>
-      <!-- /.div -->
+
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Listar Tableros</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <table id="listar_2" class="table table-bordered table-sm table-hover" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th>Num OD</th>
+                        <th>Num Orden</th>
+                        <th>Serie Guia</th>
+                        <th>Num Guia</th>
+                        <th>Sucursal</th>
+                        <th>Tipo Comprobante </th>
+                        <th>Serie Comprobante</th>
+                        <th>Num comprobante</th>
+                        <th>Fecha comprobante</th>
+                        <th>Cliente</th>
+                        <th>Condicion Pago</th>
+                        <th>Moneda</th>
+                        <th>Precio venta</th>
+                        <th>Vendedor</th>
+                        <th>Estado OR</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (!empty($index_2)) : ?>
+                        <?php foreach ($index_2 as $index) :
+                          switch ($index->ds_estado_valor_pc) {
+                            case "1":
+                              $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                              break;
+                            case "2":
+                              $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              break;
+                          }
+
+                        ?>
+                          <tr>
+                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->ds_serie_guia_remision; ?></td>
+                            <td><?php echo $index->id_sucursal; ?></td>
+                            <td><?php echo $index->ds_sucursal_trabajador; ?></td>
+                            <td><?php echo $index->ds_tipo_comprobante;  ?></td>
+                            <td><?php echo $index->ds_serie_comprobante;  ?></td>
+                            <td><?php echo $index->num_comprobante;  ?></td>
+                            <td><?php echo $index->fecha_comprobante;  ?></td>
+                            <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
+                            <td><?php echo $index->ds_condicion_pago; ?></td>
+                            <td><?php echo $index->ds_moneda; ?></td>
+                            <td><?php echo $index->precio_venta; ?></td>
+                            <td><?php echo $index->ds_nombre_trabajador; ?></td>
+                            <td><?php echo $ds_estado_pc; ?></td>
+                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_cotizacion"><span class="fas fa-search-plus"></span></button></td>
+                            <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </section>
   </div>
 

@@ -65,6 +65,7 @@
                     </div>
 
                     <input type="hidden" id="precio_venta" value="<?php echo $enlace_actualizar_cabecera->precio_venta; ?>">
+                    <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_actualizar_cabecera->id_guia_remision; ?>">
 
                     <div class="col-md-4">
                       <div class="card">
