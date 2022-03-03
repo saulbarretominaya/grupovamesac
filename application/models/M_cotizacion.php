@@ -198,7 +198,7 @@ class M_cotizacion extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT INTO detalle_condicion_pago
+        INSERT INTO detalle_condicion_pagos_cotizacion
         (
         id_dcondicion_pago,
         id_cotizacion,fecha_cuota,monto_cuota
