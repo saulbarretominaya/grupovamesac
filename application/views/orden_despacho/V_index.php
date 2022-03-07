@@ -54,17 +54,16 @@
                     <tbody>
                       <?php if (!empty($index)) : ?>
                         <?php foreach ($index as $index) : ?>
-
                           <?php
-                          switch ($index->ds_estado_valor_od) {
-                            case "0":
-                              $ds_estado = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                          switch ($index->ds_estado_orden_despacho) {
+                            case "PENDIENTE":
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
-                            case "1":
-                              $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
+                            case "APROBADO":
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-success">APROBADO</span></div>';
                               break;
-                            case "2":
-                              $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
+                            case "DESAPROBADO":
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
                               break;
                           }
                           ?>
@@ -86,7 +85,7 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado; ?> </td>
+                            <td><?php echo $ds_estado_orden_despacho; ?> </td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho_productos" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho_productos"><span class="fas fa-search-plus"></span></button></td>
                             <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
                             <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>
@@ -145,15 +144,15 @@
                         <?php foreach ($index_2 as $index) : ?>
 
                           <?php
-                          switch ($index->ds_estado_valor_od) {
-                            case "0":
-                              $ds_estado = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                          switch ($index->ds_estado_orden_despacho) {
+                            case "PENDIENTE":
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
-                            case "1":
-                              $ds_estado = '<div><span class="badge bg-success">APROBADO</span></div>';
+                            case "APROBADO":
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-success">APROBADO</span></div>';
                               break;
-                            case "2":
-                              $ds_estado = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
+                            case "DESAPROBADO":
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
                               break;
                           }
                           ?>
@@ -175,7 +174,7 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado; ?> </td>
+                            <td><?php echo $ds_estado_orden_despacho; ?> </td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho_tableros" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho_tableros"><span class="fas fa-search-plus"></span></button></td>
                             <td><a class="btn btn btn-outline-warning btn-sm btn_aplicar_tipo_cambio"><span class="fas fa-dollar-sign"></span></a></td>
                             <td><a class="btn btn btn-outline-success btn-sm btn_aprobar_estado"><span class="fas fa-check-circle"></span></a></td>

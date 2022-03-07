@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h3>PARCIALES / COMPLETAS
+          <h3>ELABORAR PARCIALES / COMPLETAS
             <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
             <a href="<?php echo base_url(); ?>C_elaborar_pc" class="btn btn-danger btn-sm">CANCELAR</a>
           </h3>
@@ -41,7 +41,7 @@
                         <div class="col-md-4">
                           <label for="">Vendedor</label>
                           <div class="input-group">
-                            <input type="hidden" id="id_cotizacion" value="<?php echo $enlace_actualizar_cabecera->id_cotizacion ?>">
+                            <input type="hidden" id="id_orden_despacho" value="<?php echo $enlace_actualizar_cabecera->id_orden_despacho ?>">
                             <input type="hidden" id="hidden_item">
                             <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?>" readonly>
                           </div>
@@ -263,7 +263,7 @@
                                       <td class="table-info"><input type="text" class="form-control" id="d_cant_total" value="" name="d_cant_total[]" readonly></td>
                                       <td class="table-info"><input type="text" class="form-control" id="valor_venta_sin_d" value="" name="valor_venta_sin_d[]" readonly></td>
                                       <td class="table-info"><input type="text" class="form-control" id="valor_venta_con_d" value="" name="valor_venta_con_d[]" readonly></td>
-                                      <input type="hidden" class="form-control" id="estado_elaboracion_pc" value="" name="estado_elaboracion_pc[]" readonly>
+                                      <input type="hidden" class="form-control" id="id_estado_elaborar_pc" value="" name="id_estado_elaborar_pc[]" readonly>
                                     </tr>
                                   <?php endforeach; ?>
                                 <?php endif; ?>

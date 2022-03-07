@@ -10,22 +10,20 @@ class M_parciales_completas extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
-            c.id_orden_despacho,
+            b.id_orden_despacho,
             a.id_parcial_completa,
             DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
-            b.ds_nombre_cliente_proveedor,
-            b.ds_condicion_pago,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
+            c.ds_nombre_cliente_proveedor,
+            c.ds_condicion_pago,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_moneda) AS ds_moneda,
             a.precio_venta,
-            a.id_estado_parcial_completa,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
-            b.ds_nombre_trabajador
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            c.ds_nombre_trabajador
             FROM
             parciales_completas a 
-            LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
-            WHERE b.categoria='PRODUCTOS';
+            LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
+            LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
+            WHERE c.categoria='PRODUCTOS';
             "
         );
         return $resultados->result();
@@ -36,22 +34,20 @@ class M_parciales_completas extends CI_Model
         $resultados = $this->db->query(
             "
             SELECT
-            c.id_orden_despacho,
+            b.id_orden_despacho,
             a.id_parcial_completa,
             DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
-            b.ds_nombre_cliente_proveedor,
-            b.ds_condicion_pago,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
+            c.ds_nombre_cliente_proveedor,
+            c.ds_condicion_pago,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_moneda) AS ds_moneda,
             a.precio_venta,
-            a.id_estado_parcial_completa,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
-            b.ds_nombre_trabajador
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            c.ds_nombre_trabajador
             FROM
             parciales_completas a 
-            LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
-            WHERE b.categoria='TABLEROS'
+            LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
+            LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
+            WHERE c.categoria='TABLEROS'
             "
         );
         return $resultados->result();
@@ -63,18 +59,31 @@ class M_parciales_completas extends CI_Model
         $resultados = $this->db->query(
             "
         SELECT
-        DATE_FORMAT(d.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
-        b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
-        c.celular,c.email,a.observacion,
-        d.valor_venta_total_sin_d,d.valor_venta_total_con_d,d.descuento_total,d.igv,d.precio_venta,a.clausula,a.nombre_encargado
+        DATE_FORMAT(c.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+        a.ds_condicion_pago,
+        a.ds_nombre_cliente_proveedor,
+        a.lugar_entrega,
+        a.ds_nombre_trabajador,
+        a.clausula,
+        a.nombre_encargado,
+        a.observacion,
+        c.valor_venta_total_sin_d,
+        c.valor_venta_total_con_d,
+        c.descuento_total,
+        c.igv,
+        c.precio_venta,
+        d.num_documento,
+        d.direccion_fiscal,
+	    e.celular,
+        e.email
         FROM
         cotizacion a
-        LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
-        LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
-        LEFT JOIN parciales_completas d ON d.id_cotizacion=a.id_cotizacion
-        WHERE d.id_parcial_completa='$id_parcial_completa'    
+        LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion        
+        LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+        LEFT JOIN clientes_proveedores d ON d.id_cliente_proveedor=a.id_cliente_proveedor
+        LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
+        WHERE c.id_parcial_completa='$id_parcial_completa'        
         "
         );
         return $resultados->row();
@@ -109,18 +118,31 @@ class M_parciales_completas extends CI_Model
         $resultados = $this->db->query(
             "
         SELECT
-        DATE_FORMAT(d.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
-        b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
-        c.celular,c.email,a.observacion,
-        d.valor_venta_total_sin_d,d.valor_venta_total_con_d,d.descuento_total,d.igv,d.precio_venta,a.clausula,a.nombre_encargado
+        DATE_FORMAT(c.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+        a.ds_condicion_pago,
+        a.ds_nombre_cliente_proveedor,
+        a.lugar_entrega,
+        a.ds_nombre_trabajador,
+        a.clausula,
+        a.nombre_encargado,
+        a.observacion,
+        c.valor_venta_total_sin_d,
+        c.valor_venta_total_con_d,
+        c.descuento_total,
+        c.igv,
+        c.precio_venta,
+        d.num_documento,
+        d.direccion_fiscal,
+	    e.celular,
+        e.email
         FROM
         cotizacion a
-        LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
-        LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
-        LEFT JOIN parciales_completas d ON d.id_cotizacion=a.id_cotizacion
-        WHERE d.id_parcial_completa='$id_parcial_completa'    
+        LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion        
+        LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+        LEFT JOIN clientes_proveedores d ON d.id_cliente_proveedor=a.id_cliente_proveedor
+        LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
+        WHERE c.id_parcial_completa='$id_parcial_completa'      
         "
         );
         return $resultados->row();

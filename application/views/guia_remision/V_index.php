@@ -49,12 +49,12 @@
                     <tbody>
                       <?php if (!empty($index)) : ?>
                         <?php foreach ($index as $index) :
-                          switch ($index->ds_estado_valor_pc) {
-                            case "1":
-                              $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                          switch ($index->ds_estado_parcial_completa) {
+                            case "PARCIAL":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
-                            case "2":
-                              $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                            case "COMPLETA":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                               break;
                           }
 
@@ -71,7 +71,7 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado_pc; ?></td>
+                            <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <?php if ($index->id_guia_remision != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_guia_remision_productos" value="<?php echo $index->id_guia_remision; ?>" data-toggle="modal" data-target="#id_target_guia_remision_productos"><span class="fas fa-search-plus"></span></button></td>
                             <?php } else { ?>
@@ -126,12 +126,12 @@
                     <tbody>
                       <?php if (!empty($index_2)) : ?>
                         <?php foreach ($index_2 as $index) :
-                          switch ($index->ds_estado_valor_pc) {
-                            case "1":
-                              $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                          switch ($index->ds_estado_parcial_completa) {
+                            case "PARCIAL":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
-                            case "2":
-                              $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                            case "COMPLETA":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                               break;
                           }
 
@@ -148,7 +148,7 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado_pc; ?></td>
+                            <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <?php if ($index->id_guia_remision != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_guia_remision_tableros" value="<?php echo $index->id_guia_remision; ?>" data-toggle="modal" data-target="#id_target_guia_remision_tableros"><span class="fas fa-search-plus"></span></button></td>
                             <?php } else { ?>

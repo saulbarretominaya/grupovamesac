@@ -29,13 +29,13 @@ class C_elaborar_pc extends CI_Controller
 
 	{
 
-		$id_cotizacion = $this->input->get("id_cotizacion");
+		$id_orden_despacho = $this->input->get("id_orden_despacho");
 		$id_parcial_completa = $this->input->get("id_parcial_completa");
 
 
 		$data = array(
-			'enlace_actualizar_cabecera' => $this->M_elaborar_pc->enlace_actualizar_cabecera($id_cotizacion),
-			'enlace_actualizar_detalle' => $this->M_elaborar_pc->enlace_actualizar_detalle($id_cotizacion, $id_parcial_completa)
+			'enlace_actualizar_cabecera' => $this->M_elaborar_pc->enlace_actualizar_cabecera($id_orden_despacho),
+			'enlace_actualizar_detalle' => $this->M_elaborar_pc->enlace_actualizar_detalle($id_orden_despacho, $id_parcial_completa)
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -43,11 +43,12 @@ class C_elaborar_pc extends CI_Controller
 		$this->load->view('elaborar_pc/V_registrar', $data);
 	}
 
+
 	public function registrar()
 	{
 
 		//Cabecera
-		$id_cotizacion = $this->input->post("id_cotizacion");
+		$id_orden_despacho = $this->input->post("id_orden_despacho");
 		$valor_venta_total_sin_d = $this->input->post("valor_venta_total_sin_d");
 		$valor_venta_total_con_d = $this->input->post("valor_venta_total_con_d");
 		$descuento_total = $this->input->post("descuento_total");
@@ -62,13 +63,13 @@ class C_elaborar_pc extends CI_Controller
 		$d_cant_total = $this->input->post("d_cant_total");
 		$valor_venta_sin_d = $this->input->post("valor_venta_sin_d");
 		$valor_venta_con_d = $this->input->post("valor_venta_con_d");
-		$estado_elaboracion_pc = $this->input->post("estado_elaboracion_pc");
+		$id_estado_elaborar_pc = $this->input->post("id_estado_elaborar_pc");
 		$item = $this->input->post("item");
 
 
 		if ($this->M_elaborar_pc->registrar(
 			//Cabecera
-			$id_cotizacion,
+			$id_orden_despacho,
 			$valor_venta_total_sin_d,
 			$valor_venta_total_con_d,
 			$descuento_total,
@@ -90,20 +91,23 @@ class C_elaborar_pc extends CI_Controller
 			$valor_venta_con_d,
 			$item
 		);
-		$rows = $this->M_elaborar_pc->verifica_numero_filas($id_cotizacion, $id_parcial_completa);
+
+		//Actualiza Estado en orden despacho y parciales y completas
+		$rows = $this->M_elaborar_pc->verifica_numero_filas($id_orden_despacho, $id_parcial_completa);
 		if ($rows->numero_filas == 0) {
-			$this->M_elaborar_pc->finalizado_estado_elaborar_cotizacion($id_cotizacion);
-			$this->M_elaborar_pc->completa_estado_parciales_completas($id_parcial_completa);
+			$this->M_elaborar_pc->actualizar_id_estado_elaborar_pc_finalizado($id_orden_despacho);
+			$this->M_elaborar_pc->actualizar_id_estado_parcial_completa_completa($id_parcial_completa);
 		} else {
-			$this->M_elaborar_pc->pendiente_estado_elaborar_cotizacion($id_cotizacion);
-			$this->M_elaborar_pc->parcial_estado_parciales_completas($id_parcial_completa);
+			$this->M_elaborar_pc->actualizar_id_estado_elaborar_pc_pendiente($id_orden_despacho);
+			$this->M_elaborar_pc->actualizar_id_estado_parcial_completa_parcial($id_parcial_completa);
 		}
-		$this->actualizar_detalle_cotizacion_estado_elaboracio_pc(
-			$id_dcotizacion,
-			$estado_elaboracion_pc
-		);
-		echo json_encode($id_cotizacion);
+		//Fin de actualizacion de estados en orden despacho y parciales y completas
+
+		$this->actualizar_detalle_cotizacion_estado_elaboracio_pc($id_dcotizacion, $id_estado_elaborar_pc);
+
+		echo json_encode($id_orden_despacho);
 	}
+
 
 	protected function registrar_detalle_parciales_completas(
 		$id_parcial_completa,

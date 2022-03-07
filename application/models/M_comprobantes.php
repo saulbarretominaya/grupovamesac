@@ -9,35 +9,33 @@ class M_comprobantes extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT
-            f.id_comprobante,
-            f.ds_tipo_comprobante,
-            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=f.id_tipo_comprobante) AS ds_serie_comprobante,
-            f.id_num_comprobante AS num_comprobante,
-            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            SELECT 
+            a.id_cotizacion,
+            a.ds_nombre_cliente_proveedor,
+            a.ds_nombre_trabajador,
+            a.ds_condicion_pago,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            b.id_orden_despacho,
+            c.id_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            c.precio_venta,
             d.id_guia_remision,
-            a.id_parcial_completa,
-            a.precio_venta,
-            a.id_estado_parcial_completa,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
-            b.ds_nombre_cliente_proveedor,
-            b.ds_nombre_trabajador,
-            b.ds_condicion_pago,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
-            c.id_orden_despacho,
             d.id_sucursal,
             d.ds_serie_guia_remision,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
-            FROM
-            parciales_completas a 
-            LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
-            LEFT JOIN guia_remision d ON d.id_parcial_completa=a.id_parcial_completa
-            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador
-            LEFT JOIN comprobantes f ON f.id_guia_remision=d.id_guia_remision
-            WHERE b.categoria='PRODUCTOS';
-
+            e.id_comprobante,
+            DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
+            e.ds_tipo_comprobante,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
+            e.id_num_comprobante AS num_comprobante,
+            DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=f.id_almacen) AS ds_sucursal_trabajador
+            FROM cotizacion a
+            LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
+            LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
+            WHERE a.categoria='PRODUCTOS'
         "
         );
         return $resultados->result();
@@ -47,34 +45,33 @@ class M_comprobantes extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT
-            f.id_comprobante,
-            f.ds_tipo_comprobante,
-            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=f.id_tipo_comprobante) AS ds_serie_comprobante,
-            f.id_num_comprobante AS num_comprobante,
-            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            SELECT 
+            a.id_cotizacion,
+            a.ds_nombre_cliente_proveedor,
+            a.ds_nombre_trabajador,
+            a.ds_condicion_pago,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            b.id_orden_despacho,
+            c.id_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            c.precio_venta,
             d.id_guia_remision,
-            a.id_parcial_completa,
-            a.precio_venta,
-            a.id_estado_parcial_completa,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_valor_pc,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_pc,
-            b.ds_nombre_cliente_proveedor,
-            b.ds_nombre_trabajador,
-            b.ds_condicion_pago,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_moneda) AS ds_moneda,
-            c.id_orden_despacho,
             d.id_sucursal,
             d.ds_serie_guia_remision,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
-            FROM
-            parciales_completas a 
-            LEFT JOIN cotizacion b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN orden_despacho c ON c.id_cotizacion=b.id_cotizacion
-            LEFT JOIN guia_remision d ON d.id_parcial_completa=a.id_parcial_completa
-            LEFT JOIN trabajadores e ON e.id_trabajador=b.id_trabajador
-            LEFT JOIN comprobantes f ON f.id_guia_remision=d.id_guia_remision
-            WHERE b.categoria='TABLEROS';
+            e.id_comprobante,
+            DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
+            e.ds_tipo_comprobante,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
+            e.id_num_comprobante AS num_comprobante,
+            DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=f.id_almacen) AS ds_sucursal_trabajador
+            FROM cotizacion a
+            LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
+            LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
+            WHERE a.categoria='TABLEROS'
 
         "
         );
@@ -87,20 +84,21 @@ class M_comprobantes extends CI_Model
             "
             SELECT
             a.ds_nombre_trabajador,
-            c.id_guia_remision,
-            c.id_sucursal,
+            d.id_guia_remision,
+            d.id_sucursal,
             a.ds_nombre_cliente_proveedor,
             a.direccion_fiscal_cliente_proveedor,
-            b.valor_venta_total_sin_d,
-            b.valor_venta_total_con_d,
-            b.descuento_total,
-            b.igv,
-            b.precio_venta
+            c.valor_venta_total_sin_d,
+            c.valor_venta_total_con_d,
+            c.descuento_total,
+            c.igv,
+            c.precio_venta
             FROM 
             cotizacion a
-            LEFT JOIN parciales_completas b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN guia_remision c ON c.id_parcial_completa=b.id_parcial_completa
-            WHERE c.id_guia_remision='$id_guia_remision'
+            LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            WHERE d.id_guia_remision='$id_guia_remision'
             "
         );
         return $resultados->row();
@@ -131,7 +129,6 @@ class M_comprobantes extends CI_Model
         );
         return $resultados->result();
     }
-
 
     public function registrar_facturas()
     {
@@ -263,21 +260,35 @@ class M_comprobantes extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT
-            DATE_FORMAT(f.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-            a.ds_condicion_pago,a.ds_nombre_cliente_proveedor,
-            b.num_documento,b.direccion_fiscal,lugar_entrega,a.ds_nombre_trabajador,
-            c.celular,c.email,a.observacion,
-            d.valor_venta_total_sin_d,d.valor_venta_total_con_d,d.descuento_total,d.igv,d.precio_venta,a.clausula,a.nombre_encargado
-            FROM
-            cotizacion a
-            LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
-            LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
-            LEFT JOIN parciales_completas d ON d.id_cotizacion=a.id_cotizacion
-            LEFT JOIN guia_remision e ON e.id_parcial_completa=d.id_parcial_completa
-            LEFT JOIN comprobantes f ON f.id_guia_remision=e.id_guia_remision
-            WHERE f.id_comprobante='$id_comprobante'    
+            SELECT 
+            a.id_cotizacion,
+            a.ds_nombre_cliente_proveedor,
+            a.ds_nombre_trabajador,
+            a.ds_condicion_pago,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            b.id_orden_despacho,
+            c.id_parcial_completa,
+            c.valor_venta_total_sin_d,c.valor_venta_total_con_d,c.descuento_total,c.igv,c.precio_venta,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            c.precio_venta,
+            d.id_guia_remision,
+            d.id_sucursal,
+            d.ds_serie_guia_remision,
+            e.id_comprobante,
+            DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
+            e.ds_tipo_comprobante,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
+            e.id_num_comprobante AS num_comprobante,
+            DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=f.id_almacen) AS ds_sucursal_trabajador
+            FROM cotizacion a
+            LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
+            LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
+            LEFT JOIN clientes_proveedores g ON g.id_cliente_proveedor=a.id_cliente_proveedor
+            WHERE e.id_comprobante='$id_comprobante'
         "
         );
         return $resultados->row();

@@ -87,7 +87,7 @@ $("#registrar").on("click", function () {
 
 	if (resultado_campo == true) {
 		//Cabecera
-		var id_cotizacion = $("#id_cotizacion").val();
+		var id_orden_despacho = $("#id_orden_despacho").val();
 		var valor_venta_total_sin_d = $("#valor_venta_total_sin_d").val();
 		var valor_venta_total_con_d = $("#valor_venta_total_con_d").val();
 		var descuento_total = $("#descuento_total").val();
@@ -103,7 +103,7 @@ $("#registrar").on("click", function () {
 		var d_cant_total = Array.prototype.slice.call(document.getElementsByName("d_cant_total[]")).map((o) => o.value);
 		var valor_venta_sin_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_sin_d[]")).map((o) => o.value);
 		var valor_venta_con_d = Array.prototype.slice.call(document.getElementsByName("valor_venta_con_d[]")).map((o) => o.value);
-		var estado_elaboracion_pc = Array.prototype.slice.call(document.getElementsByName("estado_elaboracion_pc[]")).map((o) => o.value);
+		var id_estado_elaborar_pc = Array.prototype.slice.call(document.getElementsByName("id_estado_elaborar_pc[]")).map((o) => o.value);
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
 
 
@@ -114,7 +114,7 @@ $("#registrar").on("click", function () {
 			dataType: "json",
 			data: {
 				//Cabecera
-				id_cotizacion: id_cotizacion,
+				id_orden_despacho: id_orden_despacho,
 				valor_venta_total_sin_d: valor_venta_total_sin_d,
 				valor_venta_total_con_d: valor_venta_total_con_d,
 				descuento_total: descuento_total,
@@ -122,14 +122,14 @@ $("#registrar").on("click", function () {
 				precio_venta: precio_venta,
 				fecha_parcial_completa: fecha_parcial_completa,
 
-				//Detalle Update (estado_elaboracion_pc - Elaboracion PC)
+				//Detalle Update (id_estado_elaborar_pc - Elaboracion PC)
 				id_dcotizacion: id_dcotizacion,
 				salida_prod: salida_prod,
 				pendiente_prod: pendiente_prod,
 				d_cant_total: d_cant_total,
 				valor_venta_sin_d: valor_venta_sin_d,
 				valor_venta_con_d: valor_venta_con_d,
-				estado_elaboracion_pc: estado_elaboracion_pc,
+				id_estado_elaborar_pc: id_estado_elaborar_pc,
 				item: item
 			},
 			success: function (data) {
@@ -227,9 +227,9 @@ $(document).on("keyup", "#salida_prod", function () {
 		igv();
 		precio_venta();
 		if (pendiente_prod == 0) {
-			$(this).closest('tr').find('#estado_elaboracion_pc').val("completado");
+			$(this).closest('tr').find('#id_estado_elaborar_pc').val("870"); // 870 hace referencia estado FINALIZADO POR BD
 		} else {
-			$(this).closest('tr').find('#estado_elaboracion_pc').val("pendiente");
+			$(this).closest('tr').find('#id_estado_elaborar_pc').val("869"); // 869 hace referencia estado PENDIENTE POR BD
 		}
 	}
 

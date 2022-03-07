@@ -17,13 +17,9 @@ class M_cotizacion extends CI_Model
             a.ds_condicion_pago,
             a.ds_nombre_trabajador,
             a.precio_venta,
-            id_estado_cotizacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            id_estado_orden_despacho,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
             FROM
             cotizacion a
@@ -48,13 +44,9 @@ class M_cotizacion extends CI_Model
             a.ds_condicion_pago,
             a.ds_nombre_trabajador,
             a.precio_venta,
-            id_estado_cotizacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            id_estado_orden_despacho,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
             FROM
             cotizacion a

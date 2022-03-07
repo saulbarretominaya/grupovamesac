@@ -142,15 +142,15 @@
                              <tbody>
                                  <?php
                                     foreach ($index_modal_detalle_productos as $index_modal_detalle) :
-                                        switch ($index_modal_detalle->estado_entrega_productos) {
-                                            case "completado":
-                                                $ds_estado_entrega_productos = '<div><span class="badge bg-primary">COMPLETADO</span></div>';
+                                        switch ($index_modal_detalle->ds_estado_elaborar_pc) {
+                                            case "PENDIENTE":
+                                                $ds_estado_elaborar_pc = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                                                 break;
-                                            case "pendiente":
-                                                $ds_estado_entrega_productos = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                                            case "FINALIZADO":
+                                                $ds_estado_elaborar_pc = '<div><span class="badge bg-info">FINALIZADO</span></div>';
                                                 break;
                                             default;
-                                                $ds_estado_entrega_productos = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                                                $ds_estado_elaborar_pc = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                                                 break;
                                         } ?>
                                      <tr>
@@ -164,7 +164,7 @@
                                          <td><?php echo $index_modal_detalle->d; ?></td>
                                          <td><?php echo $index_modal_detalle->precio_u_d; ?></td>
                                          <td><?php echo $index_modal_detalle->valor_venta; ?></td>
-                                         <th><?php echo $ds_estado_entrega_productos; ?></th>
+                                         <th><?php echo $ds_estado_elaborar_pc; ?></th>
                                      </tr>
                                  <?php endforeach; ?>
                              </tbody>

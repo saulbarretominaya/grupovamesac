@@ -44,17 +44,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php if (!empty($index)) : ?>
-                        <?php foreach ($index as $index) :
-                          switch ($index->ds_estado_valor_pc) {
-                            case "1":
-                              $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                      <?php if (!empty($index)) :
+                        foreach ($index as $index) :
+                          switch ($index->ds_estado_parcial_completa) {
+                            case "PARCIAL":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
-                            case "2":
-                              $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                            case "COMPLETA":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                               break;
                           }
-                        ?>
+                      ?>
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
@@ -64,7 +64,7 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado_pc; ?></td>
+                            <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_parciales_completas_productos" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_parciales_completas_productos"><span class="fas fa-search-plus"></span></button></td>
                             <td></td>
                             <td></td>
@@ -112,17 +112,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php if (!empty($index_2)) : ?>
-                        <?php foreach ($index_2 as $index) :
-                          switch ($index->ds_estado_valor_pc) {
-                            case "1":
-                              $ds_estado_pc = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                      <?php if (!empty($index_2)) :
+                        foreach ($index_2 as $index) :
+                          switch ($index->ds_estado_parcial_completa) {
+                            case "PARCIAL":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
-                            case "2":
-                              $ds_estado_pc = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                            case "COMPLETA":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                               break;
                           }
-                        ?>
+                      ?>
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
@@ -132,7 +132,7 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado_pc; ?></td>
+                            <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_parciales_completas_tableros" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_parciales_completas_tableros"><span class="fas fa-search-plus"></span></button></td>
                             <td></td>
                             <td></td>
