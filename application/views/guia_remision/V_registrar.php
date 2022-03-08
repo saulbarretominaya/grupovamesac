@@ -44,7 +44,7 @@
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
                             <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
-                            <input type="hidden" id="id_parcial_completa" value="<?php echo $enlace_actualizar_cabecera->id_parcial_completa ?>">
+                            <input type="hidden" id="id_parcial_completa" value="<?php echo $enlace_registrar_cabecera->id_parcial_completa ?>">
                             <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
                             <input type="hidden" id="id_guia_remision_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
                           </div>
@@ -52,13 +52,13 @@
                         <div class="col-md-3">
                           <label for="cargo">Sucursal</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="ds_sucursal_trabajador" value="<?php echo $enlace_actualizar_cabecera->ds_sucursal_trabajador ?>" readonly>
+                            <input type="text" class="form-control" id="ds_sucursal_trabajador" value="<?php echo $enlace_registrar_cabecera->ds_sucursal_trabajador ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="cargo">Serie</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="ds_serie_guia_remision" value="<?php echo $enlace_actualizar_cabecera->ds_serie_guia_remision ?>" readonly>
+                            <input type="text" class="form-control" id="ds_serie_guia_remision" value="<?php echo $enlace_registrar_cabecera->ds_serie_guia_remision ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -87,7 +87,7 @@
                               <label for="">Cliente</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
-                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_cliente_proveedor ?>" readonly>
+                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" value="<?php echo $enlace_registrar_cabecera->ds_nombre_cliente_proveedor ?>" readonly>
                                 <span class="input-group-append">
                                   <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_clientes_proveedores" disabled>
                                     Buscar
@@ -165,19 +165,19 @@
                             <div class="col-md-2">
                               <label for="">Departamento</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera->ds_departamento_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly><?php echo $enlace_registrar_cabecera->ds_departamento_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label for="">Provincia</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera->ds_provincia_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly><?php echo $enlace_registrar_cabecera->ds_provincia_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label for="">Distrito</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera->ds_distrito_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly><?php echo $enlace_registrar_cabecera->ds_distrito_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -185,25 +185,25 @@
                             <div class="col-md-3">
                               <label for="">Direccion Fiscal</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly><?php echo $enlace_actualizar_cabecera->direccion_fiscal_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly><?php echo $enlace_registrar_cabecera->direccion_fiscal_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Correo Electronico</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" readonly value="<?php echo $enlace_actualizar_cabecera->email_cliente_proveedor ?>">
+                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" readonly value="<?php echo $enlace_registrar_cabecera->email_cliente_proveedor ?>">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Clausula</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula" readonly><?php echo $enlace_actualizar_cabecera->clausula ?></textarea>
+                                <textarea class="form-control" rows="1" id="clausula" readonly><?php echo $enlace_registrar_cabecera->clausula ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Lugar Entrega</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega"><?php echo $enlace_actualizar_cabecera->lugar_entrega ?></textarea>
+                                <textarea class="form-control" rows="1" id="lugar_entrega"><?php echo $enlace_registrar_cabecera->lugar_entrega ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -211,13 +211,13 @@
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Nombre Encargado</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres" readonly value="<?php echo $enlace_actualizar_cabecera->nombre_encargado ?>">
+                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres" readonly value="<?php echo $enlace_registrar_cabecera->nombre_encargado ?>">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->observacion ?></textarea>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_registrar_cabecera->observacion ?></textarea>
                               </div>
                             </div>
                           </div>

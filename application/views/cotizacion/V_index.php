@@ -149,29 +149,29 @@
                         <?php foreach ($index_2 as $index) : ?>
 
                           <?php
-                          switch ($index->ds_estado_valor_cot) {
+                          switch ($index->ds_estado_cotizacion) {
                             case "PENDIENTE":
-                              $ds_estado_cot = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              $ds_estado_cotizacion = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
                             case "APROBADO":
-                              $ds_estado_cot = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              $ds_estado_cotizacion = '<div><span class="badge bg-success">APROBADO</span></div>';
                               break;
                             case "CADUCADO":
-                              $ds_estado_cot = '<div><span class="badge bg-secondary">CADUCADO</span></div>';
+                              $ds_estado_cotizacion = '<div><span class="badge bg-secondary">CADUCADO</span></div>';
                               break;
                           }
-                          switch ($index->ds_estado_valor_od) {
+                          switch ($index->ds_estado_orden_despacho) {
                             case "PENDIENTE":
-                              $ds_estado_od = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
                             case "APROBADO":
-                              $ds_estado_od = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-success">APROBADO</span></div>';
                               break;
                             case "DESAPROBADO":
-                              $ds_estado_od = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
+                              $ds_estado_orden_despacho = '<div><span class="badge bg-danger">DESAPROBADO</span></div>';
                               break;
                             default;
-                              $ds_estado_od = '';
+                              $ds_estado_orden_despacho = '';
                               break;
                           }
                           ?>
@@ -187,7 +187,7 @@
                             <td><?php echo $ds_estado_cotizacion; ?> </td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion_productos" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion_productos"><span class="fas fa-search-plus"></span></button></td>
                             <td><?php echo $index->id_orden_despacho; ?> </td>
-                            <td><?php echo $ds_estado_orden_despacho;; ?> </td>
+                            <td><?php echo $ds_estado_orden_despacho; ?> </td>
                             <?php if ($index->id_orden_despacho != NULL) { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_orden_despacho_productos" value="<?php echo $index->id_orden_despacho; ?>" data-toggle="modal" data-target="#id_target_orden_despacho_productos"><span class="fas fa-search-plus"></span></button></td>
                             <?php } else { ?>

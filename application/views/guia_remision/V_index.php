@@ -74,10 +74,11 @@
                             <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <?php if ($index->id_guia_remision != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_guia_remision_productos" value="<?php echo $index->id_guia_remision; ?>" data-toggle="modal" data-target="#id_target_guia_remision_productos"><span class="fas fa-search-plus"></span></button></td>
+                              <td><a href=" <?php echo base_url(); ?>C_guia_remision/enlace_actualizar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                             <?php } else { ?>
                               <td></td>
+                              <td><a href=" <?php echo base_url(); ?>C_guia_remision/enlace_registrar/<?php echo $index->id_parcial_completa; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                             <?php } ?>
-                            <td><a href=" <?php echo base_url(); ?>C_guia_remision/enlace_registrar/<?php echo $index->id_parcial_completa; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>

@@ -36,6 +36,7 @@ class M_comprobantes extends CI_Model
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='PRODUCTOS'
+            ORDER BY a.id_cotizacion desc;
         "
         );
         return $resultados->result();
@@ -72,7 +73,7 @@ class M_comprobantes extends CI_Model
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='TABLEROS'
-
+            ORDER BY a.id_cotizacion desc;
         "
         );
         return $resultados->result();

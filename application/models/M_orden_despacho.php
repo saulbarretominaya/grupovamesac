@@ -33,7 +33,8 @@ class M_orden_despacho extends CI_Model
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
             where a.categoria='PRODUCTOS'
-            GROUP BY a.id_cotizacion;
+            GROUP BY a.id_cotizacion
+            ORDER BY a.id_cotizacion desc;
             "
         );
         return $resultados->result();
@@ -67,7 +68,8 @@ class M_orden_despacho extends CI_Model
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
             where a.categoria='TABLEROS'
-            GROUP BY a.id_cotizacion;
+            GROUP BY a.id_cotizacion
+            ORDER BY a.id_cotizacion desc;
             "
         );
         return $resultados->result();

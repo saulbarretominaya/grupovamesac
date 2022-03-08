@@ -26,7 +26,8 @@ class M_cotizacion extends CI_Model
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_cotizacion c ON c.id_cotizacion=a.id_cotizacion
             where a.categoria='PRODUCTOS'
-            GROUP BY a.id_cotizacion;
+            GROUP BY a.id_cotizacion
+            ORDER BY a.id_cotizacion desc;
             "
         );
         return $resultados->result();
@@ -53,7 +54,8 @@ class M_cotizacion extends CI_Model
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_cotizacion c ON c.id_cotizacion=a.id_cotizacion
             where a.categoria='TABLEROS'
-            GROUP BY a.id_cotizacion;
+            GROUP BY a.id_cotizacion
+            ORDER BY a.id_cotizacion desc;
             "
         );
         return $resultados->result();

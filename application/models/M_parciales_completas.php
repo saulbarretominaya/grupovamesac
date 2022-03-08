@@ -23,7 +23,8 @@ class M_parciales_completas extends CI_Model
             parciales_completas a 
             LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
             LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
-            WHERE c.categoria='PRODUCTOS';
+            WHERE c.categoria='PRODUCTOS'
+            ORDER BY a.id_parcial_completa DESC;
             "
         );
         return $resultados->result();
@@ -48,6 +49,7 @@ class M_parciales_completas extends CI_Model
             LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
             LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
             WHERE c.categoria='TABLEROS'
+            ORDER BY c.id_cotizacion desc;
             "
         );
         return $resultados->result();

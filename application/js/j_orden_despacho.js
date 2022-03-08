@@ -139,25 +139,26 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 	debugger;
 
 	if (condicion_pago == "CONTADO" && estado_orden_despacho == "PENDIENTE") {
-		$.ajax({
-			async: false,
-			url: base_url + "C_orden_despacho/aprobar_estado_directo",
-			type: "POST",
-			dataType: "json",
-			data: {
-				id_orden_despacho: id_orden_despacho,
-			},
-			success: function (data) {
-				window.location.href = base_url + "C_orden_despacho";
-			},
-		});
-	}
-	else if (estado_orden_despacho == "APROBADO") {
-
+		alertify.confirm("Esta seguro que desea aprobarlo",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_orden_despacho/aprobar_estado_directo",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_orden_despacho: id_orden_despacho,
+					},
+					success: function (data) {
+						window.location.href = base_url + "C_orden_despacho";
+					},
+				});
+			});
+	} else if (estado_orden_despacho == "APROBADO") {
 		alert("Ya fue Aprobado");
-
-	}
-	else if (tipo_moneda == "SOLES" && resultado_valor_cambio == "") {
+	} else if (estado_orden_despacho == "DESAPROBADO") {
+		alert("Ya fue Desaprobado")
+	} else if (tipo_moneda == "SOLES" && resultado_valor_cambio == "") {
 
 		alert("Primero debe aplicar el tipo de cambio");
 
@@ -188,8 +189,6 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 		alert("Ya fue Aprobado")
 	} else if (estado_orden_despacho == "DESAPROBADO") {
 		alert("Ya fue Desaprobado")
-	} else if (estado_orden_despacho == "DESAPROBADO") {
-		alert("Ya fue Desaprobado")
 	}
 });
 
@@ -199,7 +198,7 @@ $(document).on("click", ".btn_desaprobar_estado", function () {
 	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
 	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
 
-	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
+	var estado_orden_despacho = $(this).parents("tr").find("td")[11].innerText;
 
 	if (estado_orden_despacho == "PENDIENTE") {
 		alertify.confirm("Seguro que desea desaprobarlo?",

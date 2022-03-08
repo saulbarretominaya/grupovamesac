@@ -30,6 +30,7 @@ class M_guia_remision extends CI_Model
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='PRODUCTOS'
+            ORDER BY c.id_parcial_completa DESC;
             "
         );
         return $resultados->result();
@@ -59,13 +60,14 @@ class M_guia_remision extends CI_Model
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
-            WHERE a.categoria='TABLEROS';
+            WHERE a.categoria='TABLEROS'
+            ORDER BY c.id_parcial_completa DESC;
             "
         );
         return $resultados->result();
     }
 
-    public function enlace_actualizar_cabecera($id_parcial_completa)
+    public function enlace_registrar_cabecera($id_parcial_completa)
     {
         $resultados = $this->db->query(
             "
@@ -83,20 +85,21 @@ class M_guia_remision extends CI_Model
             a.lugar_entrega,
             a.nombre_encargado,
             a.observacion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_almacen) AS ds_sucursal_trabajador,
-            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=d.id_almacen) AS ds_serie_guia_remision
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_serie_guia_remision
             FROM
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
-            LEFT JOIN trabajadores d ON d.id_trabajador=a.id_trabajador 
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
             WHERE c.id_parcial_completa='$id_parcial_completa'
             "
         );
         return $resultados->row();
     }
 
-    public function enlace_actualizar_detalle($id_parcial_completa)
+    public function enlace_registrar_detalle($id_parcial_completa)
     {
         $resultados = $this->db->query(
             "
@@ -284,6 +287,51 @@ class M_guia_remision extends CI_Model
         );
     }
 
+    public function enlace_actualizar_cabecera($id_guia_remision)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            c.id_parcial_completa,
+            a.id_cotizacion,
+            a.ds_nombre_trabajador,
+            a.ds_nombre_cliente_proveedor,
+            a.ds_departamento_cliente_proveedor,
+            a.ds_provincia_cliente_proveedor,
+            a.ds_distrito_cliente_proveedor,
+            a.direccion_fiscal_cliente_proveedor,
+            a.email_cliente_proveedor,
+            a.clausula,
+            a.lugar_entrega,
+            a.nombre_encargado,
+            a.observacion,
+            d.tipo_transporte,
+            d.ruc,
+            d.transportista,
+            d.domiciliado,
+            d.licencia,
+            d.marca_modelo,
+            d.placa,
+            d.observaciones,
+            d.peso_bruto_total,
+            d.num_bulto,
+            d.punto_partida,
+            d.punto_llegada,
+            d.contenedor,
+            d.embarque,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_serie_guia_remision
+            FROM
+            cotizacion a
+            RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
+            WHERE d.id_guia_remision='$id_guia_remision'
+            "
+        );
+        return $resultados->row();
+    }
 
     public function index_modal_cabecera_productos($id_guia_remision)
     {

@@ -27,6 +27,7 @@ class M_elaborar_pc extends CI_Model
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             WHERE b.id_estado_orden_despacho='862' AND a.categoria='PRODUCTOS'
             GROUP BY a.id_cotizacion
+            ORDER BY a.id_cotizacion desc;
             "
         );
         return $resultados->result();
@@ -54,6 +55,7 @@ class M_elaborar_pc extends CI_Model
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             WHERE b.id_estado_orden_despacho='862' AND a.categoria='TABLEROS'
             GROUP BY a.id_cotizacion
+            ORDER BY a.id_cotizacion desc;
             "
         );
         return $resultados->result();
@@ -395,7 +397,7 @@ class M_elaborar_pc extends CI_Model
         a.precio_descuento AS precio_u_d_tablero_cabecera,
         a.valor_venta_con_d AS valor_venta_tablero_cabecera,
         a.dias_entrega AS dias_entrega_tablero_cabecera,
-        a.id_estado_elaboracion_pc as estado_entrega_tablero_cabecera,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_elaborar_pc) AS ds_estado_elaborar_pc,
         '-------',
         c.cantidad_unitaria AS cantidad_unitaria_componente,
         c.cantidad_total_producto AS cantidad_total_componente,

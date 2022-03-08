@@ -30,8 +30,8 @@ class C_guia_remision extends CI_Controller
 
 		$data = array(
 			'cbox_tipo_envio_guia_remision' => $this->M_cbox->cbox_tipo_envio_guia_remision(),
-			'enlace_actualizar_cabecera' => $this->M_guia_remision->enlace_actualizar_cabecera($id_parcial_completa),
-			'enlace_actualizar_detalle' => $this->M_guia_remision->enlace_actualizar_detalle($id_parcial_completa)
+			'enlace_registrar_cabecera' => $this->M_guia_remision->enlace_registrar_cabecera($id_parcial_completa),
+			'enlace_registrar_detalle' => $this->M_guia_remision->enlace_registrar_detalle($id_parcial_completa)
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -237,6 +237,22 @@ class C_guia_remision extends CI_Controller
 		}
 
 		echo json_encode($tipo_transporte);
+	}
+
+
+	public function enlace_actualizar($id_guia_remision)
+
+	{
+
+		$data = array(
+			//'cbox_tipo_envio_guia_remision' => $this->M_cbox->cbox_tipo_envio_guia_remision(),
+			'enlace_actualizar_cabecera' => $this->M_guia_remision->enlace_actualizar_cabecera($id_guia_remision),
+			'enlace_registrar_detalle' => $this->M_guia_remision->enlace_registrar_detalle($id_guia_remision)
+		);
+
+		$this->load->view('plantilla/V_header');
+		$this->load->view('plantilla/V_aside');
+		$this->load->view('guia_remision/V_actualizar', $data);
 	}
 
 	public function index_modal_productos()
