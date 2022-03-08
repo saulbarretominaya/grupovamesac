@@ -55,6 +55,8 @@ class C_elaborar_pc extends CI_Controller
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
 		$fecha_parcial_completa = $this->input->post("fecha_parcial_completa");
+		$id_parcial_completa_empresa = $this->input->post("id_parcial_completa_empresa");
+
 
 		//Detalle Update (estado_elaboracion_pc - Elaboracion PC)
 		$id_dcotizacion = $this->input->post("id_dcotizacion");
@@ -67,19 +69,34 @@ class C_elaborar_pc extends CI_Controller
 		$item = $this->input->post("item");
 
 
-		if ($this->M_elaborar_pc->registrar(
-			//Cabecera
-			$id_orden_despacho,
-			$valor_venta_total_sin_d,
-			$valor_venta_total_con_d,
-			$descuento_total,
-			$igv,
-			$precio_venta,
-			$fecha_parcial_completa
-		));
-
+		if ($id_parcial_completa_empresa == "100") {
+			$this->M_elaborar_pc->registrar_grupo_vame_parciales_completas();
+			$id_parcial_completa_empresa = $this->M_elaborar_pc->lastID();
+			$this->M_elaborar_pc->registrar(
+				$id_orden_despacho,
+				$valor_venta_total_sin_d,
+				$valor_venta_total_con_d,
+				$descuento_total,
+				$igv,
+				$precio_venta,
+				$fecha_parcial_completa,
+				$id_parcial_completa_empresa
+			);
+		} else if ($id_parcial_completa_empresa == "200") {
+			$this->M_elaborar_pc->registrar_inversiones_alpev_parciales_completas();
+			$id_parcial_completa_empresa = $this->M_elaborar_pc->lastID();
+			$this->M_elaborar_pc->registrar(
+				$id_orden_despacho,
+				$valor_venta_total_sin_d,
+				$valor_venta_total_con_d,
+				$descuento_total,
+				$igv,
+				$precio_venta,
+				$fecha_parcial_completa,
+				$id_parcial_completa_empresa
+			);
+		}
 		$id_parcial_completa = $this->M_elaborar_pc->lastID();
-
 
 		$this->registrar_detalle_parciales_completas(
 			$id_parcial_completa,

@@ -26,7 +26,7 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='PRODUCTOS'
@@ -56,7 +56,7 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='TABLEROS';
@@ -171,6 +171,37 @@ class M_guia_remision extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function registrar_grupo_vame_guia_remision()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO grupo_vame_guia_remision
+            (
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_guia_remision()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_guia_remision
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
 
     public function registrar(
         $tipo_transporte,
@@ -192,7 +223,8 @@ class M_guia_remision extends CI_Model
         $ds_sucursal_trabajador,
         $ds_serie_guia_remision,
         $id_parcial_completa,
-        $id_sucursal
+        $id_sucursal,
+        $id_guia_remision_empresa
     ) {
         return $this->db->query(
             "
@@ -219,7 +251,8 @@ class M_guia_remision extends CI_Model
 			ds_serie_guia_remision,
             id_parcial_completa,
             id_sucursal,
-            fecha_guia_remision
+            fecha_guia_remision,
+            id_guia_remision_empresa
             )
             VALUES
             (
@@ -244,7 +277,8 @@ class M_guia_remision extends CI_Model
 			'$ds_serie_guia_remision',
             '$id_parcial_completa',
             '$id_sucursal',
-             NOW()
+             NOW(),
+             '$id_guia_remision_empresa'
             )
             "
         );

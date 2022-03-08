@@ -61,83 +61,181 @@ class C_guia_remision extends CI_Controller
 		$ds_sucursal_trabajador = $this->input->post("ds_sucursal_trabajador");
 		$ds_serie_guia_remision = $this->input->post("ds_serie_guia_remision");
 		$id_parcial_completa = $this->input->post("id_parcial_completa");
+		$id_guia_remision_empresa = $this->input->post("id_guia_remision_empresa");
 
-		if ($ds_serie_guia_remision == "T001") {
-			$this->M_guia_remision->registrar_proceres();
-			$id_sucursal = $this->M_guia_remision->lastID();
-			$this->M_guia_remision->registrar(
-				$tipo_transporte,
-				$ruc,
-				$transportista,
-				$domiciliado,
-				$licencia,
-				$marca_modelo,
-				$placa,
-				$observaciones,
-				$id_tipo_envio_guia_remision,
-				$ds_tipo_envio_guia_remision,
-				$peso_bruto_total,
-				$num_bulto,
-				$punto_partida,
-				$punto_llegada,
-				$contenedor,
-				$embarque,
-				$ds_sucursal_trabajador,
-				$ds_serie_guia_remision,
-				$id_parcial_completa,
-				$id_sucursal
-			);
-		} else if ($ds_serie_guia_remision == "T002") {
-			$this->M_guia_remision->registrar_tienda_bellota();
-			$id_sucursal = $this->M_guia_remision->lastID();
-			$this->M_guia_remision->registrar(
-				$tipo_transporte,
-				$ruc,
-				$transportista,
-				$domiciliado,
-				$licencia,
-				$marca_modelo,
-				$placa,
-				$observaciones,
-				$id_tipo_envio_guia_remision,
-				$ds_tipo_envio_guia_remision,
-				$peso_bruto_total,
-				$num_bulto,
-				$punto_partida,
-				$punto_llegada,
-				$contenedor,
-				$embarque,
-				$ds_sucursal_trabajador,
-				$ds_serie_guia_remision,
-				$id_parcial_completa,
-				$id_sucursal
-			);
-		} else if ($ds_serie_guia_remision == "T003") {
-			$this->M_guia_remision->registrar_tienda_nicolini();
-			$id_sucursal = $this->M_guia_remision->lastID();
-			$this->M_guia_remision->registrar(
-				$tipo_transporte,
-				$ruc,
-				$transportista,
-				$domiciliado,
-				$licencia,
-				$marca_modelo,
-				$placa,
-				$observaciones,
-				$id_tipo_envio_guia_remision,
-				$ds_tipo_envio_guia_remision,
-				$peso_bruto_total,
-				$num_bulto,
-				$punto_partida,
-				$punto_llegada,
-				$contenedor,
-				$embarque,
-				$ds_sucursal_trabajador,
-				$ds_serie_guia_remision,
-				$id_parcial_completa,
-				$id_sucursal
-			);
+
+		if ($id_guia_remision_empresa == "100") {
+			$this->M_guia_remision->registrar_grupo_vame_guia_remision();
+			$id_guia_remision_empresa = $this->M_guia_remision->lastID();
+
+			if ($ds_serie_guia_remision == "T001") {
+				$this->M_guia_remision->registrar_proceres();
+				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar(
+					$tipo_transporte,
+					$ruc,
+					$transportista,
+					$domiciliado,
+					$licencia,
+					$marca_modelo,
+					$placa,
+					$observaciones,
+					$id_tipo_envio_guia_remision,
+					$ds_tipo_envio_guia_remision,
+					$peso_bruto_total,
+					$num_bulto,
+					$punto_partida,
+					$punto_llegada,
+					$contenedor,
+					$embarque,
+					$ds_sucursal_trabajador,
+					$ds_serie_guia_remision,
+					$id_parcial_completa,
+					$id_sucursal,
+					$id_guia_remision_empresa
+				);
+			} else if ($ds_serie_guia_remision == "T002") {
+				$this->M_guia_remision->registrar_tienda_bellota();
+				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar(
+					$tipo_transporte,
+					$ruc,
+					$transportista,
+					$domiciliado,
+					$licencia,
+					$marca_modelo,
+					$placa,
+					$observaciones,
+					$id_tipo_envio_guia_remision,
+					$ds_tipo_envio_guia_remision,
+					$peso_bruto_total,
+					$num_bulto,
+					$punto_partida,
+					$punto_llegada,
+					$contenedor,
+					$embarque,
+					$ds_sucursal_trabajador,
+					$ds_serie_guia_remision,
+					$id_parcial_completa,
+					$id_sucursal,
+					$id_guia_remision_empresa
+				);
+			} else if ($ds_serie_guia_remision == "T003") {
+				$this->M_guia_remision->registrar_tienda_nicolini();
+				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar(
+					$tipo_transporte,
+					$ruc,
+					$transportista,
+					$domiciliado,
+					$licencia,
+					$marca_modelo,
+					$placa,
+					$observaciones,
+					$id_tipo_envio_guia_remision,
+					$ds_tipo_envio_guia_remision,
+					$peso_bruto_total,
+					$num_bulto,
+					$punto_partida,
+					$punto_llegada,
+					$contenedor,
+					$embarque,
+					$ds_sucursal_trabajador,
+					$ds_serie_guia_remision,
+					$id_parcial_completa,
+					$id_sucursal,
+					$id_guia_remision_empresa
+
+				);
+			}
+		} else if ($id_guia_remision_empresa == "200") {
+			$this->M_guia_remision->registrar_inversiones_alpev_guia_remision();
+			$id_guia_remision_empresa = $this->M_guia_remision->lastID();
+
+			if ($ds_serie_guia_remision == "T001") {
+				$this->M_guia_remision->registrar_proceres();
+				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar(
+					$tipo_transporte,
+					$ruc,
+					$transportista,
+					$domiciliado,
+					$licencia,
+					$marca_modelo,
+					$placa,
+					$observaciones,
+					$id_tipo_envio_guia_remision,
+					$ds_tipo_envio_guia_remision,
+					$peso_bruto_total,
+					$num_bulto,
+					$punto_partida,
+					$punto_llegada,
+					$contenedor,
+					$embarque,
+					$ds_sucursal_trabajador,
+					$ds_serie_guia_remision,
+					$id_parcial_completa,
+					$id_sucursal,
+					$id_guia_remision_empresa
+
+				);
+			} else if ($ds_serie_guia_remision == "T002") {
+				$this->M_guia_remision->registrar_tienda_bellota();
+				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar(
+					$tipo_transporte,
+					$ruc,
+					$transportista,
+					$domiciliado,
+					$licencia,
+					$marca_modelo,
+					$placa,
+					$observaciones,
+					$id_tipo_envio_guia_remision,
+					$ds_tipo_envio_guia_remision,
+					$peso_bruto_total,
+					$num_bulto,
+					$punto_partida,
+					$punto_llegada,
+					$contenedor,
+					$embarque,
+					$ds_sucursal_trabajador,
+					$ds_serie_guia_remision,
+					$id_parcial_completa,
+					$id_sucursal,
+					$id_guia_remision_empresa
+
+				);
+			} else if ($ds_serie_guia_remision == "T003") {
+				$this->M_guia_remision->registrar_tienda_nicolini();
+				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar(
+					$tipo_transporte,
+					$ruc,
+					$transportista,
+					$domiciliado,
+					$licencia,
+					$marca_modelo,
+					$placa,
+					$observaciones,
+					$id_tipo_envio_guia_remision,
+					$ds_tipo_envio_guia_remision,
+					$peso_bruto_total,
+					$num_bulto,
+					$punto_partida,
+					$punto_llegada,
+					$contenedor,
+					$embarque,
+					$ds_sucursal_trabajador,
+					$ds_serie_guia_remision,
+					$id_parcial_completa,
+					$id_sucursal,
+					$id_guia_remision_empresa
+
+				);
+			}
 		}
+
 		echo json_encode($tipo_transporte);
 	}
 

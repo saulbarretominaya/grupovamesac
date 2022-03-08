@@ -129,6 +129,38 @@ class M_elaborar_pc extends CI_Model
         return $resultados->result();
     }
 
+    public function registrar_grupo_vame_parciales_completas()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO grupo_vame_parciales_completas
+            (
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_parciales_completas()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_parciales_completas
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
     public function registrar(
         $id_orden_despacho,
         $valor_venta_total_sin_d,
@@ -136,7 +168,8 @@ class M_elaborar_pc extends CI_Model
         $descuento_total,
         $igv,
         $precio_venta,
-        $fecha_parcial_completa
+        $fecha_parcial_completa,
+        $id_parcial_completa_empresa
     ) {
         return $this->db->query(
             "
@@ -145,14 +178,14 @@ class M_elaborar_pc extends CI_Model
             id_parcial_completa,
             id_orden_despacho,
             valor_venta_total_sin_d,valor_venta_total_con_d,descuento_total,
-            igv,precio_venta,fecha_parcial_completa
+            igv,precio_venta,fecha_parcial_completa,id_parcial_completa_empresa
             )
             VALUES
             (
             '',
             '$id_orden_despacho',
             '$valor_venta_total_sin_d','$valor_venta_total_con_d','$descuento_total',
-            '$igv','$precio_venta','$fecha_parcial_completa'
+            '$igv','$precio_venta','$fecha_parcial_completa','$id_parcial_completa_empresa'
             )"
         );
     }

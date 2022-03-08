@@ -44,6 +44,7 @@
                             <input type="hidden" id="id_orden_despacho" value="<?php echo $enlace_actualizar_cabecera->id_orden_despacho ?>">
                             <input type="hidden" id="hidden_item">
                             <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?>" readonly>
+                            <input type="hidden" id="id_parcial_completa_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
                           </div>
                         </div>
                         <div class="col-md-3">

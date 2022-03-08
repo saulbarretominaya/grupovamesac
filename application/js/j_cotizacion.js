@@ -146,6 +146,9 @@ $("#registrar").on("click", function () {
 		var precio_venta = $("#precio_venta").val();
 		var valor_cambio = $("#valor_cambio").val();
 		var id_moneda = $("#tipo_moneda_cambio").val();
+		//Empresa
+		var id_cotizacion_empresa = $("#id_cotizacion_empresa").val();
+
 
 		//Detalle cotizacion
 		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
@@ -217,6 +220,8 @@ $("#registrar").on("click", function () {
 				precio_venta: precio_venta,
 				valor_cambio: valor_cambio,
 				id_moneda: id_moneda,
+				//Empresa
+				id_cotizacion_empresa: id_cotizacion_empresa,
 
 				//Detalle cotizacion
 				id_producto: id_producto,
@@ -261,6 +266,9 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 	var estado_cotizacion = $(this).parents("tr").find("td")[7].innerText;
 	var id_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
 	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
+	var id_orden_despacho_empresa = $(this).closest('tr').find('#id_orden_despacho_empresa').val();
+
+	debugger;
 
 	if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "PENDIENTE") {
 
@@ -293,6 +301,7 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 								dataType: "json",
 								data: {
 									id_cotizacion: id_cotizacion,
+									id_orden_despacho_empresa: id_orden_despacho_empresa
 								},
 								success: function (data) {
 									window.location.href = base_url + "C_cotizacion";
@@ -304,8 +313,7 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 				}
 			},
 		});
-	}
-	else if (id_orden_despacho != "") {
+	} else if (id_orden_despacho != "") {
 		alertify.confirm("Esta Cotizacion ya fue aprobada anteriormente, seguro que desea hacerlo otra vez?",
 			function () {
 				$.ajax({

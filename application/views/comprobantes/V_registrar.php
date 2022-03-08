@@ -66,6 +66,7 @@
 
                     <input type="hidden" id="precio_venta" value="<?php echo $enlace_actualizar_cabecera->precio_venta; ?>">
                     <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_actualizar_cabecera->id_guia_remision; ?>">
+                    <input type="hidden" id="id_comprobante_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
 
                     <div class="col-md-4">
                       <div class="card">

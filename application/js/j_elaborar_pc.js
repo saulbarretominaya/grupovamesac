@@ -94,7 +94,8 @@ $("#registrar").on("click", function () {
 		var igv = $("#igv").val();
 		var precio_venta = $("#precio_venta").val();
 		var fecha_parcial_completa = $("#fecha_parcial_completa").val();
-
+		//Empresa
+		var id_parcial_completa_empresa = $("#id_parcial_completa_empresa").val();
 
 		//Detalle parciales y completas
 		var id_dcotizacion = Array.prototype.slice.call(document.getElementsByName("id_dcotizacion[]")).map((o) => o.value);
@@ -121,6 +122,8 @@ $("#registrar").on("click", function () {
 				igv: igv,
 				precio_venta: precio_venta,
 				fecha_parcial_completa: fecha_parcial_completa,
+				//Empresa
+				id_parcial_completa_empresa: id_parcial_completa_empresa,
 
 				//Detalle Update (id_estado_elaborar_pc - Elaboracion PC)
 				id_dcotizacion: id_dcotizacion,

@@ -77,7 +77,7 @@ class C_cotizacion extends CI_Controller
 		$precio_venta = $this->input->post("precio_venta");
 		$valor_cambio = $this->input->post("valor_cambio");
 		$id_moneda = $this->input->post("id_moneda");
-		$id_estado_cotizacion = $this->input->post("id_estado_cotizacion");
+		$id_cotizacion_empresa = $this->input->post("id_cotizacion_empresa");
 
 
 		//Detalle Cotizacion
@@ -111,42 +111,81 @@ class C_cotizacion extends CI_Controller
 		$fecha_cuota = $this->input->post("fecha_cuota");
 		$monto_cuota = $this->input->post("monto_cuota");
 
-
-		if ($this->M_cotizacion->insertar(
-			//Cabecera
-			$serie_cotizacion,
-			$categoria,
-			$id_trabajador,
-			$ds_nombre_trabajador,
-			$fecha_cotizacion,
-			$validez_oferta_cotizacion,
-			$fecha_vencimiento_validez_oferta,
-			$id_cliente_proveedor,
-			$ds_nombre_cliente_proveedor,
-			$ds_departamento_cliente_proveedor,
-			$ds_provincia_cliente_proveedor,
-			$ds_distrito_cliente_proveedor,
-			$direccion_fiscal_cliente_proveedor,
-			$email_cliente_proveedor,
-			$clausula,
-			$lugar_entrega,
-			$nombre_encargado,
-			$observacion,
-			$id_condicion_pago,
-			$ds_condicion_pago,
-			$numero_dias_condicion_pago,
-			$fecha_condicion_pago,
-			$valor_venta_total_sin_d,
-			$valor_venta_total_con_d,
-			$descuento_total,
-			$igv,
-			$precio_venta,
-			$valor_cambio,
-			$id_moneda,
-			$id_estado_cotizacion
-		));
-
+		if ($id_cotizacion_empresa == "100") {
+			$this->M_cotizacion->registrar_grupo_vame_cotizacion();
+			$id_cotizacion_empresa = $this->M_cotizacion->lastID();
+			$this->M_cotizacion->insertar(
+				//Cabecera
+				$serie_cotizacion,
+				$categoria,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_cotizacion,
+				$validez_oferta_cotizacion,
+				$fecha_vencimiento_validez_oferta,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$ds_departamento_cliente_proveedor,
+				$ds_provincia_cliente_proveedor,
+				$ds_distrito_cliente_proveedor,
+				$direccion_fiscal_cliente_proveedor,
+				$email_cliente_proveedor,
+				$clausula,
+				$lugar_entrega,
+				$nombre_encargado,
+				$observacion,
+				$id_condicion_pago,
+				$ds_condicion_pago,
+				$numero_dias_condicion_pago,
+				$fecha_condicion_pago,
+				$valor_venta_total_sin_d,
+				$valor_venta_total_con_d,
+				$descuento_total,
+				$igv,
+				$precio_venta,
+				$valor_cambio,
+				$id_moneda,
+				$id_cotizacion_empresa
+			);
+		} else if ($id_cotizacion_empresa == "200") {
+			$this->M_cotizacion->registrar_inversiones_alpev_cotizacion();
+			$id_cotizacion_empresa = $this->M_cotizacion->lastID();
+			$this->M_cotizacion->insertar(
+				//Cabecera
+				$serie_cotizacion,
+				$categoria,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_cotizacion,
+				$validez_oferta_cotizacion,
+				$fecha_vencimiento_validez_oferta,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$ds_departamento_cliente_proveedor,
+				$ds_provincia_cliente_proveedor,
+				$ds_distrito_cliente_proveedor,
+				$direccion_fiscal_cliente_proveedor,
+				$email_cliente_proveedor,
+				$clausula,
+				$lugar_entrega,
+				$nombre_encargado,
+				$observacion,
+				$id_condicion_pago,
+				$ds_condicion_pago,
+				$numero_dias_condicion_pago,
+				$fecha_condicion_pago,
+				$valor_venta_total_sin_d,
+				$valor_venta_total_con_d,
+				$descuento_total,
+				$igv,
+				$precio_venta,
+				$valor_cambio,
+				$id_moneda,
+				$id_cotizacion_empresa
+			);
+		}
 		$id_cotizacion = $this->M_cotizacion->lastID();
+
 		$this->insertar_detalle_cotizacion(
 			$id_cotizacion,
 			$id_producto,
@@ -184,6 +223,7 @@ class C_cotizacion extends CI_Controller
 			$monto_cuota
 
 		);
+
 		echo json_encode($serie_cotizacion);
 	}
 
@@ -276,8 +316,24 @@ class C_cotizacion extends CI_Controller
 	public function aprobar_estado()
 	{
 		$id_cotizacion = $this->input->post("id_cotizacion");
+		$id_orden_despacho_empresa = $this->input->post("id_orden_despacho_empresa");
+
 		$this->M_cotizacion->aprobar_estado($id_cotizacion);
-		$this->M_cotizacion->insertar_orden_despacho($id_cotizacion);
+		if ($id_orden_despacho_empresa == "100") {
+			$this->M_cotizacion->registrar_grupo_vame_orden_despacho();
+			$id_orden_despacho_empresa = $this->M_cotizacion->lastID();
+			$this->M_cotizacion->registrar_orden_despacho(
+				$id_cotizacion,
+				$id_orden_despacho_empresa
+			);
+		} else if ($id_orden_despacho_empresa == "200") {
+			$this->M_cotizacion->registrar_inversiones_alpev_orden_despacho();
+			$id_orden_despacho_empresa = $this->M_cotizacion->lastID();
+			$this->M_cotizacion->registrar_orden_despacho(
+				$id_cotizacion,
+				$id_orden_despacho_empresa
+			);
+		}
 		echo json_encode($id_cotizacion);
 	}
 

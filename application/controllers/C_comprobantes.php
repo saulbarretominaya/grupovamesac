@@ -53,85 +53,170 @@ class C_comprobantes extends CI_Controller
 		$monto_total_condicion_pago = $this->input->post("monto_total_condicion_pago");
 		$observacion = $this->input->post("observacion");
 		$id_guia_remision = $this->input->post("id_guia_remision");
-
+		$id_comprobante_empresa = $this->input->post("id_comprobante_empresa");
 
 
 		//Detalle_condicion pago
 		$fecha_cuota = $this->input->post("fecha_cuota");
 		$monto_cuota = $this->input->post("monto_cuota");
 
-		if ($id_tipo_comprobante == "69") {
-			$this->M_comprobantes->registrar_facturas();
-			$id_num_comprobante = $this->M_comprobantes->lastID();
-			$this->M_comprobantes->registrar(
-				$id_tipo_comprobante,
-				$ds_tipo_comprobante,
-				$fecha_emision,
-				$dias,
-				$fecha_vencimiento,
-				$orden_compra,
-				$id_condicion_pago,
-				$ds_condicion_pago,
-				$monto_total_condicion_pago,
-				$observacion,
-				$id_guia_remision,
-				$id_num_comprobante
-			);
-		} else if ($id_tipo_comprobante == "70") {
-			$this->M_comprobantes->registrar_boletas();
-			$id_num_comprobante = $this->M_comprobantes->lastID();
-			$this->M_comprobantes->registrar(
-				$id_tipo_comprobante,
-				$ds_tipo_comprobante,
-				$fecha_emision,
-				$dias,
-				$fecha_vencimiento,
-				$orden_compra,
-				$id_condicion_pago,
-				$ds_condicion_pago,
-				$monto_total_condicion_pago,
-				$observacion,
-				$id_guia_remision,
-				$id_num_comprobante
-			);
-		} else if ($id_tipo_comprobante == "77") {
-			$this->M_comprobantes->registrar_nota_credito();
-			$id_num_comprobante = $this->M_comprobantes->lastID();
-			$this->M_comprobantes->registrar(
-				$id_tipo_comprobante,
-				$ds_tipo_comprobante,
-				$fecha_emision,
-				$dias,
-				$fecha_vencimiento,
-				$orden_compra,
-				$id_condicion_pago,
-				$ds_condicion_pago,
-				$monto_total_condicion_pago,
-				$observacion,
-				$id_guia_remision,
-				$id_num_comprobante
-			);
-		} else if ($id_tipo_comprobante == "78") {
-			$this->M_comprobantes->registrar_nota_debito();
-			$id_num_comprobante = $this->M_comprobantes->lastID();
-			$this->M_comprobantes->registrar(
-				$id_tipo_comprobante,
-				$ds_tipo_comprobante,
-				$fecha_emision,
-				$dias,
-				$fecha_vencimiento,
-				$orden_compra,
-				$id_condicion_pago,
-				$ds_condicion_pago,
-				$monto_total_condicion_pago,
-				$observacion,
-				$id_guia_remision,
-				$id_num_comprobante
-			);
+		if ($id_comprobante_empresa == "100") {
+			$this->M_comprobantes->registrar_grupo_vame_comprobantes();
+			$id_comprobante_empresa = $this->M_comprobantes->lastID();
+
+			if ($id_tipo_comprobante == "69") {
+				$this->M_comprobantes->registrar_facturas();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			} else if ($id_tipo_comprobante == "70") {
+				$this->M_comprobantes->registrar_boletas();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			} else if ($id_tipo_comprobante == "77") {
+				$this->M_comprobantes->registrar_nota_credito();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			} else if ($id_tipo_comprobante == "78") {
+				$this->M_comprobantes->registrar_nota_debito();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			}
+		} else if ($id_comprobante_empresa == "200") {
+			$this->M_comprobantes->registrar_inversiones_alpev_comprobantes();
+			$id_comprobante_empresa = $this->M_comprobantes->lastID();
+
+			if ($id_tipo_comprobante == "69") {
+				$this->M_comprobantes->registrar_facturas();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			} else if ($id_tipo_comprobante == "70") {
+				$this->M_comprobantes->registrar_boletas();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			} else if ($id_tipo_comprobante == "77") {
+				$this->M_comprobantes->registrar_nota_credito();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			} else if ($id_tipo_comprobante == "78") {
+				$this->M_comprobantes->registrar_nota_debito();
+				$id_num_comprobante = $this->M_comprobantes->lastID();
+				$this->M_comprobantes->registrar(
+					$id_tipo_comprobante,
+					$ds_tipo_comprobante,
+					$fecha_emision,
+					$dias,
+					$fecha_vencimiento,
+					$orden_compra,
+					$id_condicion_pago,
+					$ds_condicion_pago,
+					$monto_total_condicion_pago,
+					$observacion,
+					$id_guia_remision,
+					$id_num_comprobante,
+					$id_comprobante_empresa
+				);
+			}
 		}
 
 		$id_comprobante = $this->M_comprobantes->lastID();
-
 
 		$this->registrar_detalle_condicion_pago(
 			$id_comprobante,

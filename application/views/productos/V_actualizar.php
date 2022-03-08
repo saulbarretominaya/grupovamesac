@@ -105,7 +105,7 @@
                   </div>
                   <div class="col-sm-2">
                     <label>Stock</label>
-                    <input type="text" class="form-control" id="">
+                    <input type="text" class="form-control" value="<?php echo $enlace_actualizar->stock ?>" readonly>
                   </div>
                 </div>
               </div>

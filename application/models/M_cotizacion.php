@@ -59,6 +59,38 @@ class M_cotizacion extends CI_Model
         return $resultados->result();
     }
 
+    public function registrar_grupo_vame_cotizacion()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO grupo_vame_cotizacion
+            (
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_cotizacion()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_cotizacion
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
     public function insertar(
         $serie_cotizacion,
         $categoria,
@@ -88,7 +120,9 @@ class M_cotizacion extends CI_Model
         $igv,
         $precio_venta,
         $valor_cambio,
-        $id_moneda
+        $id_moneda,
+        $id_cotizacion_empresa
+
     ) {
         return $this->db->query(
             "
@@ -101,7 +135,7 @@ class M_cotizacion extends CI_Model
                 clausula,lugar_entrega,nombre_encargado,observacion,
                 id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
                 valor_venta_total_sin_d,valor_venta_total_con_d,
-                descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion
+                descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion,id_cotizacion_empresa
             )
             VALUES
             (
@@ -112,7 +146,7 @@ class M_cotizacion extends CI_Model
                 '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
                 '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
                 '$valor_venta_total_sin_d','$valor_venta_total_con_d',
-                '$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857'
+                '$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857','$id_cotizacion_empresa'
             )
             "
         );
@@ -385,20 +419,53 @@ class M_cotizacion extends CI_Model
         );
     }
 
-    public function insertar_orden_despacho(
-        $id_cotizacion
+    public function registrar_grupo_vame_orden_despacho()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO grupo_vame_orden_despacho
+            (
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_orden_despacho()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_orden_despacho
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_orden_despacho(
+        $id_cotizacion,
+        $id_orden_despacho_empresa
     ) {
         return $this->db->query(
             "
         INSERT INTO orden_despacho
         (
             id_orden_despacho,
-            id_cotizacion,fecha_orden_despacho,id_estado_orden_despacho
+            id_cotizacion,fecha_orden_despacho,id_estado_orden_despacho,id_orden_despacho_empresa
         )
         VALUES
         (
             '',
-            '$id_cotizacion',CURDATE(),'861'
+            '$id_cotizacion',CURDATE(),'861','$id_orden_despacho_empresa'
         )"
         );
     }

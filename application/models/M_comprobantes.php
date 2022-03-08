@@ -32,7 +32,7 @@ class M_comprobantes extends CI_Model
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
-            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='PRODUCTOS'
@@ -68,7 +68,7 @@ class M_comprobantes extends CI_Model
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
-            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
             WHERE a.categoria='TABLEROS'
@@ -194,6 +194,38 @@ class M_comprobantes extends CI_Model
         );
     }
 
+    public function registrar_grupo_vame_comprobantes()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO grupo_vame_comprobantes
+            (
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_comprobantes()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_comprobantes
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
     public function registrar(
         $id_tipo_comprobante,
         $ds_tipo_comprobante,
@@ -206,7 +238,8 @@ class M_comprobantes extends CI_Model
         $monto_total_condicion_pago,
         $observacion,
         $id_guia_remision,
-        $id_num_comprobante
+        $id_num_comprobante,
+        $id_comprobante_empresa
     ) {
         return $this->db->query(
             "
@@ -215,7 +248,7 @@ class M_comprobantes extends CI_Model
                 id_comprobante,
                 id_tipo_comprobante,ds_tipo_comprobante,fecha_emision,dias,fecha_vencimiento,
                 orden_compra,id_condicion_pago,ds_condicion_pago,monto_total_condicion_pago,
-                observacion,id_guia_remision,id_num_comprobante
+                observacion,id_guia_remision,id_num_comprobante,id_comprobante_empresa
 
             )
             VALUES
@@ -223,7 +256,7 @@ class M_comprobantes extends CI_Model
                 '',
                 '$id_tipo_comprobante','$ds_tipo_comprobante','$fecha_emision','$dias',STR_TO_DATE('$fecha_vencimiento','%d/%m/%Y'),
                 '$orden_compra','$id_condicion_pago','$ds_condicion_pago','$monto_total_condicion_pago',
-                '$observacion','$id_guia_remision','$id_num_comprobante'
+                '$observacion','$id_guia_remision','$id_num_comprobante','$id_comprobante_empresa'
             )
             "
         );

@@ -46,6 +46,7 @@
                             <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
                             <input type="hidden" id="id_parcial_completa" value="<?php echo $enlace_actualizar_cabecera->id_parcial_completa ?>">
                             <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
+                            <input type="hidden" id="id_guia_remision_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
                           </div>
                         </div>
                         <div class="col-md-3">

@@ -53,7 +53,7 @@ $("#listar_2").dataTable({
 });
 $("#registrar").on("click", function () {
 
-	//validar_registrar();
+	validar_registrar();
 	if (resultado_campo == true) {
 
 		//Cabecera
@@ -68,6 +68,8 @@ $("#registrar").on("click", function () {
 		var monto_total_condicion_pago = $("#monto_total_condicion_pago").val();
 		var observacion = $("#observacion").val();
 		var id_guia_remision = $("#id_guia_remision").val();
+		//Empresa
+		var id_comprobante_empresa = $("#id_comprobante_empresa").val();
 
 		//Detalle condicion_pago
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
@@ -91,6 +93,8 @@ $("#registrar").on("click", function () {
 				monto_total_condicion_pago: monto_total_condicion_pago,
 				observacion: observacion,
 				id_guia_remision: id_guia_remision,
+				//Empresa
+				id_comprobante_empresa: id_comprobante_empresa,
 
 				//Detalle condicion pago
 				fecha_cuota: fecha_cuota,

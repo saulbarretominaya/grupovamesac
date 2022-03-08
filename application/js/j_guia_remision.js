@@ -1,4 +1,9 @@
 
+/* Variables Globales */
+resultado_campo = true;
+/*Fin de Variables Globales */
+
+
 /* CRUD */
 $("#listar").dataTable({
 
@@ -83,7 +88,7 @@ $(document).on("click", ".js_lupa_guia_remision_tableros", function () {
 
 $("#registrar").on("click", function () {
 
-	validar_registrar();
+	//validar_registrar();
 	if (resultado_campo == true) {
 
 		//Cabecera
@@ -106,6 +111,8 @@ $("#registrar").on("click", function () {
 		var ds_sucursal_trabajador = $("#ds_sucursal_trabajador").val();
 		var ds_serie_guia_remision = $("#ds_serie_guia_remision").val();
 		var id_parcial_completa = $("#id_parcial_completa").val();
+		//Empresa
+		var id_guia_remision_empresa = $("#id_guia_remision_empresa").val();
 
 		$.ajax({
 			async: false,
@@ -132,7 +139,9 @@ $("#registrar").on("click", function () {
 				embarque: embarque,
 				ds_sucursal_trabajador: ds_sucursal_trabajador,
 				ds_serie_guia_remision: ds_serie_guia_remision,
-				id_parcial_completa: id_parcial_completa
+				id_parcial_completa: id_parcial_completa,
+				//Empresa
+				id_guia_remision_empresa: id_guia_remision_empresa,
 
 			},
 			success: function (data) {
