@@ -34,7 +34,7 @@ class M_comprobantes extends CI_Model
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
-            LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
+            LEFT JOIN trabajadores f ON f.id_trabajador=a.id_trabajador
             WHERE a.categoria='PRODUCTOS'
             ORDER BY a.id_cotizacion desc;
         "
@@ -79,7 +79,7 @@ class M_comprobantes extends CI_Model
         return $resultados->result();
     }
 
-    public function enlace_actualizar_cabecera($id_guia_remision)
+    public function enlace_registrar_cabecera($id_guia_remision)
     {
         $resultados = $this->db->query(
             "
@@ -105,7 +105,7 @@ class M_comprobantes extends CI_Model
         return $resultados->row();
     }
 
-    public function enlace_actualizar_detalle($id_guia_remision)
+    public function enlace_registrar_detalle($id_guia_remision)
     {
         $resultados = $this->db->query(
             "
@@ -279,14 +279,136 @@ class M_comprobantes extends CI_Model
         INSERT INTO detalle_condicion_pagos_comprobantes
         (
         id_dcondicion_pago,
-        id_comprobante,fecha_cuota,monto_cuota
+        id_comprobante,fecha_cuota,monto_cuota,
+        id_estado_condicion_pago,fecha_condicion_pago
         )
         VALUES
         (
         '', 
-        '$id_comprobante',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota'
+        '$id_comprobante',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota',
+        '895',NOW()
         )
         "
+        );
+    }
+
+    public function enlace_actualizar_cabecera($id_comprobante)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            a.ds_nombre_trabajador,
+            a.ds_nombre_cliente_proveedor,
+            a.direccion_fiscal_cliente_proveedor,
+            c.valor_venta_total_sin_d,
+            c.valor_venta_total_con_d,
+            c.descuento_total,
+            c.igv,
+            c.precio_venta,
+            d.id_guia_remision,
+            d.id_sucursal,
+            e.id_comprobante,
+            e.id_tipo_comprobante,
+            e.id_num_comprobante,
+            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
+            e.dias,
+            DATE_FORMAT(e.fecha_vencimiento,'%d/%m/%Y') AS fecha_vencimiento,
+            e.orden_compra,
+            e.id_condicion_pago,
+            e.monto_total_condicion_pago,
+            e.observacion
+            FROM 
+            cotizacion a
+            LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
+            WHERE e.id_comprobante='$id_comprobante'
+            "
+        );
+        return $resultados->row();
+    }
+
+    public function enlace_actualizar_detalle($id_comprobante)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT 
+            a.item,
+            a.salida_prod AS cantidad,
+            b.codigo_producto,
+            b.descripcion_producto,
+            b.ds_marca_producto,
+            b.ds_unidad_medida,
+            b.precio_ganancia AS precio_u,
+            b.d,
+            b.precio_descuento AS precio_u_d,
+            a.valor_venta_con_d AS valor_venta
+            FROM 
+            detalle_parciales_completas a
+            LEFT JOIN detalle_cotizacion b ON b.id_dcotizacion=a.id_dcotizacion
+            LEFT JOIN parciales_completas c ON c.id_parcial_completa=a.id_parcial_completa
+            LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
+            LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
+            WHERE e.id_comprobante='$id_comprobante' AND a.salida_prod > '0'
+            "
+        );
+        return $resultados->result();
+    }
+
+    public function enlace_actualizar_detalle_condicion_pago($id_comprobante)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT 
+            a.id_dcondicion_pago,
+            a.id_comprobante,
+            DATE_FORMAT(a.fecha_cuota,'%d/%m/%Y') AS fecha_cuota,
+            a.monto_cuota
+            FROM 
+            detalle_condicion_pagos_comprobantes a
+            WHERE a.id_comprobante='$id_comprobante' AND a.id_estado_condicion_pago='895';
+            "
+        );
+        return $resultados->result();
+    }
+
+    public function actualizar(
+        $id_comprobante,
+        $fecha_emision,
+        $dias,
+        $fecha_vencimiento,
+        $orden_compra,
+        $id_condicion_pago,
+        $ds_condicion_pago,
+        $monto_total_condicion_pago,
+        $observacion
+    ) {
+        return $this->db->query(
+            "
+            UPDATE comprobantes SET
+                fecha_emision='$fecha_emision',
+                dias='$dias',
+                fecha_vencimiento=STR_TO_DATE('$fecha_vencimiento','%d/%m/%Y'),
+                orden_compra='$orden_compra',
+                id_condicion_pago='$id_condicion_pago',
+                ds_condicion_pago='$ds_condicion_pago',
+                monto_total_condicion_pago='$monto_total_condicion_pago',
+                observacion='$observacion'
+            WHERE id_comprobante='$id_comprobante'
+            "
+        );
+    }
+
+    public function eliminar_detalle_condicion_pago($id_dcondicion_pago_eliminar)
+    {
+        return $this->db->query(
+            "
+            UPDATE detalle_condicion_pagos_comprobantes SET
+            id_estado_condicion_pago='894',
+            fecha_condicion_pago=NOW()
+            WHERE id_dcondicion_pago='$id_dcondicion_pago_eliminar'
+            "
         );
     }
 

@@ -152,6 +152,67 @@ $("#registrar").on("click", function () {
 		});
 	}
 });
+
+$("#actualizar").on("click", function () {
+
+	//validar_registrar();
+	if (resultado_campo == true) {
+
+		//Cabecera
+		var id_guia_remision = $("#id_guia_remision").val();
+		var tipo_transporte = $("#tipo_transporte").val();
+		var ruc = $("#ruc").val();
+		var transportista = $("#transportista").val();
+		var domiciliado = $("#domiciliado").val();
+		var licencia = $("#licencia").val();
+		var marca_modelo = $("#marca_modelo").val();
+		var placa = $("#placa").val();
+		var observaciones = $("#observaciones").val();
+		var id_tipo_envio_guia_remision = $("#id_tipo_envio_guia_remision").val();
+		var ds_tipo_envio_guia_remision = $('#id_tipo_envio_guia_remision option:selected').text();
+		var num_bulto = $("#num_bulto").val();
+		var peso_bruto_total = $("#peso_bruto_total").val();
+		var punto_partida = $("#punto_partida").val();
+		var punto_llegada = $("#punto_llegada").val();
+		var contenedor = $("#contenedor").val();
+		var embarque = $("#embarque").val();
+
+		debugger;
+
+		$.ajax({
+			async: false,
+			url: base_url + "C_guia_remision/actualizar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				//Cabecera
+				id_guia_remision: id_guia_remision,
+				tipo_transporte: tipo_transporte,
+				ruc: ruc,
+				transportista: transportista,
+				domiciliado: domiciliado,
+				licencia: licencia,
+				marca_modelo: marca_modelo,
+				placa: placa,
+				observaciones: observaciones,
+				id_tipo_envio_guia_remision: id_tipo_envio_guia_remision,
+				ds_tipo_envio_guia_remision: ds_tipo_envio_guia_remision,
+				num_bulto: num_bulto,
+				peso_bruto_total: peso_bruto_total,
+				punto_partida: punto_partida,
+				punto_llegada: punto_llegada,
+				contenedor: contenedor,
+				embarque: embarque
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_guia_remision";
+				debugger;
+			},
+		});
+	}
+});
+
 $(document).on("click", ".btn_aprobar_estado", function () {
 
 	debugger;

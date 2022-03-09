@@ -79,8 +79,13 @@
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_parcial_completa; ?></td>
-                            <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
-                            <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                            <?php if ($index->id_comprobante != "") { ?>
+                              <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
+                              <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_actualizar/<?php echo $index->id_comprobante; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                            <?php } else { ?>
+                              <td><button type="button" class="btn btn-outline-info btn-sm "><span class="fas fa-angle-double-right"></span></button></td>
+                              <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                            <?php } ?>
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>

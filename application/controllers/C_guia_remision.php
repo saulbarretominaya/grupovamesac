@@ -245,14 +245,58 @@ class C_guia_remision extends CI_Controller
 	{
 
 		$data = array(
-			//'cbox_tipo_envio_guia_remision' => $this->M_cbox->cbox_tipo_envio_guia_remision(),
+			'cbox_tipo_envio_guia_remision' => $this->M_cbox->cbox_tipo_envio_guia_remision(),
 			'enlace_actualizar_cabecera' => $this->M_guia_remision->enlace_actualizar_cabecera($id_guia_remision),
-			'enlace_registrar_detalle' => $this->M_guia_remision->enlace_registrar_detalle($id_guia_remision)
+			'enlace_actualizar_detalle' => $this->M_guia_remision->enlace_actualizar_detalle($id_guia_remision)
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('guia_remision/V_actualizar', $data);
+	}
+
+	public function actualizar()
+	{
+		$id_guia_remision = $this->input->post("id_guia_remision");
+		$tipo_transporte = $this->input->post("tipo_transporte");
+		$ruc = $this->input->post("ruc");
+		$transportista = $this->input->post("transportista");
+		$domiciliado = $this->input->post("domiciliado");
+		$licencia = $this->input->post("licencia");
+		$marca_modelo = $this->input->post("marca_modelo");
+		$placa = $this->input->post("placa");
+		$observaciones = $this->input->post("observaciones");
+		$id_tipo_envio_guia_remision = $this->input->post("id_tipo_envio_guia_remision");
+		$ds_tipo_envio_guia_remision = $this->input->post("ds_tipo_envio_guia_remision");
+		$peso_bruto_total = $this->input->post("peso_bruto_total");
+		$num_bulto = $this->input->post("num_bulto");
+		$punto_partida = $this->input->post("punto_partida");
+		$punto_llegada = $this->input->post("punto_llegada");
+		$contenedor = $this->input->post("contenedor");
+		$embarque = $this->input->post("embarque");
+
+
+		$this->M_guia_remision->actualizar(
+			$id_guia_remision,
+			$tipo_transporte,
+			$ruc,
+			$transportista,
+			$domiciliado,
+			$licencia,
+			$marca_modelo,
+			$placa,
+			$observaciones,
+			$id_tipo_envio_guia_remision,
+			$ds_tipo_envio_guia_remision,
+			$peso_bruto_total,
+			$num_bulto,
+			$punto_partida,
+			$punto_llegada,
+			$contenedor,
+			$embarque
+		);
+
+		echo json_encode($tipo_transporte);
 	}
 
 	public function index_modal_productos()

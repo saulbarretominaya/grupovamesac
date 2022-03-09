@@ -305,6 +305,8 @@ class M_guia_remision extends CI_Model
             a.lugar_entrega,
             a.nombre_encargado,
             a.observacion,
+            d.id_guia_remision,
+            d.id_tipo_envio_guia_remision,
             d.tipo_transporte,
             d.ruc,
             d.transportista,
@@ -331,6 +333,79 @@ class M_guia_remision extends CI_Model
             "
         );
         return $resultados->row();
+    }
+
+    public function enlace_actualizar_detalle($id_guia_remision)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT
+            a.item,
+            c.id_cotizacion,
+            d.id_orden_despacho,
+            e.id_parcial_completa,
+            f.id_guia_remision,
+            a.salida_prod,
+            b.ds_unidad_medida,
+            b.codigo_producto,
+            descripcion_producto,
+            ds_marca_producto
+            FROM
+            detalle_parciales_completas a
+            LEFT JOIN detalle_cotizacion b ON b.id_dcotizacion=a.id_dcotizacion
+            LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
+            LEFT JOIN orden_despacho d ON d.id_cotizacion=c.id_cotizacion
+            LEFT JOIN parciales_completas e ON e.id_orden_despacho=d.id_orden_despacho
+            LEFT JOIN guia_remision f ON f.id_parcial_completa=e.id_parcial_completa
+            WHERE
+            f.id_guia_remision='$id_guia_remision' AND a.salida_prod > '0'
+            "
+        );
+        return $resultados->result();
+    }
+
+    public function actualizar(
+        $id_guia_remision,
+        $tipo_transporte,
+        $ruc,
+        $transportista,
+        $domiciliado,
+        $licencia,
+        $marca_modelo,
+        $placa,
+        $observaciones,
+        $id_tipo_envio_guia_remision,
+        $ds_tipo_envio_guia_remision,
+        $peso_bruto_total,
+        $num_bulto,
+        $punto_partida,
+        $punto_llegada,
+        $contenedor,
+        $embarque
+    ) {
+        return $this->db->query(
+            "
+            UPDATE guia_remision SET
+            tipo_transporte='$tipo_transporte',
+            ruc='$ruc',
+            transportista='$transportista',
+            domiciliado='$domiciliado',
+            licencia='$licencia',
+            marca_modelo='$marca_modelo',
+            placa='$placa',
+            observaciones='$observaciones',
+            id_tipo_envio_guia_remision='$id_tipo_envio_guia_remision',
+            ds_tipo_envio_guia_remision='$ds_tipo_envio_guia_remision',
+            peso_bruto_total='$peso_bruto_total',
+            num_bulto='$num_bulto',
+            punto_partida='$punto_partida',
+            punto_llegada='$punto_llegada',
+            contenedor='$contenedor',
+            embarque='$embarque',
+            fecha_guia_remision=NOW()
+            WHERE id_guia_remision='$id_guia_remision'
+            "
+        );
     }
 
     public function index_modal_cabecera_productos($id_guia_remision)

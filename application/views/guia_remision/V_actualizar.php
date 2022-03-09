@@ -43,10 +43,8 @@
                         <div class="col-md-4">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
-                            <input type="hidden" id="" value="<?php echo $this->session->userdata("id_usuario") ?>">
-                            <input type="hidden" id="id_parcial_completa" value="<?php echo $enlace_actualizar_cabecera->id_parcial_completa ?>">
+                            <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_actualizar_cabecera->id_guia_remision ?>">
                             <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
-                            <input type="hidden" id="id_guia_remision_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -67,7 +65,7 @@
                             <?php
                             date_default_timezone_set("America/Lima");
                             ?>
-                            <input type="date" class="form-control" id="" value="" readonly>
+                            <input type="date" class="form-control" id="" value="<?php echo date("Y-m-d"); ?>" readonly>
                           </div>
                         </div>
                       </div>
@@ -306,7 +304,15 @@
                                 <select class="form-select select2" id="id_tipo_envio_guia_remision" style="width: 100%;">
                                   <option value="0">Seleccionar</option>
                                   <?php foreach ($cbox_tipo_envio_guia_remision as $cbox_tipo_envio_guia_remision) : ?>
-                                    <option value="<?php echo $cbox_tipo_envio_guia_remision->id_dmultitabla; ?>"><?php echo $cbox_tipo_envio_guia_remision->descripcion; ?></option>
+                                    <?php if ($cbox_tipo_envio_guia_remision->id_dmultitabla == $enlace_actualizar_cabecera->id_tipo_envio_guia_remision) : ?>
+                                      <option value="<?php echo $cbox_tipo_envio_guia_remision->id_dmultitabla; ?>" selected>
+                                        <?php echo $cbox_tipo_envio_guia_remision->descripcion; ?>
+                                      </option>
+                                    <?php else : ?>
+                                      <option value="<?php echo $cbox_tipo_envio_guia_remision->id_dmultitabla ?>">
+                                        <?php echo $cbox_tipo_envio_guia_remision->descripcion; ?>
+                                      </option>
+                                    <?php endif; ?>
                                   <?php endforeach; ?>
                                 </select>
                               </div>

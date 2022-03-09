@@ -5,7 +5,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1>Comprobantes
-            <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
+            <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
             <a href="<?php echo base_url(); ?>C_comprobantes" class="btn btn-danger btn-sm">CANCELAR</a>
           </h1>
         </div>
@@ -17,7 +17,6 @@
   <section class="content">
 
     <div class="container-fluid">
-
 
       <div class="row">
         <div class="col-12">
@@ -36,6 +35,8 @@
                 <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                   <div class="row">
 
+                    <input type="hidden" id="id_comprobante" value="<?php echo $enlace_actualizar_cabecera->id_comprobante; ?>">
+
                     <div class="col-md-8">
                       <div class="card">
                         <div class="card-header">
@@ -51,12 +52,32 @@
                             <div class="col-md-4">
                               <label for="">Tipo Comprobante</label>
                               <div class="input-group">
-                                <select class="form-select select2" id="id_tipo_comprobante">
+                                <select class="form-select select2" id="id_tipo_comprobante" disabled>
                                   <option value="0" selected>Seleccionar</option>
-                                  <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?><option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>"><?php echo $cbox_tipo_comprobante->descripcion; ?>
-                                    </option>
+                                  <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?>
+                                    <?php if ($cbox_tipo_comprobante->id_dmultitabla == $enlace_actualizar_cabecera->id_tipo_comprobante) : ?>
+                                      <option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>" selected>
+                                        <?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                      </option>
+                                    <?php else : ?>
+                                      <option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla ?>">
+                                        <?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                      </option>
+                                    <?php endif; ?>
                                   <?php endforeach; ?>
                                 </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Serie Comprobante</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" value="<?php echo $enlace_actualizar_cabecera->ds_serie_comprobante ?>" readonly>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Num. Comprobante</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" value="<?php echo $enlace_actualizar_cabecera->id_num_comprobante ?>" readonly>
                               </div>
                             </div>
                           </div>
@@ -64,9 +85,6 @@
                       </div>
                     </div>
 
-                    <input type="hidden" id="precio_venta" value="<?php echo $enlace_registrar_cabecera->precio_venta; ?>">
-                    <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_registrar_cabecera->id_guia_remision; ?>">
-                    <input type="hidden" id="id_comprobante_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
 
                     <div class="col-md-4">
                       <div class="card">
@@ -83,7 +101,7 @@
                             <div class="col-md-12">
                               <label>Nombre</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_registrar_cabecera->ds_nombre_trabajador ?></textarea>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -116,13 +134,13 @@
                               <label># Dias</label>
                               <div class="input-group">
                                 <!-- <input type="text" class="form-control" id="numero_dias_condicion_pago"> -->
-                                <input type="text" class="form-control" id="dias" value="" autocomplete="off">
+                                <input type="text" class="form-control" id="dias" value="<?php echo $enlace_actualizar_cabecera->dias ?>" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-4">
                               <label>Fecha Vencimiento</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_vencimiento" readonly>
+                                <input type="text" class="form-control" id="fecha_vencimiento" value="<?php echo $enlace_actualizar_cabecera->fecha_vencimiento ?>" readonly>
                               </div>
                             </div>
 
@@ -146,13 +164,13 @@
                             <div class="col-md-6">
                               <label>Orden Compra</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="orden_compra" value="" autocomplete="off">
+                                <input type="text" class="form-control" id="orden_compra" value="<?php echo $enlace_actualizar_cabecera->orden_compra ?>">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label># Guia</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="" value="<?php echo $enlace_registrar_cabecera->id_sucursal ?>" readonly>
+                                <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->id_sucursal ?>" readonly>
                               </div>
                             </div>
                           </div>
@@ -177,8 +195,16 @@
                               <div class="input-group">
                                 <select class="form-select select2" id="id_condicion_pago">
                                   <option value="0">Seleccionar</option>
-                                  <?php foreach ($cbox_condicion_pago_cotizacion  as $cbox_condicion_pago_cotizacion) : ?>
-                                    <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>"><?php echo $cbox_condicion_pago_cotizacion->descripcion; ?></option>
+                                  <?php foreach ($cbox_condicion_pago_cotizacion as $cbox_condicion_pago_cotizacion) : ?>
+                                    <?php if ($cbox_condicion_pago_cotizacion->id_dmultitabla == $enlace_actualizar_cabecera->id_condicion_pago) : ?>
+                                      <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla; ?>" selected>
+                                        <?php echo $cbox_condicion_pago_cotizacion->descripcion; ?>
+                                      </option>
+                                    <?php else : ?>
+                                      <option value="<?php echo $cbox_condicion_pago_cotizacion->id_dmultitabla ?>">
+                                        <?php echo $cbox_condicion_pago_cotizacion->descripcion; ?>
+                                      </option>
+                                    <?php endif; ?>
                                   <?php endforeach; ?>
                                 </select>
                               </div>
@@ -186,13 +212,13 @@
                             <div class="col-md-4">
                               <label>Fecha</label>
                               <div class="input-group">
-                                <input type="date" class="form-control" id="fecha_cuota" value="">
+                                <input type="date" class="form-control" id="fecha_cuota" value="" autocomplete="nope">
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label>Monto</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="off" placeholder="">
+                                <input type="text" class="form-control" id="monto_cuota" value="" autocomplete="nope" placeholder="">
                               </div>
                             </div>
                             <div class="col-md-2">
@@ -215,19 +241,30 @@
                                         <tr>
                                           <th>Fecha </th>
                                           <th>Monto</th>
+                                          <th></th>
                                         </tr>
                                       </thead>
+                                      <div id="id_agrupacion" name="id_agrupacion" style="display: none;"></div>
                                       <tbody>
+                                        <?php foreach ($enlace_actualizar_detalle_condicion_pago as $index) : ?>
+                                          <tr>
+                                            <input type="hidden" id="id_dcondicion_pago" name="id_dcondicion_pago[]" value="<?php echo $index->id_dcondicion_pago; ?>">
+                                            <td><?php echo $index->fecha_cuota; ?></td>
+                                            <td><?php echo $index->monto_cuota; ?></td>
+                                            <td><button type='button' class='btn btn-outline-danger btn-sm class_eliminar_condicion_pago'><span class='fas fa-trash-alt'></span></button></td>
+                                          </tr>
+                                        <?php endforeach; ?>
                                       </tbody>
                                       <tfoot>
                                         <tr>
                                           <th></th>
                                           <th>Monto Total:
-                                            <label style="font-weight: normal;" class="control-label" id="monto_total_condicion_pago"></label>
+                                            <label style="font-weight: normal;" class="control-label" id="monto_total_condicion_pago"><?php echo $enlace_actualizar_cabecera->monto_total_condicion_pago ?></label>
                                           </th>
                                         </tr>
                                       </tfoot>
                                     </table>
+
                                   </div>
                                 </form>
                               </div>
@@ -252,13 +289,13 @@
                             <div class="col-md-12">
                               <label for="">Cliente</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_registrar_cabecera->ds_nombre_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->ds_nombre_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <label for="">Direccion Fiscal</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_registrar_cabecera->direccion_fiscal_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="" readonly><?php echo $enlace_actualizar_cabecera->direccion_fiscal_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -266,7 +303,7 @@
                             <div class="col-md-12">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion"></textarea>
+                                <textarea class="form-control" rows="1" id="observacion"><?php echo $enlace_actualizar_cabecera->observacion ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -305,7 +342,7 @@
                                   </thead>
                                   <tbody>
                                     <?php
-                                    foreach ($enlace_registrar_detalle as $index) : ?>
+                                    foreach ($enlace_actualizar_detalle as $index) : ?>
                                       <tr>
                                         <td><?php echo $index->item; ?></td>
                                         <td><?php echo $index->cantidad; ?></td>
@@ -320,27 +357,26 @@
                                       </tr>
                                     <?php endforeach; ?>
                                   </tbody>
-                                  </tbody>
                                   <tfoot>
                                     <tr>
                                       <td colspan="9" class="text-right"><strong>TOTAL BRUTO</strong></td>
-                                      <td><?php echo $enlace_registrar_cabecera->valor_venta_total_sin_d; ?></td>
+                                      <td><?php echo $enlace_actualizar_cabecera->valor_venta_total_sin_d; ?></td>
                                     </tr>
                                     <tr>
                                       <td colspan="9" class="text-right"><strong> DCTO TOTAL</strong></td>
-                                      <td><?php echo $enlace_registrar_cabecera->descuento_total; ?> </td>
+                                      <td><?php echo $enlace_actualizar_cabecera->descuento_total; ?> </td>
                                     </tr>
                                     <tr>
                                       <td colspan="9" class="text-right"><strong> TOTAL</strong></td>
-                                      <td><?php echo $enlace_registrar_cabecera->valor_venta_total_con_d; ?> </td>
+                                      <td><?php echo $enlace_actualizar_cabecera->valor_venta_total_con_d; ?> </td>
                                     </tr>
                                     <tr>
                                       <td colspan="9" class="text-right"><strong>IGV</strong></td>
-                                      <td><?php echo $enlace_registrar_cabecera->igv; ?> </td>
+                                      <td><?php echo $enlace_actualizar_cabecera->igv; ?> </td>
                                     </tr>
                                     <tr>
                                       <td colspan="9" class="text-right"><strong>PRECIO VENTA</strong></td>
-                                      <td><?php echo $enlace_registrar_cabecera->precio_venta; ?> </td>
+                                      <td><?php echo $enlace_actualizar_cabecera->precio_venta; ?> </td>
                                     </tr>
                                   </tfoot>
                                 </table>

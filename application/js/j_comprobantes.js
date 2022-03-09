@@ -53,7 +53,7 @@ $("#listar_2").dataTable({
 });
 $("#registrar").on("click", function () {
 
-	validar_registrar();
+	//validar_registrar();
 	if (resultado_campo == true) {
 
 		//Cabecera
@@ -65,7 +65,7 @@ $("#registrar").on("click", function () {
 		var orden_compra = $("#orden_compra").val();
 		var id_condicion_pago = $("#id_condicion_pago").val();
 		var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
-		var monto_total_condicion_pago = $("#monto_total_condicion_pago").val();
+		var monto_total_condicion_pago = $("#monto_total_condicion_pago").text();
 		var observacion = $("#observacion").val();
 		var id_guia_remision = $("#id_guia_remision").val();
 		//Empresa
@@ -74,6 +74,7 @@ $("#registrar").on("click", function () {
 		//Detalle condicion_pago
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
 		var monto_cuota = Array.prototype.slice.call(document.getElementsByName("monto_cuota[]")).map((o) => o.value);
+
 
 		$.ajax({
 			async: false,
@@ -99,6 +100,58 @@ $("#registrar").on("click", function () {
 				//Detalle condicion pago
 				fecha_cuota: fecha_cuota,
 				monto_cuota: monto_cuota
+
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_comprobantes";
+			},
+		});
+	};
+});
+$("#actualizar").on("click", function () {
+
+	//validar_registrar();
+	if (resultado_campo == true) {
+
+		//Cabecera
+		var id_comprobante = $("#id_comprobante").val();
+		var fecha_emision = $("#fecha_emision").val();
+		var dias = $("#dias").val();
+		var fecha_vencimiento = $("#fecha_vencimiento").val();
+		var orden_compra = $("#orden_compra").val();
+		var id_condicion_pago = $("#id_condicion_pago").val();
+		var ds_condicion_pago = $('#id_condicion_pago option:selected').text();
+		var monto_total_condicion_pago = $("#monto_total_condicion_pago").text();
+		var observacion = $("#observacion").val();
+
+		//Detalle condicion_pago
+		debugger;
+		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
+		var monto_cuota = Array.prototype.slice.call(document.getElementsByName("monto_cuota[]")).map((o) => o.value);
+		var id_dcondicion_pago_eliminar = Array.prototype.slice.call(document.getElementsByName("id_dcondicion_pago_eliminar[]")).map((o) => o.value);
+
+		$.ajax({
+			async: false,
+			url: base_url + "C_comprobantes/actualizar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				//Cabecera
+				id_comprobante: id_comprobante,
+				fecha_emision: fecha_emision,
+				dias: dias,
+				fecha_vencimiento: fecha_vencimiento,
+				orden_compra: orden_compra,
+				id_condicion_pago: id_condicion_pago,
+				ds_condicion_pago: ds_condicion_pago,
+				monto_total_condicion_pago: monto_total_condicion_pago,
+				observacion: observacion,
+
+				//Detalle condicion pago
+				fecha_cuota: fecha_cuota,
+				monto_cuota: monto_cuota,
+				id_dcondicion_pago_eliminar: id_dcondicion_pago_eliminar
 			},
 			success: function (data) {
 				debugger;
@@ -130,22 +183,21 @@ $("#id_agregar_condicion_pago").on("click", function (e) {
 		html = "<tr>";
 		html += "<td><input type='hidden' name='fecha_cuota[]' value='" + fecha_cuota + "'>" + fecha_cuota + "</td>";
 		html += "<td><input type='hidden' name='monto_cuota[]' value='" + monto_cuota + "'>" + monto_cuota + "</td>";
-		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila_condicion_pago'><span class='fas fa-trash-alt'></span></button></td>";
+		html += "<td><button type='button' class='btn btn-outline-danger btn-sm class_eliminar_condicion_pago'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
 		$("#id_table_detalle_condicion_pago tbody").append(html);
 		limpiar_campos_condicion_pago();
 
 	}
 });
-$(document).on("click", ".eliminar_fila_condicion_pago", function () {
 
-	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
-	html =
-		"<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" +
-		id_detalle +
-		"'>";
+$(document).on("click", ".class_eliminar_condicion_pago", function () {
 
-	$("#container_solicitud_id_remove").append(html);
+	debugger;
+	var id_dcondicion_pago = $(this).closest("tr").find("#id_dcondicion_pago").val();
+	html = "<input type='hidden' id='id_dcondicion_pago_eliminar' name ='id_dcondicion_pago_eliminar[]' value='" + id_dcondicion_pago + "'>";
+	$("#id_agrupacion").append(html);
+
 	$(this).closest("tr").remove();
 	calcular_sumatoria_cuotas_eliminar_detalle();
 
@@ -286,7 +338,7 @@ function calcular_sumatoria_cuotas() {
 		alert("A superado la suma de cuotas");
 		resultado_campo = false;
 	} else {
-		$("#precio_final_final").text(monto_total_sumatorio_cuotas);
+		$("#monto_total_condicion_pago").text(monto_total_sumatorio_cuotas);
 		resultado_campo = true;
 	}
 
@@ -301,7 +353,7 @@ function calcular_sumatoria_cuotas_eliminar_detalle() {
 	});
 
 
-	$("#precio_final_final").text(acumulador);
+	$("#monto_total_condicion_pago").text(acumulador);
 
 }
 function limpiar_campos_condicion_pago() {

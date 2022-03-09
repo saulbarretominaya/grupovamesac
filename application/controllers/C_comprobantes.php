@@ -29,13 +29,29 @@ class C_comprobantes extends CI_Controller
 		$data = array(
 			'cbox_tipo_comprobante' => $this->M_cbox->cbox_tipo_comprobante(),
 			'cbox_condicion_pago_cotizacion' => $this->M_cbox->cbox_condicion_pago_cotizacion(),
-			'enlace_actualizar_cabecera' => $this->M_comprobantes->enlace_actualizar_cabecera($id_guia_remision),
-			'enlace_actualizar_detalle' => $this->M_comprobantes->enlace_actualizar_detalle($id_guia_remision),
+			'enlace_registrar_cabecera' => $this->M_comprobantes->enlace_registrar_cabecera($id_guia_remision),
+			'enlace_registrar_detalle' => $this->M_comprobantes->enlace_registrar_detalle($id_guia_remision),
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
 		$this->load->view('comprobantes/V_registrar', $data);
+	}
+
+	public function enlace_actualizar($id_comprobante)
+	{
+		$data = array(
+			'cbox_tipo_comprobante' => $this->M_cbox->cbox_tipo_comprobante(),
+			'cbox_condicion_pago_cotizacion' => $this->M_cbox->cbox_condicion_pago_cotizacion(),
+			'enlace_actualizar_cabecera' => $this->M_comprobantes->enlace_actualizar_cabecera($id_comprobante),
+			'enlace_actualizar_detalle' => $this->M_comprobantes->enlace_actualizar_detalle($id_comprobante),
+			'enlace_actualizar_detalle_condicion_pago' => $this->M_comprobantes->enlace_actualizar_detalle_condicion_pago($id_comprobante)
+
+		);
+
+		$this->load->view('plantilla/V_header');
+		$this->load->view('plantilla/V_aside');
+		$this->load->view('comprobantes/V_actualizar', $data);
 	}
 
 	public function registrar()
@@ -218,11 +234,9 @@ class C_comprobantes extends CI_Controller
 
 		$id_comprobante = $this->M_comprobantes->lastID();
 
-		$this->registrar_detalle_condicion_pago(
-			$id_comprobante,
-			$fecha_cuota,
-			$monto_cuota
-		);
+		if ($fecha_cuota != "") {
+			$this->registrar_detalle_condicion_pago($id_comprobante, $fecha_cuota, $monto_cuota);
+		}
 
 		echo json_encode($id_tipo_comprobante);
 	}
@@ -239,6 +253,58 @@ class C_comprobantes extends CI_Controller
 				$fecha_cuota[$i],
 				$monto_cuota[$i],
 
+			);
+		}
+	}
+
+	public function actualizar()
+	{
+
+		//Cabecera
+		$id_comprobante = $this->input->post("id_comprobante");
+		$fecha_emision = $this->input->post("fecha_emision");
+		$dias = $this->input->post("dias");
+		$fecha_vencimiento = $this->input->post("fecha_vencimiento");
+		$orden_compra = $this->input->post("orden_compra");
+		$id_condicion_pago = $this->input->post("id_condicion_pago");
+		$ds_condicion_pago = $this->input->post("ds_condicion_pago");
+		$monto_total_condicion_pago = $this->input->post("monto_total_condicion_pago");
+		$observacion = $this->input->post("observacion");
+
+		//Detalle_condicion pago
+		$fecha_cuota = $this->input->post("fecha_cuota");
+		$monto_cuota = $this->input->post("monto_cuota");
+		$id_dcondicion_pago_eliminar = $this->input->post("id_dcondicion_pago_eliminar");
+
+
+		$this->M_comprobantes->actualizar(
+			$id_comprobante,
+			$fecha_emision,
+			$dias,
+			$fecha_vencimiento,
+			$orden_compra,
+			$id_condicion_pago,
+			$ds_condicion_pago,
+			$monto_total_condicion_pago,
+			$observacion
+		);
+
+		if ($id_dcondicion_pago_eliminar != "") {
+			$this->eliminar_detalle_condicion_pago($id_dcondicion_pago_eliminar);
+		} else if ($fecha_cuota != "") {
+			$this->registrar_detalle_condicion_pago($id_comprobante, $fecha_cuota, $monto_cuota);
+		}
+
+		echo json_encode($id_comprobante);
+	}
+
+	protected function eliminar_detalle_condicion_pago(
+		$id_dcondicion_pago_eliminar
+
+	) {
+		for ($i = 0; $i < count($id_dcondicion_pago_eliminar); $i++) {
+			$this->M_comprobantes->eliminar_detalle_condicion_pago(
+				$id_dcondicion_pago_eliminar[$i],
 			);
 		}
 	}
