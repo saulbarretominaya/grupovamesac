@@ -31,10 +31,10 @@
                   <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num COT</th>
-                        <th>Fec COT</th>
-                        <th>Num OD</th>
-                        <th>Fecha OD</th>
+                        <th>Num. Cotizacion</th>
+                        <th>Fecha Cotizacion</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Fecha O. Despacho</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <!-- <th>Linea Credito $ </th> -->
@@ -42,9 +42,9 @@
                         <th>Tipo Cambio</th>
                         <th>Resultado Valor $</th>
                         <th>Moneda</th>
-                        <th>Monto OD</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
-                        <th>Estado OD</th>
+                        <th>Estado O. Despacho</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -119,10 +119,10 @@
                   <table id="listar_2" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num COT</th>
-                        <th>Fec COT</th>
-                        <th>Num OD</th>
-                        <th>Fecha OD</th>
+                        <th>Num. Cotizacion</th>
+                        <th>Fecha Cotizacion</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Fecha O. Despacho</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <!-- <th>Linea Credito $ </th> -->
@@ -130,9 +130,9 @@
                         <th>Tipo Cambio</th>
                         <th>Resultado Valor $</th>
                         <th>Moneda</th>
-                        <th>Monto OD</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
-                        <th>Estado OD</th>
+                        <th>Estado O. Despacho</th>
                         <th></th>
                         <th></th>
                         <th></th>

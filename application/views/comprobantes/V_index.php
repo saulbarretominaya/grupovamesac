@@ -31,19 +31,19 @@
                   <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num OD</th>
-                        <th>Num Orden</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Num. Orden</th>
                         <th>Serie Guia</th>
-                        <th>Num Guia</th>
+                        <th>Num. Guia</th>
                         <th>Sucursal</th>
                         <th>Tipo Comprobante </th>
                         <th>Serie Comprobante</th>
-                        <th>Num comprobante</th>
-                        <th>Fecha comprobante</th>
+                        <th>Num. Comprobante</th>
+                        <th>Fecha Comprobante</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
-                        <th>Precio venta</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
                         <th>Tipo Orden</th>
                         <th>Estado Guia</th>
@@ -129,21 +129,22 @@
                   <table id="listar_2" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num OD</th>
+                        <th>Num. O. Despacho</th>
                         <th>Num Orden</th>
                         <th>Serie Guia</th>
-                        <th>Num Guia</th>
+                        <th>Num. Guia</th>
                         <th>Sucursal</th>
                         <th>Tipo Comprobante </th>
                         <th>Serie Comprobante</th>
-                        <th>Num comprobante</th>
-                        <th>Fecha comprobante</th>
+                        <th>Num. Comprobante</th>
+                        <th>Fecha Comprobante</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
-                        <th>Precio venta</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
-                        <th>Estado OR</th>
+                        <th>Tipo Orden</th>
+                        <th>Estado Guia</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -151,14 +152,28 @@
                     <tbody>
                       <?php if (!empty($index_2)) : ?>
                         <?php foreach ($index_2 as $index) :
-                          switch ($index->ds_estado_parcial_completa) {
+
+                          switch ($index->ds_estado_tipo_orden_parcial_completa) {
                             case "PARCIAL":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
                             case "COMPLETA":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                               break;
                           }
+                          switch ($index->ds_estado_guia_remision) {
+                            case "PENDIENTE":
+                              $ds_estado_guia_remision = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "APROBADO":
+                              $ds_estado_guia_remision = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            default:
+                              $ds_estado_guia_remision = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                          }
+
+
                         ?>
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
@@ -175,7 +190,8 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado_parcial_completa; ?></td>
+                            <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
+                            <td><?php echo $ds_estado_guia_remision; ?></td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_tableros" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_tableros"><span class="fas fa-search-plus"></span></button></td>
                             <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                           </tr>

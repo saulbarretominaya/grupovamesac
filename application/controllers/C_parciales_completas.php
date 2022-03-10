@@ -24,10 +24,17 @@ class C_parciales_completas extends CI_Controller
 		$this->load->view('parciales_completas/V_index', $data);
 	}
 
-	public function actualizar_id_estado_parcial_completa_aprobado()
+	public function aprobar_estado()
 	{
 		$id_parcial_completa = $this->input->post("id_parcial_completa");
-		$this->M_parciales_completas->actualizar_id_estado_parcial_completa_aprobado($id_parcial_completa);
+		$this->M_parciales_completas->aprobar_estado($id_parcial_completa);
+		echo json_encode($id_parcial_completa);
+	}
+
+	public function anular_estado()
+	{
+		$id_parcial_completa = $this->input->post("id_parcial_completa");
+		$this->M_parciales_completas->anular_estado($id_parcial_completa);
 		echo json_encode($id_parcial_completa);
 	}
 

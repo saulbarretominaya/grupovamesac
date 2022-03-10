@@ -43,8 +43,8 @@ class M_parciales_completas extends CI_Model
             c.ds_condicion_pago,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_moneda) AS ds_moneda,
             a.precio_venta,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_parcial_completa,
-            c.ds_nombre_trabajador
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_orden_parcial_completa) AS ds_estado_tipo_orden_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_parcial_completa,            c.ds_nombre_trabajador
             FROM
             parciales_completas a 
             LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
@@ -56,7 +56,7 @@ class M_parciales_completas extends CI_Model
         return $resultados->result();
     }
 
-    public function actualizar_id_estado_parcial_completa_aprobado($id_parcial_completa)
+    public function aprobar_estado($id_parcial_completa)
     {
         return $this->db->query(
             "
@@ -67,6 +67,16 @@ class M_parciales_completas extends CI_Model
         );
     }
 
+    public function anular_estado($id_parcial_completa)
+    {
+        return $this->db->query(
+            "
+            update parciales_completas set
+            id_estado_parcial_completa='898'
+            where id_parcial_completa='$id_parcial_completa'
+            "
+        );
+    }
 
     public function index_modal_cabecera_productos($id_parcial_completa)
     {

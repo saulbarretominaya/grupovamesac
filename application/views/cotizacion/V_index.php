@@ -31,17 +31,17 @@
                   <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num COT</th>
-                        <th>Fecha COT</th>
+                        <th>Num. Cotizacion</th>
+                        <th>Fecha Cotizacion</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
-                        <th>Monto</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
-                        <th>Estado COT</th>
+                        <th>Estado Cotizacion</th>
                         <th></th>
-                        <th>Num OD</th>
-                        <th>Estado OD</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Estado O. Despacho</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -128,17 +128,17 @@
                   <table id="listar_2" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num COT</th>
-                        <th>Fecha COT</th>
+                        <th>Num. Cotizacion</th>
+                        <th>Fecha Cotizacion</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
-                        <th>Monto</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
-                        <th>Estado COT</th>
+                        <th>Estado Cotizacion</th>
                         <th></th>
-                        <th>Num OD</th>
-                        <th>Estado OD</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Estado O. Despacho</th>
                         <th></th>
                         <th></th>
                         <th></th>

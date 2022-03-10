@@ -29,13 +29,13 @@
                   <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num OD</th>
-                        <th>Num Orden</th>
-                        <th>Fecha Orden</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Num. Orden</th>
+                        <th>Fec. Orden</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
-                        <th>Precio venta</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
                         <th>Tipo Orden</th>
                         <th>Estado Orden</th>
@@ -81,9 +81,8 @@
                             <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
                             <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_parciales_completas_productos" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_parciales_completas_productos"><span class="fas fa-search-plus"></span></button></td>
-                            <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_parciales_completas" value="<?php echo $index->id_parcial_completa; ?>"><span class="fas fa-check-circle"></span></button></td>
-                            <td><button type="button" class="btn btn-outline-danger btn-sm btn_anular_parciales_completas" value="<?php echo $index->id_parcial_completa; ?>"><span class="fas fa-times-circle"></span></button></td>
-
+                            <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_parcial_completa; ?>"><span class="fas fa-check-circle"></span></button></td>
+                            <td><button type="button" class="btn btn-outline-danger btn-sm btn_anular_estado" value="<?php echo $index->id_parcial_completa; ?>"><span class="fas fa-times-circle"></span></button></td>
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>
@@ -113,15 +112,16 @@
                   <table id="listar_2" class="table table-bordered table-sm table-hover" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Num OD</th>
-                        <th>Num Orden</th>
-                        <th>Fecha OR</th>
+                        <th>Num. O. Despacho</th>
+                        <th>Num. Orden</th>
+                        <th>Fec. Orden</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
                         <th>Moneda</th>
-                        <th>Precio venta</th>
+                        <th>Precio Venta</th>
                         <th>Vendedor</th>
-                        <th>Estado OR</th>
+                        <th>Tipo Orden</th>
+                        <th>Estado Orden</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -130,14 +130,29 @@
                     <tbody>
                       <?php if (!empty($index_2)) :
                         foreach ($index_2 as $index) :
-                          switch ($index->ds_estado_parcial_completa) {
+
+                          switch ($index->ds_estado_tipo_orden_parcial_completa) {
                             case "PARCIAL":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
                             case "COMPLETA":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
                               break;
                           }
+
+                          switch ($index->ds_estado_parcial_completa) {
+                            case "PENDIENTE":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "APROBADO":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            case "ANULADO":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-danger">ANULADO</span></div>';
+                              break;
+                          }
+
+
                       ?>
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
@@ -148,10 +163,11 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
+                            <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
                             <td><?php echo $ds_estado_parcial_completa; ?></td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_parciales_completas_tableros" value="<?php echo $index->id_parcial_completa; ?>" data-toggle="modal" data-target="#id_target_parciales_completas_tableros"><span class="fas fa-search-plus"></span></button></td>
-                            <td></td>
-                            <td></td>
+                            <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_parcial_completa; ?>"><span class="fas fa-check-circle"></span></button></td>
+                            <td><button type="button" class="btn btn-outline-danger btn-sm btn_anular_estado" value="<?php echo $index->id_parcial_completa; ?>"><span class="fas fa-times-circle"></span></button></td>
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>
