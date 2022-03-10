@@ -164,6 +164,7 @@ $("#actualizar").on("click", function () {
 
 
 
+
 /*Evento */
 
 $("#dias").on("keyup", function () {
@@ -190,7 +191,6 @@ $("#id_agregar_condicion_pago").on("click", function (e) {
 
 	}
 });
-
 $(document).on("click", ".class_eliminar_condicion_pago", function () {
 
 	debugger;
@@ -202,7 +202,6 @@ $(document).on("click", ".class_eliminar_condicion_pago", function () {
 	calcular_sumatoria_cuotas_eliminar_detalle();
 
 });
-
 $(document).on("click", ".js_lupa_comprobantes_productos", function () {
 	debugger;
 	valor_id = $(this).val();

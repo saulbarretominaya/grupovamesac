@@ -299,6 +299,13 @@ class C_guia_remision extends CI_Controller
 		echo json_encode($tipo_transporte);
 	}
 
+	public function aprobar_estado()
+	{
+		$id_guia_remision = $this->input->post("id_guia_remision");
+		$this->M_guia_remision->aprobar_estado($id_guia_remision);
+		echo json_encode($id_guia_remision);
+	}
+
 	public function index_modal_productos()
 	{
 		$id_guia_remision = $this->input->post("id_guia_remision");

@@ -1559,14 +1559,14 @@ function validar_registrar() {
 		alertify.dialog('alert').set({ transition: 'zoom', message: 'Debe registrar al menos 1 producto en el detalle de cotizacion', title: 'COTIZACION' }).show();
 		resultado_campo = false;
 	}
-	else if (count_detalle_condicion_pago == "2") {
-		alertify.dialog('alert').set({ transition: 'zoom', message: 'Debe ingresar la condicion de pago', title: 'COTIZACION' }).show();
-		resultado_campo = false;
-	}
-	else if (precio_venta_detalle_cotizacion != monto_total_detalle_condicion_pago) {
-		alert("El precio total de la cotizacion no coincide con el monto final de la condicion de pago");
-		resultado_campo = false;
-	}
+	// else if (count_detalle_condicion_pago == "2") {
+	// 	alertify.dialog('alert').set({ transition: 'zoom', message: 'Debe ingresar la condicion de pago', title: 'COTIZACION' }).show();
+	// 	resultado_campo = false;
+	// }
+	// else if (precio_venta_detalle_cotizacion != monto_total_detalle_condicion_pago) {
+	// 	alert("El precio total de la cotizacion no coincide con el monto final de la condicion de pago");
+	// 	resultado_campo = false;
+	// }
 	else if (id_condicion_pago == "0") {
 		alert("Selecione la condicion Pago")
 		resultado_campo = false;

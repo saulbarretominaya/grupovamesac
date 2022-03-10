@@ -17,7 +17,8 @@ class M_comprobantes extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             b.id_orden_despacho,
             c.id_parcial_completa,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_tipo_orden_parcial_completa) AS ds_estado_tipo_orden_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision,
             c.precio_venta,
             d.id_guia_remision,
             d.id_sucursal,
@@ -35,7 +36,7 @@ class M_comprobantes extends CI_Model
             RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON f.id_trabajador=a.id_trabajador
-            WHERE a.categoria='PRODUCTOS'
+            WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894'
             ORDER BY a.id_cotizacion desc;
         "
         );

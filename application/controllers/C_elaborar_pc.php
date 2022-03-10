@@ -25,7 +25,7 @@ class C_elaborar_pc extends CI_Controller
 		$this->load->view('elaborar_pc/V_index', $data);
 	}
 
-	public function enlace_registrar()
+	public function enlace_registrar_productos()
 
 	{
 
@@ -34,15 +34,32 @@ class C_elaborar_pc extends CI_Controller
 
 
 		$data = array(
-			'enlace_actualizar_cabecera' => $this->M_elaborar_pc->enlace_actualizar_cabecera($id_orden_despacho),
-			'enlace_actualizar_detalle' => $this->M_elaborar_pc->enlace_actualizar_detalle($id_orden_despacho, $id_parcial_completa)
+			'enlace_actualizar_cabecera_productos' => $this->M_elaborar_pc->enlace_actualizar_cabecera_productos($id_orden_despacho),
+			'enlace_actualizar_detalle_productos' => $this->M_elaborar_pc->enlace_actualizar_detalle_productos($id_orden_despacho, $id_parcial_completa)
 		);
 
 		$this->load->view('plantilla/V_header');
 		$this->load->view('plantilla/V_aside');
-		$this->load->view('elaborar_pc/V_registrar', $data);
+		$this->load->view('elaborar_pc/V_registrar_productos', $data);
 	}
 
+	public function enlace_registrar_tableros()
+
+	{
+
+		$id_orden_despacho = $this->input->get("id_orden_despacho");
+		$id_parcial_completa = $this->input->get("id_parcial_completa");
+
+
+		$data = array(
+			'enlace_actualizar_cabecera_tableros' => $this->M_elaborar_pc->enlace_actualizar_cabecera_tableros($id_orden_despacho),
+			'enlace_actualizar_detalle_tableros' => $this->M_elaborar_pc->enlace_actualizar_detalle_tableros($id_orden_despacho, $id_parcial_completa)
+		);
+
+		$this->load->view('plantilla/V_header');
+		$this->load->view('plantilla/V_aside');
+		$this->load->view('elaborar_pc/V_registrar_tableros', $data);
+	}
 
 	public function registrar()
 	{
@@ -112,11 +129,13 @@ class C_elaborar_pc extends CI_Controller
 		//Actualiza Estado en orden despacho y parciales y completas
 		$rows = $this->M_elaborar_pc->verifica_numero_filas($id_orden_despacho, $id_parcial_completa);
 		if ($rows->numero_filas == 0) {
-			$this->M_elaborar_pc->actualizar_id_estado_elaborar_pc_finalizado($id_orden_despacho);
-			$this->M_elaborar_pc->actualizar_id_estado_parcial_completa_completa($id_parcial_completa);
+			$this->M_elaborar_pc->actualizar_id_estado_elaborar_pc_orden_despacho_finalizado($id_orden_despacho);
+			$this->M_elaborar_pc->actualizar_id_tipo_orden_parcial_completa_completa($id_parcial_completa);
+			$this->M_elaborar_pc->actualizar_id_estado_parcial_completa_pendiente($id_parcial_completa);
 		} else {
-			$this->M_elaborar_pc->actualizar_id_estado_elaborar_pc_pendiente($id_orden_despacho);
-			$this->M_elaborar_pc->actualizar_id_estado_parcial_completa_parcial($id_parcial_completa);
+			$this->M_elaborar_pc->actualizar_id_estado_elaborar_pc_orden_despacho_pendiente($id_orden_despacho);
+			$this->M_elaborar_pc->actualizar_id_tipo_orden_parcial_completa_parcial($id_parcial_completa);
+			$this->M_elaborar_pc->actualizar_id_estado_parcial_completa_pendiente($id_parcial_completa);
 		}
 		//Fin de actualizacion de estados en orden despacho y parciales y completas
 
@@ -124,7 +143,6 @@ class C_elaborar_pc extends CI_Controller
 
 		echo json_encode($id_orden_despacho);
 	}
-
 
 	protected function registrar_detalle_parciales_completas(
 		$id_parcial_completa,

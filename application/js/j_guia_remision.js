@@ -216,55 +216,30 @@ $("#actualizar").on("click", function () {
 $(document).on("click", ".btn_aprobar_estado", function () {
 
 	debugger;
-	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
-	var estado_cotizacion = $(this).parents("tr").find("td")[6].innerText;
-	var id_orden_despacho = $(this).parents("tr").find("td")[7].innerText;
-	var estado_orden_despacho = $(this).parents("tr").find("td")[8].innerText;
 
-	if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "PENDIENTE") {
+	var id_guia_remision = $(this).closest('tr').find('#id_guia_remision').val();
+	var estado_guia = $(this).parents("tr").find("td")[13].innerText;
 
-		alert("Ya fue aprobado por el vendedor, pendiente por OD");
 
-	} else if (estado_cotizacion == "APROBADO" && estado_orden_despacho == "APROBADO") {
-
-		alert("Ya fue aprobado por OD, llamar al area de TI para cualquier cambio, que tenga buen dia :D");
-
-	} else if (id_orden_despacho == "") {
+	if (estado_guia == "PENDIENTE") {
 		alertify.confirm("Esta seguro que desea aprobarlo",
 			function () {
 				$.ajax({
 					async: false,
-					url: base_url + "C_cotizacion/aprobar_estado",
+					url: base_url + "C_guia_remision/aprobar_estado",
 					type: "POST",
 					dataType: "json",
 					data: {
-						id_cotizacion: id_cotizacion,
+						id_guia_remision: id_guia_remision,
 					},
 					success: function (data) {
-						window.location.href = base_url + "C_cotizacion";
+						window.location.href = base_url + "C_guia_remision";
 					},
 				});
 			});
-	} else if (id_orden_despacho != "") {
-		alertify.confirm("Esta Cotizacion ya fue aprobada anteriormente, seguro que desea hacerlo otra vez?",
-			function () {
-				$.ajax({
-					async: false,
-					url: base_url + "C_cotizacion/cambiar_estado_pendiente_cotizacion",
-					type: "POST",
-					dataType: "json",
-					data: {
-						id_cotizacion: id_cotizacion,
-						id_orden_despacho: id_orden_despacho,
-					},
-					success: function (data) {
-						window.location.href = base_url + "C_cotizacion";
-					},
-				});
-			});
+	} else if (estado_guia == "APROBADO") {
+		alert("Ya fue Aprobado");
 	}
-
-
 
 });
 $(document).on("click", ".btn_alerta_actualizar", function () {

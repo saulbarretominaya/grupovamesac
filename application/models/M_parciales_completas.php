@@ -17,6 +17,7 @@ class M_parciales_completas extends CI_Model
             c.ds_condicion_pago,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_moneda) AS ds_moneda,
             a.precio_venta,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_orden_parcial_completa) AS ds_estado_tipo_orden_parcial_completa,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_parcial_completa) AS ds_estado_parcial_completa,
             c.ds_nombre_trabajador
             FROM
@@ -48,11 +49,22 @@ class M_parciales_completas extends CI_Model
             parciales_completas a 
             LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
             LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
-            WHERE c.categoria='TABLEROS'
+            WHERE c.categoria='TABLEROS' 
             ORDER BY c.id_cotizacion desc;
             "
         );
         return $resultados->result();
+    }
+
+    public function actualizar_id_estado_parcial_completa_aprobado($id_parcial_completa)
+    {
+        return $this->db->query(
+            "
+            update parciales_completas set
+            id_estado_parcial_completa='893'
+            where id_parcial_completa='$id_parcial_completa'
+            "
+        );
     }
 
 
@@ -150,7 +162,6 @@ class M_parciales_completas extends CI_Model
         return $resultados->row();
     }
 
-
     public function index_modal_detalle_tableros($id_parcial_completa)
     {
         $resultados = $this->db->query(
@@ -179,7 +190,7 @@ class M_parciales_completas extends CI_Model
             LEFT JOIN tableros b ON b.id_tablero=a.id_tablero
             LEFT JOIN detalle_tableros c ON c.id_tablero=b.id_tablero
             LEFT JOIN detalle_parciales_completas d ON d.id_dcotizacion=a.id_dcotizacion
-            WHERE d.id_parcial_completa='$id_parcial_completa'
+            WHERE d.id_parcial_completa='$id_parcial_completa' AND d.salida_prod > '0'
             "
         );
         return $resultados->result();

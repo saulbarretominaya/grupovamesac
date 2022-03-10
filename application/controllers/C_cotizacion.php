@@ -217,12 +217,9 @@ class C_cotizacion extends CI_Controller
 
 		);
 
-		$this->insertar_detalle_condicion_pago(
-			$id_cotizacion,
-			$fecha_cuota,
-			$monto_cuota
-
-		);
+		if ($fecha_cuota != "") {
+			$this->insertar_detalle_condicion_pago($id_cotizacion, $fecha_cuota, $monto_cuota);
+		}
 
 		echo json_encode($serie_cotizacion);
 	}

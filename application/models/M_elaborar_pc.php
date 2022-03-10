@@ -61,7 +61,7 @@ class M_elaborar_pc extends CI_Model
         return $resultados->result();
     }
 
-    public function enlace_actualizar_cabecera($id_orden_despacho)
+    public function enlace_actualizar_cabecera_productos($id_orden_despacho)
     {
         $resultados = $this->db->query("
             SELECT 
@@ -106,10 +106,80 @@ class M_elaborar_pc extends CI_Model
         return $resultados->row();
     }
 
-    public function enlace_actualizar_detalle($id_orden_despacho, $id_parcial_completa)
+    public function enlace_actualizar_detalle_productos($id_orden_despacho, $id_parcial_completa)
     {
         $resultados = $this->db->query("
         SELECT
+        a.item,a.id_cotizacion,a.id_dcotizacion,
+        c.id_orden_despacho,
+        a.codigo_producto,a.descripcion_producto,
+        a.ds_unidad_medida,a.ds_marca_producto,
+        a.precio_ganancia,
+        a.d_unidad,a.d_cant_total,d.stock,
+        CASE WHEN a.precio_descuento =0 THEN a.precio_ganancia WHEN a.precio_descuento !=0 THEN a.precio_descuento END AS precio_descuento,      
+        CASE WHEN b.pendiente_prod IS NULL THEN a.cantidad  WHEN b.pendiente_prod IS NOT NULL THEN b.pendiente_prod END  AS cantidad_por_despachar,
+        CASE WHEN b.valor_venta_con_d IS NULL THEN a.valor_venta_con_d WHEN b.valor_venta_con_d IS NOT NULL THEN (a.valor_venta_con_d - b.valor_venta_con_d) END AS valor_venta_con_d
+        FROM
+        detalle_cotizacion a
+        LEFT JOIN detalle_parciales_completas b ON b.id_dcotizacion=a.id_dcotizacion
+        LEFT JOIN orden_despacho c ON c.id_cotizacion=a.id_cotizacion
+        LEFT JOIN productos d ON d.id_producto=a.id_producto
+        WHERE c.id_orden_despacho='$id_orden_despacho' AND b.pendiente_prod IS NULL
+        OR 
+        c.id_orden_despacho='$id_orden_despacho' AND b.pendiente_prod > '0'  AND b.id_parcial_completa='$id_parcial_completa'
+        ");
+        return $resultados->result();
+    }
+
+    public function enlace_actualizar_cabecera_tableros($id_orden_despacho)
+    {
+        $resultados = $this->db->query("
+            SELECT 
+            a.id_cotizacion,
+            b.id_orden_despacho,
+            a.valor_cambio,
+            DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            a.ds_nombre_trabajador,
+            a.fecha_cotizacion,
+            a.ds_nombre_cliente_proveedor,
+            a.ds_departamento_cliente_proveedor,
+            a.ds_provincia_cliente_proveedor,
+            a.ds_distrito_cliente_proveedor,
+            a.direccion_fiscal_cliente_proveedor,
+            a.email_cliente_proveedor,
+            a.clausula,
+            a.lugar_entrega,
+            a.nombre_encargado,
+            a.observacion,
+            a.ds_condicion_pago,
+            a.precio_venta,
+            id_estado_cotizacion,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
+            b.resultado_valor_cambio,
+            DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
+            id_estado_orden_despacho,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
+            c.id_cliente_proveedor,
+            c.linea_credito_dolares,
+            c.credito_unitario_dolares,
+            c.disponible_dolares,
+            b.linea_credito_uso
+            FROM
+            cotizacion a
+            RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
+            LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
+            WHERE b.id_orden_despacho ='$id_orden_despacho' AND b.id_estado_orden_despacho='862'
+               ");
+        return $resultados->row();
+    }
+
+    public function enlace_actualizar_detalle_tableros($id_orden_despacho, $id_parcial_completa)
+    {
+        $resultados = $this->db->query("
+         SELECT
         a.item,a.id_cotizacion,a.id_dcotizacion,
         c.id_orden_despacho,
         a.codigo_producto,a.descripcion_producto,
@@ -252,7 +322,11 @@ class M_elaborar_pc extends CI_Model
         return $resultados->row();
     }
 
-    public function actualizar_id_estado_elaborar_pc_pendiente($id_orden_despacho)
+
+
+
+
+    public function actualizar_id_estado_elaborar_pc_orden_despacho_pendiente($id_orden_despacho)
     {
         return $this->db->query(
             "
@@ -263,7 +337,18 @@ class M_elaborar_pc extends CI_Model
         );
     }
 
-    public function actualizar_id_estado_parcial_completa_parcial($id_parcial_completa)
+    public function actualizar_id_tipo_orden_parcial_completa_parcial($id_parcial_completa)
+    {
+        return $this->db->query(
+            "
+            update parciales_completas set
+            id_tipo_orden_parcial_completa='867'
+            where id_parcial_completa='$id_parcial_completa'
+            "
+        );
+    }
+
+    public function actualizar_id_estado_parcial_completa_pendiente($id_parcial_completa)
     {
         return $this->db->query(
             "
@@ -274,7 +359,9 @@ class M_elaborar_pc extends CI_Model
         );
     }
 
-    public function actualizar_id_estado_elaborar_pc_finalizado($id_orden_despacho)
+
+
+    public function actualizar_id_estado_elaborar_pc_orden_despacho_finalizado($id_orden_despacho)
     {
         return $this->db->query(
             "
@@ -285,16 +372,18 @@ class M_elaborar_pc extends CI_Model
         );
     }
 
-    public function actualizar_id_estado_parcial_completa_completa($id_parcial_completa)
+    public function actualizar_id_tipo_orden_parcial_completa_completa($id_parcial_completa)
     {
         return $this->db->query(
             "
             update parciales_completas set
-            id_estado_parcial_completa='893'
+            id_tipo_orden_parcial_completa='868'
             where id_parcial_completa='$id_parcial_completa'
             "
         );
     }
+
+
 
     public function actualizar_detalle_cotizacion_estado_elaboracio_pc($id_dcotizacion, $id_estado_elaborar_pc)
     {
@@ -394,7 +483,7 @@ class M_elaborar_pc extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=b.id_marca_tablero) AS marca_tablero_cabecera,
         a.precio_ganancia AS precio_u_tablero_cabecera,
         a.d AS porcentaje_descuento_tablero_cabecera,
-        a.precio_descuento AS precio_u_d_tablero_cabecera,
+        CASE WHEN a.precio_descuento =0 THEN a.precio_ganancia WHEN a.precio_descuento !=0 THEN a.precio_descuento END AS precio_u_d_tablero_cabecera,      
         a.valor_venta_con_d AS valor_venta_tablero_cabecera,
         a.dias_entrega AS dias_entrega_tablero_cabecera,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_elaborar_pc) AS ds_estado_elaborar_pc,

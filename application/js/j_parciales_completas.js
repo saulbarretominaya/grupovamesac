@@ -49,6 +49,35 @@ $("#listar_2").dataTable({
 	"ordering": false
 });
 
+$(document).on("click", ".btn_aprobar_parciales_completas", function () {
+
+	debugger;
+
+	var id_parcial_completa = $(this).parents("tr").find("td")[1].innerText;
+	var estado_orden = $(this).parents("tr").find("td")[9].innerText;
+
+
+	if (estado_orden == "PENDIENTE") {
+		alertify.confirm("Esta seguro que desea aprobarlo",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_parciales_completas/actualizar_id_estado_parcial_completa_aprobado",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_parcial_completa: id_parcial_completa,
+					},
+					success: function (data) {
+						window.location.href = base_url + "C_parciales_completas";
+					},
+				});
+			});
+	} else if (estado_orden == "APROBADO") {
+		alert("Ya fue Aprobado");
+	}
+
+});
 $(document).on("click", ".js_lupa_parciales_completas_productos", function () {
 	debugger;
 	valor_id = $(this).val();

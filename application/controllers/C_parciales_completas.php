@@ -9,7 +9,6 @@ class C_parciales_completas extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("M_parciales_completas");
-		$this->load->model("M_cotizacion");
 		$this->load->model("M_cbox");
 	}
 
@@ -25,6 +24,13 @@ class C_parciales_completas extends CI_Controller
 		$this->load->view('parciales_completas/V_index', $data);
 	}
 
+	public function actualizar_id_estado_parcial_completa_aprobado()
+	{
+		$id_parcial_completa = $this->input->post("id_parcial_completa");
+		$this->M_parciales_completas->actualizar_id_estado_parcial_completa_aprobado($id_parcial_completa);
+		echo json_encode($id_parcial_completa);
+	}
+
 	public function index_modal_productos()
 	{
 		$id_parcial_completa = $this->input->post("id_parcial_completa");
@@ -36,7 +42,6 @@ class C_parciales_completas extends CI_Controller
 
 		$this->load->view("parciales_completas/V_index_modal_productos", $data);
 	}
-
 
 	public function index_modal_tableros()
 	{

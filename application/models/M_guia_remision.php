@@ -17,7 +17,9 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             b.id_orden_despacho,
             c.id_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_tipo_orden_parcial_completa) AS ds_estado_tipo_orden_parcial_completa,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision,
             c.precio_venta,
             d.id_guia_remision,
             d.id_sucursal,
@@ -29,7 +31,7 @@ class M_guia_remision extends CI_Model
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
-            WHERE a.categoria='PRODUCTOS'
+            WHERE a.categoria='PRODUCTOS' AND c.id_estado_parcial_completa='893'
             ORDER BY c.id_parcial_completa DESC;
             "
         );
@@ -60,7 +62,7 @@ class M_guia_remision extends CI_Model
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
-            WHERE a.categoria='TABLEROS'
+            WHERE a.categoria='TABLEROS' AND c.id_estado_parcial_completa='893'
             ORDER BY c.id_parcial_completa DESC;
             "
         );
@@ -404,6 +406,17 @@ class M_guia_remision extends CI_Model
             embarque='$embarque',
             fecha_guia_remision=NOW()
             WHERE id_guia_remision='$id_guia_remision'
+            "
+        );
+    }
+
+    public function aprobar_estado($id_guia_remision)
+    {
+        return $this->db->query(
+            "
+            UPDATE guia_remision set
+            id_estado_guia_remision='894'
+            where id_guia_remision='$id_guia_remision'
             "
         );
     }

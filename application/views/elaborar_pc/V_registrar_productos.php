@@ -41,9 +41,9 @@
                         <div class="col-md-4">
                           <label for="">Vendedor</label>
                           <div class="input-group">
-                            <input type="hidden" id="id_orden_despacho" value="<?php echo $enlace_actualizar_cabecera->id_orden_despacho ?>">
+                            <input type="hidden" id="id_orden_despacho" value="<?php echo $enlace_actualizar_cabecera_productos->id_orden_despacho ?>">
                             <input type="hidden" id="hidden_item">
-                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_trabajador ?>" readonly>
+                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera_productos->ds_nombre_trabajador ?>" readonly>
                             <input type="hidden" id="id_parcial_completa_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
                           </div>
                         </div>
@@ -73,7 +73,7 @@
                               <label for="">Cliente</label>
                               <div class="input-group">
                                 <input type="hidden" class="form-control" id="id_cliente_proveedor">
-                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" value="<?php echo $enlace_actualizar_cabecera->ds_nombre_cliente_proveedor ?>" readonly>
+                                <input type="text" class="form-control" id="ds_nombre_cliente_proveedor" value="<?php echo $enlace_actualizar_cabecera_productos->ds_nombre_cliente_proveedor ?>" readonly>
                                 <span class="input-group-append">
                                   <button type="button" class="btn btn-outline-success btn-flat" data-toggle="modal" data-target="#opcion_target_clientes_proveedores" disabled>
                                     Buscar
@@ -151,19 +151,19 @@
                             <div class="col-md-2">
                               <label for="">Departamento</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera->ds_departamento_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="ds_departamento_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera_productos->ds_departamento_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label for="">Provincia</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera->ds_provincia_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="ds_provincia_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera_productos->ds_provincia_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-2">
                               <label for="">Distrito</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera->ds_distrito_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="ds_distrito_cliente_proveedor" readonly><?php echo $enlace_actualizar_cabecera_productos->ds_distrito_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -171,25 +171,25 @@
                             <div class="col-md-3">
                               <label for="">Direccion Fiscal</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly><?php echo $enlace_actualizar_cabecera->direccion_fiscal_cliente_proveedor ?></textarea>
+                                <textarea class="form-control" rows="1" id="direccion_fiscal_cliente_proveedor" autocomplete="nope" readonly><?php echo $enlace_actualizar_cabecera_productos->direccion_fiscal_cliente_proveedor ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Correo Electronico</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" readonly value="<?php echo $enlace_actualizar_cabecera->email_cliente_proveedor ?>">
+                                <input type="text" class="form-control" id="email_cliente_proveedor" autocomplete="nope" readonly value="<?php echo $enlace_actualizar_cabecera_productos->email_cliente_proveedor ?>">
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Clausula</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="clausula" readonly><?php echo $enlace_actualizar_cabecera->clausula ?></textarea>
+                                <textarea class="form-control" rows="1" id="clausula" readonly><?php echo $enlace_actualizar_cabecera_productos->clausula ?></textarea>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <label for="">Lugar Entrega</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="lugar_entrega" readonly><?php echo $enlace_actualizar_cabecera->lugar_entrega ?></textarea>
+                                <textarea class="form-control" rows="1" id="lugar_entrega" readonly><?php echo $enlace_actualizar_cabecera_productos->lugar_entrega ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -197,13 +197,13 @@
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Nombre Encargado</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres" readonly value="<?php echo $enlace_actualizar_cabecera->nombre_encargado ?>">
+                                <input type="text" class="form-control" id="nombre_encargado" value="Richard Torres Torres" readonly value="<?php echo $enlace_actualizar_cabecera_productos->nombre_encargado ?>">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <label for="tipo_trabajador">Observacion</label>
                               <div class="input-group">
-                                <textarea class="form-control" rows="1" id="observacion" readonly><?php echo $enlace_actualizar_cabecera->observacion ?></textarea>
+                                <textarea class="form-control" rows="1" id="observacion" readonly><?php echo $enlace_actualizar_cabecera_productos->observacion ?></textarea>
                               </div>
                             </div>
                           </div>
@@ -242,8 +242,8 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <?php if (!empty($enlace_actualizar_detalle)) : ?>
-                                  <?php foreach ($enlace_actualizar_detalle as $index) : ?>
+                                <?php if (!empty($enlace_actualizar_detalle_productos)) : ?>
+                                  <?php foreach ($enlace_actualizar_detalle_productos as $index) : ?>
                                     <tr>
                                       <input type="hidden" value="<?php echo $index->id_dcotizacion; ?>" name="id_dcotizacion[]">
                                       <td class="table-danger"><input type="text" class="form-control" id="item" name="item[]" readonly></td>
@@ -268,7 +268,6 @@
                                     </tr>
                                   <?php endforeach; ?>
                                 <?php endif; ?>
-                              </tbody>
                               </tbody>
                             </table>
                           </div>

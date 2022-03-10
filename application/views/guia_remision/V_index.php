@@ -41,7 +41,10 @@
                         <th>Moneda</th>
                         <th>Precio venta</th>
                         <th>Vendedor</th>
-                        <th>Estado OR</th>
+                        <th>Tipo Orden</th>
+                        <th>Estado Orden</th>
+                        <th>Estado Guia</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -49,17 +52,43 @@
                     <tbody>
                       <?php if (!empty($index)) : ?>
                         <?php foreach ($index as $index) :
-                          switch ($index->ds_estado_parcial_completa) {
+
+                          switch ($index->ds_estado_tipo_orden_parcial_completa) {
                             case "PARCIAL":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
                             case "COMPLETA":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              break;
+                          }
+
+                          switch ($index->ds_estado_parcial_completa) {
+                            case "PENDIENTE":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "APROBADO":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            case "ANULADO":
+                              $ds_estado_parcial_completa = '<div><span class="badge bg-danger">ANULADO</span></div>';
+                              break;
+                          }
+
+                          switch ($index->ds_estado_guia_remision) {
+                            case "PENDIENTE":
+                              $ds_estado_guia_remision = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "APROBADO":
+                              $ds_estado_guia_remision = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            default:
+                              $ds_estado_guia_remision = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
                           }
 
                         ?>
                           <tr>
+                            <input type="hidden" id="id_guia_remision" value="<?php echo $index->id_guia_remision; ?>">
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
@@ -71,11 +100,15 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
+                            <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
                             <td><?php echo $ds_estado_parcial_completa; ?></td>
+                            <td><?php echo $ds_estado_guia_remision; ?></td>
                             <?php if ($index->id_guia_remision != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_guia_remision_productos" value="<?php echo $index->id_guia_remision; ?>" data-toggle="modal" data-target="#id_target_guia_remision_productos"><span class="fas fa-search-plus"></span></button></td>
                               <td><a href=" <?php echo base_url(); ?>C_guia_remision/enlace_actualizar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                              <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
                             <?php } else { ?>
+                              <td><button type="button" class="btn btn-outline-info btn-sm "><span class="fas fa-angle-double-right"></span></button></td>
                               <td><button type="button" class="btn btn-outline-info btn-sm "><span class="fas fa-angle-double-right"></span></button></td>
                               <td><a href=" <?php echo base_url(); ?>C_guia_remision/enlace_registrar/<?php echo $index->id_parcial_completa; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                             <?php } ?>

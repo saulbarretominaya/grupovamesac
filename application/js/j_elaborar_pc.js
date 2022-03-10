@@ -148,6 +148,7 @@ $("#registrar").on("click", function () {
 $(document).on("keyup", "#salida_prod", function () {
 
 	var cant = Number($(this).parents("tr").find("td")[10].innerText);
+	var stock = Number($(this).parents("tr").find("td")[12].innerText);
 	var precio_u = Number($(this).parents("tr").find("td")[6].innerText);
 	var precio_u_d = Number($(this).parents("tr").find("td")[7].innerText);
 	var d_unidad = Number($(this).parents("tr").find("td")[8].innerText);
@@ -167,8 +168,21 @@ $(document).on("keyup", "#salida_prod", function () {
 		valor_venta_total_con_d();
 		igv();
 		precio_venta();
-	}
-	else if (salida_prod > cant) {
+	} else if (salida_prod > stock) {
+		alert("La salida de productos es mayor que el Stok");
+		$(this).closest('tr').find('#item').val("");
+		$(this).closest('tr').find('#salida_prod').val("");
+		$(this).closest('tr').find('#pendiente_prod').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
+		generar_item();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	} else if (salida_prod > cant) {
 		alert("La salida de productos es mayor que la cantidad que se registro");
 		$(this).closest('tr').find('#item').val("");
 		$(this).closest('tr').find('#salida_prod').val("");
@@ -199,8 +213,7 @@ $(document).on("keyup", "#salida_prod", function () {
 		valor_venta_total_con_d();
 		igv();
 		precio_venta();
-	}
-	else if (salida_prod == "") {
+	} else if (salida_prod == "") {
 		$(this).closest('tr').find('#item').val("");
 		$(this).closest('tr').find('#salida_prod').val("");
 		$(this).closest('tr').find('#pendiente_prod').val("");
@@ -213,8 +226,99 @@ $(document).on("keyup", "#salida_prod", function () {
 		valor_venta_total_con_d();
 		igv();
 		precio_venta();
+	} else {
+		pendiente_prod = cant - salida_prod;
+		d_cant_total = d_unidad * salida_prod;
+		valor_venta_sin_d = precio_u * salida_prod;
+		valor_venta_con_d = precio_u_d * salida_prod;
+		$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
+		$(this).closest('tr').find('#d_cant_total').val(d_cant_total.toFixed(2));
+		$(this).closest('tr').find('#valor_venta_sin_d').val(valor_venta_sin_d.toFixed(5));
+		$(this).closest('tr').find('#valor_venta_con_d').val(valor_venta_con_d.toFixed(5));
+		generar_item();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+		if (pendiente_prod == 0) {
+			$(this).closest('tr').find('#id_estado_elaborar_pc').val("870"); // 870 hace referencia estado FINALIZADO POR BD
+		} else {
+			$(this).closest('tr').find('#id_estado_elaborar_pc').val("869"); // 869 hace referencia estado PENDIENTE POR BD
+		}
 	}
-	else {
+
+
+
+});
+
+$(document).on("keyup", "#salida_prod_tablero", function () {
+
+	var cant = Number($(this).parents("tr").find("td")[10].innerText);
+	var precio_u = Number($(this).parents("tr").find("td")[6].innerText);
+	var precio_u_d = Number($(this).parents("tr").find("td")[7].innerText);
+	var d_unidad = Number($(this).parents("tr").find("td")[8].innerText);
+	var salida_prod = $(this).closest('tr').find('#salida_prod_tablero').val();
+	debugger;
+	if (isNaN(salida_prod)) {
+		console.log("No puede ingresar datos isNaN");
+		$(this).closest('tr').find('#item').val("");
+		$(this).closest('tr').find('#pendiente_prod').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
+		$(this).closest('tr').find('#salida_prod_tablero').val("");
+		generar_item();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	} else if (salida_prod > cant) {
+		alert("La salida de tableros es mayor que la cantidad que se registro");
+		$(this).closest('tr').find('#item').val("");
+		$(this).closest('tr').find('#salida_prod_tablero').val("");
+		$(this).closest('tr').find('#pendiente_prod').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
+		generar_item();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	} else if (salida_prod == "0") {
+		$(this).closest('tr').find('#item').val("");
+		pendiente_prod = cant - salida_prod;
+		d_cant_total = d_unidad * salida_prod;
+		valor_venta_sin_d = precio_u * salida_prod;
+		valor_venta_con_d = precio_u_d * salida_prod;
+		$(this).closest('tr').find('#pendiente_prod').val(pendiente_prod);
+		$(this).closest('tr').find('#d_cant_total').val(d_cant_total.toFixed(2));
+		$(this).closest('tr').find('#valor_venta_sin_d').val(valor_venta_sin_d.toFixed(5));
+		$(this).closest('tr').find('#valor_venta_con_d').val(valor_venta_con_d.toFixed(5));
+		$(this).closest('tr').find('#salida_prod_tablero').val(0);
+		generar_item();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	} else if (salida_prod == "") {
+		$(this).closest('tr').find('#item').val("");
+		$(this).closest('tr').find('#salida_prod_tablero').val("");
+		$(this).closest('tr').find('#pendiente_prod').val("");
+		$(this).closest('tr').find('#d_cant_total').val("");
+		$(this).closest('tr').find('#valor_venta_sin_d').val("");
+		$(this).closest('tr').find('#valor_venta_con_d').val("");
+		generar_item();
+		descuento_total();
+		valor_venta_total_sin_d();
+		valor_venta_total_con_d();
+		igv();
+		precio_venta();
+	} else {
 		pendiente_prod = cant - salida_prod;
 		d_cant_total = d_unidad * salida_prod;
 		valor_venta_sin_d = precio_u * salida_prod;
@@ -316,6 +420,15 @@ function generar_item() {
 	var acumulador = 0;
 	$("#id_table_detalle_parciales_completas tbody tr").each(function () {
 		var salida_prod = Number($(this).closest('tr').find('#salida_prod').val());
+		debugger;
+		if (salida_prod > 0) {
+			acumulador = acumulador + 1;
+			$(this).closest('tr').find('#item').val(acumulador);
+		}
+	});
+
+	$("#id_table_detalle_parciales_completas tbody tr").each(function () {
+		var salida_prod = Number($(this).closest('tr').find('#salida_prod_tablero').val());
 		debugger;
 		if (salida_prod > 0) {
 			acumulador = acumulador + 1;

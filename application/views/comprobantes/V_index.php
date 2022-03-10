@@ -45,7 +45,8 @@
                         <th>Moneda</th>
                         <th>Precio venta</th>
                         <th>Vendedor</th>
-                        <th>Estado OR</th>
+                        <th>Tipo Orden</th>
+                        <th>Estado Guia</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -53,12 +54,24 @@
                     <tbody>
                       <?php if (!empty($index)) : ?>
                         <?php foreach ($index as $index) :
-                          switch ($index->ds_estado_parcial_completa) {
+
+                          switch ($index->ds_estado_tipo_orden_parcial_completa) {
                             case "PARCIAL":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-dark">PARCIAL</span></div>';
                               break;
                             case "COMPLETA":
-                              $ds_estado_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              $ds_estado_tipo_orden_parcial_completa = '<div><span class="badge bg-primary">COMPLETA</span></div>';
+                              break;
+                          }
+                          switch ($index->ds_estado_guia_remision) {
+                            case "PENDIENTE":
+                              $ds_estado_guia_remision = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "APROBADO":
+                              $ds_estado_guia_remision = '<div><span class="badge bg-success">APROBADO</span></div>';
+                              break;
+                            default:
+                              $ds_estado_guia_remision = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
                           }
 
@@ -78,7 +91,8 @@
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
-                            <td><?php echo $ds_estado_parcial_completa; ?></td>
+                            <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
+                            <td><?php echo $ds_estado_guia_remision; ?></td>
                             <?php if ($index->id_comprobante != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
                               <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_actualizar/<?php echo $index->id_comprobante; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>

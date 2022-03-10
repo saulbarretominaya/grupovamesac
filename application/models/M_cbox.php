@@ -487,15 +487,7 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
-    //49
-    public function cbox_tipo_orden()
-    {
-        $resultados = $this->db->query("
-                           SELECT a.*,b.* FROM multitablas a 
-                           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='49';");
-        return $resultados->result();
-    }
+    //49 -- BORRADA POR BD
 
     //50
     public function cbox_empresa()
