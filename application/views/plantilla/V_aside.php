@@ -2,10 +2,9 @@
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
-      <!-- <img src="<?php echo base_url() ?>plantilla/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-      <span class="brand-text font-weight-light">Empresa</span>
-    </a>
+    <center><a class="brand-link" style="text-decoration:none">
+        <span class="brand-text font-weight-light"> <?php echo $this->session->userdata("ds_accesos_empresas") ?></span>
+      </a></center>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -91,6 +90,12 @@
                 <a href="<?php echo base_url() . "C_productos" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Productos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_salida_productos" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Salida Productos</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -259,12 +264,11 @@
             </ul>
           </li>
 
-          <!-- Reporte-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-file-medical-alt"></i>
               <p>
-                Reporte
+                Reportes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -272,13 +276,11 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "#" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reporte</p>
+                  <p>Reportes</p>
                 </a>
               </li>
             </ul>
-          </li> -->
-          <!-- fin reporte-->
-
+          </li>
 
         </ul>
       </nav>

@@ -47,6 +47,7 @@
                         <th>Vendedor</th>
                         <th>Tipo Orden</th>
                         <th>Estado Guia</th>
+                        <th>Estado Comprobante</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -75,6 +76,21 @@
                               break;
                           }
 
+                          switch ($index->ds_estado_comprobante) {
+                            case "PENDIENTE":
+                              $ds_estado_comprobante = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "PENDIENTE POR FACTURAR":
+                              $ds_estado_comprobante = '<div><span class="badge bg-dark">PENDIENTE POR FACTURAR</span></div>';
+                              break;
+                            case "FACTURADO":
+                              $ds_estado_comprobante = '<div><span class="badge bg-success">FACTURADO</span></div>';
+                              break;
+                            default:
+                              $ds_estado_comprobante = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                          }
+
                         ?>
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
@@ -93,6 +109,7 @@
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
                             <td><?php echo $ds_estado_guia_remision; ?></td>
+                            <td><?php echo $ds_estado_comprobante; ?></td>
                             <?php if ($index->id_comprobante != "") { ?>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
                               <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_actualizar/<?php echo $index->id_comprobante; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
@@ -145,6 +162,8 @@
                         <th>Vendedor</th>
                         <th>Tipo Orden</th>
                         <th>Estado Guia</th>
+                        <th>Estado Comprobante</th>
+
                         <th></th>
                         <th></th>
                       </tr>
@@ -173,6 +192,21 @@
                               break;
                           }
 
+                          switch ($index->ds_estado_comprobante) {
+                            case "PENDIENTE":
+                              $ds_estado_comprobante = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                            case "PENDIENTE POR FACTURAR":
+                              $ds_estado_comprobante = '<div><span class="badge bg-dark">PENDIENTE POR FACTURAR</span></div>';
+                              break;
+                            case "FACTURADO":
+                              $ds_estado_comprobante = '<div><span class="badge bg-success">FACTURADO</span></div>';
+                              break;
+                            default:
+                              $ds_estado_comprobante = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
+                              break;
+                          }
+
 
                         ?>
                           <tr>
@@ -192,6 +226,7 @@
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
                             <td><?php echo $ds_estado_guia_remision; ?></td>
+                            <td><?php echo $ds_estado_comprobante; ?></td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_tableros" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_tableros"><span class="fas fa-search-plus"></span></button></td>
                             <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                           </tr>

@@ -37,8 +37,6 @@
                         <th>Fecha O. Despacho</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
-                        <!-- <th>Linea Credito $ </th> -->
-                        <!-- <th>###############</th> -->
                         <th>Tipo Cambio</th>
                         <th>Resultado Valor $</th>
                         <th>Moneda</th>
@@ -78,8 +76,6 @@
                             <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
-                            <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
-                            <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
                             <td><?php echo $index->valor_cambio; ?></td>
                             <td><?php echo $index->resultado_valor_cambio; ?></td>
                             <td><?php echo $index->ds_moneda; ?></td>
@@ -125,8 +121,6 @@
                         <th>Fecha O. Despacho</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
-                        <!-- <th>Linea Credito $ </th> -->
-                        <!-- <th>###############</th> -->
                         <th>Tipo Cambio</th>
                         <th>Resultado Valor $</th>
                         <th>Moneda</th>
@@ -167,8 +161,6 @@
                             <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
-                            <!-- <td><?php echo $index->disponible_dolares; ?></td> -->
-                            <!-- <td><?php echo $index->linea_credito_uso; ?></td> -->
                             <td><?php echo $index->valor_cambio; ?></td>
                             <td><?php echo $index->resultado_valor_cambio; ?></td>
                             <td><?php echo $index->ds_moneda; ?></td>

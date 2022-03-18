@@ -3,10 +3,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>
-              <marquee>BIENVENIDOS AL SISTEMA</marquee>
-
-              <!-- <a href="<?php echo base_url(); ?>C_usuarios/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a> -->
+            <h1>Salida Productos
+              <!-- <a href="<?php echo base_url(); ?>C_productos/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a> -->
             </h1>
           </div>
         </div>
@@ -17,15 +15,19 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <!-- <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Usuario</th>
-                  <th>Nombres Completos</th>
-                  <th>Accesos Empresas</th>
-                  <th>Trabaja RRHH</th>
-                  <th>Sucursal</th>
-                  <th>Rol</th>
+                  <th>Almacen</th>
+                  <th>Codigo</th>
+                  <th>Descripcion</th>
+                  <th>U.M</th>
+                  <th>Marca</th>
+                  <th>Grupo</th>
+                  <th>Moneda</th>
+                  <th>Precio Costo</th>
+                  <th>Precio Unitario</th>
+                  <th>Stock</th>
                   <th></th>
                 </tr>
               </thead>
@@ -33,18 +35,22 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->usuario; ?></td>
-                      <td><?php echo $index->ds_nombre_usuario; ?></td>
-                      <td><?php echo $index->ds_accesos_empresas; ?></td>
-                      <td><?php echo $index->ds_trabaja_rrhh; ?></td>
-                      <td><?php echo $index->ds_sucursal; ?></td>
-                      <td><?php echo $index->ds_rol_usuario; ?></td>
-                      <td><a href=" <?php echo base_url(); ?>C_usuarios/enlace_actualizar/<?php echo $index->id_usuario; ?>" class="btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <td><?php echo $index->ds_almacen; ?></td>
+                      <td><?php echo $index->codigo_producto; ?></td>
+                      <td><?php echo $index->descripcion_producto; ?></td>
+                      <td><?php echo $index->ds_unidad_medida; ?></td>
+                      <td><?php echo $index->ds_marca_producto; ?></td>
+                      <td><?php echo $index->ds_grupo; ?></td>
+                      <td><?php echo $index->ds_moneda; ?></td>
+                      <td><?php echo $index->precio_costo; ?></td>
+                      <td><?php echo $index->precio_unitario; ?></td>
+                      <td><?php echo $index->stock; ?></td>
+                      <td><a href="<?php echo base_url(); ?>C_productos/enlace_actualizar/<?php echo $index->id_producto; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
-            </table> -->
+            </table>
           </div>
           <!-- /.card-body -->
         </div>
@@ -106,7 +112,7 @@
     var base_url = "<?php echo base_url(); ?>";
   </script>
 
-  <script src="<?php echo base_url() ?>application/js/j_usuarios.js"></script>
+  <script src="<?php echo base_url() ?>application/js/j_productos.js"></script>
 
   </body>
 

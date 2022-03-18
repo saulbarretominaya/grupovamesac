@@ -11,7 +11,7 @@ class M_inicio extends CI_Model
       "
       SELECT
       a.id_usuario,a.id_trabajador,
-      a.usuario,
+      a.usuario,a.id_empresa,
       (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_accesos_empresas,
       (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_rol) AS ds_rol_usuario,
       (SELECT ruc FROM detalle_multitablas WHERE id_dmultitabla=a.id_empresa) AS ds_ruc_empresa,

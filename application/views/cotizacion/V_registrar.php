@@ -497,13 +497,13 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-4">
-                              <label>&nbsp;</label>
+                              <label>Moneda</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
                               </div>
                             </div>
                             <div class="col-md-8">
-                              <label for="">Precio Unitario</label>
+                              <label>Precio Unitario</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="precio_unitario" readonly>
                               </div>

@@ -53,7 +53,7 @@ $("#listar").dataTable({
 
 $("#registrar").on("click", function () {
 
-	validar_registrar();
+	//validar_registrar();
 
 	if (resultado_campo == true) {
 
@@ -289,12 +289,12 @@ function registrar() {
 	var tipo_cliente_pago = $("#tipo_cliente_pago").val();
 	var id_trabajador = $("#id_trabajador").val();
 	var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
-
-	debugger;
+	//Empresa
+	var id_cliente_proveedor_empresa = $("#id_cliente_proveedor_empresa").val();
 
 	$.ajax({
 		async: false,
-		url: base_url + "C_clientes_proveedores/insertar",
+		url: base_url + "C_clientes_proveedores/registrar",
 		type: "POST",
 		dataType: "json",
 		data: {
@@ -333,7 +333,9 @@ function registrar() {
 			contacto_cobranza: contacto_cobranza,
 			tipo_cliente_pago: tipo_cliente_pago,
 			id_trabajador: id_trabajador,
-			ds_nombre_trabajador: ds_nombre_trabajador
+			ds_nombre_trabajador: ds_nombre_trabajador,
+			//Empresa
+			id_cliente_proveedor_empresa: id_cliente_proveedor_empresa,
 
 		},
 		success: function (data) {

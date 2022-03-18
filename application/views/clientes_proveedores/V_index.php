@@ -23,7 +23,7 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Codigo</th>
+                  <th>Codigo Cli/Pro</th>
                   <th>Nombre / Razon Social</th>
                   <th>DNI / RUC </th>
                   <th>Tipo Persona</th>
@@ -37,7 +37,7 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_cliente_proveedor; ?></td>
+                      <td><?php echo $index->id_cliente_proveedor_empresa; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->num_documento; ?></td>
                       <td><?php echo $index->ds_tipo_persona; ?></td>

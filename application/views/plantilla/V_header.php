@@ -52,7 +52,11 @@
   </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+
+<body class="sidebar-mini layout-fixed" style="height: auto;">
+
+
   <div class="wrapper">
 
     <!-- Preloader -->

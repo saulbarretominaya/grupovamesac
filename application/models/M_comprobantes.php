@@ -19,6 +19,7 @@ class M_comprobantes extends CI_Model
             c.id_parcial_completa,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_tipo_orden_parcial_completa) AS ds_estado_tipo_orden_parcial_completa,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=e.id_estado_comprobante) AS ds_estado_comprobante,   
             c.precio_venta,
             d.id_guia_remision,
             d.id_sucursal,
@@ -56,8 +57,9 @@ class M_comprobantes extends CI_Model
             b.id_orden_despacho,
             c.id_parcial_completa,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_tipo_orden_parcial_completa) AS ds_estado_tipo_orden_parcial_completa,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision,   
-            c.precio_venta,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision, 
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=e.id_estado_comprobante) AS ds_estado_comprobante,   
+             c.precio_venta,
             d.id_guia_remision,
             d.id_sucursal,
             d.ds_serie_guia_remision,
@@ -398,6 +400,17 @@ class M_comprobantes extends CI_Model
                 monto_total_condicion_pago='$monto_total_condicion_pago',
                 observacion='$observacion'
             WHERE id_comprobante='$id_comprobante'
+            "
+        );
+    }
+
+    public function actualizar_estado_pendiente_por_facturar($id_comprobante)
+    {
+        return $this->db->query(
+            "
+            UPDATE comprobantes set
+            id_estado_comprobante='900'
+            where id_comprobante='$id_comprobante'
             "
         );
     }

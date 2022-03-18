@@ -7,10 +7,14 @@ class M_cotizacion extends CI_Model
 
     public function index()
     {
+
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT
             a.id_cotizacion,
+            a.id_cotizacion_empresa,
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             a.ds_nombre_cliente_proveedor,
@@ -20,14 +24,16 @@ class M_cotizacion extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
+            d.id_empresa
             FROM
             cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_cotizacion c ON c.id_cotizacion=a.id_cotizacion
-            where a.categoria='PRODUCTOS'
+            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
+            WHERE a.categoria='PRODUCTOS' AND d.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
-            ORDER BY a.id_cotizacion desc;
+            ORDER BY a.id_cotizacion DESC;
             "
         );
         return $resultados->result();
@@ -35,10 +41,13 @@ class M_cotizacion extends CI_Model
 
     public function index_2()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT
             a.id_cotizacion,
+            a.id_cotizacion_empresa,
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
             a.ds_nombre_cliente_proveedor,
@@ -48,12 +57,14 @@ class M_cotizacion extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
+            d.id_empresa
             FROM
             cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_cotizacion c ON c.id_cotizacion=a.id_cotizacion
-            where a.categoria='TABLEROS'
+            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
+            where a.categoria='TABLEROS' AND d.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion desc;
             "

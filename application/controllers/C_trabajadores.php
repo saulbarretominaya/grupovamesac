@@ -60,7 +60,7 @@ class C_trabajadores extends CI_Controller
         $this->load->view('trabajadores/V_registrar', $data);
     }
 
-    public function insertar()
+    public function registrar()
     {
         $num_documento = $this->input->post("num_documento");
         $nombres = $this->input->post("nombres");
@@ -86,31 +86,65 @@ class C_trabajadores extends CI_Controller
         $distrito = $this->input->post("distrito");
         $id_empresa = $this->input->post("id_empresa");
 
-        $this->M_trabajadores->insertar(
-            $num_documento,
-            $nombres,
-            $ape_paterno,
-            $ape_materno,
-            $email,
-            $fecha_nacimiento,
-            $lugar_nacimiento,
-            $domicilio,
-            $referencia,
-            $telefono,
-            $celular,
-            $tipo_trabajador,
-            $tipo_documento,
-            $almacen,
-            $cargo_trabajador,
-            $sexo,
-            $nacionalidad,
-            $estado_civil,
-            $grado_instruccion,
-            $departamento,
-            $provincia,
-            $distrito,
-            $id_empresa
-        );
+        if ($id_empresa == "3") {
+            $this->M_trabajadores->registrar_grupo_vame_trabajadores();
+            $id_trabajador_empresa = $this->M_trabajadores->lastID();
+            $this->M_trabajadores->registrar(
+                $num_documento,
+                $nombres,
+                $ape_paterno,
+                $ape_materno,
+                $email,
+                $fecha_nacimiento,
+                $lugar_nacimiento,
+                $domicilio,
+                $referencia,
+                $telefono,
+                $celular,
+                $tipo_trabajador,
+                $tipo_documento,
+                $almacen,
+                $cargo_trabajador,
+                $sexo,
+                $nacionalidad,
+                $estado_civil,
+                $grado_instruccion,
+                $departamento,
+                $provincia,
+                $distrito,
+                $id_empresa,
+                $id_trabajador_empresa
+            );
+        } else if ($id_empresa == "4") {
+            $this->M_trabajadores->registrar_inversiones_alpev_trabajadores();
+            $id_trabajador_empresa = $this->M_trabajadores->lastID();
+            $this->M_trabajadores->registrar(
+                $num_documento,
+                $nombres,
+                $ape_paterno,
+                $ape_materno,
+                $email,
+                $fecha_nacimiento,
+                $lugar_nacimiento,
+                $domicilio,
+                $referencia,
+                $telefono,
+                $celular,
+                $tipo_trabajador,
+                $tipo_documento,
+                $almacen,
+                $cargo_trabajador,
+                $sexo,
+                $nacionalidad,
+                $estado_civil,
+                $grado_instruccion,
+                $departamento,
+                $provincia,
+                $distrito,
+                $id_empresa,
+                $id_trabajador_empresa
+            );
+        }
 
         echo json_encode($num_documento);
     }

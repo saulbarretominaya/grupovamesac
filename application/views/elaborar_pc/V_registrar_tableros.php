@@ -231,7 +231,7 @@
                                   <th>Precio U/D</th>
                                   <th>D Unidad</th>
                                   <th>D Cant/Total</th>
-                                  <th>Cant</th>
+                                  <th>Cant Tabl</th>
                                   <th>Valor Venta</th>
                                   <th class="table-info">Salida Tabl</th>
                                   <th class="table-info">Pendiente Tabl</th>

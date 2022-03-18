@@ -135,7 +135,7 @@ class M_compras_cobranzas extends CI_Model
     ) {
         return $this->db->query(
             "
-        INSERT INTO detalle_programacion_pagos
+        INSERT INTO detalle_condicion_pagos_compras_cobranzas
         (
         id_dprogramacion_pago,
         id_compra_cobranza,fecha_cuota,monto_cuota
@@ -229,7 +229,7 @@ class M_compras_cobranzas extends CI_Model
             DATE_FORMAT(a.fecha_cuota,'%d/%m/%Y') AS fecha_cuota,
             a.monto_cuota
             FROM 
-            detalle_programacion_pagos a
+            detalle_condicion_pagos_compras_cobranzas a
             WHERE a.id_compra_cobranza ='$id_compra_cobranza'
         "
         );

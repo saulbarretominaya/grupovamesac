@@ -23,7 +23,7 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-
+                  <th>Codigo Trabajador</th>
                   <th>Tipo Documento</th>
                   <th>N° Documento</th>
                   <th>Nombres</th>
@@ -42,6 +42,7 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
+                      <td><?php echo $index->id_trabajador_empresa; ?></td>
                       <td><?php echo $index->ds_tipo_documento; ?></td>
                       <td><?php echo $index->num_documento; ?></td>
                       <td><?php echo $index->nombres; ?></td>

@@ -238,6 +238,9 @@ class C_comprobantes extends CI_Controller
 			$this->registrar_detalle_condicion_pago($id_comprobante, $fecha_cuota, $monto_cuota);
 		}
 
+		$this->M_comprobantes->actualizar_estado_pendiente_por_facturar($id_comprobante);
+
+
 		echo json_encode($id_tipo_comprobante);
 	}
 
@@ -289,11 +292,17 @@ class C_comprobantes extends CI_Controller
 			$observacion
 		);
 
+		//Le pregunta antes que elimine
 		if ($id_dcondicion_pago_eliminar != "") {
 			$this->eliminar_detalle_condicion_pago($id_dcondicion_pago_eliminar);
-		} else if ($fecha_cuota != "") {
+		}
+
+		//Le pregunta antes que registre
+		if ($fecha_cuota != "") {
 			$this->registrar_detalle_condicion_pago($id_comprobante, $fecha_cuota, $monto_cuota);
 		}
+
+		$this->M_comprobantes->actualizar_estado_pendiente_por_facturar($id_comprobante);
 
 		echo json_encode($id_comprobante);
 	}

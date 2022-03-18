@@ -52,7 +52,7 @@ $("#listar").dataTable({
 
 $("#registrar").on("click", function () {
 
-	validar_registrar();
+	//validar_registrar();
 
 	if (resultado_campo == true) {
 
@@ -80,9 +80,10 @@ $("#registrar").on("click", function () {
 		var distrito = $("#distrito").val();
 		var id_empresa = $("#id_empresa").val();
 
+
 		$.ajax({
 			async: false,
-			url: base_url + "C_trabajadores/insertar",
+			url: base_url + "C_trabajadores/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -192,7 +193,6 @@ $("#actualizar").on("click", function () {
 
 	}
 });
-
 
 function validar_registrar() {
 

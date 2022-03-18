@@ -61,7 +61,7 @@ class C_clientes_proveedores extends CI_Controller
         // $this->load->view('plantilla/V_footer');
     }
 
-    public function insertar()
+    public function registrar()
     {
         $origen = $this->input->post("origen");
         $condicion = $this->input->post("condicion");
@@ -100,47 +100,94 @@ class C_clientes_proveedores extends CI_Controller
 
         $id_trabajador = $this->input->post("id_trabajador");
         $ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+        $id_cliente_proveedor_empresa = $this->input->post("id_cliente_proveedor_empresa");
 
 
-
-        $this->M_clientes_proveedores->insertar(
-            $origen,
-            $condicion,
-            $tipo_persona,
-            $tipo_persona_sunat,
-            $tipo_documento,
-            $num_documento,
-            $nombres,
-            $ape_paterno,
-            $ape_materno,
-            $razon_social,
-            $direccion_fiscal,
-            $direccion_alm1,
-            $direccion_alm2,
-            $departamento,
-            $provincia,
-            $distrito,
-            $telefono,
-            $celular,
-            $tipo_giro,
-            $condicion_pago,
-            $linea_credito_soles,
-            $credito_unitario_soles,
-            $disponible_soles,
-            $linea_credito_dolares,
-            $credito_unitario_dolares,
-            $disponible_dolares,
-            $linea_opcional,
-            $linea_opcional_unitaria,
-            $linea_disponible,
-            $email,
-            $contacto_registro,
-            $email_cobranza,
-            $contacto_cobranza,
-            $tipo_cliente_pago,
-            $id_trabajador,
-            $ds_nombre_trabajador,
-        );
+        if ($id_cliente_proveedor_empresa == "100") {
+            $this->M_clientes_proveedores->registrar_grupo_vame_clientes_proveedores();
+            $id_cliente_proveedor_empresa = $this->M_clientes_proveedores->lastID();
+            $this->M_clientes_proveedores->registrar(
+                $origen,
+                $condicion,
+                $tipo_persona,
+                $tipo_persona_sunat,
+                $tipo_documento,
+                $num_documento,
+                $nombres,
+                $ape_paterno,
+                $ape_materno,
+                $razon_social,
+                $direccion_fiscal,
+                $direccion_alm1,
+                $direccion_alm2,
+                $departamento,
+                $provincia,
+                $distrito,
+                $telefono,
+                $celular,
+                $tipo_giro,
+                $condicion_pago,
+                $linea_credito_soles,
+                $credito_unitario_soles,
+                $disponible_soles,
+                $linea_credito_dolares,
+                $credito_unitario_dolares,
+                $disponible_dolares,
+                $linea_opcional,
+                $linea_opcional_unitaria,
+                $linea_disponible,
+                $email,
+                $contacto_registro,
+                $email_cobranza,
+                $contacto_cobranza,
+                $tipo_cliente_pago,
+                $id_trabajador,
+                $ds_nombre_trabajador,
+                $id_cliente_proveedor_empresa
+            );
+        } else if ($id_cliente_proveedor_empresa == "200") {
+            $this->M_clientes_proveedores->registrar_inversiones_alpev_clientes_proveedores();
+            $id_cliente_proveedor_empresa = $this->M_clientes_proveedores->lastID();
+            $this->M_clientes_proveedores->registrar(
+                $origen,
+                $condicion,
+                $tipo_persona,
+                $tipo_persona_sunat,
+                $tipo_documento,
+                $num_documento,
+                $nombres,
+                $ape_paterno,
+                $ape_materno,
+                $razon_social,
+                $direccion_fiscal,
+                $direccion_alm1,
+                $direccion_alm2,
+                $departamento,
+                $provincia,
+                $distrito,
+                $telefono,
+                $celular,
+                $tipo_giro,
+                $condicion_pago,
+                $linea_credito_soles,
+                $credito_unitario_soles,
+                $disponible_soles,
+                $linea_credito_dolares,
+                $credito_unitario_dolares,
+                $disponible_dolares,
+                $linea_opcional,
+                $linea_opcional_unitaria,
+                $linea_disponible,
+                $email,
+                $contacto_registro,
+                $email_cobranza,
+                $contacto_cobranza,
+                $tipo_cliente_pago,
+                $id_trabajador,
+                $ds_nombre_trabajador,
+                $id_cliente_proveedor_empresa
+            );
+        }
 
         echo json_encode($num_documento);
     }

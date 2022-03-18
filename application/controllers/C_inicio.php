@@ -38,6 +38,7 @@ class C_inicio extends CI_Controller
             $data = array(
                 'id_usuario' => $res->id_usuario,
                 'id_trabajador' => $res->id_trabajador,
+                'id_empresa' => $res->id_empresa,
                 'ds_ruc_empresa' => $res->ds_ruc_empresa,
                 'ds_accesos_empresas' => $res->ds_accesos_empresas,
                 'ds_nombre_trabajador' => $res->ds_nombre_trabajador,
