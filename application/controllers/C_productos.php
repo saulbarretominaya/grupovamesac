@@ -44,56 +44,93 @@ class C_productos extends CI_Controller
 	}
 
 
-	public function insertar()
+	public function registrar()
 	{
 
 		$codigo_producto = $this->input->post("codigo_producto");
 		$descripcion_producto = $this->input->post("descripcion_producto");
 		$id_almacen = $this->input->post("id_almacen");
 		$id_unidad_medida = $this->input->post("id_unidad_medida");
-
 		$precio_costo = $this->input->post("precio_costo");
 		$porcentaje = $this->input->post("porcentaje");
 		$precio_unitario = $this->input->post("precio_unitario");
 		$ganancia_unidad = $this->input->post("ganancia_unidad");
 		$rentabilidad = $this->input->post("rentabilidad");
 		$id_moneda = $this->input->post("id_moneda");
-
 		$id_grupo = $this->input->post("id_grupo");
 		$id_familia = $this->input->post("id_familia");
 		$id_clase = $this->input->post("id_clase");
 		$id_sub_clase = $this->input->post("id_sub_clase");
 		$id_sub_clase_dos = $this->input->post("id_sub_clase_dos");
 		$id_marca_producto = $this->input->post("id_marca_producto");
-
 		$id_cta_vta = $this->input->post("id_cta_vta");
 		$id_cta_ent = $this->input->post("id_cta_ent");
-
 		$id_sunat = $this->input->post("id_sunat");
-
 		$resultado_campo = $this->input->post("resultado_campo");
 
-		if ($this->M_productos->insertar(
-			$codigo_producto,
-			$descripcion_producto,
-			$precio_costo,
-			$precio_unitario,
-			$porcentaje,
-			$ganancia_unidad,
-			$rentabilidad,
-			$id_unidad_medida,
-			$id_grupo,
-			$id_familia,
-			$id_clase,
-			$id_sub_clase,
-			$id_sub_clase_dos,
-			$id_marca_producto,
-			$id_moneda,
-			$id_cta_vta,
-			$id_cta_ent,
-			$id_sunat,
-			$id_almacen
-		)) {
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+		$id_producto_empresa = $this->input->post("id_producto_empresa");
+
+
+
+		if ($id_producto_empresa == "100") {
+			$this->M_productos->registrar_grupo_vame_productos();
+			$id_producto_empresa = $this->M_productos->lastID();
+			$this->M_productos->registrar(
+				$codigo_producto,
+				$descripcion_producto,
+				$precio_costo,
+				$precio_unitario,
+				$porcentaje,
+				$ganancia_unidad,
+				$rentabilidad,
+				$id_unidad_medida,
+				$id_grupo,
+				$id_familia,
+				$id_clase,
+				$id_sub_clase,
+				$id_sub_clase_dos,
+				$id_marca_producto,
+				$id_moneda,
+				$id_cta_vta,
+				$id_cta_ent,
+				$id_sunat,
+				$id_almacen,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_producto_empresa
+			);
+			if ($resultado_campo == "automatico") {
+				$this->M_cbox->actualizar_correlativo_producto($codigo_producto);
+			}
+		} else if ($id_producto_empresa == "200") {
+			$this->M_productos->registrar_inversiones_alpev_productos();
+			$id_producto_empresa = $this->M_productos->lastID();
+			$this->M_productos->registrar(
+				$codigo_producto,
+				$descripcion_producto,
+				$precio_costo,
+				$precio_unitario,
+				$porcentaje,
+				$ganancia_unidad,
+				$rentabilidad,
+				$id_unidad_medida,
+				$id_grupo,
+				$id_familia,
+				$id_clase,
+				$id_sub_clase,
+				$id_sub_clase_dos,
+				$id_marca_producto,
+				$id_moneda,
+				$id_cta_vta,
+				$id_cta_ent,
+				$id_sunat,
+				$id_almacen,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_producto_empresa
+			);
 			if ($resultado_campo == "automatico") {
 				$this->M_cbox->actualizar_correlativo_producto($codigo_producto);
 			}

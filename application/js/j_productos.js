@@ -55,12 +55,16 @@ $("#registrar").on("click", function () {
 		var id_cta_vta = $("#id_cta_vta").val();
 		var id_cta_ent = $("#id_cta_ent").val();
 		var id_sunat = $("#id_sunat").val();
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
+		//Empresa
+		var id_producto_empresa = $("#id_producto_empresa").val();
 
 		validar_radio();
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_productos/insertar",
+			url: base_url + "C_productos/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -83,7 +87,11 @@ $("#registrar").on("click", function () {
 				id_cta_vta: id_cta_vta,
 				id_cta_ent: id_cta_ent,
 				id_sunat: id_sunat,
-				resultado_campo: resultado_campo
+				resultado_campo: resultado_campo,
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
+				//empresa
+				id_producto_empresa: id_producto_empresa
 			},
 			success: function (data) {
 				debugger;
@@ -411,7 +419,6 @@ $("#porcentaje").on("keyup", function () {
 	}
 
 });
-
 
 function validar_registrar() {
 
