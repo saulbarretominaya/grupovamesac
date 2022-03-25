@@ -11,6 +11,9 @@
           </div>
         </div>
       </div>
+      <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+      <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+      <input type="hidden" id="id_tablero_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
     </section>
 
 

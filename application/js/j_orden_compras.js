@@ -161,12 +161,12 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	productos = $(this).val();
 	split_productos = productos.split("*");
 	$("#hidden_id_producto").val(split_productos[0]);
-	$("#hidden_codigo_producto").val(split_productos[2]);
-	$("#descripcion_producto").val(split_productos[3]);
-	$("#hidden_id_unidad_medida").val(split_productos[4]);
-	$("#hidden_ds_unidad_medida").val(split_productos[5]);
-	$("#hidden_id_marca_producto").val(split_productos[6]);
-	$("#hidden_ds_marca_producto").val(split_productos[7]);
+	$("#hidden_codigo_producto").val(split_productos[1]);
+	$("#descripcion_producto").val(split_productos[2]);
+	$("#hidden_id_unidad_medida").val(split_productos[3]);
+	$("#hidden_ds_unidad_medida").val(split_productos[4]);
+	$("#hidden_id_marca_producto").val(split_productos[5]);
+	$("#hidden_ds_marca_producto").val(split_productos[6]);
 	$("#opcion_target_producto").modal("hide");
 });
 $(document).ready(function () {

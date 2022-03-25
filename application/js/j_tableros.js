@@ -121,7 +121,11 @@ $("#registrar").on("click", function () {
 		var precio_margen = $("#precio_margen").val().replaceAll(",", "");
 		var precio_unitario_por_tablero = $("#precio_unitario_por_tablero").val().replaceAll(",", "");
 		var total_tablero = $("#total_tablero").val().replaceAll(",", "");
-		debugger;
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
+		//Empresa
+		var id_tablero_empresa = $("#id_tablero_empresa").val();
+
 		//Detalle
 		var id_almacen_det = Array.prototype.slice.call(document.getElementsByName("id_almacen_det[]")).map((o) => o.value);
 		var ds_almacen = Array.prototype.slice.call(document.getElementsByName("ds_almacen[]")).map((o) => o.value);
@@ -141,7 +145,7 @@ $("#registrar").on("click", function () {
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_tableros/insertar",
+			url: base_url + "C_tableros/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -159,6 +163,11 @@ $("#registrar").on("click", function () {
 				precio_margen: precio_margen,
 				precio_unitario_por_tablero: precio_unitario_por_tablero,
 				total_tablero: total_tablero,
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
+				//Empresa
+				id_tablero_empresa: id_tablero_empresa,
+
 				//Detalle
 				id_almacen_det: id_almacen_det,
 				ds_almacen: ds_almacen,

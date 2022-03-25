@@ -18,7 +18,7 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Codigo Producto</th>
+                  <th>ID Producto</th>
                   <th>Almacen</th>
                   <th>Codigo</th>
                   <th>Descripcion</th>

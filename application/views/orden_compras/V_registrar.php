@@ -345,7 +345,6 @@
                                               <td>
                                                 <?php $split_productos =
                                                   $index_productos->id_producto . "*" .
-                                                  $index_productos->id_general . "*" .
                                                   $index_productos->codigo_producto . "*" .
                                                   $index_productos->descripcion_producto . "*" .
                                                   $index_productos->id_unidad_medida . "*" .

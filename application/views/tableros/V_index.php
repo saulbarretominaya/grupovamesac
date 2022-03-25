@@ -19,6 +19,7 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
+                  <th>ID Tablero</th>
                   <th>Almacen</th>
                   <th>Codigo</th>
                   <th>Descripcion</th>
@@ -33,6 +34,7 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
+                      <td><?php echo $index->id_tablero_empresa; ?></td>
                       <td><?php echo $index->ds_almacen; ?></td>
                       <td><?php echo $index->codigo_tablero; ?></td>
                       <td><?php echo $index->descripcion_tablero; ?></td>
