@@ -53,7 +53,7 @@ $("#listar").dataTable({
 
 $("#registrar").on("click", function () {
 
-	//validar_registrar();
+	validar_registrar();
 
 	if (resultado_campo == true) {
 

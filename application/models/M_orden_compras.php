@@ -117,39 +117,42 @@ class M_orden_compras extends CI_Model
 
     public function index_clientes_proveedores()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query("
             SELECT
-            id_cliente_proveedor,
-            nombres,
-            ape_paterno,
-            ape_materno,
-            num_documento,
-            razon_social,
-            id_departamento,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_departamento) AS ds_departamento_cliente_proveedor,
+            a.id_cliente_proveedor,
+            a.nombres,
+            a.ape_paterno,
+            a.ape_materno,
+            a.num_documento,
+            a.razon_social,
+            a.id_departamento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_departamento) AS ds_departamento_cliente_proveedor,
             id_provincia,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_provincia) AS ds_provincia_cliente_proveedor,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_provincia) AS ds_provincia_cliente_proveedor,
             id_distrito,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_distrito) AS ds_distrito_cliente_proveedor,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_distrito) AS ds_distrito_cliente_proveedor,
             id_tipo_persona,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_persona) AS ds_tipo_persona,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_persona) AS ds_tipo_persona,
             (CASE
-            WHEN razon_social='' THEN CONCAT(nombres,' ',ape_paterno,' ',ape_materno)
-            WHEN nombres='' AND ape_paterno='' AND ape_materno='' THEN razon_social
+            WHEN a.razon_social='' THEN CONCAT(a.nombres,' ',a.ape_paterno,' ',a.ape_materno)
+            WHEN a.nombres='' AND a.ape_paterno='' AND a.ape_materno='' THEN a.razon_social
             ELSE 'Existe un conflicto'
             END) ds_nombre_cliente_proveedor,
-            id_tipo_documento,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_documento) AS ds_tipo_documento,
-            num_documento,
-            direccion_fiscal as direccion_fiscal_cliente_proveedor,
-            email as email_cliente_proveedor,
-            contacto_registro,
-            telefono,
-            celular,
-            id_tipo_giro,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro
-            FROM clientes_proveedores
-            where id_tipo_persona='616';
+            a.id_tipo_documento,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_documento) AS ds_tipo_documento,
+            a.num_documento,
+            a.direccion_fiscal as direccion_fiscal_cliente_proveedor,
+            a.email as email_cliente_proveedor,
+            a.contacto_registro,
+            a.telefono,
+            a.celular,
+            a.id_tipo_giro,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_giro) AS ds_tipo_giro
+            FROM clientes_proveedores a
+            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
+            where a.id_tipo_persona='616' AND b.id_empresa='$id_empresa';
         ");
         return $resultados->result();
     }

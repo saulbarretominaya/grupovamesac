@@ -207,6 +207,7 @@ $(document).on("click", ".js_lupa_tablero", function () {
 $(document).on("click", ".js_seleccionar_modal_producto", function () {
 
 	debugger;
+	limpiar_campos();
 	productos = $(this).val();
 	split_productos = productos.split("*");
 	$("#hidden_id_almacen").val(split_productos[0]);
@@ -723,11 +724,11 @@ function validar_detalle_tablero() {
 		resultado_campo = false;
 	}
 	else if (cantidad_unitaria == "") {
-		alert("Cantidad Vacio")
+		alert("Cantidad Vacia")
 		resultado_campo = false;
 	}
 	else if (cantidad_unitaria == "") {
-		alert("Cantidad Vacio")
+		alert("Cantidad Vacia")
 		resultado_campo = false;
 	} else if (id_moneda == "0") {
 		alert("Seleccione Tipo Moneda")
