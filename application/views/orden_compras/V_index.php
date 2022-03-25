@@ -19,7 +19,7 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Num Orden</th>
+                  <th>Codigo Orden C.</th>
                   <th>Fecha</th>
                   <th>Proveedor</th>
                   <th>Condicion Pago</th>
@@ -33,7 +33,7 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_orden_compra; ?></td>
+                      <td><?php echo $index->id_orden_compra_empresa; ?></td>
                       <td><?php echo $index->fecha_orden_compra; ?></td>
                       <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                       <td><?php echo $index->ds_condicion_pago; ?></td>

@@ -7,10 +7,13 @@ class M_orden_compras extends CI_Model
 
     public function index()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT
             a.id_orden_compra,
+            a.id_orden_compra_empresa,
             DATE_FORMAT(a.fecha_orden_compra,'%d/%m/%Y') AS fecha_orden_compra,
             a.ds_nombre_cliente_proveedor,
             a.ds_condicion_pago,
@@ -19,12 +22,46 @@ class M_orden_compras extends CI_Model
             a.observacion
             FROM
             orden_compras a
+            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
+            WHERE b.id_empresa='$id_empresa'
             "
         );
         return $resultados->result();
     }
 
-    public function insertar(
+    public function registrar_grupo_vame_orden_compras()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO grupo_vame_orden_compras
+            (
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_orden_compras()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_orden_compras
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar(
         $id_trabajador,
         $ds_nombre_trabajador,
         $fecha_orden_compra,
@@ -44,7 +81,8 @@ class M_orden_compras extends CI_Model
         $ds_moneda,
         $valor_venta,
         $igv,
-        $precio_venta
+        $precio_venta,
+        $id_orden_compra_empresa
     ) {
         return $this->db->query(
             "
@@ -55,7 +93,7 @@ class M_orden_compras extends CI_Model
                 ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,ds_provincia_cliente_proveedor,
                 ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,clausula,
                 lugar_entrega,nombre_encargado,observacion,id_condicion_pago,
-                ds_condicion_pago,id_moneda,ds_moneda,valor_venta,igv,precio_venta
+                ds_condicion_pago,id_moneda,ds_moneda,valor_venta,igv,precio_venta,id_orden_compra_empresa
             )
             VALUES
             (
@@ -64,7 +102,7 @@ class M_orden_compras extends CI_Model
                 '$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor','$ds_provincia_cliente_proveedor',
                 '$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$clausula',
                 '$lugar_entrega','$nombre_encargado','$observacion','$id_condicion_pago',
-                '$ds_condicion_pago','$id_moneda','$ds_moneda','$valor_venta','$igv','$precio_venta'
+                '$ds_condicion_pago','$id_moneda','$ds_moneda','$valor_venta','$igv','$precio_venta','$id_orden_compra_empresa'
             )
             "
         );
@@ -75,7 +113,7 @@ class M_orden_compras extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insertar_detalle_orden_compras(
+    public function registrar_detalle_orden_compras(
         $id_orden_compra,
         $id_producto,
         $codigo_producto,

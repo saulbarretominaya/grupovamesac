@@ -52,7 +52,7 @@ class C_orden_compras extends CI_Controller
 		$this->load->view('orden_compras/V_registrar', $data);
 	}
 
-	public function insertar()
+	public function registrar()
 	{
 
 		//Cabecera
@@ -76,6 +76,8 @@ class C_orden_compras extends CI_Controller
 		$valor_venta = $this->input->post("valor_venta");
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
+		$id_orden_compra_empresa = $this->input->post("id_orden_compra_empresa");
+
 
 		//Detalle Orden Compras
 		$id_producto = $this->input->post("id_producto");
@@ -93,33 +95,65 @@ class C_orden_compras extends CI_Controller
 		$item = $this->input->post("item");
 
 
-		if ($this->M_orden_compras->insertar(
-			//Cabecera
-			$id_trabajador,
-			$ds_nombre_trabajador,
-			$fecha_orden_compra,
-			$id_cliente_proveedor,
-			$ds_nombre_cliente_proveedor,
-			$ds_departamento_cliente_proveedor,
-			$ds_provincia_cliente_proveedor,
-			$ds_distrito_cliente_proveedor,
-			$direccion_fiscal_cliente_proveedor,
-			$clausula,
-			$lugar_entrega,
-			$nombre_encargado,
-			$observacion,
-			$id_condicion_pago,
-			$ds_condicion_pago,
-			$id_moneda,
-			$ds_moneda,
-			$valor_venta,
-			$igv,
-			$precio_venta
-		));
+		if ($id_orden_compra_empresa == "100") {
+			$this->M_orden_compras->registrar_grupo_vame_orden_compras();
+			$id_orden_compra_empresa = $this->M_orden_compras->lastID();
+			$this->M_orden_compras->registrar(
+				//Cabecera
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_orden_compra,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$ds_departamento_cliente_proveedor,
+				$ds_provincia_cliente_proveedor,
+				$ds_distrito_cliente_proveedor,
+				$direccion_fiscal_cliente_proveedor,
+				$clausula,
+				$lugar_entrega,
+				$nombre_encargado,
+				$observacion,
+				$id_condicion_pago,
+				$ds_condicion_pago,
+				$id_moneda,
+				$ds_moneda,
+				$valor_venta,
+				$igv,
+				$precio_venta,
+				$id_orden_compra_empresa
+			);
+		} else if ($id_orden_compra_empresa == "200") {
+			$this->M_orden_compras->registrar_inversiones_alpev_orden_compras();
+			$id_orden_compra_empresa = $this->M_orden_compras->lastID();
+			$this->M_orden_compras->registrar(
+				//Cabecera
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_orden_compra,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$ds_departamento_cliente_proveedor,
+				$ds_provincia_cliente_proveedor,
+				$ds_distrito_cliente_proveedor,
+				$direccion_fiscal_cliente_proveedor,
+				$clausula,
+				$lugar_entrega,
+				$nombre_encargado,
+				$observacion,
+				$id_condicion_pago,
+				$ds_condicion_pago,
+				$id_moneda,
+				$ds_moneda,
+				$valor_venta,
+				$igv,
+				$precio_venta,
+				$id_orden_compra_empresa
+			);
+		}
 
 		$id_orden_compra = $this->M_orden_compras->lastID();
 
-		$this->insertar_detalle_orden_compras(
+		$this->registrar_detalle_orden_compras(
 			$id_orden_compra,
 			$id_producto,
 			$codigo_producto,
@@ -139,7 +173,7 @@ class C_orden_compras extends CI_Controller
 		echo json_encode($id_trabajador);
 	}
 
-	protected function insertar_detalle_orden_compras(
+	protected function registrar_detalle_orden_compras(
 		$id_orden_compra,
 		$id_producto,
 		$codigo_producto,
@@ -157,7 +191,7 @@ class C_orden_compras extends CI_Controller
 
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
-			$this->M_orden_compras->insertar_detalle_orden_compras(
+			$this->M_orden_compras->registrar_detalle_orden_compras(
 				$id_orden_compra,
 				$id_producto[$i],
 				$codigo_producto[$i],

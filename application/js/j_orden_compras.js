@@ -68,6 +68,8 @@ $("#registrar").on("click", function () {
 		var valor_venta = $("#valor_venta").val();
 		var igv = $("#igv").val();
 		var precio_venta = $("#precio_venta").val();
+		//Empresa
+		var id_orden_compra_empresa = $("#id_orden_compra_empresa").val();
 
 		//Detalle
 		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
@@ -88,7 +90,7 @@ $("#registrar").on("click", function () {
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_orden_compras/insertar",
+			url: base_url + "C_orden_compras/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -113,6 +115,8 @@ $("#registrar").on("click", function () {
 				valor_venta: valor_venta,
 				igv: igv,
 				precio_venta: precio_venta,
+				//Empresa
+				id_orden_compra_empresa: id_orden_compra_empresa,
 
 				//Detalle Orden Compras
 				id_producto: id_producto,
