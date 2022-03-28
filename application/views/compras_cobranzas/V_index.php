@@ -39,7 +39,7 @@
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
-                      <td><?php echo $index->id_compra_cobranza; ?></td>
+                      <td><?php echo $index->id_compra_cobranza_empresa; ?></td>
                       <td><?php echo $index->fecha_compra_cobranza; ?></td>
                       <td><?php echo $index->ds_tipo_compra_cobranza; ?></td>
                       <td><?php echo $index->fecha_emision; ?></td>

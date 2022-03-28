@@ -74,6 +74,8 @@ $("#registrar").on("click", function () {
 		var pendiente = $('#pendiente').val();
 		var pagado = $('#pagado').val();
 		var id_estado_compra_cobranza = $("#id_estado_compra_cobranza").val();
+		//Empresa
+		var id_compra_cobranza_empresa = $("#id_compra_cobranza_empresa").val();
 
 		//Detalle programacion_pagos
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
@@ -97,7 +99,7 @@ $("#registrar").on("click", function () {
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_compras_cobranzas/insertar",
+			url: base_url + "C_compras_cobranzas/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -128,6 +130,7 @@ $("#registrar").on("click", function () {
 				pendiente: pendiente,
 				pagado: pagado,
 				id_estado_compra_cobranza: id_estado_compra_cobranza,
+				id_compra_cobranza_empresa: id_compra_cobranza_empresa,
 
 				//Detalle programacion_pagos
 				fecha_cuota,

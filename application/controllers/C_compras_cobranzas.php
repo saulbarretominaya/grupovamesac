@@ -45,7 +45,7 @@ class C_compras_cobranzas extends CI_Controller
 		$this->load->view('compras_cobranzas/V_registrar', $data);
 	}
 
-	public function insertar()
+	public function registrar()
 	{
 
 		//Cabecera
@@ -74,6 +74,8 @@ class C_compras_cobranzas extends CI_Controller
 		$pendiente = $this->input->post("pendiente");
 		$pagado = $this->input->post("pagado");
 		$id_estado_compra_cobranza = $this->input->post("id_estado_compra_cobranza");
+		$id_compra_cobranza_empresa = $this->input->post("id_compra_cobranza_empresa");
+
 
 		//Detalle_condicion pago
 		$fecha_cuota = $this->input->post("fecha_cuota");
@@ -91,40 +93,78 @@ class C_compras_cobranzas extends CI_Controller
 		$monto = $this->input->post("monto");
 		$tipo_cambio = $this->input->post("tipo_cambio");
 
-		$this->M_compras_cobranzas->insertar(
-			//Cabecera
-			$id_trabajador,
-			$ds_nombre_trabajador,
-			$fecha_compra_cobranza,
-			$id_tipo_comprobante,
-			$ds_tipo_comprobante,
-			$num_comprobante,
-			$id_almacen,
-			$ds_almacen,
-			$fecha_emision,
-			$fecha_vencimiento,
-			$id_tipo_compra_cobranza,
-			$ds_tipo_compra_cobranza,
-			$id_cliente_proveedor,
-			$ds_nombre_cliente_proveedor,
-			$observacion,
-			$id_moneda,
-			$ds_moneda,
-			$sub_total,
-			$igv,
-			$total,
-			$id_condicion_pago,
-			$ds_condicion_pago,
-			$pendiente,
-			$pagado,
-			$id_estado_compra_cobranza
+		if ($id_compra_cobranza_empresa == "100") {
+			$this->M_compras_cobranzas->registrar_grupo_vame_compras_cobranzas();
+			$id_compra_cobranza_empresa = $this->M_compras_cobranzas->lastID();
+			$this->M_compras_cobranzas->registrar(
+				//Cabecera
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_compra_cobranza,
+				$id_tipo_comprobante,
+				$ds_tipo_comprobante,
+				$num_comprobante,
+				$id_almacen,
+				$ds_almacen,
+				$fecha_emision,
+				$fecha_vencimiento,
+				$id_tipo_compra_cobranza,
+				$ds_tipo_compra_cobranza,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$observacion,
+				$id_moneda,
+				$ds_moneda,
+				$sub_total,
+				$igv,
+				$total,
+				$id_condicion_pago,
+				$ds_condicion_pago,
+				$pendiente,
+				$pagado,
+				$id_estado_compra_cobranza,
+				$id_compra_cobranza_empresa
+			);
+		} else if ($id_compra_cobranza_empresa == "200") {
+			$this->M_compras_cobranzas->registrar_inversiones_alpev_compras_cobranzas();
+			$id_compra_cobranza_empresa = $this->M_compras_cobranzas->lastID();
+			$this->M_compras_cobranzas->registrar(
+				//Cabecera
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_compra_cobranza,
+				$id_tipo_comprobante,
+				$ds_tipo_comprobante,
+				$num_comprobante,
+				$id_almacen,
+				$ds_almacen,
+				$fecha_emision,
+				$fecha_vencimiento,
+				$id_tipo_compra_cobranza,
+				$ds_tipo_compra_cobranza,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$observacion,
+				$id_moneda,
+				$ds_moneda,
+				$sub_total,
+				$igv,
+				$total,
+				$id_condicion_pago,
+				$ds_condicion_pago,
+				$pendiente,
+				$pagado,
+				$id_estado_compra_cobranza,
+				$id_compra_cobranza_empresa
 
-		);
+
+			);
+		}
 
 		$id_compra_cobranza = $this->M_compras_cobranzas->lastID();
 
 		if ($fecha_cuota != NULL) {
-			$this->insertar_detalle_programacion_pagos(
+			$this->registrar_detalle_programacion_pagos(
 				$id_compra_cobranza,
 				$fecha_cuota,
 				$monto_cuota
@@ -132,7 +172,7 @@ class C_compras_cobranzas extends CI_Controller
 		}
 
 		if ($item != NULL) {
-			$this->insertar_detalle_compras_cobranzas(
+			$this->registrar_detalle_compras_cobranzas(
 				$id_compra_cobranza,
 				$item,
 				$fecha_deposito,
@@ -150,13 +190,13 @@ class C_compras_cobranzas extends CI_Controller
 		echo json_encode($id_trabajador);
 	}
 
-	protected function insertar_detalle_programacion_pagos(
+	protected function registrar_detalle_programacion_pagos(
 		$id_compra_cobranza,
 		$fecha_cuota,
 		$monto_cuota
 	) {
 		for ($i = 0; $i < count($fecha_cuota); $i++) {
-			$this->M_compras_cobranzas->insertar_detalle_programacion_pagos(
+			$this->M_compras_cobranzas->registrar_detalle_programacion_pagos(
 				$id_compra_cobranza,
 				$fecha_cuota[$i],
 				$monto_cuota[$i]
@@ -164,7 +204,7 @@ class C_compras_cobranzas extends CI_Controller
 		}
 	}
 
-	protected function insertar_detalle_compras_cobranzas(
+	protected function registrar_detalle_compras_cobranzas(
 		$id_compra_cobranza,
 		$item,
 		$fecha_deposito,
@@ -178,7 +218,7 @@ class C_compras_cobranzas extends CI_Controller
 		$tipo_cambio
 	) {
 		for ($i = 0; $i < count($item); $i++) {
-			$this->M_compras_cobranzas->insertar_detalle_compras_cobranzas(
+			$this->M_compras_cobranzas->registrar_detalle_compras_cobranzas(
 				$id_compra_cobranza,
 				$item[$i],
 				$fecha_deposito[$i],

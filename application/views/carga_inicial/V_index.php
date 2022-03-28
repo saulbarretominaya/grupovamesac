@@ -19,7 +19,7 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Num carga inicial</th>
+                  <th>Num. Carga Inicial</th>
                   <th>Fecha</th>
                   <th>Cliente/Proveedor</th>
                   <th>Tipo ingreso</th>

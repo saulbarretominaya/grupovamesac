@@ -42,7 +42,7 @@ class C_carga_inicial extends CI_Controller
 		$this->load->view('carga_inicial/V_registrar', $data);
 	}
 
-	public function insertar()
+	public function registrar()
 	{
 
 		//Cabecera
@@ -52,7 +52,6 @@ class C_carga_inicial extends CI_Controller
 		$id_tipo_ingreso = $this->input->post("id_tipo_ingreso");
 		$id_moneda = $this->input->post("id_moneda");
 		$tipo_cambio = $this->input->post("tipo_cambio");
-
 		$id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
 		$ds_nombre_cliente_proveedor = $this->input->post("ds_nombre_cliente_proveedor");
 		$num_guia = $this->input->post("num_guia");
@@ -62,7 +61,7 @@ class C_carga_inicial extends CI_Controller
 		$num_comprobante = $this->input->post("num_comprobante");
 		$observacion = $this->input->post("observacion");
 		$monto_total = $this->input->post("monto_total");
-
+		$id_carga_inicial_empresa = $this->input->post("id_carga_inicial_empresa");
 
 		//Detalle Orden Compras
 		$item = $this->input->post("item");
@@ -82,28 +81,55 @@ class C_carga_inicial extends CI_Controller
 		$valor_total = $this->input->post("valor_total");
 
 
-		if ($this->M_carga_inicial->insertar(
-			//Cabecera
-			$id_trabajador,
-			$ds_nombre_trabajador,
-			$fecha_carga_inicial,
-			$id_tipo_ingreso,
-			$id_moneda,
-			$tipo_cambio,
-			$id_cliente_proveedor,
-			$ds_nombre_cliente_proveedor,
-			$num_guia,
-			$num_orden_compra,
-			$id_tipo_comprobante,
-			$fecha_comprobante,
-			$num_comprobante,
-			$observacion,
-			$monto_total
-		));
+		if ($id_carga_inicial_empresa == "100") {
+			$this->M_carga_inicial->registrar_grupo_vame_carga_inicial();
+			$id_carga_inicial_empresa = $this->M_carga_inicial->lastID();
+			$this->M_carga_inicial->registrar(
+				//Cabecera
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_carga_inicial,
+				$id_tipo_ingreso,
+				$id_moneda,
+				$tipo_cambio,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$num_guia,
+				$num_orden_compra,
+				$id_tipo_comprobante,
+				$fecha_comprobante,
+				$num_comprobante,
+				$observacion,
+				$monto_total,
+				$id_carga_inicial_empresa
+			);
+		} else if ($id_carga_inicial_empresa == "200") {
+			$this->M_carga_inicial->registrar_inversiones_alpev_carga_inicial();
+			$id_carga_inicial_empresa = $this->M_carga_inicial->lastID();
+			$this->M_carga_inicial->registrar(
+				//Cabecera
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$fecha_carga_inicial,
+				$id_tipo_ingreso,
+				$id_moneda,
+				$tipo_cambio,
+				$id_cliente_proveedor,
+				$ds_nombre_cliente_proveedor,
+				$num_guia,
+				$num_orden_compra,
+				$id_tipo_comprobante,
+				$fecha_comprobante,
+				$num_comprobante,
+				$observacion,
+				$monto_total,
+				$id_carga_inicial_empresa
+			);
+		}
 
 		$id_carga_inicial = $this->M_carga_inicial->lastID();
 
-		$this->insertar_detalle_carga_inicial(
+		$this->registrar_detalle_carga_inicial(
 			$id_carga_inicial,
 			$item,
 			$id_almacen,
@@ -130,7 +156,7 @@ class C_carga_inicial extends CI_Controller
 		echo json_encode($item);
 	}
 
-	protected function insertar_detalle_carga_inicial(
+	protected function registrar_detalle_carga_inicial(
 		$id_carga_inicial,
 		$item,
 		$id_almacen,
@@ -149,7 +175,7 @@ class C_carga_inicial extends CI_Controller
 		$valor_total
 	) {
 		for ($i = 0; $i < count($item); $i++) {
-			$this->M_carga_inicial->insertar_detalle_carga_inicial(
+			$this->M_carga_inicial->registrar_detalle_carga_inicial(
 				$id_carga_inicial,
 				$item[$i],
 				$id_almacen[$i],

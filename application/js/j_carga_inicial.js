@@ -63,7 +63,8 @@ $("#registrar").on("click", function () {
 		var num_comprobante = $("#num_comprobante").val();
 		var observacion = $("#observacion").val();
 		var monto_total = $('#monto_total').val();
-
+		//Empresa
+		var id_carga_inicial_empresa = $("#id_carga_inicial_empresa").val();
 
 		//Detalle
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
@@ -89,7 +90,7 @@ $("#registrar").on("click", function () {
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_carga_inicial/insertar",
+			url: base_url + "C_carga_inicial/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -109,6 +110,8 @@ $("#registrar").on("click", function () {
 				num_comprobante: num_comprobante,
 				observacion: observacion,
 				monto_total: monto_total,
+				id_carga_inicial_empresa: id_carga_inicial_empresa,
+
 
 
 				//Detalle Carga inicial

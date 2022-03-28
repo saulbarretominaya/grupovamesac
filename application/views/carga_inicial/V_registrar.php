@@ -11,8 +11,10 @@
         </div>
       </div>
     </div>
+    <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+    <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+    <input type="hidden" id="id_carga_inicial_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
   </section>
-
 
   <section class="content">
 
@@ -46,8 +48,7 @@
                             <?php
                             date_default_timezone_set("America/Lima");
                             ?>
-                            <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
-                            <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+
                             <input type="date" class="form-control" id="fecha_carga_inicial" value="<?php echo date("Y-m-d"); ?>" readonly>
                           </div>
                         </div>
