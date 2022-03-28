@@ -13,6 +13,7 @@ class M_orden_despacho extends CI_Model
             "
             SELECT 
             a.id_cotizacion,
+            a.id_cotizacion_empresa,
             a.valor_cambio,
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
@@ -22,6 +23,7 @@ class M_orden_despacho extends CI_Model
             a.precio_venta,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
+            b.id_orden_despacho_empresa,
             b.resultado_valor_cambio,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
@@ -51,6 +53,7 @@ class M_orden_despacho extends CI_Model
             "
             SELECT 
             a.id_cotizacion,
+            a.id_cotizacion_empresa,
             a.valor_cambio,
             DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
@@ -60,6 +63,7 @@ class M_orden_despacho extends CI_Model
             a.precio_venta,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
             b.id_orden_despacho,
+            b.id_orden_despacho_empresa,
             b.resultado_valor_cambio,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,

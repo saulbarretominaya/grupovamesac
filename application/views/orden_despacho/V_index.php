@@ -66,9 +66,11 @@
                           }
                           ?>
                           <tr>
-                            <td><?php echo $index->id_cotizacion; ?></td>
+                            <input type="hidden" id="id_cotizacion" value="<?php echo $index->id_cotizacion; ?>">
+                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
                             <td><?php echo $index->fecha_cotizacion; ?></td>
-                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
+                            <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
                             <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
                             <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
@@ -151,9 +153,11 @@
                           }
                           ?>
                           <tr>
-                            <td><?php echo $index->id_cotizacion; ?></td>
+                            <input type="hidden" id="id_cotizacion" value="<?php echo $index->id_cotizacion; ?>">
+                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
                             <td><?php echo $index->fecha_cotizacion; ?></td>
-                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
+                            <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
                             <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
                             <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">

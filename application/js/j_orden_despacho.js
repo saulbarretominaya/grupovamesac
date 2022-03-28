@@ -81,7 +81,7 @@ $(document).on("click", ".js_lupa_orden_despacho_tableros", function () {
 /*Evento */
 $(document).on("click", ".btn_aplicar_tipo_cambio", function () {
 
-	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
+	var id_orden_despacho = $(this).closest('tr').find('#id_orden_despacho').val();
 	var condicion_pago = $(this).parents("tr").find("td")[5].innerText;
 	var valor_cambio = $(this).parents("tr").find("td")[6].innerText;
 	var resultado_valor_c = $(this).parents("tr").find("td")[7].innerText;
@@ -121,7 +121,7 @@ $(document).on("click", ".btn_aplicar_tipo_cambio", function () {
 
 $(document).on("click", ".btn_aprobar_estado", function () {
 
-	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
+	var id_orden_despacho = $(this).closest('tr').find('#id_orden_despacho').val();
 	var id_cliente_proveedor = $(this).parents("tr").find(document.getElementsByName("id_cliente_proveedor")).val();
 	var linea_credito_dolares = $(this).parents("tr").find(document.getElementsByName("disponible_dolares")).val();
 	var condicion_pago = $(this).parents("tr").find("td")[5].innerText;
@@ -195,8 +195,8 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 $(document).on("click", ".btn_desaprobar_estado", function () {
 
 	debugger;
-	var id_orden_despacho = $(this).parents("tr").find("td")[2].innerText;
-	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
+	var id_orden_despacho = $(this).closest('tr').find('#id_orden_despacho').val();
+	var id_cotizacion = $(this).closest('tr').find('#id_cotizacion').val();
 
 	var estado_orden_despacho = $(this).parents("tr").find("td")[11].innerText;
 

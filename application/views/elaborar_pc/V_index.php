@@ -73,8 +73,8 @@
 
                           ?>
                           <tr>
-                            <td><?php echo $index->id_cotizacion; ?></td>
-                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?></td>
                             <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
@@ -157,8 +157,8 @@
 
                           ?>
                           <tr>
-                            <td><?php echo $index->id_cotizacion; ?></td>
-                            <td><?php echo $index->id_orden_despacho; ?></td>
+                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?></td>
                             <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>

@@ -53,7 +53,7 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 
 	debugger;
 
-	var id_parcial_completa = $(this).parents("tr").find("td")[1].innerText;
+	var id_parcial_completa = $(this).closest('tr').find('#id_parcial_completa').val();
 	var estado_orden = $(this).parents("tr").find("td")[9].innerText;
 
 
@@ -84,7 +84,7 @@ $(document).on("click", ".btn_anular_estado", function () {
 
 	debugger;
 
-	var id_parcial_completa = $(this).parents("tr").find("td")[1].innerText;
+	var id_parcial_completa = $(this).closest('tr').find('#id_parcial_completa').val();
 	var estado_orden = $(this).parents("tr").find("td")[9].innerText;
 
 

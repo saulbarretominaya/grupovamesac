@@ -70,8 +70,9 @@
                           }
                       ?>
                           <tr>
-                            <td><?php echo $index->id_orden_despacho; ?></td>
-                            <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?></td>
+                            <input type="hidden" id="id_parcial_completa" value="<?php echo $index->id_parcial_completa; ?>">
+                            <td><?php echo $index->id_parcial_completa_empresa; ?></td>
                             <td><?php echo $index->fecha_parcial_completa; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
@@ -155,8 +156,9 @@
 
                       ?>
                           <tr>
-                            <td><?php echo $index->id_orden_despacho; ?></td>
-                            <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?></td>
+                            <input type="hidden" id="id_parcial_completa" value="<?php echo $index->id_parcial_completa; ?>">
+                            <td><?php echo $index->id_parcial_completa_empresa; ?></td>
                             <td><?php echo $index->fecha_parcial_completa; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>

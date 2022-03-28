@@ -262,7 +262,7 @@ $("#registrar").on("click", function () {
 });
 $(document).on("click", ".btn_aprobar_estado", function () {
 
-	var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
+	var id_cotizacion = $(this).closest('tr').find('#id_cotizacion').val();
 	var estado_cotizacion = $(this).parents("tr").find("td")[7].innerText;
 	var id_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
 	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;

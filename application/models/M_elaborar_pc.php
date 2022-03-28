@@ -14,7 +14,9 @@ class M_elaborar_pc extends CI_Model
             SELECT
             MAX(c.id_parcial_completa) AS id_parcial_completa,
             a.id_cotizacion,
+            a.id_cotizacion_empresa,
             b.id_orden_despacho,
+            b.id_orden_despacho_empresa,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             a.ds_nombre_cliente_proveedor,
             a.ds_condicion_pago,
@@ -44,8 +46,10 @@ class M_elaborar_pc extends CI_Model
             "
             SELECT
             MAX(c.id_parcial_completa) AS id_parcial_completa,
-            a.id_cotizacion,
+             a.id_cotizacion,
+            a.id_cotizacion_empresa,
             b.id_orden_despacho,
+            b.id_orden_despacho_empresa,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
             a.ds_nombre_cliente_proveedor,
             a.ds_condicion_pago,

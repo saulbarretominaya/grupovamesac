@@ -89,8 +89,8 @@
                         ?>
                           <tr>
                             <input type="hidden" id="id_guia_remision" value="<?php echo $index->id_guia_remision; ?>">
-                            <td><?php echo $index->id_orden_despacho; ?></td>
-                            <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?></td>
+                            <td><?php echo $index->id_parcial_completa_empresa; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
                             <td><?php echo $index->id_sucursal; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>
@@ -200,8 +200,8 @@
                         ?>
                           <tr>
                             <input type="hidden" id="id_guia_remision" value="<?php echo $index->id_guia_remision; ?>">
-                            <td><?php echo $index->id_orden_despacho; ?></td>
-                            <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?></td>
+                            <td><?php echo $index->id_parcial_completa_empresa; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
                             <td><?php echo $index->id_sucursal; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>

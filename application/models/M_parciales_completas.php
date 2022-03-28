@@ -13,7 +13,9 @@ class M_parciales_completas extends CI_Model
             "
             SELECT
             b.id_orden_despacho,
+            b.id_orden_despacho_empresa,
             a.id_parcial_completa,
+            a.id_parcial_completa_empresa,
             DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
             c.ds_nombre_cliente_proveedor,
             c.ds_condicion_pago,
@@ -42,7 +44,9 @@ class M_parciales_completas extends CI_Model
             "
             SELECT
             b.id_orden_despacho,
+            b.id_orden_despacho_empresa,
             a.id_parcial_completa,
+            a.id_parcial_completa_empresa,
             DATE_FORMAT(a.fecha_parcial_completa,'%d/%m/%Y') AS fecha_parcial_completa,
             c.ds_nombre_cliente_proveedor,
             c.ds_condicion_pago,
