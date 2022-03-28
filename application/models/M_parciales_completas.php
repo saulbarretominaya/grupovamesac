@@ -7,6 +7,8 @@ class M_parciales_completas extends CI_Model
 
     public function index()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT
@@ -24,7 +26,8 @@ class M_parciales_completas extends CI_Model
             parciales_completas a 
             LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
             LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
-            WHERE c.categoria='PRODUCTOS'
+            LEFT JOIN usuarios d ON d.id_trabajador=c.id_trabajador
+            WHERE c.categoria='PRODUCTOS' AND d.id_empresa='$id_empresa'
             ORDER BY a.id_parcial_completa DESC;
             "
         );
@@ -33,6 +36,8 @@ class M_parciales_completas extends CI_Model
 
     public function index_2()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT
@@ -49,7 +54,8 @@ class M_parciales_completas extends CI_Model
             parciales_completas a 
             LEFT JOIN orden_despacho b ON b.id_orden_despacho=a.id_orden_despacho
             LEFT JOIN cotizacion c ON c.id_cotizacion=b.id_cotizacion
-            WHERE c.categoria='TABLEROS' 
+            LEFT JOIN usuarios d ON d.id_trabajador=c.id_trabajador
+            WHERE c.categoria='TABLEROS' AND d.id_empresa='$id_empresa'
             ORDER BY c.id_cotizacion desc;
             "
         );

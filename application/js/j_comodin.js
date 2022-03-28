@@ -40,10 +40,14 @@ $("#registrar").on("click", function () {
 		var precio_unitario = $("#precio_unitario").val();
 		var id_moneda = $("#id_moneda").val();
 		var nombre_proveedor = $("#nombre_proveedor").val();
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
+		//Empresa
+		var id_comodin_empresa = $("#id_comodin_empresa").val();
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_comodin/insertar",
+			url: base_url + "C_comodin/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -54,7 +58,9 @@ $("#registrar").on("click", function () {
 				precio_unitario: precio_unitario,
 				id_moneda: id_moneda,
 				nombre_proveedor: nombre_proveedor,
-
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
+				id_comodin_empresa: id_comodin_empresa
 			},
 			success: function (data) {
 				window.location.href = base_url + "C_comodin";

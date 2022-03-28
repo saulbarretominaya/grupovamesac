@@ -7,6 +7,8 @@ class M_comprobantes extends CI_Model
 
     public function index()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT 
@@ -37,7 +39,8 @@ class M_comprobantes extends CI_Model
             RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON f.id_trabajador=a.id_trabajador
-            WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894'
+            LEFT JOIN usuarios g ON g.id_trabajador=a.id_trabajador
+            WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894' AND g.id_empresa='$id_empresa'
             ORDER BY a.id_cotizacion desc;
         "
         );
@@ -46,6 +49,8 @@ class M_comprobantes extends CI_Model
 
     public function index_2()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT 
@@ -76,7 +81,8 @@ class M_comprobantes extends CI_Model
             RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
-            WHERE a.categoria='TABLEROS'
+            LEFT JOIN usuarios g ON g.id_trabajador=a.id_trabajador 
+            WHERE a.categoria='TABLEROS' AND g.id_empresa='$id_empresa'
             ORDER BY a.id_cotizacion desc;
         "
         );

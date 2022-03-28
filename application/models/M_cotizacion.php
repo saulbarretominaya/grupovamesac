@@ -104,7 +104,7 @@ class M_cotizacion extends CI_Model
         );
     }
 
-    public function insertar(
+    public function registrar(
         $serie_cotizacion,
         $categoria,
         $id_trabajador,
@@ -170,7 +170,7 @@ class M_cotizacion extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insertar_detalle_cotizacion(
+    public function registrar_detalle_cotizacion(
         $id_cotizacion,
         $id_producto,
         $id_tablero,
@@ -229,7 +229,7 @@ class M_cotizacion extends CI_Model
         );
     }
 
-    public function insertar_detalle_condicion_pago(
+    public function registrar_detalle_condicion_pago(
         $id_cotizacion,
         $fecha_cuota,
         $monto_cuota
@@ -294,72 +294,80 @@ class M_cotizacion extends CI_Model
 
     public function index_productos()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query("
         SELECT 
-        id_producto,
-        stock,
-        CONCAT('PRO',id_producto) AS id_general,
-        UPPER(codigo_producto) as codigo_producto,
-        id_almacen,
-        (select descripcion from detalle_multitablas where id_dmultitabla=id_almacen) as ds_almacen,
-        id_unidad_medida,
-        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
-        id_sunat,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        UPPER(descripcion_producto) as descripcion_producto,
-        id_moneda,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        precio_costo,
-        porcentaje,
-        ganancia_unidad,
-        precio_unitario,
-        rentabilidad
-        id_grupo,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_grupo) AS ds_grupo,
-        id_familia,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_familia) AS ds_familia,
-        id_clase,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_clase) AS ds_clase,
-        id_sub_clase,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase) AS ds_sub_clase,
-        id_sub_clase_dos,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sub_clase_dos) AS ds_sub_clase_dos,
-        id_marca_producto,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
-        id_cta_vta,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_vta) AS ds_cta_vta,
-        id_cta_ent,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_cta_ent) AS ds_cta_ent,
-        stock
-        FROM productos
-        ORDER BY id_producto ASC
+        a.id_producto,
+        a.stock,
+        CONCAT('PRO',a.id_producto) AS id_general,
+        UPPER(a.codigo_producto) as codigo_producto,
+        a.id_almacen,
+        (select descripcion from detalle_multitablas where id_dmultitabla=a.id_almacen) as ds_almacen,
+        a.id_unidad_medida,
+        (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_unidad_medida) AS ds_unidad_medida,
+        a.id_sunat,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_sunat) AS ds_codigo_sunat,
+        UPPER(a.descripcion_producto) as descripcion_producto,
+        a.id_moneda,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+        a.precio_costo,
+        a.porcentaje,
+        a.ganancia_unidad,
+        a.precio_unitario,
+        a.rentabilidad,
+        a.id_grupo,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_grupo) AS ds_grupo,
+        a.id_familia,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_familia) AS ds_familia,
+        a.id_clase,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_clase) AS ds_clase,
+        a.id_sub_clase,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_sub_clase) AS ds_sub_clase,
+        a.id_sub_clase_dos,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_sub_clase_dos) AS ds_sub_clase_dos,
+        a.id_marca_producto,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_marca_producto) AS ds_marca_producto,
+        a.id_cta_vta,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_vta) AS ds_cta_vta,
+        a.id_cta_ent,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_ent) AS ds_cta_ent,
+        a.stock
+        FROM productos a
+        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
+        where b.id_empresa='$id_empresa'
+        ORDER BY a.id_producto ASC
         ");
         return $resultados->result();
     }
 
     public function index_tableros()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
         SELECT 
-        id_tablero,
-        CONCAT('TAB',id_tablero) AS id_general,
-        codigo_tablero,
-        id_almacen,
-        cantidad_tablero,
-        precio_unitario_por_tablero,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_almacen) AS ds_almacen,
+        a.id_tablero,
+        CONCAT('TAB',a.id_tablero) AS id_general,
+        a.codigo_tablero,
+        a.id_almacen,
+        a.cantidad_tablero,
+        a.precio_unitario_por_tablero,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_almacen) AS ds_almacen,
         id_sunat,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_sunat) AS ds_codigo_sunat,
-        LEFT(descripcion_tablero,30) AS descripcion_tablero,
-        id_moneda,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-        id_marca_tablero,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_tablero) AS ds_marca_tablero,
-        id_modelo_tablero,
-        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_modelo_tablero) AS ds_modelo_tablero
-        FROM tableros
-        ORDER BY id_tablero ASC
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_sunat) AS ds_codigo_sunat,
+        LEFT(a.descripcion_tablero,30) AS descripcion_tablero,
+        a.id_moneda,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+        a.id_marca_tablero,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_marca_tablero) AS ds_marca_tablero,
+        a.id_modelo_tablero,
+        (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_modelo_tablero) AS ds_modelo_tablero
+        FROM tableros a
+        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
+        where b.id_empresa='$id_empresa'
+        ORDER BY a.id_tablero ASC
         "
         );
         return $resultados->result();
@@ -367,22 +375,27 @@ class M_cotizacion extends CI_Model
 
     public function index_comodin()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT
-            id_comodin,
-            CONCAT('COM',id_comodin) AS id_general,
-            codigo_producto,
-            descripcion_producto,
-            id_marca_producto,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_marca_producto) AS ds_marca_producto,
-            id_unidad_medida,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_unidad_medida) AS ds_unidad_medida,
-            id_moneda,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda,
-            precio_unitario,
-            nombre_proveedor
-            FROM comodin
+            a.id_comodin,
+            CONCAT('COM',a.id_comodin) AS id_general,
+            a.codigo_producto,
+            a.descripcion_producto,
+            a.id_marca_producto,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_marca_producto) AS ds_marca_producto,
+            a.id_unidad_medida,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_unidad_medida) AS ds_unidad_medida,
+            a.id_moneda,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            a.precio_unitario,
+            a.nombre_proveedor
+            FROM comodin a
+            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
+            where b.id_empresa='$id_empresa'
+            ORDER BY a.id_comodin ASC
         "
         );
         return $resultados->result();

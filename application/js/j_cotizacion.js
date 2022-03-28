@@ -186,7 +186,7 @@ $("#registrar").on("click", function () {
 
 		$.ajax({
 			async: false,
-			url: base_url + "C_cotizacion/insertar",
+			url: base_url + "C_cotizacion/registrar",
 			type: "POST",
 			dataType: "json",
 			data: {

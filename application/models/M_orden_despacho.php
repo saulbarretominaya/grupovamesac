@@ -7,6 +7,8 @@ class M_orden_despacho extends CI_Model
 
     public function index()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT 
@@ -32,7 +34,8 @@ class M_orden_despacho extends CI_Model
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
-            where a.categoria='PRODUCTOS'
+            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
+            where a.categoria='PRODUCTOS' AND d.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion desc;
             "
@@ -42,6 +45,8 @@ class M_orden_despacho extends CI_Model
 
     public function index_2()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT 
@@ -67,7 +72,8 @@ class M_orden_despacho extends CI_Model
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
-            where a.categoria='TABLEROS'
+            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
+            where a.categoria='TABLEROS' AND d.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion desc;
             "

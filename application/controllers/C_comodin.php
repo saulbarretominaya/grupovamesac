@@ -34,7 +34,7 @@ class C_comodin extends CI_Controller
 	}
 
 
-	public function insertar()
+	public function registrar()
 	{
 
 		$codigo_producto = $this->input->post("codigo_producto");
@@ -45,16 +45,45 @@ class C_comodin extends CI_Controller
 		$id_moneda = $this->input->post("id_moneda");
 		$nombre_proveedor = $this->input->post("nombre_proveedor");
 
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+		$id_comodin_empresa = $this->input->post("id_comodin_empresa");
 
-		if ($this->M_comodin->insertar(
-			$codigo_producto,
-			$descripcion_producto,
-			$id_unidad_medida,
-			$id_marca_producto,
-			$precio_unitario,
-			$id_moneda,
-			$nombre_proveedor
-		));
+
+		if ($id_comodin_empresa == "100") {
+			$this->M_comodin->registrar_grupo_vame_comodin();
+			$id_comodin_empresa = $this->M_comodin->lastID();
+			$this->M_comodin->registrar(
+				$codigo_producto,
+				$descripcion_producto,
+				$id_unidad_medida,
+				$id_marca_producto,
+				$precio_unitario,
+				$id_moneda,
+				$nombre_proveedor,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_comodin_empresa
+
+			);
+		} else if ($id_comodin_empresa == "200") {
+			$this->M_comodin->registrar_inversiones_alpev_comodin();
+			$id_comodin_empresa = $this->M_comodin->lastID();
+			$this->M_comodin->registrar(
+				$codigo_producto,
+				$descripcion_producto,
+				$id_unidad_medida,
+				$id_marca_producto,
+				$precio_unitario,
+				$id_moneda,
+				$nombre_proveedor,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_comodin_empresa
+
+			);
+		}
+
 		echo json_encode($codigo_producto);
 	}
 

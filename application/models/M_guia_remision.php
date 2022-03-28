@@ -7,6 +7,8 @@ class M_guia_remision extends CI_Model
 
     public function index()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT 
@@ -31,7 +33,8 @@ class M_guia_remision extends CI_Model
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
-            WHERE a.categoria='PRODUCTOS' AND c.id_estado_parcial_completa='893'
+            LEFT JOIN usuarios f ON f.id_trabajador=a.id_trabajador
+            WHERE a.categoria='PRODUCTOS' AND c.id_estado_parcial_completa='893' AND f.id_empresa='$id_empresa'
             ORDER BY c.id_parcial_completa DESC;
             "
         );
@@ -40,6 +43,8 @@ class M_guia_remision extends CI_Model
 
     public function index_2()
     {
+        $id_empresa = $this->session->userdata("id_empresa");
+
         $resultados = $this->db->query(
             "
             SELECT 
@@ -63,7 +68,8 @@ class M_guia_remision extends CI_Model
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN trabajadores e ON e.id_trabajador=a.id_trabajador
-            WHERE a.categoria='TABLEROS' AND c.id_estado_parcial_completa='893'
+            LEFT JOIN usuarios f ON f.id_trabajador=a.id_trabajador
+            WHERE a.categoria='TABLEROS' AND c.id_estado_parcial_completa='893' AND f.id_empresa='$id_empresa'
             ORDER BY c.id_parcial_completa DESC;
             "
         );

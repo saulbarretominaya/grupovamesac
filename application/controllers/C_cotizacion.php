@@ -44,7 +44,7 @@ class C_cotizacion extends CI_Controller
 		$this->load->view('cotizacion/V_registrar', $data);
 	}
 
-	public function insertar()
+	public function registrar()
 	{
 
 		//Cabecera
@@ -114,7 +114,7 @@ class C_cotizacion extends CI_Controller
 		if ($id_cotizacion_empresa == "100") {
 			$this->M_cotizacion->registrar_grupo_vame_cotizacion();
 			$id_cotizacion_empresa = $this->M_cotizacion->lastID();
-			$this->M_cotizacion->insertar(
+			$this->M_cotizacion->registrar(
 				//Cabecera
 				$serie_cotizacion,
 				$categoria,
@@ -150,7 +150,7 @@ class C_cotizacion extends CI_Controller
 		} else if ($id_cotizacion_empresa == "200") {
 			$this->M_cotizacion->registrar_inversiones_alpev_cotizacion();
 			$id_cotizacion_empresa = $this->M_cotizacion->lastID();
-			$this->M_cotizacion->insertar(
+			$this->M_cotizacion->registrar(
 				//Cabecera
 				$serie_cotizacion,
 				$categoria,
@@ -186,7 +186,7 @@ class C_cotizacion extends CI_Controller
 		}
 		$id_cotizacion = $this->M_cotizacion->lastID();
 
-		$this->insertar_detalle_cotizacion(
+		$this->registrar_detalle_cotizacion(
 			$id_cotizacion,
 			$id_producto,
 			$id_tablero,
@@ -218,13 +218,13 @@ class C_cotizacion extends CI_Controller
 		);
 
 		if ($fecha_cuota != "") {
-			$this->insertar_detalle_condicion_pago($id_cotizacion, $fecha_cuota, $monto_cuota);
+			$this->registrar_detalle_condicion_pago($id_cotizacion, $fecha_cuota, $monto_cuota);
 		}
 
 		echo json_encode($serie_cotizacion);
 	}
 
-	protected function insertar_detalle_cotizacion(
+	protected function registrar_detalle_cotizacion(
 		$id_cotizacion,
 		$id_producto,
 		$id_tablero,
@@ -255,7 +255,7 @@ class C_cotizacion extends CI_Controller
 
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
-			$this->M_cotizacion->insertar_detalle_cotizacion(
+			$this->M_cotizacion->registrar_detalle_cotizacion(
 				$id_cotizacion,
 				$id_producto[$i],
 				$id_tablero[$i],
@@ -288,14 +288,14 @@ class C_cotizacion extends CI_Controller
 		}
 	}
 
-	protected function insertar_detalle_condicion_pago(
+	protected function registrar_detalle_condicion_pago(
 		$id_cotizacion,
 		$fecha_cuota,
 		$monto_cuota
 
 	) {
 		for ($i = 0; $i < count($fecha_cuota); $i++) {
-			$this->M_cotizacion->insertar_detalle_condicion_pago(
+			$this->M_cotizacion->registrar_detalle_condicion_pago(
 				$id_cotizacion,
 				$fecha_cuota[$i],
 				$monto_cuota[$i],
