@@ -81,7 +81,7 @@ class C_comprobantes extends CI_Controller
 			$id_comprobante_empresa = $this->M_comprobantes->lastID();
 
 			if ($id_tipo_comprobante == "69") {
-				$this->M_comprobantes->registrar_facturas();
+				$this->M_comprobantes->registrar_grupo_vame_facturas();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -99,7 +99,7 @@ class C_comprobantes extends CI_Controller
 					$id_comprobante_empresa
 				);
 			} else if ($id_tipo_comprobante == "70") {
-				$this->M_comprobantes->registrar_boletas();
+				$this->M_comprobantes->registrar_grupo_vame_boletas();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -117,7 +117,7 @@ class C_comprobantes extends CI_Controller
 					$id_comprobante_empresa
 				);
 			} else if ($id_tipo_comprobante == "77") {
-				$this->M_comprobantes->registrar_nota_credito();
+				$this->M_comprobantes->registrar_grupo_vame_nota_credito();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -135,7 +135,7 @@ class C_comprobantes extends CI_Controller
 					$id_comprobante_empresa
 				);
 			} else if ($id_tipo_comprobante == "78") {
-				$this->M_comprobantes->registrar_nota_debito();
+				$this->M_comprobantes->registrar_grupo_vame_nota_debito();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -158,7 +158,7 @@ class C_comprobantes extends CI_Controller
 			$id_comprobante_empresa = $this->M_comprobantes->lastID();
 
 			if ($id_tipo_comprobante == "69") {
-				$this->M_comprobantes->registrar_facturas();
+				$this->M_comprobantes->registrar_inversiones_alpev_facturas();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -176,7 +176,7 @@ class C_comprobantes extends CI_Controller
 					$id_comprobante_empresa
 				);
 			} else if ($id_tipo_comprobante == "70") {
-				$this->M_comprobantes->registrar_boletas();
+				$this->M_comprobantes->registrar_inversiones_alpev_boletas();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -194,7 +194,7 @@ class C_comprobantes extends CI_Controller
 					$id_comprobante_empresa
 				);
 			} else if ($id_tipo_comprobante == "77") {
-				$this->M_comprobantes->registrar_nota_credito();
+				$this->M_comprobantes->registrar_inversiones_alpev_nota_credito();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,
@@ -212,7 +212,7 @@ class C_comprobantes extends CI_Controller
 					$id_comprobante_empresa
 				);
 			} else if ($id_tipo_comprobante == "78") {
-				$this->M_comprobantes->registrar_nota_debito();
+				$this->M_comprobantes->registrar_inversiones_alpev_nota_debito();
 				$id_num_comprobante = $this->M_comprobantes->lastID();
 				$this->M_comprobantes->registrar(
 					$id_tipo_comprobante,

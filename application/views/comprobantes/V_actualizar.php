@@ -50,6 +50,18 @@
                         <div class="card-body">
                           <div class="form-group row">
                             <div class="col-md-4">
+                              <label>Num. Comprobante</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" value="<?php echo $enlace_actualizar_cabecera->id_num_comprobante ?>" readonly>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Serie Comprobante</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" value="<?php echo $enlace_actualizar_cabecera->ds_serie_comprobante ?>" readonly>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
                               <label for="">Tipo Comprobante</label>
                               <div class="input-group">
                                 <select class="form-select select2" id="id_tipo_comprobante" disabled>
@@ -66,18 +78,6 @@
                                     <?php endif; ?>
                                   <?php endforeach; ?>
                                 </select>
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <label>Serie Comprobante</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" value="<?php echo $enlace_actualizar_cabecera->ds_serie_comprobante ?>" readonly>
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <label>Num. Comprobante</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" value="<?php echo $enlace_actualizar_cabecera->id_num_comprobante ?>" readonly>
                               </div>
                             </div>
                           </div>
@@ -170,7 +170,7 @@
                             <div class="col-md-6">
                               <label># Guia</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->id_sucursal ?>" readonly>
+                                <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->id_tienda ?>" readonly>
                               </div>
                             </div>
                           </div>

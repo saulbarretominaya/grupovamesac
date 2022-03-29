@@ -141,11 +141,14 @@ class M_comprobantes extends CI_Model
         return $resultados->result();
     }
 
-    public function registrar_facturas()
+
+
+
+    public function registrar_grupo_vame_facturas()
     {
         return $this->db->query(
             "
-            INSERT INTO facturas
+            INSERT INTO grupo_vame_facturas
             (
             id_factura
             )
@@ -157,11 +160,11 @@ class M_comprobantes extends CI_Model
         );
     }
 
-    public function registrar_boletas()
+    public function registrar_grupo_vame_boletas()
     {
         return $this->db->query(
             "
-            INSERT INTO boletas
+            INSERT INTO grupo_vame_boletas
             (
             id_boleta
             )
@@ -173,11 +176,11 @@ class M_comprobantes extends CI_Model
         );
     }
 
-    public function registrar_nota_credito()
+    public function registrar_grupo_vame_nota_credito()
     {
         return $this->db->query(
             "
-            INSERT INTO nota_credito
+            INSERT INTO grupo_vame_nota_credito
             (
             id_nota_credito
             )
@@ -189,11 +192,11 @@ class M_comprobantes extends CI_Model
         );
     }
 
-    public function registrar_nota_debito()
+    public function registrar_grupo_vame_nota_debito()
     {
         return $this->db->query(
             "
-            INSERT INTO nota_debito
+            INSERT INTO grupo_vame_nota_debito
             (
             id_nota_debito
             )
@@ -204,6 +207,74 @@ class M_comprobantes extends CI_Model
             "
         );
     }
+
+
+
+    public function registrar_inversiones_alpev_facturas()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_facturas
+            (
+            id_factura
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_boletas()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_boletas
+            (
+            id_boleta
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_nota_credito()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_nota_credito
+            (
+            id_nota_credito
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_nota_debito()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_nota_debito
+            (
+            id_nota_debito
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+
 
     public function registrar_grupo_vame_comprobantes()
     {
@@ -316,7 +387,7 @@ class M_comprobantes extends CI_Model
             c.igv,
             c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             e.id_comprobante,
             e.id_tipo_comprobante,
             e.id_num_comprobante,
