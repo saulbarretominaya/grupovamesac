@@ -24,7 +24,7 @@ class M_comprobantes extends CI_Model
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=e.id_estado_comprobante) AS ds_estado_comprobante,   
             c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             e.id_comprobante,
             DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
@@ -32,7 +32,7 @@ class M_comprobantes extends CI_Model
             (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
             e.id_num_comprobante AS num_comprobante,
             DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=f.id_almacen) AS ds_sucursal_trabajador
+            d.ds_sucursal_trabajador
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
@@ -66,7 +66,7 @@ class M_comprobantes extends CI_Model
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=e.id_estado_comprobante) AS ds_estado_comprobante,   
              c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             e.id_comprobante,
             DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
@@ -74,7 +74,7 @@ class M_comprobantes extends CI_Model
             (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
             e.id_num_comprobante AS num_comprobante,
             DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=f.id_almacen) AS ds_sucursal_trabajador
+            d.ds_sucursal_trabajador
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
@@ -96,7 +96,7 @@ class M_comprobantes extends CI_Model
             SELECT
             a.ds_nombre_trabajador,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             a.ds_nombre_cliente_proveedor,
             a.direccion_fiscal_cliente_proveedor,
             c.valor_venta_total_sin_d,

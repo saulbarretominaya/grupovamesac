@@ -32,9 +32,9 @@
                       <tr>
                         <th>Num. O. Despacho</th>
                         <th>Num. Orden</th>
-                        <th>Serie</th>
                         <th>Num. Guia</th>
-                        <th>Sucursal</th>
+                        <th>Serie</th>
+                        <th>Tienda</th>
                         <th>Fecha Guia</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
@@ -91,8 +91,8 @@
                             <input type="hidden" id="id_guia_remision" value="<?php echo $index->id_guia_remision; ?>">
                             <td><?php echo $index->id_orden_despacho_empresa; ?></td>
                             <td><?php echo $index->id_parcial_completa_empresa; ?></td>
+                            <td><?php echo $index->id_tienda; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
-                            <td><?php echo $index->id_sucursal; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>
                             <td><?php echo $index->fecha_guia_remision; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
@@ -143,9 +143,9 @@
                       <tr>
                         <th>Num. O. Despacho</th>
                         <th>Num. Orden</th>
-                        <th>Serie</th>
                         <th>Num. Guia</th>
-                        <th>Sucursal</th>
+                        <th>Serie</th>
+                        <th>Tienda</th>
                         <th>Fecha Guia</th>
                         <th>Cliente</th>
                         <th>Condicion Pago</th>
@@ -202,8 +202,8 @@
                             <input type="hidden" id="id_guia_remision" value="<?php echo $index->id_guia_remision; ?>">
                             <td><?php echo $index->id_orden_despacho_empresa; ?></td>
                             <td><?php echo $index->id_parcial_completa_empresa; ?></td>
+                            <td><?php echo $index->id_tienda; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
-                            <td><?php echo $index->id_sucursal; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>
                             <td><?php echo $index->fecha_guia_remision; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>

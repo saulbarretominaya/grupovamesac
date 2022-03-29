@@ -25,10 +25,10 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision,
             c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
+            d.ds_sucursal_trabajador
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
@@ -61,10 +61,10 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=d.id_estado_guia_remision) AS ds_estado_guia_remision,            c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador
+            d.ds_sucursal_trabajador
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             RIGHT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
@@ -132,13 +132,13 @@ class M_guia_remision extends CI_Model
         return $resultados->result();
     }
 
-    public function registrar_proceres()
+    public function registrar_grupo_vame_tienda_proceres()
     {
         return $this->db->query(
             "
-            INSERT INTO proceres
+            INSERT INTO grupo_vame_tienda_proceres
             (
-            id_proceres
+            id_grupo_vame
             )
             VALUES
             (
@@ -148,13 +148,13 @@ class M_guia_remision extends CI_Model
         );
     }
 
-    public function registrar_tienda_bellota()
+    public function registrar_grupo_vame_tienda_bellota()
     {
         return $this->db->query(
             "
-            INSERT INTO tienda_bellota
+            INSERT INTO grupo_vame_tienda_bellota
             (
-            id_tienda_bellota
+            id_grupo_vame
             )
             VALUES
             (
@@ -164,13 +164,61 @@ class M_guia_remision extends CI_Model
         );
     }
 
-    public function registrar_tienda_nicolini()
+    public function registrar_grupo_vame_tienda_nicolini()
     {
         return $this->db->query(
             "
-            INSERT INTO tienda_nicolini
+            INSERT INTO grupo_vame_tienda_nicolini
             (
-            id_tienda_nicolini
+            id_grupo_vame
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_tienda_proceres()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_tienda_proceres
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_tienda_bellota()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_tienda_bellota
+            (
+            id_inversion_alpev
+            )
+            VALUES
+            (
+            ''
+            )
+            "
+        );
+    }
+
+    public function registrar_inversiones_alpev_tienda_nicolini()
+    {
+        return $this->db->query(
+            "
+            INSERT INTO inversiones_alpev_tienda_nicolini
+            (
+            id_inversion_alpev
             )
             VALUES
             (
@@ -237,7 +285,7 @@ class M_guia_remision extends CI_Model
         $ds_sucursal_trabajador,
         $ds_serie_guia_remision,
         $id_parcial_completa,
-        $id_sucursal,
+        $id_tienda,
         $id_guia_remision_empresa
     ) {
         return $this->db->query(
@@ -264,7 +312,7 @@ class M_guia_remision extends CI_Model
             ds_sucursal_trabajador,
 			ds_serie_guia_remision,
             id_parcial_completa,
-            id_sucursal,
+            id_tienda,
             fecha_guia_remision,
             id_guia_remision_empresa
             )
@@ -290,7 +338,7 @@ class M_guia_remision extends CI_Model
             '$ds_sucursal_trabajador',
 			'$ds_serie_guia_remision',
             '$id_parcial_completa',
-            '$id_sucursal',
+            '$id_tienda',
              NOW(),
              '$id_guia_remision_empresa'
             )
@@ -332,8 +380,9 @@ class M_guia_remision extends CI_Model
             d.punto_llegada,
             d.contenedor,
             d.embarque,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador,
-            (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_serie_guia_remision
+            d.ds_sucursal_trabajador,
+            d.ds_serie_guia_remision,
+            d.id_tienda
             FROM
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
@@ -445,7 +494,7 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
             c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             d.ds_tipo_envio_guia_remision,
             d.peso_bruto_total,
@@ -512,7 +561,7 @@ class M_guia_remision extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
             c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             d.ds_tipo_envio_guia_remision,
             d.peso_bruto_total,
@@ -527,7 +576,7 @@ class M_guia_remision extends CI_Model
             d.domiciliado,
             d.observaciones,
             DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=e.id_almacen) AS ds_sucursal_trabajador,
+            d.ds_sucursal_trabajador,
             e.num_documento
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion

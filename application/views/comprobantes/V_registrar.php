@@ -152,7 +152,7 @@
                             <div class="col-md-6">
                               <label># Guia</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="" value="<?php echo $enlace_registrar_cabecera->id_sucursal ?>" readonly>
+                                <input type="text" class="form-control" id="" value="<?php echo $enlace_registrar_cabecera->id_tienda ?>" readonly>
                               </div>
                             </div>
                           </div>

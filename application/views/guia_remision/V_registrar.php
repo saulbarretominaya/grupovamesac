@@ -50,7 +50,7 @@
                           </div>
                         </div>
                         <div class="col-md-3">
-                          <label for="cargo">Sucursal</label>
+                          <label for="cargo">Tienda</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="ds_sucursal_trabajador" value="<?php echo $enlace_registrar_cabecera->ds_sucursal_trabajador ?>" readonly>
                           </div>

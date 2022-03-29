@@ -67,10 +67,9 @@ class C_guia_remision extends CI_Controller
 		if ($id_guia_remision_empresa == "100") {
 			$this->M_guia_remision->registrar_grupo_vame_guia_remision();
 			$id_guia_remision_empresa = $this->M_guia_remision->lastID();
-
 			if ($ds_serie_guia_remision == "T001") {
-				$this->M_guia_remision->registrar_proceres();
-				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar_grupo_vame_tienda_proceres();
+				$id_tienda = $this->M_guia_remision->lastID();
 				$this->M_guia_remision->registrar(
 					$tipo_transporte,
 					$ruc,
@@ -91,12 +90,12 @@ class C_guia_remision extends CI_Controller
 					$ds_sucursal_trabajador,
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
-					$id_sucursal,
+					$id_tienda,
 					$id_guia_remision_empresa
 				);
 			} else if ($ds_serie_guia_remision == "T002") {
-				$this->M_guia_remision->registrar_tienda_bellota();
-				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar_grupo_vame_tienda_bellota();
+				$id_tienda = $this->M_guia_remision->lastID();
 				$this->M_guia_remision->registrar(
 					$tipo_transporte,
 					$ruc,
@@ -117,12 +116,12 @@ class C_guia_remision extends CI_Controller
 					$ds_sucursal_trabajador,
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
-					$id_sucursal,
+					$id_tienda,
 					$id_guia_remision_empresa
 				);
 			} else if ($ds_serie_guia_remision == "T003") {
-				$this->M_guia_remision->registrar_tienda_nicolini();
-				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar_grupo_vame_tienda_nicolini();
+				$id_tienda = $this->M_guia_remision->lastID();
 				$this->M_guia_remision->registrar(
 					$tipo_transporte,
 					$ruc,
@@ -143,7 +142,7 @@ class C_guia_remision extends CI_Controller
 					$ds_sucursal_trabajador,
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
-					$id_sucursal,
+					$id_tienda,
 					$id_guia_remision_empresa
 
 				);
@@ -151,10 +150,9 @@ class C_guia_remision extends CI_Controller
 		} else if ($id_guia_remision_empresa == "200") {
 			$this->M_guia_remision->registrar_inversiones_alpev_guia_remision();
 			$id_guia_remision_empresa = $this->M_guia_remision->lastID();
-
 			if ($ds_serie_guia_remision == "T001") {
-				$this->M_guia_remision->registrar_proceres();
-				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar_inversiones_alpev_tienda_proceres();
+				$id_tienda = $this->M_guia_remision->lastID();
 				$this->M_guia_remision->registrar(
 					$tipo_transporte,
 					$ruc,
@@ -175,13 +173,13 @@ class C_guia_remision extends CI_Controller
 					$ds_sucursal_trabajador,
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
-					$id_sucursal,
+					$id_tienda,
 					$id_guia_remision_empresa
 
 				);
 			} else if ($ds_serie_guia_remision == "T002") {
-				$this->M_guia_remision->registrar_tienda_bellota();
-				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar_inversiones_alpev_tienda_bellota();
+				$id_tienda = $this->M_guia_remision->lastID();
 				$this->M_guia_remision->registrar(
 					$tipo_transporte,
 					$ruc,
@@ -202,13 +200,13 @@ class C_guia_remision extends CI_Controller
 					$ds_sucursal_trabajador,
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
-					$id_sucursal,
+					$id_tienda,
 					$id_guia_remision_empresa
 
 				);
 			} else if ($ds_serie_guia_remision == "T003") {
-				$this->M_guia_remision->registrar_tienda_nicolini();
-				$id_sucursal = $this->M_guia_remision->lastID();
+				$this->M_guia_remision->registrar_inversiones_alpev_tienda_nicolini();
+				$id_tienda = $this->M_guia_remision->lastID();
 				$this->M_guia_remision->registrar(
 					$tipo_transporte,
 					$ruc,
@@ -229,7 +227,7 @@ class C_guia_remision extends CI_Controller
 					$ds_sucursal_trabajador,
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
-					$id_sucursal,
+					$id_tienda,
 					$id_guia_remision_empresa
 
 				);

@@ -40,25 +40,32 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <label for="cargo">Vendedor</label>
                           <div class="input-group">
                             <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_actualizar_cabecera->id_guia_remision ?>">
                             <input type="text" class="form-control" id="" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
                           </div>
                         </div>
-                        <div class="col-md-3">
-                          <label for="cargo">Sucursal</label>
+                        <div class="col-md-2">
+                          <label for="cargo">Num. Guia</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="ds_sucursal_trabajador" value="<?php echo $enlace_actualizar_cabecera->ds_sucursal_trabajador ?>" readonly>
+                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->id_tienda ?>" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="cargo">Serie</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="ds_serie_guia_remision" value="<?php echo $enlace_actualizar_cabecera->ds_serie_guia_remision ?>" readonly>
+                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_serie_guia_remision ?>" readonly>
                           </div>
                         </div>
+                        <div class="col-md-2">
+                          <label for="cargo">Tienda</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="" value="<?php echo $enlace_actualizar_cabecera->ds_sucursal_trabajador ?>" readonly>
+                          </div>
+                        </div>
+
                         <div class="col-md-3">
                           <label for="cargo">Fecha Emision</label>
                           <div class="input-group">

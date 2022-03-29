@@ -33,9 +33,9 @@
                       <tr>
                         <th>Num. O. Despacho</th>
                         <th>Num. Orden</th>
-                        <th>Serie Guia</th>
                         <th>Num. Guia</th>
-                        <th>Sucursal</th>
+                        <th>Serie Guia</th>
+                        <th>Tienda</th>
                         <th>Tipo Comprobante </th>
                         <th>Serie Comprobante</th>
                         <th>Num. Comprobante</th>
@@ -95,8 +95,8 @@
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->id_tienda; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
-                            <td><?php echo $index->id_sucursal; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>
                             <td><?php echo $index->ds_tipo_comprobante;  ?></td>
                             <td><?php echo $index->ds_serie_comprobante;  ?></td>
@@ -148,9 +148,9 @@
                       <tr>
                         <th>Num. O. Despacho</th>
                         <th>Num Orden</th>
-                        <th>Serie Guia</th>
                         <th>Num. Guia</th>
-                        <th>Sucursal</th>
+                        <th>Serie Guia</th>
+                        <th>Tienda</th>
                         <th>Tipo Comprobante </th>
                         <th>Serie Comprobante</th>
                         <th>Num. Comprobante</th>
@@ -212,8 +212,8 @@
                           <tr>
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
+                            <td><?php echo $index->id_tienda; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
-                            <td><?php echo $index->id_sucursal; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>
                             <td><?php echo $index->ds_tipo_comprobante;  ?></td>
                             <td><?php echo $index->ds_serie_comprobante;  ?></td>
