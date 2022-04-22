@@ -341,4 +341,205 @@ class C_comprobantes extends CI_Controller
 
 		$this->load->view("comprobantes/V_index_modal_tableros", $data);
 	}
+
+	public function emitir_comprobantes_electronicos()
+	{
+		$id_comprobante = $this->input->post("id_comprobante");
+
+		/*$data = array(
+			//"param1" => $this->M_comprobantes->parametros_cabecera_factura_electronica($id_comprobante)
+			//"param2" => $this->M_comprobantes->parametros_detalle_factura_electronica($id_comprobante)
+		); */
+
+		$ruta = "https://api.nubefact.com/api/v1/c23ea8b3-8cf7-4eac-8c2a-d92b1f92498c";
+		$token = "0ca0e5f49e4e4a958a95019ddecf33d70405289f2b8344ea93de3f4bb086cd7f";
+
+		$data = array(
+			"operacion"                         => "generar_comprobante",
+			"tipo_de_comprobante"               => "1",
+			"serie"                             => "FFF1",
+			"numero"                            => "8",
+			"sunat_transaction"                 => "1",
+			"cliente_tipo_de_documento"         => "6",
+			"cliente_numero_de_documento"       => "20600695771",
+			"cliente_denominacion"              => "NUBEFACT SA",
+			"cliente_direccion"                 => "CALLE LIBERTAD 116 MIRAFLORES - LIMA - PERU",
+			"cliente_email"                     => "",
+			"cliente_email_1"                   => "",
+			"cliente_email_2"                   => "",
+			"fecha_de_emision"                  => "21/04/2022",
+			"fecha_de_vencimiento"              => "",
+			"moneda"                            => "1",
+			"tipo_de_cambio"                    => "",
+			"porcentaje_de_igv"                 => "18.00",
+			"descuento_global"                  => "",
+			"descuento_global"                  => "",
+			"total_descuento"                   => "",
+			"total_anticipo"                    => "",
+			"total_gravada"                     => "600",
+			"total_inafecta"                    => "",
+			"total_exonerada"                   => "",
+			"total_igv"                         => "108",
+			"total_gratuita"                    => "",
+			"total_otros_cargos"                => "",
+			"total"                             => "708",
+			"percepcion_tipo"                   => "",
+			"percepcion_base_imponible"         => "",
+			"total_percepcion"                  => "",
+			"total_incluido_percepcion"         => "",
+			"detraccion"                        => "false",
+			"observaciones"                     => "",
+			"documento_que_se_modifica_tipo"    => "",
+			"documento_que_se_modifica_serie"   => "",
+			"documento_que_se_modifica_numero"  => "",
+			"tipo_de_nota_de_credito"           => "",
+			"tipo_de_nota_de_debito"            => "",
+			"enviar_automaticamente_a_la_sunat" => "true",
+			"enviar_automaticamente_al_cliente" => "false",
+			"codigo_unico"                      => "",
+			"condiciones_de_pago"               => "",
+			"medio_de_pago"                     => "",
+			"placa_vehiculo"                    => "",
+			"orden_compra_servicio"             => "",
+			"tabla_personalizada_codigo"        => "",
+			"formato_de_pdf"                    => "",
+			"items" => array(
+				array(
+					"unidad_de_medida"          => "NIU",
+					"codigo"                    => "001",
+					"descripcion"               => "DETALLE DEL PRODUCTO",
+					"cantidad"                  => "1",
+					"valor_unitario"            => "500",
+					"precio_unitario"           => "590",
+					"descuento"                 => "",
+					"subtotal"                  => "500",
+					"tipo_de_igv"               => "1",
+					"igv"                       => "90",
+					"total"                     => "590",
+					"anticipo_regularizacion"   => "false",
+					"anticipo_documento_serie"  => "",
+					"anticipo_documento_numero" => ""
+				),
+				array(
+					"unidad_de_medida"          => "ZZ",
+					"codigo"                    => "001",
+					"descripcion"               => "DETALLE DEL SERVICIO",
+					"cantidad"                  => "5",
+					"valor_unitario"            => "20",
+					"precio_unitario"           => "23.60",
+					"descuento"                 => "",
+					"subtotal"                  => "100",
+					"tipo_de_igv"               => "1",
+					"igv"                       => "18",
+					"total"                     => "118",
+					"anticipo_regularizacion"   => "false",
+					"anticipo_documento_serie"  => "",
+					"anticipo_documento_numero" => ""
+
+				)
+			)
+		);
+
+		$data_json = json_encode($data);
+
+		//Invocamos el servicio de NUBEFACT
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $ruta);
+		curl_setopt(
+			$ch,
+			CURLOPT_HTTPHEADER,
+			array(
+				'Authorization: Token token="' . $token . '"',
+				'Content-Type: application/json',
+			)
+		);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$respuesta  = curl_exec($ch);
+		curl_close($ch);
+
+		$leer_respuesta = json_decode($respuesta, true);
+
+		if (isset($leer_respuesta['errors'])) {
+
+			echo json_encode(array($leer_respuesta['errors']));
+		} else {
+			$json_request = $data_json;
+			$json_response = json_encode($leer_respuesta);
+			$tipo_de_comprobante = $leer_respuesta['tipo_de_comprobante'];
+			$serie = $leer_respuesta['serie'];
+			$numero = $leer_respuesta['numero'];
+			$enlace = $leer_respuesta['enlace'];
+			$aceptada_por_sunat = $leer_respuesta['aceptada_por_sunat'];
+
+			if ($serie == "FFF1") {
+				if ($aceptada_por_sunat != 1) {
+					$aceptada_por_sunat = 0; //Es estado 0 significa que fue Rechazado, le asignamos un valor porque devuelve vacio
+				}
+			} else if ($serie == "BBB1") {
+				$aceptada_por_sunat = 2; //El estado 2 significa que esta en Pendiente, le asignamos un valor porque devuelve vacio
+			}
+
+
+			$sunat_description = $leer_respuesta['sunat_description'];
+			$sunat_note = $leer_respuesta['sunat_note'];
+			$sunat_responsecode = $leer_respuesta['sunat_responsecode'];
+			$sunat_soap_error = $leer_respuesta['sunat_soap_error'];
+			$anulado = $leer_respuesta['anulado'];
+			$pdf_zip_base64 = $leer_respuesta['pdf_zip_base64'];
+			$xml_zip_base64 = $leer_respuesta['xml_zip_base64'];
+			$cdr_zip_base64 = $leer_respuesta['cdr_zip_base64'];
+			$cadena_para_codigo_qr = $leer_respuesta['cadena_para_codigo_qr'];
+			$codigo_hash = $leer_respuesta['codigo_hash'];
+			$codigo_de_barras = $leer_respuesta['codigo_de_barras'];
+			$key = $leer_respuesta['key'];
+			$digest_value = $leer_respuesta['digest_value'];
+			$enlace_del_pdf = $leer_respuesta['enlace_del_pdf'];
+			$enlace_del_xml = $leer_respuesta['enlace_del_xml'];
+			$enlace_del_cdr = $leer_respuesta['enlace_del_cdr'];
+
+			if ($serie == "FFF1") {
+				if ($enlace_del_cdr == "") {
+					$enlace_del_cdr = 2; //El estado 0 significa que fue Rechazado, le asignamos un valor porque devuelve vacio
+				}
+			} else if ($serie == "BBB1") {
+				$enlace_del_cdr = 2; //El estado 2 significa que esta en Pendiente, le asignamos un valor porque devuelve vacio
+			}
+
+			$this->M_comprobantes->registrar_nubefact(
+				$id_comprobante,
+				$json_request,
+				$json_response,
+				$tipo_de_comprobante,
+				$serie,
+				$numero,
+				$enlace,
+				$aceptada_por_sunat,
+				$sunat_description,
+				$sunat_note,
+				$sunat_responsecode,
+				$sunat_soap_error,
+				$anulado,
+				$pdf_zip_base64,
+				$xml_zip_base64,
+				$cdr_zip_base64,
+				$cadena_para_codigo_qr,
+				$codigo_hash,
+				$codigo_de_barras,
+				$key,
+				$digest_value,
+				$enlace_del_pdf,
+				$enlace_del_xml,
+				$enlace_del_cdr
+			);
+
+			$this->M_comprobantes->actualizar_estado_emitido_a_sunat(
+				$id_comprobante
+			);
+
+			echo json_encode(array($leer_respuesta['sunat_description']));
+		}
+	}
 }

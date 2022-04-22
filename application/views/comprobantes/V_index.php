@@ -48,8 +48,18 @@
                         <th>Tipo Orden</th>
                         <th>Estado Guia</th>
                         <th>Estado Comprobante</th>
-                        <th></th>
-                        <th></th>
+                        <th>Estado Sunat</th>
+                        <th>Actualizar Estado Sunat</th>
+                        <th>aaaa</th>
+                        <th>bbb</th>
+                        <th>ccc</th>
+                        <th class="table-primary">PDF</th>
+                        <th class="table-primary"> XML</th>
+                        <th class="table-primary">CDR</th>
+                        <th>Anular</th>
+                        <th class="table-danger">PDF</th>
+                        <th class="table-danger"> XML</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -80,29 +90,47 @@
                             case "PENDIENTE":
                               $ds_estado_comprobante = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
-                            case "PENDIENTE POR FACTURAR":
-                              $ds_estado_comprobante = '<div><span class="badge bg-dark">PENDIENTE POR FACTURAR</span></div>';
+                            case "PENDIENTE POR EMITIR":
+                              $ds_estado_comprobante = '<div><span class="badge bg-dark">PENDIENTE POR EMITIR</span></div>';
                               break;
-                            case "FACTURADO":
-                              $ds_estado_comprobante = '<div><span class="badge bg-success">FACTURADO</span></div>';
+                            case "EMITIDO A SUNAT":
+                              $ds_estado_comprobante = '<div><span class="badge bg-info">EMITIDO A SUNAT</span></div>';
                               break;
                             default:
                               $ds_estado_comprobante = '<div><span class="badge bg-warning">PENDIENTE</span></div>';
                               break;
                           }
 
+                          switch ($index->ds_estado_sunat) {
+
+                            case "0":
+                              $ds_estado_sunat = '<div><span class="badge bg-danger">RECHAZADO</span></div>';
+                              break;
+                            case "1":
+                              $ds_estado_sunat = '<div><span class="badge bg-success">ACEPTADO</span></div>';
+                              break;
+                            case "2":
+                              $ds_estado_sunat = '<div><span class="badge bg-secondary">PENDIENTE POR PROVEEDOR</span></div>';
+                              break;
+                            default:
+                              $ds_estado_sunat = '<div><span class="badge bg-warning">NO EMITIDO</span></div>';
+                              break;
+                          }
+
                         ?>
                           <tr>
+
                             <td><?php echo $index->id_orden_despacho; ?></td>
                             <td><?php echo $index->id_parcial_completa; ?></td>
                             <td><?php echo $index->id_tienda; ?></td>
                             <td><?php echo $index->ds_serie_guia_remision; ?></td>
                             <td><?php echo $index->ds_sucursal_trabajador; ?></td>
-
+                            <input type="hidden" id="id_comprobante" value="<?php echo $index->id_comprobante; ?>">
+                            <input type="hidden" id="ds_estado_comprobante" value="<?php echo $index->ds_estado_comprobante; ?>">
+                            <input type="hidden" id="ds_estado_sunat" value="<?php echo $index->ds_estado_sunat; ?>">
                             <td><?php echo $index->num_comprobante;  ?></td>
                             <td><?php echo $index->ds_serie_comprobante;  ?></td>
                             <td><?php echo $index->ds_tipo_comprobante;  ?></td>
-
                             <td><?php echo $index->fecha_comprobante;  ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
@@ -112,12 +140,62 @@
                             <td><?php echo $ds_estado_tipo_orden_parcial_completa; ?></td>
                             <td><?php echo $ds_estado_guia_remision; ?></td>
                             <td><?php echo $ds_estado_comprobante; ?></td>
-                            <?php if ($index->id_comprobante != "") { ?>
+                            <td><?php echo $ds_estado_sunat; ?></td>
+
+
+
+                            <?php if ($index->id_comprobante != "" and $index->ds_estado_comprobante == "PENDIENTE POR EMITIR") { ?>
+                              <td></td>
+                              <td><button type="button" class="btn btn-outline-success btn-sm js_generar_comprobantes_electronicos_productos"><span class="fas fa-cloud-upload-alt"></span></button></td>
                               <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
                               <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_actualizar/<?php echo $index->id_comprobante; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+
+
+                            <?php } else if ($index->id_comprobante != "" and $index->ds_estado_comprobante == "EMITIDO A SUNAT") { ?>
+
+                              <?php if ($index->ds_estado_sunat == "2") { ?>
+                                <td><button type="button" class="btn btn-outline-success btn-sm js_actualizar_estado_sunat"><span class="fas fa-check-circle"></span></button></td>
+                              <?php } else { ?>
+                                <td></td>
+                              <?php } ?>
+
+                              <td><button type="button" class="btn btn-outline-success btn-sm" disabled><span class="fas fa-cloud-upload-alt"></span></button></td>
+                              <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_comprobantes_productos" value="<?php echo $index->id_comprobante; ?>" data-toggle="modal" data-target="#id_target_comprobantes_productos"><span class="fas fa-search-plus"></span></button></td>
+                              <td><button type="button" class="btn btn-outline-warning btn-sm" disabled><span class="far fa-edit"></span></button></td>
+                              <td><a href="<?php echo $index->enlace_del_pdf ?>" class="btn btn-outline-danger btn-sm" download="" target="_blank"><span class="fas fa-file-pdf"></span></a></td>
+                              <td><a href="<?php echo $index->enlace_del_xml ?>" class="btn btn-outline-secondary btn-sm" download="" target="_blank"><span class="fas fa-file-archive"></span></a></td>
+
+
+                              <?php if ($index->enlace_del_cdr == "0" || $index->enlace_del_cdr == "2") { ?>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              <?php } else { ?>
+                                <td><a href="<?php echo $index->enlace_del_cdr ?>" class="btn btn-outline-secondary btn-sm" download="" target="_blank"><span class="fas fa-file-archive"></span></a></td>
+                                <td><button type="button" class="btn btn-outline-danger btn-sm js_anular_comprobantes_electronicos"><span class="fas fa-times-circle"></span></button></td>
+                                <td>xxxx</td>
+                                <td>xxxx</td>
+                              <?php } ?>
+
+
                             <?php } else { ?>
-                              <td><button type="button" class="btn btn-outline-info btn-sm "><span class="fas fa-angle-double-right"></span></button></td>
+                              <td></td>
+                              <td><button type="button" class="btn btn-outline-success btn-sm" disabled><span class="fas fa-cloud-upload-alt"></span></button></td>
+                              <td><button type="button" class="btn btn-outline-info btn-sm" disabled><span class="fas fa-search-plus"></span></button></td>
                               <td><a href=" <?php echo base_url(); ?>C_comprobantes/enlace_registrar/<?php echo $index->id_guia_remision; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
                             <?php } ?>
                           </tr>
                         <?php endforeach; ?>

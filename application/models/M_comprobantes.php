@@ -32,7 +32,11 @@ class M_comprobantes extends CI_Model
             (SELECT serie FROM detalle_multitablas WHERE id_dmultitabla=e.id_tipo_comprobante) AS ds_serie_comprobante,
             e.id_num_comprobante AS num_comprobante,
             DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
-            d.ds_sucursal_trabajador
+            d.ds_sucursal_trabajador,
+            h.enlace_del_pdf,
+            h.enlace_del_xml,
+            h.enlace_del_cdr,
+            h.aceptada_por_sunat as ds_estado_sunat
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
@@ -40,9 +44,10 @@ class M_comprobantes extends CI_Model
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON f.id_trabajador=a.id_trabajador
             LEFT JOIN usuarios g ON g.id_trabajador=a.id_trabajador
+            LEFT JOIN nubefact h ON h.id_comprobante=e.id_comprobante
             WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894' AND g.id_empresa='$id_empresa'
-            ORDER BY a.id_cotizacion desc;
-        "
+            ORDER BY a.id_cotizacion DESC;
+            "
         );
         return $resultados->result();
     }
@@ -520,7 +525,7 @@ class M_comprobantes extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=c.id_estado_parcial_completa) AS ds_estado_parcial_completa,
             c.precio_venta,
             d.id_guia_remision,
-            d.id_sucursal,
+            d.id_tienda,
             d.ds_serie_guia_remision,
             e.id_comprobante,
             DATE_FORMAT(d.fecha_guia_remision,'%d/%m/%Y') AS fecha_guia_remision,
@@ -564,5 +569,105 @@ class M_comprobantes extends CI_Model
         "
         );
         return $resultados->row();
+    }
+
+    public function registrar_nubefact(
+        $id_comprobante,
+        $json_request,
+        $json_response,
+        $tipo_de_comprobante,
+        $serie,
+        $numero,
+        $enlace,
+        $aceptada_por_sunat,
+        $sunat_description,
+        $sunat_note,
+        $sunat_responsecode,
+        $sunat_soap_error,
+        $anulado,
+        $pdf_zip_base64,
+        $xml_zip_base64,
+        $cdr_zip_base64,
+        $cadena_para_codigo_qr,
+        $codigo_hash,
+        $codigo_de_barras,
+        $key,
+        $digest_value,
+        $enlace_del_pdf,
+        $enlace_del_xml,
+        $enlace_del_cdr
+
+    ) {
+        return $this->db->query(
+            "
+            INSERT INTO nubefact
+            (
+                id_nubefact,
+                id_comprobante,
+                json_request,
+                json_response,
+                tipo_de_comprobante,
+                serie,
+                numero,
+                enlace,
+                aceptada_por_sunat,
+                sunat_description,
+                sunat_note,
+                sunat_responsecode,
+                sunat_soap_error,
+                anulado,
+                pdf_zip_base64,
+                xml_zip_base64,
+                cdr_zip_base64,
+                cadena_para_codigo_qr,
+                codigo_hash,
+                codigo_de_barras,
+                `key`,
+                digest_value,
+                enlace_del_pdf,
+                enlace_del_xml,
+                enlace_del_cdr
+            )
+            VALUES
+            (
+                '',
+                '$id_comprobante',
+                '$json_request',
+                '$json_response',
+				'$tipo_de_comprobante',
+				'$serie',
+				'$numero',
+				'$enlace',
+				'$aceptada_por_sunat',
+				'$sunat_description',
+				'$sunat_note',
+				'$sunat_responsecode',
+				'$sunat_soap_error',
+				'$anulado',
+				'$pdf_zip_base64',
+				'$xml_zip_base64',
+				'$cdr_zip_base64',
+				'$cadena_para_codigo_qr',
+				'$codigo_hash',
+				'$codigo_de_barras',
+				'$key',
+				'$digest_value',
+				'$enlace_del_pdf',
+				'$enlace_del_xml',
+				'$enlace_del_cdr'
+            )
+            "
+        );
+    }
+
+    public function actualizar_estado_emitido_a_sunat($id_comprobante)
+    {
+        return $this->db->query(
+            "
+            UPDATE comprobantes set
+            id_estado_comprobante='902'
+            where id_comprobante='$id_comprobante'
+            "
+        );
     }
 }
