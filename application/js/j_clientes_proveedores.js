@@ -291,6 +291,7 @@ function registrar() {
 	var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 	//Empresa
 	var id_cliente_proveedor_empresa = $("#id_cliente_proveedor_empresa").val();
+	var id_empresa = $("#id_empresa").val();
 
 	$.ajax({
 		async: false,
@@ -336,6 +337,7 @@ function registrar() {
 			ds_nombre_trabajador: ds_nombre_trabajador,
 			//Empresa
 			id_cliente_proveedor_empresa: id_cliente_proveedor_empresa,
+			id_empresa: id_empresa
 
 		},
 		success: function (data) {

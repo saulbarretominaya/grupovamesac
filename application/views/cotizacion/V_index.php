@@ -200,6 +200,7 @@
                             <?php } ?>
                             <td><a href=" <?php echo base_url(); ?>C_cotizacion/enlace_actualizar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                             <input type="hidden" id="id_orden_despacho_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+                            <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
                             <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
                           </tr>
                         <?php endforeach; ?>

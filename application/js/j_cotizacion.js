@@ -148,6 +148,7 @@ $("#registrar").on("click", function () {
 		var id_moneda = $("#tipo_moneda_cambio").val();
 		//Empresa
 		var id_cotizacion_empresa = $("#id_cotizacion_empresa").val();
+		var id_empresa = $("#id_empresa").val();
 
 
 		//Detalle cotizacion
@@ -222,6 +223,7 @@ $("#registrar").on("click", function () {
 				id_moneda: id_moneda,
 				//Empresa
 				id_cotizacion_empresa: id_cotizacion_empresa,
+				id_empresa: id_empresa,
 
 				//Detalle cotizacion
 				id_producto: id_producto,
@@ -267,6 +269,7 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 	var id_orden_despacho = $(this).parents("tr").find("td")[9].innerText;
 	var estado_orden_despacho = $(this).parents("tr").find("td")[10].innerText;
 	var id_orden_despacho_empresa = $(this).closest('tr').find('#id_orden_despacho_empresa').val();
+	var id_empresa = $(this).closest('tr').find('#id_empresa').val();
 
 	debugger;
 
@@ -301,7 +304,9 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 								dataType: "json",
 								data: {
 									id_cotizacion: id_cotizacion,
-									id_orden_despacho_empresa: id_orden_despacho_empresa
+									id_orden_despacho_empresa: id_orden_despacho_empresa,
+									id_empresa: id_empresa
+
 								},
 								success: function (data) {
 									window.location.href = base_url + "C_cotizacion";
@@ -1345,6 +1350,7 @@ function calcular_precio_descuento() {
 		$("#precio_descuento").val("");
 		$("#d_unidad").val("");
 		$("#d_cant_total").val("");
+		$("#valor_venta_con_d").val(precio_ganancia.toFixed(5));
 	} else {
 		$("#d_unidad").val(d_unidad.toFixed(5));
 		$("#d_cant_total").val(d_cant_total.toFixed(5));

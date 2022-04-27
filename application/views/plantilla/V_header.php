@@ -81,7 +81,7 @@
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
-          <a class="nav-link"><?php echo 'Área: ' . $this->session->userdata("ds_cargo_trabajador") ?></a>
+          <a class="nav-link"><?php echo 'Cargo: ' . $this->session->userdata("ds_cargo_trabajador") ?></a>
         </li>
 
         <li class="nav-item">

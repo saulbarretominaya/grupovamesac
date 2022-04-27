@@ -613,6 +613,22 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
+    // 64 ESTADO PARCIALES COMPLETAS
+    // 65 ESTADO DE REGISTRAR O ELIMINAR - DETALLE CONDICION PAGO - MODULO COMPROBANTES
+    // 66 ESTADO DE GUIA DE REMISION	
+    // 67 ESTADO DE COMPROBANTES	
+
+    // 68 CATEGORIA DE COMODIN	
+    public function cbox_categoria_comodin()
+    {
+        $resultados = $this->db->query("
+            SELECT a.*,b.* FROM multitablas a 
+            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+            WHERE b.id_multitabla='68';");
+        return $resultados->result();
+    }
+
+
     /* No tocar */
     public function correlativo_producto()
     {

@@ -28,8 +28,7 @@ class M_tableros extends CI_Model
             a.id_modelo_tablero,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_modelo_tablero) AS ds_modelo_tablero
             FROM tableros a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            WHERE b.id_empresa='$id_empresa'
+            WHERE a.id_empresa='$id_empresa'
             ORDER BY a.id_tablero ASC"
         );
         return $resultados->result();
@@ -76,10 +75,36 @@ class M_tableros extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_ent) AS ds_cta_ent,
         a.stock
         FROM productos a
-        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-        where b.id_empresa='$id_empresa'    
+        where a.id_empresa='$id_empresa'    
         ORDER BY a.id_producto ASC
         ");
+        return $resultados->result();
+    }
+
+    public function index_comodin()
+    {
+        $id_empresa = $this->session->userdata("id_empresa");
+
+        $resultados = $this->db->query(
+            "
+            SELECT
+            a.id_comodin,
+            CONCAT('COM',a.id_comodin) AS id_general,
+            a.codigo_producto,
+            a.descripcion_producto,
+            a.id_marca_producto,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_marca_producto) AS ds_marca_producto,
+            a.id_unidad_medida,
+            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_unidad_medida) AS ds_unidad_medida,
+            a.id_moneda,
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
+            a.precio_unitario,
+            a.nombre_proveedor
+            FROM comodin a
+            where a.id_empresa='$id_empresa'
+            ORDER BY a.id_comodin ASC
+        "
+        );
         return $resultados->result();
     }
 
@@ -131,7 +156,8 @@ class M_tableros extends CI_Model
         $total_tablero,
         $id_trabajador,
         $ds_nombre_trabajador,
-        $id_tablero_empresa
+        $id_tablero_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -140,7 +166,7 @@ class M_tableros extends CI_Model
             id_tablero,codigo_tablero,descripcion_tablero,cantidad_tablero,id_sunat,
             id_marca_tablero,id_modelo_tablero,id_moneda,id_almacen,
             precio_tablero,porcentaje_margen,precio_margen,precio_unitario_por_tablero,total_tablero,
-            id_trabajador,ds_nombre_trabajador,id_tablero_empresa
+            id_trabajador,ds_nombre_trabajador,id_tablero_empresa,id_empresa
 
         )
         VALUES
@@ -148,7 +174,7 @@ class M_tableros extends CI_Model
             '','$codigo_tablero','$descripcion_tablero','$cantidad_tablero','$id_sunat',
             '$id_marca_tablero','$id_modelo_tablero','$id_moneda','$id_almacen',
             '$precio_tablero','$porcentaje_margen','$precio_margen','$precio_unitario_por_tablero','$total_tablero',
-            '$id_trabajador','$ds_nombre_trabajador','$id_tablero_empresa'
+            '$id_trabajador','$ds_nombre_trabajador','$id_tablero_empresa','$id_empresa'
         )
         "
         );

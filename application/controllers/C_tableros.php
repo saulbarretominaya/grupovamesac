@@ -31,7 +31,7 @@ class C_tableros extends CI_Controller
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 			'cbox_almacen' => $this->M_cbox->cbox_almacen(),
 			'index_productos' => $this->M_tableros->index_productos(),
-
+			'index_comodin' => $this->M_tableros->index_comodin(),
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -58,7 +58,7 @@ class C_tableros extends CI_Controller
 		$id_trabajador = $this->input->post("id_trabajador");
 		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 		$id_tablero_empresa = $this->input->post("id_tablero_empresa");
-
+		$id_empresa = $this->input->post("id_empresa");
 
 		//DETALLE
 		$id_almacen_det = $this->input->post("id_almacen_det");
@@ -95,7 +95,8 @@ class C_tableros extends CI_Controller
 				$total_tablero,
 				$id_trabajador,
 				$ds_nombre_trabajador,
-				$id_tablero_empresa
+				$id_tablero_empresa,
+				$id_empresa
 
 			);
 		} else if ($id_tablero_empresa == "200") {
@@ -117,7 +118,8 @@ class C_tableros extends CI_Controller
 				$total_tablero,
 				$id_trabajador,
 				$ds_nombre_trabajador,
-				$id_tablero_empresa
+				$id_tablero_empresa,
+				$id_empresa
 			);
 		}
 

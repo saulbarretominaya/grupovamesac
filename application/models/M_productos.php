@@ -46,8 +46,7 @@ class M_productos extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_ent) AS ds_cta_ent,
         a.stock
         FROM productos a
-        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-        WHERE b.id_empresa='$id_empresa'
+        WHERE a.id_empresa='$id_empresa'
         ORDER BY a.id_producto ASC
         ");
         return $resultados->result();
@@ -112,7 +111,8 @@ class M_productos extends CI_Model
         $id_almacen,
         $id_trabajador,
         $ds_nombre_trabajador,
-        $id_producto_empresa
+        $id_producto_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -122,7 +122,7 @@ class M_productos extends CI_Model
             precio_costo,precio_unitario,porcentaje,ganancia_unidad,stock,rentabilidad,
             id_unidad_medida,id_grupo,id_familia,id_clase,id_sub_clase,id_sub_clase_dos, 
             id_marca_producto,id_moneda,id_cta_vta,id_cta_ent,id_sunat,id_almacen,
-            id_trabajador,ds_nombre_trabajador,id_producto_empresa
+            id_trabajador,ds_nombre_trabajador,id_producto_empresa,id_empresa
         )
         VALUES
         (
@@ -130,7 +130,7 @@ class M_productos extends CI_Model
             '$precio_costo','$precio_unitario','$porcentaje','$ganancia_unidad','0','$rentabilidad',
             '$id_unidad_medida','$id_grupo','$id_familia','$id_clase','$id_sub_clase','$id_sub_clase_dos',
             '$id_marca_producto','$id_moneda','$id_cta_vta','$id_cta_ent','$id_sunat','$id_almacen',
-            '$id_trabajador','$ds_nombre_trabajador','$id_producto_empresa'
+            '$id_trabajador','$ds_nombre_trabajador','$id_producto_empresa','$id_empresa'
         )"
         );
     }

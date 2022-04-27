@@ -10,6 +10,9 @@
           </div>
         </div>
       </div>
+      <input type="hidden" id="id_actualizar" value="ACTUALIZAR">
+
+
     </section>
 
     <section class="content">
@@ -23,6 +26,21 @@
               <form class="form-horizontal">
                 <div class="card-body">
                   <div class="form-group row">
+
+                    <div class="col-sm-3">
+                      <label>Categoria</label>
+                      <select class="form-control select2" id="id_categoria_comodin" style="width: 100%;">
+                        <option value="0">Seleccionar</option>
+                        <?php foreach ($cbox_categoria_comodin as $cbox_categoria_comodin) : ?>
+                          <?php if ($cbox_categoria_comodin->id_dmultitabla == $enlace_actualizar->id_categoria_comodin) : ?>
+                            <option value="<?php echo $cbox_categoria_comodin->id_dmultitabla; ?>" selected><?php echo $cbox_categoria_comodin->descripcion; ?></option>
+                          <?php else : ?>
+                            <option value="<?php echo $cbox_categoria_comodin->id_dmultitabla ?>"><?php echo $cbox_categoria_comodin->descripcion; ?></option>
+                          <?php endif; ?>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+
                     <div class="col-sm-3">
                       <label>Codigo Producto</label>
                       <input type="hidden" id="id_comodin" value="<?php echo $enlace_actualizar->id_comodin ?>">
@@ -36,6 +54,9 @@
                       <label>Proveedor</label>
                       <input type="text" class="form-control" id="nombre_proveedor" value="<?php echo $enlace_actualizar->nombre_proveedor ?>">
                     </div>
+
+                  </div>
+                  <div class="form-group row">
                     <div class="col-sm-3">
                       <label>Marca</label>
                       <select class="form-control select2" id="id_marca_producto" style="width: 100%;">
@@ -53,8 +74,6 @@
                         <?php endforeach; ?>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group row">
                     <div class="col-sm-3">
                       <label>U.M</label>
                       <select class="form-control select2" id="id_unidad_medida" style="width: 100%;">
@@ -74,7 +93,7 @@
                     </div>
                     <div class="col-sm-3">
                       <label>Moneda</label>
-                      <select class="form-control" id="id_moneda">
+                      <select class="form-control select2" id="id_moneda">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                           <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar->id_moneda) : ?>
@@ -89,7 +108,7 @@
                         <?php endforeach; ?>
                       </select>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                       <label>Precio</label>
                       <input type="text" class="form-control" id="precio_unitario" value="<?php echo $enlace_actualizar->precio_unitario ?>">
                     </div>

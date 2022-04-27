@@ -78,6 +78,7 @@ class C_cotizacion extends CI_Controller
 		$valor_cambio = $this->input->post("valor_cambio");
 		$id_moneda = $this->input->post("id_moneda");
 		$id_cotizacion_empresa = $this->input->post("id_cotizacion_empresa");
+		$id_empresa = $this->input->post("id_empresa");
 
 
 		//Detalle Cotizacion
@@ -145,7 +146,9 @@ class C_cotizacion extends CI_Controller
 				$precio_venta,
 				$valor_cambio,
 				$id_moneda,
-				$id_cotizacion_empresa
+				$id_cotizacion_empresa,
+				$id_empresa
+
 			);
 		} else if ($id_cotizacion_empresa == "200") {
 			$this->M_cotizacion->registrar_inversiones_alpev_cotizacion();
@@ -181,7 +184,8 @@ class C_cotizacion extends CI_Controller
 				$precio_venta,
 				$valor_cambio,
 				$id_moneda,
-				$id_cotizacion_empresa
+				$id_cotizacion_empresa,
+				$id_empresa
 			);
 		}
 		$id_cotizacion = $this->M_cotizacion->lastID();
@@ -314,6 +318,8 @@ class C_cotizacion extends CI_Controller
 	{
 		$id_cotizacion = $this->input->post("id_cotizacion");
 		$id_orden_despacho_empresa = $this->input->post("id_orden_despacho_empresa");
+		$id_empresa = $this->input->post("id_empresa");
+
 
 		$this->M_cotizacion->aprobar_estado($id_cotizacion);
 		if ($id_orden_despacho_empresa == "100") {
@@ -321,14 +327,16 @@ class C_cotizacion extends CI_Controller
 			$id_orden_despacho_empresa = $this->M_cotizacion->lastID();
 			$this->M_cotizacion->registrar_orden_despacho(
 				$id_cotizacion,
-				$id_orden_despacho_empresa
+				$id_orden_despacho_empresa,
+				$id_empresa
 			);
 		} else if ($id_orden_despacho_empresa == "200") {
 			$this->M_cotizacion->registrar_inversiones_alpev_orden_despacho();
 			$id_orden_despacho_empresa = $this->M_cotizacion->lastID();
 			$this->M_cotizacion->registrar_orden_despacho(
 				$id_cotizacion,
-				$id_orden_despacho_empresa
+				$id_orden_despacho_empresa,
+				$id_empresa
 			);
 		}
 		echo json_encode($id_cotizacion);

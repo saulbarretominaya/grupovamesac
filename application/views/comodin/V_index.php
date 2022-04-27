@@ -18,9 +18,10 @@
             <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Codigo Comodin</th>
-                  <th>Codigo Producto</th>
-                  <th>Producto</th>
+                  <th>Correlativo</th>
+                  <th>Categoria</th>
+                  <th>Codigo</th>
+                  <th>Descripcion</th>
                   <th>Proveedor</th>
                   <th>Marca</th>
                   <th>U.M.</th>
@@ -35,6 +36,7 @@
                   <?php foreach ($index as $index) : ?>
                     <tr>
                       <td><?php echo $index->id_comodin_empresa; ?></td>
+                      <td><?php echo $index->ds_categoria_comodin; ?></td>
                       <td><?php echo $index->codigo_producto; ?></td>
                       <td><?php echo $index->descripcion_producto; ?></td>
                       <td><?php echo $index->nombre_proveedor; ?></td>

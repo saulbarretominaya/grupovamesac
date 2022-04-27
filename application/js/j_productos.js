@@ -59,6 +59,7 @@ $("#registrar").on("click", function () {
 		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 		//Empresa
 		var id_producto_empresa = $("#id_producto_empresa").val();
+		var id_empresa = $("#id_empresa").val();
 
 		validar_radio();
 
@@ -91,7 +92,8 @@ $("#registrar").on("click", function () {
 				id_trabajador: id_trabajador,
 				ds_nombre_trabajador: ds_nombre_trabajador,
 				//empresa
-				id_producto_empresa: id_producto_empresa
+				id_producto_empresa: id_producto_empresa,
+				id_empresa: id_empresa
 			},
 			success: function (data) {
 				debugger;

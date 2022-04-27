@@ -125,6 +125,7 @@ $("#registrar").on("click", function () {
 		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 		//Empresa
 		var id_tablero_empresa = $("#id_tablero_empresa").val();
+		var id_empresa = $("#id_empresa").val();
 
 		//Detalle
 		var id_almacen_det = Array.prototype.slice.call(document.getElementsByName("id_almacen_det[]")).map((o) => o.value);
@@ -167,6 +168,7 @@ $("#registrar").on("click", function () {
 				ds_nombre_trabajador: ds_nombre_trabajador,
 				//Empresa
 				id_tablero_empresa: id_tablero_empresa,
+				id_empresa: id_empresa,
 
 				//Detalle
 				id_almacen_det: id_almacen_det,
@@ -212,9 +214,8 @@ $(document).on("click", ".js_lupa_tablero", function () {
 
 
 
-/*  Ventanas Modal en el Insertar*/
+/*  Ventanas Modal en el Registrar*/
 $(document).on("click", ".js_seleccionar_modal_producto", function () {
-
 	debugger;
 	limpiar_campos();
 	productos = $(this).val();
@@ -229,8 +230,6 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	$("#hidden_id_marca_producto").val(split_productos[7]);
 	$("#hidden_ds_marca_producto").val(split_productos[8]);
 	var simbolo_moneda = split_productos[9];
-	$("#precio_unitario").val(split_productos[10]);
-
 	if (simbolo_moneda == "SOLES") {
 		$("#simbolo_moneda").val("S/");
 		$("#moneda").val("SOLES");
@@ -238,9 +237,38 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 		$("#simbolo_moneda").val("$");
 		$("#moneda").val("DOLARES");
 	}
-
+	$("#precio_unitario").val(split_productos[10]);
 	$("#opcion_target_producto").modal("hide");
 });
+$(document).on("click", ".js_seleccionar_modal_comodin", function () {
+	debugger;
+	limpiar_campos();
+	comodin = $(this).val();
+	split_comodin = comodin.split("*");
+	$("#hidden_id_comodin").val(split_comodin[0]);
+	$("#hidden_id_general").val(split_comodin[1]);
+	$("#hidden_codigo_producto").val(split_comodin[2]);
+	$("#descripcion_producto").val(split_comodin[3]);
+	$("#hidden_id_unidad_medida").val(split_comodin[4]);
+	$("#hidden_ds_unidad_medida").val(split_comodin[5]);
+	$("#hidden_id_marca_producto").val(split_comodin[6]);
+	$("#hidden_ds_marca_producto").val(split_comodin[7]);
+	$("#hidden_id_moneda").val(split_comodin[8]);
+	$("#tipo_moneda_origen").val(split_comodin[9]);
+	var simbolo_moneda = split_comodin[9];
+	if (simbolo_moneda == "SOLES") {
+		$("#simbolo_moneda").val("S/");
+		$("#moneda").val("SOLES");
+	} else if (simbolo_moneda == "DOLARES") {
+		$("#simbolo_moneda").val("$");
+		$("#moneda").val("DOLARES");
+
+	}
+
+	$("#precio_unitario").val(split_comodin[10]);
+	$("#opcion_target_tablero").modal("hide");
+});
+
 $(document).ready(function () {
 
 	/* Modal 1 */
@@ -315,9 +343,74 @@ $(document).ready(function () {
 	});
 	/*Fin Modal 1 */
 
+	/* Modal 2 */
+
+	$("#id_datatable_comodin thead #dtable_comodin_codigo_producto").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin thead #dtable_comodin_nombre_producto").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin thead #dtable_comodin_ds_unidad_medida").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin thead #dtable_comodin_ds_marca_producto").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:150px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin thead #dtable_comodin_ds_moneda").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:100px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin thead #dtable_comodin_precio_unitario").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:200px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin thead #dtable_comodin_nombre_proveedor").each(function () {
+		var title = $(this).text();
+		$(this).html('<input type="text" class="border-0" style="width:300px;" placeholder="' + title + '" /> ');
+	});
+	$("#id_datatable_comodin").dataTable({
+
+		initComplete: function () {
+			this.api()
+				.columns()
+				.every(function () {
+					var that = this;
+
+					$("input", this.header()).on("keyup change clear", function () {
+						if (that.search() !== this.value) {
+							that.search(this.value).draw();
+						}
+					});
+				});
+		},
+
+		language: {
+			lengthMenu: "Mostrar _MENU_ registros por pagina",
+			zeroRecords: "No se encontraron resultados en su busqueda",
+			searchPlaceholder: "Buscar registros",
+			info: "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+			infoEmpty: "No existen registros",
+			infoFiltered: "(filtrado de un total de _MAX_ registros)",
+			search: "Buscar:",
+			paginate: {
+				first: "Primero",
+				last: "Último",
+				next: "Siguiente",
+				previous: "Anterior",
+			},
+		},
+		"ordering": false
+	});
+	/*Fin Modal 2*/
+
 
 });
-/* Fin de Modal Insertar*/
+/* Fin de Modal Registrar*/
 
 
 

@@ -101,6 +101,7 @@ class C_clientes_proveedores extends CI_Controller
         $id_trabajador = $this->input->post("id_trabajador");
         $ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
         $id_cliente_proveedor_empresa = $this->input->post("id_cliente_proveedor_empresa");
+        $id_empresa = $this->input->post("id_empresa");
 
 
         if ($id_cliente_proveedor_empresa == "100") {
@@ -143,7 +144,8 @@ class C_clientes_proveedores extends CI_Controller
                 $tipo_cliente_pago,
                 $id_trabajador,
                 $ds_nombre_trabajador,
-                $id_cliente_proveedor_empresa
+                $id_cliente_proveedor_empresa,
+                $id_empresa
             );
         } else if ($id_cliente_proveedor_empresa == "200") {
             $this->M_clientes_proveedores->registrar_inversiones_alpev_clientes_proveedores();
@@ -185,7 +187,8 @@ class C_clientes_proveedores extends CI_Controller
                 $tipo_cliente_pago,
                 $id_trabajador,
                 $ds_nombre_trabajador,
-                $id_cliente_proveedor_empresa
+                $id_cliente_proveedor_empresa,
+                $id_empresa
             );
         }
 

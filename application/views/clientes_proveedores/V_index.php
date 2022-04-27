@@ -27,7 +27,7 @@
                   <th>Nombre / Razon Social</th>
                   <th>DNI / RUC </th>
                   <th>Tipo Persona</th>
-                  <th>Vendedor</th>
+                  <th>Trabajador</th>
                   <th></th>
                   <th></th>
                   <!-- <th></th> -->

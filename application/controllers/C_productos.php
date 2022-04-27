@@ -71,8 +71,7 @@ class C_productos extends CI_Controller
 		$id_trabajador = $this->input->post("id_trabajador");
 		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 		$id_producto_empresa = $this->input->post("id_producto_empresa");
-
-
+		$id_empresa = $this->input->post("id_empresa");
 
 		if ($id_producto_empresa == "100") {
 			$this->M_productos->registrar_grupo_vame_productos();
@@ -99,7 +98,8 @@ class C_productos extends CI_Controller
 				$id_almacen,
 				$id_trabajador,
 				$ds_nombre_trabajador,
-				$id_producto_empresa
+				$id_producto_empresa,
+				$id_empresa
 			);
 			if ($resultado_campo == "automatico") {
 				$this->M_cbox->actualizar_correlativo_producto($codigo_producto);
@@ -129,7 +129,8 @@ class C_productos extends CI_Controller
 				$id_almacen,
 				$id_trabajador,
 				$ds_nombre_trabajador,
-				$id_producto_empresa
+				$id_producto_empresa,
+				$id_empresa
 			);
 			if ($resultado_campo == "automatico") {
 				$this->M_cbox->actualizar_correlativo_producto($codigo_producto);

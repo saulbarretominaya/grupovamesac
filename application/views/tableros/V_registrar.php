@@ -14,6 +14,8 @@
       <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
       <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
       <input type="hidden" id="id_tablero_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+      <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
+
     </section>
 
 
@@ -140,17 +142,17 @@
                       <div class="col-md-12">
                         <!-- Primera Fila -->
                         <div class="form-group row">
-                          <!--Opcion 1-->
+                          <!-- Producto-->
                           <div class="col-md-2">
                             <div class="form-check">
                               <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_producto">
                               </button>
-                              <label class="form-check-label">Almacen</label>
+                              <label class="form-check-label">Descripcion</label>
                               <div class="modal fade" id="opcion_target_producto" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Productos Almacen - Tableros</h4>
+                                      <h4 class="modal-title">Productos</h4>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
@@ -218,9 +220,79 @@
                               </div>
                             </div>
                           </div>
-                          <!-- Fin Opcion 1 -->
-                          <!-- Producto -->
-                          <div class="col-md-10">
+                          <!-- Fin Producto -->
+                          <!-- Comodin -->
+                          <div class="col-md-2">
+                            <div class="form-check">
+                              <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_comodin" id="btn_id_comodin">
+                              </button>
+                              <label class="form-check-label">Comodin</label>
+                              <div class="modal fade" id="opcion_target_comodin" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Comodin</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <table id="id_datatable_comodin" class="table table-bordered table-sm table-hover table-responsive">
+                                        <thead>
+                                          <tr>
+                                            <th></th>
+                                            <th id="dtable_comodin_codigo_producto">Codigo Producto</th>
+                                            <th id="dtable_comodin_nombre_producto">Nombre del Producto</th>
+                                            <th id="dtable_comodin_ds_unidad_medida">U.M</th>
+                                            <th id="dtable_comodin_ds_marca_producto">Marca</th>
+                                            <th id="dtable_comodin_ds_moneda">Moneda</th>
+                                            <th id="dtable_comodin_precio_unitario">Precio Unitario</th>
+                                            <th id="dtable_comodin_nombre_proveedor">Nombre Proveedor</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <?php if (!empty($index_comodin)) : ?>
+                                            <?php foreach ($index_comodin as $index_comodin) : ?>
+                                              <tr>
+                                                <td>
+                                                  <?php $split_comodin =
+                                                    $index_comodin->id_comodin . "*" .
+                                                    $index_comodin->id_general . "*" .
+                                                    $index_comodin->codigo_producto . "*" .
+                                                    $index_comodin->descripcion_producto . "*" .
+                                                    $index_comodin->id_unidad_medida . "*" .
+                                                    $index_comodin->ds_unidad_medida . "*" .
+                                                    $index_comodin->id_marca_producto . "*" .
+                                                    $index_comodin->ds_marca_producto . "*" .
+                                                    $index_comodin->id_moneda . "*" .
+                                                    $index_comodin->ds_moneda . "*" .
+                                                    $index_comodin->precio_unitario;
+                                                  ?>
+                                                  <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_comodin" value="<?php echo $split_comodin; ?>" data-toggle="modal" data-target="#opcion_target_comodin"><span class="fas fa-check"></span></button>
+                                                </td>
+                                                <td><?php echo $index_comodin->codigo_producto; ?></td>
+                                                <td><?php echo $index_comodin->descripcion_producto; ?></td>
+                                                <td><?php echo $index_comodin->ds_unidad_medida; ?></td>
+                                                <td><?php echo $index_comodin->ds_marca_producto; ?></td>
+                                                <td><?php echo $index_comodin->ds_moneda; ?></td>
+                                                <td><?php echo $index_comodin->precio_unitario; ?></td>
+                                                <td><?php echo $index_comodin->nombre_proveedor; ?></td>
+                                              </tr>
+                                            <?php endforeach; ?>
+                                          <?php endif; ?>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Fin Comodin -->
+                          <div class="col-md-8">
                             <input type="hidden" id="hidden_item">
                             <input type="hidden" id="hidden_id_almacen">
                             <input type="hidden" id="hidden_ds_almacen">
@@ -236,8 +308,8 @@
                             <input type="hidden" id="hidden_cantidad_total_producto" name="hidden_cantidad_total_producto">
                             <input type="hidden" id="hidden_monto_total_producto" name="hidden_monto_total_producto">
                             <div class="input-group">
-                              <label class="col-sm-3 col-form-label">Nombre Producto</label>
-                              <input type="text" class="form-control" id="descripcion_producto" placeholder="Nombre Producto" readonly>
+                              <label class="col-sm-3 col-form-label">Descripcion</label>
+                              <input type="text" class="form-control" id="descripcion_producto" placeholder="Descripcion Producto" readonly>
                             </div>
                           </div>
                         </div>
@@ -332,11 +404,11 @@
                                     <th>Item</th>
                                     <th>Almacen</th>
                                     <th>Codigo</th>
-                                    <th>Nombre Producto</th>
+                                    <th>Descripcion</th>
                                     <th>U.M</th>
                                     <th>Marca</th>
                                     <th>Precio Unitario</th>
-                                    <th>Cant Uni</th>
+                                    <th>Cant Unitario</th>
                                     <th>Cant Total</th>
                                     <th>Total</th>
                                     <th></th>

@@ -25,14 +25,12 @@ class M_cotizacion extends CI_Model
             b.id_orden_despacho,
             b.id_orden_despacho_empresa,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
-            d.id_empresa
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
             FROM
             cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_cotizacion c ON c.id_cotizacion=a.id_cotizacion
-            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
-            WHERE a.categoria='PRODUCTOS' AND d.id_empresa='$id_empresa'
+            WHERE a.categoria='PRODUCTOS' AND a.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion DESC;
             "
@@ -59,14 +57,12 @@ class M_cotizacion extends CI_Model
             b.id_orden_despacho,
             b.id_orden_despacho_empresa,
             DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
-            d.id_empresa
+            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho
             FROM
             cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN detalle_cotizacion c ON c.id_cotizacion=a.id_cotizacion
-            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
-            where a.categoria='TABLEROS' AND d.id_empresa='$id_empresa'
+            where a.categoria='TABLEROS' AND a.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion desc;
             "
@@ -136,7 +132,8 @@ class M_cotizacion extends CI_Model
         $precio_venta,
         $valor_cambio,
         $id_moneda,
-        $id_cotizacion_empresa
+        $id_cotizacion_empresa,
+        $id_empresa
 
     ) {
         return $this->db->query(
@@ -150,7 +147,7 @@ class M_cotizacion extends CI_Model
                 clausula,lugar_entrega,nombre_encargado,observacion,
                 id_condicion_pago,ds_condicion_pago,numero_dias_condicion_pago,fecha_condicion_pago,
                 valor_venta_total_sin_d,valor_venta_total_con_d,
-                descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion,id_cotizacion_empresa
+                descuento_total,igv,precio_venta,valor_cambio,id_moneda,id_estado_cotizacion,id_cotizacion_empresa,id_empresa
             )
             VALUES
             (
@@ -161,7 +158,7 @@ class M_cotizacion extends CI_Model
                 '$clausula','$lugar_entrega','$nombre_encargado','$observacion',
                 '$id_condicion_pago','$ds_condicion_pago','$numero_dias_condicion_pago',STR_TO_DATE('$fecha_condicion_pago','%d/%m/%Y'),
                 '$valor_venta_total_sin_d','$valor_venta_total_con_d',
-                '$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857','$id_cotizacion_empresa'
+                '$descuento_total','$igv','$precio_venta','$valor_cambio','$id_moneda','857','$id_cotizacion_empresa','$id_empresa'
             )
             "
         );
@@ -255,7 +252,8 @@ class M_cotizacion extends CI_Model
 
     public function index_clientes_proveedores()
     {
-        $id_trabajador = $this->session->userdata('id_trabajador');
+
+        $id_empresa = $this->session->userdata("id_empresa");
 
         $resultados = $this->db->query("
             SELECT
@@ -289,7 +287,7 @@ class M_cotizacion extends CI_Model
             id_tipo_giro,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_tipo_giro) AS ds_tipo_giro
             FROM clientes_proveedores
-            where id_trabajador='$id_trabajador' and id_tipo_persona='615';
+            where id_tipo_persona='615' and id_empresa='$id_empresa';
         ");
         return $resultados->result();
     }
@@ -336,8 +334,7 @@ class M_cotizacion extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_ent) AS ds_cta_ent,
         a.stock
         FROM productos a
-        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-        where b.id_empresa='$id_empresa'
+        where a.id_empresa='$id_empresa'
         ORDER BY a.id_producto ASC
         ");
         return $resultados->result();
@@ -367,8 +364,7 @@ class M_cotizacion extends CI_Model
         a.id_modelo_tablero,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_modelo_tablero) AS ds_modelo_tablero
         FROM tableros a
-        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-        where b.id_empresa='$id_empresa'
+        where a.id_empresa='$id_empresa'
         ORDER BY a.id_tablero ASC
         "
         );
@@ -395,8 +391,7 @@ class M_cotizacion extends CI_Model
             a.precio_unitario,
             a.nombre_proveedor
             FROM comodin a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            where b.id_empresa='$id_empresa'
+            where a.id_empresa='$id_empresa'
             ORDER BY a.id_comodin ASC
         "
         );
@@ -481,19 +476,20 @@ class M_cotizacion extends CI_Model
 
     public function registrar_orden_despacho(
         $id_cotizacion,
-        $id_orden_despacho_empresa
+        $id_orden_despacho_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
         INSERT INTO orden_despacho
         (
             id_orden_despacho,
-            id_cotizacion,fecha_orden_despacho,id_estado_orden_despacho,id_orden_despacho_empresa
+            id_cotizacion,fecha_orden_despacho,id_estado_orden_despacho,id_orden_despacho_empresa,id_empresa
         )
         VALUES
         (
             '',
-            '$id_cotizacion',CURDATE(),'861','$id_orden_despacho_empresa'
+            '$id_cotizacion',CURDATE(),'861','$id_orden_despacho_empresa','$id_empresa'
         )"
         );
     }
