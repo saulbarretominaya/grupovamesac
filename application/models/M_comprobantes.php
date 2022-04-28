@@ -33,10 +33,12 @@ class M_comprobantes extends CI_Model
             e.id_num_comprobante AS num_comprobante,
             DATE_FORMAT(e.fecha_emision,'%d/%m/%Y') AS fecha_comprobante,
             d.ds_sucursal_trabajador,
-            h.enlace_del_pdf,
-            h.enlace_del_xml,
-            h.enlace_del_cdr,
-            h.aceptada_por_sunat as ds_estado_sunat
+            h.enlace_del_pdf as enlace_del_pdf_comprobante_emitido,
+            h.enlace_del_xml as enlace_del_xml_comprobante_emitido,
+            h.enlace_del_cdr as enlace_del_cdr_comprobante_emitido,
+            e.id_estado_sunat as ds_estado_sunat,
+            i.enlace_del_pdf as enlace_del_pdf_comprobante_anulado,
+            i.enlace_del_xml as enlace_del_xml_comprobante_anulado
             FROM cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
@@ -44,7 +46,8 @@ class M_comprobantes extends CI_Model
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON f.id_trabajador=a.id_trabajador
             LEFT JOIN usuarios g ON g.id_trabajador=a.id_trabajador
-            LEFT JOIN nubefact h ON h.id_comprobante=e.id_comprobante
+            LEFT JOIN comprobantes_emitidos h ON h.id_comprobante=e.id_comprobante
+            LEFT JOIN comprobantes_anulados i ON i.id_comprobante=e.id_comprobante
             WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894' AND g.id_empresa='$id_empresa'
             ORDER BY a.id_cotizacion DESC;
             "
@@ -145,9 +148,6 @@ class M_comprobantes extends CI_Model
         );
         return $resultados->result();
     }
-
-
-
 
     public function registrar_grupo_vame_facturas()
     {
@@ -571,7 +571,7 @@ class M_comprobantes extends CI_Model
         return $resultados->row();
     }
 
-    public function registrar_nubefact(
+    public function emitir_comprobantes_electronicos(
         $id_comprobante,
         $json_request,
         $json_response,
@@ -600,9 +600,9 @@ class M_comprobantes extends CI_Model
     ) {
         return $this->db->query(
             "
-            INSERT INTO nubefact
+            INSERT INTO comprobantes_emitidos
             (
-                id_nubefact,
+                id_comprobante_emitido,
                 id_comprobante,
                 json_request,
                 json_response,
@@ -660,12 +660,109 @@ class M_comprobantes extends CI_Model
         );
     }
 
-    public function actualizar_estado_emitido_a_sunat($id_comprobante)
+    public function actualizar_estado_comprobante_y_estado_sunat($id_comprobante, $aceptada_por_sunat)
     {
         return $this->db->query(
             "
             UPDATE comprobantes set
-            id_estado_comprobante='902'
+            id_estado_comprobante='902',
+            id_estado_sunat='$aceptada_por_sunat'
+            where id_comprobante='$id_comprobante'
+            "
+        );
+    }
+
+    public function actualizar_estado_sunat_aceptado($id_comprobante)
+    {
+        return $this->db->query(
+            "
+            UPDATE comprobantes set
+            id_estado_sunat='1'
+            where id_comprobante='$id_comprobante'
+            "
+        );
+    }
+
+    public function anular_comprobantes_electronicos(
+        $id_comprobante,
+        $motivo,
+        $json_request,
+        $json_response,
+        $numero,
+        $enlace,
+        $sunat_ticket_numero,
+        $aceptada_por_sunat,
+        $sunat_description,
+        $sunat_note,
+        $sunat_responsecode,
+        $sunat_soap_error,
+        $pdf_zip_base64,
+        $xml_zip_base64,
+        $cdr_zip_base64,
+        $enlace_del_pdf,
+        $enlace_del_xml,
+        $enlace_del_cdr,
+        $key
+
+    ) {
+        return $this->db->query(
+            "
+            INSERT INTO comprobantes_anulados
+            (
+                id_comprobante_anulado,
+                id_comprobante,
+				motivo,
+				json_request,
+				json_response,
+				numero,
+				enlace,
+				sunat_ticket_numero,
+				aceptada_por_sunat,
+				sunat_description,
+				sunat_note,
+				sunat_responsecode,
+				sunat_soap_error,
+				pdf_zip_base64,
+				xml_zip_base64,
+				cdr_zip_base64,
+				enlace_del_pdf,
+				enlace_del_xml,
+				enlace_del_cdr,
+                `key`
+               )
+            VALUES
+            (
+                '',
+                '$id_comprobante',
+                '$motivo',
+                '$json_request',
+                '$json_response',
+                '$numero',
+                '$enlace',
+                '$sunat_ticket_numero',
+                '$aceptada_por_sunat',
+                '$sunat_description',
+                '$sunat_note',
+                '$sunat_responsecode',
+                '$sunat_soap_error',
+                '$pdf_zip_base64',
+                '$xml_zip_base64',
+                '$cdr_zip_base64',
+                '$enlace_del_pdf',
+                '$enlace_del_xml',
+                '$enlace_del_cdr',
+                '$key'
+            )
+            "
+        );
+    }
+
+    public function actualizar_estado_sunat_anulado($id_comprobante)
+    {
+        return $this->db->query(
+            "
+            UPDATE comprobantes set
+            id_estado_sunat='3'
             where id_comprobante='$id_comprobante'
             "
         );

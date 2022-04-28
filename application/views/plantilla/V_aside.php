@@ -245,6 +245,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_comprobantes" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notas Credito / Debito</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
           <li class="nav-item">

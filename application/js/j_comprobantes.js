@@ -217,11 +217,12 @@ $(document).on("click", ".js_lupa_comprobantes_productos", function () {
 		}
 	});
 });
-$(document).on("click", ".js_generar_comprobantes_electronicos_productos", function () {
+$(document).on("click", ".js_generar_comprobantes_electronicos", function () {
 
 	var id_comprobante = $(this).closest('tr').find('#id_comprobante').val();
 	var estado_comprobante = $(this).closest('tr').find('#ds_estado_comprobante').val();
 
+	debugger;
 
 	if (estado_comprobante == "PENDIENTE POR EMITIR") {
 
@@ -238,18 +239,35 @@ $(document).on("click", ".js_generar_comprobantes_electronicos_productos", funct
 
 					success: function (data) {
 						debugger;
-						var respuesta = data["0"];
+						// var respuesta = data["0"];
 
-						alert(respuesta);
-						//window.location.href = base_url + "C_comprobantes";
+						// alert(respuesta);
+						window.location.href = base_url + "C_comprobantes";
 					},
 				});
 			});
-
 	}
-
-
 });
+
+
+
+$(document).on("click", ".js_consultar_comprobantes_electronicos", function () {
+	debugger;
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_comprobantes/consultar_comprobantes_electronicos",
+		type: "POST",
+		dataType: "html",
+		data: {
+			id_comprobante: valor_id
+		},
+		success: function (data) {
+			$("#id_target_consultar_comprobantes_electronicos .modal-content").html(data);
+		}
+	});
+});
+
+
 $(document).on("click", ".js_actualizar_estado_sunat", function () {
 
 	var id_comprobante = $(this).closest('tr').find('#id_comprobante').val();
@@ -258,29 +276,24 @@ $(document).on("click", ".js_actualizar_estado_sunat", function () {
 
 	if (estado_sunat == "2") {
 
-		alertify.confirm("¿Esta seguro de Actualizar el estado?, Verifique si esta Aceptada por la Sunat en el Modulo de 'Consultar Comprobantes', Si ya verifico Presione OK, sino Cancelar",
-			// function () {
-			// 	$.ajax({
-			// 		async: false,
-			// 		url: base_url + "C_comprobantes/emitir_comprobantes_electronicos",
-			// 		type: "POST",
-			// 		dataType: "json",
-			// 		data: {
-			// 			id_comprobante: id_comprobante
-			// 		},
+		alertify.confirm("¿Esta seguro de Actualizar el estado?, Verificar que este Aceptada por la Sunat 'Icono de Lupa', Si ya verifico Presione OK, sino Cancelar",
+			function () {
+				$.ajax({
+					async: false,
+					url: base_url + "C_comprobantes/actualizar_estado_sunat",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_comprobante: id_comprobante
+					},
 
-			// 		success: function (data) {
-			// 			debugger;
-			// 			var respuesta = data["0"];
-
-			// 			alert(respuesta);
-			// 			//window.location.href = base_url + "C_comprobantes";
-			// 		},
-			// 	});
-			// });
-		);
+					success: function (data) {
+						debugger;
+						window.location.href = base_url + "C_comprobantes";
+					},
+				});
+			});
 	}
-
 
 });
 $(document).on("click", ".js_anular_comprobantes_electronicos", function () {
@@ -290,13 +303,25 @@ $(document).on("click", ".js_anular_comprobantes_electronicos", function () {
 
 	debugger;
 	if (estado_sunat == "1") {
+		alertify.prompt('Ingrese el Motivo por el cual va anular', '',
+			function (evt, value) {
+				$.ajax({
+					async: false,
+					url: base_url + "C_comprobantes/anular_comprobantes_electronicos",
+					type: "POST",
+					dataType: "json",
+					data: {
+						id_comprobante: id_comprobante,
+						motivo: value
+					},
 
-		alertify.prompt("Ingrese el Motivo por el cual va anular",
-		);
-
+					success: function (data) {
+						debugger;
+						window.location.href = base_url + "C_comprobantes";
+					},
+				});
+			});
 	}
-
-
 });
 $(document).on("click", ".js_lupa_comprobantes_tableros", function () {
 	debugger;
