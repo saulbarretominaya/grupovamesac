@@ -47,7 +47,7 @@ class M_productos extends CI_Model
         a.stock
         FROM productos a
         WHERE a.id_empresa='$id_empresa'
-        ORDER BY a.id_producto ASC
+        ORDER BY a.id_producto DESC
         ");
         return $resultados->result();
     }

@@ -64,8 +64,7 @@ class M_carga_inicial extends CI_Model
             a.id_tipo_giro,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_giro) AS ds_tipo_giro
             FROM clientes_proveedores a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            where b.id_empresa='$id_empresa';
+            where a.id_empresa='$id_empresa';
         ");
         return $resultados->result();
     }
@@ -111,8 +110,7 @@ class M_carga_inicial extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_ent) AS ds_cta_ent,
         a.stock
         FROM productos a
-        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-        where b.id_empresa='$id_empresa'    
+        where a.id_empresa='$id_empresa'    
         ORDER BY a.id_producto ASC
         ");
         return $resultados->result();

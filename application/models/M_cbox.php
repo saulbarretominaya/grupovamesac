@@ -17,6 +17,24 @@ class M_cbox extends CI_Model
         return $resultados->result();
     }
 
+    public function cbox_tipo_comprobante_facturas_boletas()
+    {
+        $resultados = $this->db->query("
+        SELECT a.*,b.* FROM multitablas a 
+        INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+        WHERE b.id_multitabla='1' AND abreviatura='FACTURA' OR abreviatura='BOLETA';");
+        return $resultados->result();
+    }
+
+    public function cbox_tipo_comprobante_notas()
+    {
+        $resultados = $this->db->query("
+        SELECT a.*,b.* FROM multitablas a 
+        INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
+        WHERE b.id_multitabla='1' AND abreviatura='NOTA DE CREDITO' OR abreviatura='NOTA DE DEBITO'");
+        return $resultados->result();
+    }
+
     //2
     public function cbox_motivo_pago()
     {

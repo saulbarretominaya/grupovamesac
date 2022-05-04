@@ -27,6 +27,7 @@ class M_clientes_proveedores extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_persona) AS ds_tipo_persona
             FROM clientes_proveedores a
             WHERE a.id_trabajador='$id_trabajador' AND a.id_empresa='$id_empresa'
+            ORDER BY a.id_cliente_proveedor DESC
             "
         );
         return $resultados->result();

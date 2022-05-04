@@ -22,8 +22,7 @@ class M_orden_compras extends CI_Model
             a.observacion
             FROM
             orden_compras a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            WHERE b.id_empresa='$id_empresa'
+            WHERE a.id_empresa='$id_empresa'
             "
         );
         return $resultados->result();
@@ -82,7 +81,8 @@ class M_orden_compras extends CI_Model
         $valor_venta,
         $igv,
         $precio_venta,
-        $id_orden_compra_empresa
+        $id_orden_compra_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -93,7 +93,7 @@ class M_orden_compras extends CI_Model
                 ds_nombre_cliente_proveedor,ds_departamento_cliente_proveedor,ds_provincia_cliente_proveedor,
                 ds_distrito_cliente_proveedor,direccion_fiscal_cliente_proveedor,clausula,
                 lugar_entrega,nombre_encargado,observacion,id_condicion_pago,
-                ds_condicion_pago,id_moneda,ds_moneda,valor_venta,igv,precio_venta,id_orden_compra_empresa
+                ds_condicion_pago,id_moneda,ds_moneda,valor_venta,igv,precio_venta,id_orden_compra_empresa,id_empresa
             )
             VALUES
             (
@@ -102,7 +102,7 @@ class M_orden_compras extends CI_Model
                 '$ds_nombre_cliente_proveedor','$ds_departamento_cliente_proveedor','$ds_provincia_cliente_proveedor',
                 '$ds_distrito_cliente_proveedor','$direccion_fiscal_cliente_proveedor','$clausula',
                 '$lugar_entrega','$nombre_encargado','$observacion','$id_condicion_pago',
-                '$ds_condicion_pago','$id_moneda','$ds_moneda','$valor_venta','$igv','$precio_venta','$id_orden_compra_empresa'
+                '$ds_condicion_pago','$id_moneda','$ds_moneda','$valor_venta','$igv','$precio_venta','$id_orden_compra_empresa','$id_empresa'
             )
             "
         );
@@ -189,8 +189,7 @@ class M_orden_compras extends CI_Model
             a.id_tipo_giro,
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_tipo_giro) AS ds_tipo_giro
             FROM clientes_proveedores a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            where a.id_tipo_persona='616' AND b.id_empresa='$id_empresa';
+            where a.id_tipo_persona='616' AND a.id_empresa='$id_empresa';
         ");
         return $resultados->result();
     }
@@ -236,13 +235,11 @@ class M_orden_compras extends CI_Model
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_cta_ent) AS ds_cta_ent,
         a.stock
         FROM productos a
-        LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-        where b.id_empresa='$id_empresa'    
+        where a.id_empresa='$id_empresa'    
         ORDER BY a.id_producto ASC
         ");
         return $resultados->result();
     }
-
 
     public function index_modal_cabecera($id_orden_compra)
     {

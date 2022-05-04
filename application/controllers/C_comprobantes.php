@@ -27,7 +27,7 @@ class C_comprobantes extends CI_Controller
 	public function enlace_registrar($id_guia_remision)
 	{
 		$data = array(
-			'cbox_tipo_comprobante' => $this->M_cbox->cbox_tipo_comprobante(),
+			'cbox_tipo_comprobante_facturas_boletas' => $this->M_cbox->cbox_tipo_comprobante_facturas_boletas(),
 			'cbox_condicion_pago_cotizacion' => $this->M_cbox->cbox_condicion_pago_cotizacion(),
 			'enlace_registrar_cabecera' => $this->M_comprobantes->enlace_registrar_cabecera($id_guia_remision),
 			'enlace_registrar_detalle' => $this->M_comprobantes->enlace_registrar_detalle($id_guia_remision),
@@ -41,7 +41,7 @@ class C_comprobantes extends CI_Controller
 	public function enlace_actualizar($id_comprobante)
 	{
 		$data = array(
-			'cbox_tipo_comprobante' => $this->M_cbox->cbox_tipo_comprobante(),
+			'cbox_tipo_comprobante_facturas_boletas' => $this->M_cbox->cbox_tipo_comprobante_facturas_boletas(),
 			'cbox_condicion_pago_cotizacion' => $this->M_cbox->cbox_condicion_pago_cotizacion(),
 			'enlace_actualizar_cabecera' => $this->M_comprobantes->enlace_actualizar_cabecera($id_comprobante),
 			'enlace_actualizar_detalle' => $this->M_comprobantes->enlace_actualizar_detalle($id_comprobante),

@@ -77,6 +77,7 @@ class C_orden_compras extends CI_Controller
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
 		$id_orden_compra_empresa = $this->input->post("id_orden_compra_empresa");
+		$id_empresa = $this->input->post("id_empresa");
 
 
 		//Detalle Orden Compras
@@ -120,7 +121,8 @@ class C_orden_compras extends CI_Controller
 				$valor_venta,
 				$igv,
 				$precio_venta,
-				$id_orden_compra_empresa
+				$id_orden_compra_empresa,
+				$id_empresa
 			);
 		} else if ($id_orden_compra_empresa == "200") {
 			$this->M_orden_compras->registrar_inversiones_alpev_orden_compras();
@@ -147,7 +149,8 @@ class C_orden_compras extends CI_Controller
 				$valor_venta,
 				$igv,
 				$precio_venta,
-				$id_orden_compra_empresa
+				$id_orden_compra_empresa,
+				$id_empresa
 			);
 		}
 

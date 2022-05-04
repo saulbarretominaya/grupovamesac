@@ -66,14 +66,14 @@
                               <div class="input-group">
                                 <select class="form-select select2" id="id_tipo_comprobante" disabled>
                                   <option value="0" selected>Seleccionar</option>
-                                  <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?>
-                                    <?php if ($cbox_tipo_comprobante->id_dmultitabla == $enlace_actualizar_cabecera->id_tipo_comprobante) : ?>
-                                      <option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>" selected>
-                                        <?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                  <?php foreach ($cbox_tipo_comprobante_facturas_boletas as $cbox_tipo_comprobante_facturas_boletas) : ?>
+                                    <?php if ($cbox_tipo_comprobante_facturas_boletas->id_dmultitabla == $enlace_actualizar_cabecera->id_tipo_comprobante) : ?>
+                                      <option value="<?php echo $cbox_tipo_comprobante_facturas_boletas->id_dmultitabla; ?>" selected>
+                                        <?php echo $cbox_tipo_comprobante_facturas_boletas->descripcion; ?>
                                       </option>
                                     <?php else : ?>
-                                      <option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla ?>">
-                                        <?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                      <option value="<?php echo $cbox_tipo_comprobante_facturas_boletas->id_dmultitabla ?>">
+                                        <?php echo $cbox_tipo_comprobante_facturas_boletas->descripcion; ?>
                                       </option>
                                     <?php endif; ?>
                                   <?php endforeach; ?>

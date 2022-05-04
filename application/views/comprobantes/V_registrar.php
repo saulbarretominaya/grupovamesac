@@ -53,7 +53,7 @@
                               <div class="input-group">
                                 <select class="form-select select2" id="id_tipo_comprobante">
                                   <option value="0" selected>Seleccionar</option>
-                                  <?php foreach ($cbox_tipo_comprobante as $cbox_tipo_comprobante) : ?><option value="<?php echo $cbox_tipo_comprobante->id_dmultitabla; ?>"><?php echo $cbox_tipo_comprobante->descripcion; ?>
+                                  <?php foreach ($cbox_tipo_comprobante_facturas_boletas as $cbox_tipo_comprobante_facturas_boletas) : ?><option value="<?php echo $cbox_tipo_comprobante_facturas_boletas->id_dmultitabla; ?>"><?php echo $cbox_tipo_comprobante_facturas_boletas->descripcion; ?>
                                     </option>
                                   <?php endforeach; ?>
                                 </select>

@@ -70,6 +70,8 @@ $("#registrar").on("click", function () {
 		var precio_venta = $("#precio_venta").val();
 		//Empresa
 		var id_orden_compra_empresa = $("#id_orden_compra_empresa").val();
+		var id_empresa = $("#id_empresa").val();
+
 
 		//Detalle
 		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
@@ -117,6 +119,8 @@ $("#registrar").on("click", function () {
 				precio_venta: precio_venta,
 				//Empresa
 				id_orden_compra_empresa: id_orden_compra_empresa,
+				id_empresa: id_empresa,
+
 
 				//Detalle Orden Compras
 				id_producto: id_producto,

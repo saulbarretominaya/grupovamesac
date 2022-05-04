@@ -147,7 +147,7 @@
                             <div class="form-check">
                               <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_producto">
                               </button>
-                              <label class="form-check-label">Descripcion</label>
+                              <label class="form-check-label">Productos</label>
                               <div class="modal fade" id="opcion_target_producto" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                   <div class="modal-content">

@@ -11,6 +11,10 @@
         </div>
       </div>
     </div>
+    <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+    <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
+    <input type="hidden" id="id_orden_compra_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+    <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
   </section>
 
 
@@ -40,9 +44,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group row">
-                        <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
-                        <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>" readonly>
-                        <input type="hidden" id="id_orden_compra_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+
 
                         <div class="col-md-3">
                           <label for="cargo">Fecha Orden Compra</label>
