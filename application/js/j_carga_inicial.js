@@ -65,6 +65,8 @@ $("#registrar").on("click", function () {
 		var monto_total = $('#monto_total').val();
 		//Empresa
 		var id_carga_inicial_empresa = $("#id_carga_inicial_empresa").val();
+		var id_empresa = $("#id_empresa").val();
+
 
 		//Detalle
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
@@ -111,8 +113,7 @@ $("#registrar").on("click", function () {
 				observacion: observacion,
 				monto_total: monto_total,
 				id_carga_inicial_empresa: id_carga_inicial_empresa,
-
-
+				id_empresa: id_empresa,
 
 				//Detalle Carga inicial
 				item: item,

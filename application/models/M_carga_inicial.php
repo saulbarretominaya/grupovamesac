@@ -21,8 +21,7 @@ class M_carga_inicial extends CI_Model
             (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_moneda) AS ds_moneda
             FROM 
             carga_inicial a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            WHERE b.id_empresa='$id_empresa'
+            WHERE a.id_empresa='$id_empresa'
             "
         );
         return $resultados->result();
@@ -164,7 +163,8 @@ class M_carga_inicial extends CI_Model
         $num_comprobante,
         $observacion,
         $monto_total,
-        $id_carga_inicial_empresa
+        $id_carga_inicial_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -174,7 +174,7 @@ class M_carga_inicial extends CI_Model
                 id_trabajador,ds_nombre_trabajador,fecha_carga_inicial,id_tipo_ingreso,
                 id_moneda,tipo_cambio,id_cliente_proveedor,ds_nombre_cliente_proveedor,num_guia,
                 num_orden_compra,id_tipo_comprobante,fecha_comprobante,num_comprobante,
-                observacion,monto_total,id_carga_inicial_empresa
+                observacion,monto_total,id_carga_inicial_empresa,id_empresa
             )
             VALUES
             (
@@ -182,7 +182,7 @@ class M_carga_inicial extends CI_Model
                 '$id_trabajador','$ds_nombre_trabajador','$fecha_carga_inicial','$id_tipo_ingreso',
                 '$id_moneda','$tipo_cambio','$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$num_guia',
                 '$num_orden_compra','$id_tipo_comprobante','$fecha_comprobante','$num_comprobante',
-                '$observacion','$monto_total','$id_carga_inicial_empresa'
+                '$observacion','$monto_total','$id_carga_inicial_empresa','$id_empresa'
             )
             "
         );

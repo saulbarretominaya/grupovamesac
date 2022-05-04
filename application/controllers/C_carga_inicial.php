@@ -62,6 +62,7 @@ class C_carga_inicial extends CI_Controller
 		$observacion = $this->input->post("observacion");
 		$monto_total = $this->input->post("monto_total");
 		$id_carga_inicial_empresa = $this->input->post("id_carga_inicial_empresa");
+		$id_empresa = $this->input->post("id_empresa");
 
 		//Detalle Orden Compras
 		$item = $this->input->post("item");
@@ -101,7 +102,9 @@ class C_carga_inicial extends CI_Controller
 				$num_comprobante,
 				$observacion,
 				$monto_total,
-				$id_carga_inicial_empresa
+				$id_carga_inicial_empresa,
+				$id_empresa
+
 			);
 		} else if ($id_carga_inicial_empresa == "200") {
 			$this->M_carga_inicial->registrar_inversiones_alpev_carga_inicial();
@@ -123,7 +126,9 @@ class C_carga_inicial extends CI_Controller
 				$num_comprobante,
 				$observacion,
 				$monto_total,
-				$id_carga_inicial_empresa
+				$id_carga_inicial_empresa,
+				$id_empresa
+
 			);
 		}
 
