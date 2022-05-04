@@ -75,6 +75,7 @@ class C_compras_cobranzas extends CI_Controller
 		$pagado = $this->input->post("pagado");
 		$id_estado_compra_cobranza = $this->input->post("id_estado_compra_cobranza");
 		$id_compra_cobranza_empresa = $this->input->post("id_compra_cobranza_empresa");
+		$id_empresa = $this->input->post("id_empresa");
 
 
 		//Detalle_condicion pago
@@ -123,7 +124,9 @@ class C_compras_cobranzas extends CI_Controller
 				$pendiente,
 				$pagado,
 				$id_estado_compra_cobranza,
-				$id_compra_cobranza_empresa
+				$id_compra_cobranza_empresa,
+				$id_empresa
+
 			);
 		} else if ($id_compra_cobranza_empresa == "200") {
 			$this->M_compras_cobranzas->registrar_inversiones_alpev_compras_cobranzas();
@@ -155,8 +158,8 @@ class C_compras_cobranzas extends CI_Controller
 				$pendiente,
 				$pagado,
 				$id_estado_compra_cobranza,
-				$id_compra_cobranza_empresa
-
+				$id_compra_cobranza_empresa,
+				$id_empresa
 
 			);
 		}

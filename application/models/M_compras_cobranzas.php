@@ -26,8 +26,7 @@ class M_compras_cobranzas extends CI_Model
             a.total,
             (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_compra_cobranza) AS ds_estado_compra_cobranza
             FROM compras_cobranzas a
-            LEFT JOIN usuarios b ON b.id_trabajador=a.id_trabajador
-            WHERE b.id_empresa='$id_empresa'
+            WHERE a.id_empresa='$id_empresa'
             "
         );
         return $resultados->result();
@@ -132,7 +131,8 @@ class M_compras_cobranzas extends CI_Model
         $pendiente,
         $pagado,
         $id_estado_compra_cobranza,
-        $id_compra_cobranza_empresa
+        $id_compra_cobranza_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -145,7 +145,7 @@ class M_compras_cobranzas extends CI_Model
             id_cliente_proveedor,ds_nombre_cliente_proveedor,observacion,id_moneda,
             ds_moneda,sub_total,igv,total,
             id_condicion_pago,ds_condicion_pago,pendiente,pagado,
-            id_estado_compra_cobranza,id_compra_cobranza_empresa
+            id_estado_compra_cobranza,id_compra_cobranza_empresa,id_empresa
             )
             VALUES
             (
@@ -156,7 +156,7 @@ class M_compras_cobranzas extends CI_Model
             '$id_cliente_proveedor','$ds_nombre_cliente_proveedor','$observacion','$id_moneda',
             '$ds_moneda','$sub_total','$igv','$total',
             '$id_condicion_pago','$ds_condicion_pago','$pendiente','$pagado',
-            '$id_estado_compra_cobranza','$id_compra_cobranza_empresa'
+            '$id_estado_compra_cobranza','$id_compra_cobranza_empresa','$id_empresa'
             )
             "
         );

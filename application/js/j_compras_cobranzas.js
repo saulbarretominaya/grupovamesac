@@ -76,6 +76,8 @@ $("#registrar").on("click", function () {
 		var id_estado_compra_cobranza = $("#id_estado_compra_cobranza").val();
 		//Empresa
 		var id_compra_cobranza_empresa = $("#id_compra_cobranza_empresa").val();
+		var id_empresa = $("#id_empresa").val();
+
 
 		//Detalle programacion_pagos
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
@@ -131,6 +133,8 @@ $("#registrar").on("click", function () {
 				pagado: pagado,
 				id_estado_compra_cobranza: id_estado_compra_cobranza,
 				id_compra_cobranza_empresa: id_compra_cobranza_empresa,
+				id_empresa: id_empresa,
+
 
 				//Detalle programacion_pagos
 				fecha_cuota,
