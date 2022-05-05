@@ -81,6 +81,9 @@
 
                           <tr>
                             <input type="hidden" id="id_cotizacion" value="<?php echo $index->id_cotizacion; ?>">
+                            <input type="hidden" id="id_orden_despacho_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+                            <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
+                            <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
                             <td><?php echo $index->id_cotizacion_empresa; ?></td>
                             <td><?php echo $index->fecha_cotizacion; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
@@ -90,7 +93,6 @@
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_cotizacion; ?> </td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion_productos" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion_productos"><span class="fas fa-search-plus"></span></button></td>
-                            <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
                             <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
                             <td><?php echo $ds_estado_orden_despacho; ?> </td>
                             <?php if ($index->id_orden_despacho != NULL) { ?>
@@ -180,17 +182,18 @@
 
                           <tr>
                             <input type="hidden" id="id_cotizacion" value="<?php echo $index->id_cotizacion; ?>">
+                            <input type="hidden" id="id_orden_despacho_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+                            <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
+                            <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
                             <td><?php echo $index->id_cotizacion_empresa; ?></td>
                             <td><?php echo $index->fecha_cotizacion; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
                             <td><?php echo $index->ds_moneda; ?></td>
                             <td><?php echo $index->precio_venta; ?></td>
-                            <!-- <input type="hidden" id="id_trabajador" value="<?php echo $index->id_trabajador; ?>"> -->
                             <td><?php echo $index->ds_nombre_trabajador; ?></td>
                             <td><?php echo $ds_estado_cotizacion; ?> </td>
                             <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_cotizacion_tableros" value="<?php echo $index->id_cotizacion; ?>" data-toggle="modal" data-target="#id_target_cotizacion_tableros"><span class="fas fa-search-plus"></span></button></td>
-                            <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
                             <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
                             <td><?php echo $ds_estado_orden_despacho; ?> </td>
                             <?php if ($index->id_orden_despacho != NULL) { ?>
@@ -199,8 +202,6 @@
                               <td></td>
                             <?php } ?>
                             <td><a href=" <?php echo base_url(); ?>C_cotizacion/enlace_actualizar/<?php echo $index->id_cotizacion; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
-                            <input type="hidden" id="id_orden_despacho_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
-                            <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
                             <td><button type="button" class="btn btn-outline-success btn-sm btn_aprobar_estado" value="<?php echo $index->id_cotizacion; ?>"><span class="fas fa-check-circle"></span></button></td>
                           </tr>
                         <?php endforeach; ?>

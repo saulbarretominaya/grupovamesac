@@ -29,8 +29,7 @@ class M_elaborar_pc extends CI_Model
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
-            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
-            WHERE b.id_estado_orden_despacho='862' AND a.categoria='PRODUCTOS' AND d.id_empresa='$id_empresa'
+            WHERE b.id_estado_orden_despacho='862' AND a.categoria='PRODUCTOS' AND a.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion desc;
             "
@@ -62,8 +61,7 @@ class M_elaborar_pc extends CI_Model
             cotizacion a
             RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
             LEFT JOIN parciales_completas c ON c.id_orden_despacho=b.id_orden_despacho
-            LEFT JOIN usuarios d ON d.id_trabajador=a.id_trabajador
-            WHERE b.id_estado_orden_despacho='862' AND a.categoria='TABLEROS' AND d.id_empresa='$id_empresa'
+            WHERE b.id_estado_orden_despacho='862' AND a.categoria='TABLEROS' AND a.id_empresa='$id_empresa'
             GROUP BY a.id_cotizacion
             ORDER BY a.id_cotizacion desc;
             "

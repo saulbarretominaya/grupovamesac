@@ -83,24 +83,35 @@ class M_orden_despacho extends CI_Model
         return $resultados->result();
     }
 
-    public function aprobar_estado($id_orden_despacho, $linea_credito_dolares)
-    {
+    public function aprobar_estado(
+        $id_orden_despacho,
+        $linea_credito_dolares,
+        $id_trabajador,
+        $ds_nombre_trabajador
+    ) {
         return $this->db->query(
             "
             update orden_despacho set
             linea_credito_uso='$linea_credito_dolares',
-            id_estado_orden_despacho='862'
+            id_estado_orden_despacho='862',
+            id_trabajador='$id_trabajador',
+            ds_nombre_trabajador='$ds_nombre_trabajador'
             where id_orden_despacho='$id_orden_despacho'
             "
         );
     }
 
-    public function aprobar_estado_directo($id_orden_despacho)
-    {
+    public function aprobar_estado_directo(
+        $id_orden_despacho,
+        $id_trabajador,
+        $ds_nombre_trabajador
+    ) {
         return $this->db->query(
             "
             update orden_despacho set
-            id_estado_orden_despacho='862'
+            id_estado_orden_despacho='862',
+            id_trabajador='$id_trabajador',
+            ds_nombre_trabajador='$ds_nombre_trabajador'
             where id_orden_despacho='$id_orden_despacho'
             "
         );

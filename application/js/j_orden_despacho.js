@@ -122,21 +122,23 @@ $(document).on("click", ".btn_aplicar_tipo_cambio", function () {
 $(document).on("click", ".btn_aprobar_estado", function () {
 
 	var id_orden_despacho = $(this).closest('tr').find('#id_orden_despacho').val();
+	var id_trabajador = $(this).closest('tr').find('#id_trabajador').val();
+	var ds_nombre_trabajador = $(this).closest('tr').find('#ds_nombre_trabajador').val();
+
+	debugger;
 	var id_cliente_proveedor = $(this).parents("tr").find(document.getElementsByName("id_cliente_proveedor")).val();
 	var linea_credito_dolares = $(this).parents("tr").find(document.getElementsByName("disponible_dolares")).val();
 	var condicion_pago = $(this).parents("tr").find("td")[5].innerText;
-
 	var resultado_valor_cambio = $(this).parents("tr").find("td")[7].innerText;
 	var tipo_moneda = $(this).parents("tr").find("td")[8].innerText;
 	var monto_cotizacion = $(this).parents("tr").find("td")[9].innerText;
 	var estado_orden_despacho = $(this).parents("tr").find("td")[11].innerText;
-	debugger;
+
 	if (resultado_valor_cambio == "" && tipo_moneda == "DOLARES") {
 		var nueva_linea_credito = Number(linea_credito_dolares) - Number(monto_cotizacion)
 	} else if (resultado_valor_cambio != "" && tipo_moneda == "SOLES") {
 		var nueva_linea_credito = Number(linea_credito_dolares) - Number(resultado_valor_cambio)
 	}
-	debugger;
 
 	if (condicion_pago == "CONTADO" && estado_orden_despacho == "PENDIENTE") {
 		alertify.confirm("Esta seguro que desea aprobarlo",
@@ -148,6 +150,8 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 					dataType: "json",
 					data: {
 						id_orden_despacho: id_orden_despacho,
+						id_trabajador: id_trabajador,
+						ds_nombre_trabajador: ds_nombre_trabajador
 					},
 					success: function (data) {
 						window.location.href = base_url + "C_orden_despacho";
@@ -176,7 +180,9 @@ $(document).on("click", ".btn_aprobar_estado", function () {
 						id_cliente_proveedor: id_cliente_proveedor,
 						nueva_linea_credito: nueva_linea_credito,
 						monto_cotizacion: monto_cotizacion,
-						linea_credito_dolares: linea_credito_dolares
+						linea_credito_dolares: linea_credito_dolares,
+						id_trabajador: id_trabajador,
+						ds_nombre_trabajador: ds_nombre_trabajador
 					},
 					success: function (data) {
 						window.location.href = base_url + "C_orden_despacho";

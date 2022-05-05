@@ -67,15 +67,17 @@
                           ?>
                           <tr>
                             <input type="hidden" id="id_cotizacion" value="<?php echo $index->id_cotizacion; ?>">
-                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
-                            <td><?php echo $index->fecha_cotizacion; ?></td>
+                            <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+                            <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
                             <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
-                            <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
-                            <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
                             <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
                             <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
                             <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
+                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
+                            <td><?php echo $index->fecha_cotizacion; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
+                            <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
                             <td><?php echo $index->valor_cambio; ?></td>
@@ -154,15 +156,17 @@
                           ?>
                           <tr>
                             <input type="hidden" id="id_cotizacion" value="<?php echo $index->id_cotizacion; ?>">
-                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
-                            <td><?php echo $index->fecha_cotizacion; ?></td>
+                            <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+                            <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
                             <input type="hidden" id="id_orden_despacho" value="<?php echo $index->id_orden_despacho; ?>">
-                            <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
-                            <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <input type="hidden" value="<?php echo $index->id_cliente_proveedor; ?>" name="id_cliente_proveedor">
                             <input type="hidden" value="<?php echo $index->linea_credito_dolares; ?>" name="linea_credito_dolares">
                             <input type="hidden" value="<?php echo $index->credito_unitario_dolares; ?>" name="credito_unitario_dolares">
                             <input type="hidden" value="<?php echo $index->disponible_dolares; ?>" name="disponible_dolares">
+                            <td><?php echo $index->id_cotizacion_empresa; ?></td>
+                            <td><?php echo $index->fecha_cotizacion; ?></td>
+                            <td><?php echo $index->id_orden_despacho_empresa; ?> </td>
+                            <td><?php echo $index->fecha_orden_despacho; ?></td>
                             <td><?php echo $index->ds_nombre_cliente_proveedor; ?></td>
                             <td><?php echo $index->ds_condicion_pago; ?></td>
                             <td><?php echo $index->valor_cambio; ?></td>

@@ -32,9 +32,10 @@ class C_orden_despacho extends CI_Controller
 		$id_cliente_proveedor = $this->input->post("id_cliente_proveedor");
 		$nueva_linea_credito = $this->input->post("nueva_linea_credito");
 		$monto_cotizacion = $this->input->post("monto_cotizacion");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 
-
-		$this->M_orden_despacho->aprobar_estado($id_orden_despacho, $linea_credito_dolares);
+		$this->M_orden_despacho->aprobar_estado($id_orden_despacho, $linea_credito_dolares, $id_trabajador, $ds_nombre_trabajador);
 		$this->M_orden_despacho->actualizar_linea_credito($id_cliente_proveedor, $nueva_linea_credito, $monto_cotizacion);
 		echo json_encode($id_orden_despacho);
 	}
@@ -44,8 +45,10 @@ class C_orden_despacho extends CI_Controller
 	{
 
 		$id_orden_despacho = $this->input->post("id_orden_despacho");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 
-		$this->M_orden_despacho->aprobar_estado_directo($id_orden_despacho);
+		$this->M_orden_despacho->aprobar_estado_directo($id_orden_despacho, $id_trabajador, $ds_nombre_trabajador);
 		echo json_encode($id_orden_despacho);
 	}
 
