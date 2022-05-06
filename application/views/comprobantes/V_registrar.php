@@ -11,13 +11,18 @@
         </div>
       </div>
     </div>
+    <input type="hidden" id="precio_venta" value="<?php echo $enlace_registrar_cabecera->precio_venta; ?>">
+    <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_registrar_cabecera->id_guia_remision; ?>">
+    <input type="hidden" id="id_comprobante_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+    <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+    <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+    <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
   </section>
 
 
   <section class="content">
 
     <div class="container-fluid">
-
 
       <div class="row">
         <div class="col-12">
@@ -64,9 +69,7 @@
                       </div>
                     </div>
 
-                    <input type="hidden" id="precio_venta" value="<?php echo $enlace_registrar_cabecera->precio_venta; ?>">
-                    <input type="hidden" id="id_guia_remision" value="<?php echo $enlace_registrar_cabecera->id_guia_remision; ?>">
-                    <input type="hidden" id="id_comprobante_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+
 
                     <div class="col-md-4">
                       <div class="card">

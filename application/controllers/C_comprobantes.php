@@ -71,6 +71,10 @@ class C_comprobantes extends CI_Controller
 		$id_guia_remision = $this->input->post("id_guia_remision");
 		$id_comprobante_empresa = $this->input->post("id_comprobante_empresa");
 
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+		$id_empresa = $this->input->post("id_empresa");
+
 
 		//Detalle_condicion pago
 		$fecha_cuota = $this->input->post("fecha_cuota");
@@ -96,7 +100,11 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
+
 				);
 			} else if ($id_tipo_comprobante == "70") {
 				$this->M_comprobantes->registrar_grupo_vame_boletas();
@@ -114,7 +122,11 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
+
 				);
 			} else if ($id_tipo_comprobante == "77") {
 				$this->M_comprobantes->registrar_grupo_vame_nota_credito();
@@ -132,7 +144,10 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($id_tipo_comprobante == "78") {
 				$this->M_comprobantes->registrar_grupo_vame_nota_debito();
@@ -150,7 +165,10 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			}
 		} else if ($id_comprobante_empresa == "200") {
@@ -173,7 +191,10 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($id_tipo_comprobante == "70") {
 				$this->M_comprobantes->registrar_inversiones_alpev_boletas();
@@ -191,7 +212,10 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($id_tipo_comprobante == "77") {
 				$this->M_comprobantes->registrar_inversiones_alpev_nota_credito();
@@ -209,7 +233,10 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($id_tipo_comprobante == "78") {
 				$this->M_comprobantes->registrar_inversiones_alpev_nota_debito();
@@ -227,7 +254,10 @@ class C_comprobantes extends CI_Controller
 					$observacion,
 					$id_guia_remision,
 					$id_num_comprobante,
-					$id_comprobante_empresa
+					$id_comprobante_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			}
 		}

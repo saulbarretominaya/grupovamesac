@@ -249,7 +249,10 @@ class M_elaborar_pc extends CI_Model
         $igv,
         $precio_venta,
         $fecha_parcial_completa,
-        $id_parcial_completa_empresa
+        $id_trabajador,
+        $ds_nombre_trabajador,
+        $id_parcial_completa_empresa,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -258,14 +261,16 @@ class M_elaborar_pc extends CI_Model
             id_parcial_completa,
             id_orden_despacho,
             valor_venta_total_sin_d,valor_venta_total_con_d,descuento_total,
-            igv,precio_venta,fecha_parcial_completa,id_parcial_completa_empresa
+            igv,precio_venta,fecha_parcial_completa,
+            id_trabajador,ds_nombre_trabajador,id_parcial_completa_empresa,id_empresa
             )
             VALUES
             (
             '',
             '$id_orden_despacho',
             '$valor_venta_total_sin_d','$valor_venta_total_con_d','$descuento_total',
-            '$igv','$precio_venta','$fecha_parcial_completa','$id_parcial_completa_empresa'
+            '$igv','$precio_venta','$fecha_parcial_completa',
+            '$id_trabajador','$ds_nombre_trabajador','$id_parcial_completa_empresa','$id_empresa'
             )"
         );
     }

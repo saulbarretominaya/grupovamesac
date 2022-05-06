@@ -70,6 +70,10 @@ $("#registrar").on("click", function () {
 		var id_guia_remision = $("#id_guia_remision").val();
 		//Empresa
 		var id_comprobante_empresa = $("#id_comprobante_empresa").val();
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
+		var id_empresa = $("#id_empresa").val();
+
 
 		//Detalle condicion_pago
 		var fecha_cuota = Array.prototype.slice.call(document.getElementsByName("fecha_cuota[]")).map((o) => o.value);
@@ -96,6 +100,9 @@ $("#registrar").on("click", function () {
 				id_guia_remision: id_guia_remision,
 				//Empresa
 				id_comprobante_empresa: id_comprobante_empresa,
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
+				id_empresa: id_empresa,
 
 				//Detalle condicion pago
 				fecha_cuota: fecha_cuota,

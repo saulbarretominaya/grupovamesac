@@ -72,7 +72,10 @@ class C_elaborar_pc extends CI_Controller
 		$igv = $this->input->post("igv");
 		$precio_venta = $this->input->post("precio_venta");
 		$fecha_parcial_completa = $this->input->post("fecha_parcial_completa");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
 		$id_parcial_completa_empresa = $this->input->post("id_parcial_completa_empresa");
+		$id_empresa = $this->input->post("id_empresa");
 
 
 		//Detalle Update (estado_elaboracion_pc - Elaboracion PC)
@@ -97,7 +100,10 @@ class C_elaborar_pc extends CI_Controller
 				$igv,
 				$precio_venta,
 				$fecha_parcial_completa,
-				$id_parcial_completa_empresa
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_parcial_completa_empresa,
+				$id_empresa
 			);
 		} else if ($id_parcial_completa_empresa == "200") {
 			$this->M_elaborar_pc->registrar_inversiones_alpev_parciales_completas();
@@ -110,7 +116,10 @@ class C_elaborar_pc extends CI_Controller
 				$igv,
 				$precio_venta,
 				$fecha_parcial_completa,
-				$id_parcial_completa_empresa
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_parcial_completa_empresa,
+				$id_empresa
 			);
 		}
 		$id_parcial_completa = $this->M_elaborar_pc->lastID();

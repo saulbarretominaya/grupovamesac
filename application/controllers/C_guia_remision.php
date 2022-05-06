@@ -62,6 +62,9 @@ class C_guia_remision extends CI_Controller
 		$ds_serie_guia_remision = $this->input->post("ds_serie_guia_remision");
 		$id_parcial_completa = $this->input->post("id_parcial_completa");
 		$id_guia_remision_empresa = $this->input->post("id_guia_remision_empresa");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+		$id_empresa = $this->input->post("id_empresa");
 
 
 		if ($id_guia_remision_empresa == "100") {
@@ -91,7 +94,10 @@ class C_guia_remision extends CI_Controller
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
 					$id_tienda,
-					$id_guia_remision_empresa
+					$id_guia_remision_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($ds_serie_guia_remision == "T002") {
 				$this->M_guia_remision->registrar_grupo_vame_tienda_bellota();
@@ -117,7 +123,10 @@ class C_guia_remision extends CI_Controller
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
 					$id_tienda,
-					$id_guia_remision_empresa
+					$id_guia_remision_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($ds_serie_guia_remision == "T003") {
 				$this->M_guia_remision->registrar_grupo_vame_tienda_nicolini();
@@ -143,8 +152,10 @@ class C_guia_remision extends CI_Controller
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
 					$id_tienda,
-					$id_guia_remision_empresa
-
+					$id_guia_remision_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			}
 		} else if ($id_guia_remision_empresa == "200") {
@@ -174,8 +185,10 @@ class C_guia_remision extends CI_Controller
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
 					$id_tienda,
-					$id_guia_remision_empresa
-
+					$id_guia_remision_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($ds_serie_guia_remision == "T002") {
 				$this->M_guia_remision->registrar_inversiones_alpev_tienda_bellota();
@@ -201,8 +214,10 @@ class C_guia_remision extends CI_Controller
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
 					$id_tienda,
-					$id_guia_remision_empresa
-
+					$id_guia_remision_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			} else if ($ds_serie_guia_remision == "T003") {
 				$this->M_guia_remision->registrar_inversiones_alpev_tienda_nicolini();
@@ -228,12 +243,13 @@ class C_guia_remision extends CI_Controller
 					$ds_serie_guia_remision,
 					$id_parcial_completa,
 					$id_tienda,
-					$id_guia_remision_empresa
-
+					$id_guia_remision_empresa,
+					$id_trabajador,
+					$ds_nombre_trabajador,
+					$id_empresa
 				);
 			}
 		}
-
 		echo json_encode($tipo_transporte);
 	}
 

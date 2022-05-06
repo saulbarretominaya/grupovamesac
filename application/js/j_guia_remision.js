@@ -111,8 +111,12 @@ $("#registrar").on("click", function () {
 		var ds_sucursal_trabajador = $("#ds_sucursal_trabajador").val();
 		var ds_serie_guia_remision = $("#ds_serie_guia_remision").val();
 		var id_parcial_completa = $("#id_parcial_completa").val();
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
 		//Empresa
 		var id_guia_remision_empresa = $("#id_guia_remision_empresa").val();
+		var id_empresa = $("#id_empresa").val();
+
 
 		$.ajax({
 			async: false,
@@ -140,8 +144,11 @@ $("#registrar").on("click", function () {
 				ds_sucursal_trabajador: ds_sucursal_trabajador,
 				ds_serie_guia_remision: ds_serie_guia_remision,
 				id_parcial_completa: id_parcial_completa,
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
 				//Empresa
 				id_guia_remision_empresa: id_guia_remision_empresa,
+				id_empresa: id_empresa
 
 			},
 			success: function (data) {

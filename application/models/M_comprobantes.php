@@ -45,10 +45,9 @@ class M_comprobantes extends CI_Model
             RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON f.id_trabajador=a.id_trabajador
-            LEFT JOIN usuarios g ON g.id_trabajador=a.id_trabajador
             LEFT JOIN comprobantes_emitidos h ON h.id_comprobante=e.id_comprobante
             LEFT JOIN comprobantes_anulados i ON i.id_comprobante=e.id_comprobante
-            WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894' AND g.id_empresa='$id_empresa'
+            WHERE a.categoria='PRODUCTOS' AND d.id_estado_guia_remision='894' AND d.id_empresa='$id_empresa'
             ORDER BY a.id_cotizacion DESC;
             "
         );
@@ -89,8 +88,7 @@ class M_comprobantes extends CI_Model
             RIGHT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
             LEFT JOIN comprobantes e ON e.id_guia_remision=d.id_guia_remision
             LEFT JOIN trabajadores f ON e.id_trabajador=a.id_trabajador
-            LEFT JOIN usuarios g ON g.id_trabajador=a.id_trabajador 
-            WHERE a.categoria='TABLEROS' AND g.id_empresa='$id_empresa'
+            WHERE a.categoria='TABLEROS' AND d.id_empresa='$id_empresa'
             ORDER BY a.id_cotizacion desc;
         "
         );
@@ -326,7 +324,10 @@ class M_comprobantes extends CI_Model
         $observacion,
         $id_guia_remision,
         $id_num_comprobante,
-        $id_comprobante_empresa
+        $id_comprobante_empresa,
+        $id_trabajador,
+        $ds_nombre_trabajador,
+        $id_empresa
     ) {
         return $this->db->query(
             "
@@ -335,15 +336,16 @@ class M_comprobantes extends CI_Model
                 id_comprobante,
                 id_tipo_comprobante,ds_tipo_comprobante,fecha_emision,dias,fecha_vencimiento,
                 orden_compra,id_condicion_pago,ds_condicion_pago,monto_total_condicion_pago,
-                observacion,id_guia_remision,id_num_comprobante,id_comprobante_empresa
-
+                observacion,id_guia_remision,id_num_comprobante,id_comprobante_empresa,
+                id_trabajador,ds_nombre_trabajador,id_empresa
             )
             VALUES
             (
                 '',
                 '$id_tipo_comprobante','$ds_tipo_comprobante','$fecha_emision','$dias',STR_TO_DATE('$fecha_vencimiento','%d/%m/%Y'),
                 '$orden_compra','$id_condicion_pago','$ds_condicion_pago','$monto_total_condicion_pago',
-                '$observacion','$id_guia_remision','$id_num_comprobante','$id_comprobante_empresa'
+                '$observacion','$id_guia_remision','$id_num_comprobante','$id_comprobante_empresa',
+                '$id_trabajador','$ds_nombre_trabajador','$id_empresa'
             )
             "
         );
