@@ -98,15 +98,14 @@ $db['default'] = array(
 );
 
 
-
 /*Produccion BD*/
 /*
 $db['default'] = array(
-    'dsn'	=> '',
-    'hostname' => 'localhost',
-    'username' => 'sa_grupovamesac',
-    'password' => 'createTRIGGER123@',
-    'database' => 'sa_grupovamesac',
+    'dsn'    => '',
+    'hostname' => '65.21.225.97',
+    'username' => 'sa',
+    'password' => 'Deve1414',
+    'database' => 'greyes_grupovamesac',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => false,
@@ -121,4 +120,5 @@ $db['default'] = array(
     'stricton' => false,
     'failover' => array(),
     'save_queries' => true
-);*/
+);
+*/
