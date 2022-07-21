@@ -9,7 +9,34 @@ class M_multitablas extends CI_Model
     public function index()
     {
         $resultados = $this->db->query(
-            "SELECT*FROM multitablas"
+            "
+            SELECT*FROM multitablas
+            "
+        );
+        return $resultados->result();
+    }
+
+    public function index_modal_cabecera($id_multitabla)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT*FROM multitablas WHERE id_multitabla='$id_multitabla'
+            "
+        );
+        return $resultados->row();
+    }
+
+    public function index_modal_detalle($id_multitabla)
+    {
+        $resultados = $this->db->query(
+            "
+            SELECT 
+            a.id_multitabla, -- MULTITABLAS
+            b.id_dmultitabla,b.abreviatura,b.descripcion -- DETALLE DE MULTITABLAS
+            FROM multitablas a
+            LEFT JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla
+            WHERE a.id_multitabla='$id_multitabla'
+            "
         );
         return $resultados->result();
     }
@@ -51,7 +78,8 @@ class M_multitablas extends CI_Model
 
     public function detalle($id_multitabla)
     {
-        $resultados = $this->db->query("SELECT 
+        $resultados = $this->db->query("
+        SELECT 
         a.id_multitabla, -- MULTITABLAS
         b.id_dmultitabla,b.abreviatura,b.descripcion -- DETALLE DE MULTITABLAS
         FROM multitablas a

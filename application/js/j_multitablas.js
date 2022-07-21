@@ -39,6 +39,19 @@ $("#id_agregar_multitabla").on("click", function (e) {
 	$("#id_table_detalle_multitablas tbody").append(html);
 });
 
+$(document).on("click", ".js_lupa_multitabla", function () {
+	valor_id = $(this).val();
+	$.ajax({
+		url: base_url + "C_multitablas/index_modal",
+		type: "POST",
+		dataType: "html",
+		data: { id_multitabla: valor_id },
+		success: function (data) {
+			$("#id_target_multitablas .modal-content").html(data);
+		},
+	});
+});
+
 $(document).on("click", ".eliminar_fila", function () {
 	debugger;
 	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
@@ -109,95 +122,3 @@ $("#actualizar").on("click", function () {
 	});
 });
 
-/*  script para validar datos duplicados */
-/*
-	validar_campos();
-	var resultado = "";
-
-	if (resultado_campo == true && validacion_enlaces == "1") {
-		$.ajax({
-			async: false,
-			url: base_url + "Recursos_humanos/Controller_personal/verificar_personal",
-			type: "POST",
-			dataType: "json",
-			data: {
-				num_documento: num_documento,
-			},
-			success: function (data) {
-				if (data == null) {
-					//ESA VALIDACION NULL REPRESENTA QUE ESE REGISTRO NO SE ENCUENTRA EN LA BD, X LO TANTO EJECUTA UN METODO INSERTAR
-					resultado = data;
-					alert("PUEDE INGRESAR EL REGISTRO");
-					$.ajax({
-						async: false,
-						url: base_url + "Recursos_humanos/Controller_personal/insertar",
-						type: "POST",
-						dataType: "json",
-						data: {
-							nombre: nombre,
-							apepaterno: apepaterno,
-							apematerno: apematerno,
-							telefono: telefono,
-							email: email,
-							direccion: direccion,
-							id_tdocumento: id_tdocumento,
-							num_documento: num_documento,
-							id_cargo: id_cargo,
-						},
-						success: function (data) {
-							window.location.href =
-								base_url + "Recursos_humanos/Controller_personal";
-							debugger;
-						},
-					});
-				} else {
-					resultado = data;
-					//alert('YA SE ENCUENTRA REGISTRADO');
-					alertify.error("YA SE EXISTE ESE DNI");
-				}
-
-				//window.location.href = base_url+"Recursos_humanos/Controller_cargos/enlace_insertar";
-				//echo json_encode($data);
-			},
-		});
-		var myJSON = JSON.stringify(resultado);
-		//alert(myJSON);
-		debugger;
-	}
-});
-
-
-function validar_campos() {
-	var nombre_tabla = $("#nombre_tabla").val();
-	var abreviatura = $("#abreviatura").val();
-	var descripcion = $("#descripcion").val();
-
-	if (nombre_tabla == "") {
-		$("#nombre").attr({
-			placeholder: " INGRESE NOMBRE GENERAL",
-		});
-		$("#nombre").focus();
-		resultado_campo = false;
-	} else if (apepaterno == "") {
-		$("#apepaterno").attr({
-			placeholder: "INGRESE APE. PATERNO",
-		});
-		$("#apepaterno").focus();
-		resultado_campo = false;
-	} else if (apematerno == "") {
-		$("#apematerno").attr({
-			placeholder: "INGRESE APE. MATERNO",
-		});
-		$("#apematerno").focus();
-		resultado_campo = false;
-	} else if (num_documento == "") {
-		$("#num_documento").attr({
-			placeholder: "INGRESE DNI",
-		});
-		$("#num_documento").focus();
-		resultado_campo = false;
-	} else {
-		resultado_campo = true;
-	}
-}
-*/

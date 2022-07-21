@@ -21,6 +21,7 @@
                   <th>Codigo</th>
                   <th>Nombre</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -29,6 +30,7 @@
                     <tr>
                       <td><?php echo $index->id_multitabla; ?></td>
                       <td><?php echo $index->nombre_tabla; ?></td>
+                      <td><button type="button" class="btn btn-outline-info js_lupa_multitabla btn-sm" value="<?php echo $index->id_multitabla; ?>" data-toggle="modal" data-target="#id_target_multitablas"><span class="fa fa-search"></span></button></td>
                       <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
                     </tr>
                   <?php endforeach; ?>
@@ -43,12 +45,12 @@
 
 
 
-
-
-
-
-
-
+  <div class="modal fade" id="id_target_multitablas" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
 
 
   <!-- Control Sidebar -->

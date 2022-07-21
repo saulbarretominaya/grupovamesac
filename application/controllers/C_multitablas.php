@@ -20,6 +20,19 @@ class C_multitablas extends CI_Controller
 		$this->load->view('multitablas/V_index', $data);
 	}
 
+	public function index_modal()
+
+	{
+		$id_multitabla = $this->input->post("id_multitabla");
+
+		$data = array(
+			'index_modal_cabecera' => $this->M_multitablas->index_modal_cabecera($id_multitabla),
+			'index_modal_detalle' => $this->M_multitablas->index_modal_detalle($id_multitabla)
+		);
+
+		$this->load->view('multitablas/V_index_modal', $data);
+	}
+
 	public function enlace_registrar()
 	{
 
