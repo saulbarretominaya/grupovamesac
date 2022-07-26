@@ -750,6 +750,7 @@ $("#dias").on("keyup", function () {
 });
 $("#id_agregar_cotizacion").on("click", function (e) {
 
+	debugger;
 	validar_detalle_cotizacion();
 
 	var resume_table = document.getElementById("id_table_detalle_cotizacion");

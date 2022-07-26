@@ -20,10 +20,15 @@
     <div id="container_solicitud_id_remove" name="container_solicitud_id_remove" style="display: none;">
     </div>
     <input type="hidden" class="form-control" id="id_multitabla" value="<?php echo $cabecera->id_multitabla; ?>">
-
     <!-- Fin de codigos ocultos-->
 
 
+    <!-- ID para actualizar Tabla Detallle -->
+    <table id="container_id_dmultitabla_actualizar" style="display: none;">
+      <tbody>
+      </tbody>
+    </table>
+    <!-- FIN para actualizar Tabla Detallle -->
 
     <!-- Main content -->
     <section class="content">
@@ -49,11 +54,11 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Abreviatura</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="abreviatura_tabla">
+                      <input type="text" class="form-control" id="abreviatura">
                     </div>
                     <label class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="descripcion_tabla">
+                      <input type="text" class="form-control" id="descripcion">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -79,11 +84,12 @@
               <!-- form start -->
               <form class="form-horizontal">
                 <div class="card-body">
-                  <table id="id_table_detalle_multitablas" class="table table-sm table-hover">
+                  <table id="id_table_detalle_multitablas" style="width: 100%;">
                     <thead>
                       <tr>
                         <th>Nombre</th>
                         <th>Descripcion</th>
+                        <th></th>
                         <th></th>
                       </tr>
                     </thead>
@@ -91,11 +97,15 @@
                       <?php if (!empty($detalle)) : ?>
                         <?php foreach ($detalle as $detalle) : ?>
                           <tr>
-                            <td><?php echo $detalle->abreviatura; ?></td>
-                            <td><?php echo $detalle->descripcion; ?></td>
+                            <td><input type="text" class="form-control" value="<?php echo $detalle->abreviatura; ?>" id="abreviatura" name="abreviatura[]" readonly></td>
+                            <td><input type="text" class="form-control" value="<?php echo $detalle->descripcion; ?>" id="descripcion" name="descripcion[]" readonly></td>
                             <?php if ($detalle->id_dmultitabla != null) { ?>
                               <td>
-                                <button type="button" class="btn btn-danger btn-xs eliminar_fila"><span class="fas fa-trash-alt"></span></button>
+                                <button type="button" class="btn btn-outline-warning button_actualizar_fila"><span class="far fa-edit"></span></button>
+                                <input type="hidden" name="id_dmultitabla_actualizar" id="id_dmultitabla_actualizar" value="<?php echo $detalle->id_dmultitabla; ?>">
+                              </td>
+                              <td>
+                                <button type="button" class="btn btn-outline-danger eliminar_fila"><span class="far fa-trash-alt"></span></button>
                                 <input type="hidden" name="value_id_solicitud" id="value_id_solicitud" value="<?php echo $detalle->id_dmultitabla; ?>">
                               </td>
                             <?php } else { ?>

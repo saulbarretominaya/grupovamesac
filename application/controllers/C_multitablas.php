@@ -85,30 +85,38 @@ class C_multitablas extends CI_Controller
 		$id_multitabla = $this->input->post("id_multitabla");
 		$nombre_tabla = $this->input->post("nombre_tabla");
 
-		//ELIMINAR POR ID LAS FILAS DE TABLA DE DETALLE
-		$id_dmultitabla = $this->input->post("id_dmultitabla");
-
 		//DETALLE
 		$abreviatura = $this->input->post("abreviatura");
 		$descripcion = $this->input->post("descripcion");
 
+		$id_dmultitabla_actualizar = $this->input->post("id_dmultitabla_actualizar");
+		$abreviatura_actualizar = $this->input->post("abreviatura_actualizar");
+		$descripcion_actualizar = $this->input->post("descripcion_actualizar");
 
-		if ($this->M_multitablas->actualizar($id_multitabla, $nombre_tabla)) {
-			if ($id_dmultitabla != null) {
-				$this->eliminar_detalle($id_dmultitabla);
-			}
 
-			if ($abreviatura != null) {
-				$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
-			}
-			echo json_encode($nombre_tabla);
+
+		if ($id_dmultitabla_actualizar != null) {
+			$this->actualizar_detalle($id_dmultitabla_actualizar, $abreviatura_actualizar, $descripcion_actualizar);
 		}
+
+		if ($abreviatura != null) {
+			$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
+		}
+
+		echo json_encode($id_multitabla);
 	}
 
-	protected function eliminar_detalle($id_dmultitabla)
+	protected function actualizar_detalle($id_dmultitabla_actualizar, $abreviatura_actualizar, $descripcion_actualizar)
 	{
-		for ($i = 0; $i < count($id_dmultitabla); $i++) {
-			$this->M_multitablas->eliminar_detalle($id_dmultitabla[$i]);
+		for ($i = 0; $i < count($id_dmultitabla_actualizar); $i++) {
+			$this->M_multitablas->actualizar_detalle($id_dmultitabla_actualizar[$i], $abreviatura_actualizar[$i], $descripcion_actualizar[$i]);
 		}
 	}
+
+	// protected function eliminar_detalle($id_dmultitabla)
+	// {
+	// 	for ($i = 0; $i < count($id_dmultitabla); $i++) {
+	// 		$this->M_multitablas->eliminar_detalle($id_dmultitabla[$i]);
+	// 	}
+	// }
 }

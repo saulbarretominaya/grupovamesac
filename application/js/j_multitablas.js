@@ -1,3 +1,5 @@
+
+
 $("#listar").dataTable({
 
 	scrollX: true,
@@ -24,19 +26,22 @@ $("#listar").dataTable({
 });
 
 $("#id_agregar_multitabla").on("click", function (e) {
-	debugger;
 	var id_multitabla = document.getElementById("id_multitabla").value;
-	var abreviatura = document.getElementById("abreviatura_tabla").value;
-	var descripcion = document.getElementById("descripcion_tabla").value;
+	var abreviatura = document.getElementById("abreviatura").value;
+	var descripcion = document.getElementById("descripcion").value;
+
 
 	html = "<tr>";
 	html += "<input type='hidden' name='id_multitabla' value='" + id_multitabla + "'>";
 	html += "<td><input type='text' class='form-control' name='abreviatura[]' id='abreviatura' value='" + abreviatura + "'></td>";
 	html += "<td><input type='text' class='form-control' name='descripcion[]' id='descripcion' value='" + descripcion + "'></td>";
+	html += "<td></td>";
 	html += "<td><button type='button' class='btn btn-danger btn-xs eliminar_fila'><span class='fas fa-trash-alt'></span></button></td>";
 	html += "</tr>";
-
 	$("#id_table_detalle_multitablas tbody").append(html);
+
+
+
 });
 
 $(document).on("click", ".js_lupa_multitabla", function () {
@@ -55,10 +60,7 @@ $(document).on("click", ".js_lupa_multitabla", function () {
 $(document).on("click", ".eliminar_fila", function () {
 	debugger;
 	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
-	html =
-		"<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" +
-		id_detalle +
-		"'>";
+	html = "<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" + id_detalle + "'>";
 	$("#container_solicitud_id_remove").append(html);
 	$(this).closest("tr").remove();
 });
@@ -89,18 +91,19 @@ $("#registrar").on("click", function () {
 });
 
 $("#actualizar").on("click", function () {
-	debugger;
 
 	//Cabecera
 	var id_multitabla = $("#id_multitabla").val();
-	var nombre_tabla = $("#nombre_tabla").val();
 
 	//Detalle
-	var id_dmultitabla = Array.prototype.slice.call(document.getElementsByName("id_solicitud_to_remove[]")).map((o) => o.value);
-	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]")).map((o) => o.value);
-	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]")).map((o) => o.value);
+	var id_dmultitabla_actualizar = Array.prototype.slice.call(document.getElementsByName("id_dmultitabla_actualizar[]")).map((o) => o.value);
+	var abreviatura_actualizar = Array.prototype.slice.call(document.getElementsByName("abreviatura_actualizar[]")).map((o) => o.value);
+	var descripcion_actualizar = Array.prototype.slice.call(document.getElementsByName("descripcion_actualizar[]")).map((o) => o.value);
 
 	debugger;
+
+	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]")).map((o) => o.value);
+	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]")).map((o) => o.value);
 
 	$.ajax({
 		async: false,
@@ -109,16 +112,49 @@ $("#actualizar").on("click", function () {
 		dataType: "json",
 		data: {
 			id_multitabla: id_multitabla,
-			nombre_tabla: nombre_tabla,
-			id_dmultitabla: id_dmultitabla,
+			id_dmultitabla_actualizar: id_dmultitabla_actualizar,
+			abreviatura_actualizar: abreviatura_actualizar,
+			descripcion_actualizar: descripcion_actualizar,
 			abreviatura: abreviatura,
 			descripcion: descripcion,
 		},
 		success: function (data) {
 			debugger;
-			window.location.href = base_url + "C_multitablas";
+			//window.location.href = base_url + "C_multitablas";
 			debugger;
 		},
 	});
 });
 
+$(document).on("click", ".button_actualizar_fila", function () {
+
+	var abreviatura = $(this).closest('tr').find('#abreviatura').attr("readonly", false);
+	var descripcion = $(this).closest('tr').find('#descripcion').attr("readonly", false);
+	$(this).removeClass('btn btn-outline-warning button_actualizar_fila').addClass('btn btn-outline-primary button_guardar_fila').find('span').removeClass('far fa-edit').addClass('far fa-save');
+
+});
+
+$(document).on("click", ".button_guardar_fila", function () {
+
+	$(this).closest('tr').find('#abreviatura').attr("readonly", true);
+	$(this).closest('tr').find('#descripcion').attr("readonly", true);
+	$(this).removeClass('btn btn-outline-primary button_guardar_fila').addClass('btn btn-outline-warning button_actualizar_fila').find('span').removeClass('far fa-save').addClass('far fa-edit');
+
+	var id_dmultitabla_actualizar = $(this).closest("tr").find("#id_dmultitabla_actualizar").val();
+	var abreviatura_actualizar = $(this).closest("tr").find("#abreviatura").val();
+	var descripcion_actualizar = $(this).closest("tr").find("#descripcion").val();
+
+	$("#container_id_dmultitabla_actualizar tbody tr").each(function () {
+		id_general_container = $(this).find("#id_dmultitabla_actualizar").val();
+		if (id_general_container == id_dmultitabla_actualizar) {
+			$(this).closest("tr").remove();
+		}
+	});
+
+	html = "<tr>";
+	html += "<input type='hidden' id='id_dmultitabla_actualizar' name ='id_dmultitabla_actualizar[]' value='" + id_dmultitabla_actualizar + "'>";
+	html += "<input type='hidden' id='abreviatura_actualizar' name ='abreviatura_actualizar[]' value='" + abreviatura_actualizar + "'>";
+	html += "<input type='hidden' id='descripcion_actualizar' name ='descripcion_actualizar[]' value='" + descripcion_actualizar + "'>";
+	html += "</tr>";
+	$("#container_id_dmultitabla_actualizar tbody").append(html);
+});

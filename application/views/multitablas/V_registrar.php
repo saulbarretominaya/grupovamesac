@@ -41,11 +41,11 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Abreviatura</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="abreviatura_tabla">
+                      <input type="text" class="form-control" id="abreviatura">
                     </div>
                     <label class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="descripcion_tabla">
+                      <input type="text" class="form-control" id="descripcion">
                     </div>
                   </div>
                   <div class="form-group row">
