@@ -71,10 +71,10 @@
               <!-- form start -->
               <form class="form-horizontal">
                 <div class="card-body">
-                  <table id="id_table_detalle_multitablas" class="table table-sm table-hover">
+                  <table id="id_table_detalle_multitablas" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Nombre</th>
+                        <th>Abreviatura</th>
                         <th>Descripcion</th>
                         <th></th>
                       </tr>

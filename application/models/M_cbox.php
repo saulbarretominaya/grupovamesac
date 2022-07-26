@@ -13,7 +13,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='1';");
+        WHERE b.id_multitabla='1' and b.id_estado_dmultitabla='1'
+        ");
         return $resultados->result();
     }
 
@@ -22,7 +23,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='1' AND abreviatura='FACTURA' OR abreviatura='BOLETA';");
+        WHERE b.id_multitabla='1' AND b.id_estado_dmultitabla='1' AND abreviatura='FACTURA' OR abreviatura='BOLETA'
+        ");
         return $resultados->result();
     }
 
@@ -31,7 +33,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='1' AND abreviatura='NOTA DE CREDITO' OR abreviatura='NOTA DE DEBITO'");
+        WHERE b.id_multitabla='1' AND b.id_estado_dmultitabla='1' AND abreviatura='NOTA DE CREDITO' OR abreviatura='NOTA DE DEBITO'
+        ");
         return $resultados->result();
     }
 
@@ -41,7 +44,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='2';");
+        WHERE b.id_multitabla='2' AND b.id_estado_dmultitabla='1'
+        ");
         return $resultados->result();
     }
 
@@ -51,7 +55,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='3';");
+         WHERE b.id_multitabla='3' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -61,7 +66,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='4';");
+         WHERE b.id_multitabla='4' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -71,7 +77,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='5';");
+         WHERE b.id_multitabla='5' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -81,7 +88,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='6';");
+         WHERE b.id_multitabla='6' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -91,7 +99,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='7';");
+         WHERE b.id_multitabla='7' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -101,7 +110,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='8';");
+             WHERE b.id_multitabla='8' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -111,7 +121,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='9';");
+             WHERE b.id_multitabla='9' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -121,7 +132,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='10';");
+             WHERE b.id_multitabla='10' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -131,7 +143,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='11';");
+             WHERE b.id_multitabla='11' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -141,7 +154,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='12';");
+        WHERE b.id_multitabla='12' AND b.id_estado_dmultitabla='1'
+        ");
         return $resultados->result();
     }
 
@@ -151,7 +165,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='13';");
+        WHERE b.id_multitabla='13' AND b.id_estado_dmultitabla='1'
+        ");
         return $resultados->result();
     }
 
@@ -161,7 +176,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='14';");
+         WHERE b.id_multitabla='14' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -171,7 +187,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='15';");
+         WHERE b.id_multitabla='15' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -181,7 +198,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
          SELECT a.*,b.* FROM multitablas a 
          INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-         WHERE b.id_multitabla='16';");
+         WHERE b.id_multitabla='16' AND b.id_estado_dmultitabla='1'
+         ");
         return $resultados->result();
     }
 
@@ -191,7 +209,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='17';");
+        WHERE b.id_multitabla='17' AND b.id_estado_dmultitabla='1'
+        ");
         return $resultados->result();
     }
 
@@ -201,7 +220,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='18';");
+             WHERE b.id_multitabla='18' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -211,7 +231,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
         SELECT a.*,b.* FROM multitablas a 
         INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-        WHERE b.id_multitabla='19';");
+        WHERE b.id_multitabla='19' AND b.id_estado_dmultitabla='1'
+        ");
         return $resultados->result();
     }
 
@@ -221,7 +242,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='20';");
+             WHERE b.id_multitabla='20' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -231,7 +253,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='21';");
+             WHERE b.id_multitabla='21' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -241,7 +264,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
              SELECT a.*,b.* FROM multitablas a 
              INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-             WHERE b.id_multitabla='22';");
+             WHERE b.id_multitabla='22' AND b.id_estado_dmultitabla='1'
+             ");
         return $resultados->result();
     }
 
@@ -251,7 +275,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='23';");
+            WHERE b.id_multitabla='23' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -261,7 +286,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
            SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='24';");
+            WHERE b.id_multitabla='24' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -271,7 +297,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
            SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='25';");
+            WHERE b.id_multitabla='25' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -281,7 +308,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
            SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='26';");
+            WHERE b.id_multitabla='26' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -291,7 +319,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
           SELECT a.*,b.* FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='27';");
+          WHERE b.id_multitabla='27' AND b.id_estado_dmultitabla='1'
+          ");
         return $resultados->result();
     }
 
@@ -301,7 +330,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='28';");
+               WHERE b.id_multitabla='28' AND b.id_estado_dmultitabla='1'
+               ");
         return $resultados->result();
     }
 
@@ -311,7 +341,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
           SELECT a.*,b.* FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='29';");
+          WHERE b.id_multitabla='29' AND b.id_estado_dmultitabla='1'
+          ");
         return $resultados->result();
     }
 
@@ -321,7 +352,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='30';");
+               WHERE b.id_multitabla='30' AND b.id_estado_dmultitabla='1'
+               ");
         return $resultados->result();
     }
 
@@ -331,7 +363,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='31';");
+               WHERE b.id_multitabla='31' AND b.id_estado_dmultitabla='1'
+               ");
         return $resultados->result();
     }
 
@@ -341,7 +374,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
           SELECT a.*,b.* FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='32';");
+          WHERE b.id_multitabla='32' AND b.id_estado_dmultitabla='1'
+          ");
         return $resultados->result();
     }
 
@@ -351,7 +385,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='33';");
+               WHERE b.id_multitabla='33' AND b.id_estado_dmultitabla='1'
+               ");
         return $resultados->result();
     }
 
@@ -361,7 +396,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                SELECT a.*,b.* FROM multitablas a 
                INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-               WHERE b.id_multitabla='34';");
+               WHERE b.id_multitabla='34' AND b.id_estado_dmultitabla='1'
+               ");
         return $resultados->result();
     }
 
@@ -371,7 +407,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                    SELECT a.*,b.* FROM multitablas a 
                    INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                   WHERE b.id_multitabla='35';");
+                   WHERE b.id_multitabla='35' AND b.id_estado_dmultitabla='1'
+                   ");
         return $resultados->result();
     }
 
@@ -381,7 +418,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='36';");
+                           WHERE b.id_multitabla='36' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -391,7 +429,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='37';");
+                           WHERE b.id_multitabla='37' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -401,7 +440,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='38';");
+                           WHERE b.id_multitabla='38' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -411,7 +451,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='39';");
+                           WHERE b.id_multitabla='39' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -421,7 +462,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='40';");
+                           WHERE b.id_multitabla='40' AND b.id_estado_dmultitabla='1' 
+                           ");
         return $resultados->result();
     }
 
@@ -431,7 +473,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='41';");
+                           WHERE b.id_multitabla='41' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -441,7 +484,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='42';");
+                           WHERE b.id_multitabla='42' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -451,7 +495,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='43';");
+                           WHERE b.id_multitabla='43' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -461,7 +506,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='44';");
+                           WHERE b.id_multitabla='44' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -471,7 +517,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='45';");
+                           WHERE b.id_multitabla='45' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -481,7 +528,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='46';");
+                           WHERE b.id_multitabla='46' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -491,7 +539,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='47';");
+                           WHERE b.id_multitabla='47' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -501,7 +550,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='48';");
+                           WHERE b.id_multitabla='48' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -513,7 +563,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
                            SELECT a.*,b.* FROM multitablas a 
                            INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-                           WHERE b.id_multitabla='50';");
+                           WHERE b.id_multitabla='50' AND b.id_estado_dmultitabla='1'
+                           ");
         return $resultados->result();
     }
 
@@ -523,7 +574,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='51';");
+            WHERE b.id_multitabla='51' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -533,7 +585,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='52';");
+            WHERE b.id_multitabla='52' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -543,7 +596,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='53';");
+            WHERE b.id_multitabla='53' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -553,7 +607,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='54';");
+            WHERE b.id_multitabla='54' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -563,7 +618,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='55';");
+            WHERE b.id_multitabla='55' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -575,7 +631,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='57';");
+            WHERE b.id_multitabla='57' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -585,7 +642,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='58';");
+            WHERE b.id_multitabla='58' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -597,7 +655,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='60';");
+            WHERE b.id_multitabla='60' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -607,7 +666,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='61';");
+            WHERE b.id_multitabla='61' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -617,7 +677,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='62';");
+            WHERE b.id_multitabla='62' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -627,7 +688,8 @@ class M_cbox extends CI_Model
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='63';");
+            WHERE b.id_multitabla='63' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
 
@@ -635,17 +697,17 @@ class M_cbox extends CI_Model
     // 65 ESTADO DE REGISTRAR O ELIMINAR - DETALLE CONDICION PAGO - MODULO COMPROBANTES
     // 66 ESTADO DE GUIA DE REMISION	
     // 67 ESTADO DE COMPROBANTES	
-
     // 68 CATEGORIA DE COMODIN	
+
     public function cbox_categoria_comodin()
     {
         $resultados = $this->db->query("
             SELECT a.*,b.* FROM multitablas a 
             INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-            WHERE b.id_multitabla='68';");
+            WHERE b.id_multitabla='68' AND b.id_estado_dmultitabla='1'
+            ");
         return $resultados->result();
     }
-
 
     /* No tocar */
     public function correlativo_producto()
@@ -657,13 +719,16 @@ class M_cbox extends CI_Model
           b.correlativo+1 AS correlativo_producto
           FROM multitablas a 
           INNER JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla 
-          WHERE b.id_multitabla='53';");
+          WHERE b.id_multitabla='53'
+          ");
         return $resultados->result();
     }
     public function actualizar_correlativo_producto($codigo_producto)
     {
         $resultados = $this->db->query("
           UPDATE detalle_multitablas SET correlativo='$codigo_producto'
-          WHERE id_multitabla='53';");
+          WHERE id_multitabla='53' 
+          ");
     }
+    /*Fin de no Tocar*/
 }

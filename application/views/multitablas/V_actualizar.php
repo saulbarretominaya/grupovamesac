@@ -1,6 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -12,31 +10,28 @@
             </h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
 
-    <!-- Condigos ocultos -->
-    <div id="container_solicitud_id_remove" name="container_solicitud_id_remove" style="display: none;">
-    </div>
+    <!-- CODIGOS OCULTOS -->
     <input type="hidden" class="form-control" id="id_multitabla" value="<?php echo $cabecera->id_multitabla; ?>">
-    <!-- Fin de codigos ocultos-->
-
-
-    <!-- ID para actualizar Tabla Detallle -->
+    <table id="container_id_dmultitabla_eliminar" style="display: none;">
+      <tbody>
+      </tbody>
+    </table>
     <table id="container_id_dmultitabla_actualizar" style="display: none;">
       <tbody>
       </tbody>
     </table>
-    <!-- FIN para actualizar Tabla Detallle -->
+    <!-- FIN DE CODIGOS OCULTOS -->
 
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Datos Generales</h3>
               </div>
@@ -64,7 +59,7 @@
                   <div class="form-group row">
                     <label class="col-sm-0 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="button" class="btn btn-primary" id="id_agregar_multitabla">AGREGAR</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="id_agregar_multitabla">AGREGAR</button>
                     </div>
                   </div>
                 </div>
@@ -76,7 +71,7 @@
 
           <div class="col-md-12">
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Detalle Multitablas</h3>
               </div>
@@ -87,7 +82,7 @@
                   <table id="id_table_detalle_multitablas" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Nombre</th>
+                        <th>Abreviatura</th>
                         <th>Descripcion</th>
                         <th></th>
                         <th></th>
@@ -97,8 +92,8 @@
                       <?php if (!empty($detalle)) : ?>
                         <?php foreach ($detalle as $detalle) : ?>
                           <tr>
-                            <td><input type="text" class="form-control" value="<?php echo $detalle->abreviatura; ?>" id="abreviatura" name="abreviatura[]" readonly></td>
-                            <td><input type="text" class="form-control" value="<?php echo $detalle->descripcion; ?>" id="descripcion" name="descripcion[]" readonly></td>
+                            <td><input type="text" class="form-control" value="<?php echo $detalle->abreviatura; ?>" id="abreviatura" readonly></td>
+                            <td><input type="text" class="form-control" value="<?php echo $detalle->descripcion; ?>" id="descripcion" readonly></td>
                             <?php if ($detalle->id_dmultitabla != null) { ?>
                               <td>
                                 <button type="button" class="btn btn-outline-warning button_actualizar_fila"><span class="far fa-edit"></span></button>
@@ -106,7 +101,7 @@
                               </td>
                               <td>
                                 <button type="button" class="btn btn-outline-danger eliminar_fila"><span class="far fa-trash-alt"></span></button>
-                                <input type="hidden" name="value_id_solicitud" id="value_id_solicitud" value="<?php echo $detalle->id_dmultitabla; ?>">
+                                <input type="hidden" name="id_dmultitabla_eliminar" id="id_dmultitabla_eliminar" value="<?php echo $detalle->id_dmultitabla; ?>">
                               </td>
                             <?php } else { ?>
                               <td></td>
@@ -133,9 +128,7 @@
 
       <!-- /.div -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
 
 

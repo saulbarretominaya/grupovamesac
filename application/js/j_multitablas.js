@@ -1,5 +1,3 @@
-
-
 $("#listar").dataTable({
 
 	scrollX: true,
@@ -26,10 +24,10 @@ $("#listar").dataTable({
 });
 
 $("#id_agregar_multitabla").on("click", function (e) {
+
 	var id_multitabla = document.getElementById("id_multitabla").value;
 	var abreviatura = document.getElementById("abreviatura").value;
 	var descripcion = document.getElementById("descripcion").value;
-
 
 	html = "<tr>";
 	html += "<input type='hidden' name='id_multitabla' value='" + id_multitabla + "'>";
@@ -39,9 +37,8 @@ $("#id_agregar_multitabla").on("click", function (e) {
 	html += "<td><button type='button' class='btn btn-danger btn-xs eliminar_fila'><span class='fas fa-trash-alt'></span></button></td>";
 	html += "</tr>";
 	$("#id_table_detalle_multitablas tbody").append(html);
-
-
-
+	$("#abreviatura").val("");
+	$("#descripcion").val("");
 });
 
 $(document).on("click", ".js_lupa_multitabla", function () {
@@ -59,9 +56,9 @@ $(document).on("click", ".js_lupa_multitabla", function () {
 
 $(document).on("click", ".eliminar_fila", function () {
 	debugger;
-	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
-	html = "<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" + id_detalle + "'>";
-	$("#container_solicitud_id_remove").append(html);
+	var id_dmultitabla_eliminar = $(this).closest("tr").find("#id_dmultitabla_eliminar").val();
+	html = "<tr><input type='hidden' id='id_dmultitabla_eliminar' name ='id_dmultitabla_eliminar[]' value='" + id_dmultitabla_eliminar + "'></tr>";
+	$("#container_id_dmultitabla_eliminar tbody").append(html);
 	$(this).closest("tr").remove();
 });
 
@@ -92,18 +89,18 @@ $("#registrar").on("click", function () {
 
 $("#actualizar").on("click", function () {
 
-	//Cabecera
+	//REGISTRAR NUEVOS ID DETALLE
 	var id_multitabla = $("#id_multitabla").val();
+	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]")).map((o) => o.value);
+	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]")).map((o) => o.value);
 
-	//Detalle
+	//ACTUALIZAR POR ID DETALLE
 	var id_dmultitabla_actualizar = Array.prototype.slice.call(document.getElementsByName("id_dmultitabla_actualizar[]")).map((o) => o.value);
 	var abreviatura_actualizar = Array.prototype.slice.call(document.getElementsByName("abreviatura_actualizar[]")).map((o) => o.value);
 	var descripcion_actualizar = Array.prototype.slice.call(document.getElementsByName("descripcion_actualizar[]")).map((o) => o.value);
 
-	debugger;
-
-	var abreviatura = Array.prototype.slice.call(document.getElementsByName("abreviatura[]")).map((o) => o.value);
-	var descripcion = Array.prototype.slice.call(document.getElementsByName("descripcion[]")).map((o) => o.value);
+	//ELIMINAR POR ID DETALLE
+	var id_dmultitabla_eliminar = Array.prototype.slice.call(document.getElementsByName("id_dmultitabla_eliminar[]")).map((o) => o.value);
 
 	$.ajax({
 		async: false,
@@ -112,15 +109,17 @@ $("#actualizar").on("click", function () {
 		dataType: "json",
 		data: {
 			id_multitabla: id_multitabla,
+			abreviatura: abreviatura,
+			descripcion: descripcion,
 			id_dmultitabla_actualizar: id_dmultitabla_actualizar,
 			abreviatura_actualizar: abreviatura_actualizar,
 			descripcion_actualizar: descripcion_actualizar,
-			abreviatura: abreviatura,
-			descripcion: descripcion,
+			id_dmultitabla_eliminar: id_dmultitabla_eliminar
+
 		},
 		success: function (data) {
 			debugger;
-			//window.location.href = base_url + "C_multitablas";
+			window.location.href = base_url + "C_multitablas";
 			debugger;
 		},
 	});
@@ -128,8 +127,8 @@ $("#actualizar").on("click", function () {
 
 $(document).on("click", ".button_actualizar_fila", function () {
 
-	var abreviatura = $(this).closest('tr').find('#abreviatura').attr("readonly", false);
-	var descripcion = $(this).closest('tr').find('#descripcion').attr("readonly", false);
+	$(this).closest('tr').find('#abreviatura').attr("readonly", false);
+	$(this).closest('tr').find('#descripcion').attr("readonly", false);
 	$(this).removeClass('btn btn-outline-warning button_actualizar_fila').addClass('btn btn-outline-primary button_guardar_fila').find('span').removeClass('far fa-edit').addClass('far fa-save');
 
 });

@@ -10,7 +10,7 @@ class M_multitablas extends CI_Model
     {
         $resultados = $this->db->query(
             "
-            SELECT*FROM multitablas
+            SELECT*FROM multitablas 
             "
         );
         return $resultados->result();
@@ -35,7 +35,7 @@ class M_multitablas extends CI_Model
             b.id_dmultitabla,b.abreviatura,b.descripcion -- DETALLE DE MULTITABLAS
             FROM multitablas a
             LEFT JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla
-            WHERE a.id_multitabla='$id_multitabla'
+            WHERE a.id_multitabla='$id_multitabla' and id_estado_dmultitabla='1';
             "
         );
         return $resultados->result();
@@ -58,7 +58,7 @@ class M_multitablas extends CI_Model
     public function insertar_detalle($id_multitabla, $abreviatura, $descripcion)
     {
         return $this->db->query("
-        INSERT INTO detalle_multitablas VALUES ('','$id_multitabla','$abreviatura','$descripcion',NULL,NULL,NULL)
+        INSERT INTO detalle_multitablas VALUES ('','$id_multitabla','$abreviatura','$descripcion',NULL,NULL,NULL,'1')
         ");
     }
 
@@ -80,8 +80,9 @@ class M_multitablas extends CI_Model
     public function eliminar_detalle($id_dmultitabla)
     {
         return $this->db->query("
-        DELETE from detalle_multitablas 
-        WHERE id_dmultitabla ='$id_dmultitabla'
+        UPDATE detalle_multitablas 
+        SET id_estado_dmultitabla='0'
+        WHERE id_dmultitabla ='$id_dmultitabla' 
         ");
     }
 
@@ -100,7 +101,7 @@ class M_multitablas extends CI_Model
         b.id_dmultitabla,b.abreviatura,b.descripcion -- DETALLE DE MULTITABLAS
         FROM multitablas a
         LEFT JOIN detalle_multitablas b ON b.id_multitabla=a.id_multitabla
-        WHERE a.id_multitabla='$id_multitabla'
+        WHERE a.id_multitabla='$id_multitabla' and id_estado_dmultitabla='1';
         ");
         return $resultados->result();
     }
