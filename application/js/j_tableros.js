@@ -111,6 +111,8 @@ $("#registrar").on("click", function () {
 		var codigo_tablero = $("#codigo_tablero").val();
 		var descripcion_tablero = $("#descripcion_tablero").val();
 		var cantidad_tablero = $("#cantidad_tablero").val();
+		//Agregado por Miguel Moreno
+		var adicional = $("#adicional").val();
 		var id_sunat = $("#id_sunat").val();
 		var id_marca_tablero = $("#id_marca_tablero").val();
 		var id_modelo_tablero = $("#id_modelo_tablero").val();
@@ -154,6 +156,7 @@ $("#registrar").on("click", function () {
 				codigo_tablero: codigo_tablero,
 				descripcion_tablero: descripcion_tablero,
 				cantidad_tablero: cantidad_tablero,
+				adicional: adicional,
 				id_sunat: id_sunat,
 				id_marca_tablero: id_marca_tablero,
 				id_modelo_tablero: id_modelo_tablero,
@@ -424,6 +427,14 @@ $("#cantidad_tablero").on("keyup", function () {
 $("#porcentaje_margen").on("keyup", function () {
 	calcular_margen();
 });
+$("#adicional").on("keyup", function () {
+	var adicional = $("#adicional").val();
+
+	if (adicional == "" || isNaN(adicional)) {
+		$("#adicional").val("");
+	}
+	calcular_margen();
+});
 
 /* Fin de Eventos */
 
@@ -607,13 +618,25 @@ function sumar_monto_item() {
 }
 function calcular_margen() {
 
-	var cantidad_tablero = $("#cantidad_tablero").val();
+	var cantidad_tablero = Number($("#cantidad_tablero").val());
 	var precio_tablero = $("#precio_tablero").val();
+
 	valor = Number(precio_tablero.replace(/,/g, ''));
 	var porcentaje_margen = Number($("#porcentaje_margen").val());
+	var adicional = Number($("#adicional").val());
+	var total_adicional = (adicional * cantidad_tablero);
+
+
 	var precio_margen = ((valor * porcentaje_margen) / 100).toFixed(2);
-	var total_tablero = (Number(precio_margen) + Number(valor)).toFixed(2);
+	var total_tablero = (Number(precio_margen) + Number(valor) + Number(total_adicional)).toFixed(2);
 	var precio_unitario_por_tablero = (total_tablero / cantidad_tablero).toFixed(2);
+
+	if (precio_unitario_por_tablero == "Infinity") {
+		precio_unitario_por_tablero = 0;
+	} else if (isNaN(precio_unitario_por_tablero)) {
+		precio_unitario_por_tablero = 0;
+	}
+
 
 
 	if (isNaN(total_tablero)) {

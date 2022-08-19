@@ -4,6 +4,7 @@
          <span aria-hidden="true">&times;</span>
      </button>
  </div>
+
  <div class="modal-body">
      <div class="row">
          <div class="col-md-12">
@@ -237,7 +238,5 @@
  </div>
 
  <div class=" modal-footer justify-content-between">
-     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-exit"> Cerrar</span></button>
-     <a href="<?php echo base_url(); ?>C_reportes/cotizacion_id" class="btn btn-primary" download=""><span class="fa fa-print"></span> Descargar</a>
- </div>
+     <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
  </div>

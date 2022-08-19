@@ -144,6 +144,7 @@ class M_tableros extends CI_Model
         $codigo_tablero,
         $descripcion_tablero,
         $cantidad_tablero,
+        $adicional,
         $id_sunat,
         $id_marca_tablero,
         $id_modelo_tablero,
@@ -163,7 +164,7 @@ class M_tableros extends CI_Model
             "
         INSERT INTO tableros
         (
-            id_tablero,codigo_tablero,descripcion_tablero,cantidad_tablero,id_sunat,
+            id_tablero,codigo_tablero,descripcion_tablero,cantidad_tablero,adicional,id_sunat,
             id_marca_tablero,id_modelo_tablero,id_moneda,id_almacen,
             precio_tablero,porcentaje_margen,precio_margen,precio_unitario_por_tablero,total_tablero,
             id_trabajador,ds_nombre_trabajador,id_tablero_empresa,id_empresa
@@ -171,7 +172,7 @@ class M_tableros extends CI_Model
         )
         VALUES
         (
-            '','$codigo_tablero','$descripcion_tablero','$cantidad_tablero','$id_sunat',
+            '','$codigo_tablero','$descripcion_tablero','$cantidad_tablero','$adicional','$id_sunat',
             '$id_marca_tablero','$id_modelo_tablero','$id_moneda','$id_almacen',
             '$precio_tablero','$porcentaje_margen','$precio_margen','$precio_unitario_por_tablero','$total_tablero',
             '$id_trabajador','$ds_nombre_trabajador','$id_tablero_empresa','$id_empresa'
@@ -243,8 +244,9 @@ class M_tableros extends CI_Model
         id_modelo_tablero,
         (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_modelo_tablero) AS ds_modelo_tablero,
         cantidad_tablero,
+        FORMAT(adicional,2) as adicional,
         FORMAT(precio_tablero,2) as precio_tablero,
-        porcentaje_margen,
+        FORMAT(porcentaje_margen,2) as porcentaje_margen,
         FORMAT(precio_margen,2) as precio_margen ,
         FORMAT(precio_unitario_por_tablero,2) as precio_unitario_por_tablero,
         FORMAT(total_tablero,2) as total_tablero

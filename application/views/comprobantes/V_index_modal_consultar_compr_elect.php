@@ -55,7 +55,3 @@
          </div>
      </div>
  </div>
-
- <!-- <div class=" modal-footer justify-content-between">
-     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-exit"> CERRAR</span></button>
- </div> -->

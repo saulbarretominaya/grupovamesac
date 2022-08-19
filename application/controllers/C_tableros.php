@@ -45,6 +45,7 @@ class C_tableros extends CI_Controller
 		$codigo_tablero = $this->input->post("codigo_tablero");
 		$descripcion_tablero = $this->input->post("descripcion_tablero");
 		$cantidad_tablero = $this->input->post("cantidad_tablero");
+		$adicional = $this->input->post("adicional");
 		$id_sunat = $this->input->post("id_sunat");
 		$id_marca_tablero = $this->input->post("id_marca_tablero");
 		$id_modelo_tablero = $this->input->post("id_modelo_tablero");
@@ -83,6 +84,7 @@ class C_tableros extends CI_Controller
 				$codigo_tablero,
 				$descripcion_tablero,
 				$cantidad_tablero,
+				$adicional,
 				$id_sunat,
 				$id_marca_tablero,
 				$id_modelo_tablero,
@@ -106,6 +108,7 @@ class C_tableros extends CI_Controller
 				$codigo_tablero,
 				$descripcion_tablero,
 				$cantidad_tablero,
+				$adicional,
 				$id_sunat,
 				$id_marca_tablero,
 				$id_modelo_tablero,

@@ -208,19 +208,19 @@ function validar_radio() {
 	}
 }
 
-$("#precio_costo").on({
+// $("#precio_costo").on({
 
-	"focus": function (event) {
-		$(event.target).select();
-	},
-	"keyup": function (event) {
-		$(event.target).val(function (index, value) {
-			return value.replace(/[^0-9,.]/g, '').replace(/,/g, '.');
-			// .replace(/([0-9])([0-9]{2})$/, '$1.$2')
-			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-		});
-	}
-});
+// 	"focus": function (event) {
+// 		$(event.target).select();
+// 	},
+// 	"keyup": function (event) {
+// 		$(event.target).val(function (index, value) {
+// 			return value.replace(/[^0-9,.]/g, '').replace(/,/g, '.');
+// 			// .replace(/([0-9])([0-9]{2})$/, '$1.$2')
+// 			// .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+// 		});
+// 	}
+// });
 
 $("#porcentaje").on({
 	"focus": function (event) {
@@ -253,12 +253,13 @@ $("#precio_costo").on("keyup", function () {
 	debugger;
 	var precio_costo = $("#precio_costo").val();
 
-	if (precio_costo == "") {
+	if (precio_costo == "" || isNaN(precio_costo)) {
 		debugger;
-		$("input[name=precio_unitario]").val("");
+		$("#precio_costo").val("");
 		$("input[name=ganancia_unidad]").val("");
 		$("input[name=rentabilidad]").val("");
 		$("input[name=porcentaje]").val("");
+		$("input[name=precio_unitario]").val("");
 
 	}
 

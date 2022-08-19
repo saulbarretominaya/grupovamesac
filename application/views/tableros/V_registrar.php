@@ -49,40 +49,43 @@
 
                             <div class="form-group row">
                               <!-- Codigo Tablero -->
-                              <div class="col-md-5">
+                              <div class="col-md-2">
+                                <label for="">Codigo Tablero</label>
                                 <div class="input-group">
-                                  <label class="col-sm-6 col-form-label">Codigo Tablero</label>
-                                  <input type="text" class="form-control" id="codigo_tablero" placeholder="Codigo Tablero" value="">
+                                  <textarea class="form-control" id="codigo_tablero" rows="1"></textarea>
                                 </div>
                               </div>
                               <!-- Codigos Sunat< -->
-                              <div class="col-md-7">
+                              <div class="col-md-4">
+                                <label for="">Codigo Sunat</label>
                                 <div class="input-group">
-                                  <label class="col-sm-3 col-form-label">Codigo Sunat</label>
-                                  <div class="col-md-8">
-                                    <select class="form-control select2" id="id_sunat" style="width: 100%;">
-                                      <option value="0">Seleccionar</option>
-                                      <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
-                                        <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
-                                          <?php echo $cbox_codigos_sunat->descripcion; ?>
-                                        </option>
-                                      <?php endforeach; ?>
-                                    </select>
-                                  </div>
+                                  <select class="form-control select2" id="id_sunat" style="width: 100%;">
+                                    <option value="0">Seleccionar</option>
+                                    <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
+                                      <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
+                                        <?php echo $cbox_codigos_sunat->descripcion; ?>
+                                      </option>
+                                    <?php endforeach; ?>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Descripcion Tablero</label>
+                                <div class="input-group">
+                                  <textarea class="form-control" id="descripcion_tablero" rows="1"></textarea>
+                                </div>
+                              </div>
+
+                              <div class="col-md-2">
+                                <label>Adicional</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" id="adicional" value="" name="adicional">
                                 </div>
                               </div>
 
                             </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-12">
-                                <div class="input-group">
-                                  <label class="col-sm-12 col-form-label">Descripcion Tablero</label>
-                                  <textarea class="form-control" id="descripcion_tablero" rows="2"></textarea>
-                                </div>
-                              </div>
-
-                            </div>
 
                             <div class="form-group row">
                               <!-- Marca Tablero -->
@@ -430,7 +433,7 @@
                         <div class="form-group row">
                           <!-- Precio Tablero -->
                           <div class="col-md-3">
-                            <label for="tipo_trabajador">Precio de Tableros</label>
+                            <label for="tipo_trabajador">Precio Componentes</label>
                             <div class="input-group">
                               <input type="text" class="form-control" id="precio_tablero" name="precio_tablero" placeholder="" value="" readonly>
                             </div>

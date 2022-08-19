@@ -47,7 +47,7 @@
                       <td><?php echo $index->monto_total; ?> </td>
                       <td><?php echo $index->observacion; ?> </td>
                       <td><button type="button" class="btn btn-outline-info btn-sm js_lupa_carga_inicial" value="<?php echo $index->id_carga_inicial; ?>" data-toggle="modal" data-target="#id_target_carga_inicial"><span class="fas fa-search-plus"></span></button></td>
-                      <td><a href=" <?php echo base_url(); ?>C_cotizacion/enlace_actualizar/<?php echo $index->id_carga_inicial; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
+                      <td><a href=" <?php echo base_url(); ?>C_carga_inicial/enlace_actualizar/<?php echo $index->id_carga_inicial; ?>" class="btn btn btn-outline-warning btn-sm"><span class="far fa-edit"></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
