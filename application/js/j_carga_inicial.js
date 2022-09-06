@@ -174,9 +174,7 @@ $("#actualizar").on("click", function () {
 
 		//ELIMINAR POR ID DETALLE
 		var id_dcarga_inicial_eliminar = Array.prototype.slice.call(document.getElementsByName("id_dcarga_inicial_eliminar[]")).map((o) => o.value);
-		var ip_eliminar = Array.prototype.slice.call(document.getElementsByName("ip_eliminar[]")).map((o) => o.value);
 
-		debugger;
 
 		$.ajax({
 			async: false,
@@ -230,8 +228,7 @@ $("#actualizar").on("click", function () {
 				ip_actualizar: ip_actualizar,
 
 				//ELIMINAR DETALLE
-				id_dcarga_inicial_eliminar: id_dcarga_inicial_eliminar,
-				ip_eliminar: ip_eliminar
+				id_dcarga_inicial_eliminar: id_dcarga_inicial_eliminar
 			},
 			success: function (data) {
 				debugger;

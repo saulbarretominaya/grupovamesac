@@ -99,13 +99,9 @@
 
                               <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                 <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar_cabecera->id_moneda) : ?>
-                                  <option value="<?php echo $cbox_moneda->id_dmultitabla ?>" selected>
-                                    <?php echo $cbox_moneda->descripcion; ?>
-                                  </option>
+                                  <option value="<?php echo $cbox_moneda->id_dmultitabla ?>" selected><?php echo $cbox_moneda->descripcion; ?></option>
                                 <?php else : ?>
-                                  <option value="<?php echo $cbox_moneda->id_dmultitabla ?>">
-                                    <?php echo $cbox_moneda->descripcion; ?>
-                                  </option>
+                                  <option value="<?php echo $cbox_moneda->id_dmultitabla ?>"><?php echo $cbox_moneda->descripcion; ?></option>
                                 <?php endif; ?>
                               <?php endforeach; ?>
 

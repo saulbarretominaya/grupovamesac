@@ -48,7 +48,7 @@ $("#id_agregar_tablero").on("click", function (e) {
 		html += "<td><input type='hidden' name='cantidad_total_producto[]' 	value='" + cantidad_total_producto + "'>" + cantidad_total_producto + "</td>";
 		html += "<td><input type='hidden'>" + monto_total_producto_visor + "</td>";
 		html += "    <input type='hidden' name='monto_total_producto[]' 	value='" + monto_total_producto + "'>";
-		html += "<td><button type='button' class='btn btn-outline-danger btn-sm eliminar_fila'><span class='fas fa-trash-alt'></span></button></td>";
+		html += "<td><button type='button' class='btn btn-outline-danger    class_eliminar_detalle'><span class='fas fa-trash-alt'></span></button></td>";
 		html += "</tr>";
 
 		$("#id_table_detalle_tableros tbody").append(html);
@@ -58,22 +58,38 @@ $("#id_agregar_tablero").on("click", function (e) {
 		limpiar_campos();
 	}
 });
-$(document).on("click", ".eliminar_fila", function () {
+$(document).on("click", ".class_eliminar_detalle", function () {
 
-	var id_detalle = $(this).closest("tr").find("#value_id_solicitud").val();
-	html =
-		"<input type='hidden' id='id_solicitud_to_remove' name ='id_solicitud_to_remove[]' value='" +
-		id_detalle +
-		"'>";
 
-	$("#container_solicitud_id_remove").append(html);
-	$(this).closest("tr").remove();
-	generar_item();
-	sumar_monto_item();
-	calcular_margen();
-	limpiar_campos();
+	var id_dtablero_eliminar = $(this).closest("tr").find("#id_dtablero_eliminar").val();
+
+	$("#container_id_dtablero_eliminar tbody tr").each(function () {
+		id_general_container = $(this).find("#id_dtablero_eliminar").val();
+		if (id_general_container == id_dtablero_eliminar) {
+			$(this).closest("tr").remove();
+		}
+	});
+
+
+	if (id_dtablero_eliminar != undefined) {
+		html = "<tr>"
+		html += "<input type ='hidden' id ='id_dtablero_eliminar' name ='id_dtablero_eliminar[]' 	value = '" + id_dtablero_eliminar + "' ></tr > ";
+		html += "</tr>";
+		$("#container_id_dtablero_eliminar").append(html);
+		$(this).closest("tr").remove();
+		$(this).closest("tr").remove();
+		generar_item();
+		sumar_monto_item();
+		calcular_margen();
+		limpiar_campos();
+	} else {
+		$(this).closest("tr").remove();
+		generar_item();
+		sumar_monto_item();
+		calcular_margen();
+		limpiar_campos();
+	}
 });
-/* Fin de tabla detalle */
 
 
 
@@ -193,11 +209,112 @@ $("#registrar").on("click", function () {
 			success: function (data) {
 				debugger;
 				window.location.href = base_url + "C_tableros";
-				debugger;
 			},
 		});
 	};
 });
+
+$("#actualizar").on("click", function () {
+
+	validar_insertar();
+	if (resultado_campo == true) {
+
+		//CABECERA
+		var id_tablero = $("#id_tablero").val();
+		var codigo_tablero = $("#codigo_tablero").val();
+		var descripcion_tablero = $("#descripcion_tablero").val();
+		var cantidad_tablero = $("#cantidad_tablero").val();
+		//Agregado por Miguel Moreno
+		var adicional = $("#adicional").val();
+		var id_sunat = $("#id_sunat").val();
+		var id_marca_tablero = $("#id_marca_tablero").val();
+		var id_modelo_tablero = $("#id_modelo_tablero").val();
+		var id_moneda = $("#id_moneda").val();
+		var id_almacen = $("#id_almacen").val();
+		var precio_tablero = $("#precio_tablero").val().replaceAll(",", "");
+		var porcentaje_margen = $("#porcentaje_margen").val();
+		var precio_margen = $("#precio_margen").val().replaceAll(",", "");
+		var precio_unitario_por_tablero = $("#precio_unitario_por_tablero").val().replaceAll(",", "");
+		var total_tablero = $("#total_tablero").val().replaceAll(",", "");
+		var id_trabajador = $("#id_trabajador").val();
+		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
+		//EMPRESA
+		var id_tablero_empresa = $("#id_tablero_empresa").val();
+		var id_empresa = $("#id_empresa").val();
+
+		//REGISTRAR DETALLE
+		var id_almacen_det = Array.prototype.slice.call(document.getElementsByName("id_almacen_det[]")).map((o) => o.value);
+		var ds_almacen = Array.prototype.slice.call(document.getElementsByName("ds_almacen[]")).map((o) => o.value);
+		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
+		var codigo_producto = Array.prototype.slice.call(document.getElementsByName("codigo_producto[]")).map((o) => o.value);
+		var descripcion_producto = Array.prototype.slice.call(document.getElementsByName("descripcion_producto[]")).map((o) => o.value);
+		var id_unidad_medida = Array.prototype.slice.call(document.getElementsByName("id_unidad_medida[]")).map((o) => o.value);
+		var ds_unidad_medida = Array.prototype.slice.call(document.getElementsByName("ds_unidad_medida[]")).map((o) => o.value);
+		var id_marca_producto = Array.prototype.slice.call(document.getElementsByName("id_marca_producto[]")).map((o) => o.value);
+		var ds_marca_producto = Array.prototype.slice.call(document.getElementsByName("ds_marca_producto[]")).map((o) => o.value);
+		var precio_unitario = Array.prototype.slice.call(document.getElementsByName("precio_unitario[]")).map((o) => o.value);
+		var cantidad_unitaria = Array.prototype.slice.call(document.getElementsByName("cantidad_unitaria[]")).map((o) => o.value);
+		var cantidad_total_producto = Array.prototype.slice.call(document.getElementsByName("cantidad_total_producto[]")).map((o) => o.value);
+		var monto_total_producto = Array.prototype.slice.call(document.getElementsByName("monto_total_producto[]")).map((o) => o.value);
+		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
+		debugger;
+		//ELIMINAR POR ID DETALLE
+		var id_dtablero_eliminar = Array.prototype.slice.call(document.getElementsByName("id_dtablero_eliminar[]")).map((o) => o.value);
+
+		$.ajax({
+			async: false,
+			url: base_url + "C_tableros/actualizar",
+			type: "POST",
+			dataType: "json",
+			data: {
+				//CABECERA
+				id_tablero: id_tablero,
+				codigo_tablero: codigo_tablero,
+				descripcion_tablero: descripcion_tablero,
+				cantidad_tablero: cantidad_tablero,
+				adicional: adicional,
+				id_sunat: id_sunat,
+				id_marca_tablero: id_marca_tablero,
+				id_modelo_tablero: id_modelo_tablero,
+				id_moneda: id_moneda,
+				id_almacen: id_almacen,
+				precio_tablero: precio_tablero,
+				porcentaje_margen: porcentaje_margen,
+				precio_margen: precio_margen,
+				precio_unitario_por_tablero: precio_unitario_por_tablero,
+				total_tablero: total_tablero,
+				id_trabajador: id_trabajador,
+				ds_nombre_trabajador: ds_nombre_trabajador,
+				//EMPRESA
+				id_tablero_empresa: id_tablero_empresa,
+				id_empresa: id_empresa,
+				//REGISTRAR DETALLE
+				id_almacen_det: id_almacen_det,
+				ds_almacen: ds_almacen,
+				id_producto: id_producto,
+				codigo_producto: codigo_producto,
+				descripcion_producto: descripcion_producto,
+				id_unidad_medida: id_unidad_medida,
+				ds_unidad_medida: ds_unidad_medida,
+				id_marca_producto: id_marca_producto,
+				ds_marca_producto: ds_marca_producto,
+				precio_unitario: precio_unitario,
+				cantidad_unitaria: cantidad_unitaria,
+				cantidad_total_producto: cantidad_total_producto,
+				monto_total_producto: monto_total_producto,
+				item: item,
+				//ELIMINAR DETALLE
+				id_dtablero_eliminar: id_dtablero_eliminar
+
+			},
+			success: function (data) {
+				debugger;
+				window.location.href = base_url + "C_tableros";
+			},
+		});
+	};
+});
+
 $(document).on("click", ".js_lupa_tablero", function () {
 
 	valor_id = $(this).val();
@@ -219,7 +336,6 @@ $(document).on("click", ".js_lupa_tablero", function () {
 
 /*  Ventanas Modal en el Registrar*/
 $(document).on("click", ".js_seleccionar_modal_producto", function () {
-	debugger;
 	limpiar_campos();
 	productos = $(this).val();
 	split_productos = productos.split("*");
@@ -244,7 +360,6 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	$("#opcion_target_producto").modal("hide");
 });
 $(document).on("click", ".js_seleccionar_modal_comodin", function () {
-	debugger;
 	limpiar_campos();
 	comodin = $(this).val();
 	split_comodin = comodin.split("*");
@@ -484,7 +599,6 @@ $("#cantidad_unitaria").on({
 /* Funciones */
 function calcular_importes() {
 
-	debugger;
 	var cantidad_unitaria = Number($("#cantidad_unitaria").val());
 	var precio_unitario = Number($("#precio_unitario").val());
 	var cantidad_tablero = Number($("#cantidad_tablero").val());
@@ -574,7 +688,6 @@ function sumar_monto_item() {
 	var monto_total = 0;
 
 	$("#id_table_detalle_tableros tbody tr").each(function () {
-		debugger;
 		var valorcito = $(this).find("td:eq(9)").text();
 		valor = Number(valorcito.replace(/,/g, ''));
 		//monto_total = (monto_total + valor).toFixed(2);
@@ -745,7 +858,6 @@ function calcular_margen() {
 }
 function limpiar_campos() {
 
-	debugger;
 	var count = $('#id_table_detalle_tableros tr').length;
 
 	$("#simbolo_moneda").val("");
@@ -816,7 +928,6 @@ function validar_detalle_tablero() {
 
 	$("#id_table_detalle_tableros tbody tr").each(function () {
 
-		debugger;
 		var valorcito = $(this).find("td:eq(2)").text();
 		valor = valorcito.replace(/ /g, '');
 		var hidden_codigo_producto = $("#hidden_codigo_producto").val();
@@ -837,7 +948,6 @@ function validar_detalle_tablero() {
 	var monto_item = $("#monto_item").val();
 	var moneda_origen = $("#moneda").val();
 	var moneda_comparativa = $('#id_moneda option:selected').text();
-	debugger;
 
 
 	if (descripcion_producto == "") {

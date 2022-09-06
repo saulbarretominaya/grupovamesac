@@ -5,7 +5,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Tableros
-              <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
+              <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
               <a href="<?php echo base_url(); ?>C_tableros" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
@@ -15,7 +15,11 @@
       <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
       <input type="hidden" id="id_tablero_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
       <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
-
+      <input type="hidden" id="id_tablero" value="<?php echo $enlace_actualizar_cabecera->id_tablero ?>">
+      <table id="container_id_dtablero_eliminar" style="display: none;">
+        <tbody>
+        </tbody>
+      </table>
     </section>
 
 
@@ -52,7 +56,7 @@
                               <div class="col-md-2">
                                 <label for="">Codigo Tablero</label>
                                 <div class="input-group">
-                                  <textarea class="form-control" id="codigo_tablero" rows="1"></textarea>
+                                  <textarea class="form-control" id="codigo_tablero" rows="1"><?php echo $enlace_actualizar_cabecera->codigo_tablero ?></textarea>
                                 </div>
                               </div>
                               <!-- Codigos Sunat< -->
@@ -61,11 +65,19 @@
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_sunat" style="width: 100%;">
                                     <option value="0">Seleccionar</option>
+
                                     <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
-                                      <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
-                                        <?php echo $cbox_codigos_sunat->descripcion; ?>
-                                      </option>
+                                      <?php if ($cbox_codigos_sunat->id_dmultitabla == $enlace_actualizar_cabecera->id_sunat) : ?>
+                                        <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla ?>" selected>
+                                          <?php echo $cbox_codigos_sunat->descripcion; ?>
+                                        </option>
+                                      <?php else : ?>
+                                        <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla ?>">
+                                          <?php echo $cbox_codigos_sunat->descripcion; ?>
+                                        </option>
+                                      <?php endif; ?>
                                     <?php endforeach; ?>
+
                                   </select>
                                 </div>
                               </div>
@@ -73,14 +85,14 @@
                               <div class="col-md-4">
                                 <label>Descripcion Tablero</label>
                                 <div class="input-group">
-                                  <textarea class="form-control" id="descripcion_tablero" rows="1"></textarea>
+                                  <textarea class="form-control" id="descripcion_tablero" rows="1"><?php echo $enlace_actualizar_cabecera->descripcion_tablero ?></textarea>
                                 </div>
                               </div>
 
                               <div class="col-md-2">
                                 <label>Adicional</label>
                                 <div class="input-group">
-                                  <input type="text" class="form-control" id="adicional" value="" name="adicional">
+                                  <input type="text" class="form-control" id="adicional" value="<?php echo $enlace_actualizar_cabecera->adicional ?>" name="adicional">
                                 </div>
                               </div>
 
@@ -94,12 +106,25 @@
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_marca_tablero" style="width: 100%;">
                                     <option value="0">Seleccionar</option>
+
                                     <?php foreach ($cbox_marca_tableros as $cbox_marca_tableros) : ?>
-                                      <option value="<?php echo $cbox_marca_tableros->id_dmultitabla; ?>">
-                                        <?php echo $cbox_marca_tableros->descripcion; ?>
-                                      </option>
+                                      <?php if ($cbox_marca_tableros->id_dmultitabla == $enlace_actualizar_cabecera->id_marca_tablero) : ?>
+                                        <option value="<?php echo $cbox_marca_tableros->id_dmultitabla ?>" selected>
+                                          <?php echo $cbox_marca_tableros->descripcion; ?>
+                                        </option>
+                                      <?php else : ?>
+                                        <option value="<?php echo $cbox_marca_tableros->id_dmultitabla ?>">
+                                          <?php echo $cbox_marca_tableros->descripcion; ?>
+                                        </option>
+                                      <?php endif; ?>
                                     <?php endforeach; ?>
+
                                   </select>
+
+
+
+
+
                                 </div>
                               </div>
                               <div class="col-md-3">
@@ -107,11 +132,20 @@
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_modelo_tablero" style="width: 100%;">
                                     <option value="0">Seleccionar</option>
+
                                     <?php foreach ($cbox_modelo_tableros as $cbox_modelo_tableros) : ?>
-                                      <option value="<?php echo $cbox_modelo_tableros->id_dmultitabla; ?>">
-                                        <?php echo $cbox_modelo_tableros->descripcion; ?>
-                                      </option>
+                                      <?php if ($cbox_modelo_tableros->id_dmultitabla == $enlace_actualizar_cabecera->id_modelo_tablero) : ?>
+                                        <option value="<?php echo $cbox_modelo_tableros->id_dmultitabla ?>" selected>
+                                          <?php echo $cbox_modelo_tableros->descripcion; ?>
+                                        </option>
+                                      <?php else : ?>
+                                        <option value="<?php echo $cbox_modelo_tableros->id_dmultitabla ?>">
+                                          <?php echo $cbox_modelo_tableros->descripcion; ?>
+                                        </option>
+                                      <?php endif; ?>
                                     <?php endforeach; ?>
+
+
                                   </select>
                                 </div>
                               </div>
@@ -120,11 +154,19 @@
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_almacen" style="width: 100%;">
                                     <option value="0">Seleccionar</option>
+
                                     <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
-                                      <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
-                                        <?php echo $cbox_almacen->descripcion; ?>
-                                      </option>
+                                      <?php if ($cbox_almacen->id_dmultitabla == $enlace_actualizar_cabecera->id_almacen) : ?>
+                                        <option value="<?php echo $cbox_almacen->id_dmultitabla ?>" selected>
+                                          <?php echo $cbox_almacen->descripcion; ?>
+                                        </option>
+                                      <?php else : ?>
+                                        <option value="<?php echo $cbox_almacen->id_dmultitabla ?>">
+                                          <?php echo $cbox_almacen->descripcion; ?>
+                                        </option>
+                                      <?php endif; ?>
                                     <?php endforeach; ?>
+
                                   </select>
                                 </div>
                               </div>
@@ -353,8 +395,9 @@
                               <div class="col-md-3">
                                 <label for="">Moneda</label>
                                 <div class="input-group">
-                                  <select class="form-select" id="id_moneda">
+                                  <select class="form-select" id="id_moneda" disabled>
                                     <option value="0">Seleccionar</option>
+
                                     <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                       <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar_cabecera->id_moneda) : ?>
                                         <option value="<?php echo $cbox_moneda->id_dmultitabla ?>" selected><?php echo $cbox_moneda->descripcion; ?></option>
@@ -362,6 +405,7 @@
                                         <option value="<?php echo $cbox_moneda->id_dmultitabla ?>"><?php echo $cbox_moneda->descripcion; ?></option>
                                       <?php endif; ?>
                                     <?php endforeach; ?>
+
                                   </select>
                                 </div>
                               </div>
@@ -387,7 +431,7 @@
                               <div class="col-md-12">
                                 <label for="">&nbsp;</label>
                                 <div class="input-group">
-                                  <input type="text" class="form-control" name="" id="cantidad_tablero" placeholder="">
+                                  <input type="text" class="form-control" name="" id="cantidad_tablero" placeholder="" value="<?php echo $enlace_actualizar_cabecera->cantidad_tablero ?>" readonly>
                                 </div>
                               </div>
                             </div>
@@ -423,6 +467,24 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  <?php foreach ($enlace_actualizar_detalle as $index) : ?>
+                                    <tr>
+                                      <td width='70px'><input type=' text' value='<?php echo $index->item; ?>' class='form-control' id='item' readonly=''></td>
+                                      <td><?php echo $index->ds_almacen; ?></td>
+                                      <td><?php echo $index->codigo_producto; ?></td>
+                                      <td><?php echo $index->descripcion_producto; ?></td>
+                                      <td><?php echo $index->ds_unidad_medida; ?></td>
+                                      <td><?php echo $index->ds_marca_producto; ?></td>
+                                      <td><?php echo $index->precio_unitario; ?></td>
+                                      <td><?php echo $index->cantidad_unitaria; ?></td>
+                                      <td><?php echo $index->cantidad_total_producto; ?></td>
+                                      <td><?php echo $index->monto_total_producto; ?></td>
+                                      <td>
+                                        <button type="button" class="btn btn-outline-danger class_eliminar_detalle"><span class="far fa-trash-alt"></span></button>
+                                        <input type="hidden" id="id_dtablero_eliminar" name="id_dtablero_eliminar" value="<?php echo $index->id_dtablero; ?>">
+                                      </td>
+                                    </tr>
+                                  <?php endforeach; ?>
                                 </tbody>
                                 </tbody>
                               </table>
@@ -440,14 +502,14 @@
                           <div class="col-md-3">
                             <label for="tipo_trabajador">Precio Componentes</label>
                             <div class="input-group">
-                              <input type="text" class="form-control" id="precio_tablero" name="precio_tablero" placeholder="" value="" readonly>
+                              <input type="text" class="form-control" id="precio_tablero" name="precio_tablero" placeholder="" value="<?php echo $enlace_actualizar_cabecera->precio_tablero ?>" readonly>
                             </div>
                           </div>
                           <!--  -->
                           <div class="col-md-1">
                             <label for="local">Margen</label>
                             <div class="input-group">
-                              <input type="text" class="form-control" id="porcentaje_margen" value="" name="porcentaje_margen" placeholder="%">
+                              <input type="text" class="form-control" id="porcentaje_margen" value="<?php echo $enlace_actualizar_cabecera->porcentaje_margen ?>" name="porcentaje_margen" placeholder="%">
 
                             </div>
                           </div>
@@ -455,7 +517,7 @@
                           <div class="col-md-2">
                             <label for="cargo">Precio de Margen</label>
                             <div class="input-group">
-                              <input type="text" class="form-control" id="precio_margen" name="precio_margen" readonly>
+                              <input type="text" class="form-control" id="precio_margen" name="precio_margen" value="<?php echo $enlace_actualizar_cabecera->precio_margen ?>" readonly>
 
                             </div>
                           </div>
@@ -463,14 +525,14 @@
                           <div class="col-md-3">
                             <label for="sexo">Precio Unitario por Tablero</label>
                             <div class="input-group">
-                              <input type="text" class="form-control" id="precio_unitario_por_tablero" placeholder="" value="" name="precio_unitario_por_tablero" readonly>
+                              <input type="text" class="form-control" id="precio_unitario_por_tablero" placeholder="" value="<?php echo $enlace_actualizar_cabecera->precio_unitario_por_tablero ?>" name="precio_unitario_por_tablero" readonly>
                             </div>
                           </div>
 
                           <div class="col-md-3">
                             <label for="sexo">Total Tableros</label>
                             <div class="input-group">
-                              <input type="text" class="form-control" id="total_tablero" placeholder="" value="" name="total_tablero" readonly>
+                              <input type="text" class="form-control" id="total_tablero" placeholder="" value="<?php echo $enlace_actualizar_cabecera->total_tablero ?>" name="total_tablero" readonly>
                             </div>
                           </div>
                         </div>
