@@ -480,8 +480,8 @@
                                       <td><?php echo $index->cantidad_total_producto; ?></td>
                                       <td><?php echo $index->monto_total_producto; ?></td>
                                       <td>
+                                        <input type="hidden" id="id_dtablero_eliminar" value="<?php echo $index->id_dtablero; ?>">
                                         <button type="button" class="btn btn-outline-danger class_eliminar_detalle"><span class="far fa-trash-alt"></span></button>
-                                        <input type="hidden" id="id_dtablero_eliminar" name="id_dtablero_eliminar" value="<?php echo $index->id_dtablero; ?>">
                                       </td>
                                     </tr>
                                   <?php endforeach; ?>

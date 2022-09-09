@@ -169,8 +169,9 @@ class M_cotizacion extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function registrar_detalle_cotizacion(
+    public function registrar_detalle(
         $id_cotizacion,
+        $id_general,
         $id_producto,
         $id_tablero,
         $id_comodin,
@@ -181,71 +182,52 @@ class M_cotizacion extends CI_Model
         $id_marca_producto,
         $ds_marca_producto,
         $cantidad,
-
         $precio_inicial,
         $precio_ganancia,
         $g,
         $g_unidad,
         $g_cant_total,
-
         $precio_descuento,
         $d,
         $d_unidad,
         $d_cant_total,
-
         $valor_venta_sin_d,
         $valor_venta_con_d,
         $dias_entrega,
         $item
 
     ) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $id_trabajador = $this->session->userdata("id_trabajador");
+        $ds_nombre_trabajador = $this->session->userdata("ds_nombre_trabajador");
+
         return $this->db->query(
             "
             INSERT INTO detalle_cotizacion
             (
             id_dcotizacion,
-            id_cotizacion,id_producto,id_tablero,id_comodin,
+            id_cotizacion,id_general,id_producto,id_tablero,id_comodin,
             codigo_producto,descripcion_producto,
             id_unidad_medida,ds_unidad_medida,id_marca_producto,ds_marca_producto,
             cantidad,
             precio_inicial,precio_ganancia,g,g_unidad,g_cant_total,
             precio_descuento,d,d_unidad,d_cant_total,
             valor_venta_sin_d,valor_venta_con_d,
-            dias_entrega,item
+            dias_entrega,item,
+            id_estado_cotizacion,fecha_cotizacion,ip,id_trabajador,ds_nombre_trabajador
             )
             VALUES
             (
             '', 
-            '$id_cotizacion','$id_producto','$id_tablero','$id_comodin',
+            '$id_cotizacion','$id_general','$id_producto','$id_tablero','$id_comodin',
             '$codigo_producto','$descripcion_producto',
             '$id_unidad_medida','$ds_unidad_medida','$id_marca_producto','$ds_marca_producto',
             '$cantidad',
             '$precio_inicial','$precio_ganancia','$g','$g_unidad','$g_cant_total',
             '$precio_descuento','$d','$d_unidad','$d_cant_total',
             '$valor_venta_sin_d','$valor_venta_con_d',
-            '$dias_entrega','$item');
-        "
-        );
-    }
-
-    public function registrar_detalle_condicion_pago(
-        $id_cotizacion,
-        $fecha_cuota,
-        $monto_cuota
-
-    ) {
-        return $this->db->query(
-            "
-        INSERT INTO detalle_condicion_pagos_cotizacion
-        (
-        id_dcondicion_pago,
-        id_cotizacion,fecha_cuota,monto_cuota
-        )
-        VALUES
-        (
-        '', 
-        '$id_cotizacion',STR_TO_DATE('$fecha_cuota','%d/%m/%Y'),'$monto_cuota'
-        )
+            '$dias_entrega','$item',
+            '973',NOW(),'$ip','$id_trabajador','$ds_nombre_trabajador');
         "
         );
     }
@@ -497,44 +479,36 @@ class M_cotizacion extends CI_Model
     public function enlace_actualizar_cabecera($id_cotizacion)
     {
         $resultados = $this->db->query("
-            SELECT 
-            a.id_cotizacion,
-            a.valor_cambio,
-            DATE_FORMAT(a.fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_moneda) AS ds_moneda,
-            a.ds_nombre_trabajador,
-            a.fecha_cotizacion,
-            a.ds_nombre_cliente_proveedor,
-            a.ds_departamento_cliente_proveedor,
-            a.ds_provincia_cliente_proveedor,
-            a.ds_distrito_cliente_proveedor,
-            a.direccion_fiscal_cliente_proveedor,
-            a.email_cliente_proveedor,
-            a.clausula,
-            a.lugar_entrega,
-            a.nombre_encargado,
-            a.observacion,
-            a.ds_condicion_pago,
-            a.precio_venta,
-            id_estado_cotizacion,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_cotizacion) AS ds_estado_valor_cot,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=a.id_estado_cotizacion) AS ds_estado_cotizacion,
-            b.id_orden_despacho,
-            b.resultado_valor_cambio,
-            DATE_FORMAT(b.fecha_orden_despacho,'%d/%m/%Y') AS fecha_orden_despacho,
-            id_estado_orden_despacho,
-            (SELECT abreviatura FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_valor_od,
-            (SELECT descripcion FROM detalle_multitablas WHERE id_dmultitabla=id_estado_orden_despacho) AS ds_estado_orden_despacho,
-            c.id_cliente_proveedor,
-            c.linea_credito_dolares,
-            c.credito_unitario_dolares,
-            c.disponible_dolares,
-            b.linea_credito_uso
-            FROM
-            cotizacion a
-            RIGHT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            LEFT JOIN clientes_proveedores c ON c.id_cliente_proveedor=a.id_cliente_proveedor
-            WHERE  a.id_cotizacion ='$id_cotizacion' AND id_estado_orden_despacho='862'
+                SELECT
+                a.id_cotizacion,
+                a.categoria,
+                a.fecha_cotizacion,
+                a.validez_oferta_cotizacion,
+                a.fecha_vencimiento_validez_oferta,
+                a.ds_condicion_pago,
+                a.id_cliente_proveedor,
+                a.ds_nombre_cliente_proveedor,
+                a.ds_departamento_cliente_proveedor,
+                a.ds_provincia_cliente_proveedor,
+                a.ds_distrito_cliente_proveedor,
+                a.direccion_fiscal_cliente_proveedor,
+                a.email_cliente_proveedor,
+                a.clausula,
+                a.lugar_entrega,
+                a.nombre_encargado,
+                a.observacion,
+                a.id_condicion_pago,
+                a.id_moneda,
+                a.valor_venta_total_sin_d,
+                a.descuento_total,
+                a.valor_venta_total_con_d,
+                a.igv,
+                a.precio_venta
+                FROM
+                cotizacion a
+                LEFT JOIN clientes_proveedores b ON b.id_cliente_proveedor=a.id_cliente_proveedor
+                LEFT JOIN trabajadores c ON c.id_trabajador=a.id_trabajador
+                where a.id_cotizacion='$id_cotizacion'
                ");
         return $resultados->row();
     }
@@ -542,24 +516,117 @@ class M_cotizacion extends CI_Model
     public function enlace_actualizar_detalle($id_cotizacion)
     {
         $resultados = $this->db->query("
-        SELECT 
-        a.id_cotizacion,
-        b.codigo_producto,
-        b.descripcion_producto,
-        b.ds_unidad_medida,
-        b.ds_marca_producto,
-        b.precio_ganancia,
-        b.cantidad,
-        b.valor_venta,
-        '||',
-        c.stock
-        FROM
-        cotizacion a
-        LEFT JOIN detalle_cotizacion b ON b.id_cotizacion=a.id_cotizacion
-        LEFT JOIN productos c ON c.id_producto=b.id_producto
-        WHERE  a.id_cotizacion ='$id_cotizacion'
+                SELECT
+                a.id_dcotizacion,
+                a.item,
+                a.id_general,
+                a.codigo_producto,
+                a.descripcion_producto,
+                a.ds_unidad_medida,
+                a.ds_marca_producto,
+                a.precio_ganancia AS precio_u,
+                a.cantidad,
+                a.d,
+                a.d_unidad,
+                a.precio_descuento AS precio_u_d,
+                a.d_cant_total,
+                a.valor_venta_sin_d,
+                a.valor_venta_con_d,
+                a.dias_entrega
+                FROM
+                detalle_cotizacion a
+                WHERE a.id_cotizacion='$id_cotizacion' AND a.id_estado_cotizacion='973'
                ");
         return $resultados->result();
+    }
+
+    public function actualizar(
+        $id_cotizacion,
+        $categoria,
+        $validez_oferta_cotizacion,
+        $fecha_vencimiento_validez_oferta,
+        $id_cliente_proveedor,
+        $ds_nombre_cliente_proveedor,
+        $ds_departamento_cliente_proveedor,
+        $ds_provincia_cliente_proveedor,
+        $ds_distrito_cliente_proveedor,
+        $direccion_fiscal_cliente_proveedor,
+        $email_cliente_proveedor,
+        $clausula,
+        $lugar_entrega,
+        $nombre_encargado,
+        $observacion,
+        $id_condicion_pago,
+        $ds_condicion_pago,
+        $valor_venta_total_sin_d,
+        $valor_venta_total_con_d,
+        $descuento_total,
+        $igv,
+        $precio_venta,
+        $valor_cambio,
+        $id_moneda
+    ) {
+        return $this->db->query(
+            "
+            UPDATE cotizacion SET
+            id_cotizacion='$id_cotizacion',
+            categoria='$categoria',
+            validez_oferta_cotizacion='$validez_oferta_cotizacion',
+            fecha_vencimiento_validez_oferta='$fecha_vencimiento_validez_oferta',
+            id_cliente_proveedor='$id_cliente_proveedor',
+            ds_nombre_cliente_proveedor='$ds_nombre_cliente_proveedor',
+            ds_departamento_cliente_proveedor='$ds_departamento_cliente_proveedor',
+            ds_provincia_cliente_proveedor='$ds_provincia_cliente_proveedor',
+            ds_distrito_cliente_proveedor='$ds_distrito_cliente_proveedor',
+            direccion_fiscal_cliente_proveedor='$direccion_fiscal_cliente_proveedor',
+            email_cliente_proveedor='$email_cliente_proveedor',
+            clausula='$clausula',
+            lugar_entrega='$lugar_entrega',
+            nombre_encargado='$nombre_encargado',
+            observacion='$observacion',
+            id_condicion_pago='$id_condicion_pago',
+            ds_condicion_pago='$ds_condicion_pago',
+            valor_venta_total_sin_d='$valor_venta_total_sin_d',
+            valor_venta_total_con_d='$valor_venta_total_con_d',
+            descuento_total='$descuento_total',
+            igv='$igv',
+            precio_venta='$precio_venta',
+            valor_cambio='$valor_cambio',
+            id_moneda='$id_moneda'
+            WHERE id_cotizacion='$id_cotizacion'
+            "
+        );
+    }
+
+    public function eliminar_detalle($id_dcotizacion_eliminar)
+    {
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $id_trabajador = $this->session->userdata("id_trabajador");
+        $ds_nombre_trabajador = $this->session->userdata("ds_nombre_trabajador");
+
+        return $this->db->query(
+            "
+            UPDATE detalle_cotizacion SET
+            id_estado_cotizacion='974',
+            fecha_cotizacion_eliminar=NOW(),
+            ip_eliminar='$ip',
+            id_trabajador_eliminar='$id_trabajador',
+            ds_nombre_trabajador_eliminar='$ds_nombre_trabajador'
+            WHERE id_dcotizacion='$id_dcotizacion_eliminar'
+            "
+        );
+    }
+
+    public function actualizar_detalle($id_dcotizacion_actualizar, $item_actualizar)
+    {
+        return $this->db->query(
+            "
+            UPDATE detalle_cotizacion SET
+            item='$item_actualizar'
+            WHERE id_dcotizacion='$id_dcotizacion_actualizar'
+            "
+        );
     }
 
     public function index_modal_cabecera_productos($id_cotizacion)
@@ -601,7 +668,7 @@ class M_cotizacion extends CI_Model
             a.dias_entrega
             FROM 
             detalle_cotizacion a
-            WHERE a.id_cotizacion='$id_cotizacion'
+            WHERE a.id_cotizacion='$id_cotizacion' AND a.id_estado_cotizacion='973'
         "
         );
         return $resultados->result();
@@ -657,7 +724,7 @@ class M_cotizacion extends CI_Model
         detalle_cotizacion a
         LEFT JOIN tableros b ON b.id_tablero=a.id_tablero
         LEFT JOIN detalle_tableros c ON c.id_tablero=b.id_tablero
-        WHERE a.id_cotizacion='$id_cotizacion'
+        WHERE a.id_cotizacion='$id_cotizacion' AND a.id_estado_cotizacion='973' AND c.id_estado_tablero='971'
         "
         );
         return $resultados->result();
