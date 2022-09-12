@@ -20,6 +20,10 @@
         <tbody>
         </tbody>
       </table>
+      <table id="container_id_dtablero_actualizar" style="display: none;">
+        <tbody>
+        </tbody>
+      </table>
     </section>
 
 
@@ -267,7 +271,7 @@
                           </div>
                           <!-- Fin Producto -->
                           <!-- Comodin -->
-                          <div class="col-md-2">
+                          <!-- <div class="col-md-2">
                             <div class="form-check">
                               <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_comodin" id="btn_id_comodin">
                               </button>
@@ -335,7 +339,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                           <!-- Fin Comodin -->
                           <div class="col-md-8">
                             <input type="hidden" id="hidden_item">
@@ -469,7 +473,8 @@
                                 <tbody>
                                   <?php foreach ($enlace_actualizar_detalle as $index) : ?>
                                     <tr>
-                                      <td width='70px'><input type=' text' value='<?php echo $index->item; ?>' class='form-control' id='item' readonly=''></td>
+                                      <input type="hidden" id="id_dtablero" value="<?php echo $index->id_dtablero; ?>">
+                                      <td width='70px'><input type='text' value='<?php echo $index->item; ?>' class='form-control' id='item' readonly=''></td>
                                       <td><?php echo $index->ds_almacen; ?></td>
                                       <td><?php echo $index->codigo_producto; ?></td>
                                       <td><?php echo $index->descripcion_producto; ?></td>
@@ -480,7 +485,6 @@
                                       <td><?php echo $index->cantidad_total_producto; ?></td>
                                       <td><?php echo $index->monto_total_producto; ?></td>
                                       <td>
-                                        <input type="hidden" id="id_dtablero_eliminar" value="<?php echo $index->id_dtablero; ?>">
                                         <button type="button" class="btn btn-outline-danger class_eliminar_detalle"><span class="far fa-trash-alt"></span></button>
                                       </td>
                                     </tr>

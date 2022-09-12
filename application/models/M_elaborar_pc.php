@@ -452,7 +452,7 @@ class M_elaborar_pc extends CI_Model
             FROM 
             detalle_cotizacion a
             LEFT JOIN orden_despacho b ON b.id_cotizacion=a.id_cotizacion
-            WHERE b.id_orden_despacho='$id_orden_despacho'
+            WHERE b.id_orden_despacho='$id_orden_despacho' AND a.id_estado_cotizacion='973'
         "
         );
         return $resultados->result();
@@ -512,7 +512,7 @@ class M_elaborar_pc extends CI_Model
         LEFT JOIN tableros b ON b.id_tablero=a.id_tablero
         LEFT JOIN detalle_tableros c ON c.id_tablero=b.id_tablero
         LEFT JOIN orden_despacho d ON d.id_cotizacion=a.id_cotizacion
-        WHERE d.id_orden_despacho='$id_orden_despacho'
+        WHERE d.id_orden_despacho='$id_orden_despacho' AND a.id_estado_cotizacion='973' AND c.id_estado_tablero='971'
         "
         );
         return $resultados->result();

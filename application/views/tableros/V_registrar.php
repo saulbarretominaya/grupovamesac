@@ -225,7 +225,7 @@
                           </div>
                           <!-- Fin Producto -->
                           <!-- Comodin -->
-                          <div class="col-md-2">
+                          <!-- <div class="col-md-2">
                             <div class="form-check">
                               <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_comodin" id="btn_id_comodin">
                               </button>
@@ -293,7 +293,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                           <!-- Fin Comodin -->
                           <div class="col-md-8">
                             <input type="hidden" id="hidden_item">

@@ -1723,12 +1723,9 @@ function validar_registrar() {
 }
 function generar_item() {
 
-	debugger;
-
 	var acumulador = 0;
 
 	$("#id_table_detalle_cotizacion tbody tr").each(function () {
-		debugger;
 		var id_dcotizacion_actualizar = $(this).closest("tr").find("#id_dcotizacion").val();
 		acumulador = acumulador + 1;
 		$(this).closest('tr').find('#item').val(acumulador);
@@ -1736,7 +1733,6 @@ function generar_item() {
 
 
 		$("#container_id_dcotizacion_actualizar tbody tr").each(function () {
-			debugger;
 			id_general_container = $(this).find("#id_dcotizacion_actualizar").val();
 			if (id_general_container == id_dcotizacion_actualizar) {
 				$(this).closest("tr").remove();

@@ -61,7 +61,7 @@ $("#id_agregar_tablero").on("click", function (e) {
 $(document).on("click", ".class_eliminar_detalle", function () {
 
 
-	var id_dtablero_eliminar = $(this).closest("tr").find("#id_dtablero_eliminar").val();
+	var id_dtablero_eliminar = $(this).closest("tr").find("#id_dtablero").val();
 
 	$("#container_id_dtablero_eliminar tbody tr").each(function () {
 		id_general_container = $(this).find("#id_dtablero_eliminar").val();
@@ -70,10 +70,19 @@ $(document).on("click", ".class_eliminar_detalle", function () {
 		}
 	});
 
+	$("#container_id_dtablero_actualizar tbody tr").each(function () {
+		debugger;
+		id_general_container = $(this).find("#id_dtablero_actualizar").val();
+		if (id_general_container == id_dtablero_eliminar) {
+			$(this).closest("tr").remove();
+		}
+	});
+
+
 
 	if (id_dtablero_eliminar != undefined) {
 		html = "<tr>"
-		html += "<input type ='hidden' id ='id_dtablero_eliminar' name ='id_dtablero_eliminar[]' 	value = '" + id_dtablero_eliminar + "' ></tr > ";
+		html += "<input type ='hidden' id ='id_dtablero_eliminar' name ='id_dtablero_eliminar[]' 	value = '" + id_dtablero_eliminar + "'></tr>";
 		html += "</tr>";
 		$("#container_id_dtablero_eliminar").append(html);
 		$(this).closest("tr").remove();
@@ -90,7 +99,6 @@ $(document).on("click", ".class_eliminar_detalle", function () {
 		limpiar_campos();
 	}
 });
-
 
 
 /* CRUD */
@@ -123,7 +131,7 @@ $("#registrar").on("click", function () {
 	validar_insertar();
 	if (resultado_campo == true) {
 
-		//Cabecera
+		//CABECERA
 		var codigo_tablero = $("#codigo_tablero").val();
 		var descripcion_tablero = $("#descripcion_tablero").val();
 		var cantidad_tablero = $("#cantidad_tablero").val();
@@ -141,11 +149,10 @@ $("#registrar").on("click", function () {
 		var total_tablero = $("#total_tablero").val().replaceAll(",", "");
 		var id_trabajador = $("#id_trabajador").val();
 		var ds_nombre_trabajador = $("#ds_nombre_trabajador").val();
-		//Empresa
+		//EMPRESA
 		var id_tablero_empresa = $("#id_tablero_empresa").val();
 		var id_empresa = $("#id_empresa").val();
-
-		//Detalle
+		//REGISTRAR DETALLE
 		var id_almacen_det = Array.prototype.slice.call(document.getElementsByName("id_almacen_det[]")).map((o) => o.value);
 		var ds_almacen = Array.prototype.slice.call(document.getElementsByName("ds_almacen[]")).map((o) => o.value);
 		var id_producto = Array.prototype.slice.call(document.getElementsByName("id_producto[]")).map((o) => o.value);
@@ -160,7 +167,6 @@ $("#registrar").on("click", function () {
 		var cantidad_total_producto = Array.prototype.slice.call(document.getElementsByName("cantidad_total_producto[]")).map((o) => o.value);
 		var monto_total_producto = Array.prototype.slice.call(document.getElementsByName("monto_total_producto[]")).map((o) => o.value);
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
-
 
 		$.ajax({
 			async: false,
@@ -185,11 +191,10 @@ $("#registrar").on("click", function () {
 				total_tablero: total_tablero,
 				id_trabajador: id_trabajador,
 				ds_nombre_trabajador: ds_nombre_trabajador,
-				//Empresa
+				//EMPRESA
 				id_tablero_empresa: id_tablero_empresa,
 				id_empresa: id_empresa,
-
-				//Detalle
+				//REGISTRAR DETALLE
 				id_almacen_det: id_almacen_det,
 				ds_almacen: ds_almacen,
 				id_producto: id_producto,
@@ -241,7 +246,6 @@ $("#actualizar").on("click", function () {
 		//EMPRESA
 		var id_tablero_empresa = $("#id_tablero_empresa").val();
 		var id_empresa = $("#id_empresa").val();
-
 		//REGISTRAR DETALLE
 		var id_almacen_det = Array.prototype.slice.call(document.getElementsByName("id_almacen_det[]")).map((o) => o.value);
 		var ds_almacen = Array.prototype.slice.call(document.getElementsByName("ds_almacen[]")).map((o) => o.value);
@@ -257,9 +261,11 @@ $("#actualizar").on("click", function () {
 		var cantidad_total_producto = Array.prototype.slice.call(document.getElementsByName("cantidad_total_producto[]")).map((o) => o.value);
 		var monto_total_producto = Array.prototype.slice.call(document.getElementsByName("monto_total_producto[]")).map((o) => o.value);
 		var item = Array.prototype.slice.call(document.getElementsByName("item[]")).map((o) => o.value);
-		debugger;
 		//ELIMINAR POR ID DETALLE
 		var id_dtablero_eliminar = Array.prototype.slice.call(document.getElementsByName("id_dtablero_eliminar[]")).map((o) => o.value);
+		//ACTUALIZAR POR ID DETALLE
+		var id_dtablero_actualizar = Array.prototype.slice.call(document.getElementsByName("id_dtablero_actualizar[]")).map((o) => o.value);
+		var item_actualizar = Array.prototype.slice.call(document.getElementsByName("item_actualizar[]")).map((o) => o.value);
 
 		$.ajax({
 			async: false,
@@ -304,8 +310,9 @@ $("#actualizar").on("click", function () {
 				monto_total_producto: monto_total_producto,
 				item: item,
 				//ELIMINAR DETALLE
-				id_dtablero_eliminar: id_dtablero_eliminar
-
+				id_dtablero_eliminar: id_dtablero_eliminar,
+				id_dtablero_actualizar: id_dtablero_actualizar,
+				item_actualizar: item_actualizar
 			},
 			success: function (data) {
 				debugger;
@@ -359,33 +366,33 @@ $(document).on("click", ".js_seleccionar_modal_producto", function () {
 	$("#precio_unitario").val(split_productos[10]);
 	$("#opcion_target_producto").modal("hide");
 });
-$(document).on("click", ".js_seleccionar_modal_comodin", function () {
-	limpiar_campos();
-	comodin = $(this).val();
-	split_comodin = comodin.split("*");
-	$("#hidden_id_comodin").val(split_comodin[0]);
-	$("#hidden_id_general").val(split_comodin[1]);
-	$("#hidden_codigo_producto").val(split_comodin[2]);
-	$("#descripcion_producto").val(split_comodin[3]);
-	$("#hidden_id_unidad_medida").val(split_comodin[4]);
-	$("#hidden_ds_unidad_medida").val(split_comodin[5]);
-	$("#hidden_id_marca_producto").val(split_comodin[6]);
-	$("#hidden_ds_marca_producto").val(split_comodin[7]);
-	$("#hidden_id_moneda").val(split_comodin[8]);
-	$("#tipo_moneda_origen").val(split_comodin[9]);
-	var simbolo_moneda = split_comodin[9];
-	if (simbolo_moneda == "SOLES") {
-		$("#simbolo_moneda").val("S/");
-		$("#moneda").val("SOLES");
-	} else if (simbolo_moneda == "DOLARES") {
-		$("#simbolo_moneda").val("$");
-		$("#moneda").val("DOLARES");
+// $(document).on("click", ".js_seleccionar_modal_comodin", function () {
+// 	limpiar_campos();
+// 	comodin = $(this).val();
+// 	split_comodin = comodin.split("*");
+// 	$("#hidden_id_comodin").val(split_comodin[0]);
+// 	$("#hidden_id_general").val(split_comodin[1]);
+// 	$("#hidden_codigo_producto").val(split_comodin[2]);
+// 	$("#descripcion_producto").val(split_comodin[3]);
+// 	$("#hidden_id_unidad_medida").val(split_comodin[4]);
+// 	$("#hidden_ds_unidad_medida").val(split_comodin[5]);
+// 	$("#hidden_id_marca_producto").val(split_comodin[6]);
+// 	$("#hidden_ds_marca_producto").val(split_comodin[7]);
+// 	$("#hidden_id_moneda").val(split_comodin[8]);
+// 	$("#tipo_moneda_origen").val(split_comodin[9]);
+// 	var simbolo_moneda = split_comodin[9];
+// 	if (simbolo_moneda == "SOLES") {
+// 		$("#simbolo_moneda").val("S/");
+// 		$("#moneda").val("SOLES");
+// 	} else if (simbolo_moneda == "DOLARES") {
+// 		$("#simbolo_moneda").val("$");
+// 		$("#moneda").val("DOLARES");
 
-	}
+// 	}
 
-	$("#precio_unitario").val(split_comodin[10]);
-	$("#opcion_target_tablero").modal("hide");
-});
+// 	$("#precio_unitario").val(split_comodin[10]);
+// 	$("#opcion_target_tablero").modal("hide");
+// });
 
 $(document).ready(function () {
 
@@ -1003,9 +1010,28 @@ function validar_detalle_tablero() {
 function generar_item() {
 	var acumulador = 0;
 	$("#id_table_detalle_tableros tbody tr").each(function () {
-		var item = $(this).closest('tr').find('#item').val();
+		var id_dtablero_actualizar = $(this).closest("tr").find("#id_dtablero").val();
 		acumulador = acumulador + 1;
 		$(this).closest('tr').find('#item').val(acumulador);
+		var item_actualizar = $(this).closest('tr').find('#item').val();
+
+		$("#container_id_dtablero_actualizar tbody tr").each(function () {
+			id_general_container = $(this).find("#id_dtablero_actualizar").val();
+			if (id_general_container == id_dtablero_actualizar) {
+				$(this).closest("tr").remove();
+			}
+		});
+
+		if (id_dtablero_actualizar != undefined) {
+			html = "<tr>";
+			html += "<input type='hidden' id='id_dtablero_actualizar' name ='id_dtablero_actualizar[]' value='" + id_dtablero_actualizar + "'>";
+			html += "<input type='hidden' id='item_actualizar' name ='item_actualizar[]' value='" + item_actualizar + "'>";
+			html += "</tr>";
+			$("#container_id_dtablero_actualizar tbody").append(html);
+		}
+
+
+
 	});
 }
 /* Fin Funciones */

@@ -139,7 +139,7 @@ class M_parciales_completas extends CI_Model
             FROM 
             detalle_parciales_completas a
             LEFT JOIN detalle_cotizacion b ON b.id_dcotizacion=a.id_dcotizacion
-            WHERE a.id_parcial_completa='$id_parcial_completa' AND a.salida_prod > '0'
+            WHERE a.id_parcial_completa='$id_parcial_completa' AND a.salida_prod > '0' AND b.id_estado_cotizacion='973'
         "
         );
         return $resultados->result();
@@ -208,7 +208,7 @@ class M_parciales_completas extends CI_Model
             LEFT JOIN tableros b ON b.id_tablero=a.id_tablero
             LEFT JOIN detalle_tableros c ON c.id_tablero=b.id_tablero
             LEFT JOIN detalle_parciales_completas d ON d.id_dcotizacion=a.id_dcotizacion
-            WHERE d.id_parcial_completa='$id_parcial_completa' AND d.salida_prod > '0'
+            WHERE d.id_parcial_completa='$id_parcial_completa' AND d.salida_prod > '0' AND a.id_estado_cotizacion='973' AND c.id_estado_tablero='971'
             "
         );
         return $resultados->result();

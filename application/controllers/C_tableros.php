@@ -250,6 +250,10 @@ class C_tableros extends CI_Controller
 		//ELIMINAR DETALLE
 		$id_dtablero_eliminar = $this->input->post("id_dtablero_eliminar");
 
+		//ACTUALIZAR DETALLE
+		$id_dtablero_actualizar = $this->input->post("id_dtablero_actualizar");
+		$item_actualizar = $this->input->post("item_actualizar");
+
 		//ACTUALIZAR CABECERA
 		$this->M_tableros->actualizar(
 			$id_tablero,
@@ -300,6 +304,11 @@ class C_tableros extends CI_Controller
 			$this->eliminar_detalle($id_dtablero_eliminar);
 		}
 
+		//ACTUALIZAR DETALLE
+		if ($id_dtablero_actualizar != "") {
+			$this->actualizar_detalle($id_dtablero_actualizar, $item_actualizar);
+		}
+
 		echo json_encode($id_tablero);
 	}
 
@@ -308,6 +317,16 @@ class C_tableros extends CI_Controller
 		for ($i = 0; $i < count($id_dtablero_eliminar); $i++) {
 			$this->M_tableros->eliminar_detalle(
 				$id_dtablero_eliminar[$i]
+			);
+		}
+	}
+
+	protected function actualizar_detalle($id_dtablero_actualizar, $item_actualizar)
+	{
+		for ($i = 0; $i < count($id_dtablero_actualizar); $i++) {
+			$this->M_tableros->actualizar_detalle(
+				$id_dtablero_actualizar[$i],
+				$item_actualizar[$i]
 			);
 		}
 	}

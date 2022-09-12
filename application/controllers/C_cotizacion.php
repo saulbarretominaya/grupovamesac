@@ -282,7 +282,6 @@ class C_cotizacion extends CI_Controller
 		$id_dcotizacion_actualizar = $this->input->post("id_dcotizacion_actualizar");
 		$item_actualizar = $this->input->post("item_actualizar");
 
-
 		//ACTUALIZAR CABECERA
 		$this->M_cotizacion->actualizar(
 			//CABECERA
@@ -348,6 +347,7 @@ class C_cotizacion extends CI_Controller
 			$this->eliminar_detalle($id_dcotizacion_eliminar);
 		}
 
+		//ACTUALIZAR DETALLE
 		if ($id_dcotizacion_actualizar != "") {
 			$this->actualizar_detalle($id_dcotizacion_actualizar, $item_actualizar);
 		}

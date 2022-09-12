@@ -547,7 +547,7 @@ class M_guia_remision extends CI_Model
             LEFT JOIN detalle_cotizacion b ON b.id_dcotizacion=a.id_dcotizacion
             LEFT JOIN parciales_completas c ON c.id_parcial_completa=a.id_parcial_completa
             LEFT JOIN guia_remision d ON d.id_parcial_completa=c.id_parcial_completa
-            WHERE d.id_guia_remision='$id_guia_remision' AND a.salida_prod > '0'
+            WHERE d.id_guia_remision='$id_guia_remision' AND a.salida_prod > '0' AND b.id_estado_cotizacion='973'
         "
         );
         return $resultados->result();
@@ -623,7 +623,7 @@ class M_guia_remision extends CI_Model
             LEFT JOIN detalle_parciales_completas d ON d.id_dcotizacion=a.id_dcotizacion
             LEFT JOIN parciales_completas e ON e.id_parcial_completa=d.id_parcial_completa
             LEFT JOIN guia_remision f ON f.id_parcial_completa=e.id_parcial_completa
-            WHERE f.id_guia_remision='$id_guia_remision'
+            WHERE f.id_guia_remision='$id_guia_remision' AND a.id_estado_cotizacion='973' AND c.id_estado_tablero='971'
             "
         );
         return $resultados->result();

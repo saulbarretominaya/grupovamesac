@@ -399,4 +399,15 @@ class M_tableros extends CI_Model
             "
         );
     }
+
+    public function actualizar_detalle($id_dtablero_actualizar, $item_actualizar)
+    {
+        return $this->db->query(
+            "
+            UPDATE detalle_tableros SET
+            item='$item_actualizar'
+            WHERE id_dtablero='$id_dtablero_actualizar'
+            "
+        );
+    }
 }
