@@ -221,10 +221,10 @@
                         </div>
                         <form class="form-horizontal">
                           <div class="card-body" style="overflow-x:auto;">
-                            <table id="id_table_detalle_parciales_completas" style="width: 100%;">
+                            <table id="id_table_detalle_parciales_completas" style="width: 170%;">
                               <thead>
                                 <tr>
-                                  <th class="table-danger">N°</th>
+                                  <th class="table-danger" width='70px'>N°</th>
                                   <th>Item </th>
                                   <th>Codigo </th>
                                   <th>Descripcion</th>
@@ -284,31 +284,31 @@
                         <div class="col-md-3">
                           <label for="">Valor V. Total Sin/D</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for=" local">DCTO Total</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="descuento_total" value="">
+                            <input type="text" class="form-control" id="descuento_total" value="" readonly>
                           </div>
                         </div>
                         <div class="col-md-3">
                           <label for="">Valor V. Total Con/D</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="">
+                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for=" local">IGV</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="igv" value="">
+                            <input type="text" class="form-control" id="igv" value="" readonly>
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="precio_venta" value="">
+                            <input type="text" class="form-control" id="precio_venta" value="" readonly>
                           </div>
                         </div>
                       </div>
