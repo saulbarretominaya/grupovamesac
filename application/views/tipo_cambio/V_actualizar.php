@@ -4,7 +4,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Tipo de cambio
-              <button type="button" class="btn btn-primary btn-sm" id="actualizar">ACTUALIZAR</button>
+              <button type="button" class="btn btn-warning btn-sm" id="actualizar">ACTUALIZAR</button>
               <a href="<?php echo base_url(); ?>C_tipo_cambio" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>

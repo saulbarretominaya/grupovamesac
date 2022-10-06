@@ -19,12 +19,12 @@
       <div class="row">
         <div class="col-md-12">
           <!-- Horizontal Form -->
-          <div class="card card-info">
+          <div class="card card-primary">
             <div class="card-header">
               <h2 class="card-title">Registro de Trabajadores</h3>
             </div>
             <div class="card-body">
-              <div class="card card-info collapsed-card">
+              <div class="card card-primary collapsed-card">
                 <div class="card-header">
                   <h3 class="card-title">Datos de la Empresa</h3>
                   <div class="card-tools">
@@ -174,7 +174,7 @@
                 </div>
               </div>
               <!-- Segundo Card -->
-              <div class="card card-info collapsed-card">
+              <div class="card card-primary collapsed-card">
                 <div class="card-header">
                   <h3 class="card-title">Datos Personales</h3>
                   <div class="card-tools">
@@ -295,7 +295,7 @@
                 </div>
               </div>
               <!-- Tercer Card -- UBIGEO -->
-              <div class="card card-info collapsed-card">
+              <div class="card card-primary collapsed-card">
                 <div class="card-header">
                   <h3 class="card-title">Ubigeo</h3>
                   <div class="card-tools">

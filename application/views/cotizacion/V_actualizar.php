@@ -826,31 +826,31 @@
                         <div class="col-md-3">
                           <label for="">Valor V. Total Sin/D</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="">
+                            <input type="text" class="form-control" id="valor_venta_total_sin_d" value="<?php echo $enlace_actualizar_cabecera->valor_venta_total_sin_d ?>">
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for=" local">DCTO Total</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="descuento_total" value="">
+                            <input type="text" class="form-control" id="descuento_total" value="<?php echo $enlace_actualizar_cabecera->descuento_total ?>">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <label for="">Valor V. Total Con/D</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="">
+                            <input type="text" class="form-control" id="valor_venta_total_con_d" value="<?php echo $enlace_actualizar_cabecera->valor_venta_total_con_d ?>">
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for=" local">IGV</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="igv" value="">
+                            <input type="text" class="form-control" id="igv" value="<?php echo $enlace_actualizar_cabecera->igv ?>">
                           </div>
                         </div>
                         <div class="col-md-2">
                           <label for="sexo">Precio Venta</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="precio_venta" value="">
+                            <input type="text" class="form-control" id="precio_venta" value="<?php echo $enlace_actualizar_cabecera->precio_venta ?>">
                           </div>
                         </div>
                       </div>
