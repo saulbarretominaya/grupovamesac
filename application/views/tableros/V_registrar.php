@@ -353,7 +353,7 @@
                               <div class="col-md-3">
                                 <label for="">Moneda</label>
                                 <div class="input-group">
-                                  <select class="form-select" id="id_moneda">
+                                  <select class="form-control" id="id_moneda">
                                     <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                       <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar_cabecera->id_moneda) : ?>

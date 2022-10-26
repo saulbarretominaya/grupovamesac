@@ -599,7 +599,7 @@
                             <div class="col-md-6">
                               <label for="">Moneda</label>
                               <div class="input-group">
-                                <select class="form-select" id="tipo_moneda_cambio" disabled>
+                                <select class="form-control" id="tipo_moneda_cambio" disabled>
                                   <option value="0">Seleccionar</option>
 
                                   <?php foreach ($cbox_moneda as $cbox_moneda) : ?>

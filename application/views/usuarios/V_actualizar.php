@@ -137,7 +137,7 @@
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Accesos Empresas</label>
-                        <select class="form-select " id="id_empresa">
+                        <select class="form-control" id="id_empresa">
                           <option value="0" selected>Seleccionar</option>
                           <?php foreach ($cbox_empresa as $cbox_empresa) : ?>
                             <?php if ($cbox_empresa->id_dmultitabla == $enlace_actualizar->id_empresa) : ?>
@@ -156,7 +156,7 @@
                     <div class="form-group">
                       <div class="col-md-8">
                         <label for="">Rol</label>
-                        <select class="form-select" id="id_rol">
+                        <select class="form-control" id="id_rol">
                           <option value="0">Seleccionar</option>
                           <?php foreach ($cbox_roles_usuarios as $cbox_roles_usuarios) : ?>
                             <?php if ($cbox_roles_usuarios->id_dmultitabla == $enlace_actualizar->id_rol) : ?>

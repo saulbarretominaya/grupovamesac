@@ -569,7 +569,7 @@
                             <div class="col-md-6">
                               <label for="">Moneda</label>
                               <div class="input-group">
-                                <select class="form-select" id="tipo_moneda_cambio">
+                                <select class="form-control" id="tipo_moneda_cambio">
                                   <option value="0">Seleccionar</option>
                                   <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                                     <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>"><?php echo $cbox_moneda->descripcion; ?></option>

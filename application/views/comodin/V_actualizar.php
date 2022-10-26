@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-sm-3">
                       <label>Moneda</label>
-                      <select class="form-control select2" id="id_moneda">
+                      <select class="form-control" id="id_moneda">
                         <option value="0">Seleccionar</option>
                         <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
                           <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar->id_moneda) : ?>

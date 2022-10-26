@@ -198,7 +198,7 @@
                             </div>
                             <div class="col-md-3">
                               <label for="">Tipo Orden Compra</label>
-                              <select class="form-select select2" id="id_tipo_orden">
+                              <select class="form-control" id="id_tipo_orden">
                                 <option value="0">Seleccionar</option>
                                 <?php foreach ($cbox_tipo_orden_compra as $cbox_tipo_orden_compra) : ?>
                                   <option value="<?php echo $cbox_tipo_orden_compra->id_dmultitabla; ?>"><?php echo $cbox_tipo_orden_compra->descripcion; ?></option>
