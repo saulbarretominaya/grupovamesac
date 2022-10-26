@@ -31,18 +31,15 @@
 <script src="<?php echo base_url() ?>plantilla/plugins/inputmask/jquery.inputmask.min.js"></script>
 <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
-<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+<script src="<?php echo base_url() ?>plantilla/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
 <!-- Select2 -->
 <script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 
 <script>
   var base_url = "<?php echo base_url(); ?>";
 </script>
-
-<script src="<?php echo base_url() ?>application/js/j_trabajadores.js"></script>
-<script src="<?php echo base_url() ?>application/js/j_productos.js"></script>
-<script src="<?php echo base_url() ?>application/js/j_multitablas.js"></script>
-<script src="<?php echo base_url() ?>application/js/j_clientes_proveedores.js"></script>
 
 </body>
 
