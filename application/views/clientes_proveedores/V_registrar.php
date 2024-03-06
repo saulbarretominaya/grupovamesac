@@ -11,20 +11,24 @@
             </h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+      <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+      <input type="hidden" id="id_cliente_proveedor_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+      <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
+
     </section>
-    <!-- Main content -->
+
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary card-tabs">
               <div class="card-header">
                 <h2 class="card-title">Registro de Clientes/Provedores</h3>
               </div>
               <div class="card-body">
-                <div class="card card-info collapsed-card">
+                <div class="card card-primary collapsed-card">
                   <div class="card-header">
                     <h3 class="card-title">Datos Sunat</h3>
                     <div class="card-tools">
@@ -41,8 +45,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="origen">Origen</label>
                           <div class="input-group">
-                            <select class="custom-select " id="origen" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="origen" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_origen as $cbox_origen) : ?>
                                 <option value="<?php echo $cbox_origen->id_dmultitabla; ?>">
                                   <?php echo $cbox_origen->descripcion; ?>
@@ -55,8 +59,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="condicion">Condicion</label>
                           <div class="input-group">
-                            <select class="custom-select " id="condicion" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="condicion" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_condicion as $cbox_condicion) : ?>
                                 <option value="<?php echo $cbox_condicion->id_dmultitabla; ?>">
                                   <?php echo $cbox_condicion->descripcion; ?>
@@ -69,8 +73,8 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="tipo_persona">Tipo Persona</label>
                           <div class="input-group">
-                            <select class="custom-select " id="tipo_persona" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="tipo_persona" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_persona as $cbox_tipo_persona) : ?>
                                 <option value="<?php echo $cbox_tipo_persona->id_dmultitabla; ?>">
                                   <?php echo $cbox_tipo_persona->descripcion; ?>
@@ -86,8 +90,8 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="tipo_persona_sunat">Tipo Persona Sunat</label>
                           <div class="input-group">
-                            <select class="custom-select " id="tipo_persona_sunat" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="tipo_persona_sunat" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_persona_sunat as $cbox_tipo_persona_sunat) : ?>
                                 <option value="<?php echo $cbox_tipo_persona_sunat->id_dmultitabla; ?>">
                                   <?php echo $cbox_tipo_persona_sunat->descripcion; ?>
@@ -100,12 +104,10 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="tipo_documento">Tipo Documento</label>
                           <div class="input-group">
-                            <select class="custom-select " id="tipo_documento" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="tipo_documento" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_documento as $cbox_tipo_documento) : ?>
-                                <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>">
-                                  <?php echo $cbox_tipo_documento->descripcion; ?>
-                                </option>
+                                <option value="<?php echo $cbox_tipo_documento->id_dmultitabla; ?>"><?php echo $cbox_tipo_documento->descripcion; ?></option>
                               <?php endforeach; ?>
                             </select>
                           </div>
@@ -114,7 +116,7 @@
                         <div class="col-md-4 mb-3 ">
                           <label for="num_documento">Numero Documento</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="num_documento" maxlength="15" placeholder="Ingresa el N° Documento" required>
+                            <input type="text" class="form-control" id="num_documento" maxlength="12" placeholder="Ingresa el N° Documento" required>
                           </div>
                         </div>
                       </div>
@@ -122,7 +124,7 @@
                   </div>
                 </div>
                 <!-- Segundo Card -->
-                <div class="card card-info collapsed-card">
+                <div class="card card-primary collapsed-card">
                   <div class="card-header">
                     <h3 class="card-title">Datos Personales</h3>
                     <div class="card-tools">
@@ -194,7 +196,7 @@
                   </div>
                 </div>
                 <!-- Tercer Card -- UBIGEO -->
-                <div class="card card-info collapsed-card">
+                <div class="card card-primary collapsed-card">
                   <div class=" card-header">
                     <h3 class="card-title">Ubigeo</h3>
                     <div class="card-tools">
@@ -211,8 +213,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="departamento">Departamento</label>
                           <div class="input-group">
-                            <select class="custom-select " id="departamento" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="departamento" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_departamento as $cbox_departamento) : ?>
                                 <option value="<?php echo $cbox_departamento->id_dmultitabla; ?>">
                                   <?php echo $cbox_departamento->descripcion; ?>
@@ -225,8 +227,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="provincia">Provincia</label>
                           <div class="input-group">
-                            <select class="custom-select " id="provincia" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="provincia" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_provincia as $cbox_provincia) : ?>
                                 <option value="<?php echo $cbox_provincia->id_dmultitabla; ?>">
                                   <?php echo $cbox_provincia->descripcion; ?>
@@ -239,8 +241,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="distrito">Distrito</label>
                           <div class="input-group">
-                            <select class="custom-select " id="distrito" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="distrito" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_distrito as $cbox_distrito) : ?>
                                 <option value="<?php echo $cbox_distrito->id_dmultitabla; ?>">
                                   <?php echo $cbox_distrito->descripcion; ?>
@@ -270,8 +272,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="tipo_giro">Tipo de Giro</label>
                           <div class="input-group">
-                            <select class="custom-select " id="tipo_giro" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="tipo_giro" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_giro as $cbox_tipo_giro) : ?>
                                 <option value="<?php echo $cbox_tipo_giro->id_dmultitabla; ?>">
                                   <?php echo $cbox_tipo_giro->descripcion; ?>
@@ -287,8 +289,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="condicion_pago">Condicion de Pago</label>
                           <div class="input-group">
-                            <select class="custom-select " id="condicion_pago" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="condicion_pago" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_condicion_pago as $cbox_condicion_pago) : ?>
                                 <option value="<?php echo $cbox_condicion_pago->id_dmultitabla; ?>">
                                   <?php echo $cbox_condicion_pago->descripcion; ?>
@@ -299,29 +301,7 @@
                         </div>
                       </div>
                       <!-- Cuarta Fila -->
-                      <div class="form-row">
-                        <!-- LINEA DE CREDITO - SOLES -->
-                        <div class="col-md-4 mb-3">
-                          <label for="linea_credito_soles">Linea de Credito S/.</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="linea_credito_soles" placeholder="Ingresa la Linea de Credito" aria-describedby="inputGroupLineaCreditoSoles" required>
-                          </div>
-                        </div>
-                        <!-- CREDITO UNITARIO - SOLES-->
-                        <div class="col-md-4 mb-3">
-                          <label for="credito_unitario_soles">Credito Unitario S/.</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="credito_unitario_soles" placeholder="Ingresa el Credito Unitario" required>
-                          </div>
-                        </div>
-                        <!-- DISPONIBLE - SOLES-->
-                        <div class="col-md-4 mb-3">
-                          <label for="disponible_soles">Disponible S/.</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="disponible_soles" placeholder="Ingrese la Disponibilidad" aria-describedby="inputGroupDisponibleSoles" required>
-                          </div>
-                        </div>
-                      </div>
+
                       <!-- Quinta Fila -->
                       <div class="form-row">
                         <!-- LINEA DE CREDITO - DOLARES -->
@@ -350,24 +330,24 @@
                       <div class="form-row">
                         <!-- LINEA OPCIONAL -->
                         <div class="col-md-4 mb-3">
-                          <label for="linea_opcional">Linea Opcional</label>
+                          <label for="linea_opcional">Observaciones</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" id="linea_opcional" placeholder="Ingresa la Linea Opcional" required>
+                            <input type="text" class="form-control" id="linea_opcional" placeholder="Observaciones" required>
                           </div>
                         </div>
                         <!-- LINEA OPCIONAL UNITARIO-->
                         <div class="col-md-4 mb-3">
-                          <label for="linea_opcional_unitaria">Linea Opcional Unitario </label>
+                          <label for="linea_opcional_unitaria">Linea Opcional</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="linea_opcional_unitaria" placeholder="Ingresa la Linea Opcional Unitaria" required>
                           </div>
                         </div>
                         <!-- LINEA DISPONIBLE-->
                         <div class="col-md-4 mb-3">
-                          <label for="linea_disponible">Linea Disponible</label>
+                          <label for="linea_disponible">Estado Cliente</label>
                           <div class="input-group">
-                            <select class="custom-select " id="linea_disponible" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="linea_disponible" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_linea_disponible as $cbox_linea_disponible) : ?>
                                 <option value="<?php echo $cbox_linea_disponible->id_dmultitabla; ?>">
                                   <?php echo $cbox_linea_disponible->descripcion; ?>
@@ -394,11 +374,11 @@
                           </div>
                         </div>
                         <!-- ESTADO-->
-                        <div class="col-md-4 mb-3">
+                        <!-- <div class="col-md-4 mb-3">
                           <label for="estado_cliente">Estado Cliente</label>
                           <div class="input-group">
-                            <select class="custom-select " id="estado_cliente" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-select " id="estado_cliente" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_estado_cliente as $cbox_estado_cliente) : ?>
                                 <option value="<?php echo $cbox_estado_cliente->id_dmultitabla; ?>">
                                   <?php echo $cbox_estado_cliente->descripcion; ?>
@@ -406,7 +386,7 @@
                               <?php endforeach; ?>
                             </select>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                       <!-- Octava Fila -->
                       <div class="form-row">
@@ -428,8 +408,8 @@
                         <div class="col-md-4 mb-3">
                           <label for="tipo_cliente_pago">Tipo de Cliente de Pago</label>
                           <div class="input-group">
-                            <select class="custom-select " id="tipo_cliente_pago" aria-describedby="inputGroupTipoClientePago" required>
-                              <option value="0" selected>Selecciona...</option>
+                            <select class="form-control" id="tipo_cliente_pago" aria-describedby="inputGroupTipoClientePago" required>
+                              <option value="0" selected>Seleccionar</option>
                               <?php foreach ($cbox_tipo_cliente_pago as $cbox_tipo_cliente_pago) : ?>
                                 <option value="<?php echo $cbox_tipo_cliente_pago->id_dmultitabla; ?>">
                                   <?php echo $cbox_tipo_cliente_pago->descripcion; ?>
@@ -487,7 +467,8 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/inputmask/jquery.inputmask.min.js"></script>
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
-  <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
   <script>
     var base_url = "<?php echo base_url(); ?>";

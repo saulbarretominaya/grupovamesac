@@ -5,8 +5,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>TRABAJADORES
-              <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary">REGISTRAR</a>
+            <h1>Trabajadores
+              <a href="<?php echo base_url(); ?>C_trabajadores/enlace_registrar" class="btn btn-primary btn-sm">REGISTRAR</a>
             </h1>
           </div>
         </div>
@@ -16,107 +16,63 @@
     <section class="content">
       <div class="col-12">
         <div class="card">
-          <div class="card-header">
+          <!-- <div class="card-header">
             <h3 class="card-title">Listar</h3>
-          </div>
+          </div> -->
           <div class="card-body">
-            <table id="id_datatable_trabajadores" class="table table-sm table-hover" style="width: 100%;">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
+                  <th>Codigo Trabajador</th>
                   <th>Tipo Documento</th>
                   <th>N° Documento</th>
-                  <th>Nombre</th>
+                  <th>Nombres</th>
                   <th>Paterno</th>
                   <th>Materno</th>
                   <th>Celular</th>
+                  <th>Trabaja RRHH</th>
+                  <th>Sucursal</th>
+                  <th>Cargo</th>
                   <th></th>
                   <th></th>
-                  <th></th>
+                  <!-- <th></th> -->
                 </tr>
               </thead>
               <tbody>
                 <?php if (!empty($index)) : ?>
                   <?php foreach ($index as $index) : ?>
                     <tr>
+                      <td><?php echo $index->id_trabajador_empresa; ?></td>
                       <td><?php echo $index->ds_tipo_documento; ?></td>
                       <td><?php echo $index->num_documento; ?></td>
                       <td><?php echo $index->nombres; ?></td>
                       <td><?php echo $index->ape_paterno; ?></td>
                       <td><?php echo $index->ape_materno; ?></td>
                       <td><?php echo $index->celular; ?></td>
-                      <td><button type="button" class="btn btn-info btn-xs btn-view-trabajador" value="<?php echo $index->id_trabajador; ?>" data-toggle="modal" data-target="#modal-trabajador"><span class="fa fa-search"></span></button></td>
-                      <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-warning btn-xs"><span class="fas fa-edit "></span></a></td>
-                      <td><a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-danger btn-remove btn-xs"><span class="fa fa-trash"></a></td>
+                      <td><?php echo $index->ds_empresa; ?></td>
+                      <td><?php echo $index->ds_sucursal; ?></td>
+                      <td><?php echo $index->ds_cargo_trabajador; ?></td>
+                      <td><button type="button" class="btn btn-outline-info js_lupa_trabajador btn-sm" value="<?php echo $index->id_trabajador; ?>" data-toggle="modal" data-target="#id_target_trabajador"><span class="fa fa-search"></span></button></td>
+                      <td><a href="<?php echo base_url(); ?>C_trabajadores/enlace_actualizar/<?php echo $index->id_trabajador; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
+                      <!-- <td><a href="<?php echo base_url(); ?>C_trabajadores/eliminar/<?php echo $index->id_trabajador; ?>" class="btn btn-outline-danger btn-remove btn-sm"><span class="fa fa-trash"></a></td> -->
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
-              <!-- <tfoot>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Paterno</th>
-                  <th>Materno</th>
-                  <th>Celular</th>
-                </tr>
-              </tfoot> -->
             </table>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
       </div>
-      <!-- /.div -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
-  <!-- MODAL TRABAJADORES -->
-  <div class="modal fade" id="modal-trabajador">
-    <div class="modal-dialog modal-xl">
+
+  <div class="modal fade" id="id_target_trabajador" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
       <div class="modal-content">
-        <div class="modal-header" style="background-color:#48C9B0">
-          <h4 class="modal-title w-100 text-center ">DETALLE DE TRABAJADORES</h4>
-          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-
-          <p></p>
-
-
-        </div>
       </div>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
   </div>
-
-  <!-- MODAL ADMIN -->
-  <div class="modal fade" id="modal-trabajador2">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title text-center">Extra Large Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>One fine body&hellip;</p>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
-
 
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -147,7 +103,8 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/inputmask/jquery.inputmask.min.js"></script>
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
-  <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
   <script>
     var base_url = "<?php echo base_url(); ?>";

@@ -2,10 +2,9 @@
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
-      <img src="<?php echo base_url() ?>plantilla/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+    <center><a class="brand-link" style="text-decoration:none">
+        <span class="brand-text font-weight-light"> <?php echo $this->session->userdata("ds_accesos_empresas") ?></span>
+      </a></center>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -14,7 +13,6 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <!-- Recursos humanos -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fab fa-hive"></i>
@@ -27,7 +25,7 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "C_trabajadores" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registrar Trabajadores</p>
+                  <p>Trabajadores</p>
                 </a>
               </li>
             </ul>
@@ -35,14 +33,12 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "C_clientes_proveedores" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registrar Clientes</p>
+                  <p>Clientes - Proveedores</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- fin de recursos humanos -->
 
-          <!-- multitablas -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-border-none"></i>
@@ -60,9 +56,7 @@
               </li>
             </ul>
           </li>
-          <!-- fin de multitablas -->
 
-          <!-- Logistica-->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-luggage-cart"></i>
@@ -73,16 +67,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "#" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_orden_compras" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Orden de compra</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- fin logistica-->
 
-          <!-- almacen -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-truck"></i>
@@ -99,19 +91,47 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?php echo base_url() . "C_salida_productos" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Salida Productos</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?php echo base_url() . "C_tableros" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tableros</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_carga_inicial" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Carga Inicial</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <!-- fin de almacen -->
 
-          <!-- tipo de cambio -->
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-chart-line"></i>
+              <p>
+                Finanzas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_compras_cobranzas" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compras / Cobranzas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-dollar-sign"></i>
               <p>
                 Tipo de cambio
                 <i class="fas fa-angle-left right"></i>
@@ -119,16 +139,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "#" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_tipo_cambio" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tipo de cambio</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- fin de tipo de cambio-->
 
-          <!--comercial -->
+
           <li class="nav-item">
             <a href="" class="nav-link">
 
@@ -145,18 +164,20 @@
                   <p>Cotizacion</p>
                 </a>
               </li>
+            </ul>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "C_compras" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_comodin" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Compras</p>
+                  <p>Comodin</p>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- fin de comercial -->
 
-          <!-- orden despacho-->
-          <!-- <li class="nav-item">
+
+
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-paste"></i>
               <p>
@@ -172,11 +193,25 @@
                 </a>
               </li>
             </ul>
-          </li> -->
-          <!-- fin de orden de despacho-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_elaborar_pc" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Elaborar P/C</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_parciales_completas" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Parciales / Completas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-          <!-- guia  de remision-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-clipboard-list"></i>
               <p>
@@ -188,45 +223,43 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "C_guia_remision" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pre guia</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url() . "C_orden_despacho" ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
                   <p>Guia de remision</p>
                 </a>
               </li>
             </ul>
-          </li> -->
-          <!-- fin guia de remisión-->
+          </li>
 
-          <!-- facturacion-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-tasks"></i>
               <p>
-                Facturacion
+                Comprobantes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url() . "C_facturacion" ?>" class="nav-link">
+                <a href="<?php echo base_url() . "C_comprobantes" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Facturacion</p>
+                  <p>Comprobantes</p>
                 </a>
               </li>
             </ul>
-          </li> -->
-          <!-- fin guia de remisión-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_comprobantes" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notas Credito / Debito</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-          <!-- Reporte-->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-file-medical-alt"></i>
               <p>
-                Reporte
+                Reportes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -234,13 +267,30 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() . "#" ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reporte</p>
+                  <p>Reportes</p>
                 </a>
               </li>
             </ul>
-          </li> -->
-          <!-- fin reporte-->
+          </li>
 
+          <li class="nav-item">
+            <a href="" class="nav-link">
+
+              <i class="fas fa-users-cog"></i>
+              <p>
+                Administracion
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url() . "C_usuarios" ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
         </ul>
       </nav>

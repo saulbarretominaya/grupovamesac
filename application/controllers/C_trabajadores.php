@@ -26,25 +26,11 @@ class C_trabajadores extends CI_Controller
 
     {
         $id_trabajador = $this->input->post("id_trabajador");
+
         $data = array(
-            'detalle' => $this->M_trabajadores->index_modal($id_trabajador),
-            'cbox_tipo_trabajador' => $this->M_cbox->cbox_tipo_trabajador(),
-            'cbox_tipo_documento' => $this->M_cbox->cbox_tipo_documento(),
-            'cbox_almacen' => $this->M_cbox->cbox_almacen(),
-            'cbox_cargo_trabajador' => $this->M_cbox->cbox_cargo_trabajador(),
-            'cbox_sexo' => $this->M_cbox->cbox_sexo(),
-            'cbox_nacionalidad' => $this->M_cbox->cbox_nacionalidad(),
-            'cbox_estado_civil' => $this->M_cbox->cbox_estado_civil(),
-            'cbox_grado_instruccion' => $this->M_cbox->cbox_grado_instruccion(),
-            'cbox_departamento' => $this->M_cbox->cbox_departamento(),
-            'cbox_provincia' => $this->M_cbox->cbox_provincia(),
-            'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'index_modal_cabecera' => $this->M_trabajadores->index_modal_cabecera($id_trabajador)
         );
 
-
-
-        // $this->load->view('plantilla/V_header');
-        // $this->load->view('plantilla/V_aside');
         $this->load->view('trabajadores/V_index_modal', $data);
     }
 
@@ -65,6 +51,8 @@ class C_trabajadores extends CI_Controller
             'cbox_departamento' => $this->M_cbox->cbox_departamento(),
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'cbox_empresa' => $this->M_cbox->cbox_empresa(),
+
         );
 
         $this->load->view('plantilla/V_header');
@@ -72,7 +60,7 @@ class C_trabajadores extends CI_Controller
         $this->load->view('trabajadores/V_registrar', $data);
     }
 
-    public function insertar()
+    public function registrar()
     {
         $num_documento = $this->input->post("num_documento");
         $nombres = $this->input->post("nombres");
@@ -96,9 +84,67 @@ class C_trabajadores extends CI_Controller
         $departamento = $this->input->post("departamento");
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
+        $id_empresa = $this->input->post("id_empresa");
 
-
-        $this->M_trabajadores->insertar($num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+        if ($id_empresa == "3") {
+            $this->M_trabajadores->registrar_grupo_vame_trabajadores();
+            $id_trabajador_empresa = $this->M_trabajadores->lastID();
+            $this->M_trabajadores->registrar(
+                $num_documento,
+                $nombres,
+                $ape_paterno,
+                $ape_materno,
+                $email,
+                $fecha_nacimiento,
+                $lugar_nacimiento,
+                $domicilio,
+                $referencia,
+                $telefono,
+                $celular,
+                $tipo_trabajador,
+                $tipo_documento,
+                $almacen,
+                $cargo_trabajador,
+                $sexo,
+                $nacionalidad,
+                $estado_civil,
+                $grado_instruccion,
+                $departamento,
+                $provincia,
+                $distrito,
+                $id_empresa,
+                $id_trabajador_empresa
+            );
+        } else if ($id_empresa == "4") {
+            $this->M_trabajadores->registrar_inversiones_alpev_trabajadores();
+            $id_trabajador_empresa = $this->M_trabajadores->lastID();
+            $this->M_trabajadores->registrar(
+                $num_documento,
+                $nombres,
+                $ape_paterno,
+                $ape_materno,
+                $email,
+                $fecha_nacimiento,
+                $lugar_nacimiento,
+                $domicilio,
+                $referencia,
+                $telefono,
+                $celular,
+                $tipo_trabajador,
+                $tipo_documento,
+                $almacen,
+                $cargo_trabajador,
+                $sexo,
+                $nacionalidad,
+                $estado_civil,
+                $grado_instruccion,
+                $departamento,
+                $provincia,
+                $distrito,
+                $id_empresa,
+                $id_trabajador_empresa
+            );
+        }
 
         echo json_encode($num_documento);
     }
@@ -120,6 +166,7 @@ class C_trabajadores extends CI_Controller
             'cbox_departamento' => $this->M_cbox->cbox_departamento(),
             'cbox_provincia' => $this->M_cbox->cbox_provincia(),
             'cbox_distrito' => $this->M_cbox->cbox_distrito(),
+            'cbox_empresa' => $this->M_cbox->cbox_empresa(),
         );
 
 
@@ -153,6 +200,7 @@ class C_trabajadores extends CI_Controller
         $departamento = $this->input->post("departamento");
         $provincia = $this->input->post("provincia");
         $distrito = $this->input->post("distrito");
+        $id_empresa = $this->input->post("id_empresa");
 
         // print_r($fecha_nacimiento1);
 
@@ -162,7 +210,32 @@ class C_trabajadores extends CI_Controller
 
         // // STR_TO_DATE(REPLACE('$fecha_nacimiento', '/', '.'), GET_FORMAT(date, 'EUR'))
 
-        $this->M_trabajadores->actualizar($id_trabajador, $num_documento, $nombres, $ape_paterno, $ape_materno, $email, $fecha_nacimiento, $lugar_nacimiento, $domicilio, $referencia, $telefono, $celular, $tipo_trabajador, $tipo_documento, $almacen, $cargo_trabajador, $sexo, $nacionalidad, $estado_civil, $grado_instruccion, $departamento, $provincia, $distrito);
+        $this->M_trabajadores->actualizar(
+            $id_trabajador,
+            $num_documento,
+            $nombres,
+            $ape_paterno,
+            $ape_materno,
+            $email,
+            $fecha_nacimiento,
+            $lugar_nacimiento,
+            $domicilio,
+            $referencia,
+            $telefono,
+            $celular,
+            $tipo_trabajador,
+            $tipo_documento,
+            $almacen,
+            $cargo_trabajador,
+            $sexo,
+            $nacionalidad,
+            $estado_civil,
+            $grado_instruccion,
+            $departamento,
+            $provincia,
+            $distrito,
+            $id_empresa
+        );
 
 
         echo json_encode($num_documento);

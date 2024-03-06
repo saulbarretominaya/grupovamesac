@@ -23,7 +23,7 @@
 
           <div class="col-md-12">
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Datos Generales</h3>
               </div>
@@ -35,17 +35,17 @@
                     <input type="hidden" class="form-control" id="id_multitabla" value="">
                     <label class="col-sm-2 col-form-label">Nombre General</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="nombre_tabla" value="" name="nombre_tabla" style="background-color: #7C7C7C; color: white ;">
+                      <input type="text" class="form-control" id="nombre_tabla" value="" name="nombre_tabla">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Abreviatura</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="abreviatura_tabla">
+                      <input type="text" class="form-control" id="abreviatura">
                     </div>
                     <label class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control" id="descripcion_tabla">
+                      <input type="text" class="form-control" id="descripcion">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -63,7 +63,7 @@
 
           <div class="col-md-12">
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Detalle Multitablas</h3>
               </div>
@@ -71,10 +71,10 @@
               <!-- form start -->
               <form class="form-horizontal">
                 <div class="card-body">
-                  <table id="id_table_detalle_multitablas" class="table table-sm table-hover">
+                  <table id="id_table_detalle_multitablas" style="width: 100%;">
                     <thead>
                       <tr>
-                        <th>Nombre</th>
+                        <th>Abreviatura</th>
                         <th>Descripcion</th>
                         <th></th>
                       </tr>
@@ -134,7 +134,9 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/inputmask/jquery.inputmask.min.js"></script>
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
-  <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
   <!-- Select2 -->
   <script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 

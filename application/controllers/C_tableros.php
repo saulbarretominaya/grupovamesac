@@ -31,7 +31,7 @@ class C_tableros extends CI_Controller
 			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
 			'cbox_almacen' => $this->M_cbox->cbox_almacen(),
 			'index_productos' => $this->M_tableros->index_productos(),
-
+			'index_comodin' => $this->M_tableros->index_comodin(),
 		);
 
 		$this->load->view('plantilla/V_header');
@@ -39,12 +39,13 @@ class C_tableros extends CI_Controller
 		$this->load->view('tableros/V_registrar', $data);
 	}
 
-	public function insertar()
+	public function registrar()
 	{
 		//CABECERA
 		$codigo_tablero = $this->input->post("codigo_tablero");
 		$descripcion_tablero = $this->input->post("descripcion_tablero");
 		$cantidad_tablero = $this->input->post("cantidad_tablero");
+		$adicional = $this->input->post("adicional");
 		$id_sunat = $this->input->post("id_sunat");
 		$id_marca_tablero = $this->input->post("id_marca_tablero");
 		$id_modelo_tablero = $this->input->post("id_modelo_tablero");
@@ -55,6 +56,11 @@ class C_tableros extends CI_Controller
 		$precio_margen = $this->input->post("precio_margen");
 		$precio_unitario_por_tablero = $this->input->post("precio_unitario_por_tablero");
 		$total_tablero = $this->input->post("total_tablero");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+		$id_tablero_empresa = $this->input->post("id_tablero_empresa");
+		$id_empresa = $this->input->post("id_empresa");
+
 		//DETALLE
 		$id_almacen_det = $this->input->post("id_almacen_det");
 		$ds_almacen = $this->input->post("ds_almacen");
@@ -69,44 +75,81 @@ class C_tableros extends CI_Controller
 		$cantidad_unitaria = $this->input->post("cantidad_unitaria");
 		$cantidad_total_producto = $this->input->post("cantidad_total_producto");
 		$monto_total_producto = $this->input->post("monto_total_producto");
+		$item = $this->input->post("item");
 
-		if ($this->M_tableros->insertar(
-			$codigo_tablero,
-			$descripcion_tablero,
-			$cantidad_tablero,
-			$id_sunat,
-			$id_marca_tablero,
-			$id_modelo_tablero,
-			$id_moneda,
-			$id_almacen,
-			$precio_tablero,
-			$porcentaje_margen,
-			$precio_margen,
-			$precio_unitario_por_tablero,
-			$total_tablero
-		)) {
-			$id_tablero = $this->M_tableros->lastID();
-			$this->insertar_detalle(
-				$id_tablero,
-				$id_almacen_det,
-				$ds_almacen,
-				$id_producto,
-				$codigo_producto,
-				$descripcion_producto,
-				$id_unidad_medida,
-				$ds_unidad_medida,
-				$id_marca_producto,
-				$ds_marca_producto,
-				$precio_unitario,
-				$cantidad_unitaria,
-				$cantidad_total_producto,
-				$monto_total_producto
+		if ($id_tablero_empresa == "100") {
+			$this->M_tableros->registrar_grupo_vame_tableros();
+			$id_tablero_empresa = $this->M_tableros->lastID();
+			$this->M_tableros->registrar(
+				$codigo_tablero,
+				$descripcion_tablero,
+				$cantidad_tablero,
+				$adicional,
+				$id_sunat,
+				$id_marca_tablero,
+				$id_modelo_tablero,
+				$id_moneda,
+				$id_almacen,
+				$precio_tablero,
+				$porcentaje_margen,
+				$precio_margen,
+				$precio_unitario_por_tablero,
+				$total_tablero,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_tablero_empresa,
+				$id_empresa
+
 			);
-			echo json_encode($codigo_tablero);
+		} else if ($id_tablero_empresa == "200") {
+			$this->M_tableros->registrar_inversiones_alpev_tableros();
+			$id_tablero_empresa = $this->M_tableros->lastID();
+			$this->M_tableros->registrar(
+				$codigo_tablero,
+				$descripcion_tablero,
+				$cantidad_tablero,
+				$adicional,
+				$id_sunat,
+				$id_marca_tablero,
+				$id_modelo_tablero,
+				$id_moneda,
+				$id_almacen,
+				$precio_tablero,
+				$porcentaje_margen,
+				$precio_margen,
+				$precio_unitario_por_tablero,
+				$total_tablero,
+				$id_trabajador,
+				$ds_nombre_trabajador,
+				$id_tablero_empresa,
+				$id_empresa
+			);
 		}
+
+		$id_tablero = $this->M_tableros->lastID();
+
+		$this->registrar_detalle(
+			$id_tablero,
+			$id_almacen_det,
+			$ds_almacen,
+			$id_producto,
+			$codigo_producto,
+			$descripcion_producto,
+			$id_unidad_medida,
+			$ds_unidad_medida,
+			$id_marca_producto,
+			$ds_marca_producto,
+			$precio_unitario,
+			$cantidad_unitaria,
+			$cantidad_total_producto,
+			$monto_total_producto,
+			$item
+		);
+
+		echo json_encode($codigo_tablero);
 	}
 
-	protected function insertar_detalle(
+	protected function registrar_detalle(
 		$id_tablero,
 		$id_almacen_det,
 		$ds_almacen,
@@ -120,10 +163,11 @@ class C_tableros extends CI_Controller
 		$precio_unitario,
 		$cantidad_unitaria,
 		$cantidad_total_producto,
-		$monto_total_producto
+		$monto_total_producto,
+		$item
 	) {
 		for ($i = 0; $i < count($id_producto); $i++) {
-			$this->M_tableros->insertar_detalle(
+			$this->M_tableros->registrar_detalle(
 				$id_tablero,
 				$id_almacen_det[$i],
 				$ds_almacen[$i],
@@ -137,7 +181,152 @@ class C_tableros extends CI_Controller
 				$precio_unitario[$i],
 				$cantidad_unitaria[$i],
 				$cantidad_total_producto[$i],
-				$monto_total_producto[$i]
+				$monto_total_producto[$i],
+				$item[$i]
+			);
+		}
+	}
+
+	public function enlace_actualizar($id_tablero)
+	{
+
+		$data = array(
+			'cbox_codigos_sunat' => $this->M_cbox->cbox_codigos_sunat(),
+			'cbox_marca_tableros' => $this->M_cbox->cbox_marca_tableros(),
+			'cbox_modelo_tableros' => $this->M_cbox->cbox_modelo_tableros(),
+			'cbox_moneda' => $this->M_cbox->cbox_moneda(),
+			'cbox_almacen' => $this->M_cbox->cbox_almacen(),
+			'index_productos' => $this->M_tableros->index_productos(),
+			'index_comodin' => $this->M_tableros->index_comodin(),
+			'enlace_actualizar_cabecera' => $this->M_tableros->enlace_actualizar_cabecera($id_tablero),
+			'enlace_actualizar_detalle' => $this->M_tableros->enlace_actualizar_detalle($id_tablero),
+
+		);
+
+		$this->load->view('plantilla/V_header');
+		$this->load->view('plantilla/V_aside');
+		$this->load->view('tableros/V_actualizar', $data);
+	}
+
+	public function actualizar()
+	{
+		//ACTUALIZAR CABECERA
+		$id_tablero = $this->input->post("id_tablero");
+		$codigo_tablero = $this->input->post("codigo_tablero");
+		$descripcion_tablero = $this->input->post("descripcion_tablero");
+		$cantidad_tablero = $this->input->post("cantidad_tablero");
+		$adicional = $this->input->post("adicional");
+		$id_sunat = $this->input->post("id_sunat");
+		$id_marca_tablero = $this->input->post("id_marca_tablero");
+		$id_modelo_tablero = $this->input->post("id_modelo_tablero");
+		$id_moneda = $this->input->post("id_moneda");
+		$id_almacen = $this->input->post("id_almacen");
+		$precio_tablero = $this->input->post("precio_tablero");
+		$porcentaje_margen = $this->input->post("porcentaje_margen");
+		$precio_margen = $this->input->post("precio_margen");
+		$precio_unitario_por_tablero = $this->input->post("precio_unitario_por_tablero");
+		$total_tablero = $this->input->post("total_tablero");
+		$id_trabajador = $this->input->post("id_trabajador");
+		$ds_nombre_trabajador = $this->input->post("ds_nombre_trabajador");
+		$id_tablero_empresa = $this->input->post("id_tablero_empresa");
+		$id_empresa = $this->input->post("id_empresa");
+
+		// REGISTRAR DETALLE
+		$id_almacen_det = $this->input->post("id_almacen_det");
+		$ds_almacen = $this->input->post("ds_almacen");
+		$id_producto = $this->input->post("id_producto");
+		$codigo_producto = $this->input->post("codigo_producto");
+		$descripcion_producto = $this->input->post("descripcion_producto");
+		$id_unidad_medida = $this->input->post("id_unidad_medida");
+		$ds_unidad_medida = $this->input->post("ds_unidad_medida");
+		$id_marca_producto = $this->input->post("id_marca_producto");
+		$ds_marca_producto = $this->input->post("ds_marca_producto");
+		$precio_unitario = $this->input->post("precio_unitario");
+		$cantidad_unitaria = $this->input->post("cantidad_unitaria");
+		$cantidad_total_producto = $this->input->post("cantidad_total_producto");
+		$monto_total_producto = $this->input->post("monto_total_producto");
+		$item = $this->input->post("item");
+
+		//ELIMINAR DETALLE
+		$id_dtablero_eliminar = $this->input->post("id_dtablero_eliminar");
+
+		//ACTUALIZAR DETALLE
+		$id_dtablero_actualizar = $this->input->post("id_dtablero_actualizar");
+		$item_actualizar = $this->input->post("item_actualizar");
+
+		//ACTUALIZAR CABECERA
+		$this->M_tableros->actualizar(
+			$id_tablero,
+			$codigo_tablero,
+			$descripcion_tablero,
+			$cantidad_tablero,
+			$adicional,
+			$id_sunat,
+			$id_marca_tablero,
+			$id_modelo_tablero,
+			$id_moneda,
+			$id_almacen,
+			$precio_tablero,
+			$porcentaje_margen,
+			$precio_margen,
+			$precio_unitario_por_tablero,
+			$total_tablero,
+			$id_trabajador,
+			$ds_nombre_trabajador,
+			$id_tablero_empresa,
+			$id_empresa
+
+		);
+
+		//REGISTRAR DETALLE
+		if ($item != "") {
+			$this->registrar_detalle(
+				$id_tablero,
+				$id_almacen_det,
+				$ds_almacen,
+				$id_producto,
+				$codigo_producto,
+				$descripcion_producto,
+				$id_unidad_medida,
+				$ds_unidad_medida,
+				$id_marca_producto,
+				$ds_marca_producto,
+				$precio_unitario,
+				$cantidad_unitaria,
+				$cantidad_total_producto,
+				$monto_total_producto,
+				$item
+			);
+		}
+
+		//ELIMINAR DETALLE
+		if ($id_dtablero_eliminar != "") {
+			$this->eliminar_detalle($id_dtablero_eliminar);
+		}
+
+		//ACTUALIZAR DETALLE
+		if ($id_dtablero_actualizar != "") {
+			$this->actualizar_detalle($id_dtablero_actualizar, $item_actualizar);
+		}
+
+		echo json_encode($id_tablero);
+	}
+
+	protected function eliminar_detalle($id_dtablero_eliminar)
+	{
+		for ($i = 0; $i < count($id_dtablero_eliminar); $i++) {
+			$this->M_tableros->eliminar_detalle(
+				$id_dtablero_eliminar[$i]
+			);
+		}
+	}
+
+	protected function actualizar_detalle($id_dtablero_actualizar, $item_actualizar)
+	{
+		for ($i = 0; $i < count($id_dtablero_actualizar); $i++) {
+			$this->M_tableros->actualizar_detalle(
+				$id_dtablero_actualizar[$i],
+				$item_actualizar[$i]
 			);
 		}
 	}
@@ -152,53 +341,4 @@ class C_tableros extends CI_Controller
 		);
 		$this->load->view("tableros/V_index_modal", $data);
 	}
-
-
-
-	/*
-	public function enlace_actualizar($id_multitabla)
-	{
-
-		$data = array(
-			'cabecera' => $this->M_multitablas->cabecera($id_multitabla),
-			'detalle' => $this->M_multitablas->detalle($id_multitabla),
-		);
-
-		$this->load->view('plantilla/V_header');
-		$this->load->view('plantilla/V_aside');
-		$this->load->view('multitablas/V_actualizar', $data);
-	}
-
-	public function actualizar()
-	{
-		//CABECERA
-		$id_multitabla = $this->input->post("id_multitabla");
-		$nombre_tabla = $this->input->post("nombre_tabla");
-
-		//ELIMINAR POR ID LAS FILAS DE TABLA DE DETALLE
-		$id_dmultitabla = $this->input->post("id_dmultitabla");
-
-		//DETALLE
-		$abreviatura = $this->input->post("abreviatura");
-		$descripcion = $this->input->post("descripcion");
-
-
-		if ($this->M_multitablas->actualizar($id_multitabla, $nombre_tabla)) {
-			if ($id_dmultitabla != null) {
-				$this->eliminar_detalle($id_dmultitabla);
-			}
-
-			if ($abreviatura != null) {
-				$this->insertar_detalle($id_multitabla, $abreviatura, $descripcion);
-			}
-			echo json_encode($nombre_tabla);
-		}
-	}
-
-	protected function eliminar_detalle($id_dmultitabla)
-	{
-		for ($i = 0; $i < count($id_dmultitabla); $i++) {
-			$this->M_multitablas->eliminar_detalle($id_dmultitabla[$i]);
-		}
-	} */
 }

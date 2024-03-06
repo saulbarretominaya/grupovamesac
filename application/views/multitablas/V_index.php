@@ -1,6 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -10,19 +8,19 @@
             </h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="id_datatable_multitablas" class="table table-sm table-hover" style="width: 100%;">
+            <table id="listar" class="table table-bordered table-sm table-hover" style="width: 100%;">
               <thead>
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </thead>
@@ -32,31 +30,27 @@
                     <tr>
                       <td><?php echo $index->id_multitabla; ?></td>
                       <td><?php echo $index->nombre_tabla; ?></td>
-                      <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-warning btn-sm"><span class="fas fa-edit "></span></a></td>
+                      <td><button type="button" class="btn btn-outline-info js_lupa_multitabla btn-sm" value="<?php echo $index->id_multitabla; ?>" data-toggle="modal" data-target="#id_target_multitablas"><span class="fa fa-search"></span></button></td>
+                      <td><a href="<?php echo base_url(); ?>C_multitablas/enlace_actualizar/<?php echo $index->id_multitabla; ?>" class="btn btn-outline-warning btn-sm"><span class="fas fa-edit "></span></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
             </table>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
       </div>
-      <!-- /.div -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
 
 
-
-
-
-
-
-
+  <div class="modal fade" id="id_target_multitablas" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
 
 
   <!-- Control Sidebar -->
@@ -90,7 +84,9 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/inputmask/jquery.inputmask.min.js"></script>
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
-  <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
   <!-- Select2 -->
   <script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 

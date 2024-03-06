@@ -1,0 +1,18 @@
+/* Ninguna de las imagenes son de mi propiedad, a continuación están los links de los autores
+
+Imágenes en Unsplash: https://unsplash.com/@xps
+Logo Dell: https://worldvectorlogo.com/logo/dell-1
+
+*/
+
+.img-1 {
+    background-image: url('img-1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-2 {
+    background-image: url('img-2.jpg');
+    background-size: cover;
+    background-position: center;
+}

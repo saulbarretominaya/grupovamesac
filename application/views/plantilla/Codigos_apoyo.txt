@@ -1,20 +1,39 @@
+Codigos en HP
 print_r($abreviatura);
 var_dump($precio_costo_replace);
 $numero = str_replace(',', '', $número); 
 echo "<script>console.log('Imprimiendo: " . json_encode($detalle) . "');</script>";
+echo "<script>console.log('Imprimiendo: " . $count . ";</script>";
+
+
 
 
 Codigo de Mysql
+alter table nombre_de_la_tabla AUTO_INCREMENT=1;
 SELECT FORMAT(12000.50,2); => Formatear en miles y redondear con 2 decimal en MySQL
 SELECT LEFT('Hola Brando',2) => Muestra los caracteres de un parrafo
 SELECT UPPER('Holaaa'); => Pone en mayuscula
+DATE_FORMAT(fecha_cotizacion,'%d/%m/%Y') AS fecha_cotizacion, => convierte año, mes, dia
+SELECT DATE_ADD('2021-12-01', INTERVAL 5 DAY) AS fecha_vencimiento => te devuelve el intervalo de fechas con un numero entero
+STR_TO_DATE('$fecha_vencimiento_validez_oferta','%d/%m/%Y') formatea fecha
+SELECT CURDATE() => Te devuelve solo Fecha sin la hora
+SELECT NOW() => Devuelve fecha y hora del sistema
+ALTER TABLE detalle_tableros MODIFY fecha_tablero DATETIME(3); => Modifica los nombres de los campos creados
+
+
 
 
 JavaScript
-var xxx = precio_costo.replace(",", "");
-var xxx = precio_costo.replaceAll(",", "");
+var xxx = precio_costo.replace(",", ""); => Reemplaza solo el primer caracter que encuentre en la linea del codigo
+var xxx = precio_costo.replaceAll(",", "");  => Reemplaza todos los caracteres que encuentra en toda la linea del codigo
 
-Funcion para validar solo numeros enteros
+/* uso de split para separar y acomodar valor por posicion 'ejemplo esta cotizacion'
+var fecha_cuota = $("#fecha_cuota").val();
+var fecha_split = fecha_cuota.split("-");
+var fecha_cuota = fecha_split[2] + '/' + fecha_split[1] + '/' + fecha_split[0];
+*/
+
+/*Funcion para validar solo numeros enteros
 $("#porcentaje").on({
 	"focus": function (event) {
 		$(event.target).select();
@@ -27,6 +46,7 @@ $("#porcentaje").on({
 		});
 	}
 });
+*/
 Funcion para validar solo numeros enteros sin el 0
 $("#cantidad").on({
 	"focus": function (event) {
@@ -40,3 +60,7 @@ $("#cantidad").on({
 		});
 	}
 });
+
+/* recupera la primera fila de una tabla sin recorrer
+var id_cotizacion = $(this).parents("tr").find("td")[0].innerText;
+*/

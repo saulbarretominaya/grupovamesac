@@ -1,18 +1,25 @@
  <div class="modal-header">
-     <h5 class="modal-title">Tableros</h5>
+     <h5 class="modal-title">TABLEROS</h5>
      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
      </button>
  </div>
+
  <div class="modal-body">
      <div class="row">
          <div class="col-md-12">
              <div class="form-group row">
-                 <div class="col-md-10">
+                 <div class="col-md-8">
                      <label for="tipo_trabajador">Descripcion Tablero</label>
                      <div class="input-group">
                          <textarea class="form-control" id="descripcion_tablero" rows="1" readonly><?php echo $cabecera_modal->descripcion_tablero; ?>
                              </textarea>
+                     </div>
+                 </div>
+                 <div class="col-md-2">
+                     <label for="tipo_trabajador">Adicional</label>
+                     <div class="input-group">
+                         <input type="text" class="form-control" value="<?php echo $cabecera_modal->adicional; ?>" readonly style="background-color: #BCC0BD;">
                      </div>
                  </div>
                  <div class="col-md-2">
@@ -82,14 +89,13 @@
                                  <?php if (!empty($detalle_modal)) : ?>
                                      <?php foreach ($detalle_modal as $detalle_modal) : ?>
                                          <tr>
-                                             <td><?php echo "1"; ?></td>
+                                             <td><?php echo $detalle_modal->item;; ?></td>
                                              <td><?php echo $detalle_modal->ds_almacen; ?></td>
                                              <td><?php echo $detalle_modal->codigo_producto; ?></td>
                                              <td><?php echo $detalle_modal->descripcion_producto; ?></td>
                                              <td><?php echo $detalle_modal->ds_unidad_medida; ?></td>
                                              <td><?php echo $detalle_modal->ds_marca_producto; ?></td>
                                              <td><?php echo $detalle_modal->precio_unitario; ?></td>
-
                                              <td><?php echo $detalle_modal->cantidad_unitaria; ?></td>
                                              <td><?php echo $detalle_modal->cantidad_total_producto; ?></td>
                                              <td><?php echo $detalle_modal->monto_total_producto; ?></td>
@@ -107,7 +113,7 @@
          <div class="col-md-12">
              <div class="form-group row">
                  <div class="col-md-2">
-                     <label for="tipo_trabajador">Precio de Tablero</label>
+                     <label for="tipo_trabajador">Precio Componentes</label>
                      <div class="input-group">
                          <input type="text" class="form-control" value="<?php echo $cabecera_modal->precio_tablero; ?>" readonly>
                      </div>
@@ -138,10 +144,9 @@
                  </div>
              </div>
          </div>
-
      </div>
+ </div>
 
-     <div class="modal-footer justify-content-between">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-     </div>
+ <div class=" modal-footer justify-content-between">
+     <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
  </div>

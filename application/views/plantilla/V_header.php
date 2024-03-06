@@ -15,7 +15,12 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/dist/css/adminlte.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.css">
+  <!-- Cambios  de dataTables, se elimina desde la raiz, por conflictos -->
+  <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.css"> -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- iCheck for checkboxes and radio inputs -->
@@ -23,14 +28,13 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
-  <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/plugins/alertify/css/alertify.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>plantilla/plugins/alertify/css/themes/default.css">
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="<?php echo base_url() ?>plantilla/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-  <link href="<?php echo base_url() ?>plantilla/plugins/bootstrap-5.1.0-dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Cambios  de Bootstrap se deja el original de la plantilla, solo al login se le aplica -->
+  <!-- <link href="<?php echo base_url() ?>plantilla/plugins/bootstrap-5.1.0-dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
   <style>
     table {
@@ -52,7 +56,11 @@
   </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+
+<body class="sidebar-mini layout-fixed" style="height: auto;">
+
+
   <div class="wrapper">
 
     <!-- Preloader -->
@@ -68,5 +76,33 @@
           <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item d-none d-sm-inline-block">
+          <a class="nav-link"><?php echo 'Bienvenid@: ' . $this->session->userdata("ds_nombre_trabajador") ?></a>
+        </li>
+
+        <li class="nav-item d-none d-sm-inline-block">
+          <a class="nav-link"><?php echo 'Cargo: ' . $this->session->userdata("ds_cargo_trabajador") ?></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="<?php echo base_url(); ?>C_inicio/cerrar_login" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
+          </div>
+        </li>
+      </ul>
+
     </nav>
     <!-- /.navbar -->

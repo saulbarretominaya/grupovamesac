@@ -5,12 +5,17 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Tableros
-              <button type="button" class="btn btn-primary btn-sm" id="insertar">REGISTRAR</button>
+              <button type="button" class="btn btn-primary btn-sm" id="registrar">REGISTRAR</button>
               <a href="<?php echo base_url(); ?>C_tableros" class="btn btn-danger btn-sm">CANCELAR</a>
             </h1>
           </div>
         </div>
       </div>
+      <input type="hidden" id="id_trabajador" value="<?php echo $this->session->userdata("id_trabajador") ?>">
+      <input type="hidden" id="ds_nombre_trabajador" value="<?php echo $this->session->userdata("ds_nombre_trabajador") ?>">
+      <input type="hidden" id="id_tablero_empresa" value="<?php echo $this->session->userdata("ds_ruc_empresa") ?>">
+      <input type="hidden" id="id_empresa" value="<?php echo $this->session->userdata("id_empresa") ?>">
+
     </section>
 
 
@@ -44,40 +49,43 @@
 
                             <div class="form-group row">
                               <!-- Codigo Tablero -->
-                              <div class="col-md-5">
+                              <div class="col-md-2">
+                                <label for="">Codigo Tablero</label>
                                 <div class="input-group">
-                                  <label class="col-sm-6 col-form-label">Codigo Tablero</label>
-                                  <input type="text" class="form-control" id="codigo_tablero" placeholder="Codigo Tablero" value="100">
+                                  <textarea class="form-control" id="codigo_tablero" rows="1"></textarea>
                                 </div>
                               </div>
                               <!-- Codigos Sunat< -->
-                              <div class="col-md-7">
+                              <div class="col-md-4">
+                                <label for="">Codigo Sunat</label>
                                 <div class="input-group">
-                                  <label class="col-sm-3 col-form-label">Codigo Sunat</label>
-                                  <div class="col-md-8">
-                                    <select class="form-control select2" id="id_sunat" style="width: 100%;">
-                                      <option value="1">Seleccione</option>
-                                      <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
-                                        <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
-                                          <?php echo $cbox_codigos_sunat->descripcion; ?>
-                                        </option>
-                                      <?php endforeach; ?>
-                                    </select>
-                                  </div>
+                                  <select class="form-control select2" id="id_sunat" style="width: 100%;">
+                                    <option value="0">Seleccionar</option>
+                                    <?php foreach ($cbox_codigos_sunat as $cbox_codigos_sunat) : ?>
+                                      <option value="<?php echo $cbox_codigos_sunat->id_dmultitabla; ?>">
+                                        <?php echo $cbox_codigos_sunat->descripcion; ?>
+                                      </option>
+                                    <?php endforeach; ?>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Descripcion Tablero</label>
+                                <div class="input-group">
+                                  <textarea class="form-control" id="descripcion_tablero" rows="1"></textarea>
+                                </div>
+                              </div>
+
+                              <div class="col-md-2">
+                                <label>Adicional</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" id="adicional" value="" name="adicional">
                                 </div>
                               </div>
 
                             </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-12">
-                                <div class="input-group">
-                                  <label class="col-sm-12 col-form-label">Descripcion Tablero</label>
-                                  <textarea class="form-control" id="descripcion_tablero" rows="2">Prueba</textarea>
-                                </div>
-                              </div>
-
-                            </div>
 
                             <div class="form-group row">
                               <!-- Marca Tablero -->
@@ -85,7 +93,7 @@
                                 <label for="">Marca Tablero</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_marca_tablero" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_marca_tableros as $cbox_marca_tableros) : ?>
                                       <option value="<?php echo $cbox_marca_tableros->id_dmultitabla; ?>">
                                         <?php echo $cbox_marca_tableros->descripcion; ?>
@@ -94,12 +102,11 @@
                                   </select>
                                 </div>
                               </div>
-                              <!-- Modelo Tablero -->
                               <div class="col-md-3">
                                 <label for="">Modelo Tablero</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_modelo_tablero" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_modelo_tableros as $cbox_modelo_tableros) : ?>
                                       <option value="<?php echo $cbox_modelo_tableros->id_dmultitabla; ?>">
                                         <?php echo $cbox_modelo_tableros->descripcion; ?>
@@ -108,26 +115,11 @@
                                   </select>
                                 </div>
                               </div>
-                              <!-- Tipo Moneda -->
-                              <div class="col-md-3">
-                                <label for="">Tipo Moneda</label>
-                                <div class="input-group">
-                                  <select class="form-control select2" id="id_moneda" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
-                                    <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
-                                      <option value="<?php echo $cbox_moneda->id_dmultitabla; ?>">
-                                        <?php echo $cbox_moneda->descripcion; ?>
-                                      </option>
-                                    <?php endforeach; ?>
-                                  </select>
-                                </div>
-                              </div>
-                              <!-- Almacen -->
                               <div class="col-md-3">
                                 <label for="">Almacen</label>
                                 <div class="input-group">
                                   <select class="form-control select2" id="id_almacen" style="width: 100%;">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccionar</option>
                                     <?php foreach ($cbox_almacen as $cbox_almacen) : ?>
                                       <option value="<?php echo $cbox_almacen->id_dmultitabla; ?>">
                                         <?php echo $cbox_almacen->descripcion; ?>
@@ -153,17 +145,17 @@
                       <div class="col-md-12">
                         <!-- Primera Fila -->
                         <div class="form-group row">
-                          <!--Opcion 1-->
+                          <!-- Producto-->
                           <div class="col-md-2">
                             <div class="form-check">
                               <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_producto">
                               </button>
-                              <label class="form-check-label">Almacen</label>
+                              <label class="form-check-label">Productos</label>
                               <div class="modal fade" id="opcion_target_producto" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Productos Almacen - Tableros</h4>
+                                      <h4 class="modal-title">Productos</h4>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
@@ -179,6 +171,7 @@
                                             <th id="dtable_ds_unidad_medida">U.M</th>
                                             <th id="dtable_ds_marca_producto">Marca</th>
                                             <th id="dtable_ds_grupo">Grupo</th>
+                                            <th id="dtable_stock">Stock</th>
                                             <th id="dtable_ds_moneda">Moneda</th>
                                             <th id="dtable_precio_unitario">Precio Unitario</th>
                                           </tr>
@@ -198,7 +191,9 @@
                                                     $index_productos->ds_unidad_medida . "*" .
                                                     $index_productos->id_marca_producto . "*" .
                                                     $index_productos->ds_marca_producto . "*" .
+                                                    $index_productos->ds_moneda . "*" .
                                                     $index_productos->precio_unitario;
+
                                                   ?>
                                                   <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_producto" value="<?php echo $split_productos; ?>" data-toggle="modal" data-target="#opcion_target_producto"><span class="fas fa-check"></span></button>
                                                 </td>
@@ -208,6 +203,7 @@
                                                 <td><?php echo $index_productos->ds_unidad_medida; ?></td>
                                                 <td><?php echo $index_productos->ds_marca_producto; ?></td>
                                                 <td><?php echo $index_productos->ds_grupo; ?></td>
+                                                <td><?php echo $index_productos->stock; ?></td>
                                                 <td><?php echo $index_productos->ds_moneda; ?></td>
                                                 <td><?php echo $index_productos->precio_unitario; ?></td>
                                               </tr>
@@ -227,9 +223,80 @@
                               </div>
                             </div>
                           </div>
-                          <!-- Fin Opcion 1 -->
-                          <!-- Producto -->
-                          <div class="col-md-10">
+                          <!-- Fin Producto -->
+                          <!-- Comodin -->
+                          <!-- <div class="col-md-2">
+                            <div class="form-check">
+                              <button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#opcion_target_comodin" id="btn_id_comodin">
+                              </button>
+                              <label class="form-check-label">Comodin</label>
+                              <div class="modal fade" id="opcion_target_comodin" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Comodin</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <table id="id_datatable_comodin" class="table table-bordered table-sm table-hover table-responsive">
+                                        <thead>
+                                          <tr>
+                                            <th></th>
+                                            <th id="dtable_comodin_codigo_producto">Codigo Producto</th>
+                                            <th id="dtable_comodin_nombre_producto">Nombre del Producto</th>
+                                            <th id="dtable_comodin_ds_unidad_medida">U.M</th>
+                                            <th id="dtable_comodin_ds_marca_producto">Marca</th>
+                                            <th id="dtable_comodin_ds_moneda">Moneda</th>
+                                            <th id="dtable_comodin_precio_unitario">Precio Unitario</th>
+                                            <th id="dtable_comodin_nombre_proveedor">Nombre Proveedor</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <?php if (!empty($index_comodin)) : ?>
+                                            <?php foreach ($index_comodin as $index_comodin) : ?>
+                                              <tr>
+                                                <td>
+                                                  <?php $split_comodin =
+                                                    $index_comodin->id_comodin . "*" .
+                                                    $index_comodin->id_general . "*" .
+                                                    $index_comodin->codigo_producto . "*" .
+                                                    $index_comodin->descripcion_producto . "*" .
+                                                    $index_comodin->id_unidad_medida . "*" .
+                                                    $index_comodin->ds_unidad_medida . "*" .
+                                                    $index_comodin->id_marca_producto . "*" .
+                                                    $index_comodin->ds_marca_producto . "*" .
+                                                    $index_comodin->id_moneda . "*" .
+                                                    $index_comodin->ds_moneda . "*" .
+                                                    $index_comodin->precio_unitario;
+                                                  ?>
+                                                  <button type="button" class="btn btn-outline-success btn-sm js_seleccionar_modal_comodin" value="<?php echo $split_comodin; ?>" data-toggle="modal" data-target="#opcion_target_comodin"><span class="fas fa-check"></span></button>
+                                                </td>
+                                                <td><?php echo $index_comodin->codigo_producto; ?></td>
+                                                <td><?php echo $index_comodin->descripcion_producto; ?></td>
+                                                <td><?php echo $index_comodin->ds_unidad_medida; ?></td>
+                                                <td><?php echo $index_comodin->ds_marca_producto; ?></td>
+                                                <td><?php echo $index_comodin->ds_moneda; ?></td>
+                                                <td><?php echo $index_comodin->precio_unitario; ?></td>
+                                                <td><?php echo $index_comodin->nombre_proveedor; ?></td>
+                                              </tr>
+                                            <?php endforeach; ?>
+                                          <?php endif; ?>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                          <!-- Fin Comodin -->
+                          <div class="col-md-8">
+                            <input type="hidden" id="hidden_item">
                             <input type="hidden" id="hidden_id_almacen">
                             <input type="hidden" id="hidden_ds_almacen">
                             <input type="hidden" id="hidden_id_producto">
@@ -244,27 +311,34 @@
                             <input type="hidden" id="hidden_cantidad_total_producto" name="hidden_cantidad_total_producto">
                             <input type="hidden" id="hidden_monto_total_producto" name="hidden_monto_total_producto">
                             <div class="input-group">
-                              <label class="col-sm-3 col-form-label">Nombre Producto</label>
-                              <input type="text" class="form-control" id="descripcion_producto" placeholder="Nombre Producto" readonly>
+                              <label class="col-sm-3 col-form-label">Descripcion</label>
+                              <input type="text" class="form-control" id="descripcion_producto" placeholder="Descripcion Producto" readonly>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <div class="col-md-9">
+                      <div class="col-md-10">
                         <div class="card">
                           <div class="card-header">
-                            <h3 class="card-title">Descripcion de Productos por Tablero</h3>
+                            <h3 class="card-title">Descripcion de Producto por Tablero</h3>
                           </div>
                           <div class="card-body">
                             <div class="form-group row">
-                              <div class="col-md-3">
+                              <div class="col-md-1">
+                                <label for="">&nbsp;</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" id="simbolo_moneda" value="" readonly>
+                                  <input type="hidden" id="moneda">
+                                </div>
+                              </div>
+                              <div class="col-md-2">
                                 <label for="">Precio Unitario</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="precio_unitario" placeholder="" readonly>
                                 </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-2">
                                 <label for="">Cantidad</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" id="cantidad_unitaria" placeholder="">
@@ -277,6 +351,21 @@
                                 </div>
                               </div>
                               <div class="col-md-3">
+                                <label for="">Moneda</label>
+                                <div class="input-group">
+                                  <select class="form-control" id="id_moneda">
+                                    <option value="0">Seleccionar</option>
+                                    <?php foreach ($cbox_moneda as $cbox_moneda) : ?>
+                                      <?php if ($cbox_moneda->id_dmultitabla == $enlace_actualizar_cabecera->id_moneda) : ?>
+                                        <option value="<?php echo $cbox_moneda->id_dmultitabla ?>" selected><?php echo $cbox_moneda->descripcion; ?></option>
+                                      <?php else : ?>
+                                        <option value="<?php echo $cbox_moneda->id_dmultitabla ?>"><?php echo $cbox_moneda->descripcion; ?></option>
+                                      <?php endif; ?>
+                                    <?php endforeach; ?>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-1">
                                 <label for="">&nbsp;</label>
                                 <div class="input-group">
                                   <button type="button" class="btn btn-outline-success" id="id_agregar_tablero"><span class="fas fa-plus"></span></button>
@@ -288,15 +377,15 @@
                         </div>
                       </div>
 
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <div class="card">
                           <div class="card-header">
-                            <h3 class="card-title">Cantidad de Tablero</h3>
+                            <h3 class="card-title">Cant Tablero</h3>
                           </div>
                           <div class="card-body">
                             <div class="form-group row">
                               <div class="col-md-12">
-                                <label for="">Ingrese # Tableros</label>
+                                <label for="">&nbsp;</label>
                                 <div class="input-group">
                                   <input type="text" class="form-control" name="" id="cantidad_tablero" placeholder="">
                                 </div>
@@ -320,14 +409,14 @@
                               <table id="id_table_detalle_tableros">
                                 <thead>
                                   <tr>
-                                    <!-- <th>Item</th> -->
+                                    <th>Item</th>
                                     <th>Almacen</th>
                                     <th>Codigo</th>
-                                    <th>Nombre Producto</th>
+                                    <th>Descripcion</th>
                                     <th>U.M</th>
                                     <th>Marca</th>
                                     <th>Precio Unitario</th>
-                                    <th>Cant Uni</th>
+                                    <th>Cant Unitario</th>
                                     <th>Cant Total</th>
                                     <th>Total</th>
                                     <th></th>
@@ -349,7 +438,7 @@
                         <div class="form-group row">
                           <!-- Precio Tablero -->
                           <div class="col-md-3">
-                            <label for="tipo_trabajador">Precio de Tableros</label>
+                            <label for="tipo_trabajador">Precio Componentes</label>
                             <div class="input-group">
                               <input type="text" class="form-control" id="precio_tablero" name="precio_tablero" placeholder="" value="" readonly>
                             </div>
@@ -421,7 +510,6 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url() ?>plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url() ?>plantilla/plugins/bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
 
 
   <!-- AdminLTE App -->
@@ -434,7 +522,10 @@
   <script src="<?php echo base_url() ?>plantilla/plugins/inputmask/jquery.inputmask.min.js"></script>
   <script src="<?php echo base_url(); ?>plantilla/plugins/alertify/alertify.js"></script>
 
-  <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>plantilla/plugins/DataTables/datatables.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url() ?>plantilla/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+
   <!-- Select2 -->
   <script src="<?php echo base_url() ?>plantilla/plugins/select2/js/select2.full.min.js"></script>
 
